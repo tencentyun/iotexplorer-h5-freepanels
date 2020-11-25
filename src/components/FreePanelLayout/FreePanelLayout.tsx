@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import classNames from 'classnames';
 import { DoControlDeviceData } from '@hooks/useDeviceInfo';
 import { FuncFooter } from '../FuncFooter';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 import './FreePanelLayout.less';
+import { px2rpx, rpx2rem } from "@utillib";
 
 export interface FreePanelLayoutProps extends StyledProps {
 	children: React.ReactNode;
@@ -26,7 +27,7 @@ export function FreePanelLayout({
 	doControlDeviceData,
 	offline,
 	powerOff,
-	title,
+	// title,
 	deviceData,
 	darkMode,
 	onGoTimingProject,
@@ -42,6 +43,10 @@ export function FreePanelLayout({
 		}
 	}, [offline]);
 
+	const bodyHeight = useMemo(() => {
+		return `${rpx2rem(px2rpx(document.documentElement.clientHeight) - 256)}rem`;
+	}, []);
+
 	return (
 		<div
 			className={classNames('free-panel-layout clearfix', className)}
@@ -49,9 +54,9 @@ export function FreePanelLayout({
 		>
 			<div
 				className='free-panel-body clearfix'
-				// style={{
-				//   marginTop: pageHeaderHeight,
-				// }}
+				style={{
+					height: bodyHeight,
+				}}
 			>
 				{children}
 			</div>

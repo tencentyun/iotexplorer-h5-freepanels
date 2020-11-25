@@ -530,3 +530,12 @@ export const appendParams = (url: string, data: any) => {
 
 	return (url.indexOf('?') > -1 ? `${url}&` : `${url}?`) + paramArr.join('&');
 };
+
+export const px2rpx = (px) => {
+	const { clientWidth } = document.documentElement;
+	return (px * 2) * (375 / clientWidth);
+};
+
+export const rpx2rem = (rpx) => {
+	return rpx / 46.875;
+};
