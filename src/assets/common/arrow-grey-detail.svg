@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>icon/查看详情下箭头</title>
+    <g id="icon/查看详情下箭头" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round">
+        <g id="查看详情" stroke="#A1A7B2" stroke-width="3">
+            <g id="快捷入口" transform="translate(3.000000, 8.000000)">
+                <polyline id="路径-2备份" points="-1.18043697e-14 1.24774729e-16 8.96459961 8.9909668 17.9020996 3.74324188e-16"></polyline>
+            </g>
+        </g>
+    </g>
+</svg>

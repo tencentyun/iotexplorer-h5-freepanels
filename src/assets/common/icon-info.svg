@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="47px" height="47px" viewBox="0 0 47 47" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.4 (67378) - http://www.bohemiancoding.com/sketch -->
+    <title>分组 10</title>
+    <desc>Created with Sketch.</desc>
+    <g id="小程序视觉规范1.0" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="画板" transform="translate(-202.000000, -394.000000)">
+            <g id="通用" transform="translate(202.000000, 394.000000)">
+                <g id="分组-10">
+                    <path d="M23.5,0 C10.521,0 0,10.521 0,23.5 C0,36.479 10.521,47 23.5,47 C36.479,47 47,36.479 47,23.5 C47,10.521 36.479,0 23.5,0 Z" id="Shape" fill="#006EFF"></path>
+                    <polygon id="Path" fill="#FFFFFF" points="26 36 21 36 21 21 26 21"></polygon>
+                    <polygon id="Path" fill="#FFFFFF" points="26 17 21 17 21 12 26 12"></polygon>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

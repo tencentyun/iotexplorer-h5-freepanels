@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="40px" height="40px" viewBox="0 0 40 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>首页/虚拟角标</title>
+    <defs>
+        <linearGradient x1="0%" y1="0%" x2="100%" y2="100%" id="linearGradient-1">
+            <stop stop-color="#3D8BFF" offset="0%"></stop>
+            <stop stop-color="#0066FF" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="首页" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="1.1.1-首页-晴天" transform="translate(-387.000000, -588.000000)">
+            <g id="首页/虚拟角标" transform="translate(387.000000, 588.000000)">
+                <path d="M16,0 L40,0 L40,0 L40,24 C40,32.836556 32.836556,40 24,40 L0,40 L0,40 L0,16 C-1.082166e-15,7.163444 7.163444,1.623249e-15 16,0 Z" id="矩形" fill="url(#linearGradient-1)"></path>
+                <g id="虚拟" transform="translate(8.000000, 8.000000)">
+                    <path d="M4,4 L20,4 C21.6568542,4 23,5.34314575 23,7 L23,17 C23,18.6568542 21.6568542,20 20,20 L17.1845764,20 C16.5198163,20.0000051 15.8985004,19.6697109 15.5266808,19.1186609 C14.57364,17.7062203 13.4022302,17 12.0124512,17 C10.6319335,17 9.48840536,17.6968393 8.5818667,19.0905179 C8.21288124,19.657794 7.58205737,20 6.90533552,20 L4,20 C2.34314575,20 1,18.6568542 1,17 L1,7 C1,5.34314575 2.34314575,4 4,4 Z" id="矩形" stroke="#FFFFFF" stroke-width="2"></path>
+                    <circle id="椭圆形" fill="#FFFFFF" cx="7" cy="11" r="2"></circle>
+                    <circle id="椭圆形备份" fill="#FFFFFF" cx="17" cy="11" r="2"></circle>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

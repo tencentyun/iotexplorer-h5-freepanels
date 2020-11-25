@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="406px" height="199px" viewBox="0 0 406 199" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 57.1 (83088) - https://sketch.com -->
+    <title>编组 3</title>
+    <desc>Created with Sketch.</desc>
+    <g id="soft-ap配网" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="soft-ap配网-设置结果反馈" transform="translate(-172.000000, -438.000000)">
+            <g id="编组-3" transform="translate(172.000000, 438.000000)">
+                <g id="编组-2">
+                    <rect id="矩形" fill="#EBF4FF" x="294" y="0" width="112" height="199" rx="10"></rect>
+                    <rect id="矩形" fill="#FFFFFF" opacity="0.4" x="299" y="23" width="102" height="153"></rect>
+                    <path d="M73.1309091,62 C49.9814545,62 31.0581818,79.487125 29.4154545,101.634 C12.3949091,106.36025 0,120.8525 0,138 C0,158.2255 17.2474545,174.843375 39,176 L112.130909,176 C136.341636,176 156,155.791125 156,130.875 C156,106.85425 136.743455,87.29375 112.461818,85.883 C105.3,71.747 90.4090909,62 73.1309091,62 Z" id="路径" fill="#EBF4FF" fill-rule="nonzero"></path>
+                    <path d="M270.111302,115.191371 L278.658249,126.815219 C279.312586,127.705117 279.121626,128.956966 278.231728,129.611302 C277.888313,129.863813 277.473205,130 277.046947,130 L259.953053,130 C258.848483,130 257.953053,129.104569 257.953053,128 C257.953053,127.573742 258.08924,127.158634 258.341751,126.815219 L266.888698,115.191371 C267.543034,114.301473 268.794883,114.110513 269.684781,114.76485 C269.8477,114.884643 269.991509,115.028452 270.111302,115.191371 Z" id="多边形" fill="#EBF4FF" transform="translate(268.500000, 121.500000) rotate(-270.000000) translate(-268.500000, -121.500000) "></path>
+                    <rect id="矩形" fill="#D7E8FF" x="308" y="40" width="27.0967742" height="27"></rect>
+                    <polygon id="矩形备份-10" fill="#D7E8FF" points="344.129032 40 392 40 392 49.9 344.129032 49.9"></polygon>
+                    <polygon id="矩形备份-13" fill="#D7E8FF" points="344.129032 57.1 392 57.1 392 67 344.129032 67"></polygon>
+                    <rect id="矩形备份-11" fill="#D7E8FF" x="308" y="85" width="27.0967742" height="27"></rect>
+                    <polygon id="矩形备份-12" fill="#D7E8FF" points="344.129032 85 392 85 392 94.9 344.129032 94.9"></polygon>
+                    <polygon id="矩形备份-14" fill="#D7E8FF" points="344.129032 102.1 392 102.1 392 112 344.129032 112"></polygon>
+                    <rect id="矩形备份-15" fill="#D7E8FF" x="308" y="131" width="27.0967742" height="27"></rect>
+                    <polygon id="矩形备份-16" fill="#D7E8FF" points="344.129032 131 392 131 392 140.9 344.129032 140.9"></polygon>
+                    <polygon id="矩形备份-17" fill="#D7E8FF" points="344.129032 148.1 392 148.1 392 158 344.129032 158"></polygon>
+                </g>
+                <g id="编组-9" transform="translate(308.000000, 40.000000)">
+                    <g id="编组-8"></g>
+                    <g id="编组-7" transform="translate(0.000000, 45.000000)"></g>
+                    <g id="编组-6" transform="translate(0.000000, 91.000000)"></g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

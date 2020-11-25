@@ -1,0 +1,84 @@
+{
+  "name": "iotexplorer-h5-freepanels",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "npx webpack-dev-server --config webpack/webpack.config.js --env.mode=development --watch",
+    "release": "npx webpack --config webpack/webpack.config.js --env.mode=production"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tencentyun/iotexplorer-h5-freepanels.git"
+  },
+  "author": "xiaoyuze88@gmail.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tencentyun/iotexplorer-h5-freepanels/issues"
+  },
+  "homepage": "https://github.com/tencentyun/iotexplorer-h5-freepanels#readme",
+  "dependencies": {
+    "@types/classnames": "^2.2.9",
+    "@types/jest": "^24.0.23",
+    "@types/node": "^12.12.11",
+    "@types/react": "^16.9.11",
+    "@types/react-dom": "^16.9.4",
+    "classnames": "^2.2.6",
+    "event-emitter-for-miniprogram": "0.0.6",
+    "postcss-pxtorem": "^5.1.1",
+    "qcloud-iotexplorer-h5-panel-sdk": "^1.1.19",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
+    "react-switch": "^5.0.1",
+    "rmc-picker": "^5.0.10",
+    "tinycolor2": "^1.4.2",
+    "underscore": "^1.12.0"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@babel/core": "^7.8.7",
+    "@babel/plugin-proposal-class-properties": "^7.8.3",
+    "@babel/plugin-transform-runtime": "^7.8.3",
+    "@babel/preset-env": "^7.9.0",
+    "@babel/preset-react": "^7.8.3",
+    "@babel/preset-typescript": "^7.10.4",
+    "@babel/runtime": "^7.12.1",
+    "autoprefixer": "^9.7.4",
+    "babel-loader": "^8.0.6",
+    "clean-webpack-plugin": "^3.0.0",
+    "css-loader": "^3.4.2",
+    "eslint": "^7.13.0",
+    "eslint-config-tencent": "^1.0.0",
+    "eslint-plugin-html": "^6.1.1",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-jsx-a11y": "^6.4.1",
+    "eslint-plugin-react": "^7.21.5",
+    "eslint-plugin-react-hooks": "^4.2.0",
+    "less": "^3.11.1",
+    "less-loader": "^5.0.0",
+    "mini-css-extract-plugin": "^1.0.0",
+    "optimize-css-assets-webpack-plugin": "^5.0.4",
+    "postcss-loader": "^3.0.0",
+    "style-loader": "^1.1.3",
+    "svg-transform-loader": "^2.0.13",
+    "svgo-loader": "^2.2.1",
+    "ts-loader": "^6.2.1",
+    "typescript": "^3.8.3",
+    "url-loader": "^4.1.1",
+    "webpack": "^4.42.0",
+    "webpack-bundle-analyzer": "^3.8.0",
+    "webpack-cli": "^3.3.11",
+    "webpack-dev-server": "^3.10.3"
+  }
+}

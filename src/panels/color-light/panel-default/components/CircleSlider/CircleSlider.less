@@ -1,0 +1,43 @@
+@thumbwidth: 82px;
+
+.circle-slider-container {
+  width: 492px;
+  height: 492px;
+  margin: 160px auto 100px;
+  position: relative;
+  border-radius: 100%;
+  will-change: transform;
+}
+
+.circle-slider {
+  width: 492px;
+  height: 492px;
+  border-radius: 100%;
+  position: absolute;
+
+  .circle-slider-inner {
+    position: absolute;
+    left: 32px;
+    top: 32px;
+    width: 428px;
+    height: 428px;
+    border-radius: 100%;
+    background-image: url("../../images/light-inner.png");
+    background-size: 100%;
+  }
+
+  .circle-slider-thumb {
+    background-color: #000;
+    position: absolute;
+    width: 58px;
+    height: 58px;
+    border: 12px solid #fff;
+    border-radius: 100%;
+    top: 0;
+    left: 0;
+  }
+
+  .circle-slider-image {
+
+  }
+}

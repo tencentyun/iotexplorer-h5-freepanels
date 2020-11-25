@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="121px" height="120px" viewBox="0 0 121 120" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 59 (86127) - https://sketch.com -->
+    <title>提交失败</title>
+    <desc>Created with Sketch.</desc>
+    <g id="提交失败" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" transform="translate(0.000000, 0.000000)">
+        <circle id="椭圆形" stroke="#E54545" stroke-width="4" cx="60" cy="60" r="58"></circle>
+        <rect id="矩形" fill="#E54545" transform="translate(60.000000, 60.000000) rotate(-315.000000) translate(-60.000000, -60.000000) " x="58" y="35" width="4" height="50"></rect>
+        <rect id="矩形" fill="#E54545" transform="translate(60.000000, 60.000000) rotate(-45.000000) translate(-60.000000, -60.000000) " x="58" y="35" width="4" height="50"></rect>
+    </g>
+</svg>

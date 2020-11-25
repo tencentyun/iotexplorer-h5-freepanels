@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="13px" height="22px" viewBox="0 0 13 22" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>icon/入口箭头-蓝底</title>
+    <g id="我的" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" opacity="0.400000006" stroke-linecap="round" stroke-linejoin="round">
+        <g id="1.1.1-我的-未登录态页面" transform="translate(-695.000000, -292.000000)" stroke="#FFFFFF" stroke-width="3">
+            <g id="编组" transform="translate(40.000000, 254.000000)">
+                <g transform="translate(642.000000, 31.000000)" id="路径-4">
+                    <polyline points="15 9 24 18 15 27"></polyline>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

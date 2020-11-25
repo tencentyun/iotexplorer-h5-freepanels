@@ -1,0 +1,67 @@
+{
+  "compilerOptions": {
+    "target": "es2017",
+    "module": "esnext",
+    "removeComments": false,
+    "preserveConstEnums": true,
+    "moduleResolution": "node",
+    "experimentalDecorators": true,
+    "noImplicitAny": false,
+    "allowSyntheticDefaultImports": true,
+    "outDir": "lib",
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "strictNullChecks": true,
+    "sourceMap": true,
+    "baseUrl": ".",
+    "rootDir": ".",
+    "jsx": "react",
+//    "jsxFactory": "React.createElement",
+    "lib": [
+      "es2017",
+      "dom"
+    ],
+    "allowJs": true,
+    "resolveJsonModule": true,
+    "typeRoots": [
+      "node_modules/@types",
+      "global.d.ts",
+      "src/@types"
+    ],
+    "paths": {
+      "@src/*": [
+        "./src/*"
+      ],
+      "@components/*": [
+        "./src/components/*"
+      ],
+      "@hooks/*": [
+        "./src/hooks/*"
+      ],
+      "@utillib": [
+        "./src/libs/utillib"
+      ],
+      "@libs/*": [
+        "./src/libs/*"
+      ],
+      "@constants": [
+        "./src/constants/index"
+      ],
+      "@icons/*": [
+        "./src/assets/*"
+      ],
+      "@wxlib": [
+        "./src/libs/wxlib/index"
+      ],
+      "@underscore": [
+        "./src/vendor/underscore/index"
+      ]
+    }
+  },
+  "exclude": [
+    "node_modules",
+    "dist",
+    "config"
+  ],
+  "compileOnSave": false
+}

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="260px" height="64px" viewBox="0 0 260 64" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>USB@2x</title>
+    <defs>
+        <rect id="path-1" x="0" y="0" width="260" height="64" rx="16"></rect>
+        <linearGradient x1="0%" y1="49.4504422%" x2="100%" y2="50.5495578%" id="linearGradient-3">
+            <stop stop-color="#ECEEF3" offset="0%"></stop>
+            <stop stop-color="#D7D9DF" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="排插" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" opacity="0.402155618">
+        <g transform="translate(-70.000000, -1186.000000)" id="大按妞2">
+            <g transform="translate(40.000000, 256.000000)">
+                <g id="USB@2x" transform="translate(30.000000, 930.000000)">
+                    <mask id="mask-2" fill="white">
+                        <use xlink:href="#path-1"></use>
+                    </mask>
+                    <rect stroke="#FFFFFF" stroke-width="6" x="3" y="3" width="254" height="58" rx="16"></rect>
+                    <path d="M16,6 L244,6 C249.522847,6 254,10.4771525 254,16 L254,32 L254,32 L6,32 L6,16 C6,10.4771525 10.4771525,6 16,6 Z" id="矩形" fill="url(#linearGradient-3)" opacity="0.395926339" mask="url(#mask-2)"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

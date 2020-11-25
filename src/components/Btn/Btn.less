@@ -1,0 +1,138 @@
+button {
+  position: relative;
+  display: block;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+  color: inherit;
+  background-color: inherit;
+
+  &::after {
+    content: '';
+    border: none;
+  }
+
+  &[disabled]:not([type]),
+  &.disabled {
+    color: inherit;
+    background-color: inherit;
+    opacity: .6;
+  }
+}
+
+/* 会覆盖掉原生button样式 */
+button.pure-btn {
+  font-size: inherit;
+  text-align: inherit;
+  text-decoration: none;
+  line-height: inherit;
+  -webkit-tap-highlight-color: transparent;
+  overflow: hidden;
+  color: inherit;
+  background-color: inherit;
+}
+
+.btn {
+  position: relative;
+  height: 80px;
+  line-height: 76px;
+  text-align: center;
+  box-sizing: border-box;
+  border-radius: 40px;
+  overflow: hidden;
+  font-size: 0;
+  border-width: 2px;
+  border-color: transparent;
+  border-style: solid;
+
+  &.standalone {
+    margin: 48px 32px 0;
+  }
+
+  .btn-icon {
+    width: 36px;
+    height: 36px;
+    margin-right: 20px;
+    vertical-align: middle;
+  }
+
+  .btn-text {
+    vertical-align: middle;
+    font-size: 32px;
+  }
+
+  &.disabled {
+    background-image: none;
+    background-color: #D6D8DC;
+    color: #ffffff;
+    border-color: transparent;
+  }
+
+  &.btn-primary {
+    background-image: linear-gradient(135deg, #3D8BFF 0%, #0066FF 100%);
+    color: #ffffff;
+
+    &.reverse {
+      background-image: none;
+      background-color: #FFFFFF;
+      color: #0066FF;
+    }
+
+    &.transparent {
+      background-image: none;
+      background-color: transparent;
+      border-color: #0066FF;
+    }
+
+    &.disabled {
+      .disabled;
+    }
+  }
+
+  &.btn-danger {
+    background-image: linear-gradient(135deg, #FD8989 0%, #FA5151 100%);
+    color: #ffffff;
+
+    &.reverse {
+      background-image: none;
+      background-color: #FFFFFF;
+      color: #FA5151;
+    }
+
+    &.transparent {
+      background-image: none;
+      background-color: transparent;
+      border-color: #FA5151;
+    }
+
+    &.disabled {
+      .disabled;
+    }
+  }
+
+  &.btn-cancel {
+    background: #F3F3F5;
+    color: #0066FF;
+
+    &.disabled {
+      .disabled;
+    }
+  }
+
+  &.btn-link {
+    display: inline-block;
+    font-size: 28px;
+    color: #0066FF;
+    letter-spacing: 0;
+    line-height: 36px;
+    height: auto;
+    padding: 0;
+    border-radius: 0;
+    vertical-align: middle;
+
+    &.link-hover {
+      color: lighten(#0052d9, 20%);
+    }
+  }
+}

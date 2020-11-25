@@ -1,0 +1,17 @@
+export { default as iconConnectingBg } from './connecting-bg.svg';
+export { default as iconConnectingLoading } from './connecting-loading.svg';
+export { default as iconPowerSwitchGrey } from './power-switch-grey.svg';
+export { default as iconPowerSwitchOff } from './power-switch-off.svg';
+export { default as iconPowerSwitchOn } from './power-switch-on.svg';
+export { default as iconProgressBgLoading } from './progress-bg-loading.svg';
+export { default as iconWifi } from './wifi.svg';
+export { default as iconWifiLock } from './wifi-lock.svg';
+export { default as iconWifi0 } from './wifi-0-of-3.svg';
+export { default as iconWifi1 } from './wifi-1-of-3.svg';
+export { default as iconWifi2 } from './wifi-2-of-3.svg';
+export { default as iconRefresh } from './refresh.svg';
+export { default as iconInfo } from './info.svg';
+export { default as iconFirmwareUpgradeLoading } from './firmware-upgrade-loading.svg';
+export { default as iconVirtual } from './icon-virtual.svg';
+export { default as iconHidePassword } from './hide-password.svg';
+export { default as iconBindDevice } from './bind-device.svg';

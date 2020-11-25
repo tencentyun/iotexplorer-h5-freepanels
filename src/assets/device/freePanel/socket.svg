@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="440px" height="440px" viewBox="0 0 440 440" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>插座图标-开启</title>
+    <g id="免开发面板" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="切图-插座" transform="translate(-47.000000, -301.000000)">
+            <g id="编组-13" transform="translate(47.000000, 301.000000)">
+                <circle id="椭圆形" stroke="#FFFFFF" stroke-width="6" cx="220" cy="220" r="217"></circle>
+                <g id="编组-3" transform="translate(109.000000, 122.000000)">
+                    <path d="M49,8 L49,69 L34,69 L34,61 L22,61 C9.80478499,60.7289498 0,50.75949 0,38.5 C0,26.24051 9.80478499,16.2710502 22.0005417,16.005434 L22,16 L34,16 L34,8 L49,8 Z" id="形状结合" fill="#FFFFFF"></path>
+                    <path d="M223,8 L223,69 L208,69 L208,61 L196,61 C183.804785,60.7289498 174,50.75949 174,38.5 C174,26.24051 183.804785,16.2710502 196.000542,16.005434 L196,16 L208,16 L208,8 L223,8 Z" id="形状结合备份" fill="#FFFFFF" transform="translate(198.500000, 38.500000) scale(-1, 1) translate(-198.500000, -38.500000) "></path>
+                    <rect id="矩形" fill="#FFFFFF" x="105" y="0" width="13" height="80" rx="6.5"></rect>
+                    <line x1="10.0527344" y1="124.267578" x2="58.8759766" y2="195.34375" id="路径-4" stroke="#FFFFFF" stroke-width="13"></line>
+                    <line x1="166" y1="124.267578" x2="214.823242" y2="195.34375" id="路径-4备份" stroke="#FFFFFF" stroke-width="13" transform="translate(190.411621, 159.805664) scale(-1, 1) translate(-190.411621, -159.805664) "></line>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
