@@ -16,7 +16,6 @@ export interface FreePanelLayoutProps extends StyledProps {
 	onGoTimingProject: () => any;
 	onGoCountDown?: () => any;
 	onSwitchChange?: () => any;
-	onFreePanelFooterHeight?: (height) => any;
 	isShareDevice?: boolean;
 }
 
@@ -33,7 +32,6 @@ export function FreePanelLayout({
 	onGoTimingProject,
 	onGoCountDown,
 	onSwitchChange,
-	onFreePanelFooterHeight,
 	isShareDevice,
 }: FreePanelLayoutProps) {
 	useEffect(() => {
@@ -67,7 +65,6 @@ export function FreePanelLayout({
 				powerOff={powerOff}
 				controlDeviceData={doControlDeviceData}
 				countdown={deviceData.count_down as number}
-				onFreePanelFooterHeight={onFreePanelFooterHeight}
 				isShareDevice={isShareDevice}
 			/>
 		</div>
