@@ -4,7 +4,8 @@ import { DoControlDeviceData } from '@hooks/useDeviceInfo';
 import { FuncFooter } from '../FuncFooter';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 import './FreePanelLayout.less';
-import { px2rpx, rpx2rem } from "@utillib";
+import { isFullScreen, px2rpx, rpx2rem } from "@utillib";
+import * as wxlib from "@wxlib";
 
 export interface FreePanelLayoutProps extends StyledProps {
 	children: React.ReactNode;
@@ -14,7 +15,7 @@ export interface FreePanelLayoutProps extends StyledProps {
 	title: string;
 	deviceData: any;
 	darkMode?: boolean;
-	onGoTimingProject: () => any;
+	onGoTimingProject?: () => any;
 	onGoCountDown?: () => any;
 	onSwitchChange?: () => any;
 	isShareDevice?: boolean;
@@ -30,10 +31,14 @@ export function FreePanelLayout({
 	// title,
 	deviceData,
 	darkMode,
-	onGoTimingProject,
 	onGoCountDown,
 	onSwitchChange,
 	isShareDevice,
+	onGoTimingProject = () => {
+		wxlib.router.go('/pages/Device/TimingProject/TimingProjectList/TimingProjectList', {
+			deviceId: sdk.deviceId,
+		})
+	},
 }: FreePanelLayoutProps) {
 	useEffect(() => {
 		if (offline) {
@@ -44,7 +49,7 @@ export function FreePanelLayout({
 	}, [offline]);
 
 	const bodyHeight = useMemo(() => {
-		return `${rpx2rem(px2rpx(document.documentElement.clientHeight) - 256)}rem`;
+		return rpx2rem(px2rpx(document.documentElement.clientHeight) - (188 + (isFullScreen() ? 256 : 0)));
 	}, []);
 
 	return (

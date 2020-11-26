@@ -3,6 +3,7 @@ import classNames from 'classnames';
 import { RawBtn } from '@components/Btn';
 import { iconMore, iconMoreWhite } from '@icons/common';
 import * as wxlib from '@wxlib';
+import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 import './PanelMoreBtn.less';
 
 export interface PanelMoreBtnProps extends StyledProps {
@@ -18,7 +19,7 @@ export function PanelMoreBtn({
 	deviceId,
 	isShareDevice,
 	theme,
-	onClick,
+	onClick = () => sdk.goDeviceDetailPage(),
 }: PanelMoreBtnProps) {
 	return (
 		<RawBtn

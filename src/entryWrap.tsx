@@ -1,5 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { UseDeviceInfoHandler, UserDeviceInfoData } from "@hooks/useDeviceInfo";
+import './styles/index.less';
+
+export interface PanelComponentProps extends UserDeviceInfoData, UseDeviceInfoHandler {
+	onGoTimingProject?: () => any;
+	onGoDeviceDetail?: () => any;
+}
 
 export function entryWrap(Component) {
 	function resize() {

@@ -23,8 +23,8 @@ export function PickerViewGroup({
 	showDivider,
 	onScrollChange,
 }: PickerViewGroupProps) {
-	const itemHeightRem = useMemo(() => rpx2rem(itemHeight, true), [itemHeight]);
-	const heightRem = useMemo(() => rpx2rem(height, true), [height]);
+	const itemHeightRem = useMemo(() => rpx2rem(itemHeight), [itemHeight]);
+	const heightRem = useMemo(() => rpx2rem(height), [height]);
 
 	return (
 		<MultiPicker

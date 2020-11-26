@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "npx webpack-dev-server --config webpack/webpack.config.js --env.mode=development --watch",
+    "dev:light": "npm run dev -- --category=color-light --panel=panel-default",
     "release": "npx webpack --config webpack/webpack.config.js --env.mode=production"
   },
   "repository": {
@@ -29,6 +30,7 @@
     "qcloud-iotexplorer-h5-panel-sdk": "^1.1.19",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
+    "react-rangeslider": "^2.2.0",
     "react-switch": "^5.0.1",
     "rmc-picker": "^5.0.10",
     "tinycolor2": "^1.4.2",

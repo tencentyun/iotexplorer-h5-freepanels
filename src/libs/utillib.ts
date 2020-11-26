@@ -536,7 +536,7 @@ export const px2rpx = (px) => {
 	return (px * 2) * (375 / clientWidth);
 };
 
-export const rpx2rem = (rpx, withUnit = false) => {
+export const rpx2rem = (rpx, withUnit = true) => {
 	const rem = rpx / 46.875;
 
 	return withUnit ? `${rem}rem` : rem;

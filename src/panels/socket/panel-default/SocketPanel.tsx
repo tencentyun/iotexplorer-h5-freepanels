@@ -3,17 +3,13 @@ import {
 	iconSocket,
 } from '@icons/device/freePanel';
 import classNames from 'classnames';
-import { UseDeviceInfoHandler, UserDeviceInfoData } from '@hooks/useDeviceInfo';
 import { RawBtn } from '@components/Btn';
 import { FreePanelLayout } from '@components/FreePanelLayout';
 import { PanelMoreBtn } from '@components/PanelMoreBtn';
 import { getCountdownStr, getStatusStr } from "@components/FuncFooter";
 import './SocketPanel.less';
-
-export interface SocketPanelProps extends UserDeviceInfoData, UseDeviceInfoHandler {
-	onGoTimingProject: () => any;
-	onGoDeviceDetail: () => any;
-}
+import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
+import { PanelComponentProps } from "@src/entryWrap";
 
 export function SocketPanel({
 	deviceInfo,
@@ -23,7 +19,7 @@ export function SocketPanel({
 	doControlDeviceData,
 	onGoTimingProject,
 	onGoDeviceDetail,
-}: SocketPanelProps) {
+}: PanelComponentProps) {
 	const renderPanelStatus = () => {
 		if (offline) {
 			return (
