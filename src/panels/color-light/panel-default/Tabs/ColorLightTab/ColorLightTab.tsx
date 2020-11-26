@@ -3,7 +3,7 @@ import _ from '@underscore';
 import tinycolor from 'tinycolor2';
 import { CircleSlider } from '../../components/CircleSlider';
 import './ColorLightTab.less';
-import { TabProps } from '../../Panel';
+import { TabProps } from '../../LightPanel';
 import colorBrightness from '../../images/color-brightness.svg';
 import colorTemp from '../../images/color-temp.svg';
 import { LightPropSlider } from '../../components/LightPropSlider';
@@ -74,7 +74,7 @@ export function ColorLightTab({
   };
 
   return (
-    <div className='color-light-tab'>
+    <div className='color-light-tab light-panel-tab'>
       <CircleSlider
         color={color}
         onChanging={(value) => {

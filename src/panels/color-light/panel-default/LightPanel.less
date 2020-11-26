@@ -1,0 +1,69 @@
+.free-light-page {
+  background-color: #15161A;
+
+  .socket-icon {
+    margin-top: 215px;
+    width: 440px;
+    height: 440px;
+  }
+
+  .socket-msg {
+    color: #fff;
+    font-size: 32px;
+    margin-top: 48px;
+  }
+
+  &.power-off {
+    .socket-icon {
+      opacity: .4;
+    }
+
+    .socket-msg {
+      opacity: .7;
+    }
+  }
+
+  .power-off-placeholder {
+    margin-top: 341px;
+
+    .power-off-logo {
+      width: 235px;
+      height: 336px;
+      margin-bottom: 90px;
+    }
+
+    .power-off-placeholder-content {
+      opacity: 0.7;
+      font-size: 28px;
+      color: #FFFFFF;
+      letter-spacing: 0;
+      text-align: center;
+      line-height: 40px;
+    }
+  }
+
+  .countdown-fixed-footer {
+    position: absolute;
+    opacity: 0.7;
+    font-size: 28px;
+    color: #FFFFFF;
+    letter-spacing: 0;
+    text-align: center;
+    line-height: 40px;
+    left: 0;
+    width: 100%;
+    bottom: 80px;
+  }
+
+  .tab-content {
+    .tab-content-item {
+      .light-panel-tab {
+        position: absolute;
+        top: 50%;
+        width: 100%;
+        transform: translateY(-50%);
+        //margin-top: 90/2px;
+      }
+    }
+  }
+}

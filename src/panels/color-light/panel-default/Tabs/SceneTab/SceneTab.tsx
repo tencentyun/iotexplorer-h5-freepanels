@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react';
 import './SceneTab.less';
-import { TabProps } from '../../Panel';
+import { TabProps } from '../../LightPanel';
 import { SceneSlider, SceneSliderOption } from './SceneSlider';
 import { SceneId } from "@src/panels/color-light/panel-default/constants";
 
@@ -35,7 +35,7 @@ export function SceneTab({
   }, [templateMap[SceneId]]);
 
   return (
-    <div className='scene-tab'>
+    <div className='scene-tab light-panel-tab'>
       <SceneSlider
         options={sceneOptions}
         value={deviceData[SceneId]}

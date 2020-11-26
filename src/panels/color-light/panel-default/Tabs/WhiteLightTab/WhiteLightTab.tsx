@@ -4,7 +4,7 @@ import { CircleSlider } from '../../components/CircleSlider';
 import colorBrightness from '../../images/color-brightness.svg';
 import { LightPropSlider } from '../../components/LightPropSlider';
 import { TabProps } from '../../LightPanel';
-import { WhiteLightColorTheme, ColorTempRange, ColorTempId, BrightnessId } from '../../../constants';
+import { WhiteLightColorTheme, ColorTempRange, ColorTempId, BrightnessId } from '../../constants';
 
 const hsls = {
   warn: tinycolor(WhiteLightColorTheme.warn).toHsl(),
@@ -120,7 +120,7 @@ export function WhiteLightTab({
   }, [deviceData[ColorTempId]]);
 
   return (
-    <div className='white-light-tab'>
+    <div className='white-light-tab light-panel-tab'>
       <CircleSlider
         color={color}
         onChanging={changeColorByAngle}

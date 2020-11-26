@@ -1,13 +1,29 @@
-import React, { useEffect } from 'react';
-import ReactDOM from 'react-dom';
-import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
+import React from 'react';
 import { entryWrap } from "@src/entryWrap";
-import { Panel } from './Panel';
+import { LightPanel } from './LightPanel';
+import { useDeviceInfo } from "@hooks/useDeviceInfo";
 
 function App() {
-	return (
-		<Panel/>
-	)
+  const [{
+    deviceInfo,
+    deviceData,
+    productInfo,
+    templateMap,
+    offline,
+    powerOff,
+  }, { doControlDeviceData }] = useDeviceInfo();
+
+  return (
+    <LightPanel
+      deviceInfo={deviceInfo}
+      productInfo={productInfo}
+      templateMap={templateMap}
+      deviceData={deviceData}
+      offline={offline}
+      powerOff={powerOff}
+      doControlDeviceData={doControlDeviceData}
+    />
+  )
 }
 
 entryWrap(App);

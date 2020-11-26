@@ -8,77 +8,79 @@ import { isFullScreen, px2rpx, rpx2rem } from "@utillib";
 import * as wxlib from "@wxlib";
 
 export interface FreePanelLayoutProps extends StyledProps {
-	children: React.ReactNode;
-	doControlDeviceData: DoControlDeviceData;
-	offline: boolean;
-	powerOff: boolean;
-	title: string;
-	deviceData: any;
-	darkMode?: boolean;
-	onGoTimingProject?: () => any;
-	onGoCountDown?: () => any;
-	onSwitchChange?: () => any;
-	isShareDevice?: boolean;
+  children: React.ReactNode;
+  doControlDeviceData: DoControlDeviceData;
+  offline: boolean;
+  powerOff: boolean;
+  title: string;
+  deviceData: any;
+  darkMode?: boolean;
+  onGoTimingProject?: () => any;
+  onGoCountDown?: () => any;
+  onSwitchChange?: () => any;
+  isShareDevice?: boolean;
 }
 
+export const getFooterHeight = (): number => isFullScreen() ? 256 : 188;
+
 export function FreePanelLayout({
-	children,
-	className,
-	style,
-	doControlDeviceData,
-	offline,
-	powerOff,
-	// title,
-	deviceData,
-	darkMode,
-	onGoCountDown,
-	onSwitchChange,
-	isShareDevice,
-	onGoTimingProject = () => {
-		wxlib.router.go('/pages/Device/TimingProject/TimingProjectList/TimingProjectList', {
-			deviceId: sdk.deviceId,
-		})
-	},
+  children,
+  className,
+  style,
+  doControlDeviceData,
+  offline,
+  powerOff,
+  // title,
+  deviceData,
+  darkMode,
+  onGoCountDown,
+  onSwitchChange,
+  isShareDevice,
+  onGoTimingProject = () => {
+    wxlib.router.go('/pages/Device/TimingProject/TimingProjectList/TimingProjectList', {
+      deviceId: sdk.deviceId,
+    })
+  },
 }: FreePanelLayoutProps) {
-	useEffect(() => {
-		if (offline) {
-			sdk.offlineTip.show();
-		} else {
-			sdk.offlineTip.hide();
-		}
-	}, [offline]);
+  useEffect(() => {
+    if (offline) {
+      sdk.offlineTip.show();
+    } else {
+      sdk.offlineTip.hide();
+    }
+  }, [offline]);
 
-	const bodyHeight = useMemo(() => {
-		return rpx2rem(px2rpx(document.documentElement.clientHeight) - (188 + (isFullScreen() ? 256 : 0)));
-	}, []);
+  const bodyHeight = useMemo(() => {
+    return rpx2rem(px2rpx(document.documentElement.clientHeight) - getFooterHeight());
+  }, []);
 
-	return (
-		<div
-			className={classNames('free-panel-layout clearfix', className)}
-			style={style}
-		>
-			<div
-				className='free-panel-body clearfix'
-				style={{
-					height: bodyHeight,
-				}}
-			>
-				{children}
-			</div>
+  return (
+    <div
+      className={classNames('free-panel-layout clearfix', className)}
+      style={style}
+    >
+      <div
+        className='free-panel-body clearfix'
+        style={{
+          height: bodyHeight,
+        }}
+      >
+        {children}
+      </div>
 
-			<FuncFooter
-				darkMode={darkMode}
-				onGoTimingProject={onGoTimingProject}
-				onGoCountDown={onGoCountDown}
-				onSwitchChange={onSwitchChange}
-				offline={offline}
-				powerOff={powerOff}
-				controlDeviceData={doControlDeviceData}
-				countdown={deviceData.count_down as number}
-				isShareDevice={isShareDevice}
-			/>
-		</div>
-	);
+      <FuncFooter
+        darkMode={darkMode}
+        onGoTimingProject={onGoTimingProject}
+        onGoCountDown={onGoCountDown}
+        onSwitchChange={onSwitchChange}
+        offline={offline}
+        powerOff={powerOff}
+        controlDeviceData={doControlDeviceData}
+        countdown={deviceData.count_down as number}
+        isShareDevice={isShareDevice}
+      />
+    </div>
+  );
 }
 
 

@@ -1,6 +1,6 @@
 import React, { useRef, useEffect, useState, useMemo } from 'react';
 import classNames from 'classnames';
-import { delay, noop } from '@utillib';
+import { delay, noop, px2rem, rpx2px } from '@utillib';
 
 import './CircleSlider.less';
 
@@ -34,7 +34,11 @@ export function CircleSlider({
   const [ready, setReady] = useState<boolean>(false);
   const [thumbStyle, setThumbStyle] = useState<React.CSSProperties>({});
 
-  const size = useMemo(() => ({
+  const size = useMemo<{
+    radius: number;
+    containerSize: number;
+    thumbSize: number;
+  }>(() => ({
     radius: rpx2px(460 / 2), // 半径
     containerSize: rpx2px(492),
     thumbSize: rpx2px(82),
@@ -43,7 +47,7 @@ export function CircleSlider({
   const stateRef = useRef<{
     dragging: boolean;
     angleCurrent: number;
-    containerRect: Taro.NodesRef.BoundingClientRectCallbackResult;
+    containerRect;
   }>({
     angleCurrent: -1,
     dragging: false,
@@ -93,18 +97,23 @@ export function CircleSlider({
   const setStyle = (angle: number) => {
     const { radius, containerSize, thumbSize } = size;
 
-    const top = `${-Math.cos(toRadians(angle)) * radius + (containerSize / 2 - thumbSize / 2)}px`;
-    const left = `${Math.sin(toRadians(angle)) * radius + (containerSize / 2 - thumbSize / 2)}px`;
+    const top = -Math.cos(toRadians(angle)) * radius + (containerSize / 2 - thumbSize / 2);
+    const left = Math.sin(toRadians(angle)) * radius + (containerSize / 2 - thumbSize / 2);
 
     setThumbStyle({
-      transform: `translate3d(${left}, ${top}, 0)`,
+      transform: `translate3d(${px2rem(left)}, ${px2rem(top)}, 0)`,
     });
   };
 
   const initContainerStyle = async () => {
     while (!stateRef.current.containerRect) {
       await delay(50);
-      stateRef.current.containerRect = await wxlib.wxapi.boundingClientRect('#circle-slider', wxlib.router.currentPage);
+
+      const $ele = document.querySelector('#circle-slider');
+
+      if ($ele) {
+        stateRef.current.containerRect = $ele.getBoundingClientRect();
+      }
     }
 
     setReady(true);
@@ -129,6 +138,8 @@ export function CircleSlider({
       onChanging(stateRef.current.angleCurrent);
     }
   }, [ready, angle]);
+
+  console.log('thumbStyle', thumbStyle);
 
   return (
     <div

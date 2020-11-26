@@ -8,7 +8,6 @@ import { FreePanelLayout } from '@components/FreePanelLayout';
 import { PanelMoreBtn } from '@components/PanelMoreBtn';
 import { getCountdownStr, getStatusStr } from "@components/FuncFooter";
 import './SocketPanel.less';
-import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 import { PanelComponentProps } from "@src/entryWrap";
 
 export function SocketPanel({

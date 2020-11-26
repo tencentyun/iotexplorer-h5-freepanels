@@ -1,10 +1,9 @@
 import React, { useRef, useEffect, useState, useMemo } from 'react';
-import Taro from '@tarojs/taro';
 import classNames from 'classnames';
 import { delay, rpx2px } from '@utillib';
-import { useSystemInfo } from '@hooks/useSystemInfo';
 import './SceneTab.less';
 import sceneSliderMark from '../../images/scene-slider-mark.svg';
+import { useIpx } from "@hooks/useIpx";
 
 export interface SceneSliderOption {
   text: string;
@@ -23,7 +22,7 @@ export function SceneSlider({
   value = 2,
   onChange,
 }: SceneSliderProps) {
-  const { ipx } = useSystemInfo();
+  const ipx = useIpx();
   const size = useMemo(() => ({
     bgWidth: rpx2px(560),
     textWidth: rpx2px(150),
@@ -144,11 +143,11 @@ export function SceneSlider({
     onChange(state.currentValue);
   };
 
-  useEffect(() => {
-    if (typeof state.currentValue !== 'undefined') {
-      Taro.vibrateShort();
-    }
-  }, [state.currentValue]);
+  // useEffect(() => {
+  //   if (typeof state.currentValue !== 'undefined') {
+  //     // Taro.vibrateShort();
+  //   }
+  // }, [state.currentValue]);
 
   return (
     <div className={classNames('scene-slider', { ipx })}>
