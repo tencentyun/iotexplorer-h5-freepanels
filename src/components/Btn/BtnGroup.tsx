@@ -115,14 +115,6 @@ export function ConfirmBtnGroup({
       <Btn
         onClick={resp => handleOnConfirm('click', resp)}
         type={confirmBtnType}
-        // @ts-ignore
-        openType={confirmBtnOpenType as ButtonProps.openType}
-        onGetUserInfo={resp => handleOnConfirm('getUserInfo', resp)}
-        onContact={resp => handleOnConfirm('contact', resp)}
-        onGetPhoneNumber={resp => handleOnConfirm('getPhoneNumber', resp)}
-        onError={resp => handleOnConfirm('error', resp)}
-        onOpenSetting={resp => handleOnConfirm('openSetting', resp)}
-        onLaunchapp={resp => handleOnConfirm('launchApp', resp)}
         disabled={confirmBtnDisabled}
       >
         {confirmText}

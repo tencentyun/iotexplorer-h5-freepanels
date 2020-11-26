@@ -7,8 +7,8 @@ import { UseDeviceInfoHandler, UserDeviceInfoData } from '@hooks/useDeviceInfo';
 import { RawBtn } from '@components/Btn';
 import { FreePanelLayout } from '@components/FreePanelLayout';
 import { PanelMoreBtn } from '@components/PanelMoreBtn';
-import './SocketPanel.less';
 import { getCountdownStr, getStatusStr } from "@components/FuncFooter";
+import './SocketPanel.less';
 
 export interface SocketPanelProps extends UserDeviceInfoData, UseDeviceInfoHandler {
 	onGoTimingProject: () => any;
@@ -44,7 +44,6 @@ export function SocketPanel({
 		);
 	};
 
-
 	return (
 		<FreePanelLayout
 			className={classNames('free-socket-page', {
@@ -76,5 +75,3 @@ export function SocketPanel({
 		</FreePanelLayout>
 	);
 }
-
-

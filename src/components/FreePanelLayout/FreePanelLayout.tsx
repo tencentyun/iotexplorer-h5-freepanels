@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import classNames from 'classnames';
 import { DoControlDeviceData } from '@hooks/useDeviceInfo';
 import { FuncFooter } from '../FuncFooter';
