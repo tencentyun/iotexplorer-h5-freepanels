@@ -3,11 +3,11 @@ import _ from '@underscore';
 import tinycolor from 'tinycolor2';
 import { CircleSlider } from '../../components/CircleSlider';
 import './ColorLightTab.less';
-import { TabProps } from '../../LightPanel';
+import { TabProps } from '../../Panel';
 import colorBrightness from '../../images/color-brightness.svg';
 import colorTemp from '../../images/color-temp.svg';
 import { LightPropSlider } from '../../components/LightPropSlider';
-import { ColorValueId, ColorValueIdOld } from "@src/panels/color-light/panel-default/constants";
+import { ColorValueId, ColorValueIdOld } from '../../constants';
 
 interface HSVColor {
   hue?: number; // 色调，360度，从0~360分别对应圆盘的各个角度,精度0.01

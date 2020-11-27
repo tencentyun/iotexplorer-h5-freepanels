@@ -139,8 +139,6 @@ export function CircleSlider({
     }
   }, [ready, angle]);
 
-  console.log('thumbStyle', thumbStyle);
-
   return (
     <div
       className='circle-slider-container'

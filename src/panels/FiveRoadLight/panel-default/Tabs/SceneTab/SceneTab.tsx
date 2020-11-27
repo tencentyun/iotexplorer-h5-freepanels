@@ -1,8 +1,8 @@
 import React, { useMemo } from 'react';
 import './SceneTab.less';
-import { TabProps } from '../../LightPanel';
+import { TabProps } from '../../Panel';
 import { SceneSlider, SceneSliderOption } from './SceneSlider';
-import { SceneId } from "@src/panels/color-light/panel-default/constants";
+import { SceneId } from '../../constants';
 
 /**
  * 0 - 工作

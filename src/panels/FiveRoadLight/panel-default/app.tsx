@@ -1,6 +1,6 @@
 import React from 'react';
 import { entryWrap } from "@src/entryWrap";
-import { LightPanel } from './LightPanel';
+import { Panel } from './Panel';
 import { useDeviceInfo } from "@hooks/useDeviceInfo";
 
 function App() {
@@ -14,7 +14,7 @@ function App() {
   }, { doControlDeviceData }] = useDeviceInfo();
 
   return (
-    <LightPanel
+    <Panel
       deviceInfo={deviceInfo}
       productInfo={productInfo}
       templateMap={templateMap}
