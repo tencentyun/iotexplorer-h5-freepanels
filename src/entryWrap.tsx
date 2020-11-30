@@ -6,6 +6,8 @@ import './styles/index.less';
 export interface PanelComponentProps extends UserDeviceInfoData, UseDeviceInfoHandler {
 	onGoTimingProject?: () => any;
 	onGoDeviceDetail?: () => any;
+	onGoCountDown?: () => any;
+  onSwitchChange?: () => any;
 }
 
 export function entryWrap(Component) {

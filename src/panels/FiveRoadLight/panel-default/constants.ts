@@ -12,4 +12,3 @@ export const SceneId = 'scene';
 export const ColorValueId = 'hsv_color';
 export const ColorValueIdOld = 'color_value'; // 向前兼容
 export const CountDownId = 'count_down';
-export const PowerSwitchId = 'power_switch';

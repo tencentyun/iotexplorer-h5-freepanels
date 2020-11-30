@@ -1,0 +1,170 @@
+.free-extension-socket-page {
+  background-image: linear-gradient(180deg, #3D8BFF 0%, #1242FF 100%);
+
+  .socket-container {
+    height: 100%;
+    padding: 40px;
+    box-sizing: border-box;
+    position: relative;
+
+    .socket-container-inner {
+      position: relative;
+      height: 100%;
+      width: 100%;
+    }
+
+    .socket-shell {
+      height: 100%;
+      border-radius: 40px;
+      width: 320px;
+      border: 6px solid #FFFFFF;
+      box-sizing: border-box;
+      position: absolute;
+      pointer-events: none;
+    }
+
+    .socket-list {
+      height: 100%;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+      padding: 50px 30px;
+      box-sizing: border-box;
+
+      ::-webkit-scrollbar {
+        display: none;
+      }
+
+      .socket-item {
+        display: flex;
+        align-items: center;
+        margin-bottom: 20px;
+
+        &:last-of-type {
+          margin-bottom: 0;
+        }
+
+        .item-img-container {
+          width: 260px;
+          height: 260px;
+          display: flex;
+          align-items: center;
+
+          .item-img {
+            width: 100%;
+          }
+        }
+
+        .item-feature {
+          margin-left: 70px;
+          text-align: left;
+          opacity: .7;
+          font-size: 32px;
+          color: #fff;
+
+          .item-name {
+
+          }
+
+          .countdown-marker {
+            font-size: 28px;
+            margin-top: 10px;
+          }
+        }
+      }
+    }
+  }
+
+  //.socket-container {
+  //  height: 100%;
+  //  width: 320px;
+  //  border: 6px solid #FFFFFF;
+  //}
+
+  .extension-socket-shell {
+    margin: 35px 41px 47px;
+    width: 320px;
+    opacity: 0.4;
+    border: 6px solid #FFFFFF;
+    border-radius: 40px;
+    position: fixed;
+  }
+
+  .extension-socket-scrollview {
+    margin-top: 41px;
+
+    .extension-socket-content {
+
+      .extension-socket-item {
+        display: flex;
+        align-items: center;
+        margin-top: 20px;
+
+        &:first-child {
+          margin-top: 50px;
+        }
+
+        &:last-child {
+          margin-bottom: 50px;
+        }
+
+        .extension-socket-item-img {
+          width: 260px;
+          height: 260px;
+          margin: 0 30px 0 77px;
+
+        }
+
+        .extension-socket-item-feature {
+          margin-left: 40px;
+          text-align: left;
+          opacity: 0.7;
+          font-size: 32px;
+          color: #FFFFFF;
+
+          .extension-socket-item-name {
+            width: 330 rpx;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+          }
+
+          .countdown-marker {
+            font-size: 28px;
+            margin-top: 10px;
+          }
+        }
+      }
+    }
+  }
+
+  .socket-logo-btn {
+    margin-top: 215px;
+    width: 440px;
+    height: 440px;
+    display: inline-block;
+    border-radius: 100%;
+
+    .socket-logo {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  .socket-msg {
+    color: #fff;
+    font-size: 32px;
+    margin-top: 48px;
+  }
+
+  &.power-off {
+    background-image: linear-gradient(180deg, #727F99 0%, #3E4656 100%);
+
+    .socket-icon {
+      opacity: .4;
+    }
+
+    .socket-msg {
+      opacity: .7;
+    }
+  }
+}
