@@ -34,12 +34,6 @@ export function CountdownList({
     resetState();
   };
 
-  console.log({
-    socketList,
-    deviceData,
-    state,
-  })
-
   return (
     <>
       <SocketList
