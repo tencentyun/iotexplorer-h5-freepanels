@@ -533,13 +533,13 @@ export const appendParams = (url: string, data: any) => {
 
 export const px2rpx = (px: number): number => {
   const { clientWidth } = document.documentElement;
-  return (px * 2) * (375 / clientWidth);
+  return (px * 2) * (375 / Math.min(640, clientWidth));
 };
 
 export const rpx2px = (rpx: number): number => {
   const { clientWidth } = document.documentElement;
 
-  return (rpx / 2) * (clientWidth / 375);
+  return (rpx / 2) * (Math.min(640, clientWidth) / 375);
 };
 
 export const px2rem = (px, withUnit?: any) => {
@@ -550,10 +550,42 @@ export function rpx2rem(rpx, withUnit?: true): string;
 export function rpx2rem(rpx, withUnit?: false): number;
 export function rpx2rem(rpx, withUnit: boolean = true) {
   const rem = rpx / 46.875;
-
+  
   if (withUnit) {
     return `${rem}rem`;
   }
 
   return rem;
 }
+
+const codeReg = /\((\d+)\).+/;
+
+export const getErrorMsg = (err, {
+  defaultMsg = '',
+  errMsgKey = 'msg',
+} = {}) => {
+  const errorMsg = (() => {
+    if (!err) return;
+    let message = '';
+    if (typeof err === 'string') return err;
+    console.log(err, err.stack);
+
+    if (_.isPlainObject(err)) {
+      message = err[errMsgKey] || err.Message || err.msg || err.message || err.errMsg || '连接服务器失败，请稍后再试';
+
+      if (err.reqId) {
+        message += `(${err.reqId})`;
+      } else if (err.code && !codeReg.test(message)) {
+        message += `(${err.code})`;
+      }
+    }
+
+    if (!message) {
+      message = defaultMsg || '连接服务器失败，请稍后再试';
+    }
+
+    return message;
+  })();
+
+  return errorMsg;
+};

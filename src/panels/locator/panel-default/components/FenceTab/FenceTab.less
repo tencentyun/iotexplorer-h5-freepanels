@@ -1,0 +1,77 @@
+.locator-fence-list-container {
+  height: 100%;
+  overflow: auto;
+}
+
+.locator-fence-list {
+  padding: 32px;
+
+  .locator-fence-list-header {
+    line-height: 1;
+    margin-bottom: 21px;
+
+    .locator-fence-list-title {
+      font-size: 28px;
+      color: #FFF;
+      float: left;
+      line-height: 44px;
+      font-weight: 500;
+    }
+
+    .locator-fence-list-add-btn {
+      display: inlne-block;
+      float: right;
+    }
+
+    .locator-fence-list-add-btn-icon {
+      width: 44px;
+      height: 44px;
+    }
+  }
+
+  .locator-fence-list-item {
+    height: 160px;
+    background: #FFF;
+    border-radius: 16px;
+    padding: 32px;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    margin-top: 16px;
+
+    .fence-icon {
+      width: 96px;
+      height: 96px;
+      border-radius: 50%;
+      background: #D8D8D8;
+      overflow: hidden;
+      .fence-icon-img {
+        width: 100%;
+        height: 100%;
+      }
+    }
+
+    .fence-info {
+      flex: 1;
+      margin-left: 24px;
+      .fence-name {
+        line-height: 40px;
+        font-size: 28px;
+        color: #15161A;
+      }
+
+      .fence-address {
+        margin-top: 12px;
+        font-size: 24px;
+        line-height: 32px;
+        color: #A1A7B2;
+        text-align: left;
+      }
+    }
+
+    .fence-switch {
+      margin-left: 12px;
+    }
+  }
+}

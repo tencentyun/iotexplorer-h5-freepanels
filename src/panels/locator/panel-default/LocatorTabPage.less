@@ -1,0 +1,45 @@
+.locator-tab-page {
+  height: 100vh;
+  position: relative;
+  background-image: linear-gradient(180deg, #3D8BFF 0%, #1242FF 100%);
+
+  .free-panel-footer {
+    text-align: center;
+  }
+
+  &.hide {
+    display: none;
+  }
+
+  .locator-tab {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin-bottom: 188px;
+
+    .status-info {
+      .btn-group .btn {
+        background-color: #FFFFFF;
+        color: #0066FF;
+      }
+      
+      .status-message {
+        color: #fff;
+      }
+    }
+  }
+
+  &.ipx .locator-tab {
+    margin-bottom: 256px;
+  }
+
+  &.hide-footer .locator-tab {
+    margin-bottom: 0 !important;
+  }
+
+  .loading-icon.spinner > .bounce {
+    background-color: #FFF;
+  }
+}

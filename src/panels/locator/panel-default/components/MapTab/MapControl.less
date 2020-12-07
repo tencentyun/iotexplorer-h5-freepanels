@@ -1,0 +1,68 @@
+.locator-map-top-left-control {
+  position: absolute;
+  top: 50px;
+  left: 50px;
+}
+
+.locator-map-bottom-right-control {
+  position: absolute;
+  bottom: 103px;
+  right: 24px;
+  .locator-map-control-btn {
+    margin-top: 28px;
+  }
+}
+
+.locator-map-control-btn {
+  background: url('../../icons/map-control-btn.svg');
+  box-shadow: 0px 5px 20px rgba(37, 37, 37, 0.25);
+  border-radius: 50%;
+  width: 72px;
+  height: 72px;
+  background-size: 72px 72px;
+  background-repeat: no-repeat;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  &.locator-map-control-btn-big {
+    width: 120px;
+    height: 120px;
+    background-size: 120px 120px;
+  }
+}
+
+.locator-map-control-icon {
+  width: 48px;
+  height: 48px;
+}
+
+.locator-battery-icon {
+  width: 48px;
+  height: 48px;
+  margin: 0 36px;
+  position: relative;
+  .locator-battery-border {
+    width: 48px;
+    height: 48px;
+  }
+
+  .locator-battery-value {
+    position: absolute;
+    top: 16px;
+    left: 9px;
+    width: 24px;
+    height: 16px;
+    .locator-battery-fill {
+      background-color: #666;
+      height: 100%;
+    }
+  }
+}
+.locator-battery-text {
+  text-align: center;
+  color: #888;
+  font-size: 28px;
+  line-height: 28px;
+  margin-top: 4px;
+}

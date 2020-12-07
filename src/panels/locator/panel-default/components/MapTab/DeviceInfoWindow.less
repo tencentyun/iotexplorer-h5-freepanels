@@ -1,0 +1,51 @@
+.locator-device-info-window {
+  width: 460px;
+  box-sizing: border-box;
+  padding: 32px 24px;
+  font-size: 24px;
+  color: #A1A7B2;
+  background-color: #fff;
+  margin-top: 20px;
+  word-break: break-all;
+  box-shadow: 0 4px 15px 0 rgba(0,0,0,0.03);
+  border-radius: 10px;
+  position: relative;
+}
+
+.locator-device-info-window-text {
+  &.centered {
+    text-align: center;
+  }
+}
+
+.locator-device-info-window-btn-group {
+  width: 285px;
+  margin: 52px auto 0;
+  .btn {
+    height: 64px;
+    line-height: 60px;
+  }
+  .btn-text {
+    font-size: 28px;
+  }
+}
+
+.locator-device-info-window-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  transform: translateX(-50%);
+}
+
+.locator-device-info-window:before {
+  content: "";
+  position: absolute;
+  top: -10px;
+  margin-left: 50%;
+  left: -12px;
+  border-bottom: 10px solid #FFF;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+}
+
