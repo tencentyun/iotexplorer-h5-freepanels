@@ -156,7 +156,7 @@ export const modifyFence = async ({
     DeviceName,
     FenceId,
     FenceName,
-    FenceArea,
+    FenceArea: JSON.stringify(FenceArea),
     FenceDesc,
     AlertCondition,
     FenceEnable,

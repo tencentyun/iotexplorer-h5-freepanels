@@ -3,11 +3,11 @@ import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 import { HashRouter } from 'react-router-dom';
 import { useDeviceInfo } from '@hooks/useDeviceInfo';
 import { entryWrap } from "@src/entryWrap";
+import { fetchAllList } from '@src/libs/utillib';
 import { LocatorPanel } from './LocatorPanel';
 import { LocatorPanelContext } from './LocatorPanelContext';
 import { LatLngWithTime, CoordinateType, DeviceFenceInfo } from './types';
 import * as models from './models';
-import { fetchAllList } from '@src/libs/utillib';
 
 function App() {
   const [{
@@ -76,7 +76,6 @@ function App() {
     if (deviceId === sdk.deviceId && (
       deviceData['GPS_Ext'] || deviceData['LBS_BS']
     )) {
-      console.log('wsreport location');
       // 拉取最新的设备位置
       getDeviceLocation().catch((err) => {
         console.error('getDeviceLocation fail', err);

@@ -2,7 +2,7 @@ import React, { useState, useContext } from 'react';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 import { useHistory } from 'react-router-dom';
 import { RawBtn } from '@components/Btn/Btn';
-import { useInfiniteList } from '@hooks/useInfiniteList';
+import { useAsyncFetch } from '@src/hooks/useAsyncFetch';
 import { StatusTip } from '@components/StatusTip';
 import { ScrollView } from '@components/ScrollView';
 import { Switch } from '@components/Switch';
@@ -12,7 +12,6 @@ import { LocatorPanelContext } from '../../LocatorPanelContext';
 import { DeviceFenceInfo, AlertConditionType, AlertMethodType } from '../../types';
 
 import './FenceTab.less';
-import { useAsyncFetch } from '@src/hooks/useAsyncFetch';
 
 function FenceItem({
   data,
@@ -52,7 +51,9 @@ function FenceItem({
       }}
     >
       <div className="fence-icon">
-        <img src={sdk.userInfo.Avatar} className="fence-icon-img" />
+        {Boolean(sdk.userInfo && sdk.userInfo.Avatar) && (
+          <img src={sdk.userInfo.Avatar} className="fence-icon-img" />
+        )}
       </div>
 
       <div className="fence-info">
