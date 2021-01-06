@@ -57,8 +57,8 @@ export function MapControl({
           map.setCenter(new qqMaps.LatLng(deviceLocation.lat, deviceLocation.lng));
           map.setZoom(17);
         }).catch((err) => {
-          sdk.tips.showError(err);
           console.error('getDeviceLocation fail', err);
+          sdk.tips.showError(err);
         });
       },
       visible: showLocationControl,
@@ -70,8 +70,12 @@ export function MapControl({
           map.setCenter(new qqMaps.LatLng(latLng.lat, latLng.lng));
           map.setZoom(17);
         }).catch((err) => {
-          sdk.tips.showError('定位当前位置失败');
           console.error('getUserLocation fail', err);
+          if (err && err.errMsg === 'getLocation:fail') {
+            sdk.tips.showError('无法获取位置信息。请打开手机的定位功能，并允许微信获取你的位置信息。');
+          } else {
+            sdk.tips.showError(err);
+          }
         });
       },
       visible: showLocationControl,

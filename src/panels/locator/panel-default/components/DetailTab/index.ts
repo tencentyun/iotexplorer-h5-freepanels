@@ -1,4 +1,4 @@
 export * from './DetailTab';
 export * from './DeviceLocationHistoryList';
-export * from './DeviceEventList';
+export * from './FenceEventList';
 export * from './PositioningModeSelect';

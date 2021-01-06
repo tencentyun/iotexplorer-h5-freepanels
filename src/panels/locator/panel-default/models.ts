@@ -41,9 +41,13 @@ export const getDeviceLocationHistory = async ({
 };
 
 export const getFenceList = async ({
+  ProductId,
+  DeviceName,
   Offset,
-  Limit
+  Limit,
 }: {
+  ProductId?: string;
+  DeviceName?: string;
   Offset: number;
   Limit: number;
 }): Promise<{
@@ -54,6 +58,8 @@ export const getFenceList = async ({
     List: (Omit<DeviceFenceInfo, 'FenceArea'> & { FenceArea: string; })[];
     Total: number;
   } = await sdk.requestTokenApi('AppGetFenceList', {
+    ProductId,
+    DeviceName,
     Offset,
     Limit,
   });
@@ -65,7 +71,7 @@ export const getFenceList = async ({
       const geoJson = JSON.parse(fenceInfo.FenceArea);
 
       // 只支持圆围栏
-      const valid = Boolean(geoJson)
+      const isValidFenceArea = Boolean(geoJson)
         && Array.isArray(geoJson.features)
         && Boolean(geoJson.features[0])
         && Boolean(geoJson.features[0].geometry)
@@ -76,7 +82,7 @@ export const getFenceList = async ({
         && Array.isArray(geoJson.features[0].geometry.coordinates)
         && geoJson.features[0].geometry.coordinates.length === 2;
 
-      fenceArea = valid ? geoJson : null;
+      fenceArea = isValidFenceArea ? geoJson : null;
     } catch (err) {
       fenceArea = null;
     }

@@ -5,7 +5,7 @@ import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 import { rpx2px } from '@utillib';
 import * as models from '../../models';
 import * as icons from '../../icons';
-import { TMap2D, Marker, Polyline } from './TMap';
+import { TMapV2, Marker, Polyline } from './TMapV2';
 import { MapControl } from './MapControl';
 import { LocatorPanelContext } from '../../LocatorPanelContext';
 import { LatLng, MapViewType } from '../../types';
@@ -43,12 +43,12 @@ export function MapTab({
     position: null,
   });
   
-  const { deviceLocation, getDeviceLocation, locationHistory, fenceInfo } = useContext(LocatorPanelContext);
+  const { deviceLocation, getDeviceLocation, locationHistory, editingFenceInfo } = useContext(LocatorPanelContext);
   const history = useHistory();
   
   view = view || MapViewType.DeviceCurrent;
   if ((view === MapViewType.DeviceHistory && !locationHistory)
-    || (view === MapViewType.Fence && !fenceInfo)) {
+    || (view === MapViewType.Fence && !editingFenceInfo)) {
     view = MapViewType.DeviceCurrent;
     history.replace('/map');
   }
@@ -66,7 +66,7 @@ export function MapTab({
       // 延迟，避免地图 resize 时宽高取值不正确导致 fitBounds 将地图缩放至最小
       setTimeout(() => {
         map.fitBounds(bounds);
-      }, 500);
+      }, 100);
     }
   };
 
@@ -87,13 +87,23 @@ export function MapTab({
   };
 
   const onOpenLocation = ({ lat, lng, address, name }) => {
-    sdk.wxSdkReady().then(() => {
-      wx.openLocation({
-        longitude: lng,
-        latitude: lat,
-        address,
-        name,
+    const handle = async () => {
+      await sdk.wxSdkReady();
+      await new Promise((resolve, reject) => {
+        wx.openLocation({
+          longitude: lng,
+          latitude: lat,
+          address,
+          name,
+          scale: 17,
+          success: resolve,
+          fail: reject,
+        });
       });
+    };
+
+    handle().catch((err) => {
+      sdk.tips.showError(err);
     });
   };
 
@@ -156,20 +166,45 @@ export function MapTab({
         position: latLng,
       });
 
+      const moveElement = document.querySelector('div[n="moveElement"]') as HTMLDivElement | null;
+      const moveElementParent = (moveElement || {}).offsetParent as HTMLDivElement | null;
+
+      const updateInfoWindowPositionOnDrag = () => {
+        const projection = overlay.getProjection();
+        const point = projection.fromLatLngToDivPixel(latLng);
+        let x = point.getX();
+        let y = point.getY();
+
+        if (moveElementParent && moveElement) {
+          const offsetParent = moveElementParent.getBoundingClientRect();
+          const offset = moveElement.getBoundingClientRect();
+          x += offset.left - offsetParent.left;
+          y += offset.top - offsetParent.top;
+        }
+
+        setInfoWindowScreenPos({ x, y });
+      };
+
       const updateInfoWindowPosition = () => {
         const projection = overlay.getProjection();
         const point = projection.fromLatLngToContainerPixel(latLng);
-        setInfoWindowScreenPos({ x: point.getX(), y: point.getY() });
+        const x = point.getX();
+        const y = point.getY();
+
+        setInfoWindowScreenPos({ x, y });
       };
 
       const listeners = [
+        qqMaps.event.addListener(map, 'drag', updateInfoWindowPositionOnDrag),
         qqMaps.event.addListener(map, 'center_changed', updateInfoWindowPosition),
         qqMaps.event.addListener(map, 'click', () => {
           setInfoWindow({ visible: false, position: null });
         }),
       ];
 
-      updateInfoWindowPosition();
+      overlay.draw = () => {
+        updateInfoWindowPosition();
+      };
 
       return () => {
         overlay.setMap(null);
@@ -220,7 +255,7 @@ export function MapTab({
   return (
     <div className={classNames('locator-tab locator-map-tab', `locator-map-view-${view}`)}>
       <div className="locator-map-layer-container">
-        <TMap2D
+        <TMapV2
           onInited={onMapInited}
           getInitOptions={() => ({
             mapTypeControl: false,

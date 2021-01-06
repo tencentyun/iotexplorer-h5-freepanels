@@ -13,7 +13,7 @@ import { FenceTab } from './components/FenceTab';
 import {
   DetailTab,
   DeviceLocationHistoryList,
-  DeviceEventList,
+  FenceEventList,
   PositioningModeSelect,
 } from './components/DetailTab';
 
@@ -42,7 +42,7 @@ export function LocatorPanel() {
 
   return (
     <>
-      {/* 地图组件常驻，只切换 display */}
+      {/* 地图组件常驻，切换到其他 Tab 页面时仅隐藏，不卸载 */}
       <ReactRouterRoute
         path="/map/:view(history|fence)?"
         children={({ match }) => {
@@ -62,7 +62,7 @@ export function LocatorPanel() {
       <Switch>
         <Redirect exact from="/" to="/map" />
 
-        {/* 用于设定页面标题 */}
+        {/* 这个 Route 仅用于设定页面标题，无实际内容 */}
         <Route path="/map" title={originalTitle} />
 
         <Route
@@ -98,10 +98,10 @@ export function LocatorPanel() {
 
         <Route
           path="/detail/event-list"
-          title="告警记录"
+          title="报警记录"
           render={() => (
             <LocatorSubPage>
-              <DeviceEventList />
+              <FenceEventList />
             </LocatorSubPage>
           )}
         />
@@ -118,6 +118,4 @@ export function LocatorPanel() {
       </Switch>
     </>
   );
-
-  
 }

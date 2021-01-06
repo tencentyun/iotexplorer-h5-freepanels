@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 import { HashRouter } from 'react-router-dom';
 import { useDeviceInfo } from '@hooks/useDeviceInfo';
@@ -7,6 +7,7 @@ import { LocatorPanel } from './LocatorPanel';
 import { LocatorPanelContext } from './LocatorPanelContext';
 import { LatLngWithTime, CoordinateType, DeviceFenceInfo } from './types';
 import * as models from './models';
+import { fetchAllList } from '@src/libs/utillib';
 
 function App() {
   const [{
@@ -16,7 +17,8 @@ function App() {
   }, { doControlDeviceData }] = useDeviceInfo();
   const [deviceLocation, setDeviceLocation] = useState<LatLngWithTime | null>(null);
   const [locationHistory, setLocationHistory] = useState<LatLngWithTime[] | null>(null);
-  const [fenceInfo, setFenceInfo] = useState<DeviceFenceInfo | null>(null);
+  const [editingFenceInfo, setEditingFenceInfo] = useState<DeviceFenceInfo | null>(null);
+  const [fenceList, setFenceList] = useState<DeviceFenceInfo[] | null>(null);
 
   const getDeviceLocation = async () => {
     const resp = await models.getDeviceLocation({
@@ -55,6 +57,40 @@ function App() {
       });
     });
   };
+
+  const getFenceList = async () => {
+    const list = await fetchAllList(async ({ offset, limit }) => models.getFenceList({
+      ProductId: sdk.productId,
+      DeviceName: sdk.deviceName,
+      Offset: offset,
+      Limit: limit,
+    }));
+
+    setFenceList(list);
+    
+    return list;
+  };
+
+  const handleWsReport = ({ deviceId, deviceData }) => {
+    // 监听设备通过物模型 GPS_Ext 或 LBS_BS 上报位置信息
+    if (deviceId === sdk.deviceId && (
+      deviceData['GPS_Ext'] || deviceData['LBS_BS']
+    )) {
+      console.log('wsreport location');
+      // 拉取最新的设备位置
+      getDeviceLocation().catch((err) => {
+        console.error('getDeviceLocation fail', err);
+      });
+    }
+  };
+
+  useEffect(() => {
+    sdk.on('wsReport', handleWsReport);
+
+    return () => {
+      sdk.off('wsReport', handleWsReport);
+    };
+  }, []);
   
   return (
     <LocatorPanelContext.Provider value={{
@@ -67,8 +103,11 @@ function App() {
       getUserLocation,
       locationHistory,
       setLocationHistory,
-      fenceInfo,
-      setFenceInfo,
+      editingFenceInfo,
+      setEditingFenceInfo,
+      fenceList,
+      setFenceList,
+      getFenceList,
     }}>
       <HashRouter>
         <LocatorPanel />

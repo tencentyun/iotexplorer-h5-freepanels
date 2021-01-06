@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useContext, useMemo } from 'react';
 import classNames from 'classnames';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 import { StatusTip } from '@components/StatusTip';
@@ -6,11 +6,12 @@ import { SectionList } from '@components/SectionList';
 import { ScrollView } from '@components/ScrollView';
 import { useInfiniteList } from '@hooks/useInfiniteList';
 import { DeviceFenceEvent, AlertConditionType } from '../../types';
+import { padNumber } from '../../utils';
 import * as models from '../../models';
 
-import './DeviceEventList.less';
-
-const padNumber = num => num < 10 ? `0${num}` : `${num}`;
+import './FenceEventList.less';
+import { fetchAllList } from '@src/libs/utillib';
+import { LocatorPanelContext } from '../../LocatorPanelContext';
 
 interface DeviceFenceEventGroup {
   year: number;
@@ -53,10 +54,10 @@ const groupEventByDate = (list: DeviceFenceEvent[]) => {
 
 function DeviceEventGroup(data: DeviceFenceEventGroup) {
   return (
-    <div className="locator-device-event-group">
-      <div className="locator-device-event-group-time">
-        <span className="locator-device-event-group-date">{data.date}</span>
-        <span className="locator-device-event-group-month">{data.month}月</span>
+    <div className="locator-fence-event-group">
+      <div className="locator-fence-event-group-time">
+        <span className="locator-fence-event-group-date">{data.date}</span>
+        <span className="locator-fence-event-group-month">{data.month}月</span>
       </div>
       <SectionList>
         {data.events.map((event, index) => (
@@ -72,35 +73,67 @@ function DeviceEventGroup(data: DeviceFenceEventGroup) {
   );
 }
 
-export function DeviceEventList() {
+interface FenceEventListContext {
+  fenceIds: number[];
+  lastEndTime: number;
+  terminateEndTime: number;
+}
+
+const EventListMaxLenTime = 365 * 24 * 60 * 60 * 1000;
+const EventListPageLenTime = 30 * 24 * 60 * 60 * 1000;
+const EventListPageSize = 20;
+
+export function FenceEventList() {
+  const { fenceList, getFenceList } = useContext(LocatorPanelContext);
+  
   const [listState, { loadMore, statusTip }] = useInfiniteList({
     statusTipOpts: {
       emptyMessage: '暂无告警',
       fillContainer: true,
     },
-    getData: async ({ context: offset }) => {
-      offset = offset || 0;
+    getData: async ({ context } : { context: FenceEventListContext }) => {
+      if (!context) {
+        const now = Date.now();
+        
+        const fences = fenceList || await getFenceList();
 
-      const now = Date.now();
+        context = {
+          fenceIds: fences.map(fence => fence.FenceId),
+          lastEndTime: now,
+          terminateEndTime: now - EventListMaxLenTime,
+        };
+      }
+      
+      let list: DeviceFenceEvent[] = [];
 
-      // TODO: AppGetFenceEventList 接口调整
-      let { list, total } = await models.getFenceEventList({
-        ProductId: sdk.productId,
-        DeviceName: sdk.deviceName,
-        Offset: offset,
-        Limit: 100,
-        FenceId: 0,
-        StartTime: now - 30 * 24 * 60 * 60 * 1000,
-        EndTime: now,
-      });
+      while (list.length < EventListPageSize && context.lastEndTime > context.terminateEndTime) {
+        const allFenceEventList = await Promise.all(context.fenceIds.map(fenceId => 
+          fetchAllList(async ({ offset, limit }) => 
+            models.getFenceEventList({
+              ProductId: sdk.productId,
+              DeviceName: sdk.deviceName,
+              Offset: offset,
+              Limit: limit,
+              FenceId: fenceId,
+              StartTime: context.lastEndTime - EventListPageLenTime,
+              EndTime: context.lastEndTime,
+            })
+          )
+        ));
 
-      const nextOffset = list.length + offset;
+        allFenceEventList.forEach(fenceEvnetList => {
+          list.concat(fenceEvnetList);
+        });
 
-      if (!list.length) {
+        context.lastEndTime -= EventListPageLenTime;
+      }
+      
+      if (!list.length || context.lastEndTime <= context.terminateEndTime) {
         return { loadFinish: true };
       }
 
-      return { context: nextOffset, list, loadFinish: nextOffset >= total };
+      list.sort((a, b) => b.CreateTime - a.CreateTime);
+      return { context, list, loadFinish: false };
     },
   });
 
@@ -112,14 +145,14 @@ export function DeviceEventList() {
     />
   ) : (
     <ScrollView
-      className="locator-device-event-list-container"
+      className="locator-fence-event-list-container"
       onReachBottom={() => {
         if (!listState.loadFinish && !listState.loading) {
           loadMore();
         }
       }}
     >
-      <div className={classNames('locator-device-event-list', { empty: listState.list.length === 0 })}>
+      <div className={classNames('locator-fence-event-list', { empty: listState.list.length === 0 })}>
         {groupedList.map((data) => (
           <DeviceEventGroup
             key={`${data.year}/${data.month}/${data.date}`}

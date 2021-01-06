@@ -36,9 +36,9 @@ export function DeviceInfoWindow({
 
   const getLocationText = () => {
     if (addressState.loading) {
-      return '地址加载中';
+      return '获取地址中';
     } else if (addressState.hasError) {
-      return '地址加载失败';
+      return '获取地址失败';
     } else {
       return addressState.data.address;
     }

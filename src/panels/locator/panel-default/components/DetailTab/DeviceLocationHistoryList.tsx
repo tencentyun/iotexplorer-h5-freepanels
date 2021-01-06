@@ -5,6 +5,7 @@ import { SectionList } from '@components/SectionList';
 import * as models from '../../models';
 import { CoordinateType } from '../../types';
 import { LocatorPanelContext } from '../../LocatorPanelContext';
+import { padNumber } from '../../utils';
 
 import './DeviceLocationHistoryList.less';
 
@@ -62,7 +63,7 @@ export function DeviceLocationHistoryList() {
       const month = d.getMonth() + 1;
       const date = d.getDate();
       dateList.push({
-        text: `${year}/${month < 10 ? '0' : ''}${month}/${date < 10 ? '0' : ''}${date}`,
+        text: `${year}/${padNumber(month)}/${padNumber(date)}`,
         from: d.getTime(),
         to: d.getTime() + 86400 * 1000,
       });

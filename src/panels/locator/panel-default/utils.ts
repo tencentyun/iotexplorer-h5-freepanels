@@ -124,3 +124,5 @@ export const rgba = (red: number, green: number, blue: number, alpha: number) =>
   blue,
   alpha,
 });
+
+export const padNumber = num => num < 10 ? `0${num}` : `${num}`;

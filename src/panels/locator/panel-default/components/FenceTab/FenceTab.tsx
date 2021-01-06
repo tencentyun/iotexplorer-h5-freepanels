@@ -12,6 +12,7 @@ import { LocatorPanelContext } from '../../LocatorPanelContext';
 import { DeviceFenceInfo, AlertConditionType, AlertMethodType } from '../../types';
 
 import './FenceTab.less';
+import { useAsyncFetch } from '@src/hooks/useAsyncFetch';
 
 function FenceItem({
   data,
@@ -74,38 +75,28 @@ function FenceItem({
 }
 
 export function FenceTab() {
-  const [listState, { loadMore, statusTip }] = useInfiniteList<DeviceFenceInfo>({
+  const { setEditingFenceInfo, fenceList, getFenceList } = useContext(LocatorPanelContext);
+  
+  const [listState, { statusTip }] = useAsyncFetch({
+    initData: [],
     statusTipOpts: {
       emptyAddBtnText: '添加',
       emptyMessage: '暂无围栏',
       emptyType: 'empty-add',
-      fillContainer: true,
     },
-    getData: async ({ context: offset }) => {
-      offset = offset || 0;
-
-      // TODO: AppGetFenceList 接口调整
-      const { list, total } = await models.getFenceList({
-        Offset: offset,
-        Limit: 100,
-      });
-
-      const nextOffset = list.length + offset;
-
-      if (!list.length) {
-        return { loadFinish: true };
+    fetch: async ({ reload = false } = {}) => {
+      if (!reload && fenceList) {
+        return fenceList;
       }
 
-      return { context: nextOffset, list, loadFinish: nextOffset >= total };
+      return await getFenceList();
     },
   });
 
-  const { setFenceInfo } = useContext(LocatorPanelContext);
-
   const history = useHistory();
   const goAddFence = () => {
-    setFenceInfo({
-      FenceId: 1,
+    setEditingFenceInfo({
+      FenceId: 0,
       FenceName: '',
       FenceDesc: '',
       FenceArea: null,
@@ -119,7 +110,7 @@ export function FenceTab() {
   };
 
   const goEditFence = (data) => {
-    setFenceInfo(data);
+    setEditingFenceInfo(data);
     history.push('/map/fence');
   };
 
@@ -128,15 +119,12 @@ export function FenceTab() {
       {statusTip ? (
         <StatusTip
           {...statusTip}
+          fillContainer={statusTip.status !== 'loading'}
+          onAdd={goAddFence}
         />
       ) : (
           <ScrollView
             className="locator-fence-list-container"
-            onReachBottom={() => {
-              if (!listState.loadFinish && !listState.loading) {
-                loadMore();
-              }
-            }}
           >
             <div className="locator-fence-list">
               <div className="locator-fence-list-header clearfix">
@@ -145,12 +133,9 @@ export function FenceTab() {
                   <img src={icons.iconAddBtn} className="locator-fence-list-add-btn-icon" />
                 </RawBtn>
               </div>
-              {listState.list.map((data) => (
+              {listState.data.map((data) => (
                 <FenceItem data={data} key={data.FenceId} goEditFence={goEditFence} />
               ))}
-              {listState.loading && (
-                <StatusTip status="loading" />
-              )}
             </div>
           </ScrollView>
         )}

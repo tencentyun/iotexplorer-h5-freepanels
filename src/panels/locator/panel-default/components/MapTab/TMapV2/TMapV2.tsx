@@ -1,18 +1,18 @@
 import React, { useEffect, useRef } from 'react';
 import { TMapApiKey } from '../../../constants';
 
-import './TMap2D.less';
+import './TMapV2.less';
 
 const InitCallbackFuncName = 'IotExplorerLocatorPanelMapInit';
-interface TMap2DProps {
+interface TMapV2Props {
   getInitOptions: (qqMaps: any) => object;
   onInited?: ({ map, qqMaps }) => void;
 }
 
-export function TMap2D({
+export function TMapV2({
   getInitOptions,
   onInited,
-}: TMap2DProps) {
+}: TMapV2Props) {
   const mapContainerRef = useRef(null);
   const mapInstanceRef = useRef(null);
 
