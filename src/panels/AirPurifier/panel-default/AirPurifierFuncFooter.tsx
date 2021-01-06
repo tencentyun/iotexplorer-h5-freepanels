@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import * as freePanelIcons from '@icons/device/freePanel';
 import './AirPurifierFuncFooter.less';
 import { AirPurifierSetting } from './AirPurifierSetting';
-import * as wxlib from '@wxlib';
 import { FooterBtnConfig, PageFooter } from "@components/PageFooter";
 import { useHistory } from "react-router-dom";
 
@@ -48,8 +47,8 @@ export function AirPurifierFuncFooter({
 
         const configMap: {
             switch: FooterBtnConfig;
-            timing: FooterBtnConfig;
-            countdown: FooterBtnConfig;
+            windspeed: FooterBtnConfig;
+            mode: FooterBtnConfig;
             more: FooterBtnConfig;
         } = {
             switch: {
@@ -58,7 +57,7 @@ export function AirPurifierFuncFooter({
                 className: itemClassName,
                 onClick: onSwitchChange ? onSwitchChange : () => controlDeviceData('power_switch', powerOff ? 1 : 0),
             },
-            timing: {
+            windspeed: {
                 text: '风速',
                 disabled: offline || powerOff,
                 btnClassName: isShareDevice ? 'disabled' : '',
@@ -69,7 +68,7 @@ export function AirPurifierFuncFooter({
                     setAirPuiifierSettingVisible(true);
                 },
             },
-            countdown: {
+            mode: {
                 text: '模式',
                 disabled: offline || powerOff,
                 className: itemClassName,
@@ -98,12 +97,12 @@ export function AirPurifierFuncFooter({
         }
 
         if (!powerOff) {
-            configMap.timing.icon = freePanelIcons.iconTiming;
             configMap.switch.icon = darkMode ? freePanelIcons.iconSwitch : freePanelIcons.iconSwitchOpen;
-            configMap.countdown.icon = freePanelIcons.iconCountdown;
+            configMap.windspeed.icon = freePanelIcons.iconCountdown;  //TODO 替换图标
+            configMap.mode.icon = freePanelIcons.iconCountdown;
             configMap.more.icon = freePanelIcons.iconCountdown;
         } else {
-            configMap.timing.icon = freePanelIcons.iconTiming;
+            configMap.windspeed.icon = freePanelIcons.iconCountdown;
 
             if (darkMode) {
                 configMap.switch.icon = freePanelIcons.iconSwitch;
@@ -112,11 +111,11 @@ export function AirPurifierFuncFooter({
             }
 
             configMap.switch.text = '关闭';
-            configMap.countdown.icon = freePanelIcons.iconCountdown;
+            configMap.mode.icon = freePanelIcons.iconCountdown;
             configMap.more.icon = freePanelIcons.iconCountdown;
         }
 
-        return [configMap.switch, configMap.timing, configMap.countdown, configMap.more];
+        return [configMap.switch, configMap.windspeed, configMap.mode, configMap.more];
     };
 
     return (

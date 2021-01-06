@@ -45,6 +45,7 @@ export function AirPurifierPanel({
 		<AirPurifierPanelLayout
 			className={classNames('free-air-purifier-page', {
 				'power-off': powerOff,
+				'warning': !powerOff && deviceData.air_quality && deviceData.air_quality > 1,
 			})}
 			title={deviceInfo.displayName}
 			doControlDeviceData={doControlDeviceData}
@@ -76,7 +77,7 @@ export function AirPurifierPanel({
 									<div>
 										<div className='pm'>PM2.5</div>
 										<div className='pm-value'>{deviceData.pm2_5 ? deviceData.pm2_5 : '300'}</div>
-										<div>室内空气质量：{(deviceData.pm2_5level) ? templateMap.pm2_5level.define.mapping[deviceData.pm2_5level] : '优'}</div>
+										<div>室内空气质量：{(deviceData.air_quality) ? templateMap.air_quality.define.mapping[deviceData.air_quality] : '优'}</div>
 									</div>
 
 								)
