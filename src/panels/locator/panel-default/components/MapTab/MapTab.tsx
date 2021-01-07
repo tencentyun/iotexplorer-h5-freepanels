@@ -1,14 +1,15 @@
 import React, { useRef, useState, useContext, useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
 import classNames from 'classnames';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 import { rpx2px } from '@utillib';
 import * as models from '../../models';
 import * as icons from '../../icons';
+import { TMapApiKey } from '../../constants';
 import { TMapV2, Marker, Polyline } from './TMapV2';
 import { MapControl } from './MapControl';
 import { LocatorPanelContext } from '../../LocatorPanelContext';
-import { LatLng, MapViewType } from '../../types';
+import { LatLng, LatLngWithTime, MapViewType } from '../../types';
 import { DeviceDetailBtn } from './DeviceDetailBtn';
 import { DeviceInfoWindow } from './DeviceInfoWindow';
 import { FenceInfoModal } from './FenceInfoModal';
@@ -16,7 +17,8 @@ import { FenceInfoModal } from './FenceInfoModal';
 import './MapTab.less';
 
 interface MapTabProps {
-  view?: MapViewType;
+  view: MapViewType;
+  active: boolean;
 }
 
 const DeviceMarkerIcon = {
@@ -26,6 +28,7 @@ const DeviceMarkerIcon = {
 
 export function MapTab({
   view,
+  active,
 }: MapTabProps) {
   const mapRef = useRef(null);
   const qqMapsRef = useRef(null);
@@ -43,31 +46,27 @@ export function MapTab({
     position: null,
   });
   
-  const { deviceLocation, getDeviceLocation, locationHistory, editingFenceInfo } = useContext(LocatorPanelContext);
-  const history = useHistory();
-  
-  view = view || MapViewType.DeviceCurrent;
-  if ((view === MapViewType.DeviceHistory && !locationHistory)
-    || (view === MapViewType.Fence && !editingFenceInfo)) {
-    view = MapViewType.DeviceCurrent;
-    history.replace('/map');
-  }
+  const { deviceLocation, getDeviceLocation } = useContext(LocatorPanelContext);
 
-  const fitLocationHistory = () => {
+  const history = useHistory();
+  const location = useLocation();
+  
+  const viewData = (location.state || {}).data;
+  const viewType = view !== MapViewType.DeviceCurrent && viewData ? view : MapViewType.DeviceCurrent;
+
+  const fitLocationHistory = (locationHistory: LatLngWithTime[]) => {
     const map: any = mapRef.current;
     const qqMaps: any = qqMapsRef.current;
 
-    if (locationHistory) {
-      const bounds = new qqMaps.LatLngBounds();
-      locationHistory.forEach(({ lat, lng }) => {
-        bounds.extend(new qqMaps.LatLng(lat, lng));
-      });
+    const bounds = new qqMaps.LatLngBounds();
+    locationHistory.forEach(({ lat, lng }) => {
+      bounds.extend(new qqMaps.LatLng(lat, lng));
+    });
 
-      // 延迟，避免地图 resize 时宽高取值不正确导致 fitBounds 将地图缩放至最小
-      setTimeout(() => {
-        map.fitBounds(bounds);
-      }, 100);
-    }
+    // 延迟，避免地图 resize 时宽高取值不正确导致 fitBounds 将地图缩放至最小
+    setTimeout(() => {
+      map.fitBounds(bounds);
+    }, 100);
   };
 
   const onDeviceMarkerClick = (position: LatLng) => {
@@ -133,12 +132,13 @@ export function MapTab({
     const getMapInitialProps = () => getDeviceLocationWithZoom()
       .catch(getCityLocationWithZoom);
 
-    if (view === MapViewType.DeviceCurrent) {
+    if (viewType === MapViewType.DeviceCurrent) {
       getMapInitialProps()
         .then(({ center, zoom }) => {
           map.setCenter(new qqMaps.LatLng(center.lat, center.lng));
           map.setZoom(zoom);
-        }).catch((err) => {
+        })
+        .catch((err) => {
           console.error(err);
         });
     }
@@ -147,14 +147,20 @@ export function MapTab({
   };
 
   useEffect(() => {
+    if (active && view !== MapViewType.DeviceCurrent && !viewData) {
+      history.replace('/map');
+    }
+  }, [view, active]);
+
+  useEffect(() => {
     if (!mapReady) return;
 
-    if (view === MapViewType.DeviceHistory && locationHistory) {
-      fitLocationHistory();
+    if (viewType === MapViewType.DeviceHistory && viewData.history) {
+      fitLocationHistory(viewData.history);
     }
 
     setInfoWindow({ visible: false, position: null });
-  }, [view, mapReady]);
+  }, [viewType, mapReady]);
 
   useEffect(() => {
     const map: any = mapRef.current;
@@ -219,7 +225,7 @@ export function MapTab({
   };
 
   const renderMapView = () => {
-    switch (view) {
+    switch (viewType) {
       case MapViewType.DeviceCurrent:
         return deviceLocation ? (
           <Marker
@@ -230,9 +236,9 @@ export function MapTab({
           />
         ) : null;
       case MapViewType.DeviceHistory:
-        return locationHistory ? (
+        return viewData.history ? (
           <>
-            {locationHistory.map((item, index) => (
+            {viewData.history.map((item, index) => (
               <Marker
                 {...mapComponentParams}
                 key={index}
@@ -243,7 +249,7 @@ export function MapTab({
             ))}
             <Polyline
               {...mapComponentParams}
-              path={locationHistory}
+              path={viewData.history}
               strokeColor="#00E433"
               strokeWeight={rpx2px(16)}
             />
@@ -253,9 +259,10 @@ export function MapTab({
   };
 
   return (
-    <div className={classNames('locator-tab locator-map-tab', `locator-map-view-${view}`)}>
+    <div className={classNames('locator-tab locator-map-tab', `locator-map-view-${viewType}`)}>
       <div className="locator-map-layer-container">
         <TMapV2
+          apiKey={TMapApiKey}
           onInited={onMapInited}
           getInitOptions={() => ({
             mapTypeControl: false,
@@ -267,9 +274,9 @@ export function MapTab({
           <>
             <MapControl
               {...mapComponentParams}
-              showBattery={view === MapViewType.DeviceCurrent}
-              showLocationControl={view === MapViewType.DeviceCurrent}
-              showScaleControl={view === MapViewType.DeviceCurrent || view === MapViewType.DeviceHistory}
+              showBattery={viewType === MapViewType.DeviceCurrent}
+              showLocationControl={viewType === MapViewType.DeviceCurrent}
+              showScaleControl={viewType === MapViewType.DeviceCurrent || viewType === MapViewType.DeviceHistory}
             />
             {renderMapView()}
             {infoWindow.visible && (
@@ -291,8 +298,8 @@ export function MapTab({
           </>
         )}
       </div>
-      {view === MapViewType.Fence && (
-        <FenceInfoModal {...mapComponentParams} />
+      {Boolean(viewType === MapViewType.Fence && viewData.fence) && (
+        <FenceInfoModal {...mapComponentParams} editingFenceInfo={viewData.fence} />
       )}
     </div>
   );

@@ -10,9 +10,9 @@ import { padNumber } from '../../utils';
 import './DeviceLocationHistoryList.less';
 
 export function DeviceLocationHistoryList() {
-  const { deviceInfo, setLocationHistory } = useContext(LocatorPanelContext);
+  const { deviceInfo } = useContext(LocatorPanelContext);
   const history = useHistory();
-  
+
   const showLocationHistory = async ({
     from,
     to,
@@ -31,13 +31,18 @@ export function DeviceLocationHistoryList() {
         return;
       }
 
-      setLocationHistory(locationHistory.map(item => ({
-        lat: item.Location.Latitude,
-        lng: item.Location.Longitude,
-        time: item.CreateTime,
-      })));
-
-      history.push('/map/history');
+      history.push({
+        pathname: '/map/history',
+        state: {
+          data: {
+            history: locationHistory.map(item => ({
+              lat: item.Location.Latitude,
+              lng: item.Location.Longitude,
+              time: item.CreateTime,
+            }))
+          },
+        },
+      });
 
       sdk.tips.hideLoading();
     } catch (err) {
@@ -51,7 +56,7 @@ export function DeviceLocationHistoryList() {
       from: number;
       to: number;
     }[] = [];
-  
+
     let d = new Date();
     d.setMilliseconds(0);
     d.setSeconds(0);
@@ -67,13 +72,13 @@ export function DeviceLocationHistoryList() {
         from: d.getTime(),
         to: d.getTime() + 86400 * 1000,
       });
-  
+
       d.setDate(d.getDate() - 1);
     }
 
     return dateList;
   }, [deviceInfo]);
-  
+
   return (
     <>
       <div className="locator-history-list-container">

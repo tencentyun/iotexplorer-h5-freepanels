@@ -46,14 +46,17 @@ export function LocatorPanel() {
       <ReactRouterRoute
         path="/map/:view(history|fence)?"
         children={({ match }) => {
-          const useMapView = Boolean(match && match.params.view);
-          const tabParams = useMapView ? {} : {
+          const view = match && match.params.view || MapViewType.DeviceCurrent;
+          const tabParams = view !== MapViewType.DeviceCurrent ? {} : {
             switchTab,
             activeTab: LocatorPanelTab.Map,
           };
           return (
             <LocatorTabPage visible={!!match} {...tabParams}>
-              <MapTab view={match ? match.params.view : MapViewType.DeviceCurrent} />
+              <MapTab 
+                active={!!match}
+                view={view}
+              />
             </LocatorTabPage>
           );
         }}

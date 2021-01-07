@@ -101,3 +101,34 @@
   }
 }
 
+.locator-panel-input-modal {
+  z-index: 1000;
+  .modal-body {
+    margin: 32px 64px;
+  }
+
+  .locator-panel-input-modal-field {
+    border: none;
+    border-bottom: 1px solid #A1A7B2;
+    font-size: 32px;
+    color: #15161A;
+    text-align: left;
+    width: 100%;
+    line-height: 1.4;
+
+    &:focus {
+      outline: none;
+    }
+
+    &::placeholder {
+      color: #A1A7B2;
+    }
+  }
+  .locator-panel-input-modal-message {
+    font-size: 28px;
+    margin-top: 16px;
+    color: #A1A7B2;
+    text-align: left;
+    line-height: 1.4;
+  }
+}

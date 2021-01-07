@@ -80,7 +80,7 @@ interface FenceEventListContext {
 }
 
 const EventListMaxLenTime = 365 * 24 * 60 * 60 * 1000;
-const EventListPageLenTime = 30 * 24 * 60 * 60 * 1000;
+const EventListPageLenTime = 90 * 24 * 60 * 60 * 1000;
 const EventListPageSize = 20;
 
 export function FenceEventList() {
@@ -88,7 +88,7 @@ export function FenceEventList() {
   
   const [listState, { loadMore, statusTip }] = useInfiniteList({
     statusTipOpts: {
-      emptyMessage: '暂无告警',
+      emptyMessage: '暂无报警',
       fillContainer: true,
     },
     getData: async ({ context } : { context: FenceEventListContext }) => {
@@ -103,7 +103,11 @@ export function FenceEventList() {
           terminateEndTime: now - EventListMaxLenTime,
         };
       }
-      
+
+      if (context.fenceIds.length === 0) {
+        return { loadFinish: true };
+      }
+
       let list: DeviceFenceEvent[] = [];
 
       while (list.length < EventListPageSize && context.lastEndTime > context.terminateEndTime) {
@@ -122,18 +126,19 @@ export function FenceEventList() {
         ));
 
         allFenceEventList.forEach(fenceEvnetList => {
-          list.concat(fenceEvnetList);
+          list = list.concat(fenceEvnetList);
         });
 
         context.lastEndTime -= EventListPageLenTime;
       }
       
-      if (!list.length || context.lastEndTime <= context.terminateEndTime) {
-        return { loadFinish: true };
-      }
-
       list.sort((a, b) => b.CreateTime - a.CreateTime);
-      return { context, list, loadFinish: false };
+
+      return {
+        context,
+        list,
+        loadFinish: context.lastEndTime <= context.terminateEndTime,
+      };
     },
   });
 

@@ -1,15 +1,16 @@
 import React, { useEffect, useRef } from 'react';
-import { TMapApiKey } from '../../../constants';
 
 import './TMapV2.less';
 
 const InitCallbackFuncName = 'IotExplorerLocatorPanelMapInit';
 interface TMapV2Props {
+  apiKey: string;
   getInitOptions: (qqMaps: any) => object;
   onInited?: ({ map, qqMaps }) => void;
 }
 
 export function TMapV2({
+  apiKey,
   getInitOptions,
   onInited,
 }: TMapV2Props) {
@@ -41,7 +42,7 @@ export function TMapV2({
 
       const script = document.createElement('script');
       script.type = 'text/javascript';
-      script.src = `https://map.qq.com/api/js?v=2.exp&key=${TMapApiKey}&callback=${InitCallbackFuncName}`;
+      script.src = `https://map.qq.com/api/js?v=2.exp&key=${apiKey}&callback=${InitCallbackFuncName}`;
       mapScriptParent.appendChild(script);
     }
   }, []);

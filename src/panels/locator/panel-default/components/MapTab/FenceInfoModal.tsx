@@ -75,18 +75,82 @@ function CheckBoxGroupModal({
   );
 }
 
+interface InputFieldModalProps {
+  visible: boolean;
+  title: string;
+  defaultValue: string;
+  placeholder?: string;
+  message: React.ReactNode;
+  onSubmit: (value: string) => void;
+  onClose: () => void;
+  onValidate: (value: string) => boolean;
+}
+
+function InputFieldModal({
+  visible,
+  title,
+  defaultValue,
+  placeholder,
+  message,
+  onSubmit,
+  onClose,
+  onValidate,
+}: InputFieldModalProps) {
+  const [value, setValue] = useState(defaultValue);
+
+  const onConfirm = () => {
+    if (!onValidate || onValidate(value)) {
+      onSubmit(value);
+      onClose();
+    }
+  };
+
+  return (
+    <Modal
+      visible={visible}
+      fixedBottom
+      onClose={onClose}
+      title={title}
+      containerClassName="locator-panel-input-modal"
+    >
+      <Modal.Body>
+        <input
+          className="locator-panel-input-modal-field"
+          value={value}
+          placeholder={placeholder}
+          type="text"
+          onChange={(event) => {
+            setValue(event.target.value);
+          }}
+        />
+        <div 
+          className="locator-panel-input-modal-message"
+        >{message}</div>
+      </Modal.Body>
+      <Modal.Footer>
+        <Modal.FooterConfirmBtnGroup
+          confirmText="确定"
+          cancelText="取消"
+          isInFixedBottomModal
+          onConfirm={onConfirm}
+          onCancel={onClose}
+        />
+      </Modal.Footer>
+    </Modal>
+  );
+}
+
 export function FenceInfoModal({
   map,
   qqMaps,
+  editingFenceInfo,
 }) {
   const history = useHistory();
-  const { getUserLocation, editingFenceInfo, setEditingFenceInfo, setFenceList } = useContext(LocatorPanelContext);
+  const { getUserLocation, resetFenceList } = useContext(LocatorPanelContext);
   const fenceInfo = editingFenceInfo as DeviceFenceInfo;
   const firstRunRef = useRef(true);
   const blockCenterChangeRef = useRef(false);
   const [submitting, setSubmitting] = useState(false);
-  const [alertConditionModalVisible, setAlertConditionModalVisible] = useState(false);
-  const [alertMethodModalVisible, setAlertMethodModalVisible] = useState(false);
 
   const [radius, setRadius] = useState(() => {
     if (fenceInfo
@@ -130,6 +194,15 @@ export function FenceInfoModal({
       return null;
     }
   });
+
+  const [nameModalVisible, setNameModalVisible] = useState(false);
+  const [fenceName, setFenceName] = useState(fenceInfo.FenceName);
+
+  const [alertConditionModalVisible, setAlertConditionModalVisible] = useState(false);
+  const [fenceAlertCondition, setFenceAlertCondition] = useState(fenceInfo.AlertCondition);
+
+  const [alertMethodModalVisible, setAlertMethodModalVisible] = useState(false);
+  const [fenceAlertMethod, setFenceAlertMethod] = useState(fenceInfo.Method);
 
   // 拉取围栏中心对应的地址
   const [addressState] = useAsyncFetch({
@@ -184,6 +257,9 @@ export function FenceInfoModal({
         lng: centerWgs84[0],
         lat: centerWgs84[1]
       }, radius),
+      FenceName: fenceName,
+      AlertCondition: fenceAlertCondition,
+      Method: fenceAlertMethod,
     };
 
     if (!newFenceInfo.FenceName) {
@@ -227,7 +303,7 @@ export function FenceInfoModal({
       }
       await sdk.tips.showSuccess('保存成功');
       
-      setFenceList(null);
+      resetFenceList();
       history.go(-1);
     } catch (err) {
       sdk.tips.showError(err);
@@ -267,20 +343,11 @@ export function FenceInfoModal({
             <SectionList.Item
               label="区域名称"
               clickable={true}
+              onClick={() => {
+                setNameModalVisible(true);
+              }}
             >
-              <input
-                type="text"
-                value={fenceInfo.FenceName}
-                className="fence-name-input"
-                placeholder="点击输入"
-                onChange={(event) => {
-                  const value = event.target.value;
-                  setEditingFenceInfo((fenceInfo) => ({
-                    ...fenceInfo as DeviceFenceInfo,
-                    FenceName: value,
-                  }));
-                }}
-              />
+              {fenceName || '点击输入'}
             </SectionList.Item>
             <SectionList.Item
               label="触发报警"
@@ -289,7 +356,7 @@ export function FenceInfoModal({
               }}
               clickable={true}
             >
-              {AlertConditionTypeStr[fenceInfo.AlertCondition] || '点击选择'}
+              {AlertConditionTypeStr[fenceAlertCondition] || '点击选择'}
             </SectionList.Item>
             <SectionList.Item
               label="通知方式"
@@ -299,7 +366,7 @@ export function FenceInfoModal({
               clickable={true}
               hideBorderBottom={false}
             >
-              {AlertMethodTypeStr[fenceInfo.Method] || '点击选择'}
+              {AlertMethodTypeStr[fenceAlertMethod] || '点击选择'}
             </SectionList.Item>
           </SectionList>
         </div>
@@ -331,18 +398,40 @@ export function FenceInfoModal({
           blockCenterChangeRef.current = false;
         }}
       />)}
+      {nameModalVisible && (
+        <InputFieldModal
+          visible
+          onClose={() => { setNameModalVisible(false); }}
+          defaultValue={fenceName}
+          title="区域名称"
+          placeholder="请输入区域名称"
+          message="支持中文、英文、数字、下划线的组合，最多不超过10个字符"
+          onValidate={(value) => {
+            if (!value) {
+              sdk.tips.showError('请输入区域名称');
+            } else if (value.length > 10) {
+              sdk.tips.showError('区域名称最多不超过10个字符');
+            } else if (!/^[\u4E00-\u9FA5A-Za-z0-9_]{1,10}$/i.test(value)) {
+              sdk.tips.showError('区域名称仅支持中文、英文、数字、下划线的组合');
+            } else {
+              return true;
+            }
+            return false;
+          }}
+          onSubmit={(value) => {
+            setFenceName(value);
+          }}
+        />
+      )}
       {alertConditionModalVisible && (
         <CheckBoxGroupModal
           visible
           onClose={() => { setAlertConditionModalVisible(false); }}
-          value={fenceInfo.AlertCondition}
+          value={fenceAlertCondition}
           options={AlertConditionOptions}
           title="触发报警"
           onSubmit={(value) => {
-            setEditingFenceInfo({
-              ...fenceInfo,
-              AlertCondition: value,
-            });
+            setFenceAlertCondition(value);
           }}
         />
       )}
@@ -350,14 +439,11 @@ export function FenceInfoModal({
         <CheckBoxGroupModal
           visible
           onClose={() => { setAlertMethodModalVisible(false); }}
-          value={fenceInfo.Method}
+          value={fenceAlertMethod}
           options={AlertMethodOptions}
           title="通知方式"
           onSubmit={(value) => {
-            setEditingFenceInfo({
-              ...fenceInfo,
-              Method: value,
-            });
+            setFenceAlertMethod(value);
           }}
         />
       )}

@@ -16,9 +16,11 @@ import './FenceTab.less';
 function FenceItem({
   data,
   goEditFence,
+  onStatusChange,
 }: {
   data: DeviceFenceInfo;
   goEditFence: (data: DeviceFenceInfo) => void;
+  onStatusChange: (enabled: boolean) => void;
 }) {
   const [enabled, setEnabled] = useState(data.FenceEnable);
   const [submitting, setSubmitting] = useState(false);
@@ -36,6 +38,7 @@ function FenceItem({
       });
       sdk.tips.showSuccess('围栏修改成功');
       setEnabled(enabled);
+      onStatusChange(enabled);
     } catch (err) {
       sdk.tips.showError(err);
     } finally {
@@ -61,7 +64,7 @@ function FenceItem({
         <div className="fence-address">{data.FenceDesc}</div>
       </div>
 
-      <div className="fence-switch">
+      <div className="fence-switch" onClick={(evt) => { evt.stopPropagation(); }}>
         <Switch
           checked={enabled}
           onChange={(checked) => {
@@ -76,8 +79,8 @@ function FenceItem({
 }
 
 export function FenceTab() {
-  const { setEditingFenceInfo, fenceList, getFenceList } = useContext(LocatorPanelContext);
-  
+  const { fenceList, getFenceList, modifyFenceStatus } = useContext(LocatorPanelContext);
+
   const [listState, { statusTip }] = useAsyncFetch({
     initData: [],
     statusTipOpts: {
@@ -96,23 +99,40 @@ export function FenceTab() {
 
   const history = useHistory();
   const goAddFence = () => {
-    setEditingFenceInfo({
-      FenceId: 0,
-      FenceName: '',
-      FenceDesc: '',
-      FenceArea: null,
-      AlertCondition: AlertConditionType.In,
-      FenceEnable: true,
-      Method: AlertMethodType.Push,
-      CreateTime: 0,
-      UpdateTime: 0,
+    history.push({
+      pathname: '/map/fence',
+      state: {
+        data: {
+          fence: {
+            FenceId: 0,
+            FenceName: '',
+            FenceDesc: '',
+            FenceArea: null,
+            AlertCondition: AlertConditionType.In,
+            FenceEnable: true,
+            Method: AlertMethodType.Push,
+            CreateTime: 0,
+            UpdateTime: 0,
+          },
+        },
+      },
     });
-    history.push('/map/fence');
   };
 
   const goEditFence = (data) => {
-    setEditingFenceInfo(data);
-    history.push('/map/fence');
+    history.push({
+      pathname: '/map/fence',
+      state: {
+        data: { fence: data },
+      }
+    });
+  };
+
+  const onStatusChange = (fenceId, enabled) => {
+    modifyFenceStatus({
+      fenceId,
+      fenceEnable: enabled,
+    });
   };
 
   return (
@@ -135,7 +155,14 @@ export function FenceTab() {
                 </RawBtn>
               </div>
               {listState.data.map((data) => (
-                <FenceItem data={data} key={data.FenceId} goEditFence={goEditFence} />
+                <FenceItem
+                  data={data}
+                  key={data.FenceId}
+                  onStatusChange={(enabled) => {
+                    onStatusChange(data.FenceId, enabled);
+                  }}
+                  goEditFence={goEditFence}
+                />
               ))}
             </div>
           </ScrollView>

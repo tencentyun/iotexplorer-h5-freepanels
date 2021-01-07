@@ -15,13 +15,16 @@ interface LocatorPanelContextValue {
   deviceLocation: LatLngWithTime | null;
   getDeviceLocation: () => Promise<LatLngWithTime>;
   getUserLocation: () => Promise<LatLngWithTime>;
-  locationHistory: LatLngWithTime[] | null;
-  setLocationHistory: React.Dispatch<React.SetStateAction<LatLngWithTime[] | null>>;
-  editingFenceInfo: DeviceFenceInfo | null;
-  setEditingFenceInfo: React.Dispatch<React.SetStateAction<DeviceFenceInfo | null>>;
   fenceList: DeviceFenceInfo[] | null;
-  setFenceList: React.Dispatch<React.SetStateAction<DeviceFenceInfo[] | null>>;
   getFenceList: () => Promise<DeviceFenceInfo[]>;
+  resetFenceList: () => void;
+  modifyFenceStatus: ({
+    fenceId,
+    fenceEnable,
+  }: {
+    fenceId: number;
+    fenceEnable: boolean;
+  }) => void;
 }
 
 export const LocatorPanelContext = createContext<LocatorPanelContextValue>({} as LocatorPanelContextValue);
