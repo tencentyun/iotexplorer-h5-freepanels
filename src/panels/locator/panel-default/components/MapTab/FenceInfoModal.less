@@ -84,10 +84,6 @@
       height: 10px;
     }
   
-    .rangeslider__handle:after {
-      display: none;
-    }
-  
     .rangeslider__fill {
        background-color: #006eff;
        box-shadow: unset;
@@ -97,6 +93,14 @@
       background: #FFFFFF;
       border: 1px solid #E7E8EB;
       box-shadow: 0 5px 25px 0 rgba(0,0,0,0.05);
+
+      &:focus {
+        outline: none;
+      }
+
+      &:after {
+        display: none;
+      }
     }
   }
 }
@@ -115,6 +119,7 @@
     text-align: left;
     width: 100%;
     line-height: 1.4;
+    border-radius: 0;
 
     &:focus {
       outline: none;
@@ -124,6 +129,7 @@
       color: #A1A7B2;
     }
   }
+
   .locator-panel-input-modal-message {
     font-size: 28px;
     margin-top: 16px;

@@ -268,6 +268,7 @@ export function MapTab({
             mapTypeControl: false,
             zoomControl: false,
             panControl: false,
+            scaleControl: true,
           })}
         />
         {mapReady && (

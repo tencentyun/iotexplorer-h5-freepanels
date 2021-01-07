@@ -32,6 +32,13 @@ const AlertMethodOptions = Object.keys(AlertMethodTypeStr).map((key) => ({
 
 const FenceCircleFillColor = rgba(7, 93, 231, 0.25);
 
+const FitFencePadding = {
+  top: 10,
+  left: 10,
+  right: 10,
+  bottom: 10,
+};
+
 function CheckBoxGroupModal({
   visible,
   onSubmit,
@@ -391,9 +398,9 @@ export function FenceInfoModal({
           if (firstRunRef.current) {
             // 延迟，避免地图 resize 时宽高取值不正确导致 fitBounds 将地图缩放至最小
             firstRunRef.current = false;
-            setTimeout(() => { map.fitBounds(bounds); }, 100);
+            setTimeout(() => { map.fitBounds(bounds, FitFencePadding); }, 100);
           } else {
-            map.fitBounds(bounds);
+            map.fitBounds(bounds, FitFencePadding);
           }
           blockCenterChangeRef.current = false;
         }}
