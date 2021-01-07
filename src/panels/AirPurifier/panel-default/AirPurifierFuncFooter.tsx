@@ -98,11 +98,11 @@ export function AirPurifierFuncFooter({
 
         if (!powerOff) {
             configMap.switch.icon = darkMode ? freePanelIcons.iconSwitch : freePanelIcons.iconSwitchOpen;
-            configMap.windspeed.icon = freePanelIcons.iconCountdown;  //TODO 替换图标
-            configMap.mode.icon = freePanelIcons.iconCountdown;
-            configMap.more.icon = freePanelIcons.iconCountdown;
+            configMap.windspeed.icon = freePanelIcons.iconWindSpeed;  //TODO 替换图标
+            configMap.mode.icon = freePanelIcons.iconMode;
+            configMap.more.icon = freePanelIcons.iconMore;
         } else {
-            configMap.windspeed.icon = freePanelIcons.iconCountdown;
+            configMap.windspeed.icon = freePanelIcons.iconWindSpeed;
 
             if (darkMode) {
                 configMap.switch.icon = freePanelIcons.iconSwitch;
@@ -111,8 +111,8 @@ export function AirPurifierFuncFooter({
             }
 
             configMap.switch.text = '关闭';
-            configMap.mode.icon = freePanelIcons.iconCountdown;
-            configMap.more.icon = freePanelIcons.iconCountdown;
+            configMap.mode.icon = freePanelIcons.iconMode;
+            configMap.more.icon = freePanelIcons.iconMore;
         }
 
         return [configMap.switch, configMap.windspeed, configMap.mode, configMap.more];

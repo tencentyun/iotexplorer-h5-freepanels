@@ -25,6 +25,7 @@ export function FilterReset({
             wxlib.tips.showLoading('提交中');
             await doControlDeviceData('reset_filter', 1);
             wxlib.tips.hideLoading();
+            wxlib.tips.showSuccess('保存成功')
         } catch (err) {
             wxlib.tips.showError(err);
         }
