@@ -35,17 +35,20 @@
   top: 0;
   left: 0;
   z-index: 10;
+  transform: translate3d(0, 0, 0);
+}
+
+.locator-device-info-window {
   transform: translateX(-50%);
-}
 
-.locator-device-info-window:before {
-  content: "";
-  position: absolute;
-  top: -10px;
-  margin-left: 50%;
-  left: -10px;
-  border-bottom: 10px solid #FFF;
-  border-left: 10px solid transparent;
-  border-right: 10px solid transparent;
+  &::before {
+    content: "";
+    position: absolute;
+    top: -10px;
+    margin-left: 50%;
+    left: -10px;
+    border-bottom: 10px solid #FFF;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+  }
 }
-

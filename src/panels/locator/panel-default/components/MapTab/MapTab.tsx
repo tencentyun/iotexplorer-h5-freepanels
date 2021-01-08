@@ -32,9 +32,10 @@ export function MapTab({
 }: MapTabProps) {
   const mapRef = useRef(null);
   const qqMapsRef = useRef(null);
-  
+
   const [mapReady, setMapReady] = useState(false);
-  const [infoWindowScreenPos, setInfoWindowScreenPos] = useState({ x: 0, y: 0 });
+
+  const infoWindowContainerRef = useRef<HTMLDivElement>(null);
   const [infoWindow, setInfoWindow] = useState<{
     visible: false,
     position: null
@@ -45,12 +46,12 @@ export function MapTab({
     visible: false,
     position: null,
   });
-  
+
   const { deviceLocation, getDeviceLocation } = useContext(LocatorPanelContext);
 
   const history = useHistory();
   const location = useLocation();
-  
+
   const viewData = (location.state || {}).data;
   const viewType = view !== MapViewType.DeviceCurrent && viewData ? view : MapViewType.DeviceCurrent;
 
@@ -77,7 +78,7 @@ export function MapTab({
     } else {
       const map: any = mapRef.current;
       const qqMaps: any = qqMapsRef.current;
-  
+
       if (map && qqMaps) {
         map.panTo(new qqMaps.LatLng(position.lat, position.lng));
         setInfoWindow({ visible: true, position });
@@ -173,36 +174,35 @@ export function MapTab({
       });
 
       const moveElement = document.querySelector('div[n="moveElement"]') as HTMLDivElement | null;
-      const moveElementParent = (moveElement || {}).offsetParent as HTMLDivElement | null;
 
-      const updateInfoWindowPositionOnDrag = () => {
-        const projection = overlay.getProjection();
-        const point = projection.fromLatLngToDivPixel(latLng);
-        let x = point.getX();
-        let y = point.getY();
-
-        if (moveElementParent && moveElement) {
-          const offsetParent = moveElementParent.getBoundingClientRect();
-          const offset = moveElement.getBoundingClientRect();
-          x += offset.left - offsetParent.left;
-          y += offset.top - offsetParent.top;
+      const updateInfoWindowStyle = ({ x, y }) => {
+        if (infoWindowContainerRef.current) {
+          infoWindowContainerRef.current.style.transform = `translate3d(${x}px, ${y}px, 0)`;
         }
-
-        setInfoWindowScreenPos({ x, y });
       };
 
-      const updateInfoWindowPosition = () => {
-        const projection = overlay.getProjection();
-        const point = projection.fromLatLngToContainerPixel(latLng);
-        const x = point.getX();
-        const y = point.getY();
+      const updateInfoWindowPosition = (onDrag = false) => {
+        if (infoWindowContainerRef.current) {
+          const projection = overlay.getProjection();
+          const point = projection.fromLatLngToContainerPixel(latLng);
+          let x = point.getX();
+          let y = point.getY();
 
-        setInfoWindowScreenPos({ x, y });
+          if (onDrag && moveElement) {
+            const offsetParams = /^(-?[\d.]+)px (-?[\d.]+)px$/.exec(moveElement.style.transformOrigin)
+            if (offsetParams) {
+              x += parseFloat(offsetParams[1]);
+              y += parseFloat(offsetParams[2]);
+            }
+          }
+
+          updateInfoWindowStyle({ x, y });
+        }
       };
 
       const listeners = [
-        qqMaps.event.addListener(map, 'drag', updateInfoWindowPositionOnDrag),
-        qqMaps.event.addListener(map, 'center_changed', updateInfoWindowPosition),
+        qqMaps.event.addListener(map, 'drag', () => { updateInfoWindowPosition(true); }),
+        qqMaps.event.addListener(map, 'center_changed', () => { updateInfoWindowPosition(); }),
         qqMaps.event.addListener(map, 'click', () => {
           setInfoWindow({ visible: false, position: null });
         }),
@@ -282,11 +282,8 @@ export function MapTab({
             {renderMapView()}
             {infoWindow.visible && (
               <div
-                className="locator-device-info-window-container" 
-                style={{
-                  left: infoWindowScreenPos.x,
-                  top: infoWindowScreenPos.y,
-                }}
+                className="locator-device-info-window-container"
+                ref={infoWindowContainerRef}
               >
                 <DeviceInfoWindow
                   location={infoWindow.position}
