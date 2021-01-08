@@ -26,7 +26,23 @@ export function AirPurifierPanel({
 			return '-'
 		} else {
 			if (deviceData[val] || deviceData[val] === 0) {
-				return deviceData[val] + (templateMap[val].define.unit === 'day' ? '天' : templateMap[val].define.unit);
+				return deviceData[val] + templateMap[val].define.unitDesc;
+			} else {
+				if (deviceInfo.isVirtualDevice) {
+					return defalut;
+				} else {
+					return '-';
+				}
+			}
+		}
+	};
+
+	const transformShowMapping = (val, defalut) => {
+		if (airPurifierDisabled) {
+			return '-'
+		} else {
+			if (deviceData[val] || deviceData[val] === 0) {
+				return templateMap[val].define.mapping[deviceData[val]]
 			} else {
 				if (deviceInfo.isVirtualDevice) {
 					return defalut;
@@ -56,8 +72,8 @@ export function AirPurifierPanel({
 	return (
 		<AirPurifierPanelLayout
 			className={classNames('free-air-purifier-page', {
-				'power-off': powerOff,
 				'warning': !powerOff && deviceData.air_quality && deviceData.air_quality > 1,
+				'power-off': powerOff,
 			})}
 			title={deviceInfo.displayName}
 			doControlDeviceData={doControlDeviceData}
@@ -76,8 +92,8 @@ export function AirPurifierPanel({
 					{
 						!airPurifierDisabled && (
 							<div className='mode-speed'>
-								<span className='mode'>模式：{(deviceData.mode || deviceData.mode === 0) ? templateMap.mode.define.mapping[deviceData.mode] : '自动'}</span>
-								<span>风速：{(deviceData.windspeed || deviceData.windspeed === 0) ? templateMap.windspeed.define.mapping[deviceData.windspeed] : '高档'}</span>
+								<span className='mode'>模式：{transformShowMapping('mode', '自动')}</span>
+								<span>风速：{transformShowMapping('windspeed', '高档')}</span>
 							</div>
 						)
 					}
@@ -89,15 +105,15 @@ export function AirPurifierPanel({
 								) : (
 										<div>
 											<div className='pm'>PM2.5</div>
-											<div className='pm-value'>{deviceData.pm2_5 ? deviceData.pm2_5 : '300'}</div>
-											<div>室内空气质量：{(deviceData.air_quality) ? templateMap.air_quality.define.mapping[deviceData.air_quality] : '优'}</div>
+											<div className='pm-value'>{deviceData.pm2_5 ? deviceData.pm2_5 : deviceInfo.isVirtualDevice ? '300' : '-'}</div>
+											<div>室内空气质量：{transformShowMapping('air_quality', '优')}</div>
 										</div>
 
 									)
 							}
 						</div>
 						<div className="air-circle-dot-container" style={{ transform: `rotate(${transformRotate(deviceData.pm2_5)}deg)` }}>
-							{!airPurifierDisabled && (
+							{(!airPurifierDisabled && (deviceData.pm2_5 || deviceInfo.isVirtualDevice)) && (
 								<div className='dot'></div>
 							)}
 						</div>

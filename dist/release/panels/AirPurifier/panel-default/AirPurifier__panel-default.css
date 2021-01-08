@@ -634,7 +634,7 @@ button.pure-btn {
 }
 .free-air-purifier-page .air-purifier-container .air-purifier-body .mode-speed {
   position: absolute;
-  top: 2.47467rem;
+  top: 3.24267rem;
   left: 0;
   right: 0;
 }
@@ -642,14 +642,37 @@ button.pure-btn {
   margin-right: 1.70667rem;
 }
 .free-air-purifier-page .air-purifier-container .air-purifier-body .air-circle {
-  width: 9.38667rem;
-  height: 9.38667rem;
+  width: 11.09333rem;
+  height: 11.09333rem;
   margin: auto;
-  border: 0.128rem solid #FFFFFF;
-  border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
+  background-image: url("https://main.qcloudimg.com/raw/2fa5d8783a9b724522c35b7a55594d55/airpurifier.svg");
+  background-size: 100%;
+  background-repeat: no-repeat;
+}
+.free-air-purifier-page .air-purifier-container .air-purifier-body .air-circle .air-circle-inner {
+  width: 7.46667rem;
+  height: 7.46667rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+.free-air-purifier-page .air-purifier-container .air-purifier-body .air-circle .air-circle-dot-container {
+  width: 7.46667rem;
+  height: 7.46667rem;
+  position: absolute;
+}
+.free-air-purifier-page .air-purifier-container .air-purifier-body .air-circle .air-circle-dot-container .dot {
+  position: absolute;
+  bottom: 0;
+  left: 3.73333rem;
+  width: 0.29867rem;
+  height: 0.29867rem;
+  border-radius: 50%;
+  background-color: #fff;
 }
 .free-air-purifier-page .air-purifier-container .air-purifier-body .air-circle .pm {
   opacity: 0.5;
