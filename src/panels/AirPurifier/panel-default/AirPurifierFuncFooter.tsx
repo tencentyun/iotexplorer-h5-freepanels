@@ -98,7 +98,7 @@ export function AirPurifierFuncFooter({
 
         if (!powerOff) {
             configMap.switch.icon = darkMode ? freePanelIcons.iconSwitch : freePanelIcons.iconSwitchOpen;
-            configMap.windspeed.icon = freePanelIcons.iconWindSpeed;  //TODO 替换图标
+            configMap.windspeed.icon = freePanelIcons.iconWindSpeed;
             configMap.mode.icon = freePanelIcons.iconMode;
             configMap.more.icon = freePanelIcons.iconMore;
         } else {

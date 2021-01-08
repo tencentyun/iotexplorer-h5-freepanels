@@ -1,7 +1,4 @@
 import React, { useState } from 'react';
-import {
-	iconSocket,
-} from '@icons/device/freePanel';
 import classNames from 'classnames';
 import { PanelMoreBtn } from '@components/PanelMoreBtn';
 import { BorderSwitch } from "./BorderSwitch";
@@ -19,7 +16,6 @@ export function AirPurifierPanel({
 	onGoTimingProject,
 	onGoDeviceDetail,
 }: PanelComponentProps) {
-	console.log('********', deviceInfo, deviceData, templateMap, offline, powerOff)
 	const airPurifierDisabled = offline || powerOff;
 	const [wetEnable, setWetdownEnable] = useState(deviceData.wet ? true : false);
 	const [anionEnable, setAniondownEnable] = useState(deviceData.anion ? true : false);
@@ -36,6 +32,22 @@ export function AirPurifierPanel({
 					return defalut;
 				} else {
 					return '-';
+				}
+			}
+		}
+	};
+
+	const transformRotate = (rotate) => {
+		if (airPurifierDisabled) {
+			return 50;
+		} else {
+			if (rotate) {
+				return 50 + (260 / 500) * rotate;
+			} else {
+				if (deviceInfo.isVirtualDevice) {
+					return 50 + (260 / 500) * 300;
+				} else {
+					return 50;
 				}
 			}
 		}
@@ -70,18 +82,25 @@ export function AirPurifierPanel({
 						)
 					}
 					<div className='air-circle'>
-						{
-							airPurifierDisabled ? (
-								<div className="close-down">{offline ? '已离线' : '已关机'}</div>
-							) : (
-									<div>
-										<div className='pm'>PM2.5</div>
-										<div className='pm-value'>{deviceData.pm2_5 ? deviceData.pm2_5 : '300'}</div>
-										<div>室内空气质量：{(deviceData.air_quality) ? templateMap.air_quality.define.mapping[deviceData.air_quality] : '优'}</div>
-									</div>
+						<div className='air-circle-inner'>
+							{
+								airPurifierDisabled ? (
+									<div className="close-down">{offline ? '已离线' : '已关机'}</div>
+								) : (
+										<div>
+											<div className='pm'>PM2.5</div>
+											<div className='pm-value'>{deviceData.pm2_5 ? deviceData.pm2_5 : '300'}</div>
+											<div>室内空气质量：{(deviceData.air_quality) ? templateMap.air_quality.define.mapping[deviceData.air_quality] : '优'}</div>
+										</div>
 
-								)
-						}
+									)
+							}
+						</div>
+						<div className="air-circle-dot-container" style={{ transform: `rotate(${transformRotate(deviceData.pm2_5)}deg)` }}>
+							{!airPurifierDisabled && (
+								<div className='dot'></div>
+							)}
+						</div>
 					</div>
 					<div className='air-purifier-property-body'>
 						<div className="air-purifier-property">

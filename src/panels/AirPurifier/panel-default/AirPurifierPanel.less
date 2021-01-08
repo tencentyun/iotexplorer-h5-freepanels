@@ -14,7 +14,7 @@
 
 		.mode-speed {
 			position: absolute;
-			top: 116px;
+			top: 152px;
 			left: 0;
 			right: 0;
 
@@ -25,14 +25,39 @@
 		}
 
 		.air-circle {
-			width: 440px;
-			height: 440px;
+			width: 520px;
+			height: 520px;
 			margin: auto;
-			border: 6px solid #FFFFFF;
-			border-radius: 50%;
 			display: flex;
 			align-items: center;
 			justify-content: center;
+			background-image: url("https://main.qcloudimg.com/raw/2fa5d8783a9b724522c35b7a55594d55/airpurifier.svg");
+			background-size: 100%;
+			background-repeat: no-repeat;
+
+			.air-circle-inner {
+				width: 350px;
+				height: 350px;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				position: relative;
+			}
+
+			.air-circle-dot-container {
+				width: 350px;
+				height: 350px;
+				position:absolute;
+				.dot {
+					position: absolute;
+				    bottom: 0;
+					left: 175px;
+					width: 14px;
+					height: 14px;
+					border-radius: 50%;
+					background-color:#fff;				
+				}
+			}
 
 			.pm {
 				opacity: 0.5;
