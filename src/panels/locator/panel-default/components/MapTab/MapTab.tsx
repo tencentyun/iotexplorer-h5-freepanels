@@ -38,13 +38,13 @@ export function MapTab({
   const infoWindowContainerRef = useRef<HTMLDivElement>(null);
   const [infoWindow, setInfoWindow] = useState<{
     visible: false,
-    position: null
+    location: null
   } | {
     visible: true,
-    position: LatLng,
+    location: LatLng,
   }>({
     visible: false,
-    position: null,
+    location: null,
   });
 
   const { deviceLocation, getDeviceLocation } = useContext(LocatorPanelContext);
@@ -70,20 +70,24 @@ export function MapTab({
     }, 100);
   };
 
-  const onDeviceMarkerClick = (position: LatLng) => {
+  const onDeviceMarkerClick = (location: LatLng) => {
     if (infoWindow.visible
-      && infoWindow.position.lat === position.lat
-      && infoWindow.position.lng === position.lng) {
-      setInfoWindow({ visible: false, position: null });
+      && infoWindow.location.lat === location.lat
+      && infoWindow.location.lng === location.lng) {
+      setInfoWindow({ visible: false, location: null });
     } else {
       const map: any = mapRef.current;
       const qqMaps: any = qqMapsRef.current;
 
       if (map && qqMaps) {
-        map.panTo(new qqMaps.LatLng(position.lat, position.lng));
-        setInfoWindow({ visible: true, position });
+        map.panTo(new qqMaps.LatLng(location.lat, location.lng));
+        setInfoWindow({ visible: true, location });
       }
     }
+  };
+
+  const onOpenInfoWindow = (location: LatLng) => {
+    setInfoWindow({ visible: true, location });
   };
 
   const onOpenLocation = ({ lat, lng, address, name }) => {
@@ -160,14 +164,14 @@ export function MapTab({
       fitLocationHistory(viewData.history);
     }
 
-    setInfoWindow({ visible: false, position: null });
+    setInfoWindow({ visible: false, location: null });
   }, [viewType, mapReady]);
 
   useEffect(() => {
     const map: any = mapRef.current;
     const qqMaps: any = qqMapsRef.current;
     if (infoWindow.visible && map && qqMaps) {
-      const latLng = new qqMaps.LatLng(infoWindow.position.lat, infoWindow.position.lng);
+      const latLng = new qqMaps.LatLng(infoWindow.location.lat, infoWindow.location.lng);
       const overlay = new qqMaps.Overlay({
         map,
         position: latLng,
@@ -204,7 +208,7 @@ export function MapTab({
         qqMaps.event.addListener(map, 'drag', () => { updateInfoWindowPosition(true); }),
         qqMaps.event.addListener(map, 'center_changed', () => { updateInfoWindowPosition(); }),
         qqMaps.event.addListener(map, 'click', () => {
-          setInfoWindow({ visible: false, position: null });
+          setInfoWindow({ visible: false, location: null });
         }),
       ];
 
@@ -278,6 +282,7 @@ export function MapTab({
               showBattery={viewType === MapViewType.DeviceCurrent}
               showLocationControl={viewType === MapViewType.DeviceCurrent}
               showScaleControl={viewType === MapViewType.DeviceCurrent || viewType === MapViewType.DeviceHistory}
+              onOpenInfoWindow={onOpenInfoWindow}
             />
             {renderMapView()}
             {infoWindow.visible && (
@@ -286,7 +291,7 @@ export function MapTab({
                 ref={infoWindowContainerRef}
               >
                 <DeviceInfoWindow
-                  location={infoWindow.position}
+                  location={infoWindow.location}
                   onOpenLocation={onOpenLocation}
                   className="locator-device-info-window-attached"
                 />

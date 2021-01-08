@@ -3,6 +3,7 @@ import classNames from 'classnames';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 import { RawBtn } from '@components/Btn/Btn';
 import * as icons from '../../icons';
+import { LatLng } from '../../types';
 import { LocatorPanelContext } from '../../LocatorPanelContext';
 
 import './MapControl.less';
@@ -36,6 +37,7 @@ interface MapControlProps {
   showBattery?: boolean;
   showLocationControl?: boolean;
   showScaleControl?: boolean;
+  onOpenInfoWindow: (location: LatLng) => void,
 }
 
 export function MapControl({
@@ -44,6 +46,7 @@ export function MapControl({
   showBattery = true,
   showLocationControl = true,
   showScaleControl = true,
+  onOpenInfoWindow,
 }: MapControlProps) {
   const { deviceData, getDeviceLocation, getUserLocation } = useContext(LocatorPanelContext);
   const batteryValue = typeof deviceData.battery_state === 'number' ? deviceData.battery_state : null
@@ -66,6 +69,7 @@ export function MapControl({
       icon: icons.iconPhoneControl,
       onClick: () => {
         getUserLocation().then((latLng) => {
+          onOpenInfoWindow(latLng);
           map.setCenter(new qqMaps.LatLng(latLng.lat, latLng.lng));
           map.setZoom(17);
         }).catch((err) => {
