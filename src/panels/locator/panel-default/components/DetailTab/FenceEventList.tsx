@@ -1,4 +1,4 @@
-import React, { useContext, useMemo } from 'react';
+import React, { useMemo } from 'react';
 import classNames from 'classnames';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 import { StatusTip } from '@components/StatusTip';
@@ -10,8 +10,6 @@ import { padNumber } from '../../utils';
 import * as models from '../../models';
 
 import './FenceEventList.less';
-import { fetchAllList } from '@src/libs/utillib';
-import { LocatorPanelContext } from '../../LocatorPanelContext';
 
 interface DeviceFenceEventGroup {
   year: number;
@@ -74,18 +72,15 @@ function DeviceEventGroup(data: DeviceFenceEventGroup) {
 }
 
 interface FenceEventListContext {
-  fenceIds: number[];
-  lastEndTime: number;
-  terminateEndTime: number;
+  offset: number;
+  startTime: number;
+  endTime: number;
 }
 
 const EventListMaxLenTime = 365 * 24 * 60 * 60 * 1000;
-const EventListPageLenTime = 90 * 24 * 60 * 60 * 1000;
-const EventListPageSize = 20;
+const EventListPageSize = 100;
 
 export function FenceEventList() {
-  const { fenceList, getFenceList } = useContext(LocatorPanelContext);
-  
   const [listState, { loadMore, statusTip }] = useInfiniteList({
     statusTipOpts: {
       emptyMessage: '暂无报警',
@@ -94,50 +89,34 @@ export function FenceEventList() {
     getData: async ({ context } : { context: FenceEventListContext }) => {
       if (!context) {
         const now = Date.now();
-        
-        const fences = fenceList || await getFenceList();
-
         context = {
-          fenceIds: fences.map(fence => fence.FenceId),
-          lastEndTime: now,
-          terminateEndTime: now - EventListMaxLenTime,
+          offset: 0,
+          endTime: now,
+          startTime: now - EventListMaxLenTime,
         };
       }
 
-      if (context.fenceIds.length === 0) {
-        return { loadFinish: true };
-      }
+      const resp = await models.getFenceEventList({
+        ProductId: sdk.productId,
+        DeviceName: sdk.deviceName,
+        Offset: context.offset,
+        Limit: EventListPageSize,
+        StartTime: context.startTime,
+        EndTime: context.endTime,
+      });
 
-      let list: DeviceFenceEvent[] = [];
-
-      while (list.length < EventListPageSize && context.lastEndTime > context.terminateEndTime) {
-        const allFenceEventList = await Promise.all(context.fenceIds.map(fenceId => 
-          fetchAllList(async ({ offset, limit }) => 
-            models.getFenceEventList({
-              ProductId: sdk.productId,
-              DeviceName: sdk.deviceName,
-              Offset: offset,
-              Limit: limit,
-              FenceId: fenceId,
-              StartTime: context.lastEndTime - EventListPageLenTime,
-              EndTime: context.lastEndTime,
-            })
-          )
-        ));
-
-        allFenceEventList.forEach(fenceEvnetList => {
-          list = list.concat(fenceEvnetList);
-        });
-
-        context.lastEndTime -= EventListPageLenTime;
-      }
-      
+      const list: DeviceFenceEvent[] = resp.list;
       list.sort((a, b) => b.CreateTime - a.CreateTime);
 
+      const nextOffset = context.offset + EventListPageSize;
+
       return {
-        context,
+        context: {
+          ...context,
+          offset: nextOffset,
+        },
         list,
-        loadFinish: context.lastEndTime <= context.terminateEndTime,
+        loadFinish: nextOffset >= resp.total,
       };
     },
   });

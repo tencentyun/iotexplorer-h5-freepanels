@@ -45,15 +45,14 @@ export function MapControl({
   showLocationControl = true,
   showScaleControl = true,
 }: MapControlProps) {
-  const { deviceData, deviceLocation, getDeviceLocation, getUserLocation } = useContext(LocatorPanelContext);
+  const { deviceData, getDeviceLocation, getUserLocation } = useContext(LocatorPanelContext);
   const batteryValue = typeof deviceData.battery_state === 'number' ? deviceData.battery_state : null
 
   const buttons = [
     {
       icon: icons.iconLocateControl,
       onClick: () => {
-        let locationPromise = deviceLocation ? Promise.resolve(deviceLocation) : getDeviceLocation();
-        locationPromise.then((deviceLocation) => {
+        getDeviceLocation().then((deviceLocation) => {
           map.setCenter(new qqMaps.LatLng(deviceLocation.lat, deviceLocation.lng));
           map.setZoom(17);
         }).catch((err) => {

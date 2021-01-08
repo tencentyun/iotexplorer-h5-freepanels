@@ -225,7 +225,7 @@ export const getFenceEventList = async ({
 }: {
   ProductId: string;
   DeviceName: string;
-  FenceId: number;
+  FenceId?: number;
   StartTime: number;
   EndTime: number;
   Offset: number;
