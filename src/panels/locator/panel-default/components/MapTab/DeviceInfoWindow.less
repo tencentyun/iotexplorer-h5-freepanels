@@ -1,5 +1,7 @@
+@info-window-width: 460px;
+
 .locator-device-info-window {
-  width: 460px;
+  width: @info-window-width;
   box-sizing: border-box;
   padding: 32px 24px;
   font-size: 24px;
@@ -10,6 +12,17 @@
   box-shadow: 0 4px 15px 0 rgba(0,0,0,0.03);
   border-radius: 10px;
   position: relative;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: -10px;
+    margin-left: 50%;
+    left: -10px;
+    border-bottom: 10px solid #FFF;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+  }
 }
 
 .locator-device-info-window-text {
@@ -33,22 +46,7 @@
 .locator-device-info-window-container {
   position: absolute;
   top: 0;
-  left: 0;
+  left: -(@info-window-width / 2);
   z-index: 10;
   transform: translate3d(0, 0, 0);
-}
-
-.locator-device-info-window {
-  transform: translateX(-50%);
-
-  &::before {
-    content: "";
-    position: absolute;
-    top: -10px;
-    margin-left: 50%;
-    left: -10px;
-    border-bottom: 10px solid #FFF;
-    border-left: 10px solid transparent;
-    border-right: 10px solid transparent;
-  }
 }
