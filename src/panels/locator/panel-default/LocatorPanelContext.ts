@@ -8,6 +8,7 @@ export interface LocatorDeviceData {
 }
 
 interface LocatorPanelContextValue {
+  isDeviceOffline: boolean;
   deviceInfo: any;
   deviceData: LocatorDeviceData;
   templateMap: any;

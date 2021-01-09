@@ -86,6 +86,7 @@ function App() {
   const [{
     deviceInfo,
     deviceData,
+    offline,
     templateMap,
   }, { doControlDeviceData }] = useDeviceInfo();
 
@@ -198,6 +199,7 @@ function App() {
   
   return (
     <LocatorPanelContext.Provider value={{
+      isDeviceOffline: offline,
       deviceInfo,
       deviceData,
       templateMap,
