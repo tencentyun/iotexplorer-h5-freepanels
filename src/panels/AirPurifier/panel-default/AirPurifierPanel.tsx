@@ -26,7 +26,7 @@ export function AirPurifierPanel({
 			return '-'
 		} else {
 			if (deviceData[val] || deviceData[val] === 0) {
-				return deviceData[val] + templateMap[val].define.unitDesc;
+				return deviceData[val] + (templateMap[val].define.unit === 'day' ? '天' : templateMap[val].define.unit);
 			} else {
 				if (deviceInfo.isVirtualDevice) {
 					return defalut;
@@ -105,7 +105,7 @@ export function AirPurifierPanel({
 								) : (
 										<div>
 											<div className='pm'>PM2.5</div>
-											<div className='pm-value'>{deviceData.pm2_5 ? deviceData.pm2_5 : deviceInfo.isVirtualDevice ? '300' : '-'}</div>
+											<div className='pm-value'>{(deviceData.pm2_5 || deviceData.pm2_5 === 0) ? deviceData.pm2_5 : deviceInfo.isVirtualDevice ? '300' : '-'}</div>
 											<div>室内空气质量：{transformShowMapping('air_quality', '优')}</div>
 										</div>
 
@@ -113,7 +113,7 @@ export function AirPurifierPanel({
 							}
 						</div>
 						<div className="air-circle-dot-container" style={{ transform: `rotate(${transformRotate(deviceData.pm2_5)}deg)` }}>
-							{(!airPurifierDisabled && (deviceData.pm2_5 || deviceInfo.isVirtualDevice)) && (
+							{(!airPurifierDisabled && (deviceData.pm2_5 || deviceData.pm2_5 === 0 || deviceInfo.isVirtualDevice)) && (
 								<div className='dot'></div>
 							)}
 						</div>
