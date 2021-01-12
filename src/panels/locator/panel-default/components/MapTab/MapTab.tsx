@@ -192,6 +192,15 @@ export function MapTab({
           let x = point.getX();
           let y = point.getY();
 
+          if (moveElement) {
+            const scaleParams = /scale\(([\d.]+)\)/.exec(moveElement.style.transform)
+            if (scaleParams) {
+              const scale = parseFloat(scaleParams[1]);
+              x *= scale;
+              y *= scale;
+            }
+          }
+
           if (onDrag && moveElement) {
             const offsetParams = /^(-?[\d.]+)px (-?[\d.]+)px$/.exec(moveElement.style.transformOrigin)
             if (offsetParams) {
