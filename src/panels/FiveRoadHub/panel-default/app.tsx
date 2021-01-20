@@ -2,6 +2,7 @@ import React, { useMemo } from 'react';
 import { useDeviceInfo } from '@hooks/useDeviceInfo';
 import { Panel } from './Panel';
 import { entryWrap } from "@src/entryWrap";
+import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 import {
   HashRouter,
   Switch,
@@ -70,10 +71,14 @@ function App() {
                 label: item.name,
               }))}
               onClick={(item) => {
+                if (sdk.isMock) {
+                  return sdk.tips.showInfo('模拟设备无法访问定时任务');
+                }
+
                 wxlib.router.go(
                   '/pages/Device/TimingProject/TimingProjectList/TimingProjectList',
                   {
-                    deviceId: deviceInfo.deviceId,
+                    deviceId: deviceInfo.DeviceId,
                     featureId: item.id,
                   },
                 );

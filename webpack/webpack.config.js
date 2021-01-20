@@ -48,6 +48,11 @@ module.exports = (env, argv) => {
       filename: '[name].js',
       libraryTarget: 'umd'
     },
+    externals: {
+      react: "React",
+      'react-dom': 'ReactDOM',
+      'qcloud-iotexplorer-h5-panel-sdk': 'h5PanelSdk',
+    },
     devServer: {
       contentBase: outputPath,
       compress: true,
@@ -69,16 +74,16 @@ module.exports = (env, argv) => {
               presets: ['@babel/preset-env', '@babel/preset-react',],
               plugins: [
                 '@babel/plugin-proposal-class-properties',
-                // [
-                // 	'@babel/plugin-transform-runtime',
-                // 	{
-                // 		'absoluteRuntime': false,
-                // 		'corejs': false,
-                // 		'helpers': true,
-                // 		'regenerator': true,
-                // 		'useESModules': false,
-                // 	}
-                // ],
+                [
+                	'@babel/plugin-transform-runtime',
+                	{
+                		'absoluteRuntime': false,
+                		'corejs': false,
+                		'helpers': true,
+                		'regenerator': false,
+                		'useESModules': false,
+                	}
+                ],
               ]
             },
           }
