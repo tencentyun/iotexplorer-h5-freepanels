@@ -1,0 +1,1 @@
+export const TMapApiKey = 'L7EBZ-EARWJ-W3XFS-KVK55-6GV56-DZBKL';
