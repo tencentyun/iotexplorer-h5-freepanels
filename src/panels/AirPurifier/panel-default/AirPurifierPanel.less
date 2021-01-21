@@ -1,0 +1,125 @@
+.free-air-purifier-page {
+	background-image: linear-gradient(180deg, #3D8BFF 0%, #1242FF 100%);
+
+	.air-purifier-container {
+		height: 100%;
+		box-sizing: border-box;
+		position: relative;
+		overflow-y: auto;
+
+	.air-purifier-body {
+		margin: 215px auto 0;
+		font-size: 28px;
+		color: #fff;
+
+		.mode-speed {
+			position: absolute;
+			top: 152px;
+			left: 0;
+			right: 0;
+
+			.mode {
+				margin-right: 80px;
+			}
+
+		}
+
+		.air-circle {
+			width: 520px;
+			height: 520px;
+			margin: auto;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			background-image: url("https://main.qcloudimg.com/raw/2fa5d8783a9b724522c35b7a55594d55/airpurifier.svg");
+			background-size: 100%;
+			background-repeat: no-repeat;
+
+			.air-circle-inner {
+				width: 350px;
+				height: 350px;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				position: relative;
+			}
+
+			.air-circle-dot-container {
+				width: 350px;
+				height: 350px;
+				position:absolute;
+				.dot {
+					position: absolute;
+				    bottom: 0;
+					left: 175px;
+					width: 14px;
+					height: 14px;
+					border-radius: 50%;
+					background-color:#fff;				
+				}
+			}
+
+			.pm {
+				opacity: 0.5;
+			}
+
+			.pm-value {
+				font-size: 86px;
+				padding: 20px 0 24px;
+			}
+
+			.close-down {
+				font-size: 86px;
+			}
+		}
+
+		.air-purifier-property-body {
+			margin: 50px 50px 40px;
+			display: flex;
+			justify-content: space-around;
+		}
+
+		.air-purifier-property {
+
+			.label {
+				opacity: 0.5;
+				margin-bottom: 16px;
+			}
+
+			.value {
+				font-size: 32px;
+			}
+		}
+
+		.air-purifier-switch-group {
+			margin:80px 50px;
+			display: flex;
+			justify-content: space-around;
+
+            .air-purifier-switch-label {
+	            margin-right: 8px;
+            }
+			.air-purifier-switch {
+				display: inline-block;
+			}
+
+		}
+	}
+
+}
+
+	&.power-off {
+		background-image: linear-gradient(180deg, #727F99 0%, #3E4656 100%);
+
+		.air-circle {
+			opacity: .4;
+		}
+
+	}
+
+
+	&.warning {
+		background-image: linear-gradient(180deg, #FBBC00 0%, #FC7F00 100%);
+
+	}
+}
