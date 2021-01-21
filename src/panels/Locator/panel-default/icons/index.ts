@@ -1,0 +1,13 @@
+export { default as iconMapTab } from './map-tab.svg';
+export { default as iconMapTabActive } from './map-tab-active.svg';
+export { default as iconFenceTab } from './fence-tab.svg';
+export { default as iconFenceTabActive } from './fence-tab-active.svg';
+export { default as iconDetailTab } from './detail-tab.svg';
+export { default as iconDetailTabActive } from './detail-tab-active.svg';
+export { default as iconPlusControl } from './plus-control.svg';
+export { default as iconMinusControl } from './minus-control.svg';
+export { default as iconLocateControl } from './locate-control.svg';
+export { default as iconPhoneControl } from './phone-control.svg';
+export { default as iconBatteryEmpty } from './battery-empty.svg';
+export { default as iconMapMarker } from './map-marker.svg';
+export { default as iconAddBtn } from './add-btn.svg';
