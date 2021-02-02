@@ -2,16 +2,8 @@ import React, { useMemo } from 'react';
 import { useDeviceInfo } from '@hooks/useDeviceInfo';
 import { Panel } from './Panel';
 import { entryWrap } from "@src/entryWrap";
-import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
-import {
-  HashRouter,
-  Switch,
-  Route,
-} from "react-router-dom";
-import { SocketList } from './SocketList';
-import * as wxlib from '@wxlib';
 import { getCountdownStrWithoutDevice } from "@components/FuncFooter";
-import { CountdownList } from './CountdownList';
+import { PanelPageWithMultiFeatures } from "@components/PanelPageWithMultiFeatures";
 
 function App() {
   const [{
@@ -57,66 +49,35 @@ function App() {
   );
 
   return (
-    <HashRouter
+    <PanelPageWithMultiFeatures
+      timingProjectList={totalSocketList.map(item => ({
+        id: item.id,
+        label: item.name,
+      }))}
+      countdownList={totalSocketList.map(item => ({
+        id: item.id,
+        label: item.name,
+        text: deviceData[item.countdownId] > 0
+          ? getCountdownStrWithoutDevice(deviceData[item.countdownId], !deviceData[item.id])
+          : '',
+        countdownId: item.countdownId,
+      }))}
+      deviceData={deviceData}
+      doControlDeviceData={doControlDeviceData}
+      deviceInfo={deviceInfo}
     >
-      <div>
-        <Switch>
-          {/* 蓝牙搜索页 */}
-          <Route
-            path="/timing-project-list"
-          >
-            <SocketList
-              socketList={totalSocketList.map(item => ({
-                id: item.id,
-                label: item.name,
-              }))}
-              onClick={(item) => {
-                if (sdk.isMock) {
-                  return sdk.tips.showInfo('模拟设备无法访问定时任务');
-                }
-
-                wxlib.router.go(
-                  '/pages/Device/TimingProject/TimingProjectList/TimingProjectList',
-                  {
-                    deviceId: deviceInfo.DeviceId,
-                    featureId: item.id,
-                  },
-                );
-              }}
-            />
-          </Route>
-          <Route
-            path="/countdown-list"
-          >
-            <CountdownList
-              socketList={totalSocketList.map(item => ({
-                id: item.id,
-                label: item.name,
-                text: deviceData[item.countdownId] > 0
-                  ? getCountdownStrWithoutDevice(deviceData[item.countdownId], !deviceData[item.id])
-                  : '',
-                countdownId: item.countdownId,
-              }))}
-              deviceData={deviceData}
-              doControlDeviceData={doControlDeviceData}
-            />
-          </Route>
-          <Route path="/">
-            <Panel
-              deviceInfo={deviceInfo}
-              productInfo={productInfo}
-              templateMap={templateMap}
-              deviceData={deviceData}
-              offline={offline}
-              powerOff={powerOff}
-              doControlDeviceData={doControlDeviceData}
-              socketList={socketList}
-              usbList={usbList}
-            />
-          </Route>
-        </Switch>
-      </div>
-    </HashRouter>
+      <Panel
+        deviceInfo={deviceInfo}
+        productInfo={productInfo}
+        templateMap={templateMap}
+        deviceData={deviceData}
+        offline={offline}
+        powerOff={powerOff}
+        doControlDeviceData={doControlDeviceData}
+        socketList={socketList}
+        usbList={usbList}
+      />
+    </PanelPageWithMultiFeatures>
   );
 }
 
