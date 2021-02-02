@@ -29,4 +29,10 @@ module.exports = {
       ['panel-default', { enable: true }],
     ],
   },
+  MultiSwitch: {
+    enable: true,
+    panels: [
+      ['panel-default', { enable: true }],
+    ],
+  },
 };
