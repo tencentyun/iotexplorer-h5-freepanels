@@ -6,10 +6,12 @@ export function SwitchItem({
   switchOn,
   countdown,
   onClick,
+  name,
 }: {
   switchOn: boolean;
   onClick: any;
   countdown: number;
+  name: string;
 }) {
   return (
     <div
@@ -20,7 +22,7 @@ export function SwitchItem({
         onClick={onClick}
       />
 
-      <div className='item-status'>开关已{switchOn ? '开启' : '关闭'}</div>
+      <div className='item-status text-overflow'>{name}</div>
       {countdown > 0 ? (
         <div className='item-countdown'>
           {getCountdownStrWithoutDevice(countdown, !switchOn)}

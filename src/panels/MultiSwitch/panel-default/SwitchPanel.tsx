@@ -1,5 +1,5 @@
 import React from 'react';
-import classnames from 'classnames';
+import classNames from 'classnames';
 import { FreePanelLayout } from '@components/FreePanelLayout';
 import { PanelMoreBtn } from '@components/PanelMoreBtn';
 import { PanelComponentProps } from "@src/entryWrap";
@@ -38,7 +38,7 @@ export function SwitchPanel({
 
   return (
     <FreePanelLayout
-      className={classnames('switch-panel-page', {
+      className={classNames('switch-panel-page', {
         'power-off': powerOff,
       })}
       title={deviceInfo.displayName}
@@ -72,11 +72,12 @@ export function SwitchPanel({
       />
 
       <div
-        className={classnames('switch-list', `layout-${switchList.length}`)}
+        className={classNames('switch-list', `layout-${switchList.length}`)}
       >
         {switchList.map(item => (
           <SwitchItem
             key={item.id}
+            name={item.name}
             switchOn={deviceData[item.id]}
             countdown={deviceData[item.countdownId]}
             onClick={() => onToggleSocket(item)}

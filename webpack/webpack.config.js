@@ -2,15 +2,15 @@ const path = require('path');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const webpack = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const panelConfig = require('./panel-conf');
+const TerserPlugin = require('terser-webpack-plugin');
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 
 class ModifiedMiniCssExtractPlugin extends MiniCssExtractPlugin {
   getCssChunkObject(mainChunk) {
     return {}
   }
 }
-
 
 module.exports = (env, argv) => {
   const { mode } = argv;
@@ -45,11 +45,6 @@ module.exports = (env, argv) => {
     }
   });
 
-  // 当 JS 文件大小超过 2MB 限制时，可置为 true 开启 webpack 的代码拆分
-  // 开启后 npm run release 将输出多个文件，需要全部上传到控制台交互开发的设置项中
-  // 具体设置项在 optimization.splitChunks
-  const enableCodeSplitting = false;
-
   return {
     name: 'iotexplorer-h5-freepanels',
     mode,
@@ -57,6 +52,7 @@ module.exports = (env, argv) => {
     output: {
       path: outputPath,
       filename: isDevMode ? '[name].js' : '[name].[contenthash:10].js',
+      // filename: '[name].js',
       libraryTarget: 'umd'
     },
     externals: {
@@ -69,7 +65,7 @@ module.exports = (env, argv) => {
       compress: true,
       port: 9000,
       disableHostCheck: true, //  新增该配置项
-      hot: true,
+      // hot: true,
       https: true,
     },
     module: {
@@ -102,14 +98,7 @@ module.exports = (env, argv) => {
         {
           loader: "ts-loader",
           options: {
-            // exclude: [
-            // 	"node_modules",
-            // ]
             transpileOnly: true,
-            // compilerOptions: {
-            // 	module: "esnext",
-            // 	sourceMap: true,
-            // },
           },
         },
         {
@@ -117,9 +106,6 @@ module.exports = (env, argv) => {
           use: [
             {
               loader: MiniCssExtractPlugin.loader,
-              // options: {
-              //   hmr: isDevMode,
-              // },
             },
             {
               loader: 'css-loader',
@@ -175,30 +161,29 @@ module.exports = (env, argv) => {
         '@wxlib': path.resolve(__dirname, '../src/libs/wxlib/index.js'),
       },
     },
-    devtool: isDevMode ? 'eval-source-map' : 'inline-nosources-source-map',
-    optimization: enableCodeSplitting && !isDevMode ?
-      {
-        splitChunks: {
-          cacheGroups: {
-            vendor: {
-              test: /[\\/]node_modules[\\/](react|react-dom|qcloud-iotexplorer-h5-panel-sdk)[\\/]/,
-              name: 'vendor',
-              chunks: 'all',
-            }
-          }
-        }
-      } : {},
+    devtool: isDevMode ? 'eval-source-map' : false,
+    optimization: !isDevMode ? {
+      chunkIds: 'named',
+      minimize: !isDevMode,
+      minimizer: [
+        new TerserPlugin({
+          extractComments: false,
+        }),
+        new CssMinimizerPlugin(),
+      ],
+    } : {},
     plugins: [
+      new webpack.ids.HashedModuleIdsPlugin(),
       new webpack.ProgressPlugin(),
       new CleanWebpackPlugin(),
-      new webpack.HotModuleReplacementPlugin(),
+      isDevMode && new webpack.HotModuleReplacementPlugin(),
       new webpack.DefinePlugin({
         'process.env.NODE_ENV': JSON.stringify(mode),
       }),
       new ModifiedMiniCssExtractPlugin({
         filename: isDevMode ? '[name].css' : '[name].[contenthash:10].css',
       }),
-    ],
-    stats: { children: false },
+    ].filter(Boolean),
+    // stats: { children: false },
   };
 };
