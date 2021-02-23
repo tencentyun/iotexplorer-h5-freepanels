@@ -1,0 +1,81 @@
+.free-water-heater-page {
+  // background-image: linear-gradient(180deg, #3d8bff 0%, #1242ff 100%);
+  background-image: linear-gradient(116deg, rgba(94,252,232,1) 0%, rgba(110,141,249,1) 64%, rgba(115,110,254,1) 100%);
+  // background-image: linear-gradient(122deg, rgba(85,166,252,1) 0%, rgba(87,193,178,1) 100%);
+
+  .water-heater-container {
+    height: 100%;
+    box-sizing: border-box;
+    position: relative;
+    overflow-y: auto;
+
+    .water-heater-header {
+      font-size: 28px;
+      color: #fff;
+
+      .water-heater-logo {
+        width: 505px;
+        margin-top: 142px;
+        margin-bottom: 100px;
+      }
+
+      .water-heater-temperature {
+        opacity: 0.4;
+        margin-bottom: 15px;
+      }
+
+      .water-heater-temperature-control-container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin: 0 179px;
+
+        .water-heater-target-temperature {
+          font-size: 86px;
+        }
+
+        .water-heater-temperature-control-button {
+          display: inline-block;
+          width: 50px;
+          height: 50px;
+          vertical-align: middle;
+          text-align: center;
+          border: 2px solid rgba(223, 223, 223, 1);
+          border-radius: 50%;
+          font-size: 40px;
+        }
+      }
+    }
+
+    .water-heater-body {
+      margin: 128px auto 0;
+      font-size: 28px;
+      color: #fff;
+
+      .water-heater-property-body {
+        margin: 50px 50px 40px;
+        display: flex;
+        justify-content: space-around;
+      }
+
+      .water-heater-property {
+        .label {
+          opacity: 0.5;
+          margin-bottom: 16px;
+        }
+
+        .value {
+          font-size: 32px;
+        }
+      }
+    }
+  }
+
+  &.power-off {
+    background-image: linear-gradient(180deg, #727f99 0%, #3e4656 100%);
+
+    .air-circle {
+      opacity: 0.4;
+    }
+  }
+}

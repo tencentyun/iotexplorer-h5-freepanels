@@ -1,0 +1,72 @@
+.number-control-modal {
+  position: relative;
+  margin: 120px 60px;
+
+  .slider-btn {
+    position: absolute;
+    width: 55px;
+    height: 55px;
+    background: #FFFFFF;
+    border: 1px solid #DFDFDF;
+    border-radius: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 50%;
+    transform: translateY(-50%);
+    overflow: hidden;
+
+    &.minus {
+      left: 0;
+
+      .slider-btn-icon {
+        width: 23px;
+        height: 3px;
+      }
+    }
+
+    &.plus {
+      right: 0;
+
+      .slider-btn-icon {
+        width: 23px;
+        height: 23px;
+      }
+    }
+  }
+
+  .slider-container {
+    position: relative;
+    padding: 0;
+    margin: 0 95px;
+
+    .number-control-value {
+      font-size: 28px;
+      color: #FFFFFF;
+      letter-spacing: 1.17px;
+      background: #6C7078;
+      border-radius: 26.5px;
+      min-width: 80px;
+      padding: 5px 10px;
+      position: absolute;
+      top: -50px;
+      transform: translateX(-50%);
+    }
+
+    .water-heater-slider {
+      display: inline-block;
+      width: 440px;
+      vertical-align: middle;
+      background-color: #333437;
+  
+      .rangeslider__fill {
+        background-color: #006EFF;
+      }
+  
+      .rangeslider__handle {
+        background-color: #B5B8C0;
+        outline: none;
+      }
+    }
+  }
+}

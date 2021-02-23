@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="23px" height="23px" viewBox="0 0 23 23" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>形状结合</title>
+    <g id="首页" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="1.3-首页-设备快捷入口备份" transform="translate(-651.000000, -1282.000000)">
+            <rect fill="#F5F5F5" x="0" y="0" width="750" height="1624"></rect>
+            <rect id="Rectangle-15" fill="#000000" fill-rule="nonzero" opacity="0.600000024" x="0" y="0" width="750" height="1624"></rect>
+            <g id="模态对话框/换行-copy-3" transform="translate(0.000000, 1048.000000)">
+                <g id="编组-9" transform="translate(0.000000, 96.000000)">
+                    <rect id="Rectangle-" fill="#FFFFFF" x="0" y="0" width="750" height="368"></rect>
+                    <g>
+                        <rect id="Rectangle-" fill="#FFFFFF" x="0" y="0" width="750" height="300"></rect>
+                        <g id="编组-8" transform="translate(76.000000, 65.000000)">
+                            <g id="编组-6" transform="translate(0.000000, 55.000000)">
+                                <g id="编组-4" transform="translate(559.000000, 2.000000)">
+                                    <rect id="Rectangle-Copy-9" stroke="#DFDFDF" stroke-width="0.982142857" x="0.491071429" y="0.491071429" width="54.0178571" height="54.0178571" rx="27.0089286"></rect>
+                                    <path d="M27.5,16 C28.3284271,16 29,16.6715729 29,17.5 L29,17.5 L29,26 L37.5,26 C38.2796961,26 38.9204487,26.5948881 38.9931334,27.35554 L39,27.5 C39,28.3284271 38.3284271,29 37.5,29 L37.5,29 L29,29 L29,37.5 C29,38.2796961 28.4051119,38.9204487 27.64446,38.9931334 L27.5,39 C26.6715729,39 26,38.3284271 26,37.5 L26,37.5 L26,29 L17.5,29 C16.7203039,29 16.0795513,28.4051119 16.0068666,27.64446 L16,27.5 C16,26.6715729 16.6715729,26 17.5,26 L17.5,26 L26,26 L26,17.5 C26,16.7203039 26.5948881,16.0795513 27.35554,16.0068666 Z" id="形状结合" fill="#6C7078"></path>
+                                </g>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
