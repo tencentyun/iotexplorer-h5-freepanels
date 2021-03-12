@@ -165,6 +165,14 @@ export function SceneSlider({
               key={index}
               className='scene-bg'
               src={item.image}
+              style={{
+                // 此处为了修复某些安卓机型图片和文字会折行
+                // scene-bg 原是由css设置rem，而容器是用js换算的px像素，虽然理论上是一样，但是实际上浏览器解析时
+                // rem和换算过的px还是有差异，所以导致容器放不下这么多元素导致折行
+                // 所以这里改为跟容器一致用换算过的px来设置样式，下 .scene-slider-item 同
+                width: size.bgWidth,
+                height: size.bgWidth,
+              }}
             />
           ))}
         </div>
@@ -190,6 +198,9 @@ export function SceneSlider({
               className={classNames('scene-slider-item', {
                 actived: scene.value === state.currentValue,
               })}
+              style={{
+                width: size.textWidth,
+              }}
             >
               {scene.text}
             </div>
