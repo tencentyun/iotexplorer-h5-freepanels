@@ -531,15 +531,27 @@ export const appendParams = (url: string, data: any) => {
   return (url.indexOf('?') > -1 ? `${url}&` : `${url}?`) + paramArr.join('&');
 };
 
+// entryWrap 中 resize 函数根据页面宽度换算 1rem 对应的 px 值
+// resize 函数取页面宽度时，限制了最大值与最小值，会影响到 px、rpx 和 rem 之间的计算
+// 下面的相关计算，取页面宽度时，进行同样的最大值、最小值处理
+const clampClientWidth = (clientWidth: number) => {
+  if (clientWidth >= 640) {
+    return 640;
+  } else if (clientWidth <= 320) {
+    return 320;
+  } else {
+    return clientWidth;
+  }
+};
+
 export const px2rpx = (px: number): number => {
   const { clientWidth } = document.documentElement;
-  return (px * 2) * (375 / Math.min(640, clientWidth));
+  return (px * 2) * (375 / clampClientWidth(clientWidth));
 };
 
 export const rpx2px = (rpx: number): number => {
   const { clientWidth } = document.documentElement;
-
-  return (rpx / 2) * (Math.min(640, clientWidth) / 375);
+  return (rpx / 2) * (clampClientWidth(clientWidth) / 375);
 };
 
 export const px2rem = (px, withUnit?: any) => {
