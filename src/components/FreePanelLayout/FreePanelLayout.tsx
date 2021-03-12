@@ -36,11 +36,7 @@ export function FreePanelLayout({
   onGoCountDown,
   onSwitchChange,
   isShareDevice,
-  onGoTimingProject = () => {
-    wxlib.router.go('/pages/Device/TimingProject/TimingProjectList/TimingProjectList', {
-      deviceId: sdk.deviceId,
-    })
-  },
+  onGoTimingProject,
 }: FreePanelLayoutProps) {
   useEffect(() => {
     if (offline) {
@@ -53,6 +49,20 @@ export function FreePanelLayout({
   const bodyHeight = useMemo(() => {
     return rpx2rem(px2rpx(document.documentElement.clientHeight) - getFooterHeight());
   }, []);
+
+  const doGoTimingProject = () => {
+    if (sdk.isMock) {
+      return sdk.tips.showInfo('模拟设备无法访问定时任务');
+    }
+
+    if (typeof onGoTimingProject === 'function') {
+      return onGoTimingProject();
+    }
+
+    wxlib.router.go('/pages/Device/TimingProject/TimingProjectList/TimingProjectList', {
+      deviceId: sdk.deviceId,
+    });
+  };
 
   return (
     <div
@@ -70,7 +80,7 @@ export function FreePanelLayout({
 
       <FuncFooter
         darkMode={darkMode}
-        onGoTimingProject={onGoTimingProject}
+        onGoTimingProject={doGoTimingProject}
         onGoCountDown={onGoCountDown}
         onSwitchChange={onSwitchChange}
         offline={offline}

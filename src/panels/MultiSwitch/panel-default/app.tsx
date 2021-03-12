@@ -1,9 +1,10 @@
 import React, { useMemo } from 'react';
 import { useDeviceInfo } from '@hooks/useDeviceInfo';
-import { Panel } from './Panel';
+import { SwitchPanel } from './SwitchPanel';
 import { entryWrap } from "@src/entryWrap";
 import { getCountdownStrWithoutDevice } from "@components/FuncFooter";
 import { PanelPageWithMultiFeatures } from "@components/PanelPageWithMultiFeatures";
+import './style.less';
 
 function App() {
   const [{
@@ -15,11 +16,8 @@ function App() {
     powerOff,
   }, { doControlDeviceData }] = useDeviceInfo();
 
-  const { socketList, usbList } = useMemo(() => {
-    const result = {
-      socketList: [] as any[],
-      usbList: [] as any[],
-    };
+  const switchList = useMemo(() => {
+    const switchList = [] as any[];
 
     if (templateMap) {
       Object.keys(templateMap).forEach((key) => {
@@ -30,31 +28,21 @@ function App() {
 
           item.countdownId = `count_down${id}`;
 
-          result.socketList.push(item);
-        } else if (item.id.indexOf('USB_switch') > -1) {
-          const id = item.id.split('USB_switch')[1];
-
-          item.countdownId = `USB_count_down${id}`;
-
-          result.usbList.push(item);
+          switchList.push(item);
         }
       });
     }
 
-    return result;
+    return switchList;
   }, [templateMap]);
-  const totalSocketList = useMemo(
-    () => [...socketList, ...usbList],
-    [socketList, usbList]
-  );
 
   return (
     <PanelPageWithMultiFeatures
-      timingProjectList={totalSocketList.map(item => ({
+      timingProjectList={switchList.map(item => ({
         id: item.id,
         label: item.name,
       }))}
-      countdownList={totalSocketList.map(item => ({
+      countdownList={switchList.map(item => ({
         id: item.id,
         label: item.name,
         text: deviceData[item.countdownId] > 0
@@ -66,7 +54,7 @@ function App() {
       doControlDeviceData={doControlDeviceData}
       deviceInfo={deviceInfo}
     >
-      <Panel
+      <SwitchPanel
         deviceInfo={deviceInfo}
         productInfo={productInfo}
         templateMap={templateMap}
@@ -74,8 +62,7 @@ function App() {
         offline={offline}
         powerOff={powerOff}
         doControlDeviceData={doControlDeviceData}
-        socketList={socketList}
-        usbList={usbList}
+        switchList={switchList}
       />
     </PanelPageWithMultiFeatures>
   );
