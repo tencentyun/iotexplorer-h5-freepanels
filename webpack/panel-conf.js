@@ -35,4 +35,10 @@ module.exports = {
       ['panel-default', { enable: true }],
     ],
   },
+  VideoCamera: {
+    enable: true,
+    panels: [
+      ['panel-default', { enable: true }]
+    ]
+  }
 };
