@@ -13,8 +13,8 @@ function App() {
     <CameraPanel
       deviceInfo={deviceInfo}
       deviceData={deviceData}
-      offline={offline}
-      powerOff={powerOff}
+      offline={false}
+      powerOff={false}
       doControlDeviceData={doControlDeviceData}
     ></CameraPanel>
   );

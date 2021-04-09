@@ -1,16 +1,14 @@
-import React,{ useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FreePanelLayout } from "@components/FreePanelLayout";
-import { Calendar } from "@components/Calendar";
-import dayjs from "dayjs";
- // <FreePanelLayout
-    //   title={deviceInfo.displayName}
-    //   doControlDeviceData={doControlDeviceData}
-    //   offline={offline}
-    //   powerOff={powerOff}
-    //   deviceData={deviceData}
-    // >
-    //   <div>这是我的摄像头</div>
-    // </FreePanelLayout>
+import { CalendarList } from "../CalendarList/CalendarList";
+import { Modal } from "@components/Modal";
+import { imgNotFound } from "@icons/panel";
+import "./CameraPanel.less";
+import moment from "moment";
+import { EventDetail } from "./EventDetail";
+import { describeCloudStorageEvents } from './models';
+import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
+
 export function CameraPanel({
   deviceInfo,
   deviceData,
@@ -18,25 +16,83 @@ export function CameraPanel({
   powerOff,
   doControlDeviceData,
 }) {
-  // debugger
-  const [currentDate,setCurrentDate] = useState('2020-04-01');
-  return (
+  useEffect(() => {
+    if (offline) {
+      sdk.offlineTip.show();
+    } else {
+      sdk.offlineTip.hide();
+    }
+  }, [offline]);
+  const [visible, setVisible] = useState(false);
+  const cameraDisabled = offline || powerOff;
+  const [date, setDate] = useState(moment());
+  const [eventList, setEventList] = useState([
+    {
+      StartTime: 842084401,
+      EndTime: 842084401,
+      Thumbnail: "",
+      EventId: "id1_data",
+    },
+    {
+      StartTime: 842084401,
+      EndTime: 842084401,
+      Thumbnail: "",
+      EventId: "id1_data",
+    },
+  ]);
 
-    <Calendar
-      onDateClick={(date) =>
-        setCurrentDate(date.format("YYYY-MM-DD"))
-      }
-      showType={"month"}
-      markDates={[
-        { date: "2020-12-12", markType: "circle" },
-        { markType: "dot", date: "2020-12-23" },
-        { markType: "circle", date: "2020-12-22" },
-        { date: "2021-1-22" },
-      ]}
-      markType="dot"
-      currentDate={currentDate}
-      onTouchEnd={(a, b) => console.log(a, b)}
-      disableWeekView={false}
-    />
+  const getCloudStorageEvents = async()=>{
+    const res = await describeCloudStorageEvents()
+    console.log(res)
+  }
+
+  useEffect(()=>{
+     getCloudStorageEvents();
+  },[])
+
+  const onCalendarClose = () => {
+    setVisible(false);
+  };
+
+  return (
+      <>
+        {/* <EventDetail item=""></EventDetail> */}
+        <div className="selector-wrapper">
+          <div className="date-selector selector-item">
+            {/* <div>{`${date.format("M")}月${date.format("D")}日`}</div> */}
+            <div>{date.format("M月D日")}</div>
+          </div>
+          <div className="things-selector selector-item">
+            <div>全部事件</div>
+          </div>
+        </div>
+        {/* 事件列表 */}
+        <div className="events-wrapper">
+          {eventList.map((item, index) => (
+            <div className="event-item" key={index}>
+              <div className="event-info">
+                <div className="event-time">
+                  {moment(item["StartTime"]).format("HH:mm")}
+                </div>
+                <div className="event-name">{item["EventId"]}</div>
+              </div>
+              <div className="event-img">
+                <img className="not-found" src={imgNotFound}></img>
+              </div>
+            </div>
+          ))}
+          <div></div>
+        </div>
+        <Modal
+          visible={visible}
+          fixedBottom={true}
+          onClose={onCalendarClose}
+          maskClosable={true}
+          title={"选择日期"}
+          showBackBtn={true}
+        >
+          <CalendarList></CalendarList>
+        </Modal>
+      </>
   );
 }

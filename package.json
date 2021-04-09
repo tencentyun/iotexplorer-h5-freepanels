@@ -28,6 +28,7 @@
     "event-emitter-for-miniprogram": "0.0.6",
     "history": "^5.0.0",
     "jsonp": "^0.2.1",
+    "moment": "^2.29.1",
     "normalize.css": "^8.0.1",
     "postcss-pxtorem": "^5.1.1",
     "qcloud-iotexplorer-h5-panel-sdk": "^1.1.19",
