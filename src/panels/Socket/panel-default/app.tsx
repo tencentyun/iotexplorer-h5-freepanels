@@ -19,8 +19,8 @@ function App() {
 			productInfo={productInfo}
 			templateMap={templateMap}
 			deviceData={deviceData}
-			offline={offline}
-			powerOff={powerOff}
+			offline={false}
+			powerOff={false}
 			doControlDeviceData={doControlDeviceData}
 		/>
 	);

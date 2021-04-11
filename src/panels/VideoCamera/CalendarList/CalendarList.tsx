@@ -4,17 +4,18 @@ import "./CalendarList.less";
 import moment from "moment";
 import classNames from "classnames";
 import { ScrollView } from "@components/ScrollView";
-export function CalendarList(
-  {
-    // deviceInfo,
-    // deviceData,
-    // offline,
-    // powerOff,
-    // doControlDeviceData,
-    // initDate = moment(),
-  }
-) {
-  const [visible, setVisible] = useState(true);
+export function CalendarList({
+  setDate,
+  visible,
+  setVisible,
+
+  // deviceInfo,
+  // deviceData,
+  // offline,
+  // powerOff,
+  // doControlDeviceData,
+  // initDate = moment(),
+}) {
   const [calendarList, setCalendarList] = useState<any[]>([]);
   const onCalendarClose = () => {
     // setVisible(false);
@@ -140,6 +141,14 @@ export function CalendarList(
                   {item.monthArr.map((_item, index) => {
                     return (
                       <div
+                        onClick={() => {
+                          let date =
+                            _item === "今天"
+                              ? moment()
+                              : item.date.startOf("month").add(length, "days");
+                          setDate(date);
+                          setVisible(false);
+                        }}
                         className={classNames("calendar-month-day", {
                           "calendar-weekend":
                             index % 7 === 0 || (index + 1) % 7 === 0,
