@@ -8,6 +8,7 @@ export function CalendarList({
   setDate,
   visible,
   setVisible,
+  reload
 
   // deviceInfo,
   // deviceData,
@@ -145,8 +146,10 @@ export function CalendarList({
                           let date =
                             _item === "今天"
                               ? moment()
-                              : item.date.startOf("month").add(length, "days");
+                              : item.date.startOf("month").add(Number(_item) - 1 , "days");
+                              console.log(date)
                           setDate(date);
+                          reload()
                           setVisible(false);
                         }}
                         className={classNames("calendar-month-day", {
