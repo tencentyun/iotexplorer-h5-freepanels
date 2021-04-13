@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 import { FreePanelLayout } from "@components/FreePanelLayout";
 import { CalendarList } from "../CalendarList/CalendarList";
 import { Modal } from "@components/Modal";
@@ -6,8 +6,13 @@ import { imgNotFound } from "@icons/panel";
 import "./CameraPanel.less";
 import moment from "moment";
 import { EventDetail } from "./EventDetail";
-import { describeCloudStorageEvents, describeCloudStorageThumbnail } from "./models";
+import {
+  describeCloudStorageEvents,
+  describeCloudStorageThumbnail,
+} from "./models";
+import { useInfiniteList } from "@hooks/useInfiniteList";
 import sdk from "qcloud-iotexplorer-h5-panel-sdk";
+import classNames from "classnames";
 
 export function CameraPanel({
   deviceInfo,
@@ -26,36 +31,56 @@ export function CameraPanel({
   const [calendarVisible, setCalendarVisible] = useState(false);
   const cameraDisabled = offline || powerOff;
   const [date, setDate] = useState(moment());
-  const [eventList, setEventList] = useState([
-    {
-      StartTime: 842084401,
-      EndTime: 842084401,
-      Thumbnail: "",
-      EventId: "id1_data",
-    },
-    {
-      StartTime: 842084401,
-      EndTime: 842084401,
-      Thumbnail: "",
-      EventId: "id1_data",
-    },
-  ]);
-
+  const [eventList, setEventList] = useState([]);
+  const [eventId, setEventId] = useState('');
   const getCloudStorageEvents = async () => {
-    const { list } = await describeCloudStorageEvents();
-    const res = await describeCloudStorageThumbnail({})
-    console.log(res)
+    console.log(date.startOf("date").unix());
+    const { list } = await describeCloudStorageEvents({
+      StartTime: date.startOf("date").unix(),
+      EndTime: date.endOf("date").unix(),
+      EventId: "",
+      Context: "",
+      Size: 10,
+    });
     setEventList(list);
   };
 
-  useEffect(() => {
-    getCloudStorageEvents();
-  }, []);
+  // useEffect(() => {
+  //   getCloudStorageEvents();
+  // }, []);
 
   const onCalendarClose = () => {
     setCalendarVisible(false);
   };
 
+  const [listState, { loadMore, statusTip, reload }] = useInfiniteList({
+    statusTipOpts: {
+      emptyMessage: "暂无事件",
+      fillContainer: true,
+    },
+    getData: async ({ context }) => {
+      const {
+        list,
+        context: newContext,
+        listOver,
+      } = await describeCloudStorageEvents({
+        StartTime: date.startOf("date").unix(),
+        EndTime: date.endOf("date").unix(),
+        EventId: eventId,
+        Context: context,
+        Size: 10,
+      });
+      return {
+        context: newContext,
+        list,
+        loadFinish: listOver,
+      };
+    },
+    // dependences: [date, eventId],
+
+  });
+
+  // const eventList = useMemo(()=> )
   return (
     <>
       {/* <EventDetail item=""></EventDetail> */}
@@ -76,7 +101,7 @@ export function CameraPanel({
       </div>
       {/* 事件列表 */}
       <div className="events-wrapper">
-        {eventList.map((item, index) => (
+        {listState.list.map((item, index) => (
           <div className="event-item" key={index}>
             <div className="event-info">
               <div className="event-time">
@@ -85,7 +110,13 @@ export function CameraPanel({
               <div className="event-name">{item["EventID"]}</div>
             </div>
             <div className="event-img">
-              <img className="not-found" src={imgNotFound}></img>
+              <img
+                className={classNames({
+                  "not-found": !item["ThumbnailURL"],
+                  logo: !!item["ThumbnailURL"],
+                })}
+                src={item["ThumbnailURL"] || imgNotFound}
+              />
             </div>
           </div>
         ))}
@@ -96,6 +127,7 @@ export function CameraPanel({
         visible={calendarVisible}
         setVisible={setCalendarVisible}
         setDate={setDate}
+        reload={reload}
       ></CalendarList>
     </>
   );
