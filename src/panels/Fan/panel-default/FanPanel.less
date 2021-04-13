@@ -1,0 +1,48 @@
+.free-fan-page {
+	background-image: linear-gradient(180deg, #00DCB6 0%, #0054E2 100%);
+
+	.fan-body {
+		position: absolute;
+		left: 50%;
+		top: 50%;
+		transform: translate(-50%, -50%);
+		width: 600px;
+		// height: 440px;
+    .fan-status{
+      font-size: 28px;
+      color: #FFFFFF;
+      display: flex;
+      justify-content: center;
+    }
+	}
+
+	.fan-logo-btn {
+		width: 100%;
+		height: 100%;
+		display: inline-block;
+		border-radius: 100%;
+
+		.fan-logo {
+			width: 100%;
+			height: 100%;
+		}
+	}
+
+	.fan-msg {
+		color: #fff;
+		font-size: 32px;
+		margin-top: 48px;
+	}
+
+	&.power-off {
+		background-image: linear-gradient(180deg, #727F99 0%, #3E4656 100%);
+
+		.fan-icon {
+			opacity: .4;
+		}
+
+		.fan-msg {
+			opacity: .7;
+		}
+	}
+}

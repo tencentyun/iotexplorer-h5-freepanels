@@ -7,4 +7,12 @@ export { default as iconTiming } from './timing.svg';
 export { default as iconWindSpeed } from './windspeed.svg';
 export { default as iconMode } from './mode.svg';
 export { default as iconMore } from './more.svg';
-
+export { default as iconFan } from './fan.svg';
+export { default as iconNaturalWind } from './natural-wind.svg';
+export { default as iconNaturalWindActive } from './natural-wind-active.svg';
+export { default as iconNormalWind } from './normal-wind.svg';
+export { default as iconNormalWindActive } from './normal-wind-active.svg';
+export { default as iconSleepWind } from './sleep-wind.svg';
+export { default as iconSleepWindActive } from './sleep-wind-active.svg';
+export { default as iconSmartMode } from './smart-mode.svg';
+export { default as iconSmartModeActive } from './smart-mode-active.svg';

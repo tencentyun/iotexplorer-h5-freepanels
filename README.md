@@ -20,7 +20,11 @@ https://127.0.0.1:9000/FiveRoadLight_panel-default.css
 
 4. 如果是基于H5面板开发，代理配置为：
 
+新开发的面板需要在panel-config.js文件中增加面板配置
+
 ```
 developing.script/developing.js https://127.0.0.1:9000/FiveRoadLight_panel-default.js
 developing.style/developing.css https://127.0.0.1:9000/FiveRoadLight_panel-default.css
 ```
+
+

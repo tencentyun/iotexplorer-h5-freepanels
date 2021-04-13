@@ -40,5 +40,11 @@ module.exports = {
     panels: [
       ['panel-default', { enable: true }]
     ]
+  },
+  Fan: {
+    enable: true,
+    panels: [
+      ['panel-default',{ enable: true }]
+    ]
   }
 };
