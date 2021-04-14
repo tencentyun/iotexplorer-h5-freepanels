@@ -1,22 +1,27 @@
 import React, { useEffect, useState } from "react";
 import { Modal } from "@components/Modal";
 import "./CalendarList.less";
-import moment from "moment";
+import moment, { Moment } from "moment";
 import classNames from "classnames";
 import { ScrollView } from "@components/ScrollView";
+
+export interface CalendarListProps {
+  setDate: Function;
+  visible: boolean;
+  setVisible: Function;
+  reload: Function;
+  disabledDate?: (date: Moment) => boolean;
+}
+
 export function CalendarList({
   setDate,
   visible,
   setVisible,
-  reload
-
-  // deviceInfo,
-  // deviceData,
-  // offline,
-  // powerOff,
-  // doControlDeviceData,
-  // initDate = moment(),
-}) {
+  reload,
+  disabledDate = () => {
+    return false;
+  },
+}: CalendarListProps) {
   const [calendarList, setCalendarList] = useState<any[]>([]);
   const onCalendarClose = () => {
     // setVisible(false);
@@ -57,7 +62,7 @@ export function CalendarList({
     if (isToday) {
       todayIndex = momentDate.format("D");
     }
-    let weekday = momentDate.startOf("month").format("dddd");
+    let weekday = momentDate.clone().startOf("month").format("dddd");
     let length = momentDate.daysInMonth();
     //startIndex为日历矩阵中第一个不为空的格子
     let startIndex = Object.keys(weekDayMap).indexOf(weekday);
@@ -142,20 +147,31 @@ export function CalendarList({
                   {item.monthArr.map((_item, index) => {
                     return (
                       <div
+                        aria-disabled={true}
                         onClick={() => {
+                          console.log(item.date)
                           let date =
                             _item === "今天"
                               ? moment()
-                              : item.date.startOf("month").add(Number(_item) - 1 , "days");
-                              console.log(date)
+                              : item.date
+                                  .clone()
+                                  .startOf("month")
+                                  .add(Number(_item) - 1, "days");
                           setDate(date);
-                          reload()
+                          reload({newDate:date});
                           setVisible(false);
                         }}
                         className={classNames("calendar-month-day", {
                           "calendar-weekend":
                             index % 7 === 0 || (index + 1) % 7 === 0,
                           "calendar-today": _item === "今天",
+                          "calendar-disabled": disabledDate(
+                            _item === "今天"
+                              ? moment()
+                              : item.date
+                                  .startOf("month")
+                                  .add(Number(_item) - 1, "days")
+                          ),
                         })}
                       >
                         {_item || ""}

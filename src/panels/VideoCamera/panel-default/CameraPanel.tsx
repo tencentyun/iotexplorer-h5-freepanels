@@ -6,13 +6,11 @@ import { imgNotFound } from "@icons/panel";
 import "./CameraPanel.less";
 import moment from "moment";
 import { EventDetail } from "./EventDetail";
-import {
-  describeCloudStorageEvents,
-  describeCloudStorageThumbnail,
-} from "./models";
+import { describeCloudStorageEvents } from "./models";
 import { useInfiniteList } from "@hooks/useInfiniteList";
 import sdk from "qcloud-iotexplorer-h5-panel-sdk";
 import classNames from "classnames";
+import { StatusTip } from "@components/StatusTip";
 
 export function CameraPanel({
   deviceInfo,
@@ -29,44 +27,29 @@ export function CameraPanel({
     }
   }, [offline]);
   const [calendarVisible, setCalendarVisible] = useState(false);
+  const [eventModalVisible, setEventModalVisible] = useState(false);
   const cameraDisabled = offline || powerOff;
   const [date, setDate] = useState(moment());
-  const [eventList, setEventList] = useState([]);
-  const [eventId, setEventId] = useState('');
-  const getCloudStorageEvents = async () => {
-    console.log(date.startOf("date").unix());
-    const { list } = await describeCloudStorageEvents({
-      StartTime: date.startOf("date").unix(),
-      EndTime: date.endOf("date").unix(),
-      EventId: "",
-      Context: "",
-      Size: 10,
-    });
-    setEventList(list);
-  };
-
-  // useEffect(() => {
-  //   getCloudStorageEvents();
-  // }, []);
-
-  const onCalendarClose = () => {
-    setCalendarVisible(false);
-  };
-
-  const [listState, { loadMore, statusTip, reload }] = useInfiniteList({
+  const [eventId, setEventId] = useState("");
+  const [listState, { statusTip, reload }] = useInfiniteList({
+    // todo看下这里dependence的用法，目前有点问题，暂时用传参方式了
     statusTipOpts: {
       emptyMessage: "暂无事件",
       fillContainer: true,
     },
-    getData: async ({ context }) => {
+    getData: async ({ context, newDate = "", newEventId = "" }) => {
       const {
         list,
         context: newContext,
         listOver,
       } = await describeCloudStorageEvents({
-        StartTime: date.startOf("date").unix(),
-        EndTime: date.endOf("date").unix(),
-        EventId: eventId,
+        StartTime: newDate
+          ? newDate.clone().startOf("date").unix()
+          : date.clone().startOf("date").unix(),
+        EndTime: newDate
+          ? newDate.clone().endOf("date").unix()
+          : date.clone().endOf("date").unix(),
+        EventId: newEventId ? newEventId : eventId,
         Context: context,
         Size: 10,
       });
@@ -76,11 +59,7 @@ export function CameraPanel({
         loadFinish: listOver,
       };
     },
-    // dependences: [date, eventId],
-
   });
-
-  // const eventList = useMemo(()=> )
   return (
     <>
       {/* <EventDetail item=""></EventDetail> */}
@@ -96,39 +75,80 @@ export function CameraPanel({
           </div>
         </div>
         <div className="things-selector selector-item">
-          <div>全部事件</div>
+          <div
+            onClick={() => {
+              setEventModalVisible(true);
+            }}
+          >
+            全部事件
+          </div>
         </div>
       </div>
-      {/* 事件列表 */}
-      <div className="events-wrapper">
-        {listState.list.map((item, index) => (
-          <div className="event-item" key={index}>
-            <div className="event-info">
-              <div className="event-time">
-                {moment(item["StartTime"]).format("HH:mm")}
+      {statusTip ? (
+        <StatusTip {...statusTip} />
+      ) : (
+        <div className="events-wrapper">
+          {listState.list.map((item, index) => (
+            <div className="event-item" key={index}>
+              <div className="event-info">
+                <div className="event-time">
+                  {moment(item["StartTime"]).format("HH:mm")}
+                </div>
+                <div className="event-name">{item["EventID"]}</div>
               </div>
-              <div className="event-name">{item["EventID"]}</div>
+              <div className="event-img">
+                <img
+                  className={classNames({
+                    "not-found": !item["ThumbnailURL"],
+                    logo: !!item["ThumbnailURL"],
+                  })}
+                  src={item["ThumbnailURL"] || imgNotFound}
+                />
+              </div>
             </div>
-            <div className="event-img">
-              <img
-                className={classNames({
-                  "not-found": !item["ThumbnailURL"],
-                  logo: !!item["ThumbnailURL"],
-                })}
-                src={item["ThumbnailURL"] || imgNotFound}
-              />
-            </div>
-          </div>
-        ))}
-        <div></div>
-      </div>
+          ))}
+        </div>
+      )}
 
       <CalendarList
         visible={calendarVisible}
         setVisible={setCalendarVisible}
         setDate={setDate}
         reload={reload}
+        disabledDate={(date) => {
+          let start = moment().subtract(8, "days").format("yyyy-MM-DD");
+          let end = moment().add(1, "days").format("yyyy-MM-DD");
+          if (date.isBetween(start, end)) {
+            return false;
+          }
+          return true;
+        }}
       ></CalendarList>
+      {/* 事件选择 */}
+      <Modal
+        className="event-modal"
+        visible={eventModalVisible}
+        onClose={() => {
+          setEventModalVisible(false);
+        }}
+        maskClosable={true}
+      >
+        <div className="modal-title">全部事件</div>
+        <div className="modal-events">
+          {listState.list.map((item) => (
+            <div
+              className="modal-event-item"
+              onClick={() => {
+                setEventId(item["EventID"]);
+                setEventModalVisible(false);
+                reload({ newEventId: item["EventID"] });
+              }}
+            >
+              {item["EventID"]}
+            </div>
+          ))}
+        </div>
+      </Modal>
     </>
   );
 }

@@ -56,7 +56,16 @@ export function FanPanel({
         {/* 风扇按钮 */}
         <div>
           <div className="fan-btn-wrapper">
-            风扇开
+            <span>风扇开</span>
+            <RawBtn
+              onClick={() =>
+                doControlDeviceData("power_switch", powerOff ? 1 : 0)
+              }
+            ></RawBtn>
+          </div>
+
+          <div className="fan-btn-wrapper">
+            <span>摇头开</span>
             <RawBtn
               onClick={() =>
                 doControlDeviceData("power_switch", powerOff ? 1 : 0)

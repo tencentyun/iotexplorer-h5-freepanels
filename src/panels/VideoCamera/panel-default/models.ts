@@ -41,14 +41,14 @@ export const describeCloudStorageEvents = async (
     params['Size'] = Size
   }
   const { Events, Total, Context: NewContext, ListOver } = await sdk.requestTokenApi('IotVideoDescribeCloudStorageEvents', params);
-  // await Events.map(async (item) => {
-  //   item.ThumbnailURL = await describeCloudStorageThumbnail({ Thumbnail: item.Thumbnail, ProductId, DeviceName })
-  // })
-  // console.log(Events)
-  for (let i = 0; i < Events.length; i++) {
-    Events[i]['ThumbnailURL'] = await describeCloudStorageThumbnail({ Thumbnail: Events[i].Thumbnail, ProductId, DeviceName })
+  if (Events) {
+    for (let i = 0; i < Events.length; i++) {
+      if (Events[i].Thumbnail) {
+        Events[i]['ThumbnailURL'] = await describeCloudStorageThumbnail({ Thumbnail: Events[i].Thumbnail, ProductId, DeviceName })
+      }
+    }
   }
-  return { list: Events, total: Total, context: NewContext, listOver: ListOver };
+  return { list: Events? Events:[], total: Total, context: NewContext, listOver: ListOver };
 };
 
 export const describeCloudStorageThumbnail = async ({ Thumbnail = '', ProductId, DeviceName }) => {
