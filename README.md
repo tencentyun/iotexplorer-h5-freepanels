@@ -17,10 +17,8 @@ https://127.0.0.1:9000/FiveRoadLight_panel-default.css
 
 其中 'socket' 为前面指定的 category 参数，'panel-default' 为前面指定的 panel 参数
 ```
-
-4. 如果是基于H5面板开发，代理配置为：
-
-新开发的面板需要在panel-config.js文件中增加面板配置
+4.新开发的面板需要在panel-config.js文件中增加面板配置,可以参考已有目录和panel-config.js中的写法
+5. 如果是基于H5面板开发，代理配置为：
 
 ```
 developing.script/developing.js https://127.0.0.1:9000/FiveRoadLight_panel-default.js

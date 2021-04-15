@@ -1,24 +1,18 @@
 import React, { useEffect, useState, useMemo } from "react";
-import { FreePanelLayout } from "@components/FreePanelLayout";
+import { useHistory } from "react-router-dom";
 import { CalendarList } from "../CalendarList/CalendarList";
 import { Modal } from "@components/Modal";
 import { imgNotFound } from "@icons/panel";
 import "./CameraPanel.less";
 import moment from "moment";
-import { EventDetail } from "./EventDetail";
 import { describeCloudStorageEvents } from "./models";
 import { useInfiniteList } from "@hooks/useInfiniteList";
 import sdk from "qcloud-iotexplorer-h5-panel-sdk";
 import classNames from "classnames";
 import { StatusTip } from "@components/StatusTip";
+import { ScrollView } from "@src/components/ScrollView";
 
-export function CameraPanel({
-  deviceInfo,
-  deviceData,
-  offline,
-  powerOff,
-  doControlDeviceData,
-}) {
+export function CameraPanel({ offline, powerOff }) {
   useEffect(() => {
     if (offline) {
       sdk.offlineTip.show();
@@ -28,10 +22,9 @@ export function CameraPanel({
   }, [offline]);
   const [calendarVisible, setCalendarVisible] = useState(false);
   const [eventModalVisible, setEventModalVisible] = useState(false);
-  const cameraDisabled = offline || powerOff;
   const [date, setDate] = useState(moment());
   const [eventId, setEventId] = useState("");
-  const [listState, { statusTip, reload }] = useInfiniteList({
+  const [listState, { statusTip, reload, loadMore }] = useInfiniteList({
     // todo看下这里dependence的用法，目前有点问题，暂时用传参方式了
     statusTipOpts: {
       emptyMessage: "暂无事件",
@@ -60,12 +53,36 @@ export function CameraPanel({
       };
     },
   });
+  const history = useHistory();
+
+  const eventIdMap = [
+    "_sys_id1_data",
+    "_sys_id2_data",
+    "_sys_id3_data",
+    "_sys_id4_data",
+    "_sys_id5_data",
+    "_sys_id6_data",
+    "_sys_id7_data",
+    "_sys_id8_data",
+    "_sys_id9_data",
+    "_sys_id10_data",
+    "_sys_id11_data",
+    "_sys_id12_data",
+    "_sys_id13_data",
+    "_sys_id14_data",
+    "_sys_id15_data",
+    "_sys_id16_data",
+  ];
+  const goDetail = (item) => {
+    history.push({
+      pathname: "/detail",
+      query: item,
+    });
+  };
   return (
-    <>
-      {/* <EventDetail item=""></EventDetail> */}
+    <div className="camera-page">
       <div className="selector-wrapper">
         <div className="date-selector selector-item">
-          {/* <div>{`${date.format("M")}月${date.format("D")}日`}</div> */}
           <div
             onClick={() => {
               setCalendarVisible(true);
@@ -87,29 +104,44 @@ export function CameraPanel({
       {statusTip ? (
         <StatusTip {...statusTip} />
       ) : (
-        <div className="events-wrapper">
-          {listState.list.map((item, index) => (
-            <div className="event-item" key={index}>
-              <div className="event-info">
-                <div className="event-time">
-                  {moment(item["StartTime"]).format("HH:mm")}
+        <ScrollView
+          className="events-container"
+          style={{ height: "100vh", overflow: "scroll" }}
+          onReachBottom={() => {
+            if (!listState.loadFinish && !listState.loading) {
+              loadMore();
+            }
+          }}
+        >
+          <div className="events-wrapper">
+            {listState.list.map((item, index) => (
+              <div
+                className="event-item"
+                key={index}
+                onClick={() => {
+                  goDetail(item);
+                }}
+              >
+                <div className="event-info">
+                  <div className="event-time">
+                    {moment(item["StartTime"]).format("HH:mm")}
+                  </div>
+                  <div className="event-name">{item["EventID"]}</div>
                 </div>
-                <div className="event-name">{item["EventID"]}</div>
+                <div className="event-img">
+                  <img
+                    className={classNames({
+                      "not-found": !item["ThumbnailURL"],
+                      logo: !!item["ThumbnailURL"],
+                    })}
+                    src={item["ThumbnailURL"] || imgNotFound}
+                  />
+                </div>
               </div>
-              <div className="event-img">
-                <img
-                  className={classNames({
-                    "not-found": !item["ThumbnailURL"],
-                    logo: !!item["ThumbnailURL"],
-                  })}
-                  src={item["ThumbnailURL"] || imgNotFound}
-                />
-              </div>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
+        </ScrollView>
       )}
-
       <CalendarList
         visible={calendarVisible}
         setVisible={setCalendarVisible}
@@ -133,22 +165,36 @@ export function CameraPanel({
         }}
         maskClosable={true}
       >
-        <div className="modal-title">全部事件</div>
+        <div
+          className={classNames("modal-title", {
+            "event-active": eventId === "",
+          })}
+          onClick={() => {
+            setEventId('');
+            setEventModalVisible(false);
+            reload({ newEventId: '' });
+          }}
+        >
+          全部事件
+        </div>
+        {/* "modal-events" */}
         <div className="modal-events">
-          {listState.list.map((item) => (
+          {eventIdMap.map((item) => (
             <div
-              className="modal-event-item"
+              className={classNames("modal-event-item", {
+               'event-active': eventId === item
+              })}
               onClick={() => {
-                setEventId(item["EventID"]);
+                setEventId(item);
                 setEventModalVisible(false);
-                reload({ newEventId: item["EventID"] });
+                reload({ newEventId: item });
               }}
             >
-              {item["EventID"]}
+              {item}
             </div>
           ))}
         </div>
       </Modal>
-    </>
+    </div>
   );
 }

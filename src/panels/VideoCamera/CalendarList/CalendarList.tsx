@@ -24,8 +24,7 @@ export function CalendarList({
 }: CalendarListProps) {
   const [calendarList, setCalendarList] = useState<any[]>([]);
   const onCalendarClose = () => {
-    // setVisible(false);
-    console.log("come close");
+    setVisible(false);
   };
   const weekDayMap = {
     Sunday: "日",
@@ -92,7 +91,6 @@ export function CalendarList({
       onClose={onCalendarClose}
       maskClosable={true}
       title={"选择日期"}
-      showBackBtn={true}
     >
       <>
         {/* 日历<组件 */}
