@@ -8,6 +8,7 @@
 2. 启动指定面板 `npm run dev --category=FiveRoadLight --panel=panel-default`
 3. 编译出来的脚本和样式地址为：
 
+
 ```
 js地址：
 https://127.0.0.1:9000/FiveRoadLight_panel-default.js
