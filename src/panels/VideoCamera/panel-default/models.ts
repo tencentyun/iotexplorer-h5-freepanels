@@ -14,13 +14,11 @@ export const describeCloudStorageEvents = async (
     Context: string;
     Size: number;
   }
-  //     ProductId,
-  //     DeviceName,
 ) => {
-  const ProductId = 'WG0I4BTQ6H'
-  const DeviceName = 'cs_38049795_1'
-  //    DeviceName: sdk.DeviceName,
-  //    ProductId: sdk.ProductId,
+  // const ProductId = 'WG0I4BTQ6H'
+  // const DeviceName = 'cs_38049795_1'
+  const DeviceName = sdk.DeviceName
+  const ProductId = sdk.ProductId
   const params = {
     ProductId,
     DeviceName
@@ -48,7 +46,7 @@ export const describeCloudStorageEvents = async (
       }
     }
   }
-  return { list: Events? Events:[], total: Total, context: NewContext, listOver: ListOver };
+  return { list: Events ? Events : [], total: Total, context: NewContext, listOver: ListOver };
 };
 
 export const describeCloudStorageThumbnail = async ({ Thumbnail = '', ProductId, DeviceName }) => {

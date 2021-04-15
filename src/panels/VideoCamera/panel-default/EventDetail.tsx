@@ -6,7 +6,10 @@ import moment from "moment";
 export function EventDetail({ item, deviceInfo }) {
   return (
     <div className="event-detail">
-      <img className="event-img" src={imgNotFound}></img>
+      <img
+        className="event-img"
+        src={item.location.query && item.location.query["ThumbnailURL"] || imgNotFound}
+      ></img>
 
       <div className="detail-info">
         <div className="detail-info-row">
@@ -16,7 +19,7 @@ export function EventDetail({ item, deviceInfo }) {
         <div className="detail-info-row">
           <div className="label">事件</div>
           <div className="value">
-            {(item.location.query && item).location.query.EventID || "-"}
+            {item.location.query && item.location.query.EventID || "-"}
           </div>
         </div>
         <div className="detail-info-row">
@@ -24,9 +27,9 @@ export function EventDetail({ item, deviceInfo }) {
           <div className="value">
             {(item.location.query &&
               item.location.query.StartTime &&
-              moment(Number(item.location.query.StartTime +
-                '000')).format("yyyy-MM-DD hh:MM:SS")
-              ) ||
+              moment(Number(item.location.query.StartTime + "000")).format(
+                "yyyy-MM-DD hh:MM:SS"
+              )) ||
               "="}
           </div>
         </div>
