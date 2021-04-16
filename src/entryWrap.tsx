@@ -2,33 +2,40 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { UseDeviceInfoHandler, UserDeviceInfoData } from "@hooks/useDeviceInfo";
 import './styles/index.less';
+import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
+
+try {
+  sdk.setAutoTriggerVibrateShort(true);
+} catch (err) {
+  console.warn('setAutoTriggerVibrateShort fail', err);
+}
 
 export interface PanelComponentProps extends UserDeviceInfoData, UseDeviceInfoHandler {
-	onGoTimingProject?: () => any;
-	onGoDeviceDetail?: () => any;
-	onGoCountDown?: () => any;
+  onGoTimingProject?: () => any;
+  onGoDeviceDetail?: () => any;
+  onGoCountDown?: () => any;
   onSwitchChange?: () => any;
 }
 
 export function entryWrap(Component) {
-	function resize() {
-		const docEle = window.document.documentElement;
-		const windowWidth = docEle.getBoundingClientRect().width;
+  function resize() {
+    const docEle = window.document.documentElement;
+    const windowWidth = docEle.getBoundingClientRect().width;
 
-		if (windowWidth >= 640) {
-			docEle.style.fontSize = "40px"
-		} else {
-			if (windowWidth <= 320) {
-				docEle.style.fontSize = "20px"
-			} else {
-				docEle.style.fontSize = windowWidth / 320 * 20 + "px"
-			}
-		}
-	}
+    if (windowWidth >= 640) {
+      docEle.style.fontSize = "40px"
+    } else {
+      if (windowWidth <= 320) {
+        docEle.style.fontSize = "20px"
+      } else {
+        docEle.style.fontSize = windowWidth / 320 * 20 + "px"
+      }
+    }
+  }
 
-	window.addEventListener("resize", resize);
+  window.addEventListener("resize", resize);
 
-	resize();
+  resize();
 
-	ReactDOM.render(<Component/>, document.getElementById('app'));
+  ReactDOM.render(<Component/>, document.getElementById('app'));
 }
