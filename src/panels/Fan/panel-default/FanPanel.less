@@ -1,12 +1,15 @@
 .free-fan-page {
   background-image: linear-gradient(180deg, #00dcb6 0%, #0054e2 100%);
-
+  text-align: center;
+  // height: 100%;
   .fan-body {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    width: 600px;
+    padding-top: 116px;
+    padding-left: 32px;
+    // position: absolute;
+    // left: 50%;
+    // top: 50%;
+    // transform: translate(-50%, -50%);
+    // width: 600px;
     // height: 440px;
     .fan-status {
       font-size: 28px;
@@ -15,15 +18,23 @@
       justify-content: center;
     }
 
+    .fan-logo {
+      width: 500px;
+    }
+
     .fan-btn-wrapper {
-      background: #ffffff;
       border-radius: 16px;
-      opacity: 0.2;
       font-size: 28px;
-      span{
+      background: rgba(255, 255, 255, 0.2);
+      span {
         color: #ffffff;
       }
     }
+  }
+
+  .fan-btn-groups {
+    display: flex;
+    flex-wrap: wrap;
   }
 
   .fan-logo-btn {
@@ -54,5 +65,86 @@
     .fan-msg {
       opacity: 0.7;
     }
+  }
+}
+
+.speed-square {
+  width: 100%;
+  flex-wrap: wrap;
+  height: 238px;
+  .fans-slider {
+    width: 100%;
+  }
+  .rangeslider-horizontal {
+    height: 10px;
+  }
+  .rangeslider-horizontal .rangeslider__fill {
+    background: #fff;
+  }
+  // .rangeslider-horizontal .rangeslider__handle {
+  //   position: relative;
+  // }
+  // .rangeslider-horizontal .rangeslider__handle::before{
+  //   position: absolute;
+  //   content: "";
+  //   transform: translate(-50%, -200%);
+  //   width: 160px;
+  //   font-size: 24px;
+  //   height: 40px;
+  //   line-height: 40px;
+  //   background: rgba(255, 255, 255, 0.2);
+  //   color: #fff;
+  //   border-radius: 26.5px;
+  // }
+  // .rangeslider-horizontal .rangeslider__handle{
+  //   height: 10px;
+  // }
+  .rangeslider-horizontal .rangeslider__handle-tooltip {
+    // transform: translateY(-200%);
+    transform: translate(-40%, -200%);
+    width: 160px;
+    font-size: 24px;
+    height: 40px;
+    line-height: 40px;
+    background: rgba(255, 255, 255, 0.2);
+    color: #fff;
+    border-radius: 26.5px;
+  }
+}
+
+// .square-btn-container {
+//   background: rgba(255, 255, 255, 0.2);
+//   color: #ffffff;
+//   border-radius: 16px;
+//   display: flex;
+//   align-items: center;
+//   justify-content: space-between;
+//   font-size: 28px;
+//   height: 112px;
+//   margin-bottom: 24px;
+//   padding-left: 32px;
+//   padding-right: 32px;
+//   width: 100%;
+//   box-sizing: border-box;
+//   margin-right: 24px;
+// }
+
+.fan-square-group-btn {
+  width: 100%;
+  height: 212px;
+  .group-wrapper {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+  }
+}
+
+.fan-count-down-container {
+  width: 100%;
+  overflow: scroll;
+  flex-wrap: wrap;
+  height: 206px;
+  .count-down-btn {
+    display: flex;
   }
 }
