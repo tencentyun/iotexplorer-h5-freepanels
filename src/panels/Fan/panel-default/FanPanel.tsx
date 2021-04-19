@@ -1,28 +1,27 @@
-import React, { useState, useRef } from "react";
+import React, {  useRef } from "react";
 import { iconFan } from "@icons/device/freePanel";
 import classNames from "classnames";
-import { IconBtn, RawBtn, SquareBtn } from "@components/Btn";
-import { FreePanelLayout } from "@components/FreePanelLayout";
-import { PanelMoreBtn } from "@components/PanelMoreBtn";
-import { getCountdownStr, getStatusStr } from "@components/FuncFooter";
+import { IconBtn,  SquareBtn } from "@components/Btn";
 import { Switch } from "@components/Switch";
 import "./FanPanel.less";
 import { PanelComponentProps } from "@src/entryWrap";
 import * as freePanelIcons from "@icons/device/freePanel";
 import { Slider } from "@components/Slider";
-import { format } from "path";
-import { rgba } from "@src/panels/Locator/panel-default/utils";
+import sdk from "qcloud-iotexplorer-h5-panel-sdk";
 export function FanPanel({
-  deviceInfo,
   deviceData,
   offline,
   powerOff,
   templateMap,
   doControlDeviceData,
-  onGoTimingProject,
-  onGoDeviceDetail,
 }: PanelComponentProps) {
-  console.log('come',powerOff,offline,deviceData,offline || !deviceData.power_switch,deviceData.power_switch)
+  useEffect(() => {
+    if (offline) {
+      sdk.offlineTip.show();
+    } else {
+      sdk.offlineTip.hide();
+    }
+  }, [offline]);
   const getLabel = (v) => {
     let windSpeedMap = templateMap.windspeed.define.mapping;
     // 根据map的分段来划分档位
