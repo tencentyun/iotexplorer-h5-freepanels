@@ -47,6 +47,7 @@ export function FanPanel({
   };
   const darkMode = offline;
 
+  // todo 加上offline状态的处理
   // const [powerSwitch, setPowerSwitch] = useState(
   //   deviceData["power_switch"] || true
   // );
