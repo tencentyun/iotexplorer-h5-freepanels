@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { iconFan } from "@icons/device/freePanel";
 import classNames from "classnames";
 import { IconBtn, RawBtn, SquareBtn } from "@components/Btn";
@@ -10,8 +10,8 @@ import "./FanPanel.less";
 import { PanelComponentProps } from "@src/entryWrap";
 import * as freePanelIcons from "@icons/device/freePanel";
 import { Slider } from "@components/Slider";
-// import { throttle }
-// import * as fanPanelIcons from '@icons/device/'
+import { format } from "path";
+import { rgba } from "@src/panels/Locator/panel-default/utils";
 export function FanPanel({
   deviceInfo,
   deviceData,
@@ -22,146 +22,194 @@ export function FanPanel({
   onGoTimingProject,
   onGoDeviceDetail,
 }: PanelComponentProps) {
-  const renderPanelStatus = () => {
-    if (offline) {
-      return <div className="fan-msg">设备已离线</div>;
-    }
-    if (deviceData.count_down && deviceData.count_down > 0) {
-      return (
-        <div className="fan-msg">
-          {getCountdownStr(deviceData.count_down, powerOff)}
-        </div>
-      );
-    }
-  };
-  console.log(deviceInfo,deviceData,templateMap)
-  const [mode, setMode] = useState("自然风");
-  const [speed, setSpeed] = useState("自动");
-  const [sliderValue, setSliderValue] = useState(0);
-  const changeSpeed = v => {
-    console.log('comehere')
-    setSliderValue(v)
-  }
-  const formatTip = v => {
-    let windSpeedMap = templateMap.windspeed.define.mapping
+  console.log('come',powerOff,offline,deviceData,offline || !deviceData.power_switch,deviceData.power_switch)
+  const getLabel = (v) => {
+    let windSpeedMap = templateMap.windspeed.define.mapping;
     // 根据map的分段来划分档位
-    let labelLength = 100/Object.keys(windSpeedMap).length
-    let label = Math.round(v/labelLength)
+    let labelLength = 100 / Object.keys(windSpeedMap).length;
+    let label = Math.round(v / labelLength);
+    return label;
+  };
+  const changeSpeed = (v) => {
+    // setSliderValue(v);
+    clearTimeout(debounceTimerRef.current);
+    debounceTimerRef.current = setTimeout(() => {
+      let label = getLabel(v);
+      doControlDeviceData("windspeed", label);
+    }, 200);
+  };
+
+  const formatTip = (v) => {
+    let windSpeedMap = templateMap.windspeed.define.mapping;
+    let label = getLabel(v);
     // doControlDeviceData('windSpeedMap',label);
-    return windSpeedMap[label === 0 ? label : label - 1]
+    return windSpeedMap[label === 0 ? label : label - 1];
+  };
+  const darkMode = offline;
+
+  // const [powerSwitch, setPowerSwitch] = useState(
+  //   deviceData["power_switch"] || true
+  // );
+  // const [swing, setSwing] = useState(deviceData[""swing"] || false);
+  // const [mode, setMode] = useState(deviceData["mode"] || "自然风");
+  // const [countdown, setCountDown] = useState(deviceData["timer"] || 0);
+  // const [sliderValue, setSliderValue] = useState(
+  //   (deviceData["windspeed"] * 100) /
+  //     Object.keys(templateMap.windspeed.define.mapping).length || 0
+  // );
+  const debounceTimerRef = useRef(-1); // 防抖，针对快速连续点赞
+
+  enum modeMap {
+    "正常风" = 0,
+    "自然风" = 1,
+    "睡眠风" = 2,
+    "智能模式" = 3,
   }
+
+  const modeMapGroups = [
+    {
+      mode: "自然风",
+      value: 0,
+      icon: freePanelIcons.iconNaturalWind,
+      activeIcon: freePanelIcons.iconNaturalWindActive,
+    },
+    {
+      mode: "正常风",
+      value: 1,
+      icon: freePanelIcons.iconNormalWind,
+      activeIcon: freePanelIcons.iconNormalWindActive,
+    },
+    {
+      mode: "睡眠风",
+      value: 2,
+      icon: freePanelIcons.iconSleepWind,
+      activeIcon: freePanelIcons.iconSleepWindActive,
+    },
+    {
+      mode: "智能模式",
+      value: 3,
+      icon: freePanelIcons.iconSmartMode,
+      activeIcon: freePanelIcons.iconSmartModeActive,
+    },
+  ];
   return (
-    // <FreePanelLayout
-    //   className={classNames("free-fan-page", {
-    //     "power-off": powerOff,
-    //   })}
-    //   title={deviceInfo.displayName}
-    //   doControlDeviceData={doControlDeviceData}
-    //   offline={offline}
-    //   powerOff={powerOff}
-    //   deviceData={deviceData}
-    //   onGoTimingProject={onGoTimingProject}
-
-    // >
-    //   <PanelMoreBtn onClick={onGoDeviceDetail} theme="dark" />
-    //   {renderPanelStatus()}
-    <>
-      <div className="free-fan-page">
-        <div className="fan-body">
-          <div className="fan-status">
-            <div style={{ marginRight: "80px" }}>模式: {mode}</div>
-            <div>风速: {speed}</div>
+    <div
+      className={classNames("free-fan-page", {
+        "free-fan-dark-page": darkMode,
+      })}
+    >
+      <div className="fan-body">
+        <div className="fan-status">
+          <div style={{ marginRight: "80px" }}>模式: {modeMap[deviceData["mode"]]}</div>
+          <div>
+            风速:{" "}
+            {formatTip(
+              (deviceData["windspeed"] * 100) /
+                Object.keys(templateMap.windspeed.define.mapping).length || 0
+            )}
           </div>
-          <img className={classNames("fan-logo")} src={iconFan} />
+        </div>
+        <img className={classNames("fan-logo")} src={iconFan} />
 
-          {/* 风扇按钮 */}
-          <div className="fan-btn-groups">
-            <SquareBtn
-              onClick={() =>
-                doControlDeviceData("power_switch", powerOff ? 1 : 0)
+        {/* 风扇按钮 */}
+        <div className="fan-btn-groups">
+          <SquareBtn
+            onClick={() => doControlDeviceData("power_switch", powerOff ? 0 : 1)}
+            title={`风扇${
+              deviceData["power_switch"] && !darkMode ? "开" : "关"
+            }`}
+            disabled={darkMode}
+            icon={
+              darkMode
+                ? freePanelIcons.iconSwitch
+                : (deviceData["power_switch"]
+                ? freePanelIcons.iconSwitchOpen
+                : freePanelIcons.iconSwitchClose)
+            }
+            size="40px"
+            iconBackground={darkMode ? "rgba(255,255,255,0.4)" : "#fff"}
+          ></SquareBtn>
+
+          <SquareBtn
+            title={`摇头${deviceData["swing"] ? "开" : "关"}`}
+            disabled={darkMode}
+          >
+            <Switch
+              disabled={darkMode}
+              className="fan-switch"
+              checked={deviceData["swing"]}
+              onChange={(value) => {
+                doControlDeviceData("swing", value);
+                // setSwing(value);
+              }}
+            />
+          </SquareBtn>
+          <SquareBtn className="speed-square" title="风速">
+            <Slider
+              className="fans-slider"
+              value={
+                (deviceData["windspeed"] * 100) /
+                  Object.keys(templateMap.windspeed.define.mapping).length || 0
               }
-              title="风扇开"
-              icon={freePanelIcons.iconSwitchOpen}
-              size="40px"
-              // iconBackground="#fff"
-            ></SquareBtn>
+              onChange={changeSpeed}
+              tooltip={true}
+              min={0}
+              max={100}
+              format={formatTip}
+            ></Slider>
+          </SquareBtn>
 
-            <SquareBtn
-              onClick={() =>
-                doControlDeviceData("power_switch", powerOff ? 1 : 0)
+          <SquareBtn className="fan-square-group-btn">
+            <div className="group-wrapper">
+              {modeMapGroups.map((item, index) => (
+                <IconBtn
+                  disabled={darkMode}
+                  className="mode-btn"
+                  iconBackground={
+                    !darkMode && deviceData["mode"] === item.value
+                      ? "#FFFFFF"
+                      : "rgba(255, 255, 255, 0.2)"
+                  }
+                  title={item.mode}
+                  icon={deviceData["mode"] === item.value ? item.activeIcon : item.icon}
+                  onClick={() => {
+                    // setMode(item.mode);
+                    doControlDeviceData("mode", item.value);
+                  }}
+                  style={{ color: "#fff" }}
+                ></IconBtn>
+              ))}
+            </div>
+          </SquareBtn>
+
+          {/* 从物模型的map里面去枚举 */}
+          <SquareBtn title="定时" className="fan-timer-container">
+            <div className="timer-btn">
+              {
+                // templateMap.windspeed.define.mapping
+                Object.keys(templateMap.timer.define.mapping).map(
+                  (item: string | number) => {
+                    return (
+                      <div
+                        className={classNames("fan-timer-item", {
+                          "fan-timer-item-active": deviceData["timer"] === item && !darkMode,
+                          "fan-dark-timer-item-active": deviceData["timer"]=== item && !!darkMode
+                        })}
+                        onClick={() => {
+                          // setCountDown(item);
+                          doControlDeviceData("timer", item);
+                        }}
+                      >
+                        {templateMap.timer.define.mapping[item]}
+                      </div>
+                    );
+                  }
+                )
               }
-              title="摇头开"
-              // icon={freePanelIcons.iconSwitchOpen}
-              // size="40px"
-              // iconBackground="#fff"
-            >
-              <Switch checked={false} onChange={() => {}} />
-            </SquareBtn>
-
-            {/* <div className="square-btn-container">
-          <div></div>
-        </div> */}
-
-            <SquareBtn
-              className="speed-square"
-              onClick={() =>
-                doControlDeviceData("power_switch", powerOff ? 1 : 0)
-              }
-              title="风速"
-            >
-              <Slider
-                className="fans-slider"
-                value={sliderValue}
-                onChange={changeSpeed}
-                tooltip={true}
-                min={0}
-                max={100}
-                format={formatTip}
-              ></Slider>
-            </SquareBtn>
-
-            <SquareBtn className="fan-square-group-btn">
-              <div className="group-wrapper">
-                <IconBtn
-                  title="自然风"
-                  icon={freePanelIcons.iconNaturalWind}
-                ></IconBtn>
-                <IconBtn
-                  title="正常风"
-                  icon={freePanelIcons.iconNormalWind}
-                ></IconBtn>
-                <IconBtn
-                  title="睡眠风"
-                  icon={freePanelIcons.iconSleepWind}
-                ></IconBtn>
-                <IconBtn
-                  title="智能模式"
-                  icon={freePanelIcons.iconSmartMode}
-                ></IconBtn>
-              </div>
-            </SquareBtn>
-
-            {/* 从物模型的map里面去枚举 */}
-            <SquareBtn title="定时" className="fan-count-down-container">
-              <div className="count-down-btn">
-                <div style={{ width: "80px" }}>1</div>
-                <div style={{ width: "80px" }}>1</div>
-                <div style={{ width: "80px" }}>1</div>
-                <div style={{ width: "80px" }}>1</div>
-                <div style={{ width: "80px" }}>1</div>
-                <div style={{ width: "80px" }}>1</div>
-                <div style={{ width: "80px" }}>1</div>
-                <div style={{ width: "80px" }}>1</div>
-                <div style={{ width: "80px" }}>1</div>
-                <div style={{ width: "80px" }}>1</div>
-                <div style={{ width: "80px" }}>1</div>
-                <div style={{ width: "80px" }}>1</div>
-              </div>
-            </SquareBtn>
-          </div>
+            </div>
+          </SquareBtn>
         </div>
       </div>
-
-    </>
+    </div>
   );
 }

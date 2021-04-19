@@ -5,16 +5,19 @@ import './Switch.less';
 export interface SwitchProps extends StyledProps {
 	checked: boolean;
 	onChange: (checked: boolean) => any;
+  disabled: boolean;
 }
 
 export function Switch({
 	checked,
 	onChange,
 	className,
+  disabled
 }: SwitchProps) {
 	return (
 		<div className={className}>
 			<ReactSwitch
+        disabled={disabled}
 				checked={checked}
 				onChange={onChange}
 				onColor="#0066ff"

@@ -1,27 +1,18 @@
 .free-fan-page {
   background-image: linear-gradient(180deg, #00dcb6 0%, #0054e2 100%);
   text-align: center;
-  // height: 100%;
   .fan-body {
     padding-top: 116px;
     padding-left: 32px;
-    // position: absolute;
-    // left: 50%;
-    // top: 50%;
-    // transform: translate(-50%, -50%);
-    // width: 600px;
-    // height: 440px;
     .fan-status {
       font-size: 28px;
       color: #ffffff;
       display: flex;
       justify-content: center;
     }
-
     .fan-logo {
       width: 500px;
     }
-
     .fan-btn-wrapper {
       border-radius: 16px;
       font-size: 28px;
@@ -67,6 +58,9 @@
     }
   }
 }
+.free-fan-dark-page {
+  background-image: linear-gradient(180deg, #727F99 0%, #3E4656 100%);
+}
 
 .speed-square {
   width: 100%;
@@ -81,24 +75,6 @@
   .rangeslider-horizontal .rangeslider__fill {
     background: #fff;
   }
-  // .rangeslider-horizontal .rangeslider__handle {
-  //   position: relative;
-  // }
-  // .rangeslider-horizontal .rangeslider__handle::before{
-  //   position: absolute;
-  //   content: "";
-  //   transform: translate(-50%, -200%);
-  //   width: 160px;
-  //   font-size: 24px;
-  //   height: 40px;
-  //   line-height: 40px;
-  //   background: rgba(255, 255, 255, 0.2);
-  //   color: #fff;
-  //   border-radius: 26.5px;
-  // }
-  // .rangeslider-horizontal .rangeslider__handle{
-  //   height: 10px;
-  // }
   .rangeslider-horizontal .rangeslider__handle-tooltip {
     // transform: translateY(-200%);
     transform: translate(-40%, -200%);
@@ -112,23 +88,6 @@
   }
 }
 
-// .square-btn-container {
-//   background: rgba(255, 255, 255, 0.2);
-//   color: #ffffff;
-//   border-radius: 16px;
-//   display: flex;
-//   align-items: center;
-//   justify-content: space-between;
-//   font-size: 28px;
-//   height: 112px;
-//   margin-bottom: 24px;
-//   padding-left: 32px;
-//   padding-right: 32px;
-//   width: 100%;
-//   box-sizing: border-box;
-//   margin-right: 24px;
-// }
-
 .fan-square-group-btn {
   width: 100%;
   height: 212px;
@@ -136,15 +95,38 @@
     display: flex;
     justify-content: space-around;
     width: 100%;
+    .mode-btn .icon-btn-title {
+      color: #fff;
+    }
   }
 }
 
-.fan-count-down-container {
+.fan-timer-container {
   width: 100%;
   overflow: scroll;
   flex-wrap: wrap;
   height: 206px;
-  .count-down-btn {
+  .timer-btn {
     display: flex;
+    width: 100%;
+    overflow: scroll;
+  }
+  .fan-timer-item {
+    width: 80px;
+    height: 80px;
+    margin-right: 10px;
+    line-height: 80px;
+    flex-shrink: 0;
+  }
+  .fan-timer-item-active {
+    color: #0099cc;
+    background: #ffffff;
+    border-radius: 50%;
+  }
+  .fan-dark-timer-item-active{
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.4);
+    border-radius: 50%;
+
   }
 }
