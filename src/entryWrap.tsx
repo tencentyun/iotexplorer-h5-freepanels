@@ -5,7 +5,9 @@ import './styles/index.less';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 
 try {
-  sdk.setAutoTriggerVibrateShort(true);
+  sdk.setTriggerVibrateShortFilter((property) => {
+    return property.define.type === 'bool' && property.id === 'power_switch';
+  });
 } catch (err) {
   console.warn('setAutoTriggerVibrateShort fail', err);
 }
