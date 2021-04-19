@@ -1,7 +1,7 @@
-import React, {  useRef } from "react";
+import React, { useRef, useEffect } from "react";
 import { iconFan } from "@icons/device/freePanel";
 import classNames from "classnames";
-import { IconBtn,  SquareBtn } from "@components/Btn";
+import { IconBtn, SquareBtn } from "@components/Btn";
 import { Switch } from "@components/Switch";
 import "./FanPanel.less";
 import { PanelComponentProps } from "@src/entryWrap";
@@ -100,7 +100,9 @@ export function FanPanel({
     >
       <div className="fan-body">
         <div className="fan-status">
-          <div style={{ marginRight: "80px" }}>模式: {modeMap[deviceData["mode"]]}</div>
+          <div style={{ marginRight: "80px" }}>
+            模式: {modeMap[deviceData["mode"]]}
+          </div>
           <div>
             风速:{" "}
             {formatTip(
@@ -114,7 +116,9 @@ export function FanPanel({
         {/* 风扇按钮 */}
         <div className="fan-btn-groups">
           <SquareBtn
-            onClick={() => doControlDeviceData("power_switch", powerOff ? 0 : 1)}
+            onClick={() =>
+              doControlDeviceData("power_switch", powerOff ? 0 : 1)
+            }
             title={`风扇${
               deviceData["power_switch"] && !darkMode ? "开" : "关"
             }`}
@@ -122,9 +126,9 @@ export function FanPanel({
             icon={
               darkMode
                 ? freePanelIcons.iconSwitch
-                : (deviceData["power_switch"]
+                : deviceData["power_switch"]
                 ? freePanelIcons.iconSwitchOpen
-                : freePanelIcons.iconSwitchClose)
+                : freePanelIcons.iconSwitchClose
             }
             size="40px"
             iconBackground={darkMode ? "rgba(255,255,255,0.4)" : "#fff"}
@@ -171,7 +175,11 @@ export function FanPanel({
                       : "rgba(255, 255, 255, 0.2)"
                   }
                   title={item.mode}
-                  icon={deviceData["mode"] === item.value ? item.activeIcon : item.icon}
+                  icon={
+                    deviceData["mode"] === item.value
+                      ? item.activeIcon
+                      : item.icon
+                  }
                   onClick={() => {
                     // setMode(item.mode);
                     doControlDeviceData("mode", item.value);
@@ -192,8 +200,10 @@ export function FanPanel({
                     return (
                       <div
                         className={classNames("fan-timer-item", {
-                          "fan-timer-item-active": deviceData["timer"] === item && !darkMode,
-                          "fan-dark-timer-item-active": deviceData["timer"]=== item && !!darkMode
+                          "fan-timer-item-active":
+                            deviceData["timer"] === item && !darkMode,
+                          "fan-dark-timer-item-active":
+                            deviceData["timer"] === item && !!darkMode,
                         })}
                         onClick={() => {
                           // setCountDown(item);
