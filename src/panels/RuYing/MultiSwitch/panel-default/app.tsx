@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDeviceInfo } from '@hooks/useDeviceInfo';
-import { RuyingLa } from './FanPanel';
+import { MultiSwitchPanel } from './MultiSwitchPanel';
 import { entryWrap } from "@src/entryWrap";
 
 function App() {
@@ -14,7 +14,7 @@ function App() {
 	}, { doControlDeviceData }] = useDeviceInfo();
 
 	return (
-		<FanPanel
+		<MultiSwitchPanel
 			deviceInfo={deviceInfo}
 			productInfo={productInfo}
 			templateMap={templateMap}

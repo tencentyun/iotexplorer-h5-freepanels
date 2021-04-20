@@ -1,5 +1,6 @@
 import React from "react";
-import { RuyingLayout } from "../../RuyingLayout";
+import { RuyingLayout } from "./RuyingLayout";
+
 const wordsList = [
   "打开LED吸顶灯",
   "关闭筒灯",
@@ -8,7 +9,16 @@ const wordsList = [
   "打开房间的灯光",
 ];
 
-export function MultiSwitchPanel() {
+export function MultiSwitchPanel({
+  deviceInfo,
+  productInfo,
+  templateMap,
+  deviceData,
+  offline,
+  powerOff,
+  doControlDeviceData,
+  switchList
+}) {
   return (
     <RuyingLayout
       wordsList={wordsList}
