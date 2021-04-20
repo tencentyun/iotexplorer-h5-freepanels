@@ -15,26 +15,18 @@ function App() {
 
   const switchList = useMemo(() => {
     const switchList = [] as any[];
-
     if (templateMap) {
       Object.keys(templateMap).forEach((key) => {
         const item = { ...templateMap[key] };
-        // todo改成一个正则把
-        // let a = (/switch{d}(_on*)/).test('switch1_on')
         let reg = /switch(\d+)_on/
-        if (
-        item.id.indexOf('switch') > -1 &&
-        item.id.indexOf('_on') > -1) {
+        if (reg.test(item.id)) {
+          const id = reg.exec(item.id)[1]
+          item.switchName = `switch${id}_name`
           switchList.push(item);
-          const id = item.id.split('switch')[1].split('_on')[0]
-          console.log(id)
-
         }
-        console.log(switchList)
-
       });
     }
-
+    console.log(templateMap,switchList)
     return switchList;
   }, [templateMap]);
 

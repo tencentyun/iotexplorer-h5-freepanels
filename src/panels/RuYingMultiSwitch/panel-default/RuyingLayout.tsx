@@ -14,10 +14,6 @@ export function RuyingLayout({
   afterChildren,
   displayName,
 }: RuyingLayoutProps) {
-
-
-
-
   return (
     <div className="ruying-page">
       {beforeChildren}
