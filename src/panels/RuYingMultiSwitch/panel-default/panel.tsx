@@ -1,6 +1,5 @@
-import { FreePanelLayout } from "@src/components/FreePanelLayout";
 import React from "react";
-import { RuyingLayout } from "./RuyingLayout";
+import { RuyingLayout } from "@src/components/RuyingLayout";
 import { iconLamp } from "@icons/device/freePanel";
 import "./panel.less";
 const wordsList = [
@@ -12,9 +11,6 @@ const wordsList = [
 ];
 
 export function MultiSwitchPanel({
-  deviceInfo,
-  productInfo,
-  templateMap,
   deviceData,
   offline,
   powerOff,

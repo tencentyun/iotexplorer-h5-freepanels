@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { useDeviceInfo } from '@hooks/useDeviceInfo';
-import { MultiSwitchPanel } from './MultiSwitchPanel';
 import { entryWrap } from "@src/entryWrap";
+import { WisdomControlPanel } from './panel';
 
 function App() {
 	const [{
@@ -14,10 +14,7 @@ function App() {
 	}, { doControlDeviceData }] = useDeviceInfo();
 
 	return (
-		<MultiSwitchPanel
-			deviceInfo={deviceInfo}
-			productInfo={productInfo}
-			templateMap={templateMap}
+		<WisdomControlPanel
 			deviceData={deviceData}
 			offline={false}
 			powerOff={false}

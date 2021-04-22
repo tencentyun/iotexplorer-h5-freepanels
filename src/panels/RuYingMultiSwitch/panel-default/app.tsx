@@ -33,9 +33,6 @@ function App() {
 	return (
 		<MultiSwitchPanel
       switchList={switchList}
-			deviceInfo={deviceInfo}
-			productInfo={productInfo}
-			templateMap={templateMap}
 			deviceData={deviceData}
 			offline={false}
 			powerOff={false}

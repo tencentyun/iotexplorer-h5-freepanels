@@ -35,4 +35,8 @@ module.exports = {
     enable: true,
     panels: [["panel-default", { enable: true }]],
   },
+  WisdomControl: {
+    enable: true,
+    panels: [["panel-default", { enable: true }]],
+  },
 };
