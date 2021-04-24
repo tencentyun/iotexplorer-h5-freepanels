@@ -31,7 +31,7 @@
     "moment": "^2.29.1",
     "normalize.css": "^8.0.1",
     "postcss-pxtorem": "^5.1.1",
-    "qcloud-iotexplorer-h5-panel-sdk": "^1.1.19",
+    "qcloud-iotexplorer-h5-panel-sdk": "^1.2.5",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "react-rangeslider": "^2.2.0",

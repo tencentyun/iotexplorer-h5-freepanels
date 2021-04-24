@@ -1,6 +1,8 @@
 import React from "react";
 import { RuyingLayout } from "@src/components/RuyingLayout";
 import { iconLamp } from "@icons/device/freePanel";
+import { PanelMoreBtn } from '@components/PanelMoreBtn';
+import sdk from "qcloud-iotexplorer-h5-panel-sdk";
 import "./panel.less";
 const wordsList = [
   "打开LED吸顶灯",
@@ -16,12 +18,22 @@ export function MultiSwitchPanel({
   powerOff,
   doControlDeviceData,
   switchList,
+  onGoDeviceDetail
 }) {
+  useEffect(() => {
+    if (offline) {
+      sdk.offlineTip.show();
+    } else {
+      sdk.offlineTip.hide();
+    }
+  }, [offline]);
   return (
     <RuyingLayout
       wordsList={wordsList}
       displayName="如影智慧中控屏"
       beforeChildren={
+        <>
+        <PanelMoreBtn theme="dark" onClick={onGoDeviceDetail}></PanelMoreBtn>
         <div className="switch-list-wrapper">
           {switchList.map((item) => {
             console.log(item);
@@ -54,6 +66,7 @@ export function MultiSwitchPanel({
             );
           })}
         </div>
+        </>
       }
     />
   );

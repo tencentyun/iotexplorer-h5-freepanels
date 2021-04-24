@@ -9,6 +9,8 @@
   margin: 32px auto;
   border-radius: 16px;
   overflow: hidden;
+  padding: 0 24px;
+  box-sizing: border-box;
   .ruying-card-title {
     color: #ffffff;
     font-size: 32px;
@@ -18,18 +20,33 @@
 }
 
 .group-btn-wrapper{
-  display: flex;
-  justify-content: space-around;
-  margin-bottom: 32px;
+  font-size: 28px;
+  .btns{
+    display: flex;
+    // justify-content: space-around;
+    margin-bottom: 32px;
+  }
+  .more-btn{
+    border-top: 1px solid rgba(255,255,255,0.1);
+    color: #2AE9AE;
+    height: 100px;
+    line-height: 100px;
+  }
 }
 .ruying-btn {
-  flex: 1;
+  // flex: 1;
+  width: 25%;
+  // padding: 0 24px;
   .btn-icon {
     width: 96px;
     height: 96px;
   }
   .btn-text{
+    // padding-left: ;
     color: rgba(255,255,255,0.6);
-    font-size: 28px;
+    // max-width: 25%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 }

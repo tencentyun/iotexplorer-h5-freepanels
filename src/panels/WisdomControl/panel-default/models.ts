@@ -1,21 +1,34 @@
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 
-export const getGatewayBindProducts = async({ Offset,Limit = 40}) => {
-  const { ProductIds, Total } = await sdk.requestTokenApi("DescribeBindedProducts",{
+export const getGatewayBindProducts = async({ offset,limit = 40}) => {
+  const { Products, Total } = await sdk.requestTokenApi("AppDescribeBindedProducts",{
     GatewayProductId: sdk.productId,
-    Limit,
-    Offset,
+    Limit: limit,
+    Offset: offset,
   })
-  return { total: Total, list: ProductIds }
+  console.log(Products, Total)
+  return { total: Total, list: Products }
 }
 
-export const getGatewayBindDeviceList = async({ Offset,Limit = 50 }) => {
+// export const AppBindedGatewayByProduct
+export const getGatewayBindDeviceList = async({ Offset,Limit = 50, ProductId }) => {
   const { Total, DeviceList } = await sdk.requestTokenApi('AppGetGatewayBindDeviceList',{
-    ProductId: sdk.productId,
+    ProductId: ProductId,
     GatewayProductId: sdk.productId,
     GatewayDeviceName: sdk.deviceName,
     Offset,
     Limit
   })
   return { total: Total, list: DeviceList }
+}
+
+export async function getFreePanelInfo({ PanelId }) {
+  try {
+    const { PanelSetting } = await sdk.requestTokenApi('AppGetCategoryPanelInfoById', { PanelId: Number(PanelId) });
+
+    return JSON.parse(PanelSetting);
+  } catch (err) {
+    console.error('getFreePanelInfo', PanelId, err);
+    return null;
+  }
 }
