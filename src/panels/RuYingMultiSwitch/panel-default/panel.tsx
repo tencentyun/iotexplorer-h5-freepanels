@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { RuyingLayout } from "@src/components/RuyingLayout";
 import { iconLamp } from "@icons/device/freePanel";
-import { PanelMoreBtn } from '@components/PanelMoreBtn';
+import { PanelMoreBtn } from "@components/PanelMoreBtn";
 import sdk from "qcloud-iotexplorer-h5-panel-sdk";
 import "./panel.less";
 const wordsList = [
@@ -18,7 +18,7 @@ export function MultiSwitchPanel({
   powerOff,
   doControlDeviceData,
   switchList,
-  onGoDeviceDetail
+  onGoDeviceDetail,
 }) {
   useEffect(() => {
     if (offline) {
@@ -33,39 +33,39 @@ export function MultiSwitchPanel({
       displayName="如影智慧中控屏"
       beforeChildren={
         <>
-        <PanelMoreBtn theme="dark" onClick={onGoDeviceDetail}></PanelMoreBtn>
-        <div className="switch-list-wrapper">
-          {switchList.map((item) => {
-            console.log(item);
-            return (
-              <div
-                className="switch-item"
-                style={{
-                  background: deviceData[item.id] ? "#C4CBDE" : "#222631",
-                }}
-                onClick={() => {
-                  doControlDeviceData(item.id, deviceData[item.id] ? 0 : 1);
-                }}
-              >
+          <PanelMoreBtn theme="dark" onClick={onGoDeviceDetail}></PanelMoreBtn>
+          <div className="switch-list-wrapper">
+            {switchList.map((item) => {
+              console.log(item);
+              return (
                 <div
-                  className="switch-name switch-info"
+                  className="switch-item"
                   style={{
-                    color: deviceData[item.id] ? "#000" : "#fff",
+                    background: deviceData[item.id] ? "#C4CBDE" : "#222631",
+                  }}
+                  onClick={() => {
+                    doControlDeviceData(item.id, deviceData[item.id] ? 0 : 1);
                   }}
                 >
-                  {deviceData[item.switch_name] || "小灯"}
+                  <div
+                    className="switch-name switch-info"
+                    style={{
+                      color: deviceData[item.id] ? "#000" : "#fff",
+                    }}
+                  >
+                    {deviceData[item.switch_name] || "小灯"}
+                  </div>
+                  <img className="switch-icon switch-info" src={iconLamp}></img>
+                  <div
+                    className="status-icon switch-info"
+                    style={{
+                      background: deviceData[item.id] ? "#2ae9ae" : "#4A4D5E",
+                    }}
+                  ></div>
                 </div>
-                <img className="switch-icon switch-info" src={iconLamp}></img>
-                <div
-                  className="status-icon switch-info"
-                  style={{
-                    background: deviceData[item.id] ? "#2ae9ae" : "#4A4D5E",
-                  }}
-                ></div>
-              </div>
-            );
-          })}
-        </div>
+              );
+            })}
+          </div>
         </>
       }
     />

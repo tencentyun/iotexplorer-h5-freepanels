@@ -4,7 +4,7 @@ import { RuyingLayout } from "@src/components/RuyingLayout";
 import { PanelMoreBtn } from '@components/PanelMoreBtn';
 import sdk from "qcloud-iotexplorer-h5-panel-sdk";
 import {
-  iconWisdomControl,
+  // iconWisdomControl,
   iconExpertLiveBroadcast,
   iconTencentMedicalDictionary,
   iconHealthColumn,
@@ -115,7 +115,7 @@ export function WisdomControlPanel({
       wordsList={wordsList}
       displayName="如影智慧中控屏"
       beforeChildren={
-        <img className="wisdom-control-icon" src={iconWisdomControl}></img>
+        <img className="wisdom-control-icon" src="//main.qcloudimg.com/raw/78b5246fc1ac18ccb5a0639654c4f835.png"></img>
       }
       afterChildren={
         <>
