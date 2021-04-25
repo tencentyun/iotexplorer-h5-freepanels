@@ -7,7 +7,9 @@
 1. `npm install`
 2. 启动指定面板 `npm run dev --category=FiveRoadLight --panel=panel-default`
 3. 编译出来的脚本和样式地址为：
-
+4. 调试虚拟面板，在浏览器访问
+`https://iot.cloud.tencent.com/h5panel/developing?productId=${对应品类的产品id}&uin=mmtest`
+5. 真实面板的调试方法见官方文档
 
 ```
 js地址：

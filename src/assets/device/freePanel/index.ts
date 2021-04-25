@@ -16,3 +16,9 @@ export { default as iconSleepWind } from './sleep-wind.svg';
 export { default as iconSleepWindActive } from './sleep-wind-active.svg';
 export { default as iconSmartMode } from './smart-mode.svg';
 export { default as iconSmartModeActive } from './smart-mode-active.svg';
+export { default as iconLamp } from './lamp.svg';
+export { default as iconHealthColumn } from './health-column.svg';
+export { default as iconExpertLiveBroadcast } from './expert-live-broadcast.svg';
+export { default as iconEncyclopedia } from './encyclopedia.svg';
+export { default as iconTencentMedicalDictionary } from './tencent-medical-dictionary.svg';
+// export { default as iconWisdomControl } from './wisdom.png'

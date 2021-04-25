@@ -1,4 +1,4 @@
-import React, {  useRef } from "react";
+import React, {  useRef, useEffect } from "react";
 import { iconFan } from "@icons/device/freePanel";
 import classNames from "classnames";
 import { IconBtn,  SquareBtn } from "@components/Btn";
@@ -8,6 +8,7 @@ import { PanelComponentProps } from "@src/entryWrap";
 import * as freePanelIcons from "@icons/device/freePanel";
 import { Slider } from "@components/Slider";
 import sdk from "qcloud-iotexplorer-h5-panel-sdk";
+import { PanelMoreBtn } from '@components/PanelMoreBtn'
 export function FanPanel({
   deviceData,
   offline,
@@ -97,6 +98,7 @@ export function FanPanel({
         "free-fan-dark-page": darkMode,
       })}
     >
+      <PanelMoreBtn theme="dark"></PanelMoreBtn>
       <div className="fan-body">
         <div className="fan-status">
           <div style={{ marginRight: "80px" }}>模式: {modeMap[deviceData["mode"]]}</div>
