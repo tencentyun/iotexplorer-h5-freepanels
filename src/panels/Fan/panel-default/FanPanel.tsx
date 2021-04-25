@@ -48,7 +48,6 @@ export function FanPanel({
     let label = getLabel(sliderValue);
     if (label === deviceData["windspeed"]) {
       setSliderValue(sliderValue);
-      console.log("come");
     }
   }, [deviceData["windspeed"]]);
 
@@ -58,15 +57,7 @@ export function FanPanel({
     // doControlDeviceData('windSpeedMap',label);
     return windSpeedMap[label === 0 ? label : label - 1];
   };
-  const darkMode = offline;
-
-  // const [powerSwitch , setPowerSwitch] = useState(
-  //   deviceData["power_switch"] || true
-  // );
-  // const [swing, setSwing] = useState(deviceData[""swing"] || false);
-  // const [mode, setMode] = useState(deviceData["mode"] || "自然风");
-  // const [countdown, setCountDown] = useState(deviceData["timer"] || 0);
-
+  // const powerOff = offline |;
   const debounceTimerRef = useRef(-1); // 防抖，针对快速连续点赞
 
   enum modeMap {
@@ -105,7 +96,7 @@ export function FanPanel({
   return (
     <div
       className={classNames("free-fan-page", {
-        "free-fan-dark-page": darkMode,
+        "free-fan-dark-page": powerOff,
       })}
     >
       <PanelMoreBtn theme="dark"></PanelMoreBtn>
@@ -127,30 +118,34 @@ export function FanPanel({
         {/* 风扇按钮 */}
         <div className="fan-btn-groups">
           <SquareBtn
-            onClick={() =>
-              doControlDeviceData("power_switch", powerOff ? 0 : 1)
-            }
+            onClick={() => {
+              console.log(offline, deviceData["power_switch"], powerOff);
+              doControlDeviceData(
+                "power_switch",
+                deviceData["power_switch"] ? 0 : 1
+              );
+            }}
             title={`风扇${
-              deviceData["power_switch"] && !darkMode ? "开" : "关"
+              deviceData["power_switch"] && !powerOff ? "开" : "关"
             }`}
-            disabled={darkMode}
+            disabled={powerOff}
             icon={
-              darkMode
+              powerOff
                 ? freePanelIcons.iconSwitch
                 : deviceData["power_switch"]
                 ? freePanelIcons.iconSwitchOpen
                 : freePanelIcons.iconSwitchClose
             }
             size="40px"
-            iconBackground={darkMode ? "rgba(255,255,255,0.4)" : "#fff"}
+            iconBackground={powerOff ? "rgba(255,255,255,0.4)" : "#fff"}
           ></SquareBtn>
 
           <SquareBtn
             title={`摇头${deviceData["swing"] ? "开" : "关"}`}
-            disabled={darkMode}
+            disabled={powerOff}
           >
             <Switch
-              disabled={darkMode}
+              disabled={powerOff}
               className="fan-switch"
               checked={deviceData["swing"]}
               onChange={(value) => {
@@ -179,10 +174,10 @@ export function FanPanel({
             <div className="group-wrapper">
               {modeMapGroups.map((item, index) => (
                 <IconBtn
-                  disabled={darkMode}
+                  disabled={powerOff}
                   className="mode-btn"
                   iconBackground={
-                    !darkMode && deviceData["mode"] === item.value
+                    !powerOff && deviceData["mode"] === item.value
                       ? "#FFFFFF"
                       : "rgba(255, 255, 255, 0.2)"
                   }
@@ -213,9 +208,9 @@ export function FanPanel({
                       <div
                         className={classNames("fan-timer-item", {
                           "fan-timer-item-active":
-                            deviceData["timer"] === item && !darkMode,
+                            deviceData["timer"] === item && !powerOff,
                           "fan-dark-timer-item-active":
-                            deviceData["timer"] === item && !!darkMode,
+                            deviceData["timer"] === item && !!powerOff,
                         })}
                         onClick={() => {
                           // setCountDown(item);
