@@ -1,14 +1,14 @@
-import React, {  useRef, useEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import { iconFan } from "@icons/device/freePanel";
 import classNames from "classnames";
-import { IconBtn,  SquareBtn } from "@components/Btn";
+import { IconBtn, SquareBtn } from "@components/Btn";
 import { Switch } from "@components/Switch";
 import "./FanPanel.less";
 import { PanelComponentProps } from "@src/entryWrap";
 import * as freePanelIcons from "@icons/device/freePanel";
 import { Slider } from "@components/Slider";
 import sdk from "qcloud-iotexplorer-h5-panel-sdk";
-import { PanelMoreBtn } from '@components/PanelMoreBtn'
+import { PanelMoreBtn } from "@components/PanelMoreBtn";
 export function FanPanel({
   deviceData,
   offline,
@@ -16,6 +16,11 @@ export function FanPanel({
   templateMap,
   doControlDeviceData,
 }: PanelComponentProps) {
+  // 风速是拖动条，如果由devicedata来控制，会给人非常明显的卡顿感
+  const [sliderValue, setSliderValue] = useState(
+    (deviceData["windspeed"] * 100) /
+      Object.keys(templateMap.windspeed.define.mapping).length || 0
+  );
   useEffect(() => {
     if (offline) {
       sdk.offlineTip.show();
@@ -31,13 +36,21 @@ export function FanPanel({
     return label;
   };
   const changeSpeed = (v) => {
-    // setSliderValue(v);
+    setSliderValue(v);
     clearTimeout(debounceTimerRef.current);
     debounceTimerRef.current = setTimeout(() => {
       let label = getLabel(v);
       doControlDeviceData("windspeed", label);
-    }, 200);
+    }, 100);
   };
+
+  useEffect(() => {
+    let label = getLabel(sliderValue);
+    if (label === deviceData["windspeed"]) {
+      setSliderValue(sliderValue);
+      console.log("come");
+    }
+  }, [deviceData["windspeed"]]);
 
   const formatTip = (v) => {
     let windSpeedMap = templateMap.windspeed.define.mapping;
@@ -47,16 +60,13 @@ export function FanPanel({
   };
   const darkMode = offline;
 
-  // const [powerSwitch, setPowerSwitch] = useState(
+  // const [powerSwitch , setPowerSwitch] = useState(
   //   deviceData["power_switch"] || true
   // );
   // const [swing, setSwing] = useState(deviceData[""swing"] || false);
   // const [mode, setMode] = useState(deviceData["mode"] || "自然风");
   // const [countdown, setCountDown] = useState(deviceData["timer"] || 0);
-  // const [sliderValue, setSliderValue] = useState(
-  //   (deviceData["windspeed"] * 100) /
-  //     Object.keys(templateMap.windspeed.define.mapping).length || 0
-  // );
+
   const debounceTimerRef = useRef(-1); // 防抖，针对快速连续点赞
 
   enum modeMap {
@@ -101,9 +111,11 @@ export function FanPanel({
       <PanelMoreBtn theme="dark"></PanelMoreBtn>
       <div className="fan-body">
         <div className="fan-status">
-          <div style={{ marginRight: "80px" }}>模式: {modeMap[deviceData["mode"]]}</div>
+          <div style={{ marginRight: "80px" }}>
+            模式: {modeMap[deviceData["mode"]]}
+          </div>
           <div>
-            风速:{" "}
+            风速:
             {formatTip(
               (deviceData["windspeed"] * 100) /
                 Object.keys(templateMap.windspeed.define.mapping).length || 0
@@ -115,7 +127,9 @@ export function FanPanel({
         {/* 风扇按钮 */}
         <div className="fan-btn-groups">
           <SquareBtn
-            onClick={() => doControlDeviceData("power_switch", powerOff ? 0 : 1)}
+            onClick={() =>
+              doControlDeviceData("power_switch", powerOff ? 0 : 1)
+            }
             title={`风扇${
               deviceData["power_switch"] && !darkMode ? "开" : "关"
             }`}
@@ -123,9 +137,9 @@ export function FanPanel({
             icon={
               darkMode
                 ? freePanelIcons.iconSwitch
-                : (deviceData["power_switch"]
+                : deviceData["power_switch"]
                 ? freePanelIcons.iconSwitchOpen
-                : freePanelIcons.iconSwitchClose)
+                : freePanelIcons.iconSwitchClose
             }
             size="40px"
             iconBackground={darkMode ? "rgba(255,255,255,0.4)" : "#fff"}
@@ -149,8 +163,9 @@ export function FanPanel({
             <Slider
               className="fans-slider"
               value={
-                (deviceData["windspeed"] * 100) /
-                  Object.keys(templateMap.windspeed.define.mapping).length || 0
+                sliderValue
+                // (deviceData["windspeed"] * 100) /
+                //   Object.keys(templateMap.windspeed.define.mapping).length || 0
               }
               onChange={changeSpeed}
               tooltip={true}
@@ -172,7 +187,11 @@ export function FanPanel({
                       : "rgba(255, 255, 255, 0.2)"
                   }
                   title={item.mode}
-                  icon={deviceData["mode"] === item.value ? item.activeIcon : item.icon}
+                  icon={
+                    deviceData["mode"] === item.value
+                      ? item.activeIcon
+                      : item.icon
+                  }
                   onClick={() => {
                     // setMode(item.mode);
                     doControlDeviceData("mode", item.value);
@@ -193,8 +212,10 @@ export function FanPanel({
                     return (
                       <div
                         className={classNames("fan-timer-item", {
-                          "fan-timer-item-active": deviceData["timer"] === item && !darkMode,
-                          "fan-dark-timer-item-active": deviceData["timer"]=== item && !!darkMode
+                          "fan-timer-item-active":
+                            deviceData["timer"] === item && !darkMode,
+                          "fan-dark-timer-item-active":
+                            deviceData["timer"] === item && !!darkMode,
                         })}
                         onClick={() => {
                           // setCountDown(item);
