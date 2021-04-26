@@ -40,7 +40,6 @@ export function WisdomControlPanel({
   offline,
   powerOff,
   doControlDeviceData,
-  onGoDeviceDetail,
   deviceList,
 }) {
   useEffect(() => {
@@ -119,7 +118,7 @@ export function WisdomControlPanel({
       }
       afterChildren={
         <>
-         <PanelMoreBtn theme="dark" onClick={onGoDeviceDetail}></PanelMoreBtn>
+         <PanelMoreBtn theme="dark"></PanelMoreBtn>
           <RuyingCard
             title="子设备"
             children={

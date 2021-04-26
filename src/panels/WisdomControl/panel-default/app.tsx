@@ -20,44 +20,74 @@ function App() {
     { doControlDeviceData },
   ] = useDeviceInfo();
   const [subDeviceList, setSubDeviceList] = useState<any[]>([]);
-  // 获取网关下全部子设备
-  const getSubDeviceList = async () => {
-    const subProductList = await fetchAllList(getGatewayBindProducts);
-    let newSubDeviceList: any[] = [];
-    Promise.all(
-      subProductList.map(async (item, index) => {
-        let func = ({ offset, limit }) => {
-          return getGatewayBindDeviceList({
-            Offset: offset,
-            Limit: limit,
-            ProductId: item["ProductId"],
-          });
-        };
-        let res = await fetchAllList(func);
-        newSubDeviceList = newSubDeviceList.concat(res);
-        return newSubDeviceList;
-      })
-    ).then(() => {
-      console.log("come", newSubDeviceList);
-      newSubDeviceList.map((item) => {
-        item.icon = item.IconUrl;
-        item.text = item.DeviceName;
-        item.clickFun = () => {
-          console.log("come click");
-          try {
-            sdk.goDevicePanelPage(item.DeviceId);
-          } catch (err) {
-            console.log(err);
-          }
-        };
-        // item.url =
-      });
-      setSubDeviceList(newSubDeviceList);
+  const formatSubDeviceList = (list) => {
+    list.map((item) => {
+      item.icon = item.IconUrl;
+      item.text = item.DeviceName;
+      item.clickFun = () => {
+        console.log("come click");
+        try {
+          sdk.goDevicePanelPage(item.DeviceId);
+        } catch (err) {
+          console.log(err);
+        }
+      };
     });
+    setSubDeviceList(list)
   };
+  const getSubDeviceList = async()=>{
+    const list =await sdk.getSubDeviceList();
+    console.log('sdk',list)
+    if(list && list.subDeviceList){
+      formatSubDeviceList(list.subDeviceList);
+    }
+  }
   useEffect(() => {
-    getSubDeviceList();
-  }, []);
+    getSubDeviceList()
+  },[]);
+  // const subDeviceList =
+  sdk.on("subDeviceChange", (subDeviceList) => {
+    console.log('subdevicechange')
+    formatSubDeviceList(subDeviceList);
+  });
+  // 获取网关下全部子设备
+  // const getSubDeviceList = async () => {
+  //   const subProductList = await fetchAllList(getGatewayBindProducts);
+  //   let newSubDeviceList: any[] = [];
+  //   Promise.all(
+  //     subProductList.map(async (item, index) => {
+  //       let func = ({ offset, limit }) => {
+  //         return getGatewayBindDeviceList({
+  //           Offset: offset,
+  //           Limit: limit,
+  //           ProductId: item["ProductId"],
+  //         });
+  //       };
+  //       let res = await fetchAllList(func);
+  //       newSubDeviceList = newSubDeviceList.concat(res);
+  //       return newSubDeviceList;
+  //     })
+  //   ).then(() => {
+  //     console.log("come", newSubDeviceList);
+  //     newSubDeviceList.map((item) => {
+  //       item.icon = item.IconUrl;
+  //       item.text = item.DeviceName;
+  //       item.clickFun = () => {
+  //         console.log("come click");
+  //         try {
+  //           sdk.goDevicePanelPage(item.DeviceId);
+  //         } catch (err) {
+  //           console.log(err);
+  //         }
+  //       };
+  //     });
+  //     setSubDeviceList(newSubDeviceList);
+  //   });
+  // };
+  // useEffect(() => {
+  //   sdk.getSubDeviceList()
+  //   getSubDeviceList();
+  // }, []);
   return (
     <HashRouter>
       <Switch>
@@ -78,10 +108,6 @@ function App() {
           path="/subDeviceList"
           render={() => (
             <SubDeviceList deviceList={subDeviceList}></SubDeviceList>
-            // <EventDetail
-            //   item={item}
-            //   deviceInfo={deviceInfo}
-            //   ></EventDetail>
           )}
         ></Route>
       </Switch>
