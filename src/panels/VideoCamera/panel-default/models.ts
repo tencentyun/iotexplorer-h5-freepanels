@@ -17,8 +17,8 @@ export const describeCloudStorageEvents = async (
 ) => {
   // const ProductId = 'WG0I4BTQ6H'
   // const DeviceName = 'cs_38049795_1'
-  const DeviceName = sdk.DeviceName
-  const ProductId = sdk.ProductId
+  const DeviceName = sdk.deviceName
+  const ProductId = sdk.productId
   const params = {
     ProductId,
     DeviceName

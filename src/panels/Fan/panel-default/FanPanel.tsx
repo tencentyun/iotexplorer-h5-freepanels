@@ -57,7 +57,6 @@ export function FanPanel({
     // doControlDeviceData('windSpeedMap',label);
     return windSpeedMap[label === 0 ? label : label - 1];
   };
-  // const powerOff = offline |;
   const debounceTimerRef = useRef(-1); // 防抖，针对快速连续点赞
 
   enum modeMap {
