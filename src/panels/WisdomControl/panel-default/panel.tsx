@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { RuyingLayout } from "@src/components/RuyingLayout";
-import { PanelMoreBtn } from '@components/PanelMoreBtn';
+import { PanelMoreBtn } from "@components/PanelMoreBtn";
 import sdk from "qcloud-iotexplorer-h5-panel-sdk";
 import {
   // iconWisdomControl,
@@ -44,7 +44,6 @@ export function WisdomControlPanel({
   deviceList,
 }) {
   useEffect(() => {
-    console.log('offline',offline)
     if (offline) {
       sdk.offlineTip.show();
     } else {
@@ -59,7 +58,9 @@ export function WisdomControlPanel({
         className="ruying-btn"
         onClick={() => {
           // 这里不一定是跳转
-         item.clickFun ? item.clickFun() : window.location.href = item["url"];
+          item.clickFun
+            ? item.clickFun()
+            : (window.location.href = item["url"]);
         }}
       >
         <img className="btn-icon" src={item.icon} />
@@ -68,7 +69,12 @@ export function WisdomControlPanel({
     );
   };
 
-  const RuyingBtnGroup = ({ btnList, showMoreBtn = -1, goMore = () => {} }) => {
+  const RuyingBtnGroup = ({
+    btnList,
+    showMoreBtn = -1,
+    goMore = () => {},
+    emptyInfo = "暂无数据",
+  }) => {
     return (
       <div className="group-btn-wrapper">
         <div className="btns">
@@ -78,6 +84,11 @@ export function WisdomControlPanel({
             }
             return <RuyingBtn item={item}></RuyingBtn>;
           })}
+          {btnList && btnList.length === 0 && (
+            <div style={{ color: "rgb(255,255,255)", margin: "0 auto" }}>
+              {emptyInfo}
+            </div>
+          )}
         </div>
         {showMoreBtn !== -1 && btnList.length > showMoreBtn && (
           <div className="more-btn" onClick={goMore}>
@@ -97,17 +108,20 @@ export function WisdomControlPanel({
     {
       icon: iconExpertLiveBroadcast,
       text: "专家直播",
-      url: "https://h5.baike.qq.com/mobile/liveshow.html?VNK=e2541316&adtag=txll.zb",
+      url:
+        "https://h5.baike.qq.com/mobile/liveshow.html?VNK=e2541316&adtag=txll.zb",
     },
     {
       icon: iconHealthColumn,
       text: "健康专栏",
-      url: "https://h5.baike.qq.com/mobile/health_content.html?VNK=250a597f&adtag=txll.xgj",
+      url:
+        "https://h5.baike.qq.com/mobile/health_content.html?VNK=250a597f&adtag=txll.xgj",
     },
     {
       icon: iconEncyclopedia,
       text: "疾病百科",
-      url: "https://h5.baike.qq.com/mobile/disease_list.html?VNK=8ead6c26&adtag=txll.jbbk",
+      url:
+        "https://h5.baike.qq.com/mobile/disease_list.html?VNK=8ead6c26&adtag=txll.jbbk",
     },
   ];
 
@@ -116,11 +130,14 @@ export function WisdomControlPanel({
       wordsList={wordsList}
       displayName="如影智慧中控屏"
       beforeChildren={
-        <img className="wisdom-control-icon" src="//main.qcloudimg.com/raw/78b5246fc1ac18ccb5a0639654c4f835.png"></img>
+        <img
+          className="wisdom-control-icon"
+          src="//main.qcloudimg.com/raw/78b5246fc1ac18ccb5a0639654c4f835.png"
+        ></img>
       }
       afterChildren={
         <>
-         <PanelMoreBtn theme="dark"></PanelMoreBtn>
+          <PanelMoreBtn theme="dark"></PanelMoreBtn>
           <RuyingCard
             title="子设备"
             children={
