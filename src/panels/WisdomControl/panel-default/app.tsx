@@ -47,7 +47,7 @@ function App() {
   },[]);
   // const subDeviceList =
   sdk.on("subDeviceChange", (subDeviceList) => {
-    console.log('subdevicechange')
+    console.log('subdevicechange',subDeviceList,'test')
     formatSubDeviceList(subDeviceList);
   });
   // 获取网关下全部子设备

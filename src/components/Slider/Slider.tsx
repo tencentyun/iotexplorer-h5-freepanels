@@ -1,4 +1,4 @@
-import ReactSlider from 'react-rangeslider';
+import ReactSlider from './Rangeslider';
 import React from 'react';
 import './Slider.less';
 
@@ -10,6 +10,7 @@ export interface SliderProps extends StyledProps {
 	orientation: string;
 	reverse: boolean;
 	tooltip: boolean;
+  alwaysShowTip: boolean;
 	labels: { [labelValue: string]: string }; // 如： { 50: '半缸', 100: '满缸' }
 	handleLabel: string; // handler里面的value
 	format: (originValue: number) => string;
@@ -26,6 +27,7 @@ export function Slider({
 	orientation,
 	reverse,
 	tooltip = false,
+  alwaysShowTip = false,
 	labels,
 	handleLabel,
 	format,
@@ -51,6 +53,7 @@ export function Slider({
 				onChangeStart,
 				onChange,
 				onChangeComplete,
+        alwaysShowTip
 			}}
 		/>
 	)

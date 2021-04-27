@@ -116,44 +116,48 @@ export function FanPanel({
 
         {/* 风扇按钮 */}
         <div className="fan-btn-groups">
-          <SquareBtn
-            onClick={() => {
-              console.log(offline, deviceData["power_switch"], powerOff);
-              doControlDeviceData(
-                "power_switch",
-                deviceData["power_switch"] ? 0 : 1
-              );
-            }}
-            title={`风扇${
-              deviceData["power_switch"] && !powerOff ? "开" : "关"
-            }`}
-            disabled={powerOff}
-            icon={
-              powerOff
-                ? freePanelIcons.iconSwitch
-                : deviceData["power_switch"]
-                ? freePanelIcons.iconSwitchOpen
-                : freePanelIcons.iconSwitchClose
-            }
-            size="40px"
-            iconBackground={powerOff ? "rgba(255,255,255,0.4)" : "#fff"}
-          ></SquareBtn>
-
-          <SquareBtn
-            title={`摇头${deviceData["swing"] ? "开" : "关"}`}
-            disabled={powerOff}
-          >
-            <Switch
-              disabled={powerOff}
-              className="fan-switch"
-              checked={deviceData["swing"]}
-              onChange={(value) => {
-                doControlDeviceData("swing", value);
-                // setSwing(value);
+          <div className="fan-btn-inline" style={{ display: "flex", justifyContent: "space-between" }}>
+            <SquareBtn
+              style={{ marginRight: "24px" }}
+              onClick={() => {
+                console.log(offline, deviceData["power_switch"], powerOff);
+                doControlDeviceData(
+                  "power_switch",
+                  deviceData["power_switch"] ? 0 : 1
+                );
               }}
-            />
-          </SquareBtn>
+              title={`风扇${
+                deviceData["power_switch"] && !powerOff ? "开" : "关"
+              }`}
+              disabled={powerOff}
+              icon={
+                powerOff
+                  ? freePanelIcons.iconSwitch
+                  : deviceData["power_switch"]
+                  ? freePanelIcons.iconSwitchOpen
+                  : freePanelIcons.iconSwitchClose
+              }
+              size="40px"
+              iconBackground={powerOff ? "rgba(255,255,255,0.4)" : "#fff"}
+            ></SquareBtn>
+
+            <SquareBtn
+              title={`摇头${deviceData["swing"] ? "开" : "关"}`}
+              disabled={powerOff}
+            >
+              <Switch
+                disabled={powerOff}
+                className="fan-switch"
+                checked={deviceData["swing"]}
+                onChange={(value) => {
+                  doControlDeviceData("swing", value);
+                  // setSwing(value);
+                }}
+              />
+            </SquareBtn>
+          </div>
           <SquareBtn className="speed-square" title="风速">
+            {/* <div> */}
             <Slider
               className="fans-slider"
               value={
@@ -162,11 +166,12 @@ export function FanPanel({
                 //   Object.keys(templateMap.windspeed.define.mapping).length || 0
               }
               onChange={changeSpeed}
-              tooltip={true}
+              alwaysShowTip={true}
               min={0}
               max={100}
               format={formatTip}
             ></Slider>
+            {/* </div> */}
           </SquareBtn>
 
           <SquareBtn className="fan-square-group-btn">
