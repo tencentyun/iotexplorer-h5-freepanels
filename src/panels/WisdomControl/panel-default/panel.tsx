@@ -12,6 +12,7 @@ import {
 } from "@icons/device/freePanel";
 import "./panel.less";
 import { RawBtn } from "@src/components/Btn";
+import { off } from "process";
 const wordsList = [
   "今天天气怎么样",
   "我要听青花瓷",
@@ -43,6 +44,7 @@ export function WisdomControlPanel({
   deviceList,
 }) {
   useEffect(() => {
+    console.log('offline',offline)
     if (offline) {
       sdk.offlineTip.show();
     } else {
@@ -124,7 +126,7 @@ export function WisdomControlPanel({
             children={
               <RuyingBtnGroup
                 btnList={deviceList}
-                showMoreBtn={4}
+                showMoreBtn={3}
                 goMore={() => {
                   history.push({
                     pathname: "/subDeviceList",

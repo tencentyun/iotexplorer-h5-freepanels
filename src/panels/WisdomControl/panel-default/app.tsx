@@ -10,8 +10,6 @@ import {
   useHistory,
 } from "react-router-dom";
 import { SubDeviceList } from "./SubDeviceList";
-import { fetchAllList } from "@utillib";
-import { getGatewayBindProducts, getGatewayBindDeviceList } from "./models";
 import sdk from "qcloud-iotexplorer-h5-panel-sdk";
 
 function App() {
@@ -23,7 +21,7 @@ function App() {
   const formatSubDeviceList = (list) => {
     list.map((item) => {
       item.icon = item.IconUrl;
-      item.text = item.DeviceName;
+      item.text = item.AliasName || item.DeviceName;
       item.clickFun = () => {
         console.log("come click");
         try {
@@ -33,61 +31,22 @@ function App() {
         }
       };
     });
-    setSubDeviceList(list)
+    setSubDeviceList(list);
   };
-  const getSubDeviceList = async()=>{
-    const list =await sdk.getSubDeviceList();
-    console.log('sdk',list)
-    if(list && list.subDeviceList){
+  const getSubDeviceList = async () => {
+    const list = await sdk.getSubDeviceList();
+    console.log("sdk", list);
+    if (list && list.subDeviceList) {
       formatSubDeviceList(list.subDeviceList);
     }
-  }
+  };
   useEffect(() => {
-    getSubDeviceList()
-  },[]);
-  // const subDeviceList =
+    getSubDeviceList();
+  }, []);
   sdk.on("subDeviceChange", (subDeviceList) => {
-    console.log('subdevicechange',subDeviceList,'test')
+    console.log("subdevicechange", subDeviceList, "test");
     formatSubDeviceList(subDeviceList);
   });
-  // 获取网关下全部子设备
-  // const getSubDeviceList = async () => {
-  //   const subProductList = await fetchAllList(getGatewayBindProducts);
-  //   let newSubDeviceList: any[] = [];
-  //   Promise.all(
-  //     subProductList.map(async (item, index) => {
-  //       let func = ({ offset, limit }) => {
-  //         return getGatewayBindDeviceList({
-  //           Offset: offset,
-  //           Limit: limit,
-  //           ProductId: item["ProductId"],
-  //         });
-  //       };
-  //       let res = await fetchAllList(func);
-  //       newSubDeviceList = newSubDeviceList.concat(res);
-  //       return newSubDeviceList;
-  //     })
-  //   ).then(() => {
-  //     console.log("come", newSubDeviceList);
-  //     newSubDeviceList.map((item) => {
-  //       item.icon = item.IconUrl;
-  //       item.text = item.DeviceName;
-  //       item.clickFun = () => {
-  //         console.log("come click");
-  //         try {
-  //           sdk.goDevicePanelPage(item.DeviceId);
-  //         } catch (err) {
-  //           console.log(err);
-  //         }
-  //       };
-  //     });
-  //     setSubDeviceList(newSubDeviceList);
-  //   });
-  // };
-  // useEffect(() => {
-  //   sdk.getSubDeviceList()
-  //   getSubDeviceList();
-  // }, []);
   return (
     <HashRouter>
       <Switch>
@@ -97,8 +56,8 @@ function App() {
           render={() => (
             <WisdomControlPanel
               deviceData={deviceData}
-              offline={false}
-              powerOff={false}
+              offline={offline}
+              powerOff={powerOff}
               doControlDeviceData={doControlDeviceData}
               deviceList={subDeviceList}
             />
