@@ -9,6 +9,7 @@ import * as freePanelIcons from "@icons/device/freePanel";
 import { Slider } from "@components/Slider";
 import sdk from "qcloud-iotexplorer-h5-panel-sdk";
 import { PanelMoreBtn } from "@components/PanelMoreBtn";
+import { inherits } from "util";
 export function FanPanel({
   deviceData,
   offline,
@@ -102,10 +103,10 @@ export function FanPanel({
       <div className="fan-body">
         <div className="fan-status">
           <div style={{ marginRight: "80px" }}>
-            模式: {modeMap[deviceData["mode"]]}
+            模式: &#32;{modeMap[deviceData["mode"]]}
           </div>
           <div>
-            风速:
+            风速:&#32;
             {formatTip(
               (deviceData["windspeed"] * 100) /
                 Object.keys(templateMap.windspeed.define.mapping).length || 0
@@ -116,7 +117,10 @@ export function FanPanel({
 
         {/* 风扇按钮 */}
         <div className="fan-btn-groups">
-          <div className="fan-btn-inline" style={{ display: "flex", justifyContent: "space-between" }}>
+          <div
+            className="fan-btn-inline"
+            style={{ display: "flex", justifyContent: "space-between" }}
+          >
             <SquareBtn
               style={{ marginRight: "24px" }}
               onClick={() => {
@@ -132,13 +136,13 @@ export function FanPanel({
               disabled={powerOff}
               icon={
                 powerOff
-                  ? freePanelIcons.iconSwitch
-                  : deviceData["power_switch"]
-                  ? freePanelIcons.iconSwitchOpen
-                  : freePanelIcons.iconSwitchClose
+                  ? freePanelIcons.iconFanSwitchClose
+                  : freePanelIcons.iconFanSwitchOpen
               }
-              size="40px"
-              iconBackground={powerOff ? "rgba(255,255,255,0.4)" : "#fff"}
+              size="38px"
+              iconBackground={"none"}
+              // iconStyle={{ width: "80px", height: "80px" }}
+              // iconBackground={powerOff ? "rgba(255,255,255,0.4)" : "#fff"}
             ></SquareBtn>
 
             <SquareBtn
@@ -148,6 +152,8 @@ export function FanPanel({
               <Switch
                 disabled={powerOff}
                 className="fan-switch"
+                onColor="#FFFFFF"
+                onHandleColor="#0099CC"
                 checked={deviceData["swing"]}
                 onChange={(value) => {
                   doControlDeviceData("swing", value);
@@ -157,21 +163,17 @@ export function FanPanel({
             </SquareBtn>
           </div>
           <SquareBtn className="speed-square" title="风速">
-            {/* <div> */}
             <Slider
               className="fans-slider"
-              value={
-                sliderValue
-                // (deviceData["windspeed"] * 100) /
-                //   Object.keys(templateMap.windspeed.define.mapping).length || 0
-              }
+              value={sliderValue}
               onChange={changeSpeed}
               alwaysShowTip={true}
               min={0}
               max={100}
-              format={formatTip}
+              format={(v) => {
+                return "风速: " + formatTip(v);
+              }}
             ></Slider>
-            {/* </div> */}
           </SquareBtn>
 
           <SquareBtn className="fan-square-group-btn">

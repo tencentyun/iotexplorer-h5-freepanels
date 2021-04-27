@@ -13,6 +13,7 @@ export interface IconBtnOptions extends StyledProps {
   children?: React.ReactNode;
   iconBackground?: string;
   style? : React.CSSProperties;
+  iconStyle?: React.CSSProperties;
 }
 
 export function SquareBtn({
@@ -23,6 +24,7 @@ export function SquareBtn({
   className,
   title,
   style,
+  iconStyle
   // message,
   children,
 }: IconBtnOptions) {
@@ -46,7 +48,7 @@ export function SquareBtn({
             ...btnSize,
           }}
         >
-          <img className="btn-icon" src={icon as string} />
+          <img className="btn-icon" src={icon as string} style={{ ...iconStyle}}/>
         </RawBtn>
       ) : (
         children
