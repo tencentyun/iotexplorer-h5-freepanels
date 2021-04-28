@@ -1,5 +1,10 @@
 import React from "react";
-import { HashRouter ,Route, Redirect, Switch, useHistory } from "react-router-dom";
+import {
+  HashRouter,
+  Route,
+  Redirect,
+  Switch,
+} from "react-router-dom";
 import { useDeviceInfo } from "@hooks/useDeviceInfo";
 import { CameraPanel } from "./CameraPanel";
 import { entryWrap } from "@src/entryWrap";
@@ -10,7 +15,6 @@ function App() {
   return (
     <HashRouter>
       <Switch>
-        <Redirect exact from="/" to="/list"></Redirect>
         <Route
           path="/list"
           render={() => (
@@ -20,12 +24,10 @@ function App() {
         <Route
           path="/detail"
           render={(item) => (
-            <EventDetail
-              item={item}
-              deviceInfo={deviceInfo}
-              ></EventDetail>
+            <EventDetail item={item} deviceInfo={deviceInfo}></EventDetail>
           )}
         ></Route>
+        <Redirect from="/" to="/list"></Redirect>
       </Switch>
     </HashRouter>
   );

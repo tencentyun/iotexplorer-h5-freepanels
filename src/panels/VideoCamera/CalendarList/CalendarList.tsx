@@ -6,18 +6,18 @@ import classNames from "classnames";
 import { ScrollView } from "@components/ScrollView";
 
 export interface CalendarListProps {
-  setDate: Function;
+  changeDate: Function;
   visible: boolean;
   setVisible: Function;
-  reload: Function;
+  // reload: Function;
   disabledDate?: (date: Moment) => boolean;
 }
 
 export function CalendarList({
-  setDate,
+  changeDate,
   visible,
   setVisible,
-  reload,
+  // reload,
   disabledDate = () => {
     return false;
   },
@@ -155,8 +155,9 @@ export function CalendarList({
                                   .clone()
                                   .startOf("month")
                                   .add(Number(_item) - 1, "days");
-                          setDate(date);
-                          reload({newDate:date});
+                          // changeDate(date);
+                          // reload({newDate:date});
+                          changeDate(date);
                           setVisible(false);
                         }}
                         className={classNames("calendar-month-day", {
