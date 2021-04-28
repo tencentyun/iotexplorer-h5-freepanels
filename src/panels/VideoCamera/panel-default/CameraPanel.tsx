@@ -11,7 +11,7 @@ import sdk from "qcloud-iotexplorer-h5-panel-sdk";
 import classNames from "classnames";
 import { StatusTip } from "@components/StatusTip";
 import { ScrollView } from "@src/components/ScrollView";
-
+import { DropDown } from "@components/DropDown";
 export function CameraPanel({ offline, powerOff }) {
   useEffect(() => {
     if (offline) {
@@ -20,29 +20,29 @@ export function CameraPanel({ offline, powerOff }) {
       sdk.offlineTip.hide();
     }
   }, [offline]);
+  const { state } = window.history;
   const [calendarVisible, setCalendarVisible] = useState(false);
   const [eventModalVisible, setEventModalVisible] = useState(false);
-  const [date, setDate] = useState(moment());
-  const [eventId, setEventId] = useState("");
+  const [date, setDate] = useState(
+    state && state.date ? moment(state.date * 1000) : moment()
+  );
+  const [eventId, setEventId] = useState(
+    state && state.eventId ? state.eventId : ""
+  );
   const [listState, { statusTip, reload, loadMore }] = useInfiniteList({
-    // todo看下这里dependence的用法，目前有点问题，暂时用传参方式了
     statusTipOpts: {
       emptyMessage: "暂无事件",
       fillContainer: true,
     },
-    getData: async ({ context, newDate = "", newEventId = "" }) => {
+    getData: async ({ context }) => {
       const {
         list,
         context: newContext,
         listOver,
       } = await describeCloudStorageEvents({
-        StartTime: newDate
-          ? newDate.clone().startOf("date").unix()
-          : date.clone().startOf("date").unix(),
-        EndTime: newDate
-          ? newDate.clone().endOf("date").unix()
-          : date.clone().endOf("date").unix(),
-        EventId: newEventId ? newEventId : eventId,
+        StartTime: date.clone().startOf("date").unix(),
+        EndTime: date.clone().endOf("date").unix(),
+        EventId: eventId,
         Context: context,
         Size: 10,
       });
@@ -51,6 +51,11 @@ export function CameraPanel({ offline, powerOff }) {
         list,
         loadFinish: listOver,
       };
+    },
+    dependences: [eventId, date],
+    needReloadByDependences: true,
+    shouldUpdate: (dependences) => {
+      return true;
     },
   });
   const history = useHistory();
@@ -74,6 +79,14 @@ export function CameraPanel({ offline, powerOff }) {
     "_sys_id16_data",
   ];
   const goDetail = (item) => {
+    console.log(date, date.unix());
+    window.history.pushState(
+      {
+        date: date.unix(),
+        eventId: eventId,
+      },
+      ""
+    );
     history.push({
       pathname: "/detail",
       query: item,
@@ -82,31 +95,25 @@ export function CameraPanel({ offline, powerOff }) {
   return (
     <div className="camera-page">
       <div className="selector-wrapper">
-        <div className="date-selector selector-item">
-          <div
-            onClick={() => {
-              setCalendarVisible(true);
-            }}
-          >
-            {date.format("M月D日")}
-          </div>
-        </div>
-        <div className="things-selector selector-item">
-          <div
-            onClick={() => {
-              setEventModalVisible(true);
-            }}
-          >
-            全部事件
-          </div>
-        </div>
+        <DropDown
+          onClick={() => {
+            setCalendarVisible(true);
+          }}
+          text={date.format("M月D日")}
+        />
+        <DropDown
+          onClick={() => {
+            setEventModalVisible(true);
+          }}
+          text={eventId || "全部事件"}
+        />
       </div>
       {statusTip ? (
         <StatusTip {...statusTip} />
       ) : (
         <ScrollView
           className="events-container"
-          style={{ height: "100vh", overflow: "scroll" }}
+          style={{ height: "100%", overflow: "scroll" }}
           onReachBottom={() => {
             if (!listState.loadFinish && !listState.loading) {
               loadMore();
@@ -124,7 +131,7 @@ export function CameraPanel({ offline, powerOff }) {
               >
                 <div className="event-info">
                   <div className="event-time">
-                    {moment(item["StartTime"]).format("HH:mm")}
+                    {moment(item["StartTime"] * 1000).format("HH:mm")}
                   </div>
                   <div className="event-name">{item["EventID"]}</div>
                 </div>
@@ -145,8 +152,9 @@ export function CameraPanel({ offline, powerOff }) {
       <CalendarList
         visible={calendarVisible}
         setVisible={setCalendarVisible}
-        setDate={setDate}
-        reload={reload}
+        changeDate={(v) => {
+          setDate(v);
+        }}
         disabledDate={(date) => {
           let start = moment().subtract(8, "days").format("yyyy-MM-DD");
           let end = moment().add(1, "days").format("yyyy-MM-DD");
@@ -170,24 +178,21 @@ export function CameraPanel({ offline, powerOff }) {
             "event-active": eventId === "",
           })}
           onClick={() => {
-            setEventId('');
+            setEventId("");
             setEventModalVisible(false);
-            reload({ newEventId: '' });
           }}
         >
           全部事件
         </div>
-        {/* "modal-events" */}
         <div className="modal-events">
           {eventIdMap.map((item) => (
             <div
               className={classNames("modal-event-item", {
-               'event-active': eventId === item
+                "event-active": eventId === item,
               })}
               onClick={() => {
                 setEventId(item);
                 setEventModalVisible(false);
-                reload({ newEventId: item });
               }}
             >
               {item}

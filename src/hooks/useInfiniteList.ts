@@ -31,6 +31,7 @@ export const useInfiniteList = <T extends {}>({
   dependences = [],
   shouldUpdate = null,
   statusTipOpts = {},
+  needReloadByDependences = false,  //提供这个默认值，用于函数在根据dependences自动reload而非手动调用的时候传参
 }: {
   getData: (props: {
     context?: any;
@@ -45,6 +46,7 @@ export const useInfiniteList = <T extends {}>({
   dependences?: any[];
   shouldUpdate?: any;
   statusTipOpts?: Omit<StatusTipProps, 'status'>;
+  needReloadByDependences?: boolean;
 }): [InfiniteListState<T>, {
   loadMore: () => Promise<any>;
   reload: (params?: {
@@ -173,12 +175,14 @@ export const useInfiniteList = <T extends {}>({
 
   useEffect(() => {
     // 判断依赖是否都有值
+    // 特殊情况依赖中有值为空也要更新的，那就利用shouldUpdate去控制
     if (
       !dependences.length
       || dependences.every(item => !!item)
       || (typeof shouldUpdate === 'function' && shouldUpdate(dependences))
     ) {
-      fetchData();
+    // 根据依赖去更新值的情况有些是需要relaod的，所以传入reset参数
+      fetchData({reset: needReloadByDependences });
     }
   }, [...dependences]);
 

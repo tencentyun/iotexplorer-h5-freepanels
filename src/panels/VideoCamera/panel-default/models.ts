@@ -15,8 +15,6 @@ export const describeCloudStorageEvents = async (
     Size: number;
   }
 ) => {
-  // const ProductId = 'WG0I4BTQ6H'
-  // const DeviceName = 'cs_38049795_1'
   const DeviceName = sdk.deviceName
   const ProductId = sdk.productId
   const params = {
@@ -38,7 +36,7 @@ export const describeCloudStorageEvents = async (
   if (Size) {
     params['Size'] = Size
   }
-  const { Events, Total, Context: NewContext, ListOver } = await sdk.requestTokenApi('IotVideoDescribeCloudStorageEvents', params);
+  const { Events, Total, Context: NewContext, Listover } = await sdk.requestTokenApi('IotVideoDescribeCloudStorageEvents', params);
   if (Events) {
     for (let i = 0; i < Events.length; i++) {
       if (Events[i].Thumbnail) {
@@ -46,15 +44,11 @@ export const describeCloudStorageEvents = async (
       }
     }
   }
-  return { list: Events ? Events : [], total: Total, context: NewContext, listOver: ListOver };
+  return { list: Events ? Events : [], total: Total, context: NewContext, listOver: Listover };
 };
 
 export const describeCloudStorageThumbnail = async ({ Thumbnail = '', ProductId, DeviceName }) => {
   const { ThumbnailURL } = await sdk.requestTokenApi('IotVideoDescribeCloudStorageThumbnail', {
-    // DeviceName: sdk.DeviceName,
-    // ProductId: sdk.ProductId,
-    // ProductId: 'WG0I4BTQ6H',
-    // DeviceName: 'cs_38049795_1',
     ProductId,
     DeviceName,
     Thumbnail,
