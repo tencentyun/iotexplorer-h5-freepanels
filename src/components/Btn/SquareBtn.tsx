@@ -24,7 +24,7 @@ export function SquareBtn({
   className,
   title,
   style,
-  iconStyle
+  iconStyle,
   // message,
   children,
 }: IconBtnOptions) {
