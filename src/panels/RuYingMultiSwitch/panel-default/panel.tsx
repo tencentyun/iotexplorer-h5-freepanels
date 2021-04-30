@@ -36,7 +36,6 @@ export function MultiSwitchPanel({
           <PanelMoreBtn theme="dark" onClick={onGoDeviceDetail}></PanelMoreBtn>
           <div className="switch-list-wrapper">
             {switchList.map((item) => {
-              console.log(item);
               return (
                 <div
                   className="switch-item"
@@ -53,7 +52,7 @@ export function MultiSwitchPanel({
                       color: deviceData[item.id] ? "#000" : "#fff",
                     }}
                   >
-                    {deviceData[item.switch_name] || "小灯"}
+                    {deviceData[item.switchName] || "小灯"}
                   </div>
                   <img className="switch-icon switch-info" src={iconLamp}></img>
                   <div
