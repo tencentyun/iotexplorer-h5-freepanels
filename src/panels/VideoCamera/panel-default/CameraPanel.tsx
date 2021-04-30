@@ -13,14 +13,14 @@ import { StatusTip } from "@components/StatusTip";
 import { ScrollView } from "@src/components/ScrollView";
 import { DropDown } from "@components/DropDown";
 import { PanelMoreBtn } from "@components/PanelMoreBtn";
-export function CameraPanel({ offline, powerOff }) {
-  useEffect(() => {
-    if (offline) {
-      sdk.offlineTip.show();
-    } else {
-      sdk.offlineTip.hide();
-    }
-  }, [offline]);
+export function CameraPanel() {
+  // useEffect(() => {
+  //   if (offline) {
+  //     sdk.offlineTip.show();
+  //   } else {
+  //     sdk.offlineTip.hide();
+  //   }
+  // }, [offline]);
   const { state } = window.history;
   const [calendarVisible, setCalendarVisible] = useState(false);
   const [eventModalVisible, setEventModalVisible] = useState(false);
@@ -96,7 +96,7 @@ export function CameraPanel({ offline, powerOff }) {
 
   return (
     <div className="camera-page">
-      <>
+      <div className="fixed-header">
         <div className="selector-wrapper">
           <DropDown
             onClick={() => {
@@ -112,7 +112,7 @@ export function CameraPanel({ offline, powerOff }) {
           />
         </div>
         <PanelMoreBtn theme="white"></PanelMoreBtn>
-      </>
+      </div>
       {statusTip ? (
         <StatusTip {...statusTip} />
       ) : (

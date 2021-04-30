@@ -18,7 +18,7 @@ function App() {
         <Route
           path="/list"
           render={() => (
-            <CameraPanel offline={offline} powerOff={powerOff}></CameraPanel>
+            <CameraPanel></CameraPanel>
           )}
         ></Route>
         <Route
