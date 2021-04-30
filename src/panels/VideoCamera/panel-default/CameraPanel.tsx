@@ -12,6 +12,7 @@ import classNames from "classnames";
 import { StatusTip } from "@components/StatusTip";
 import { ScrollView } from "@src/components/ScrollView";
 import { DropDown } from "@components/DropDown";
+import { PanelMoreBtn } from "@components/PanelMoreBtn";
 export function CameraPanel({ offline, powerOff }) {
   useEffect(() => {
     if (offline) {
@@ -92,22 +93,26 @@ export function CameraPanel({ offline, powerOff }) {
       query: item,
     });
   };
+
   return (
     <div className="camera-page">
-      <div className="selector-wrapper">
-        <DropDown
-          onClick={() => {
-            setCalendarVisible(true);
-          }}
-          text={date.format("M月D日")}
-        />
-        <DropDown
-          onClick={() => {
-            setEventModalVisible(true);
-          }}
-          text={eventId || "全部事件"}
-        />
-      </div>
+      <>
+        <div className="selector-wrapper">
+          <DropDown
+            onClick={() => {
+              setCalendarVisible(true);
+            }}
+            text={date.format("M月D日")}
+          />
+          <DropDown
+            onClick={() => {
+              setEventModalVisible(true);
+            }}
+            text={eventId || "全部事件"}
+          />
+        </div>
+        <PanelMoreBtn theme="white"></PanelMoreBtn>
+      </>
       {statusTip ? (
         <StatusTip {...statusTip} />
       ) : (

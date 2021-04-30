@@ -30,7 +30,7 @@ export function EventDetail({ item, deviceInfo }) {
             {(item.location.query &&
               item.location.query.StartTime &&
               moment(item.location.query.StartTime * 1000).format(
-                "yyyy-MM-DD HH:mm:SS"
+                "yyyy-MM-DD HH:mm:ss"
               )) ||
               "="}
           </div>
