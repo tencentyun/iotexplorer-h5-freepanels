@@ -9,7 +9,6 @@ import * as freePanelIcons from "@icons/device/freePanel";
 import { Slider } from "@components/Slider";
 import sdk from "qcloud-iotexplorer-h5-panel-sdk";
 import { PanelMoreBtn } from "@components/PanelMoreBtn";
-import { inherits } from "util";
 export function FanPanel({
   deviceData,
   offline,
@@ -29,18 +28,28 @@ export function FanPanel({
       sdk.offlineTip.hide();
     }
   }, [offline]);
+  const labelLength =
+    100 / (Object.keys(templateMap.windspeed.define.mapping).length - 1);
+  // 根据拖动值获取风的等级
   const getLabel = (v) => {
-    let windSpeedMap = templateMap.windspeed.define.mapping;
     // 根据map的分段来划分档位
-    let labelLength = 100 / Object.keys(windSpeedMap).length;
-    let label = Math.round(v / labelLength);
+    let label = Math.max(Math.round(v / labelLength), 0);
     return label;
+  };
+  // 根据风的等级获取拖动值
+  const getSpeed = (label) => {
+    let v = label * labelLength;
+    return v;
   };
   const changeSpeed = (v) => {
     setSliderValue(v);
+    let label = getLabel(v);
+    let newValue = getSpeed(label);
+    console.log(v, label, newValue);
     clearTimeout(debounceTimerRef.current);
     debounceTimerRef.current = setTimeout(() => {
       let label = getLabel(v);
+      setSliderValue(newValue);
       doControlDeviceData("windspeed", label);
     }, 100);
   };
@@ -56,7 +65,7 @@ export function FanPanel({
     let windSpeedMap = templateMap.windspeed.define.mapping;
     let label = getLabel(v);
     // doControlDeviceData('windSpeedMap',label);
-    return windSpeedMap[label === 0 ? label : label - 1];
+    return windSpeedMap[label];
   };
   const debounceTimerRef = useRef(-1); // 防抖，针对快速连续点赞
 
@@ -106,11 +115,11 @@ export function FanPanel({
             模式: &#32;{modeMap[deviceData["mode"]]}
           </div>
           <div>
+            {/* // (deviceData["windspeed"] * 100) /
+              //   (Object.keys(templateMap.windspeed.define.mapping).length -
+              //     1) || 0 */}
             风速:&#32;
-            {formatTip(
-              (deviceData["windspeed"] * 100) /
-                Object.keys(templateMap.windspeed.define.mapping).length || 0
-            )}
+            {formatTip(getSpeed(deviceData["windspeed"]))}
           </div>
         </div>
         <img className={classNames("fan-logo")} src={iconFan} />

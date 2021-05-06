@@ -7,7 +7,6 @@ import "./CameraPanel.less";
 import moment from "moment";
 import { describeCloudStorageEvents } from "./models";
 import { useInfiniteList } from "@hooks/useInfiniteList";
-import sdk from "qcloud-iotexplorer-h5-panel-sdk";
 import classNames from "classnames";
 import { StatusTip } from "@components/StatusTip";
 import { ScrollView } from "@src/components/ScrollView";
