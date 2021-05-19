@@ -1,0 +1,113 @@
+.free-air-conditioner-page {
+  background-image: linear-gradient(180deg, #3D8BFF 0%, #1242FF 100%);
+
+  .air-conditioner-container {
+    height: 100%;
+    box-sizing: border-box;
+    position: relative;
+    overflow-y: auto;
+
+    .air-conditioner-header {
+      font-size: 28px;
+      color: #fff;
+
+      .air-conditioner-image-top {
+        margin-top: 142px;
+        width: 686px;
+      }
+
+      .air-conditioner-image-bottom {
+        width: 686px;
+        height: 776px;
+        margin: -5px auto 0;
+
+        &.mode-refrigeration {
+          background: url('https://main.qcloudimg.com/raw/ce142e710bfd826462114e9a1a79dac9.svg');
+          background-repeat: no-repeat;
+          background-size: 100% auto;
+        }
+
+        &.mode-heating {
+          background: url('https://main.qcloudimg.com/raw/0f9742cbadd7a2cacb6a7418bd1a19d8.svg');
+          background-repeat: no-repeat;
+          background-size: 100% auto;
+        }
+
+        &.mode-dehumidification {
+          background: url('https://main.qcloudimg.com/raw/2729796326b06af29c7920de6798f22d.svg');
+          background-repeat: no-repeat;
+          background-size: 100% auto;
+        }
+
+        &.mode-automatic {
+          background: url('https://main.qcloudimg.com/raw/0623fd6f9c48754fd57f531136fdf859.svg');
+          background-repeat: no-repeat;
+          background-size: 100% auto;
+        }
+
+        &.power-off {
+          background: url('https://main.qcloudimg.com/raw/d3482acf981d05a1e54c473cdff9e6df.svg');
+          background-repeat: no-repeat;
+          background-size: 100% auto;
+        }
+
+      }
+
+      .air-conditioner-temperature {
+        opacity: 0.4;
+        margin-bottom: 15px;
+        padding-top: 300px;
+      }
+
+      .air-conditioner-temperature-control-container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin: 0 125px;
+
+        .air-conditioner-target-temperature {
+          font-size: 86px;
+        }
+
+        .air-conditioner-temperature-control-button {
+          display: inline-block;
+          text-align: center;
+          border-radius: 50%;
+          width: 80px;
+          height: 80px;
+          line-height: 80px;
+          background: rgba(238, 238, 238, .2);
+          color: #fff;
+          font-size: 46px;
+        }
+      }
+    }
+
+    .air-conditioner-body {
+      margin: 290px auto 0;
+      font-size: 28px;
+      color: #fff;
+
+      .air-conditioner-property-body {
+        margin: px 50px 40px;
+        display: flex;
+        justify-content: space-around;
+      }
+
+      .air-conditioner-property {
+        .label {
+          opacity: 0.5;
+          margin-bottom: 16px;
+        }
+
+        .value {
+          font-size: 32px;
+        }
+      }
+    }
+  }
+
+  &.power-off {
+    background-image: linear-gradient(180deg, #727f99 0%, #3e4656 100%);
+  }
+}

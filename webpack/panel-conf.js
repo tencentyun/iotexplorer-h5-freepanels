@@ -5,6 +5,12 @@ module.exports = {
       ['panel-default', { enable: true }]
     ],
   },
+  AirConditioner: {
+    enable: true,
+    panels: [
+      ['panel-default', { enable: true }]
+    ],
+  },
   FiveRoadHub: {
     enable: true,
     panels: [

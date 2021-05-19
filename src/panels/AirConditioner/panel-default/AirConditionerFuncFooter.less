@@ -1,0 +1,104 @@
+.air-purifier-func-footer {
+    
+    .free-panel-footer {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        padding: 24px 0;
+      
+        &.ipx {
+          padding-bottom: 24+68px;
+        }
+      
+        .func-footer-mask {
+          background-color: #fff;
+          position: absolute;
+          top: 0;
+          left: 0;
+          bottom: 0;
+          right: 0;
+          opacity: .1;
+        }
+      
+        .func-btn-list {
+            display: flex;
+            justify-content: space-around;
+
+          .func-btn-item {
+              margin-right: 0;
+            &.actived {
+              .func-btn {
+                background-color: #fff;
+      
+                &:after {
+                  display: none;
+                }
+              }
+      
+              .func-btn-text {
+                opacity: 1;
+              }
+            }
+      
+            &.dark-mode {
+              &.actived {
+                .func-btn {
+                  background-color: #0066FF;
+      
+                  &:after {
+                    display: none;
+                  }
+                }
+              }
+            }
+      
+            .func-btn {
+              position: relative;
+              width: 96px;
+              height: 96px;
+              border-radius: 100%;
+              overflow: hidden;
+              text-align: center;
+              margin-bottom: 16px;
+      
+              &.disabled {
+                .func-btn-icon {
+                  opacity: .4;
+                }
+              }
+      
+              &:after {
+                content: ' ';
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                opacity: 0.2;
+                background: #F3F3F5;
+              }
+      
+              .func-btn-icon {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                margin-left: -24px;
+                margin-top: -24px;
+                width: 48px;
+                height: 48px;
+              }
+            }
+      
+            .func-btn-text {
+              opacity: 0.7;
+              font-size: 24px;
+              color: #FFFFFF;
+              letter-spacing: 0;
+              line-height: 20px;
+            }
+          }
+        }
+      }
+}
+  
