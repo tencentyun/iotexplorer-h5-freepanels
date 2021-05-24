@@ -22,6 +22,7 @@ export interface FreePanelLayoutProps extends StyledProps {
   onGoCountDown?: () => any;
   onSwitchChange?: () => any;
   isShareDevice?: boolean;
+  defaultFooter?: boolean;
 }
 
 export const getFooterHeight = (): number => (isFullScreen() ? 256 : 188);
@@ -40,6 +41,7 @@ export function FreePanelLayout({
   onSwitchChange,
   isShareDevice,
   onGoTimingProject,
+  defaultFooter = true, // 有些面板的footer比较定制化
 }: FreePanelLayoutProps) {
   const [showShopCard, setShowShopCard] = useState(false);
   useEffect(() => {
@@ -114,17 +116,19 @@ export function FreePanelLayout({
           <img className="shop-btn-icon" src={iconShop}></img>
         </div>
       )}
-      <FuncFooter
-        darkMode={darkMode}
-        onGoTimingProject={doGoTimingProject}
-        onGoCountDown={onGoCountDown}
-        onSwitchChange={onSwitchChange}
-        offline={offline}
-        powerOff={powerOff}
-        controlDeviceData={doControlDeviceData}
-        countdown={deviceData.count_down as number}
-        isShareDevice={isShareDevice}
-      />
+      {defaultFooter && (
+        <FuncFooter
+          darkMode={darkMode}
+          onGoTimingProject={doGoTimingProject}
+          onGoCountDown={onGoCountDown}
+          onSwitchChange={onSwitchChange}
+          offline={offline}
+          powerOff={powerOff}
+          controlDeviceData={doControlDeviceData}
+          countdown={deviceData.count_down as number}
+          isShareDevice={isShareDevice}
+        />
+      )}
 
       {/* 跳转拼多多的弹窗卡片 */}
       <Modal
