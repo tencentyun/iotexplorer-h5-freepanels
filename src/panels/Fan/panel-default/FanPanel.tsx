@@ -19,7 +19,7 @@ export function FanPanel({
   // 风速是拖动条，如果由devicedata来控制，会给人非常明显的卡顿感
   const [sliderValue, setSliderValue] = useState(
     (deviceData["windspeed"] * 100) /
-      Object.keys(templateMap.windspeed.define.mapping).length || 0
+      (Object.keys(templateMap.windspeed.define.mapping).length - 1)|| 0
   );
   useEffect(() => {
     if (offline) {
