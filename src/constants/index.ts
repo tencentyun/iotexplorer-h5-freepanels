@@ -15,3 +15,7 @@ export const offlineModalContent = [
   '3. 是否修改了路由器的名称或密码，可以尝试重新连接；',
   '4. 设备是否与路由器距离过远、隔墙或有其他遮挡物。',
 ];
+
+export enum appIdMap {
+  pinduoduo = 'wx32540bd863b27570'
+}
