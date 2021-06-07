@@ -8,7 +8,9 @@ import { isFullScreen, px2rpx, rpx2rem } from "@utillib";
 import * as wxlib from "@wxlib";
 import { Modal } from "@components/Modal";
 import { iconGoShop, iconShop } from "@icons/device/index";
-import { requestStaticConfig } from "@src/libs/request";
+import { getVirtualDeviceShopUrl } from "@src/models";
+import { useParams } from "@hooks/useParams";
+import { appIdMap } from "@constants";
 
 export interface FreePanelLayoutProps extends StyledProps {
   children: React.ReactNode;
@@ -43,6 +45,7 @@ export function FreePanelLayout({
   onGoTimingProject,
   defaultFooter = true, // 有些面板的footer比较定制化
 }: FreePanelLayoutProps) {
+  const { panelId = "" } = useParams();
   const [showShopCard, setShowShopCard] = useState(false);
   useEffect(() => {
     if (offline) {
@@ -78,23 +81,15 @@ export function FreePanelLayout({
   };
 
   const goShop = async () => {
-    try {
-      const res = window.location.search.split("&").find((item) => {
-        return item.indexOf("panelId") !== -1;
+    if (panelId) {
+      const data = await getVirtualDeviceShopUrl();
+      const item = data.find((item) => {
+        return item.panelId === panelId;
       });
-      if (res) {
-        const { data } = await requestStaticConfig("/51/config3.js");
-        const item = data.find((item) => {
-          console.log(item.panelId, res.split("=")[1]);
-          return item.panelId === res.split("=")[1];
-        });
-        wxlib.router.go("/pages/Functional/RedirectTo3rdMP/RedirectTo3rdMP", {
-          appid: "wx32540bd863b27570",
-          path: item.url,
-        });
-      }
-    } catch (err) {
-      console.log(err);
+      wxlib.router.go("/pages/Functional/RedirectTo3rdMP/RedirectTo3rdMP", {
+        appid: appIdMap["pinduoduo"],
+        path: item.url,
+      });
     }
   };
 

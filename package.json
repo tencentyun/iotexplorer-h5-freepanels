@@ -29,6 +29,7 @@
     "jsonp": "^0.2.1",
     "postcss-pxtorem": "^5.1.1",
     "qcloud-iotexplorer-h5-panel-sdk": "^1.1.19",
+    "query-string": "^7.0.0",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "react-rangeslider": "^2.2.0",
@@ -36,7 +37,8 @@
     "react-switch": "^5.0.1",
     "rmc-picker": "^5.0.10",
     "tinycolor2": "^1.4.2",
-    "underscore": "^1.12.0"
+    "underscore": "^1.12.0",
+    "url-parse": "^1.5.1"
   },
   "browserslist": {
     "production": [
