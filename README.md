@@ -10,10 +10,10 @@
 
 ```
 js地址：
-https://127.0.0.1:9000/FiveRoadLight__panel-default.js
+https://127.0.0.1:9000/FiveRoadLight_panel-default.js
 
 css地址：
-https://127.0.0.1:9000/FiveRoadLight__panel-default.css
+https://127.0.0.1:9000/FiveRoadLight_panel-default.css
 
 其中 'socket' 为前面指定的 category 参数，'panel-default' 为前面指定的 panel 参数
 ```

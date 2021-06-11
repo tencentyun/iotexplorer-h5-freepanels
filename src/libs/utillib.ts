@@ -1,5 +1,7 @@
 import _ from '@underscore';
 import { RefAttributes, ForwardRefExoticComponent } from 'react';
+import urlParse from 'url-parse';
+import querystring from 'query-string';
 
 export const delay = timeout => new Promise(resolve => setTimeout(() => resolve(), timeout));
 
@@ -550,7 +552,7 @@ export function rpx2rem(rpx, withUnit?: true): string;
 export function rpx2rem(rpx, withUnit?: false): number;
 export function rpx2rem(rpx, withUnit: boolean = true) {
   const rem = rpx / 46.875;
-  
+
   if (withUnit) {
     return `${rem}rem`;
   }
@@ -589,3 +591,11 @@ export const getErrorMsg = (err, {
 
   return errorMsg;
 };
+
+export function parseUrl(url) {
+  const uri = urlParse(url);
+  if (uri && uri.query) {
+    uri.query = querystring.parse(uri.query);
+  }
+  return uri;
+}
