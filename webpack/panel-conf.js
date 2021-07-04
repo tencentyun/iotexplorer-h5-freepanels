@@ -35,4 +35,10 @@ module.exports = {
       ['panel-default', { enable: true }],
     ],
   },
+  KugouMusic: {
+    enable: true,
+    panels: [
+      ['panel-default', { enable: true }],
+    ],
+  },
 };

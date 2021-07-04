@@ -1,0 +1,121 @@
+.music-player {
+  width: 100vw;
+  height: 99vh;
+  position: relative;
+  text-align: center;
+  box-sizing: border-box;
+
+  header {
+    border-bottom: #222f3e;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    position: relative;
+
+    .song-name {
+      font-weight: 700;
+      margin: 50px 0 20px;
+    }
+
+    .singer-name {
+      font-size: 28px;
+    }
+
+    .progress-volume {
+      padding: 0 60px;
+      top: 150px;
+
+      .icon-volume {
+        width: 26px;
+        height: 26px;
+        margin-right: 20px;
+      }
+    }
+  }
+
+
+  .album_img {
+    width: 460px;
+    height: 460px;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -90%);
+    overflow: hidden;
+  }
+
+  // animation transform冲突
+  .rotate {
+    animation: rotate 20s linear infinite;
+  }
+
+  @keyframes rotate {
+    0% {
+      transform: rotateZ(0deg); /*从0度开始*/
+    }
+    100% {
+      transform: rotateZ(360deg); /*360度结束*/
+    }
+  }
+
+  footer {
+    width: 100vw;
+    height: 200px;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+    .icon-bottom {
+      width: 60px;
+      height: 60px;
+    }
+
+    .progress-song {
+      top: -50px;
+
+      .start-time, .total-time {
+        font-size: 24px;
+        color: #6C7078;
+        width: 100px;
+      }
+    }
+  }
+
+  .progress {
+    position: absolute;
+    width: 100vw;
+    padding: 0 40px;
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+
+    .progress-bar {
+      position: relative;
+      width: 470px;
+      flex: 1;
+      height: 8px;
+      background-color: #ccc;
+
+      .progress-bar-fill {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 80%;
+        height: 8px;
+        background-color: #807d7d;
+      }
+    }
+  }
+}
+
+.emptyPanel {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 700;
+}
