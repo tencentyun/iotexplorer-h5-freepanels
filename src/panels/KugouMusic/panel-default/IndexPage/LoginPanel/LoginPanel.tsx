@@ -14,11 +14,13 @@ export const LoginPanel = () => {
       </Button>
 
       <Button
-        onClick={() => {
+        onClick={async () => {
           try {
-            tmeSdk.login();
-          } catch (e) {
-            console.error('tme sdk demo 报错-----------------------------', e);
+            const res = await tmeSdk.login();
+            sdk.tips.alert(res.error_msg);
+          } catch (err) {
+            console.error('登录报错', err);
+            sdk.tips.alert(err.error_msg);
           }
         }}
       >
