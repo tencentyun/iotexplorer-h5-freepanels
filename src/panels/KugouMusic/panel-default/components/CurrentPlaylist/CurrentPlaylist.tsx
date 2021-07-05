@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { KugouContext } from '@src/panels/KugouMusic/panel-default/KugouPage/KugouIndex';
+import { KugouContext } from '@src/panels/KugouMusic/panel-default/KugouIndex/KugouIndex';
 import './CurrentPlaylist.less';
 
 const MusicListItem = ({ song }: { song: Song }) => {

@@ -1,8 +1,8 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import { RecommendDaily } from '@src/panels/KugouMusic/panel-default/KugouPage/RecommendDailyPanel/RecommendDaily';
-import { PlaylistPanel } from '@src/panels/KugouMusic/panel-default/KugouPage/PlaylistPanel/PlaylistPanel';
-import { AlbumPanel } from '@src/panels/KugouMusic/panel-default/KugouPage/AlbumPanel/AlbumPanel';
+import { RecommendDaily } from '@src/panels/KugouMusic/panel-default/KugouIndex/RecommendDailyPanel/RecommendDaily';
+import { PlaylistPanel } from '@src/panels/KugouMusic/panel-default/KugouIndex/PlaylistPanel/PlaylistPanel';
+import { AlbumPanel } from '@src/panels/KugouMusic/panel-default/KugouIndex/AlbumPanel/AlbumPanel';
 import {
   getRecommendSong,
   getRecommendPlayList,
@@ -13,8 +13,8 @@ import {
 } from '@src/models/kugou';
 import { iconMusicPlayer } from '@icons/kugou';
 import './KugouIndex.less';
-import { DeviceInfo } from '@src/panels/KugouMusic/panel-default/KugouPage/DeviceInfo/DeviceInfo';
-import { LoginPanel } from '@src/panels/KugouMusic/panel-default/KugouPage/LoginPanel/LoginPanel';
+import { DeviceInfo } from '@src/panels/KugouMusic/panel-default/KugouIndex/DeviceInfo/DeviceInfo';
+import { LoginPanel } from '@src/panels/KugouMusic/panel-default/KugouIndex/LoginPanel/LoginPanel';
 import { KugouContext, KugouStateAction } from '@src/panels/KugouMusic/panel-default/app';
 
 export const KugouIndex = () => {

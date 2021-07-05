@@ -2,9 +2,9 @@ import React, { useReducer, useState } from 'react';
 import { entryWrap } from '@src/entryWrap';
 import './style.less';
 import { HashRouter, Route } from 'react-router-dom';
-import { KugouIndex } from './KugouPage/KugouIndex';
-import { MusicPlayer } from '@src/panels/KugouMusic/panel-default/KugouPage/MusicPlayer/MusicPlayer';
-import { MusicListPage } from '@src/panels/KugouMusic/panel-default/KugouPage/MusicListPage/MusicListPage';
+import { KugouIndex } from './KugouIndex/KugouIndex';
+import { MusicPlayer } from '@src/panels/KugouMusic/panel-default/MusicPlayer/MusicPlayer';
+import { MusicListPage } from '@src/panels/KugouMusic/panel-default/MusicListPage/MusicListPage';
 declare type Reducer = (state: KugouState, action: ReducerAction<KugouStateAction>) => KugouState;
 
 export const enum KugouStateAction {

@@ -8,7 +8,7 @@ import {
   getSongsInfo,
   getSongUrl,
 } from '@src/models/kugou';
-import { KugouContext, KugouStateAction } from '@src/panels/KugouMusic/panel-default/KugouPage/KugouIndex';
+import { KugouContext, KugouStateAction } from '@src/panels/KugouMusic/panel-default/app';
 
 interface PageParams {
   type: 'album' | 'playlist';
