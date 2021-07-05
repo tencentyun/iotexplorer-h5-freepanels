@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import './AlbumPanel.less';
-import { KugouContext } from '@src/panels/KugouMusic/panel-default/KugouPage/KugouIndex';
+import { KugouContext } from '@src/panels/KugouMusic/panel-default/app';
 
 function AlbumItem({ album }: { album: Album }) {
   const history = useHistory();

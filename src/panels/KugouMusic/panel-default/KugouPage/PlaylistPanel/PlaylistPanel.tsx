@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import './PlaylistPanel.less';
-import { KugouContext } from '@src/panels/KugouMusic/panel-default/KugouPage/KugouIndex';
+import { KugouContext } from '@src/panels/KugouMusic/panel-default/app';
 
 function PlaylistItem({ playlist }: { playlist: Playlist }) {
   const {

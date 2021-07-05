@@ -1,6 +1,5 @@
-import React, { useEffect, useReducer, useState } from 'react';
-import { Route, useLocation, useHistory } from 'react-router-dom';
-import { TabBar } from '@src/panels/KugouMusic/panel-default/components/TabBar/TabBar';
+import React, { useContext, useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import { RecommendDaily } from '@src/panels/KugouMusic/panel-default/KugouPage/RecommendDailyPanel/RecommendDaily';
 import { PlaylistPanel } from '@src/panels/KugouMusic/panel-default/KugouPage/PlaylistPanel/PlaylistPanel';
 import { AlbumPanel } from '@src/panels/KugouMusic/panel-default/KugouPage/AlbumPanel/AlbumPanel';
@@ -12,135 +11,42 @@ import {
   getSongsByPlaylist,
   getSongData,
 } from '@src/models/kugou';
-import { MusicPlayer } from '@src/panels/KugouMusic/panel-default/KugouPage/MusicPlayer/MusicPlayer';
 import { iconMusicPlayer } from '@icons/kugou';
 import './KugouIndex.less';
-import { MusicListPage } from '@src/panels/KugouMusic/panel-default/KugouPage/MusicListPage/MusicListPage';
-import { CurrentPlaylist } from '@src/panels/KugouMusic/panel-default/components/CurrentPlaylist/CurrentPlaylist';
-
-declare type Reducer = (state: KugouState, action: ReducerAction<KugouStateAction>) => KugouState;
-
-export const enum KugouStateAction {
-  UpdateCurrentPlayQueue = 'UpdateCurrentPlayQueue',
-  UpdateCurrentPlaySong = 'UpdateCurrentPlaySong',
-  UpdateRecommendSongs = 'UpdateRecommendSongs',
-  UpdateRecommendPlaylists = 'UpdateRecommendPlaylists',
-  UpdateAlbums = 'UpdateAlbums',
-  UpdateDeviceData = 'UpdateDeviceData'
-}
-
-function kugouInitState(sdk): KugouState {
-  return {
-    recommendSongs: [],
-    recommendPlaylists: [],
-    albums: [],
-    showPlaylistModel: false,
-    currentPlayQueue: { songs: [], queueId: '' },
-    currentPlaySong: null,
-    deviceData: Object.assign({}, sdk.deviceData),
-  };
-}
-
-export function reducer(state: KugouState, action: ReducerAction<KugouStateAction>): KugouState {
-  const { type, payload } = action;
-  console.log('action => ', type, payload);
-  console.log('prev state => ', state);
-  const nextState = (() => {
-    switch (type) {
-      case KugouStateAction.UpdateRecommendSongs: {
-        return {
-          ...state,
-          recommendSongs: payload,
-        };
-      }
-      case KugouStateAction.UpdateRecommendPlaylists: {
-        return {
-          ...state,
-          recommendPlaylists: payload,
-        };
-      }
-      case KugouStateAction.UpdateAlbums: {
-        return {
-          ...state,
-          albums: payload,
-        };
-      }
-      case KugouStateAction.UpdateCurrentPlaySong: {
-        return {
-          ...state,
-          currentPlaySong: payload,
-        };
-      }
-      case KugouStateAction.UpdateDeviceData: {
-        const updateDeviceData = {} as KugouDeviceData;
-        for (const key in payload) {
-          updateDeviceData[key] = payload[key].Value;
-        }
-        return {
-          ...state,
-          deviceData: Object.assign({}, state.deviceData, updateDeviceData),
-        };
-      }
-      case KugouStateAction.UpdateCurrentPlayQueue: {
-        return {
-          ...state,
-          currentPlayQueue: {
-            songs: payload.songs,
-            queueId: payload.queueId,
-          },
-        };
-      }
-    }
-    return state;
-  })();
-  console.log('next state => ', nextState);
-  return nextState;
-}
-
-function MusicPlayerIcon({ goMusicPlayer }) {
-  return (
-    <div onClick={goMusicPlayer}>
-      <img className="iconMusicPlayer" src={iconMusicPlayer} alt=""/>
-    </div>
-  );
-}
-
-export const KugouContext = React.createContext({} as KugouContext);
+import { DeviceInfo } from '@src/panels/KugouMusic/panel-default/KugouPage/DeviceInfo/DeviceInfo';
+import { LoginPanel } from '@src/panels/KugouMusic/panel-default/KugouPage/LoginPanel/LoginPanel';
+import { KugouContext, KugouStateAction } from '@src/panels/KugouMusic/panel-default/app';
 
 export const KugouIndex = () => {
   const sdk = window.h5PanelSdk;
-  const [kugouState, dispatch] = useReducer<Reducer, any>(reducer, sdk, kugouInitState);
-  const [showTabBar, setShowTabBar] = useState(true);
-  const [showPlaylistModel, setShowPlaylistModel] = useState(false);
-
-  const location = useLocation();
   const history = useHistory();
+  const { kugouState, dispatch, setShowPlaylistModel, showPlaylistModel } = useContext(KugouContext);
 
-  function goMusicPlayer() {
-    history.push('/kugou/musicPlayer');
-  }
-
+  // 初始化wsReport回调
   useEffect(() => {
-    sdk.on('wsReport', (res) => {
+    const handleWsReport = async (res) => {
       console.log('酷狗h5 Demo收到wsReport', res);
       dispatch({
         type: KugouStateAction.UpdateDeviceData,
         payload: res.deviceData,
       });
-      // 设备端更新歌曲
-      const updateSong = async () => {
-        if (res.deviceData.cur_song_id) {
-          const newSong = await getSongData(res.deviceData.cur_song_id.Value);
-          dispatch({
-            type: KugouStateAction.UpdateCurrentPlaySong,
-            payload: newSong,
-          });
-        }
-      };
-      updateSong();
-    });
+      // 额外操作，正常情况更新物模型即可
+      // 1.设备端更新歌曲
+      if (res.deviceData.cur_song_id) {
+        const newSong = await getSongData(res.deviceData.cur_song_id.Value);
+        dispatch({
+          type: KugouStateAction.UpdateCurrentPlaySong,
+          payload: newSong,
+        });
+      }
+    };
+    sdk.on('wsReport', handleWsReport);
+    return () => {
+      sdk.off('wsReport', handleWsReport);
+    };
   }, []);
 
+  // 初始化，拉日推，歌单，专辑
   useEffect(() => {
     getRecommendSong().then((res) => {
       dispatch({
@@ -162,15 +68,14 @@ export const KugouIndex = () => {
     });
   }, []);
 
+  // 初始化，同步设备当前的歌单和歌
   useEffect(() => {
-    // 初始化，同步设备当前的歌单和歌
     const syncDevicePlaylistAndSong = async () => {
       // 同步歌单
       const { deviceData } = kugouState;
       let { cur_play_list } = deviceData;
       const { cur_song_id } = deviceData;
       cur_play_list = JSON.parse(cur_play_list);
-      console.log('同步设备歌单，歌曲', cur_play_list, cur_song_id);
       if (cur_play_list.play_type === 'v2/album/info') {
         const { page, size, album_id: id } = cur_play_list.play_params;
         const res = await getSongsByAlbum(page, size, id);
@@ -203,48 +108,59 @@ export const KugouIndex = () => {
     syncDevicePlaylistAndSong();
   }, []);
 
-  useEffect(() => {
-    const checkShowTabBar = () => {
-      const { pathname } = location;
-      const isNoTabBarPage = tabs.some((item) => {
-        if (item.path === pathname && item.notShowTab) {
-          return true;
-        }
-      });
-      setShowTabBar(!isNoTabBarPage);
-    };
-    checkShowTabBar();
-  });
+  function MusicPlayerIcon() {
+    return (
+      <div onClick={() => {
+        history.push('/musicPlayer');
+      }}>
+        <img className="iconMusicPlayer" src={iconMusicPlayer} alt=""/>
+      </div>
+    );
+  }
 
-  const tabs = [
-    {
-      name: '每日推荐',
-      path: '/kugou/recommendDaily',
-      render: () => <RecommendDaily/>,
-    },
-    {
-      name: '歌手专辑',
-      path: '/kugou/albums',
-      render: () => <AlbumPanel/>,
-    },
-    {
-      name: '推荐歌单',
-      path: '/kugou/playlist',
-      render: () => <PlaylistPanel/>,
-    },
-    {
-      name: '音乐播放器',
-      path: '/kugou/musicPlayer',
-      render: () => <MusicPlayer/>,
-      notShowTab: true,
-    },
-    {
-      name: '歌曲列表',
-      path: '/kugou/musicList',
-      render: () => <MusicListPage/>,
-      notShowTab: true,
-    },
-  ];
+  const [currentTab, setCurrentTab] = useState('DevicePanel');
+
+  const renderView = () => {
+    switch (currentTab) {
+      case 'DevicePanel':
+        return <DeviceInfo/>;
+      case 'LoginPanel':
+        return <LoginPanel/>;
+      case 'RecommendDaily':
+        return <RecommendDaily/>;
+      case 'AlbumPanel':
+        return <AlbumPanel/>;
+      case 'PlaylistPanel':
+        return <PlaylistPanel/>;
+    }
+  };
+
+  const TabBar = () => {
+    const tabList = [
+      { text: '设备', path: 'DevicePanel' },
+      { text: '登录', path: 'LoginPanel' },
+      { text: '日推', path: 'RecommendDaily' },
+      { text: '专辑', path: 'AlbumPanel' },
+      { text: '歌单', path: 'PlaylistPanel' },
+    ];
+    return (
+      <div className="tabBar">
+        {
+          tabList.map(item => (
+            <span
+              className="link"
+              key={item.path}
+              onClick={() => {
+                setCurrentTab(item.path);
+              }}
+            >
+              {item.text}
+            </span>
+          ))
+        }
+      </div>
+    );
+  };
 
   return (
     <KugouContext.Provider value={{
@@ -254,18 +170,9 @@ export const KugouIndex = () => {
       setShowPlaylistModel,
     }}>
       <div className="kugou-index">
-        {
-          tabs.map(({ path, render }) => (
-            <Route key={path} path={path} render={render}/>
-          ))
-        }
-        {showTabBar && (
-          <>
-            <TabBar tabs={tabs}/>
-            <MusicPlayerIcon goMusicPlayer={goMusicPlayer}/>
-          </>
-        )}
-        {showPlaylistModel && <CurrentPlaylist/>}
+        {renderView()}
+        <TabBar/>
+        <MusicPlayerIcon/>
       </div>
     </KugouContext.Provider>
   );

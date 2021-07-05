@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import './RecommendDaily.less';
 import { MusicListItem } from '@src/panels/KugouMusic/panel-default/components/MusicListItem/MusicListItem';
-import { KugouContext } from '@src/panels/KugouMusic/panel-default/KugouPage/KugouIndex';
+import { KugouContext } from '@src/panels/KugouMusic/panel-default/app';
 
 export function RecommendDaily() {
   const { kugouState } = useContext(KugouContext);

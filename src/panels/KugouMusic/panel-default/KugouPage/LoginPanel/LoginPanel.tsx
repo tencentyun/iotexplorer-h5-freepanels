@@ -4,14 +4,13 @@ import { Button } from '../../components/Button';
 
 const sdk = window.h5PanelSdk;
 const tmeSdk = window.h5PanelSdk.TMESdk.h5 as TMESDK;
-export const LoginPanel = () => {
-  return (
+export const LoginPanel = () => (
     <div className="login-panel">
-      <Button onClick={() => {
-        sdk.showDeviceDetail();
-      }}>
-        H5 设备详情视图
-      </Button>
+      {/* <Button onClick={() => {*/}
+      {/*  sdk.showDeviceDetail();*/}
+      {/* }}>*/}
+      {/*  H5 设备详情视图*/}
+      {/* </Button>*/}
 
       <Button
         onClick={async () => {
@@ -29,26 +28,31 @@ export const LoginPanel = () => {
 
       <Button
         onClick={async () => {
-          const res = await tmeSdk.logout();
-          console.log(res);
+          tmeSdk.logout()
+            .then(res => console.log(res))
+            .catch(err => sdk.tips.alert(err.error_msg));
         }}
       >
         用户登出
       </Button>
 
       <Button onClick={async () => {
-        const res = await tmeSdk.getUserInfo();
-        console.log(res);
+        tmeSdk.getUserInfo()
+          .then(res => console.log(res))
+          .catch((err) => {
+            console.error(err);
+            sdk.tips.alert(err.error_msg);
+          });
       }}>
         获取用户信息
       </Button>
 
       <Button onClick={async () => {
-        const res = await tmeSdk.checkDeviceAuth();
-        console.log(res);
+        tmeSdk.checkDeviceAuth()
+          .then(res => console.log(res))
+          .catch(err => sdk.tips.alert(err.error_msg));
       }}>
         校验设备授权
       </Button>
     </div>
-  );
-};
+);

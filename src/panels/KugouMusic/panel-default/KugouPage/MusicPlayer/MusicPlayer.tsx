@@ -10,7 +10,6 @@ import {
   iconModeSingle,
   iconModeOrder, iconVolume,
 } from '@icons/kugou';
-import { KugouContext } from '@src/panels/KugouMusic/panel-default/KugouPage/KugouIndex';
 import {
   controlDevice,
   controlPause,
@@ -19,6 +18,7 @@ import {
   controlPlayNext, controlPlayPosition,
   controlPlayPre, controlVolume,
 } from '@src/models/kugou';
+import { KugouContext } from '@src/panels/KugouMusic/panel-default/app';
 
 enum PlayStatus {
   Pause = 0,
