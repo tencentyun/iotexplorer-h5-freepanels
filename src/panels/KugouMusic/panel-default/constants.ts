@@ -1,0 +1,10 @@
+export const PausePlayKey = 'pause_play';
+export const CurPlayListKey = 'cur_play_list';
+export const PreNextKey = 'pre_next';
+export const PlayModeKey = 'play_mode';
+export const VolumeKey = 'volume';
+export const PlayPositionKey = 'play_position';
+export const CurSongIdKey = 'cur_song_id';
+export const RecommendQualityKey = 'recommend_quality';
+export const ControlSeqKey = 'control_seq';
+export const SongIndexKey = 'song_index';

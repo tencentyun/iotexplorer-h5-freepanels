@@ -1,0 +1,82 @@
+.kugou-home {
+  box-sizing: border-box;
+  width: 100vw;
+  padding: 40px 32px;
+
+  .home-box {
+    margin-top: 60px;
+    &:first-child {
+      margin-top: 0;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 60px;
+
+      .title {
+        font-size: 40px;
+        color: #15161A;
+        font-weight: 700;
+      }
+
+      .more {
+        display: block;
+        font-size: 24px;
+        color: #6C7078;
+        height: 60px;
+        line-height: 60px;
+      }
+    }
+
+    main {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+
+    .home-box-item {
+      margin-top: 32px;
+
+      &:nth-child(-n+3) {
+        margin-top: 20px;
+      }
+
+      .img-album {
+        width: 215px;
+        height: 215px;
+        border-radius: 16px;
+      }
+
+      .line-1, .line-2 {
+        margin-top: 20px;
+        width: 215px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      .line-1 {
+        font-size: 28px;
+        color: #15161A;
+      }
+
+      .line-1-playlist {
+        margin-top: 20px;
+        width: 215px;
+        font-size: 28px;
+        color: #15161A;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2;
+        overflow: hidden;
+      }
+
+      .line-2 {
+        font-size: 24px;
+        color: #6C7078;
+      }
+    }
+  }
+}

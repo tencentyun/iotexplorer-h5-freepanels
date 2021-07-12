@@ -1,1 +1,12 @@
-<?xml version="1.0" standalone="no"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg t="1625047984290" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2329" xmlns:xlink="http://www.w3.org/1999/xlink" width="200" height="200"><defs><style type="text/css"></style></defs><path d="M304 928c0 17.664 14.32 32 32 32h16c17.664 0 32-14.336 32-32V96c0-17.664-14.336-32-32-32h-16c-17.68 0-32 14.336-32 32v832z m336 0c0 17.664 14.336 32 32 32h16c17.68 0 32-14.336 32-32V96c0-17.664-14.32-32-32-32h-16c-17.664 0-32 14.336-32 32v832z" fill="" p-id="2330"></path></svg>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="128px" height="128px" viewBox="0 0 128 128" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>暂停</title>
+    <g id="【小程序】酷狗音乐免开发面板-7.1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="开启" transform="translate(-311.000000, -1401.000000)">
+            <g id="暂停" transform="translate(311.000000, 1401.000000)">
+                <polygon id="路径" points="0 0 128 0 128 128 0 128"></polygon>
+                <path d="M64,11 C93.2719,11 117,34.7281 117,64 C117,93.2719 93.2719,117 64,117 C34.7281,117 11,93.2719 11,64 C11,34.7281 34.7281,11 64,11 Z M73.5,44 C70.7377778,44 68.5,44.8737143 68.5,47.7142857 L68.5,80.2857143 C68.5,83.1262857 70.7377778,84 73.5,84 C76.2616667,84 78.5,83.1262857 78.5,80.2857143 L78.5,47.7142857 C78.5,44.8737143 76.2616667,44 73.5,44 Z M54.5,44 C51.7377778,44 49.5,44.8737143 49.5,47.7142857 L49.5,80.2857143 C49.5,83.1262857 51.7377778,84 54.5,84 C57.2616667,84 59.5,83.1262857 59.5,80.2857143 L59.5,47.7142857 C59.5,44.8737143 57.2616667,44 54.5,44 Z" id="形状" fill="#FFFFFF" fill-rule="nonzero"></path>
+            </g>
+        </g>
+    </g>
+</svg>

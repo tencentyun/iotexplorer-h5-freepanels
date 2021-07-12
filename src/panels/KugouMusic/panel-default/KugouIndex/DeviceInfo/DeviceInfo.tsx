@@ -10,32 +10,43 @@ export const DeviceInfo = () => {
   const [deviceStatus, setDeviceStatus] = useState<number>(sdk.deviceStatus);
 
   useEffect(() => {
-    sdk.on('wsControl', (res: any) => setLiveData(res.deviceData, 'control'));
-    sdk.on('wsReport', (res: any) => setLiveData(res.deviceData, 'report'));
-    sdk.on('wsStatusChange', ({ deviceStatus }: any) => {
-      setDeviceStatus(deviceStatus);
-    });
+    sdk.on('wsControl', setControlData);
+    sdk.on('wsReport', setReportData);
+    sdk.on('wsStatusChange', onDeviceStatusChange);
     return () => {
-      sdk.off('wsControl');
-      sdk.off('wsReport');
-      sdk.off('wsStatusChange');
+      sdk.off('wsControl', setControlData);
+      sdk.off('wsReport', setReportData);
+      sdk.off('wsStatusChange', onDeviceStatusChange);
     };
   }, []);
 
-  function setLiveData(deviceData: any, type: string) {
-    console.log(type);
+  function onDeviceStatusChange(res) {
+    const deviceStatus = res.deviceStatus;
+    setDeviceStatus(deviceStatus);
+  }
+
+  function setControlData(res: any) {
+    const deviceData = res.deviceData;
     for (const key in deviceData) {
       deviceData[key] = deviceData[key].Value;
     }
     const str = JSON.stringify(deviceData, null, 2);
-    if (type === 'control') setControlJSON(str);
-    if (type === 'report') setReportJSON(str);
+    setControlJSON(str);
+  }
+
+  function setReportData(res: any) {
+    const deviceData = res.deviceData;
+    for (const key in deviceData) {
+      deviceData[key] = deviceData[key].Value;
+    }
+    const str = JSON.stringify(deviceData, null, 2);
+    setReportJSON(str);
   }
 
   return (
     <div className="info-panel">
       <h3 className="title">设备信息</h3>
-      <p>设备ID：deviceId={sdk.deviceId}</p>
+      <p>07101446设备ID：deviceId={sdk.deviceId}</p>
       <p>产品ID：productId={sdk.productId}</p>
       <p>设备名称：deviceName={sdk.deviceName}</p>
       <p>在线状态：deviceStatus={deviceStatus}

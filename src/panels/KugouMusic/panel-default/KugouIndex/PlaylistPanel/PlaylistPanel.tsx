@@ -14,7 +14,7 @@ function PlaylistItem({ playlist }: { playlist: Playlist }) {
 
   function goPlayListMusicList() {
     history.push({
-      pathname: '/kugou/musicList',
+      pathname: '/musicList',
       params: {
         type: 'playlist',
         id: playlist_id,
@@ -28,7 +28,7 @@ function PlaylistItem({ playlist }: { playlist: Playlist }) {
   return (
     <div className="playlist-item" onClick={goPlayListMusicList}>
       {/* 加载不出来 */}
-      <img src={'http://c1.kgimg.com/custom/240/20210702/20210702090005502768.jpg'} alt=""/>
+      <img src={pic} alt=""/>
       <div className="playlist-info">
         <p className="playlist-name">{playlist_name}</p>
         <p className="playlist-id">歌单id: {playlist_id}</p>

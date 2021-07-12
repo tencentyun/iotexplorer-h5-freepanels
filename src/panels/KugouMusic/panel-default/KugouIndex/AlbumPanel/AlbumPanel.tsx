@@ -8,7 +8,7 @@ function AlbumItem({ album }: { album: Album }) {
 
   function goAlbumMusicList() {
     history.push({
-      pathname: '/kugou/musicList',
+      pathname: '/musicList',
       params: {
         type: 'album',
         id: album.album_id,

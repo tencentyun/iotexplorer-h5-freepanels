@@ -1,4 +1,14 @@
+import Toast from '@src/panels/KugouMusic/panel-default/components/Toast/Toast';
+
 const tmeSdk: TMESDK = window.h5PanelSdk.TMESdk.h5;
+
+export function checkLoginAuth() {
+  return tmeSdk.checkDeviceAuth();
+}
+
+export function login() {
+  return tmeSdk.login();
+}
 
 export function getRecommendSong() {
   return tmeSdk.requestKugouApi('RecommendDaily');
@@ -48,11 +58,19 @@ export function getSongsInfo(songs_id) {
   });
 }
 
-export async function getSongData(song_id: string) {
+export async function getSongData(song_id: string): Promise<Song> {
   const res = await Promise.all([getSongUrl(song_id), getSongsInfo([song_id])]);
   const songUrl = res[0].data;
   const songInfo = res[1].data.songs[0];
   return Object.assign({}, songUrl, songInfo);
+}
+
+export function getNewSongs(page: number, size: number, top_id: number) {
+  return tmeSdk.requestKugouApi('GetNewSongs', {
+    page,
+    size,
+    top_id,
+  });
 }
 
 export function controlCurMusicList(action: string, params) {
@@ -91,15 +109,24 @@ export function controlVolume(volume: number) {
   return tmeSdk.setVolume(volume);
 }
 
+export function controlQuality(quality: 0 | 1 | 2) {
+  return tmeSdk.setPlayQuality(quality);
+}
+
 export async function controlDevice(controlFn: (...args) => Promise<any>, ...args) {
+  if (window.h5PanelSdk.deviceStatus === 0) {
+    Toast.open('设备已离线，暂时不能播放哦~');
+    return Promise.reject();
+  }
   window.h5PanelSdk.tips.showLoading('同步设备中');
   try {
     const res = await controlFn(...args);
     window.h5PanelSdk.tips.hideLoading();
     return res;
   } catch (err) {
-    console.error(err);
+    console.error('控制设备出错', err);
     window.h5PanelSdk.tips.hideLoading();
     window.h5PanelSdk.tips.alert(err.error_msg);
+    return Promise.reject();
   }
 }

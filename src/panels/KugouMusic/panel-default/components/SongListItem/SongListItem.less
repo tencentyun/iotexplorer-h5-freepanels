@@ -1,0 +1,65 @@
+p {
+  margin: 0;
+}
+
+.song-list-item {
+  height: 80px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 40px;
+
+  .album {
+    width: 70px;
+    height: 70px;
+    margin-right: 20px;
+    border-radius: 10px;
+  }
+
+  .iconLike {
+    width: 28px;
+  }
+
+  .middle-view {
+    height: 80px;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    font-family: PingFangSC-Regular;
+
+    .song-view {
+      font-size: 28px;
+      color: #15161A;
+      display: flex;
+    }
+
+    .song-name, .singer {
+      display: inline-block;
+      max-width: 400px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .singer {
+      font-size: 24px;
+      color: #6C7078;
+    }
+
+    .not-play-color {
+      color: #A1A7B2;
+    }
+
+    .vipIcon {
+      display: inline-block;
+      width: 72px;
+      height: 32px;
+      line-height: 32px;
+      text-align: center;
+      background-image: linear-gradient(130deg, #FFBA75 0%, #E19244 100%);
+      border-radius: 20px;
+      font-size: 20px;
+      color: #FFFFFF;
+      margin-left: 12px;
+    }
+  }
+}

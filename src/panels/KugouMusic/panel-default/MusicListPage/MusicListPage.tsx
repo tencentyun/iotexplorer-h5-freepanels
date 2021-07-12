@@ -2,7 +2,7 @@ import React, { useEffect, useState, useContext } from 'react';
 import { useLocation, useHistory } from 'react-router-dom';
 import './MusicListPage.less';
 import {
-  controlCurMusicList, controlSetCurSongId,
+  controlCurMusicList, controlDevice, controlSetCurSongId,
   getSongsByAlbum,
   getSongsByPlaylist,
   getSongsInfo,
@@ -26,31 +26,18 @@ const MusicListItem = ({ song, pageParams }: { song: Song, pageParams: PageParam
   async function sendMusicListToDevice() {
     const { queueId } = kugouState.currentPlayQueue;
     // 是当前播放队列的，只切歌，不是同步歌单+歌
-    let p1;
     if (queueId !== pageParams.id) {
       if (pageParams.type === 'album') {
-        p1 = controlCurMusicList('GetSongsByAlbum', { page: 1, size: 10, album_id: pageParams.id });
+        await controlDevice(controlCurMusicList, 'GetSongsByAlbum', { page: 1, size: 10, album_id: pageParams.id });
       } else if (pageParams.type === 'playlist') {
-        p1 = controlCurMusicList('GetSongsByPlaylist', { page: 1, size: 10, playlist_id: pageParams.id });
+        await controlDevice(controlCurMusicList, 'GetSongsByPlaylist', { page: 1, size: 10, album_id: pageParams.id });
       }
-    } else {
-      p1 = Promise.resolve();
     }
-    const p2 = controlSetCurSongId(song.song_id);
-    await Promise.all([p1, p2]);
+    return await controlSetCurSongId(song.song_id);
   }
 
   // 获取歌 UI更新
   async function updateUI() {
-    // 更新歌曲
-    const res = await Promise.all([getSongUrl(song.song_id), getSongsInfo([song.song_id])]);
-    const songUrl = res[0].data;
-    const songInfo = res[1].data.songs[0];
-    const newSong = Object.assign({}, songUrl, songInfo);
-    dispatch({
-      type: KugouStateAction.UpdateCurrentPlaySong,
-      payload: newSong,
-    });
     // 换歌单，更新歌单queue
     const { queueId } = kugouState.currentPlayQueue;
     if (queueId !== pageParams.id) {
@@ -71,7 +58,16 @@ const MusicListItem = ({ song, pageParams }: { song: Song, pageParams: PageParam
         },
       });
     }
-    history.push('/kugou/musicPlayer');
+    // 更新歌曲
+    const res = await Promise.all([getSongUrl(song.song_id), getSongsInfo([song.song_id])]);
+    const songUrl = res[0].data;
+    const songInfo = res[1].data.songs[0];
+    const newSong = Object.assign({}, songUrl, songInfo);
+    dispatch({
+      type: KugouStateAction.UpdateCurrentPlaySong,
+      payload: newSong,
+    });
+    history.push('/musicPlayer');
   }
 
   const handleClick = async () => {
@@ -83,7 +79,7 @@ const MusicListItem = ({ song, pageParams }: { song: Song, pageParams: PageParam
     } catch (err) {
       console.error(err);
       window.h5PanelSdk.tips.hideLoading();
-      window.h5PanelSdk.tips.alert(err.error_msg);
+      window.h5PanelSdk.tips.alert(err);
     }
   };
 
@@ -130,7 +126,7 @@ export const MusicListPage = () => {
   return (
     pageParams && <div className="page-music-list">
       <header>
-        <img src={pageParams.img} alt=""/>
+        <img className="header-img" src={pageParams.img} alt=""/>
         <div className="right">
           <p className="title">{pageParams.title}</p>
           <p className="intro">{pageParams.intro}</p>
