@@ -2,14 +2,41 @@ import React, { useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import './KugouHome.less';
 import { KugouContext } from '@src/panels/KugouMusic/panel-default/app';
+import { useSyncPlayQueueAndSong } from '@src/panels/KugouMusic/panel-default/hooks/useSyncPlayQueueAndSong';
 
 export const KugouHome = () => {
-  const { kugouState } = useContext(KugouContext);
-  const { newSongs, recommendPlaylists: playlists } = kugouState;
+  const { kugouState, dispatch } = useContext(KugouContext);
+  const { newSongs, recommendPlaylists: playlists, recommendSongs } = kugouState;
   const history = useHistory();
 
   return (
     <div className="kugou-home">
+      {/* 日推歌曲 */}
+      <div className="home-box home-box-horizontal">
+        <header>
+          <span className="title">为你推荐</span>
+        </header>
+        <main>
+          {
+            recommendSongs.map((song, songIndex) => (
+              <div key={song.song_id} className="home-box-item" onClick={() => {
+                useSyncPlayQueueAndSong('recommendDaily', 'daily', song, songIndex, kugouState, dispatch).then(() => {
+                  history.push('/musicPlayer');
+                });
+              }}>
+                <img className="img-album" src={song.album_img_mini}/>
+                <p className={song.playable_code === 0 ? 'line-1' : 'line-1 not-play-color'}>
+                  {song.song_name}
+                </p>
+                <p className={song.playable_code === 0 ? 'line-2' : 'line-2 not-play-color'}>
+                  {song.singer_name}
+                </p>
+              </div>
+            ))
+          }
+        </main>
+      </div>
+
       {/* 新歌首发 */}
       <div className="home-box">
         <header>
@@ -18,11 +45,19 @@ export const KugouHome = () => {
         </header>
         <main>
           {
-            newSongs.map(song => (
-              <div key={song.song_id} className="home-box-item">
+            newSongs.map((song, index) => (
+              <div key={song.song_id} className="home-box-item" onClick={() => {
+                useSyncPlayQueueAndSong('newSongs', 1, song, index, kugouState, dispatch).then(() => {
+                  history.push('/musicPlayer');
+                });
+              }}>
                 <img className="img-album" src={song.album_img_mini}/>
-                <p className="line-1">{song.song_name}</p>
-                <p className="line-2">{song.singer_name}</p>
+                <p className={song.playable_code === 0 ? 'line-1' : 'line-1 not-play-color'}>
+                  {song.song_name}
+                </p>
+                <p className={song.playable_code === 0 ? 'line-2' : 'line-2 not-play-color'}>
+                  {song.singer_name}
+                </p>
               </div>
             ))
           }

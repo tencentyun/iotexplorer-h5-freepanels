@@ -15,6 +15,7 @@ declare interface TMESDK {
   getUserInfo: () => Promise<TMEResponse>;
   logout: () => Promise<TMEResponse>;
   checkDeviceAuth: () => Promise<TMEResponse>;
+  activateDevice: () => Promise<TMEResponse>;
 
   play: () => Promise<TMEResponse>;
   pause: () => Promise<TMEResponse>;
@@ -24,8 +25,13 @@ declare interface TMESDK {
   setVolume: (volume: number) => Promise<TMEResponse>;
   setCurSongId: (song_id: string) => Promise<TMEResponse>;
   setPlayQuality: (quality: 0 | 1 | 2) => Promise<TMEResponse>;
-  setCurPlayList: (action: string, params?: any) => Promise<TMEResponse>;
   setPlayPosition: (play_position: number) => Promise<TMEResponse>;
+  setCurrentPlayQueue: (playType: 'playlist' | 'album' | 'newSongs' | 'recommendSongs', params: any) => Promise<TMEResponse>;
+  getCurrentPlayQueue: () => Promise<TMEResponse>;
+  getCurrentPlaySong: () => Promise<TMEResponse>;
+  getSongData: (song_id: string) => Promise<TMEResponse>;
+  setSongIndex: (song_index: number) => Promise<TMEResponse>;
+  controlKugouDeviceData: (deviceData: any) => Promise<TMEResponse>;
 }
 
 declare interface Song {
@@ -92,8 +98,7 @@ declare interface Album {
 declare interface KugouContext {
   kugouState: KugouState;
   dispatch: any;
-  currentTab: string;
-  setCurrentTab: (currentTab: string) => void;
+  setShowPlayFloat: (showPlayFloat: boolean) => void;
 }
 
 
@@ -132,4 +137,5 @@ declare interface CurrentPlayQueue {
   songs: Song[];
   queueId: string;
   total: number;
+  playType: 'album' | 'playlist' | 'newSongs' | 'recommendDaily' | 'curPlayQueue';
 }

@@ -16,26 +16,25 @@ export const PlaylistsPage = () => {
 
   const history = useHistory();
   return (
-    <div className="page-playlists">
-      {
-        playlists.map(item => (
-          <div key={item.playlist_id} className="playlist-item">
-            <img className="pic" src={item.pic} onClick={() => {
-              history.push({
-                pathname: '/playlistSongsPage',
-                params: {
-                  type: 'playlist',
-                  id: item.playlist_id,
-                  title: item.playlist_name,
-                  img: item.pic,
-                  intro: item.intro.substr(0, 100),
-                },
-              });
-            }}/>
-            <p className="name">{item.playlist_name}</p>
-          </div>
-        ))
-      }
+    <div className="page-playlists">{
+      playlists.map(item => (
+        <div key={item.playlist_id} className="playlist-item">
+          <img className="pic" src={item.pic} onClick={() => {
+            history.push({
+              pathname: '/playlistSongsPage',
+              params: {
+                type: 'playlist',
+                id: item.playlist_id,
+                title: item.playlist_name,
+                img: item.pic,
+                intro: item.intro.substr(0, 100),
+              },
+            });
+          }}/>
+          <p className="name">{item.playlist_name}</p>
+        </div>
+      ))
+    }
     </div>
   );
 };

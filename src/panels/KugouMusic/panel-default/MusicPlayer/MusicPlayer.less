@@ -7,13 +7,16 @@
   overflow: hidden;
 
   .top-song-name {
-    font-family: PingFangSC-Regular;
     font-size: 34px;
     color: #FFFFFF;
     letter-spacing: 0;
-    text-align: center;
     font-weight: 400;
-    margin-top: 60px;
+    text-align: center;
+    margin: 60px auto 0;
+    max-width: 600px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 
   .top-singer-name {
@@ -170,6 +173,18 @@
     }
   }
 
+  .time-view {
+    position: absolute;
+    bottom: 223px;
+    display: flex;
+    justify-content: space-between;
+    width: 622px;
+    font-size: 24px;
+    left: 50%;
+    margin-left: -311px;
+    color: #FFFFFF;
+  }
+
   .bottom-control {
     box-sizing: border-box;
     position: absolute;
@@ -241,12 +256,31 @@
   .quality-item {
     height: 96px;
     box-shadow: 0 1px 0 0 #E7E8EB;
-    font-family: PingFangSC-Regular;
     font-size: 32px;
     color: #15161A;
     text-align: center;
     line-height: 96px;
     letter-spacing: 0;
+    position: relative;
+
+    .iconSelect {
+      position: absolute;
+      top: 50%;
+      right: 37px;
+      transform: translateY(-50%);
+      width: 38px;
+      height: 38px;
+    }
+
+    .quality-text {
+      position: relative;
+
+      .vipIcon {
+        position: absolute;
+        top: 8px;
+        right: -88px;
+      }
+    }
   }
 
   .cancel {
@@ -254,6 +288,8 @@
     text-align: center;
     line-height: 96px;
     border-top: 7px solid #E7E8EB;
+    font-size: 32px;
+    color: #15161A;
   }
 }
 

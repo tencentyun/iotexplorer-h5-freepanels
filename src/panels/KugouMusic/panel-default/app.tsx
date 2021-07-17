@@ -3,22 +3,20 @@ import { entryWrap } from '@src/entryWrap';
 import './style.less';
 import { HashRouter, Route, Switch } from 'react-router-dom';
 import { MusicPlayer } from '@src/panels/KugouMusic/panel-default/MusicPlayer/MusicPlayer';
-import { CurPlayListKey, CurSongIdKey } from '@src/panels/KugouMusic/panel-default/constants';
 import { PlaylistsPage } from '@src/panels/KugouMusic/panel-default/PlaylistsPage/PlaylistsPage';
 import { KugouHome } from '@src/panels/KugouMusic/panel-default/KugouHome/KugouHome';
 import {
-  checkLoginAuth,
+  activateDevice,
+  checkLoginAuth, getCurrentPlayQueue, getCurrentPlaySong,
   getNewSongs,
-  getRecommendPlayList,
-  getRecommendSong,
-  getSingerAlbums,
+  getRecommendPlayList, getRecommendDaily,
   getSongData,
-  getSongsByAlbum,
-  getSongsByPlaylist, getSongsInfo, login,
+  login,
 } from '@src/models/kugou';
 import { useDocumentTitle } from '@src/panels/KugouMusic/panel-default/hooks/useDocumentTitle';
 import { NewSongsPage } from '@src/panels/KugouMusic/panel-default/SongsPage/NewSongsPage';
 import { PlaylistSongsPage } from '@src/panels/KugouMusic/panel-default/SongsPage/PlaylistSongsPage';
+import { PlayFloatWindow } from '@src/panels/KugouMusic/panel-default/components/PlayFloatWindow/PlayFloatWindow';
 
 declare type Reducer = (state: KugouState, action: ReducerAction<KugouStateAction>) => KugouState;
 
@@ -41,7 +39,7 @@ function kugouInitState(sdk): KugouState {
     albums: [],
     newSongs: [],
     showPlaylistModel: false,
-    currentPlayQueue: { songs: [], queueId: '', total: 0 },
+    currentPlayQueue: { songs: [], queueId: '', total: 0, playType: 'playlist' },
     currentPlaySong: null,
     deviceData: Object.assign({}, sdk.deviceData),
   };
@@ -78,6 +76,7 @@ export function reducer(state: KugouState, action: ReducerAction<KugouStateActio
             songs: payload.songs,
             queueId: payload.queueId,
             total: payload.total,
+            playType: payload.playType,
           },
         };
       }
@@ -112,10 +111,10 @@ function App() {
       // 额外操作，正常情况更新物模型即可
       // 1.设备端更新歌曲
       if (res.deviceData.cur_song_id) {
-        getSongData(res.deviceData.cur_song_id.Value).then((newSong) => {
+        getSongData(res.deviceData.cur_song_id.Value).then((res) => {
           dispatch({
             type: KugouStateAction.UpdateCurrentPlaySong,
-            payload: newSong,
+            payload: res.data,
           });
         });
       }
@@ -128,24 +127,10 @@ function App() {
    */
   const initHomePageData = () => {
     // 日推歌曲
-    getRecommendSong().then((res) => {
+    getRecommendDaily().then((res) => {
       dispatch({
         type: KugouStateAction.UpdateRecommendSongs,
         payload: res.data.songs,
-      });
-    });
-    // 推荐歌单
-    getRecommendPlayList(1, 6).then((res) => {
-      dispatch({
-        type: KugouStateAction.UpdateRecommendPlaylists,
-        payload: res.data.playlists,
-      });
-    });
-    // 周杰伦专辑
-    getSingerAlbums(1, 10, '3520', 1).then((res) => {
-      dispatch({
-        type: KugouStateAction.UpdateAlbums,
-        payload: res.data.albums,
       });
     });
     // 新歌首发
@@ -155,54 +140,36 @@ function App() {
         payload: res.data.songs,
       });
     });
+    // 推荐歌单
+    getRecommendPlayList(1, 9).then((res) => {
+      dispatch({
+        type: KugouStateAction.UpdateRecommendPlaylists,
+        payload: res.data.playlists,
+      });
+    });
   };
 
   /**
    * 初始化：同步设备歌曲、歌
    */
   const initSyncDeviceSong = async () => {
-    const { deviceData } = kugouState;
-    const CurSongId = deviceData[CurSongIdKey];
-    let CurPlayList = deviceData[CurPlayListKey];
-    if (!CurSongId) return;
-    if (!CurPlayList) return;
-
-    CurPlayList = JSON.parse(CurPlayList);
-    // 同步歌曲
-    const newSong = await getSongData(CurSongId);
+    const { data: curSong } = await getCurrentPlaySong();
     dispatch({
       type: KugouStateAction.UpdateCurrentPlaySong,
-      payload: newSong,
+      payload: curSong,
     });
     // 同步歌单
-    if (CurPlayList.play_type === 'v2/album/info') {
-      const { page, size, album_id: id } = CurPlayList.play_params;
-      const res1 = await getSongsByAlbum(page, size, id);
-      const { songs } = res1.data;
-      const songsId = songs.map(item => item.song_id);
-      const res2 = await getSongsInfo(songsId);
-      dispatch({
-        type: KugouStateAction.UpdateCurrentPlayQueue,
-        payload: {
-          songs: res2.data.songs,
-          queueId: id,
-        },
-      });
-    } else if (CurPlayList.play_type === 'v2/playlist/song') {
-      const { page, size, playlist_id: id } = CurPlayList.play_params;
-      const res1 = await getSongsByPlaylist(page, size, id);
-      const { songs } = res1.data;
-      const songsId = songs.map(item => item.song_id);
-      const res2 = await getSongsInfo(songsId);
-      dispatch({
-        type: KugouStateAction.UpdateCurrentPlayQueue,
-        payload: {
-          total: res1.data.total,
-          songs: res2.data.songs,
-          queueId: id,
-        },
-      });
-    }
+    const res = await getCurrentPlayQueue();
+    const { total, songs, queueId, playType } = res.data;
+    dispatch({
+      type: KugouStateAction.UpdateCurrentPlayQueue,
+      payload: {
+        total,
+        songs,
+        queueId,
+        playType,
+      },
+    });
   };
 
   const initData = () => {
@@ -224,6 +191,7 @@ function App() {
   useEffect(() => {
     const init = async () => {
       try {
+        await activateDevice();
         await checkLoginAuth();
         initData();
       } catch (e) {
@@ -234,13 +202,14 @@ function App() {
     init();
   }, []);
 
-  const [currentTab, setCurrentTab] = useState('DevicePanel');
+  const [showPlayFloat, setShowPlayFloat] = useState(true);
 
   return (
     <div className="kugou-warp">
       {
-        isLogin && <KugouContext.Provider value={{ kugouState, dispatch, currentTab, setCurrentTab }}>
+        isLogin && <KugouContext.Provider value={{ kugouState, dispatch, setShowPlayFloat }}>
           <HashRouter>
+            {showPlayFloat && <PlayFloatWindow/>}
             <Switch>
               <Route exact path={'/'} component={KugouHome}/>
               <Route path={'/playlists'} component={PlaylistsPage}/>

@@ -10,7 +10,11 @@ export function login() {
   return tmeSdk.login();
 }
 
-export function getRecommendSong() {
+export function activateDevice() {
+  return tmeSdk.activateDevice();
+}
+
+export function getRecommendDaily() {
   return tmeSdk.requestKugouApi('RecommendDaily');
 }
 
@@ -58,11 +62,12 @@ export function getSongsInfo(songs_id) {
   });
 }
 
-export async function getSongData(song_id: string): Promise<Song> {
-  const res = await Promise.all([getSongUrl(song_id), getSongsInfo([song_id])]);
-  const songUrl = res[0].data;
-  const songInfo = res[1].data.songs[0];
-  return Object.assign({}, songUrl, songInfo);
+export async function getSongData(song_id: string) {
+  return tmeSdk.getSongData(song_id);
+}
+
+export async function getCurrentPlaySong() {
+  return tmeSdk.getCurrentPlaySong();
 }
 
 export function getNewSongs(page: number, size: number, top_id: number) {
@@ -73,8 +78,12 @@ export function getNewSongs(page: number, size: number, top_id: number) {
   });
 }
 
-export function controlCurMusicList(action: string, params) {
-  return tmeSdk.setCurPlayList(action, params);
+export function controlCurrentPlayQueue(playType: 'playlist' | 'album' | 'newSongs' | 'recommendSongs', params: any) {
+  return tmeSdk.setCurrentPlayQueue(playType, params);
+}
+
+export function getCurrentPlayQueue() {
+  return tmeSdk.getCurrentPlayQueue();
 }
 
 export function controlSetCurSongId(song_id: string) {
@@ -95,6 +104,12 @@ export function controlPlay() {
 
 export function controlPause() {
   return tmeSdk.pause();
+}
+
+export function controlSongIdAndIndex(song_id: string, song_index: number) {
+  return tmeSdk.controlKugouDeviceData({
+    cur_song_id: song_id, song_index,
+  });
 }
 
 export function controlPlayMode(play_mode: 0 | 1 | 2) {

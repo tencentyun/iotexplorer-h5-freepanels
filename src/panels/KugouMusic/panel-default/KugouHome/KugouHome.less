@@ -1,10 +1,20 @@
 .kugou-home {
   box-sizing: border-box;
   width: 100vw;
-  padding: 40px 32px;
+  padding: 40px 0;
+
+  .iconMusicPlayer {
+    position: fixed;
+    right: 0;
+    bottom: 200px;
+    width: 150px;
+    height: 150px;
+  }
 
   .home-box {
+    padding: 0 32px;
     margin-top: 60px;
+
     &:first-child {
       margin-top: 0;
     }
@@ -77,6 +87,22 @@
         font-size: 24px;
         color: #6C7078;
       }
+    }
+  }
+
+  .home-box-horizontal {
+    padding: 0;
+    margin-left: 32px;
+    margin-top: 0;
+
+    main {
+      display: flex;
+      flex-wrap: nowrap;
+      overflow: scroll;
+    }
+
+    .home-box-item {
+      margin: 20px 20px 0 0;
     }
   }
 }

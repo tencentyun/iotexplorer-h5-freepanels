@@ -14,5 +14,5 @@ export const usePlayMode = () => {
   if (PlayMode === PlayModeType.Order) return ['顺序播放', iconModeOrderGrey];
   if (PlayMode === PlayModeType.Single) return ['单曲循环', iconModeSingleGrey];
   if (PlayMode === PlayModeType.Random) return ['随机播放', iconModeRandomGrey];
-  return ['顺序播放12', iconModeOrderGrey];
+  return ['顺序播放', iconModeOrderGrey];
 };
