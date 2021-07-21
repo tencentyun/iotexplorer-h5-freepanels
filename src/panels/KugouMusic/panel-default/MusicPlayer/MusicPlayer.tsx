@@ -32,6 +32,7 @@ import {
 import { SongListItem } from '@src/panels/KugouMusic/panel-default/SongsPage/components/SongListItem/SongListItem';
 import { onScrollToBottomLoad } from '@src/panels/KugouMusic/panel-default/utils/utils';
 import Toast from '@src/panels/KugouMusic/panel-default/components/Toast/Toast';
+import classNames from 'classnames';
 
 enum PlayStatus {
   Pause = 0,
@@ -293,63 +294,62 @@ export const MusicPlayer = () => {
   };
 
   return (
-    <div
-      className="music-player-warp bgi-active"
-      style={{
-        backgroundImage: (song && PausePlay === PlayStatus.Play) ? `url(${song.album_img_medium})` : '',
-      }}
-    >
-      <main style={{
-        backdropFilter: song ? 'blur(72px)' : '',
-      }}>
-        <p className="top-song-name">{song ? song.song_name : '歌曲'}</p>
-        {song && <p className="top-singer-name">歌手：{song.singer_name}</p>}
-        <div className="album-view">
-          <div className="album-outline-1"/>
-          <div className="album-outline-2"/>
-          <div className="album-outline-3"/>
-          <div className="album-outline-4"/>
-          <div className="album-outline-5"/>
-          <div className="album-outline-6"/>
-          <div className="album-outline-7"/>
-          <div className="album-outline-8"/>
-          {
-            song ? <img className="album-center album-center-img" src={song.album_img}/>
-              : <>
-                <div className="album-center"/>
-                <img className="iconMusic" src={iconMusic}/>
-              </>
-          }
-        </div>
-        <div className="more-like-icon">
-          <img className="iconQuality" src={iconQuality} onClick={() => {
-            if (!song) return;
-            setShowQualityModel(true);
-          }}/>
-          <img className="iconLike" src={iconLike}/>
-        </div>
-        <p
-          className="progress"
-          ref={progressRef}
-          onTouchStart={onProgressTouchStart}
-          onTouchMove={onProgressTouchMove}
-          onTouchEnd={onProgressTouchEnd}
-        >
-          <span className="progress-dot" style={{ left: `${curProgressWidth}px` }}/>
-          <p className="progress-finish" style={{ width: `${curProgressWidth}px` }}/>
-        </p>
-        <div className="time-view">
-          <div>{getCurTime()}</div>
-          <div>{getTotalTime()}</div>
-        </div>
-        <div className="bottom-control">
-          <img className="iconPlayMode" src={getPlayModeIcon()} onClick={handleTogglePlayMode}/>
-          <img className="iconPre" src={iconPre} onClick={() => handleClickPreOrNext('pre')}/>
-          <img className="iconPlay" src={getPlayStatusIcon()} onClick={handleClickPlay}/>
-          <img className="iconNext" src={iconNext} onClick={() => handleClickPreOrNext('next')}/>
-          <img className="iconCurPlaylist" src={iconCurPlaylist} onClick={() => setShowPlaylistModel(true)}/>
-        </div>
-      </main>
+    <div className={classNames(['music-player-warp', {
+      'bgi-pause': PausePlay === PlayStatus.Pause,
+    }])}>
+      {
+        // 模糊背景处理
+        (song && PausePlay === PlayStatus.Play) && <div className="bgi-play" style={{
+          backgroundImage: `url(${song.album_img_medium})`,
+        }}/>
+      }
+      <p className="top-song-name">{song ? song.song_name : '歌曲'}</p>
+      {song && <p className="top-singer-name">歌手：{song.singer_name}</p>}
+      <div className="album-view">
+        <div className="album-outline-1"/>
+        <div className="album-outline-2"/>
+        <div className="album-outline-3"/>
+        <div className="album-outline-4"/>
+        <div className="album-outline-5"/>
+        <div className="album-outline-6"/>
+        <div className="album-outline-7"/>
+        <div className="album-outline-8"/>
+        {
+          song ? <img className="album-center album-center-img" src={song.album_img}/>
+            : <>
+              <div className="album-center"/>
+              <img className="iconMusic" src={iconMusic}/>
+            </>
+        }
+      </div>
+      <div className="more-like-icon">
+        <img className="iconQuality" src={iconQuality} onClick={() => {
+          if (!song) return;
+          setShowQualityModel(true);
+        }}/>
+        <img className="iconLike" src={iconLike}/>
+      </div>
+      <p
+        className="progress"
+        ref={progressRef}
+        onTouchStart={onProgressTouchStart}
+        onTouchMove={onProgressTouchMove}
+        onTouchEnd={onProgressTouchEnd}
+      >
+        <span className="progress-dot" style={{ left: `${curProgressWidth}px` }}/>
+        <p className="progress-finish" style={{ width: `${curProgressWidth}px` }}/>
+      </p>
+      <div className="time-view">
+        <div>{getCurTime()}</div>
+        <div>{getTotalTime()}</div>
+      </div>
+      <div className="bottom-control">
+        <img className="iconPlayMode" src={getPlayModeIcon()} onClick={handleTogglePlayMode}/>
+        <img className="iconPre" src={iconPre} onClick={() => handleClickPreOrNext('pre')}/>
+        <img className="iconPlay" src={getPlayStatusIcon()} onClick={handleClickPlay}/>
+        <img className="iconNext" src={iconNext} onClick={() => handleClickPreOrNext('next')}/>
+        <img className="iconCurPlaylist" src={iconCurPlaylist} onClick={() => setShowPlaylistModel(true)}/>
+      </div>
       {showQualityModel && song
       && <ToneQualityModel song={song} setShowModel={setShowQualityModel} curQuality={CurQuality}/>}
       {showPlaylistModel && <PlaylistModel/>}

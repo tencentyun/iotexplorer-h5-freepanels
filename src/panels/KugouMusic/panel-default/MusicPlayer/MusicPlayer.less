@@ -3,7 +3,6 @@
   box-sizing: border-box;
   width: 100vw;
   height: 100vh;
-  background-image: linear-gradient(180deg, #727F99 0%, #3E4656 100%);
   overflow: hidden;
 
   .top-song-name {
@@ -219,18 +218,27 @@
   .iconCurPlaylist {
     width: 42px;
   }
-
-  main {
-    width: 100vw;
-    height: 100vh;
-    position: absolute;
-  }
 }
 
-.bgi-active {
+.bgi-pause {
+  background-image: linear-gradient(180deg, #727F99 0%, #3E4656 100%);
+}
+
+.bgi-play {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: -1;
+  -webkit-filter: blur(40px); /* Chrome, Opera */
+  -moz-filter: blur(40px);
+  -ms-filter: blur(40px);
+  filter: blur(40px);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center top;
+  transform: scale(1.2); // 泛白问题
 }
 
 .model-cover {

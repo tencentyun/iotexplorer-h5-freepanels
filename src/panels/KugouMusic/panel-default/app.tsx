@@ -17,6 +17,7 @@ import { useDocumentTitle } from '@src/panels/KugouMusic/panel-default/hooks/use
 import { NewSongsPage } from '@src/panels/KugouMusic/panel-default/SongsPage/NewSongsPage';
 import { PlaylistSongsPage } from '@src/panels/KugouMusic/panel-default/SongsPage/PlaylistSongsPage';
 import { PlayFloatWindow } from '@src/panels/KugouMusic/panel-default/components/PlayFloatWindow/PlayFloatWindow';
+import { LoginAuthPage } from '@src/panels/KugouMusic/panel-default/LoginAuthPage/LoginAuthPage';
 
 declare type Reducer = (state: KugouState, action: ReducerAction<KugouStateAction>) => KugouState;
 
@@ -196,7 +197,6 @@ function App() {
         initData();
       } catch (e) {
         setIsLogin(false);
-        loginAuth();
       }
     };
     init();
@@ -220,9 +220,7 @@ function App() {
           </HashRouter>
         </KugouContext.Provider>
       }
-      {!isLogin && <div className="page-loginAuth">
-        <div className="button" onClick={loginAuth}>酷狗登录</div>
-      </div>}
+      {!isLogin && <LoginAuthPage loginAuth={loginAuth}/>}
     </div>
   );
 }
