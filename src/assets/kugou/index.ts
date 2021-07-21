@@ -22,3 +22,4 @@ export { default as iconLikeGrey } from './icon-likeGrey.svg';
 export { default as iconLikeRed } from './icon-likeRed.svg';
 export { default as iconDeleteGrey } from './icon-deleteGrey.svg';
 export { default as iconClose } from './icon-close.svg';
+export { default as iconKugouAuth } from './icon-kugouAuth.svg';

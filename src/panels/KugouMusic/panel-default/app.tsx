@@ -96,7 +96,8 @@ function App() {
   useDocumentTitle('酷狗音乐');
   const sdk = window.h5PanelSdk;
   const [kugouState, dispatch] = useReducer<Reducer, any>(reducer, sdk, kugouInitState);
-  const [isLogin, setIsLogin] = useState(true);
+  // boolean会闪一下默认界面
+  const [loginStatus, setLoginStatus] = useState<'init' | 'success' | 'fail'>('init');
 
   /**
    * 初始化：wsReport
@@ -182,10 +183,10 @@ function App() {
   const loginAuth = async () => {
     try {
       await login();
-      setIsLogin(true);
+      setLoginStatus('success');
       initData();
     } catch (e) {
-      console.error(e);
+      console.error('登录授权错误', e);
     }
   };
 
@@ -195,8 +196,10 @@ function App() {
         await activateDevice();
         await checkLoginAuth();
         initData();
+        setLoginStatus('success');
       } catch (e) {
-        setIsLogin(false);
+        setLoginStatus('fail');
+        console.log(e);
       }
     };
     init();
@@ -207,7 +210,7 @@ function App() {
   return (
     <div className="kugou-warp">
       {
-        isLogin && <KugouContext.Provider value={{ kugouState, dispatch, setShowPlayFloat }}>
+        loginStatus === 'success' && <KugouContext.Provider value={{ kugouState, dispatch, setShowPlayFloat }}>
           <HashRouter>
             {showPlayFloat && <PlayFloatWindow/>}
             <Switch>
@@ -220,7 +223,7 @@ function App() {
           </HashRouter>
         </KugouContext.Provider>
       }
-      {!isLogin && <LoginAuthPage loginAuth={loginAuth}/>}
+      {loginStatus === 'fail' && <LoginAuthPage loginAuth={loginAuth}/>}
     </div>
   );
 }

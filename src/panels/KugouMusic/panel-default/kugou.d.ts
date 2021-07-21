@@ -9,7 +9,7 @@ declare interface TMEResponse {
 }
 
 declare interface TMESDK {
-  requestKugouApi: (action: string, params?: any) => Promise<TMEResponse>;
+  requestTMEApi: (action: string, params?: any) => Promise<TMEResponse>;
 
   login: () => Promise<TMEResponse>;
   getUserInfo: () => Promise<TMEResponse>;

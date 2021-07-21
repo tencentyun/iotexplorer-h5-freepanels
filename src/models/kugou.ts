@@ -15,18 +15,18 @@ export function activateDevice() {
 }
 
 export function getRecommendDaily() {
-  return tmeSdk.requestKugouApi('RecommendDaily');
+  return tmeSdk.requestTMEApi('awesome_everyday');
 }
 
-export function getRecommendPlayList(page, size) {
-  return tmeSdk.requestKugouApi('RecommendPlayList', {
+export function getRecommendPlayList(page: number, size: number) {
+  return tmeSdk.requestTMEApi('playlist_awesome', {
     page,
     size,
   });
 }
 
 export function getSingerAlbums(page: number, size: number, singer_id: string, sort: number) {
-  return tmeSdk.requestKugouApi('SingerAlbums', {
+  return tmeSdk.requestTMEApi('singer_album', {
     page,
     size,
     singer_id,
@@ -35,7 +35,7 @@ export function getSingerAlbums(page: number, size: number, singer_id: string, s
 }
 
 export function getSongsByAlbum(page: number, size: number, album_id: string) {
-  return tmeSdk.requestKugouApi('GetSongsByAlbum', {
+  return tmeSdk.requestTMEApi('album_info', {
     page,
     size,
     album_id,
@@ -43,7 +43,7 @@ export function getSongsByAlbum(page: number, size: number, album_id: string) {
 }
 
 export function getSongsByPlaylist(page: number, size: number, playlist_id: string) {
-  return tmeSdk.requestKugouApi('GetSongsByPlaylist', {
+  return tmeSdk.requestTMEApi('playlist_song', {
     page,
     size,
     playlist_id,
@@ -51,13 +51,13 @@ export function getSongsByPlaylist(page: number, size: number, playlist_id: stri
 }
 
 export function getSongUrl(song_id: string) {
-  return tmeSdk.requestKugouApi('GetSongUrl', {
+  return tmeSdk.requestTMEApi('song_url', {
     song_id,
   });
 }
 
 export function getSongsInfo(songs_id) {
-  return tmeSdk.requestKugouApi('GetSongsInfo', {
+  return tmeSdk.requestTMEApi('song_infos', {
     songs_id,
   });
 }
@@ -71,7 +71,7 @@ export async function getCurrentPlaySong() {
 }
 
 export function getNewSongs(page: number, size: number, top_id: number) {
-  return tmeSdk.requestKugouApi('GetNewSongs', {
+  return tmeSdk.requestTMEApi('awesome_newsong', {
     page,
     size,
     top_id,
@@ -108,7 +108,8 @@ export function controlPause() {
 
 export function controlSongIdAndIndex(song_id: string, song_index: number) {
   return tmeSdk.controlKugouDeviceData({
-    cur_song_id: song_id, song_index,
+    cur_song_id: song_id,
+    song_index,
   });
 }
 
