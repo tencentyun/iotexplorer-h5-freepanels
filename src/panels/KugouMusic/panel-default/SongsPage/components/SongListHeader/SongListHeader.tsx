@@ -37,7 +37,7 @@ export const SongListHeader = ({ playType, curSongs, curListId, total }: Props) 
     <header className="list-main-header">
       <div className="left" onClick={async () => {
         // 找到第一个能播放的歌曲
-        const songIndex = curSongs.findIndex(item => item.playable_code === 0);
+        const songIndex = curSongs.findIndex(item => (item.playable_code === 0 || item.playable_code === 3));
         const song = curSongs[songIndex];
         useSyncPlayQueueAndSong(playType, curListId, song, songIndex, kugouState, dispatch).then(() => {
           history.push('/musicPlayer');
