@@ -1,6 +1,10 @@
 import Toast from '@src/panels/KugouMusic/panel-default/components/Toast/Toast';
 
-const tmeSdk: TMESDK = window.h5PanelSdk.TMESdk.h5;
+let tmeSdk: TMESDK;
+
+export function setTMESdk(sdk: TMESDK) {
+  tmeSdk = sdk;
+}
 
 export function checkLoginAuth() {
   return tmeSdk.checkDeviceAuth();

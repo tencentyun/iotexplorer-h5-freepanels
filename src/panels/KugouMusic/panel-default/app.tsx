@@ -6,12 +6,14 @@ import { MusicPlayer } from '@src/panels/KugouMusic/panel-default/MusicPlayer/Mu
 import { PlaylistsPage } from '@src/panels/KugouMusic/panel-default/PlaylistsPage/PlaylistsPage';
 import { KugouHome } from '@src/panels/KugouMusic/panel-default/KugouHome/KugouHome';
 import {
-  activateDevice,
-  checkLoginAuth, getCurrentPlayQueue, getCurrentPlaySong,
+  checkLoginAuth,
+  getCurrentPlayQueue,
+  getCurrentPlaySong,
   getNewSongs,
-  getRecommendPlayList, getRecommendDaily,
+  getRecommendPlayList,
+  getRecommendDaily,
   getSongData,
-  login,
+  login, setTMESdk,
 } from '@src/models/kugou';
 import { useDocumentTitle } from '@src/panels/KugouMusic/panel-default/hooks/useDocumentTitle';
 import { NewSongsPage } from '@src/panels/KugouMusic/panel-default/SongsPage/NewSongsPage';
@@ -193,7 +195,8 @@ function App() {
   useEffect(() => {
     const init = async () => {
       try {
-        await activateDevice();
+        const tmeSdk = await window.h5PanelSdk.getTMESdk();
+        setTMESdk(tmeSdk);
         await checkLoginAuth();
         initData();
         setLoginStatus('success');
