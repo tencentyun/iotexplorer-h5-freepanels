@@ -20,6 +20,7 @@ import { NewSongsPage } from '@src/panels/KugouMusic/panel-default/SongsPage/New
 import { PlaylistSongsPage } from '@src/panels/KugouMusic/panel-default/SongsPage/PlaylistSongsPage';
 import { PlayFloatWindow } from '@src/panels/KugouMusic/panel-default/components/PlayFloatWindow/PlayFloatWindow';
 import { LoginAuthPage } from '@src/panels/KugouMusic/panel-default/LoginAuthPage/LoginAuthPage';
+import { CurSongIdKey } from '@src/panels/KugouMusic/panel-default/constants';
 
 declare type Reducer = (state: KugouState, action: ReducerAction<KugouStateAction>) => KugouState;
 
@@ -32,8 +33,6 @@ export const enum KugouStateAction {
   UpdateNewSongs = 'UpdateNewSongs',
   UpdateDeviceData = 'UpdateDeviceData'
 }
-
-// window.location.hash = '/musicList2';
 
 function kugouInitState(sdk): KugouState {
   return {
@@ -105,7 +104,6 @@ function App() {
    * 初始化：wsReport
    */
   const initHandleWsReport = () => {
-    console.log('初始化wsReport回调');
     const handleWsReport = (res) => {
       console.log('酷狗h5 Demo收到wsReport', res);
       dispatch({
@@ -114,8 +112,9 @@ function App() {
       });
       // 额外操作，正常情况更新物模型即可
       // 1.设备端更新歌曲
-      if (res.deviceData.cur_song_id) {
-        getSongData(res.deviceData.cur_song_id.Value).then((res) => {
+      const curSongId = res.deviceData[CurSongIdKey];
+      if (curSongId) {
+        getSongData(curSongId.Value).then((res) => {
           dispatch({
             type: KugouStateAction.UpdateCurrentPlaySong,
             payload: res.data,

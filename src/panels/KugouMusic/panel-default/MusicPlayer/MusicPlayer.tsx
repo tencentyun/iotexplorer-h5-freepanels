@@ -120,9 +120,13 @@ const PlaylistModel = () => {
 };
 
 // 推荐质量组件
-const ToneQualityModel = ({ song, setShowModel, curQuality }:
-                            { song: Song, curQuality: number, setShowModel: (show: boolean) => void }) => {
-  const qualityArr = song.support_quality.split(',').reverse();
+const ToneQualityModel = ({
+  song,
+  setShowModel,
+  curQuality,
+}: { song: Song, curQuality: number, setShowModel: (show: boolean) => void }) => {
+  const qualityArr = song.support_quality.split(',')
+    .reverse();
   const byteToMb = byte => (byte / 1024 / 1024).toFixed(2);
   const qualityMap = {
     LQ: { text: '标准音质', sizeKey: 'song_size', value: 0, urlKey: 'song_url' },
