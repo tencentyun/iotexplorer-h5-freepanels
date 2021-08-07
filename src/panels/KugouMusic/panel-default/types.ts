@@ -1,14 +1,31 @@
-declare interface Window {
-  h5PanelSdk: any
+import {
+  CONTROL_SEQ_KEY,
+  CUR_PLAYLIST_KEY, CUR_SONG_ID_KEY,
+  PAUSE_PLAY_KEY,
+  PLAY_MODE_KEY, PLAY_POSITION_KEY,
+  PRE_NEXT_KET, RECOMMEND_QUALITY_KEY, SONG_INDEX_KEY, VOLUME_KEY,
+} from '@src/panels/KugouMusic/panel-default/constants';
+
+export interface KugouDeviceData {
+  [PAUSE_PLAY_KEY]: 0 | 1;
+  [CUR_PLAYLIST_KEY]: any;
+  [PRE_NEXT_KET]: 0 | 1 | 2;
+  [PLAY_MODE_KEY]: 0 | 1 | 2;
+  [VOLUME_KEY]: number;
+  [PLAY_POSITION_KEY]: number;
+  [CUR_SONG_ID_KEY]: string;
+  [RECOMMEND_QUALITY_KEY]: 0 | 1 | 2;
+  [CONTROL_SEQ_KEY]: number;
+  [SONG_INDEX_KEY]: number;
 }
 
-declare interface TMEResponse {
+export interface TMEResponse {
   error_code: number,
   error_msg: string,
   data?: any,
 }
 
-declare interface TMESDK {
+export interface TMESDK {
   requestTMEApi: (action: string, params?: any) => Promise<TMEResponse>;
 
   login: () => Promise<TMEResponse>;
@@ -34,7 +51,7 @@ declare interface TMESDK {
   controlKugouDeviceData: (deviceData: any) => Promise<TMEResponse>;
 }
 
-declare interface Song {
+export interface Song {
   singer_img: string;
   album_img: string;
   album_img_mini: string;
@@ -70,7 +87,7 @@ declare interface Song {
   support_quality: string;
 }
 
-declare interface Playlist {
+export interface Playlist {
   playlist_id: string;
   playlist_name: string;
   pic: string;
@@ -80,7 +97,7 @@ declare interface Playlist {
 }
 
 
-declare interface Album {
+export interface Album {
   album_id: string;
   album_name: string;
   album_translate_name: string;
@@ -95,34 +112,13 @@ declare interface Album {
   publish_time: string;
 }
 
-declare interface KugouContext {
+export interface IKugouContext {
   kugouState: KugouState;
   dispatch: any;
   setShowPlayFloat: (showPlayFloat: boolean) => void;
 }
 
-
-// declare interface CurrentPlaySong extends Song{
-//   curSec: number;
-//   totalSec: number;
-//   processPercent: number;
-//   playStatus: 0 | 1;
-// }
-
-declare interface KugouDeviceData {
-  play_pause: 0 | 1;
-  cur_play_list: any;
-  pre_next: 0 | 1 | 2;
-  play_mode: 0 | 1 | 2;
-  volume: number;
-  play_position: number;
-  cur_song_id: string;
-  recommend_quality: 0 | 1 | 2;
-  control_seq: number;
-  song_index: number;
-}
-
-declare interface KugouState {
+export interface KugouState {
   recommendSongs: Song[];
   recommendPlaylists: Playlist[];
   albums: Album[];
@@ -133,7 +129,7 @@ declare interface KugouState {
   deviceData: KugouDeviceData;
 }
 
-declare interface CurrentPlayQueue {
+export interface CurrentPlayQueue {
   songs: Song[];
   queueId: string;
   total: number;

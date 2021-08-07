@@ -3,6 +3,7 @@ import './PlaylistsPage.less';
 import { getRecommendPlayList } from '@src/models/kugou';
 import { useDocumentTitle } from '@src/panels/KugouMusic/panel-default/hooks/useDocumentTitle';
 import { useHistory } from 'react-router-dom';
+import { Playlist } from '@src/panels/KugouMusic/panel-default/types';
 
 export const PlaylistsPage = () => {
   useDocumentTitle('热门歌单');

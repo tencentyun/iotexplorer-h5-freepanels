@@ -13,14 +13,16 @@ import {
   getRecommendPlayList,
   getRecommendDaily,
   getSongData,
-  login, setTMESdk,
+  login,
+  setTMESdk, sdk,
 } from '@src/models/kugou';
 import { useDocumentTitle } from '@src/panels/KugouMusic/panel-default/hooks/useDocumentTitle';
 import { NewSongsPage } from '@src/panels/KugouMusic/panel-default/SongsPage/NewSongsPage';
 import { PlaylistSongsPage } from '@src/panels/KugouMusic/panel-default/SongsPage/PlaylistSongsPage';
 import { PlayFloatWindow } from '@src/panels/KugouMusic/panel-default/components/PlayFloatWindow/PlayFloatWindow';
 import { LoginAuthPage } from '@src/panels/KugouMusic/panel-default/LoginAuthPage/LoginAuthPage';
-import { CurSongIdKey } from '@src/panels/KugouMusic/panel-default/constants';
+import { CUR_SONG_ID_KEY } from '@src/panels/KugouMusic/panel-default/constants';
+import { KugouState, IKugouContext, KugouDeviceData } from '@src/panels/KugouMusic/panel-default/types';
 
 declare type Reducer = (state: KugouState, action: ReducerAction<KugouStateAction>) => KugouState;
 
@@ -91,11 +93,10 @@ export function reducer(state: KugouState, action: ReducerAction<KugouStateActio
   return nextState;
 }
 
-export const KugouContext = React.createContext({} as KugouContext);
+export const KugouContext = React.createContext({} as IKugouContext);
 
 function App() {
   useDocumentTitle('酷狗音乐');
-  const sdk = window.h5PanelSdk;
   const [kugouState, dispatch] = useReducer<Reducer, any>(reducer, sdk, kugouInitState);
   // boolean会闪一下默认界面
   const [loginStatus, setLoginStatus] = useState<'init' | 'success' | 'fail'>('init');
@@ -112,7 +113,7 @@ function App() {
       });
       // 额外操作，正常情况更新物模型即可
       // 1.设备端更新歌曲
-      const curSongId = res.deviceData[CurSongIdKey];
+      const curSongId = res.deviceData[CUR_SONG_ID_KEY];
       if (curSongId) {
         getSongData(curSongId.Value).then((res) => {
           dispatch({
@@ -194,7 +195,7 @@ function App() {
   useEffect(() => {
     const init = async () => {
       try {
-        const tmeSdk = await window.h5PanelSdk.getTMESdk();
+        const tmeSdk = await sdk.getTMESdk();
         setTMESdk(tmeSdk);
         await checkLoginAuth();
         initData();

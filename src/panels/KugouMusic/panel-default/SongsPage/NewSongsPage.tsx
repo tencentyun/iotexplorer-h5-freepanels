@@ -4,7 +4,8 @@ import { useDocumentTitle } from '@src/panels/KugouMusic/panel-default/hooks/use
 import { getNewSongs } from '@src/models/kugou';
 import { SongListItem } from '@src/panels/KugouMusic/panel-default/SongsPage/components/SongListItem/SongListItem';
 import { SongListHeader } from '@src/panels/KugouMusic/panel-default/SongsPage/components/SongListHeader/SongListHeader';
-import { onScrollToBottomLoad } from '@src/panels/KugouMusic/panel-default/utils/utils';
+import { onScrollToBottomLoad } from '@src/panels/KugouMusic/panel-default/utils/onScrollToBottomLoad';
+import { Song } from '@src/panels/KugouMusic/panel-default/types';
 
 const regionMap = [
   {
@@ -30,12 +31,6 @@ export const NewSongsPage = () => {
   const [total, setTotal] = useState(0);
   const [curSongs, setCurSongs] = useState<Song[]>([]);
   const [curPage, setCurPage] = useState(2);
-
-  // 记录tab状态
-  // useEffect(() => {
-  //   const tabIndex = sessionStorage.getItem('kugou_newSongs_tabIndex');
-  //   if (tabIndex) setCurTabIndex(Number(tabIndex));
-  // }, []);
 
   useEffect(() => {
     getNewSongs(1, 20, regionMap[curTabIndex].topId).then((res) => {

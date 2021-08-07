@@ -2,8 +2,9 @@ import React, { useContext } from 'react';
 import './SongListItem.less';
 import { useHistory } from 'react-router-dom';
 import { KugouContext } from '@src/panels/KugouMusic/panel-default/app';
-import { useSyncPlayQueueAndSong } from '@src/panels/KugouMusic/panel-default/hooks/useSyncPlayQueueAndSong';
 import { iconLikeGrey } from '@icons/kugou';
+import { syncPlayQueueAndSong } from '@src/panels/KugouMusic/panel-default/utils/syncPlayQueueAndSong';
+import { Song } from '@src/panels/KugouMusic/panel-default/types';
 
 interface SongListItemProps {
   song: Song;
@@ -17,7 +18,7 @@ export const SongListItem = ({ song, songIndex, playType, newQueueId }: SongList
   const history = useHistory();
 
   const handleSongClick = async () => {
-    useSyncPlayQueueAndSong(playType, newQueueId, song, songIndex, kugouState, dispatch).then(() => {
+    syncPlayQueueAndSong(playType, newQueueId, song, songIndex, kugouState, dispatch).then(() => {
       history.push('/musicPlayer');
     });
   };

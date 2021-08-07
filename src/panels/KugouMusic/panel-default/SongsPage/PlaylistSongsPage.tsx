@@ -5,7 +5,8 @@ import { getSongsByPlaylist, getSongsInfo } from '@src/models/kugou';
 import { SongListItem } from '@src/panels/KugouMusic/panel-default/SongsPage/components/SongListItem/SongListItem';
 import { useSongsPageParams } from '@src/panels/KugouMusic/panel-default/hooks/useSongsPageParams';
 import { SongListHeader } from '@src/panels/KugouMusic/panel-default/SongsPage/components/SongListHeader/SongListHeader';
-import { onScrollToBottomLoad } from '@src/panels/KugouMusic/panel-default/utils/utils';
+import { onScrollToBottomLoad } from '@src/panels/KugouMusic/panel-default/utils/onScrollToBottomLoad';
+import { Song } from '@src/panels/KugouMusic/panel-default/types';
 
 export const PlaylistSongsPage = () => {
   useDocumentTitle('推荐歌单');
@@ -15,12 +16,12 @@ export const PlaylistSongsPage = () => {
   const pageParams = useSongsPageParams();
 
   useEffect(() => {
-    getSongsByPlaylist(1, 15, pageParams.id).then(async (res) => {
-      const { songs } = res.data;
+    getSongsByPlaylist(1, 15, pageParams.id).then(async (res1) => {
+      const { songs } = res1.data;
       const songsId = songs.map(item => item.song_id);
       const res2 = await getSongsInfo(songsId);
       setCurSongs(res2.data.songs);
-      setTotal(res.data.total);
+      setTotal(res1.data.total);
       setCurPage(2);
     });
   }, []);

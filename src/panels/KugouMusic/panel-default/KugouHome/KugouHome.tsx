@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import './KugouHome.less';
 import { KugouContext } from '@src/panels/KugouMusic/panel-default/app';
-import { useSyncPlayQueueAndSong } from '@src/panels/KugouMusic/panel-default/hooks/useSyncPlayQueueAndSong';
+import { syncPlayQueueAndSong } from '@src/panels/KugouMusic/panel-default/utils/syncPlayQueueAndSong';
 
 export const KugouHome = () => {
   const { kugouState, dispatch } = useContext(KugouContext);
@@ -20,7 +20,7 @@ export const KugouHome = () => {
           {
             recommendSongs.map((song, songIndex) => (
               <div key={song.song_id} className="home-box-item" onClick={() => {
-                useSyncPlayQueueAndSong('recommendDaily', 'daily', song, songIndex, kugouState, dispatch).then(() => {
+                syncPlayQueueAndSong('recommendDaily', 'daily', song, songIndex, kugouState, dispatch).then(() => {
                   history.push('/musicPlayer');
                 });
               }}>
@@ -47,7 +47,7 @@ export const KugouHome = () => {
           {
             newSongs.map((song, index) => (
               <div key={song.song_id} className="home-box-item" onClick={() => {
-                useSyncPlayQueueAndSong('newSongs', 1, song, index, kugouState, dispatch).then(() => {
+                syncPlayQueueAndSong('newSongs', 1, song, index, kugouState, dispatch).then(() => {
                   history.push('/musicPlayer');
                 });
               }}>

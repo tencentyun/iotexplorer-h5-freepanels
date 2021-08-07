@@ -11,10 +11,10 @@ import {
 } from '@icons/kugou';
 import { KugouContext, KugouStateAction } from '@src/panels/KugouMusic/panel-default/app';
 import {
-  PausePlayKey,
-  PlayModeKey,
-  PlayPositionKey,
-  RecommendQualityKey,
+  PAUSE_PLAY_KEY,
+  PLAY_MODE_KEY,
+  PLAY_POSITION_KEY,
+  RECOMMEND_QUALITY_KEY,
 } from '@src/panels/KugouMusic/panel-default/constants';
 import {
   controlDevice,
@@ -30,9 +30,10 @@ import {
   getSongsInfo,
 } from '@src/models/kugou';
 import { SongListItem } from '@src/panels/KugouMusic/panel-default/SongsPage/components/SongListItem/SongListItem';
-import { onScrollToBottomLoad } from '@src/panels/KugouMusic/panel-default/utils/utils';
 import Toast from '@src/panels/KugouMusic/panel-default/components/Toast/Toast';
 import classNames from 'classnames';
+import { onScrollToBottomLoad } from '@src/panels/KugouMusic/panel-default/utils/onScrollToBottomLoad';
+import { Song } from '@src/panels/KugouMusic/panel-default/types';
 
 enum PlayStatus {
   Pause = 0,
@@ -52,7 +53,7 @@ const ModelCover = props => <div className="model-cover" {...props}/>;
 const PlaylistModel = () => {
   const { dispatch, kugouState } = useContext(KugouContext);
   const { currentPlayQueue, deviceData } = kugouState;
-  const PlayMode = deviceData[PlayModeKey];
+  const PlayMode = deviceData[PLAY_MODE_KEY];
   const playModeMap = {
     [PlayModeType.Order]: { icon: iconModeOrderGrey, text: '顺序播放' },
     [PlayModeType.Single]: { icon: iconModeSingleGrey, text: '单曲循环' },
@@ -174,10 +175,10 @@ export const MusicPlayer = () => {
   const { kugouState, setShowPlayFloat } = useContext(KugouContext);
   const { currentPlaySong: song, deviceData } = kugouState;
 
-  const PlayPosition = deviceData[PlayPositionKey];
-  const PlayMode = deviceData[PlayModeKey];
-  const PausePlay = deviceData[PausePlayKey];
-  const CurQuality = deviceData[RecommendQualityKey];
+  const PlayPosition = deviceData[PLAY_POSITION_KEY];
+  const PlayMode = deviceData[PLAY_MODE_KEY];
+  const PausePlay = deviceData[PAUSE_PLAY_KEY];
+  const CurQuality = deviceData[RECOMMEND_QUALITY_KEY];
 
   useEffect(() => {
     setShowPlayFloat(false);

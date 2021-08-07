@@ -7,6 +7,7 @@ import {
 } from '@src/models/kugou';
 import { KugouStateAction } from '@src/panels/KugouMusic/panel-default/app';
 import Toast from '@src/panels/KugouMusic/panel-default/components/Toast/Toast';
+import { KugouState, Song } from '@src/panels/KugouMusic/panel-default/types';
 
 /**
  * 下发给端
@@ -18,7 +19,7 @@ import Toast from '@src/panels/KugouMusic/panel-default/components/Toast/Toast';
  */
 type PlayType = 'album' | 'playlist' | 'newSongs' | 'recommendDaily' | 'curPlayQueue';
 
-export const useSyncPlayQueueAndSong = async (
+export const syncPlayQueueAndSong = async (
   playType: PlayType,
   newQueueId: string | number,
   newSong: Song,

@@ -1,4 +1,10 @@
 import Toast from '@src/panels/KugouMusic/panel-default/components/Toast/Toast';
+import { TMESDK } from '@src/panels/KugouMusic/panel-default/types';
+import { CUR_SONG_ID_KEY, SONG_INDEX_KEY } from '@src/panels/KugouMusic/panel-default/constants';
+
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
+export const sdk = window.h5PanelSdk;
 
 let tmeSdk: TMESDK;
 
@@ -112,8 +118,8 @@ export function controlPause() {
 
 export function controlSongIdAndIndex(song_id: string, song_index: number) {
   return tmeSdk.controlKugouDeviceData({
-    cur_song_id: song_id,
-    song_index,
+    [CUR_SONG_ID_KEY]: song_id,
+    [SONG_INDEX_KEY]: song_index,
   });
 }
 
@@ -134,19 +140,19 @@ export function controlQuality(quality: 0 | 1 | 2) {
 }
 
 export async function controlDevice(controlFn: (...args) => Promise<any>, ...args) {
-  if (window.h5PanelSdk.deviceStatus === 0) {
+  if (sdk.deviceStatus === 0) {
     Toast.open('设备已离线，暂时不能播放哦~');
     return Promise.reject();
   }
-  window.h5PanelSdk.tips.showLoading('同步设备中');
+  sdk.tips.showLoading('同步设备中');
   try {
     const res = await controlFn(...args);
-    window.h5PanelSdk.tips.hideLoading();
+    sdk.tips.hideLoading();
     return res;
   } catch (err) {
     console.error('控制设备出错', err);
-    window.h5PanelSdk.tips.hideLoading();
-    window.h5PanelSdk.tips.alert(err.error_msg);
+    sdk.tips.hideLoading();
+    sdk.tips.alert(err.error_msg);
     return Promise.reject();
   }
 }

@@ -1,11 +1,12 @@
 import React, { useContext } from 'react';
-import { useSyncPlayQueueAndSong } from '@src/panels/KugouMusic/panel-default/hooks/useSyncPlayQueueAndSong';
 import { KugouContext } from '@src/panels/KugouMusic/panel-default/app';
 import { useHistory } from 'react-router-dom';
 import { usePlayMode } from '@src/panels/KugouMusic/panel-default/hooks/usePlayMode';
 import { controlDevice, controlPlayMode } from '@src/models/kugou';
-import { PlayModeKey } from '@src/panels/KugouMusic/panel-default/constants';
+import { PLAY_MODE_KEY } from '@src/panels/KugouMusic/panel-default/constants';
 import { iconPlayAll } from '@icons/kugou';
+import { syncPlayQueueAndSong } from '@src/panels/KugouMusic/panel-default/utils/syncPlayQueueAndSong';
+import { Song } from '@src/panels/KugouMusic/panel-default/types';
 
 interface Props {
   curSongs: Song[];
@@ -20,7 +21,7 @@ export const SongListHeader = ({ playType, curSongs, curListId, total }: Props) 
   const [playModeText, playModeIcon] = usePlayMode();
 
   const { deviceData } = kugouState;
-  const PlayMode = deviceData[PlayModeKey];
+  const PlayMode = deviceData[PLAY_MODE_KEY];
 
   // 切换播放模式
   const handleTogglePlayMode = () => {
@@ -39,7 +40,7 @@ export const SongListHeader = ({ playType, curSongs, curListId, total }: Props) 
         // 找到第一个能播放的歌曲
         const songIndex = curSongs.findIndex(item => (item.playable_code === 0 || item.playable_code === 3));
         const song = curSongs[songIndex];
-        useSyncPlayQueueAndSong(playType, curListId, song, songIndex, kugouState, dispatch).then(() => {
+        syncPlayQueueAndSong(playType, curListId, song, songIndex, kugouState, dispatch).then(() => {
           history.push('/musicPlayer');
         });
       }}>
