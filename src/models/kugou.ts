@@ -152,7 +152,8 @@ export async function controlDevice(controlFn: (...args) => Promise<any>, ...arg
   } catch (err) {
     console.error('控制设备出错', err);
     sdk.tips.hideLoading();
-    sdk.tips.alert(err.error_msg);
+    // sdk.tips.alert(err.error_msg);
+    Toast.open('播放失败，请重试');
     return Promise.reject();
   }
 }

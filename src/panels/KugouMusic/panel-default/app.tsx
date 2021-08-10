@@ -6,15 +6,8 @@ import { MusicPlayer } from '@src/panels/KugouMusic/panel-default/MusicPlayer/Mu
 import { PlaylistsPage } from '@src/panels/KugouMusic/panel-default/PlaylistsPage/PlaylistsPage';
 import { KugouHome } from '@src/panels/KugouMusic/panel-default/KugouHome/KugouHome';
 import {
-  checkLoginAuth,
-  getCurrentPlayQueue,
-  getCurrentPlaySong,
-  getNewSongs,
-  getRecommendPlayList,
-  getRecommendDaily,
-  getSongData,
-  login,
-  setTMESdk, sdk,
+  checkLoginAuth, getCurrentPlayQueue, getCurrentPlaySong, getNewSongs, getRecommendPlayList,
+  getRecommendDaily, getSongData, login, setTMESdk, sdk,
 } from '@src/models/kugou';
 import { useDocumentTitle } from '@src/panels/KugouMusic/panel-default/hooks/useDocumentTitle';
 import { NewSongsPage } from '@src/panels/KugouMusic/panel-default/SongsPage/NewSongsPage';
@@ -115,12 +108,13 @@ function App() {
       // 1.设备端更新歌曲
       const curSongId = res.deviceData[CUR_SONG_ID_KEY];
       if (curSongId) {
-        getSongData(curSongId.Value).then((res) => {
-          dispatch({
-            type: KugouStateAction.UpdateCurrentPlaySong,
-            payload: res.data,
+        getSongData(curSongId.Value)
+          .then((res) => {
+            dispatch({
+              type: KugouStateAction.UpdateCurrentPlaySong,
+              payload: res.data,
+            });
           });
-        });
       }
     };
     sdk.on('wsReport', handleWsReport);
@@ -131,26 +125,29 @@ function App() {
    */
   const initHomePageData = () => {
     // 日推歌曲
-    getRecommendDaily().then((res) => {
-      dispatch({
-        type: KugouStateAction.UpdateRecommendSongs,
-        payload: res.data.songs,
+    getRecommendDaily()
+      .then((res) => {
+        dispatch({
+          type: KugouStateAction.UpdateRecommendSongs,
+          payload: res.data.songs,
+        });
       });
-    });
     // 新歌首发
-    getNewSongs(1, 6, 1).then((res) => {
-      dispatch({
-        type: KugouStateAction.UpdateNewSongs,
-        payload: res.data.songs,
+    getNewSongs(1, 6, 1)
+      .then((res) => {
+        dispatch({
+          type: KugouStateAction.UpdateNewSongs,
+          payload: res.data.songs,
+        });
       });
-    });
     // 推荐歌单
-    getRecommendPlayList(1, 9).then((res) => {
-      dispatch({
-        type: KugouStateAction.UpdateRecommendPlaylists,
-        payload: res.data.playlists,
+    getRecommendPlayList(1, 9)
+      .then((res) => {
+        dispatch({
+          type: KugouStateAction.UpdateRecommendPlaylists,
+          payload: res.data.playlists,
+        });
       });
-    });
   };
 
   /**
@@ -196,6 +193,8 @@ function App() {
     const init = async () => {
       try {
         const tmeSdk = await sdk.getTMESdk();
+        // @ts-ignore
+        window.tmeSdk = tmeSdk;
         setTMESdk(tmeSdk);
         await checkLoginAuth();
         initData();

@@ -1,14 +1,6 @@
 import React, { useContext, useEffect, useRef, useState } from 'react';
 import './MusicPlayer.less';
-import {
-  iconCurPlaylist, iconLike,
-  iconModeOrder, iconModeOrderGrey,
-  iconModeRandom, iconModeRandomGrey,
-  iconModeSingle, iconModeSingleGrey,
-  iconMusic, iconNext,
-  iconPause, iconPlay,
-  iconPre, iconQuality, iconSelect,
-} from '@icons/kugou';
+import * as Icons from '@icons/kugou';
 import { KugouContext, KugouStateAction } from '@src/panels/KugouMusic/panel-default/app';
 import {
   PAUSE_PLAY_KEY,
@@ -35,6 +27,8 @@ import classNames from 'classnames';
 import { onScrollToBottomLoad } from '@src/panels/KugouMusic/panel-default/utils/onScrollToBottomLoad';
 import { Song } from '@src/panels/KugouMusic/panel-default/types';
 
+export const musicDefaultImg = 'https://qzonestyle.gtimg.cn/qzone/qzact/act/external/iot/h5panel/release/music.png';
+
 enum PlayStatus {
   Pause = 0,
   Play = 1
@@ -55,9 +49,9 @@ const PlaylistModel = () => {
   const { currentPlayQueue, deviceData } = kugouState;
   const PlayMode = deviceData[PLAY_MODE_KEY];
   const playModeMap = {
-    [PlayModeType.Order]: { icon: iconModeOrderGrey, text: '顺序播放' },
-    [PlayModeType.Single]: { icon: iconModeSingleGrey, text: '单曲循环' },
-    [PlayModeType.Random]: { icon: iconModeRandomGrey, text: '随机播放' },
+    [PlayModeType.Order]: { icon: Icons.iconModeOrderGrey, text: '顺序播放' },
+    [PlayModeType.Single]: { icon: Icons.iconModeSingleGrey, text: '单曲循环' },
+    [PlayModeType.Random]: { icon: Icons.iconModeRandomGrey, text: '随机播放' },
   };
   const { songs, queueId, total, playType } = currentPlayQueue;
 
@@ -120,12 +114,14 @@ const PlaylistModel = () => {
   );
 };
 
+interface ToneQualityModelProps {
+  song: Song;
+  curQuality: number;
+  setShowModel: (show: boolean) => void;
+}
+
 // 推荐质量组件
-const ToneQualityModel = ({
-  song,
-  setShowModel,
-  curQuality,
-}: { song: Song, curQuality: number, setShowModel: (show: boolean) => void }) => {
+const ToneQualityModel = ({ song, setShowModel, curQuality }: ToneQualityModelProps) => {
   const qualityArr = song.support_quality.split(',')
     .reverse();
   const byteToMb = byte => (byte / 1024 / 1024).toFixed(2);
@@ -153,7 +149,7 @@ const ToneQualityModel = ({
               {item !== 'LQ' && <span className="vipIcon">VIP</span>}
             </span>
 
-            {curQuality === qualityMap[item].value && <img className="iconSelect" src={iconSelect}/>}
+            {curQuality === qualityMap[item].value && <img className="iconSelect" src={Icons.iconSelect}/>}
           </div>
         ))
       }
@@ -242,13 +238,13 @@ export const MusicPlayer = () => {
    * 播控按钮Icon切换
    */
   const getPlayStatusIcon = () => {
-    if (PausePlay === PlayStatus.Play) return iconPlay;
-    if (PausePlay === PlayStatus.Pause) return iconPause;
+    if (PausePlay === PlayStatus.Play) return Icons.iconPlay;
+    if (PausePlay === PlayStatus.Pause) return Icons.iconPause;
   };
   const getPlayModeIcon = () => {
-    if (PlayMode === PlayModeType.Order) return iconModeOrder;
-    if (PlayMode === PlayModeType.Single) return iconModeSingle;
-    if (PlayMode === PlayModeType.Random) return iconModeRandom;
+    if (PlayMode === PlayModeType.Order) return Icons.iconModeOrder;
+    if (PlayMode === PlayModeType.Single) return Icons.iconModeSingle;
+    if (PlayMode === PlayModeType.Random) return Icons.iconModeRandom;
   };
 
   // 切换播放模式
@@ -297,20 +293,17 @@ export const MusicPlayer = () => {
     if (minute < 10) minute = `0${minute}`;
     return `${minute}:${second}`;
   };
-
   return (
     <div className={classNames(['music-player-warp', {
-      'bgi-pause': PausePlay === PlayStatus.Pause,
+      'bgi-pause': !song || PausePlay === PlayStatus.Pause,
     }])}>
-      {
-        // 模糊背景处理
-        (song && PausePlay === PlayStatus.Play) && <div className="bgi-play" style={{
-          backgroundImage: `url(${song.album_img_medium})`,
-        }}/>
-      }
-      <p className="top-song-name">{song ? song.song_name : '歌曲'}</p>
-      {song && <p className="top-singer-name">歌手：{song.singer_name}</p>}
-      <div className="album-view">
+      {/* 播放状态=模糊背景 */}
+      {(PausePlay === PlayStatus.Play) && <div className="bgi-play" style={{
+        backgroundImage: `url(${song?.album_img_medium})`,
+      }}/>}
+      <p className="top-song-name">{song?.song_name}</p>
+      <p className="top-singer-name">歌手：{song?.singer_name}</p>
+      {song && <div className="album-view">
         <div className="album-outline-1"/>
         <div className="album-outline-2"/>
         <div className="album-outline-3"/>
@@ -319,21 +312,19 @@ export const MusicPlayer = () => {
         <div className="album-outline-6"/>
         <div className="album-outline-7"/>
         <div className="album-outline-8"/>
-        {
-          song ? <img className="album-center album-center-img" src={song.album_img}/>
-            : <>
-              <div className="album-center"/>
-              <img className="iconMusic" src={iconMusic}/>
-            </>
-        }
-      </div>
+        <img className="album-center album-center-img" src={song.album_img}/>
+      </div>}
+      {!song && <div className="album-view-empty">
+        <img src={musicDefaultImg} alt=""/>
+      </div>}
       <div className="more-like-icon">
-        <img className="iconQuality" src={iconQuality} onClick={() => {
+        <img className="iconQuality" src={Icons.iconQuality} onClick={() => {
           if (!song) return;
           setShowQualityModel(true);
         }}/>
-        <img className="iconLike" src={iconLike}/>
+        <img className="iconLike" src={Icons.iconLike}/>
       </div>
+      {/* 播放进度 */}
       <p
         className="progress"
         ref={progressRef}
@@ -344,27 +335,35 @@ export const MusicPlayer = () => {
         <span className="progress-dot" style={{ left: `${curProgressWidth}px` }}/>
         <p className="progress-finish" style={{ width: `${curProgressWidth}px` }}/>
       </p>
+      {/*  播放时间 */}
       <div className="time-view">
         <div>{getCurTime()}</div>
         <div>{getTotalTime()}</div>
       </div>
+      {/* 底部播控 */}
       <div className="bottom-control">
-        <img className="iconPlayMode" src={getPlayModeIcon()} onClick={handleTogglePlayMode}/>
-        <img className="iconPre" src={iconPre} onClick={() => handleClickPreOrNext('pre')}/>
-        <img className="iconPlay" src={getPlayStatusIcon()} onClick={handleClickPlay}/>
-        <img className="iconNext" src={iconNext} onClick={() => handleClickPreOrNext('next')}/>
-        <img className="iconCurPlaylist" src={iconCurPlaylist} onClick={() => setShowPlaylistModel(true)}/>
+        <img className="iconPlayMode" src={getPlayModeIcon()} onClick={handleTogglePlayMode} alt=""/>
+        <img className="iconPre" src={Icons.iconPre} onClick={() => handleClickPreOrNext('pre')} alt=""/>
+        <img className="iconPlay" src={getPlayStatusIcon()} onClick={handleClickPlay} alt=""/>
+        <img className="iconNext" src={Icons.iconNext} onClick={() => handleClickPreOrNext('next')} alt=""/>
+        <img className="iconCurPlaylist" src={Icons.iconCurPlaylist} onClick={() => setShowPlaylistModel(true)} alt=""/>
       </div>
-      {showQualityModel && song
-      && <ToneQualityModel song={song} setShowModel={setShowQualityModel} curQuality={CurQuality}/>}
-      {showPlaylistModel && <PlaylistModel/>}
-      {(showQualityModel || showPlaylistModel)
-      && <ModelCover
-        onClick={() => {
-          setShowQualityModel(false);
-          setShowPlaylistModel(false);
-        }}
-      />}
+      {
+        showQualityModel && song
+        && <ToneQualityModel song={song} setShowModel={setShowQualityModel} curQuality={CurQuality}/>}
+      {
+        showPlaylistModel && <PlaylistModel/>
+      }
+      {
+        (showQualityModel || showPlaylistModel)
+        && <ModelCover
+          onClick={() => {
+            setShowQualityModel(false);
+            setShowPlaylistModel(false);
+          }}
+        />
+      }
     </div>
   );
 };
+
