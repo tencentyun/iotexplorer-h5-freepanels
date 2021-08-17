@@ -301,19 +301,24 @@ export const MusicPlayer = () => {
       {(PausePlay === PlayStatus.Play) && <div className="bgi-play" style={{
         backgroundImage: `url(${song?.album_img_medium})`,
       }}/>}
-      <p className="top-song-name">{song?.song_name}</p>
-      <p className="top-singer-name">歌手：{song?.singer_name}</p>
-      {song && <div className="album-view">
-        <div className="album-outline-1"/>
-        <div className="album-outline-2"/>
-        <div className="album-outline-3"/>
-        <div className="album-outline-4"/>
-        <div className="album-outline-5"/>
-        <div className="album-outline-6"/>
-        <div className="album-outline-7"/>
-        <div className="album-outline-8"/>
-        <img className="album-center album-center-img" src={song.album_img}/>
-      </div>}
+
+      {song
+      && <>
+        <p className="top-song-name">{song?.song_name}</p>
+        <p className="top-singer-name">歌手：{song.singer_name}</p>
+        <div className="album-view">
+          <div className="album-outline-1"/>
+          <div className="album-outline-2"/>
+          <div className="album-outline-3"/>
+          <div className="album-outline-4"/>
+          <div className="album-outline-5"/>
+          <div className="album-outline-6"/>
+          <div className="album-outline-7"/>
+          <div className="album-outline-8"/>
+          <img className="album-center album-center-img" src={song.album_img}/>
+        </div>
+      </>
+      }
       {!song && <div className="album-view-empty">
         <img src={musicDefaultImg} alt=""/>
       </div>}

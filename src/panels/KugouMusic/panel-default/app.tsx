@@ -214,7 +214,7 @@ function App() {
       {
         loginStatus === 'success' && <KugouContext.Provider value={{ kugouState, dispatch, setShowPlayFloat }}>
           <HashRouter>
-            {showPlayFloat && <PlayFloatWindow/>}
+            {kugouState.currentPlaySong && showPlayFloat && <PlayFloatWindow/>}
             <Switch>
               <Route exact path={'/'} component={KugouHome}/>
               <Route path={'/playlists'} component={PlaylistsPage}/>
