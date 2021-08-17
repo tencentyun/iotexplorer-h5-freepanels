@@ -103,7 +103,7 @@ const PlaylistModel = () => {
             <SongListItem
               key={item.song_id}
               song={item}
-              playType={'curPlayQueue'}
+              playType={currentPlayQueue.playType}
               newQueueId={queueId}
               songIndex={index}
             />
@@ -295,7 +295,7 @@ export const MusicPlayer = () => {
   };
   return (
     <div className={classNames(['music-player-warp', {
-      'bgi-pause': !song || PausePlay === PlayStatus.Pause,
+      'bgi-pause': !song || PausePlay !== PlayStatus.Play,
     }])}>
       {/* 播放状态=模糊背景 */}
       {(PausePlay === PlayStatus.Play) && <div className="bgi-play" style={{

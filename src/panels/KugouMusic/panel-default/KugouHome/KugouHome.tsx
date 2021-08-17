@@ -20,9 +20,10 @@ export const KugouHome = () => {
           {
             recommendSongs.map((song, songIndex) => (
               <div key={song.song_id} className="home-box-item" onClick={() => {
-                syncPlayQueueAndSong('recommendDaily', 'daily', song, songIndex, kugouState, dispatch).then(() => {
-                  history.push('/musicPlayer');
-                });
+                syncPlayQueueAndSong('recommendDaily', 0, song, songIndex, kugouState, dispatch)
+                  .then(() => {
+                    history.push('/musicPlayer');
+                  });
               }}>
                 <img className="img-album" src={song.album_img_mini}/>
                 <p className={song.playable_code === 0 ? 'line-1' : 'line-1 not-play-color'}>
@@ -47,9 +48,10 @@ export const KugouHome = () => {
           {
             newSongs.map((song, index) => (
               <div key={song.song_id} className="home-box-item" onClick={() => {
-                syncPlayQueueAndSong('newSongs', 1, song, index, kugouState, dispatch).then(() => {
-                  history.push('/musicPlayer');
-                });
+                syncPlayQueueAndSong('newSongs', 1, song, index, kugouState, dispatch)
+                  .then(() => {
+                    history.push('/musicPlayer');
+                  });
               }}>
                 <img className="img-album" src={song.album_img_mini}/>
                 <p className={song.playable_code === 0 ? 'line-1' : 'line-1 not-play-color'}>

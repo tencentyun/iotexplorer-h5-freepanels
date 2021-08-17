@@ -49,6 +49,7 @@ export interface TMESDK {
   getSongData: (song_id: string) => Promise<TMEResponse>;
   setSongIndex: (song_index: number) => Promise<TMEResponse>;
   controlKugouDeviceData: (deviceData: any) => Promise<TMEResponse>;
+  playSong: (songId, songIndex, playQueueId, playQueueType) => Promise<TMEResponse>;
 }
 
 export interface Song {
@@ -133,5 +134,5 @@ export interface CurrentPlayQueue {
   songs: Song[];
   queueId: string;
   total: number;
-  playType: 'album' | 'playlist' | 'newSongs' | 'recommendDaily' | 'curPlayQueue';
+  playType: 'album' | 'playlist' | 'newSongs' | 'recommendDaily';
 }

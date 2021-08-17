@@ -8,7 +8,7 @@ import { Song } from '@src/panels/KugouMusic/panel-default/types';
 
 interface SongListItemProps {
   song: Song;
-  playType: 'album' | 'playlist' | 'newSongs' | 'recommendDaily' | 'curPlayQueue';
+  playType: 'album' | 'playlist' | 'newSongs' | 'recommendDaily';
   newQueueId: string | number;
   songIndex: number;
 }

@@ -12,7 +12,7 @@ interface Props {
   curSongs: Song[];
   curListId: number | string;
   total: number;
-  playType: 'album' | 'playlist' | 'newSongs' | 'recommendDaily' | 'curPlayQueue';
+  playType: 'album' | 'playlist' | 'newSongs' | 'recommendDaily';
 }
 
 export const SongListHeader = ({ playType, curSongs, curListId, total }: Props) => {

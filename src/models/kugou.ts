@@ -108,6 +108,10 @@ export function controlPlayPre() {
   return tmeSdk.preSong();
 }
 
+export function controlPlaySong(songId, songIndex, playQueueId, playQueueType) {
+  return tmeSdk.playSong(songId, songIndex, playQueueId, playQueueType);
+}
+
 export function controlPlay() {
   return tmeSdk.play();
 }
@@ -153,7 +157,11 @@ export async function controlDevice(controlFn: (...args) => Promise<any>, ...arg
     console.error('控制设备出错', err);
     sdk.tips.hideLoading();
     // sdk.tips.alert(err.error_msg);
-    Toast.open('播放失败，请重试');
+    if (err.error_msg) {
+      Toast.open(err.error_msg);
+    } else {
+      Toast.open('播放失败，请重试~');
+    }
     return Promise.reject();
   }
 }
