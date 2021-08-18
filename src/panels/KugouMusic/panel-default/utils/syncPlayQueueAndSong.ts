@@ -1,16 +1,17 @@
-import { controlPlaySong, controlDevice } from '@src/models/kugou';
+import { controlDevice, controlPlaySong, getCurrentPlayQueue } from '@src/models/kugou';
+import { KugouState, PlayType, Song } from '@src/panels/KugouMusic/panel-default/types';
 import { KugouStateAction } from '@src/panels/KugouMusic/panel-default/app';
-import { KugouState, Song } from '@src/panels/KugouMusic/panel-default/types';
 
 
 /**
- * 切歌
- * @param playType 播放类型
- * @param newQueueId 新队列ID
- * @param newSongId 点击歌曲的ID
+ * 点击某个歌曲 同步歌单
+ * @param playType
+ * @param newQueueId
+ * @param newSong
+ * @param newSongIndex
+ * @param kugouState
+ * @param dispatch
  */
-type PlayType = 'album' | 'playlist' | 'newSongs' | 'recommendDaily';
-
 export const syncPlayQueueAndSong = async (
   playType: PlayType,
   newQueueId: string | number,
@@ -19,16 +20,26 @@ export const syncPlayQueueAndSong = async (
   kugouState: KugouState,
   dispatch,
 ) => {
-  const { data } = await controlDevice(controlPlaySong, newSong.song_id, newSongIndex, newQueueId, playType);
-  const { playQueue } = data;
+  const params = {
+    songId: newSong.song_id,
+    songIndex: newSongIndex,
+    newQueueType: playType,
+  };
+  if (playType !== PlayType.RecommendDaily) {
+    (params as any).newQueueId = newQueueId;
+  }
+  await controlDevice(controlPlaySong, params);
+
   const { currentPlayQueue } = kugouState;
+
   if (newQueueId !== currentPlayQueue.queueId) {
+    const { data } = await getCurrentPlayQueue();
     dispatch({
       type: KugouStateAction.UpdateCurrentPlayQueue,
       payload: {
-        songs: playQueue.songs,
+        songs: data.songs,
         queueId: newQueueId,
-        total: playQueue.total,
+        total: data.total,
         playType,
       },
     });

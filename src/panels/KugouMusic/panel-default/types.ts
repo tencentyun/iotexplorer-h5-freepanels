@@ -46,7 +46,7 @@ export interface TMESDK {
   setCurrentPlayQueue: (playType: 'playlist' | 'album' | 'newSongs' | 'recommendSongs', params: any) => Promise<TMEResponse>;
   getCurrentPlayQueue: () => Promise<TMEResponse>;
   getCurrentPlaySong: () => Promise<TMEResponse>;
-  getSongData: (song_id: string) => Promise<TMEResponse>;
+  getSongDetail: (song_id: string) => Promise<TMEResponse>;
   setSongIndex: (song_index: number) => Promise<TMEResponse>;
   controlKugouDeviceData: (deviceData: any) => Promise<TMEResponse>;
   playSong: (songId, songIndex, playQueueId, playQueueType) => Promise<TMEResponse>;
@@ -135,4 +135,10 @@ export interface CurrentPlayQueue {
   queueId: string;
   total: number;
   playType: 'album' | 'playlist' | 'newSongs' | 'recommendDaily';
+}
+
+export enum PlayType {
+  Playlist = 'playlist',
+  NewSongs = 'newSongs',
+  RecommendDaily = 'recommendDaily',
 }

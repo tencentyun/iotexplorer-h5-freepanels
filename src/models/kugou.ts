@@ -73,7 +73,7 @@ export function getSongsInfo(songs_id) {
 }
 
 export async function getSongData(song_id: string) {
-  return tmeSdk.getSongData(song_id);
+  return tmeSdk.getSongDetail(song_id);
 }
 
 export async function getCurrentPlaySong() {
