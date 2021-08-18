@@ -1,0 +1,348 @@
+.music-player-warp {
+  position: relative;
+  box-sizing: border-box;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+
+  .top-song-name {
+    font-size: 34px;
+    color: #FFFFFF;
+    letter-spacing: 0;
+    font-weight: 400;
+    text-align: center;
+    margin: 60px auto 0;
+    max-width: 600px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .top-singer-name {
+    text-align: center;
+    height: 40px;
+    line-height: 40px;
+    font-size: 28px;
+    color: #FFFFFF;
+    letter-spacing: 0;
+    margin-top: 60px;
+  }
+
+  .album-view {
+    width: 620px;
+    height: 620px;
+    position: absolute;
+    top: 285px;
+    left: 50%;
+    transform: translateX(-50%);
+
+    & > div {
+      border-radius: 50%;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .album-outline-1 {
+      width: 620px;
+      height: 620px;
+      opacity: 0.15;
+      background: #FFFFFF;
+    }
+
+    .album-outline-2 {
+      width: 568px;
+      height: 568px;
+      background-image: linear-gradient(179deg, #020202 0%, #2B2B2B 48%, #020202 100%);
+      box-shadow: 0 9px 9px 0 rgba(0, 0, 0, 0.04);
+    }
+
+    .album-outline-3 {
+      width: 546px;
+      height: 546px;
+      border: 1px solid #1D1D1D;
+      box-shadow: 0 2px 0 0 rgba(0, 0, 0, 0.21);
+    }
+
+    .album-outline-4 {
+      width: 522px;
+      height: 522px;
+      border: 1px solid #1D1D1D;
+      box-shadow: 0 2px 0 0 rgba(0, 0, 0, 0.21);
+    }
+
+    .album-outline-5 {
+      width: 496px;
+      height: 496px;
+      border: 1px solid #1D1D1D;
+      box-shadow: 0 2px 0 0 rgba(0, 0, 0, 0.21);
+    }
+
+    .album-outline-6 {
+      width: 470px;
+      height: 470px;
+      border: 1px solid #1D1D1D;
+      box-shadow: 0 2px 0 0 rgba(0, 0, 0, 0.21);
+    }
+
+    .album-outline-7 {
+      width: 442px;
+      height: 442px;
+      border: 1px solid #1D1D1D;
+      box-shadow: 0 2px 0 0 rgba(0, 0, 0, 0.21);
+    }
+
+    .album-outline-8 {
+      width: 414px;
+      height: 414px;
+      border: 1px solid #1D1D1D;
+      box-shadow: 0 2px 0 0 rgba(0, 0, 0, 0.21);
+    }
+
+    .album-center {
+      width: 386px;
+      height: 386px;
+      opacity: 0.1;
+      background: #FFFFFF;
+      overflow: hidden;
+    }
+
+    .album-center-img {
+      opacity: 1;
+      border-radius: 50%;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: transparent;
+    }
+
+    .iconMusic {
+      width: 123px;
+      height: 269px;
+      opacity: 0.9;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+  }
+
+  .album-view-empty {
+    width: 620px;
+    height: 620px;
+    position: absolute;
+    top: 285px;
+    left: 50%;
+    transform: translateX(-50%);
+
+    & > img {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  .more-like-icon {
+    box-sizing: border-box;
+    width: 100vw;
+    height: 42px;
+    padding: 0 67px;
+    position: absolute;
+    bottom: 341px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 16px;
+  }
+
+  .progress {
+    position: absolute;
+    bottom: 277px;
+    left: 50%;
+    margin-left: -311px;
+    width: 622px;
+    height: 6px;
+    background: #989A9C;
+    border-radius: 3px;
+
+    .progress-dot {
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background-color: #FFFFFF;
+    }
+
+    .progress-finish {
+      width: 311px;
+      height: 6px;
+      background-color: #FFFFFF;
+    }
+  }
+
+  .time-view {
+    position: absolute;
+    bottom: 223px;
+    display: flex;
+    justify-content: space-between;
+    width: 622px;
+    font-size: 24px;
+    left: 50%;
+    margin-left: -311px;
+    color: #FFFFFF;
+  }
+
+  .bottom-control {
+    box-sizing: border-box;
+    position: absolute;
+    bottom: 106px;
+    width: 100vw;
+    height: 106px;
+    display: flex;
+    padding: 0 67px;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .iconLike, .iconQuality {
+    width: 42px;
+    height: 40px;
+  }
+
+  .iconPre, .iconNext {
+    width: 46px;
+    height: 44px;
+  }
+
+  .iconPlay {
+    width: 128px;
+    height: 128px;
+  }
+
+  .iconPlayMode {
+    width: 42px;
+  }
+
+  .iconCurPlaylist {
+    width: 42px;
+  }
+}
+
+.bgi-pause {
+  background-image: linear-gradient(180deg, #727F99 0%, #3E4656 100%);
+}
+
+.bgi-play {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: -1;
+  -webkit-filter: blur(40px); /* Chrome, Opera */
+  -moz-filter: blur(40px);
+  -ms-filter: blur(40px);
+  filter: blur(40px);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center top;
+  transform: scale(1.2); // 泛白问题
+}
+
+.model-cover {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.quality-model {
+  box-sizing: border-box;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
+  width: 100vw;
+  background-color: #ffffff;
+  padding-bottom: 68px;
+  border-radius: 24px 24px 0 0;
+
+  .quality-item {
+    height: 96px;
+    box-shadow: 0 1px 0 0 #E7E8EB;
+    font-size: 32px;
+    color: #15161A;
+    text-align: center;
+    line-height: 96px;
+    letter-spacing: 0;
+    position: relative;
+
+    .iconSelect {
+      position: absolute;
+      top: 50%;
+      right: 37px;
+      transform: translateY(-50%);
+      width: 38px;
+      height: 38px;
+    }
+
+    .quality-text {
+      position: relative;
+
+      .vipIcon {
+        position: absolute;
+        top: 8px;
+        right: -88px;
+      }
+    }
+  }
+
+  .cancel {
+    height: 96px;
+    text-align: center;
+    line-height: 96px;
+    border-top: 7px solid #E7E8EB;
+    font-size: 32px;
+    color: #15161A;
+  }
+}
+
+.playlist-model {
+  box-sizing: border-box;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
+  width: 100vw;
+  height: 857px;
+  background-color: #ffffff;
+  padding: 0 35px;
+  border-radius: 16px 16px 0 0;
+
+  header {
+    display: flex;
+    align-items: center;
+    height: 120px;
+    font-size: 28px;
+    color: #15161A;
+    font-weight: 700;
+
+    .iconPlayMode {
+      width: 42px;
+      margin-right: 23px;
+    }
+  }
+
+  .playlist-model-list-warp {
+    height: 692px;
+    overflow: scroll;
+  }
+}

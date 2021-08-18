@@ -36,7 +36,9 @@
     ],
     "no-extra-boolean-cast": 0,
     "react/prop-types": 0,
-    "@typescript-eslint/ban-ts-ignore": 0
+    "@typescript-eslint/ban-ts-ignore": 0,
+    "camelcase": 0,
+    "react/display-name": 0
 //    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx", ".tsx"] }]
 //     "no-unused-vars": 0
 //    "semi": [2, "always"],

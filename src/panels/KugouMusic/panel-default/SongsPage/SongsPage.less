@@ -1,0 +1,100 @@
+.page-songsList {
+  width: 100vw;
+  height: 100vh;
+  overflow: scroll;
+
+  .header-tab {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    display: flex;
+    height: 90px;
+    z-index: 1;
+    background-color: #fff;
+
+    span {
+      position: relative;
+      flex: 1;
+      line-height: 90px;
+      text-align: center;
+      font-size: 32px;
+      color: #6C7078;
+    }
+
+    span.active {
+      color: #0066FF;
+    }
+
+    span.active::before {
+      content: " ";
+      position: absolute;
+      left: 50%;
+      bottom: 0;
+      transform: translateX(-50%);
+      width: 32px;
+      height: 5px;
+      background: #0066FF;
+      border-radius: 4px;
+    }
+  }
+
+  .header-banner {
+    height: 220px;
+    background-size: contain;
+    position: relative;
+    margin-top: 90px;
+
+    .title {
+      position: absolute;
+      top: 93px;
+      left: 32px;
+      font-size: 60px;
+      color: #FFFFFF;
+    }
+
+    .subTitle {
+      position: absolute;
+      top: 126px;
+      left: 167px;
+      font-size: 28px;
+      color: #FFFFFF;
+    }
+  }
+
+  .list-main {
+    padding: 0 32px;
+    overflow: scroll;
+
+    .list-main-header {
+      height: 128px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 28px;
+      color: #15161A;
+
+      .left {
+        display: flex;
+        align-items: center;
+        font-weight: 700;
+
+        .iconPlayAll {
+          width: 48px;
+          height: 48px;
+          margin-right: 20px;
+        }
+      }
+
+      .right {
+        display: flex;
+        align-items: center;
+
+        .icon-playMode {
+          width: 42px;
+          margin-right: 24px;
+        }
+      }
+    }
+  }
+}
