@@ -54,7 +54,7 @@ export enum GeoJSONGeometrySubType {
 export enum AlertConditionType {
   In = 'In',
   Out = 'Out',
-  InOrOut = 'InOrOut',
+InOrOut = 'InOrOut',
 }
 
 export const AlertConditionTypeStr = {
