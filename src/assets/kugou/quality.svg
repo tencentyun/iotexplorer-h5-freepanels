@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="48px" height="48px" viewBox="0 0 48 48" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>音质功能按钮</title>
+    <g id="【小程序】酷狗音乐免开发面板-7.1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" opacity="0.602857013">
+        <g id="关闭备份" transform="translate(-64.000000, -1239.000000)" fill="#FFFFFF">
+            <g id="音质功能按钮" transform="translate(64.000000, 1239.000000)">
+                <circle id="椭圆形" cx="7" cy="24" r="4"></circle>
+                <circle id="椭圆形备份" cx="24" cy="24" r="4"></circle>
+                <circle id="椭圆形备份-2" cx="41" cy="24" r="4"></circle>
+            </g>
+        </g>
+    </g>
+</svg>

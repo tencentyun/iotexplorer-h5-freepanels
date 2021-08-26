@@ -15,3 +15,5 @@ export { default as iconFirmwareUpgradeLoading } from './firmware-upgrade-loadin
 export { default as iconVirtual } from './icon-virtual.svg';
 export { default as iconHidePassword } from './hide-password.svg';
 export { default as iconBindDevice } from './bind-device.svg';
+export { default as iconGoShop } from './go-shop.svg';
+export { default as iconShop } from './shop.svg';
