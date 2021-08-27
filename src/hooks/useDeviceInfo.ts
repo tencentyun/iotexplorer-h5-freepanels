@@ -1,12 +1,14 @@
-import { useEffect, useReducer, useRef } from 'react';
+import { useEffect, useReducer, useRef, Reducer } from 'react';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 import { tips } from "@wxlib";
+import { StatusTipProps } from "@components/StatusTip";
 
 export interface UseDeviceInfoState {
   deviceInfo: any;
   productInfo: any;
   templateMap: any;
   deviceData: any;
+  statusTip?: StatusTipProps | null;
 }
 
 export interface UserDeviceInfoData extends UseDeviceInfoState {
@@ -23,9 +25,10 @@ export interface UseDeviceInfoHandler {
 
 export type UseDeviceInfoResult = [UserDeviceInfoData, UseDeviceInfoHandler];
 
-declare type Reducer = (state: UseDeviceInfoState, action: ReducerAction<UseDeviceInfoAction>) => UseDeviceInfoState;
+// declare type Reducer = (state: UseDeviceInfoState, action: ReducerAction<UseDeviceInfoAction>) => UseDeviceInfoState;
 
 export enum UseDeviceInfoAction {
+  Init = 'Init',
   UpdateDeviceData = 'UpdateDeviceData',
   UpdateDeviceStatus = 'UpdateDeviceStatus',
 }
@@ -45,6 +48,13 @@ function reducer(state: UseDeviceInfoState, action: ReducerAction<UseDeviceInfoA
 
   const nextState = (() => {
     switch (type) {
+      case UseDeviceInfoAction.Init: {
+        return {
+          ...state,
+          ...payload,
+          statusTip: null,
+        };
+      }
       case UseDeviceInfoAction.UpdateDeviceData: {
         const deviceData = { ...state.deviceData };
 
@@ -87,6 +97,7 @@ function initState(sdk): UseDeviceInfoState {
     productInfo,
     templateMap: {},
     deviceData,
+    statusTip: null,
   };
 
   ['events', 'actions', 'properties'].forEach((key) => {
@@ -106,7 +117,13 @@ function initState(sdk): UseDeviceInfoState {
 export const useDeviceInfo = (): UseDeviceInfoResult => {
   // id 为key，设置 setTimeout 避免连续操作
   const controlDeviceDataDebounceMap = useRef({});
-  const [state, dispatch] = useReducer<Reducer, any>(reducer, sdk, initState);
+  const [state, dispatch] = useReducer<Reducer<UseDeviceInfoState, ReducerAction<any>>>(reducer, {
+    deviceInfo: {},
+    productInfo: {},
+    templateMap: {},
+    deviceData: {},
+    statusTip: { status: 'loading' },
+  });
 
   const controlDeviceData = async (deviceData) => {
     try {
@@ -167,6 +184,13 @@ export const useDeviceInfo = (): UseDeviceInfoResult => {
     sdk
       .on("wsReport", handleWsReport)
       .on("wsStatusChange", handleWsStatusChange);
+
+    sdk.sdkReady().then(() => {
+      dispatch({
+        type: UseDeviceInfoAction.Init,
+        payload: initState(sdk),
+      })
+    });
 
     return () => {
       sdk

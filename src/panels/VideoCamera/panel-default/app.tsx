@@ -9,25 +9,27 @@ import { useDeviceInfo } from "@hooks/useDeviceInfo";
 import { CameraPanel } from "./CameraPanel";
 import { entryWrap } from "@src/entryWrap";
 import { EventDetail } from "./EventDetail";
-function App() {
-  const [{ offline, powerOff, deviceInfo }] = useDeviceInfo();
+import { StatusTip } from "@components/StatusTip";
 
-  return (
+function App() {
+  const [{ deviceInfo, statusTip }] = useDeviceInfo();
+
+  return statusTip ? <StatusTip {...statusTip} fillContainer/> : (
     <HashRouter>
       <Switch>
         <Route
           path="/list"
           render={() => (
-            <CameraPanel></CameraPanel>
+            <CameraPanel/>
           )}
-        ></Route>
+        />
         <Route
           path="/detail"
           render={(item) => (
-            <EventDetail item={item} deviceInfo={deviceInfo}></EventDetail>
+            <EventDetail item={item} deviceInfo={deviceInfo}/>
           )}
-        ></Route>
-        <Redirect from="/" to="/list"></Redirect>
+        />
+        <Redirect from="/" to="/list"/>
       </Switch>
     </HashRouter>
   );
