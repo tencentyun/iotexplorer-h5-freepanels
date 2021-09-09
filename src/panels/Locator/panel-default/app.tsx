@@ -7,6 +7,7 @@ import { fetchAllList } from '@src/libs/utillib';
 import { LocatorPanel } from './LocatorPanel';
 import { LocatorPanelContext } from './LocatorPanelContext';
 import { LatLngWithTime, CoordinateType, DeviceFenceInfo } from './types';
+import { StatusTip } from "@components/StatusTip";
 import * as models from './models';
 
 interface LocatorPanelState {
@@ -88,6 +89,7 @@ function App() {
     deviceData,
     offline,
     templateMap,
+    statusTip,
   }, { doControlDeviceData }] = useDeviceInfo();
 
   const [state, dispatch] = useReducer(reducer, null, initState);
@@ -150,7 +152,7 @@ function App() {
         fenceList: list,
       },
     });
-    
+
     return list;
   };
 
@@ -172,7 +174,7 @@ function App() {
       type: LocatorPanelReducerAction.ResetFenceList,
       payload: {
         fenceId,
-        fenceEnable, 
+        fenceEnable,
       },
     });
   };
@@ -196,8 +198,8 @@ function App() {
       sdk.off('wsReport', handleWsReport);
     };
   }, []);
-  
-  return (
+
+  return statusTip ? <StatusTip {...statusTip} fillContainer/> : (
     <LocatorPanelContext.Provider value={{
       isDeviceOffline: offline,
       deviceInfo,

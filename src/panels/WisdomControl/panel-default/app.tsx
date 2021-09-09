@@ -10,11 +10,12 @@ import {
   useHistory,
 } from "react-router-dom";
 import { SubDeviceList } from "./SubDeviceList";
+import { StatusTip } from "@components/StatusTip";
 import sdk from "qcloud-iotexplorer-h5-panel-sdk";
 
 function App() {
   const [
-    { deviceInfo, deviceData, productInfo, templateMap, offline, powerOff },
+    { deviceInfo, deviceData, productInfo, templateMap, offline, powerOff, statusTip },
     { doControlDeviceData },
   ] = useDeviceInfo();
   const [subDeviceList, setSubDeviceList] = useState<any[]>([]);
@@ -47,7 +48,7 @@ function App() {
     console.log("subdevicechange", subDeviceList, "test");
     formatSubDeviceList(subDeviceList);
   });
-  return (
+  return statusTip ? <StatusTip {...statusTip} fillContainer/> : (
     <HashRouter>
       <Switch>
         <Redirect exact from="/" to="/panel"></Redirect>

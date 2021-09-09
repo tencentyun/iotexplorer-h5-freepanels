@@ -4,6 +4,7 @@ import { Panel } from './Panel';
 import { entryWrap } from "@src/entryWrap";
 import { getCountdownStrWithoutDevice } from "@components/FuncFooter";
 import { PanelPageWithMultiFeatures } from "@components/PanelPageWithMultiFeatures";
+import { StatusTip } from "@components/StatusTip";
 
 function App() {
   const [{
@@ -13,6 +14,7 @@ function App() {
     templateMap,
     offline,
     powerOff,
+    statusTip,
   }, { doControlDeviceData }] = useDeviceInfo();
 
   const { socketList, usbList } = useMemo(() => {
@@ -49,7 +51,9 @@ function App() {
   );
 
   return (
-    <PanelPageWithMultiFeatures
+    statusTip
+      ? <StatusTip fillContainer {...statusTip}/>
+      : <PanelPageWithMultiFeatures
       timingProjectList={totalSocketList.map(item => ({
         id: item.id,
         label: item.name,
