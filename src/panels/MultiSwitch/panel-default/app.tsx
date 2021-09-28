@@ -4,6 +4,7 @@ import { SwitchPanel } from './SwitchPanel';
 import { entryWrap } from "@src/entryWrap";
 import { getCountdownStrWithoutDevice } from "@components/FuncFooter";
 import { PanelPageWithMultiFeatures } from "@components/PanelPageWithMultiFeatures";
+import { StatusTip } from '@components/StatusTip';
 import './style.less';
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
     templateMap,
     offline,
     powerOff,
+    statusTip,
   }, { doControlDeviceData }] = useDeviceInfo();
 
   const switchList = useMemo(() => {
@@ -37,7 +39,9 @@ function App() {
   }, [templateMap]);
 
   return (
-    <PanelPageWithMultiFeatures
+    statusTip
+      ? <StatusTip fillContainer {...statusTip}/>
+      : <PanelPageWithMultiFeatures
       timingProjectList={switchList.map(item => ({
         id: item.id,
         label: item.name,

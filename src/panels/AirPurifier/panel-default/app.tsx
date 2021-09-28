@@ -2,7 +2,7 @@ import React from 'react';
 import { useDeviceInfo } from '@hooks/useDeviceInfo';
 import { AirPurifierPanel } from './AirPurifierPanel';
 import { entryWrap } from "@src/entryWrap";
-import { FilterReset } from './FilterReset'
+import { FilterReset } from './FilterReset';
 import {
   HashRouter,
   Switch,

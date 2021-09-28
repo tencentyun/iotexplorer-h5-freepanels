@@ -16,6 +16,8 @@ import { PlayFloatWindow } from '@src/panels/KugouMusic/panel-default/components
 import { LoginAuthPage } from '@src/panels/KugouMusic/panel-default/LoginAuthPage/LoginAuthPage';
 import { CUR_SONG_ID_KEY } from '@src/panels/KugouMusic/panel-default/constants';
 import { KugouState, IKugouContext, KugouDeviceData } from '@src/panels/KugouMusic/panel-default/types';
+import { useDeviceInfo } from '@hooks/useDeviceInfo';
+import { StatusTip } from '@components/StatusTip';
 
 declare type Reducer = (state: KugouState, action: ReducerAction<KugouStateAction>) => KugouState;
 
@@ -208,8 +210,8 @@ function App() {
   }, []);
 
   const [showPlayFloat, setShowPlayFloat] = useState(true);
-
-  return (
+  const [{ statusTip }] = useDeviceInfo();
+  return statusTip ? <StatusTip fillContainer {...statusTip}/> : (
     <div className="kugou-warp">
       {
         loginStatus === 'success' && <KugouContext.Provider value={{ kugouState, dispatch, setShowPlayFloat }}>
