@@ -174,25 +174,13 @@ function App() {
   };
 
   /**
-   * 初始化, 获取物模型
+   * 初次创建设备，设置物模型初始值
    */
   const initDeviceData = async () => {
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     const { h5PanelSdk } = window;
-    const { deviceId } = h5PanelSdk;
-    let { Data: deviceData } = await h5PanelSdk.requestTokenApi('AppGetDeviceData', {
-      DeviceId: h5PanelSdk.deviceId,
-    });
-    deviceData = JSON.parse(deviceData);
-    Object.keys(deviceData).forEach((key) => {
-      if (deviceData[key]) {
-        deviceData[key] = deviceData[key].Value;
-      }
-    });
-
-    // 初次创建设备，设置初始值
-    if (Object.keys(deviceData).length !== 10) {
+    if (Object.keys(h5PanelSdk.deviceData).length !== 10) {
       await h5PanelSdk.controlDeviceData({
         _sys_song_index: 0,
         _sys_control_seq: 0,
@@ -204,7 +192,7 @@ function App() {
         _sys_recommend_quality: 0,
         _sys_pause_play: 0,
         _sys_cur_play_list: '',
-      }, deviceId);
+      }, h5PanelSdk.deviceId);
     }
   };
 
