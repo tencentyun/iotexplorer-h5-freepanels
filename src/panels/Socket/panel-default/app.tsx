@@ -11,6 +11,8 @@ function App() {
     productInfo,
     templateMap,
     statusTip,
+    offline,
+    powerOff,
   }, { doControlDeviceData }] = useDeviceInfo();
 
   return (
@@ -20,8 +22,8 @@ function App() {
         productInfo={productInfo}
         templateMap={templateMap}
         deviceData={deviceData}
-        offline={false}
-        powerOff={false}
+        offline={offline}
+        powerOff={powerOff}
         doControlDeviceData={doControlDeviceData}
       />
   );
