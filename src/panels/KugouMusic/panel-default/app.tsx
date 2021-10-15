@@ -175,7 +175,31 @@ function App() {
     });
   };
 
+  /**
+   * 初次创建设备，设置物模型初始值
+   */
+  const initDeviceData = async () => {
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    const { h5PanelSdk } = window;
+    if (Object.keys(h5PanelSdk.deviceData).length !== 10) {
+      await h5PanelSdk.controlDeviceData({
+        _sys_song_index: 0,
+        _sys_control_seq: 0,
+        _sys_play_mode: 0,
+        _sys_cur_song_id: '',
+        _sys_pre_next: 0,
+        _sys_volume: 0,
+        _sys_play_position: 0,
+        _sys_recommend_quality: 0,
+        _sys_pause_play: 0,
+        _sys_cur_play_list: '',
+      }, h5PanelSdk.deviceId);
+    }
+  };
+
   const initData = () => {
+    initDeviceData();
     initHandleWsReport();
     initHomePageData();
     initSyncDeviceSong();
@@ -195,6 +219,7 @@ function App() {
     const init = async () => {
       try {
         const tmeSdk = await sdk.getTMESdk();
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
         window.tmeSdk = tmeSdk;
         setTMESdk(tmeSdk);

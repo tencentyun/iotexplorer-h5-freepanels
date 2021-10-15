@@ -59,6 +59,10 @@ export function SceneSlider({
     }
   }, [value]);
 
+  useEffect(() => {
+    setCurrentPosition(value);
+  }, []);
+
   const setStyle = (offsetLeft) => {
     // 计算当前激活的值
     let currentValue = Math.round(offsetLeft % size.containerWidth / size.textWidth) + 2;
@@ -75,7 +79,6 @@ export function SceneSlider({
   // 将当前激活元素对准在中间，并重置当前列表到正中间
   const setCurrentPosition = (currentValue) => {
     stateRef.current.offsetLeft = getOffsetByValue(currentValue);
-
     setState({
       offsetLeft: stateRef.current.offsetLeft,
       currentValue,
@@ -156,7 +159,7 @@ export function SceneSlider({
           className='scene-bg-list'
           style={{
             width: size.bgWidth * clonedOptions.length,
-            transform: `translate3d(${-state.offsetLeft * size.bgWidth / size.textWidth}px, 0, 0)`,
+            transform: `translate3d(${-state.offsetLeft * size.bgWidth / size.textWidth - size.bgWidth * 2}px, 0, 0)`,
             transition: state.offsetTransition ? 'transform .1s ease-out' : 'none',
           }}
         >
