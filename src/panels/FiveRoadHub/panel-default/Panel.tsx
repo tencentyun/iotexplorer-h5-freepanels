@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useRef, useState } from 'react';
 import {
-  iconSocketOpen, iconSocketClose, iconUsbOpen, iconUsbClose,
+  iconSocketOpen, iconSocketClose, iconUsbOpen, iconUsbClose, iconEditName
 } from './imgs';
 import classNames from 'classnames';
 import { FreePanelLayout } from '@components/FreePanelLayout';
@@ -9,12 +9,18 @@ import { PanelComponentProps } from "@src/entryWrap";
 import { getCountdownStrWithoutDevice } from "@components/FuncFooter";
 import './Panel.less';
 import { useHistory } from "react-router-dom";
+import { ConfirmModal } from '@components/Modal';
+import {
+  ModifyModalName,
+} from './models';
 
 export interface PanelProps extends PanelComponentProps {
   socketList: any[];
   usbList: any[];
+  switchNames: any;
+  onChangeSwitchNames: any;
 }
-
+// 多路排插
 export function Panel({
   deviceInfo,
   deviceData,
@@ -24,8 +30,13 @@ export function Panel({
   onGoDeviceDetail,
   socketList,
   usbList,
+  onChangeSwitchNames,
+  switchNames,
 }: PanelProps) {
   const history = useHistory();
+  const [visible, setVisible] = useState(false);
+  const currentEditItem = useRef<any>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
 
   const onToggleSocket = (item) => {
     if (offline) {
@@ -42,6 +53,21 @@ export function Panel({
     }
     doControlDeviceData(item.id, !deviceData[item.id] ? 1 : 0);
   };
+
+  const onEditName = async () => {
+    if(currentEditItem.current) {
+      if (inputRef.current?.value) {
+        try {
+          await ModifyModalName({
+            DeviceKey: currentEditItem.current?.id,
+            DeviceValue: inputRef.current?.value,
+          })
+        } catch {}
+        onChangeSwitchNames(currentEditItem.current?.id, inputRef.current?.value);
+      }
+    }
+    setVisible(false);
+  }
 
   return (
     <FreePanelLayout
@@ -79,6 +105,21 @@ export function Panel({
       />
 
       <div className="socket-container">
+        <div className='socket-container-modal'>
+          {
+            visible && 
+              <ConfirmModal 
+                visible={visible} 
+                title='修改名称'
+                content={<input ref={inputRef} autoFocus className='edit-name-modal' placeholder='最多15个字'/>}
+                onCancel={() => {
+                  setVisible(false);
+                  currentEditItem.current = null;
+                }}
+                onConfirm={() => onEditName()}
+              />
+          }
+        </div>
         <div className="socket-container-inner">
           <div className="socket-shell"/>
 
@@ -88,21 +129,31 @@ export function Panel({
             {socketList.map(item => (
               <SocketItem
                 key={item.id}
-                name={item.name}
+                name={switchNames[item.id] || item.name}
                 powerOn={deviceData[item.id]}
                 countdown={deviceData[item.countdownId]}
                 type='socket'
                 onClick={() => onToggleSocket(item)}
+                onEditName={() => {
+                  setVisible(true);
+                  currentEditItem.current = item;
+                  inputRef.current?.focus()
+                }}
               />
             ))}
             {usbList.map(item => (
               <SocketItem
                 key={item.id}
-                name={item.name}
+                name={switchNames[item.id] || item.name}
                 powerOn={deviceData[item.id]}
                 countdown={deviceData[item.countdownId]}
                 type='usb'
                 onClick={() => onToggleSocket(item)}
+                onEditName={() => {
+                  setVisible(true);
+                  currentEditItem.current = item;
+                  inputRef.current?.focus()
+                }}
               />
             ))}
           </div>
@@ -117,12 +168,14 @@ function SocketItem({
   countdown,
   name,
   onClick,
+  onEditName,
   type,
 }: {
   powerOn: boolean;
   countdown: number;
   name: string;
   onClick: any;
+  onEditName: any;
   type: 'usb' | 'socket',
 }) {
   return (
@@ -139,9 +192,15 @@ function SocketItem({
         />
       </div>
       <div className='item-feature'>
-        <div
-          className='item-name text-overflow'
-        >{name}</div>
+        <div className='item-name text-overflow'>
+          {name}
+          <img
+            src={iconEditName}
+            className='edit-img'
+            onClick={onEditName}
+          />
+        </div>
+
         <div
           className='countdown-marker'>{(
           countdown > 0)

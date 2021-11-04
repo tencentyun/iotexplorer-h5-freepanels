@@ -1,15 +1,20 @@
-import React from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import classNames from 'classnames';
 import { FreePanelLayout } from '@components/FreePanelLayout';
 import { PanelMoreBtn } from '@components/PanelMoreBtn';
 import { PanelComponentProps } from "@src/entryWrap";
 import { useHistory } from "react-router-dom";
 import { SwitchItem } from "@src/panels/MultiSwitch/panel-default/SwitchItem";
+import { ConfirmModal } from '@src/components/Modal';
+import { ModifyModalName } from '@src/panels/FiveRoadHub/panel-default/models';
 
 export interface SwitchPanelProps extends PanelComponentProps {
   switchList: any[];
+  switchNames: any;
+  onChangeSwitchNames: any;
 }
 
+// 多路开关
 export function SwitchPanel({
   deviceInfo,
   deviceData,
@@ -18,9 +23,14 @@ export function SwitchPanel({
   doControlDeviceData,
   onGoDeviceDetail,
   switchList,
+  onChangeSwitchNames,
+  switchNames,
 }: SwitchPanelProps) {
   const history = useHistory();
-
+  const [visible, setVisible] = useState(false);
+  const currentEditItem = useRef<any>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
+  
   const onToggleSocket = (item) => {
     if (offline) {
       return;
@@ -35,6 +45,20 @@ export function SwitchPanel({
     }
     doControlDeviceData(item.id, !deviceData[item.id] ? 1 : 0);
   };
+  const onEditName = async () => {
+    if(currentEditItem.current) {
+      if (inputRef.current?.value) {
+        try {
+          await ModifyModalName({
+            DeviceKey: currentEditItem.current?.id,
+            DeviceValue: inputRef.current?.value,
+          })
+        } catch {}
+        onChangeSwitchNames(currentEditItem.current?.id, inputRef.current?.value);
+      }
+    }
+    setVisible(false);
+  }
 
   return (
     <FreePanelLayout
@@ -70,19 +94,38 @@ export function SwitchPanel({
         onClick={onGoDeviceDetail}
         theme='dark'
       />
-
+      <div className='switch-container-modal'>
+        {
+          visible && 
+            <ConfirmModal 
+              visible={visible}
+              title='修改名称'
+              content={<input ref={inputRef} autoFocus className='edit-name-modal' placeholder='最多15个字'/>}
+              onCancel={() => {
+                setVisible(false);
+                currentEditItem.current = null;
+              }}
+              onConfirm={() => onEditName()}
+            />
+        }
+      </div>
       <div
         className={classNames('switch-list', `layout-${switchList.length}`)}
       >
         {switchList.map(item => (
           <SwitchItem
             key={item.id}
-            name={item.name}
+            name={switchNames[item.id] || item.name}
             switchOn={deviceData[item.id]}
             countdown={deviceData[item.countdownId]}
             onClick={() => onToggleSocket(item)}
-          />
-        ))}
+            onEditName={() => {
+              setVisible(true);
+              currentEditItem.current = item;
+              inputRef.current?.focus();
+            }}
+          />)
+          )}
       </div>
     </FreePanelLayout>
   );

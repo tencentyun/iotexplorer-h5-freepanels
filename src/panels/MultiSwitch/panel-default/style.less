@@ -4,6 +4,24 @@
   &.power-off {
     background-image: linear-gradient(180deg, #727F99 0%, #3E4656 100%);
   }
+    
+  .switch-container-modal {
+    .edit-name-modal{
+      width: 98%;
+      height: 68px;
+      background: #FFFFFF;
+      border: 1px solid #C8C8C8;
+      padding-left: 5PX;
+      &:focus {
+        outline: none;
+      }
+  
+      &::placeholder {
+        color: #A1A7B2;
+      }
+    }
+   
+  }
 }
 
 .explorer-switch {
@@ -121,6 +139,15 @@
     text-align: center;
     line-height: 40px;
     margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .edit-img {
+      margin-left: 5px;
+      width: 35px;
+      height: 35px;
+    }
   }
 
   .item-countdown {

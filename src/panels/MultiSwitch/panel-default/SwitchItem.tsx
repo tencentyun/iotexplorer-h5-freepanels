@@ -1,17 +1,21 @@
 import React from 'react';
 import classnames from 'classnames';
 import { getCountdownStrWithoutDevice } from "@components/FuncFooter";
+import { iconEditName } from './imgs';
 
+// 单个开关
 export function SwitchItem({
   switchOn,
   countdown,
   onClick,
   name,
+  onEditName,
 }: {
   switchOn: boolean;
   onClick: any;
   countdown: number;
   name: string;
+  onEditName: any;
 }) {
   return (
     <div
@@ -21,8 +25,15 @@ export function SwitchItem({
         value={switchOn}
         onClick={onClick}
       />
-
-      <div className='item-status text-overflow'>{name}</div>
+      {/* 开关名称 */}
+      <div className='item-status text-overflow'>
+        {name}
+        <img
+          src={iconEditName}
+          className='edit-img'
+          onClick={onEditName}
+          />
+      </div>
       {countdown > 0 ? (
         <div className='item-countdown'>
           {getCountdownStrWithoutDevice(countdown, !switchOn)}
