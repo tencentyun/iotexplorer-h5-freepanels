@@ -109,6 +109,7 @@ export function Panel({
           {
             visible && 
               <ConfirmModal 
+                btnFootClass='no-outline' // 底部按钮class
                 visible={visible} 
                 title='修改名称'
                 content={<input ref={inputRef} autoFocus className='edit-name-modal' placeholder='最多15个字'/>}

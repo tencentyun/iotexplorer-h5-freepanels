@@ -13,6 +13,7 @@ export interface ConfirmModalProps extends StyledProps {
   cancelText?: string;
   cancelColor?: string;
   maskClosable?: boolean;
+  btnFootClass?: string;
 }
 
 export function ConfirmModal({
@@ -28,6 +29,7 @@ export function ConfirmModal({
   maskClosable = true,
   className,
   style,
+  btnFootClass,
 }: ConfirmModalProps) {
   return (
     <Modal
@@ -53,6 +55,7 @@ export function ConfirmModal({
             confirmColor,
             cancelText,
             cancelColor,
+            btnFootClass
           }}
         />
       </Modal.Footer>
