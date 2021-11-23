@@ -1,23 +1,26 @@
 import React, { useRef, useState } from 'react';
 import {
-  iconSocketOpen, iconSocketClose, iconUsbOpen, iconUsbClose, iconEditName
+  iconSocketOpen, iconSocketClose, iconUsbOpen, iconUsbClose, iconEditName,
 } from './imgs';
 import classNames from 'classnames';
 import { FreePanelLayout } from '@components/FreePanelLayout';
 import { PanelMoreBtn } from '@components/PanelMoreBtn';
-import { PanelComponentProps } from "@src/entryWrap";
-import { getCountdownStrWithoutDevice } from "@components/FuncFooter";
+import { PanelComponentProps } from '@src/entryWrap';
+import { getCountdownStrWithoutDevice } from '@components/FuncFooter';
 import './Panel.less';
-import { useHistory } from "react-router-dom";
+import { useHistory } from 'react-router-dom';
 import { ConfirmModal } from '@components/Modal';
+import { useAsyncFetch } from '@src/hooks/useAsyncFetch';
+import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 import {
-  ModifyModalName,
+  getModalName,
+  modifyModalName,
 } from './models';
+import { StatusTip } from '@src/components/StatusTip';
 
 export interface PanelProps extends PanelComponentProps {
   socketList: any[];
   usbList: any[];
-  switchNames: any;
   onChangeSwitchNames: any;
 }
 // 多路排插
@@ -31,7 +34,6 @@ export function Panel({
   socketList,
   usbList,
   onChangeSwitchNames,
-  switchNames,
 }: PanelProps) {
   const history = useHistory();
   const [visible, setVisible] = useState(false);
@@ -55,22 +57,77 @@ export function Panel({
   };
 
   const onEditName = async () => {
-    if(currentEditItem.current) {
+    if (currentEditItem.current) {
       if (inputRef.current?.value) {
         try {
-          await ModifyModalName({
+          await modifyModalName({
             DeviceKey: currentEditItem.current?.id,
             DeviceValue: inputRef.current?.value,
-          })
-        } catch {}
-        onChangeSwitchNames(currentEditItem.current?.id, inputRef.current?.value);
+          });
+        } catch (e) {
+          // 注释
+        }
+        updateAsyncFetch({ id: currentEditItem.current.id });
       }
     }
     setVisible(false);
-  }
+  };
+  const switchs = localStorage.getItem(`switchNames${sdk.deviceId}`);
+  const [currentName, setCurrentName] = useState('');
+  const [switchNames, { updateAsyncFetch, statusTip }] = useAsyncFetch({
+    initData: switchs || {},
+    fetch: async ({ reload = false, id } = {}) => {
+      const names = (switchs && JSON.parse(switchs)) || {};
+      if (!id && switchs) { // 名称只能通过updateAsyncFetch改变然后更新本地缓存中的值
+        onChangeSwitchNames(names);
+        return names;
+      }
+      // eslint-disable-next-line no-restricted-syntax
+      for (const value of socketList) {
+        if (id) {
+          if (id === value.id) {
+            const { Configs } = await getModalName({
+              DeviceKey: value.id,
+            });
+            const name = Configs[value.id] || '';
+            names[value.id] = name ? name : value.name;
+          }
+        } else {
+          const { Configs } = await getModalName({
+            DeviceKey: value.id,
+          });
+          const name = Configs[value.id] || '';
+          names[value.id] = name ? name : value.name;
+        }
+      }
+      // eslint-disable-next-line no-restricted-syntax
+      for (const value of usbList) {
+        if (id) {
+          if (id === value.id) {
+            const { Configs } = await getModalName({
+              DeviceKey: value.id,
+            });
+            const name = Configs[value.id] || '';
+            names[value.id] = name ? name : value.name;
+          }
+        } else {
+          const { Configs } = await getModalName({
+            DeviceKey: value.id,
+          });
+          const name = Configs[value.id] || '';
+          names[value.id] = name ? name : value.name;
+        }
+      }
+      localStorage.setItem(`switchNames${sdk.deviceId}`, JSON.stringify(names)); // 缓存
+      onChangeSwitchNames(names);
+      return names;
+    },
+  });
 
   return (
-    <FreePanelLayout
+    statusTip
+      ? <StatusTip fillContainer {...statusTip}/>
+      : <FreePanelLayout
       className={classNames('free-extension-socket-page', {
         'power-off': true,
       })}
@@ -107,12 +164,20 @@ export function Panel({
       <div className="socket-container">
         <div className='socket-container-modal'>
           {
-            visible && 
-              <ConfirmModal 
+            visible
+              && <ConfirmModal
                 btnFootClass='no-outline' // 底部按钮class
-                visible={visible} 
+                visible={visible}
                 title='修改名称'
-                content={<input ref={inputRef} autoFocus className='edit-name-modal' placeholder='最多15个字'/>}
+                content={<input ref={inputRef}
+                          value={currentName}
+                          autoFocus
+                          className='edit-name-modal'
+                          placeholder='最多15个字'
+                          onChange={(event) => {
+                            setCurrentName(event.currentTarget.value);
+                          }}
+                        />}
                 onCancel={() => {
                   setVisible(false);
                   currentEditItem.current = null;
@@ -130,22 +195,23 @@ export function Panel({
             {socketList.map(item => (
               <SocketItem
                 key={item.id}
-                name={switchNames[item.id] || item.name}
+                name={switchNames.data[item.id]}
                 powerOn={deviceData[item.id]}
                 countdown={deviceData[item.countdownId]}
                 type='socket'
                 onClick={() => onToggleSocket(item)}
                 onEditName={() => {
                   setVisible(true);
+                  inputRef.current?.focus();
                   currentEditItem.current = item;
-                  inputRef.current?.focus()
+                  setCurrentName(switchNames.data[currentEditItem.current.id]);
                 }}
               />
             ))}
             {usbList.map(item => (
               <SocketItem
                 key={item.id}
-                name={switchNames[item.id] || item.name}
+                name={switchNames.data[item.id]}
                 powerOn={deviceData[item.id]}
                 countdown={deviceData[item.countdownId]}
                 type='usb'
@@ -153,7 +219,8 @@ export function Panel({
                 onEditName={() => {
                   setVisible(true);
                   currentEditItem.current = item;
-                  inputRef.current?.focus()
+                  inputRef.current?.focus();
+                  setCurrentName(switchNames.data[currentEditItem.current.id]);
                 }}
               />
             ))}
@@ -184,8 +251,8 @@ function SocketItem({
       <div className="item-img-container">
         <img
           src={
-            type === 'usb' ?
-              (powerOn ? iconUsbOpen : iconUsbClose)
+            type === 'usb'
+              ? (powerOn ? iconUsbOpen : iconUsbClose)
               : (powerOn ? iconSocketOpen : iconSocketClose)
           }
           className='item-img'
@@ -204,12 +271,12 @@ function SocketItem({
 
         <div
           className='countdown-marker'>{(
-          countdown > 0)
-          ? getCountdownStrWithoutDevice(countdown, !powerOn)
-          : ''}</div>
+            countdown > 0)
+            ? getCountdownStrWithoutDevice(countdown, !powerOn)
+            : ''}</div>
       </div>
     </div>
-  )
+  );
 }
 
 

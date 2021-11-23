@@ -1,22 +1,22 @@
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 
-export const ModifyModalName = async ({
+export const modifyModalName = async ({
   DeviceKey,
   DeviceValue,
 }) => {
   await sdk.requestTokenApi('AppSetDeviceConfig', {
     DeviceId: sdk.deviceId,
     DeviceKey,
-    DeviceValue
-  })
-}
+    DeviceValue,
+  });
+};
 
-export const GetModalName = async ({
+export const getModalName = async ({
   DeviceKey,
 }) => {
-  const { Configs } = await sdk.requestTokenApi('AppGetDeviceConfig',{
+  const { Configs } = await sdk.requestTokenApi('AppGetDeviceConfig', {
     DeviceId: sdk.deviceId,
-    DeviceKey
-  }) 
+    DeviceKey,
+  });
   return { Configs };
-}
+};

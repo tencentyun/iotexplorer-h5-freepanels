@@ -1,6 +1,6 @@
 import React from 'react';
 import classnames from 'classnames';
-import { getCountdownStrWithoutDevice } from "@components/FuncFooter";
+import { getCountdownStrWithoutDevice } from '@components/FuncFooter';
 import { iconEditName } from './imgs';
 
 // 单个开关
@@ -46,7 +46,7 @@ export function SwitchItem({
         />
       )}
     </div>
-  )
+  );
 }
 
 export function Switch({
@@ -66,5 +66,5 @@ export function Switch({
       <div className="switch-controller"/>
       <div className="controller-indicator"/>
     </div>
-  )
+  );
 }

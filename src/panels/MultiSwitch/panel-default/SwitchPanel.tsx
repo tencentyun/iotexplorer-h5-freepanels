@@ -2,15 +2,16 @@ import React, { useContext, useEffect, useRef, useState } from 'react';
 import classNames from 'classnames';
 import { FreePanelLayout } from '@components/FreePanelLayout';
 import { PanelMoreBtn } from '@components/PanelMoreBtn';
-import { PanelComponentProps } from "@src/entryWrap";
-import { useHistory } from "react-router-dom";
-import { SwitchItem } from "@src/panels/MultiSwitch/panel-default/SwitchItem";
+import { PanelComponentProps } from '@src/entryWrap';
+import { useHistory } from 'react-router-dom';
+import { SwitchItem } from '@src/panels/MultiSwitch/panel-default/SwitchItem';
 import { ConfirmModal } from '@src/components/Modal';
-import { ModifyModalName } from '@src/panels/FiveRoadHub/panel-default/models';
-
+import { getModalName, modifyModalName } from '@src/panels/FiveRoadHub/panel-default/models';
+import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
+import { useAsyncFetch } from '@src/hooks/useAsyncFetch';
+import { StatusTip } from '@src/components/StatusTip';
 export interface SwitchPanelProps extends PanelComponentProps {
   switchList: any[];
-  switchNames: any;
   onChangeSwitchNames: any;
 }
 
@@ -24,13 +25,12 @@ export function SwitchPanel({
   onGoDeviceDetail,
   switchList,
   onChangeSwitchNames,
-  switchNames,
 }: SwitchPanelProps) {
   const history = useHistory();
   const [visible, setVisible] = useState(false);
   const currentEditItem = useRef<any>(null);
   const inputRef = useRef<HTMLInputElement>(null);
-  
+
   const onToggleSocket = (item) => {
     if (offline) {
       return;
@@ -46,88 +46,134 @@ export function SwitchPanel({
     doControlDeviceData(item.id, !deviceData[item.id] ? 1 : 0);
   };
   const onEditName = async () => {
-    if(currentEditItem.current) {
+    if (currentEditItem.current) {
       if (inputRef.current?.value) {
         try {
-          await ModifyModalName({
+          await modifyModalName({
             DeviceKey: currentEditItem.current?.id,
             DeviceValue: inputRef.current?.value,
-          })
-        } catch {}
-        onChangeSwitchNames(currentEditItem.current?.id, inputRef.current?.value);
+          });
+        } catch {
+          // 注释
+        }
+        updateAsyncFetch({ id: currentEditItem.current.id });
       }
     }
     setVisible(false);
-  }
+  };
+  const switchs = localStorage.getItem(`switchNames${sdk.deviceId}`);
+  const [currentName, setCurrentName] = useState('');
+  const [switchNames, { updateAsyncFetch, statusTip }] = useAsyncFetch({
+    initData: switchs || {},
+    fetch: async ({ reload = false, id } = {}) => {
+      const names = (switchs && JSON.parse(switchs)) || {};
+      if (!id && switchs) { // 名称只能通过updateAsyncFetch改变然后更新本地缓存中的值
+        onChangeSwitchNames(names);
+        return names;
+      }
+      // eslint-disable-next-line no-restricted-syntax
+      for (const value of switchList) {
+        if (id) {
+          if (id === value.id) {
+            const { Configs } = await getModalName({
+              DeviceKey: value.id,
+            });
+            const name = Configs[value.id] || '';
+            names[value.id] = name ? name : value.name;
+          }
+        } else {
+          const { Configs } = await getModalName({
+            DeviceKey: value.id,
+          });
+          const name = Configs[value.id] || '';
+          names[value.id] = name ? name : value.name;
+        }
+      }
+      localStorage.setItem(`switchNames${sdk.deviceId}`, JSON.stringify(names)); // 缓存
+      onChangeSwitchNames(names);
+      return names;
+    },
+  });
 
   return (
-    <FreePanelLayout
-      className={classNames('switch-panel-page', {
-        'power-off': powerOff,
-      })}
-      title={deviceInfo.displayName}
-      doControlDeviceData={doControlDeviceData}
-      offline={offline}
-      powerOff={powerOff}
-      deviceData={deviceData}
-      onGoTimingProject={() => {
-        history.push('/timing-project-list');
-      }}
-      onGoCountDown={() => {
-        history.push('/countdown-list');
-      }}
-      onSwitchChange={() => {
-        const nextValue = powerOff ? 1 : 0;
+    statusTip
+      ? <StatusTip fillContainer {...statusTip}/>
+      : <FreePanelLayout
+        className={classNames('switch-panel-page', {
+          'power-off': powerOff,
+        })}
+        title={deviceInfo.displayName}
+        doControlDeviceData={doControlDeviceData}
+        offline={offline}
+        powerOff={powerOff}
+        deviceData={deviceData}
+        onGoTimingProject={() => {
+          history.push('/timing-project-list');
+        }}
+        onGoCountDown={() => {
+          history.push('/countdown-list');
+        }}
+        onSwitchChange={() => {
+          const nextValue = powerOff ? 1 : 0;
 
-        const deviceData = {
-          power_switch: nextValue,
-        };
+          const deviceData = {
+            power_switch: nextValue,
+          };
 
-        switchList.forEach((item) => {
-          deviceData[item.id] = nextValue;
-        });
+          switchList.forEach((item) => {
+            deviceData[item.id] = nextValue;
+          });
 
-        doControlDeviceData(deviceData);
-      }}
-    >
-      <PanelMoreBtn
-        onClick={onGoDeviceDetail}
-        theme='dark'
-      />
-      <div className='switch-container-modal'>
-        {
-          visible && 
-            <ConfirmModal
-              btnFootClass='no-outline' // 底部按钮class
-              visible={visible}
-              title='修改名称'
-              content={<input ref={inputRef} autoFocus className='edit-name-modal' placeholder='最多15个字'/>}
-              onCancel={() => {
-                setVisible(false);
-                currentEditItem.current = null;
-              }}
-              onConfirm={() => onEditName()}
-            />
-        }
-      </div>
-      <div
-        className={classNames('switch-list', `layout-${switchList.length}`)}
+          doControlDeviceData(deviceData);
+        }}
       >
-        {switchList.map(item => (
-          <SwitchItem
-            key={item.id}
-            name={switchNames[item.id] || item.name}
-            switchOn={deviceData[item.id]}
-            countdown={deviceData[item.countdownId]}
-            onClick={() => onToggleSocket(item)}
-            onEditName={() => {
-              setVisible(true);
-              currentEditItem.current = item;
-              inputRef.current?.focus();
-            }}
-          />)
-          )}
-      </div>
-    </FreePanelLayout>
+        <PanelMoreBtn
+          onClick={onGoDeviceDetail}
+          theme='dark'
+        />
+        <div className='switch-container-modal'>
+          {
+            visible
+              && <ConfirmModal
+                btnFootClass='no-outline' // 底部按钮class
+                visible={visible}
+                title='修改名称'
+                content={<input
+                          ref={inputRef}
+                          value={currentName}
+                          autoFocus
+                          className='edit-name-modal'
+                          placeholder='最多15个字'
+                          onChange={(event) => {
+                            setCurrentName(event.currentTarget.value);
+                          }}
+                          />}
+                onCancel={() => {
+                  setVisible(false);
+                  currentEditItem.current = null;
+                }}
+                onConfirm={() => onEditName()}
+              />
+          }
+        </div>
+        <div
+          className={classNames('switch-list', `layout-${switchList.length}`)}
+        >
+          {switchList.map(item => (
+            <SwitchItem
+              key={item.id}
+              name={switchNames.data[item.id]}
+              switchOn={deviceData[item.id]}
+              countdown={deviceData[item.countdownId]}
+              onClick={() => onToggleSocket(item)}
+              onEditName={() => {
+                setVisible(true);
+                currentEditItem.current = item;
+                inputRef.current?.focus();
+                setCurrentName(switchNames.data[currentEditItem.current.id])
+              }}
+            />))}
+        </div>
+      </FreePanelLayout>
   );
 }

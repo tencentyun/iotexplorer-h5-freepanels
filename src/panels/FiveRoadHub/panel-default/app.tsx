@@ -1,11 +1,10 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { useDeviceInfo } from '@hooks/useDeviceInfo';
 import { Panel } from './Panel';
-import { entryWrap } from "@src/entryWrap";
-import { getCountdownStrWithoutDevice } from "@components/FuncFooter";
-import { PanelPageWithMultiFeatures } from "@components/PanelPageWithMultiFeatures";
-import { StatusTip } from "@components/StatusTip";
-import { GetModalName } from './models';
+import { entryWrap } from '@src/entryWrap';
+import { getCountdownStrWithoutDevice } from '@components/FuncFooter';
+import { PanelPageWithMultiFeatures } from '@components/PanelPageWithMultiFeatures';
+import { StatusTip } from '@components/StatusTip';
 
 function App() {
   const [{
@@ -49,58 +48,25 @@ function App() {
 
   const totalSocketList = useMemo(
     () => [...socketList, ...usbList],
-    [socketList, usbList]
+    [socketList, usbList],
   );
 
-  const [switchNames, setSwitchNames] = useState<any>('{}');
+  const [switchNames, setSwitchNames] = useState<any>({});
 
-  useEffect(() => {
-    const getNames = async () => {
-      const names = {};
-      // for-of保证请求按顺序执行,且会等待await执行完毕再执行set
-      for (const value of socketList) {
-        const { Configs } = await GetModalName({
-          DeviceKey: value.id
-        });
-        let name = Configs[value.id] || '';
-        names[value.id] = name ? name : value.name;
-      }
-      for(const value of usbList) {
-        const { Configs } = await GetModalName({
-          DeviceKey: value.id
-        });
-        let name = Configs[value.id] || '';
-        names[value.id] = name ? name : value.name;
-      }
-      setSwitchNames(names);
-    }
-    getNames()
-  }, [socketList, usbList]);
-
-  const onChangeSwitchNames = (id, value) => {
-    let result = {...switchNames};
-    for (let key in switchNames) {
-      if(key === id) {
-        result[key] = value;
-        break;
-      }
-    }
-
-    setSwitchNames(result);
-  }
-
-  
+  const onChangeSwitchNames = (names) => {
+    setSwitchNames(names);
+  };
   return (
     statusTip
       ? <StatusTip fillContainer {...statusTip}/>
       : <PanelPageWithMultiFeatures
       timingProjectList={totalSocketList.map(item => ({
         id: item.id,
-        label: switchNames[item.id],
+        label: switchNames[item.id] || item.name,
       }))}
       countdownList={totalSocketList.map(item => ({
         id: item.id,
-        label: item.name,
+        label: switchNames[item.id] || item.name,
         text: deviceData[item.countdownId] > 0
           ? getCountdownStrWithoutDevice(deviceData[item.countdownId], !deviceData[item.id])
           : '',
@@ -120,7 +86,6 @@ function App() {
         doControlDeviceData={doControlDeviceData}
         socketList={socketList}
         usbList={usbList}
-        switchNames={switchNames}
         onChangeSwitchNames={onChangeSwitchNames}
       />
     </PanelPageWithMultiFeatures>
