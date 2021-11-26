@@ -1,6 +1,10 @@
 import React, { useRef, useState } from 'react';
 import {
-  iconSocketOpen, iconSocketClose, iconUsbOpen, iconUsbClose, iconEditName,
+  iconSocketOpen,
+  iconSocketClose,
+  iconUsbOpen,
+  iconUsbClose,
+  iconEditName,
 } from './imgs';
 import classNames from 'classnames';
 import { FreePanelLayout } from '@components/FreePanelLayout';
@@ -10,18 +14,14 @@ import { getCountdownStrWithoutDevice } from '@components/FuncFooter';
 import './Panel.less';
 import { useHistory } from 'react-router-dom';
 import { ConfirmModal } from '@components/Modal';
-import { useAsyncFetch } from '@src/hooks/useAsyncFetch';
-import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
-import {
-  getModalName,
-  modifyModalName,
-} from './models';
+import { modifyModalName } from './models';
 import { StatusTip } from '@src/components/StatusTip';
+import { useSwitchEditName } from '@src/hooks/useSwitchEditName';
 
 export interface PanelProps extends PanelComponentProps {
   socketList: any[];
   usbList: any[];
-  onChangeSwitchNames: any;
+  onChangeSwitchNames: (names) => void;
 }
 // 多路排插
 export function Panel({
@@ -65,64 +65,18 @@ export function Panel({
             DeviceValue: inputRef.current?.value,
           });
         } catch (e) {
-          // 注释
+          console.warn(e.msg);
         }
         updateAsyncFetch({ id: currentEditItem.current.id });
       }
     }
     setVisible(false);
   };
-  const switchs = localStorage.getItem(`switchNames${sdk.deviceId}`);
-  const [currentName, setCurrentName] = useState('');
-  const [switchNames, { updateAsyncFetch, statusTip }] = useAsyncFetch({
-    initData: switchs || {},
-    fetch: async ({ reload = false, id } = {}) => {
-      const names = (switchs && JSON.parse(switchs)) || {};
-      if (!id && switchs) { // 名称只能通过updateAsyncFetch改变然后更新本地缓存中的值
-        onChangeSwitchNames(names);
-        return names;
-      }
-      // eslint-disable-next-line no-restricted-syntax
-      for (const value of socketList) {
-        if (id) {
-          if (id === value.id) {
-            const { Configs } = await getModalName({
-              DeviceKey: value.id,
-            });
-            const name = Configs[value.id] || '';
-            names[value.id] = name ? name : value.name;
-          }
-        } else {
-          const { Configs } = await getModalName({
-            DeviceKey: value.id,
-          });
-          const name = Configs[value.id] || '';
-          names[value.id] = name ? name : value.name;
-        }
-      }
-      // eslint-disable-next-line no-restricted-syntax
-      for (const value of usbList) {
-        if (id) {
-          if (id === value.id) {
-            const { Configs } = await getModalName({
-              DeviceKey: value.id,
-            });
-            const name = Configs[value.id] || '';
-            names[value.id] = name ? name : value.name;
-          }
-        } else {
-          const { Configs } = await getModalName({
-            DeviceKey: value.id,
-          });
-          const name = Configs[value.id] || '';
-          names[value.id] = name ? name : value.name;
-        }
-      }
-      localStorage.setItem(`switchNames${sdk.deviceId}`, JSON.stringify(names)); // 缓存
-      onChangeSwitchNames(names);
-      return names;
-    },
+  const { switchNames, updateAsyncFetch, statusTip } = useSwitchEditName({
+    onChangeSwitchNames,
+    switchList: socketList.concat(usbList),
   });
+  const [currentName, setCurrentName] = useState('');
 
   return (
     statusTip

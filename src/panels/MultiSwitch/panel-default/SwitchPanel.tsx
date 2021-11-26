@@ -6,13 +6,12 @@ import { PanelComponentProps } from '@src/entryWrap';
 import { useHistory } from 'react-router-dom';
 import { SwitchItem } from '@src/panels/MultiSwitch/panel-default/SwitchItem';
 import { ConfirmModal } from '@src/components/Modal';
-import { getModalName, modifyModalName } from '@src/panels/FiveRoadHub/panel-default/models';
-import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
-import { useAsyncFetch } from '@src/hooks/useAsyncFetch';
+import { modifyModalName } from '@src/panels/FiveRoadHub/panel-default/models';
 import { StatusTip } from '@src/components/StatusTip';
+import { useSwitchEditName } from '@src/hooks/useSwitchEditName';
 export interface SwitchPanelProps extends PanelComponentProps {
   switchList: any[];
-  onChangeSwitchNames: any;
+  onChangeSwitchNames: (names)=> void;
 }
 
 // 多路开关
@@ -45,6 +44,7 @@ export function SwitchPanel({
     }
     doControlDeviceData(item.id, !deviceData[item.id] ? 1 : 0);
   };
+
   const onEditName = async () => {
     if (currentEditItem.current) {
       if (inputRef.current?.value) {
@@ -53,46 +53,18 @@ export function SwitchPanel({
             DeviceKey: currentEditItem.current?.id,
             DeviceValue: inputRef.current?.value,
           });
-        } catch {
-          // 注释
+        } catch (e) {
+          console.warn(e.msg);
         }
         updateAsyncFetch({ id: currentEditItem.current.id });
       }
     }
     setVisible(false);
   };
-  const switchs = localStorage.getItem(`switchNames${sdk.deviceId}`);
   const [currentName, setCurrentName] = useState('');
-  const [switchNames, { updateAsyncFetch, statusTip }] = useAsyncFetch({
-    initData: switchs || {},
-    fetch: async ({ reload = false, id } = {}) => {
-      const names = (switchs && JSON.parse(switchs)) || {};
-      if (!id && switchs) { // 名称只能通过updateAsyncFetch改变然后更新本地缓存中的值
-        onChangeSwitchNames(names);
-        return names;
-      }
-      // eslint-disable-next-line no-restricted-syntax
-      for (const value of switchList) {
-        if (id) {
-          if (id === value.id) {
-            const { Configs } = await getModalName({
-              DeviceKey: value.id,
-            });
-            const name = Configs[value.id] || '';
-            names[value.id] = name ? name : value.name;
-          }
-        } else {
-          const { Configs } = await getModalName({
-            DeviceKey: value.id,
-          });
-          const name = Configs[value.id] || '';
-          names[value.id] = name ? name : value.name;
-        }
-      }
-      localStorage.setItem(`switchNames${sdk.deviceId}`, JSON.stringify(names)); // 缓存
-      onChangeSwitchNames(names);
-      return names;
-    },
+  const { switchNames, updateAsyncFetch, statusTip } = useSwitchEditName({
+    onChangeSwitchNames,
+    switchList,
   });
 
   return (
