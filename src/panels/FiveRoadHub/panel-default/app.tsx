@@ -1,10 +1,10 @@
-import React, { useMemo } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { useDeviceInfo } from '@hooks/useDeviceInfo';
 import { Panel } from './Panel';
-import { entryWrap } from "@src/entryWrap";
-import { getCountdownStrWithoutDevice } from "@components/FuncFooter";
-import { PanelPageWithMultiFeatures } from "@components/PanelPageWithMultiFeatures";
-import { StatusTip } from "@components/StatusTip";
+import { entryWrap } from '@src/entryWrap';
+import { getCountdownStrWithoutDevice } from '@components/FuncFooter';
+import { PanelPageWithMultiFeatures } from '@components/PanelPageWithMultiFeatures';
+import { StatusTip } from '@components/StatusTip';
 
 function App() {
   const [{
@@ -45,22 +45,28 @@ function App() {
 
     return result;
   }, [templateMap]);
+
   const totalSocketList = useMemo(
     () => [...socketList, ...usbList],
-    [socketList, usbList]
+    [socketList, usbList],
   );
 
+  const [switchNames, setSwitchNames] = useState<any>({});
+
+  const onChangeSwitchNames = (names) => {
+    setSwitchNames(names);
+  };
   return (
     statusTip
       ? <StatusTip fillContainer {...statusTip}/>
       : <PanelPageWithMultiFeatures
       timingProjectList={totalSocketList.map(item => ({
         id: item.id,
-        label: item.name,
+        label: switchNames[item.id] || item.name,
       }))}
       countdownList={totalSocketList.map(item => ({
         id: item.id,
-        label: item.name,
+        label: switchNames[item.id] || item.name,
         text: deviceData[item.countdownId] > 0
           ? getCountdownStrWithoutDevice(deviceData[item.countdownId], !deviceData[item.id])
           : '',
@@ -80,6 +86,7 @@ function App() {
         doControlDeviceData={doControlDeviceData}
         socketList={socketList}
         usbList={usbList}
+        onChangeSwitchNames={onChangeSwitchNames}
       />
     </PanelPageWithMultiFeatures>
   );

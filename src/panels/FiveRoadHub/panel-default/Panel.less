@@ -6,7 +6,24 @@
     padding: 40px;
     box-sizing: border-box;
     position: relative;
-
+    
+    .socket-container-modal {
+      .edit-name-modal{
+        width: 98%;
+        height: 68px;
+        background: #FFFFFF;
+        border: 1px solid #C8C8C8;
+        padding-left: 5PX;
+        &:focus {
+          outline: none;
+        }
+    
+        &::placeholder {
+          color: #A1A7B2;
+        }
+      }
+     
+    }
     .socket-container-inner {
       position: relative;
       height: 100%;
@@ -62,13 +79,21 @@
           color: #fff;
 
           .item-name {
+            display: flex;
+            align-items: center;
 
+            .edit-img {
+              margin-left: 5px;
+              width: 35px;
+              height: 35px;
+            }
           }
 
           .countdown-marker {
             font-size: 28px;
             margin-top: 10px;
           }
+          
         }
       }
     }

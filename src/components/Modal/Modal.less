@@ -86,9 +86,13 @@
     .footer-confirm-btn-group {
       display: flex;
 
+      .no-outline{
+        outline:none;
+      }
       .modal-footer-btn {
         box-sizing: border-box;
         border-top: 1px solid #E7E8EB;
+        border-width: 1px 1px 1px 0;
         flex: 1;
         height: 96px;
         line-height: 96px;
@@ -96,7 +100,6 @@
         border-radius: 0;
         font-size: 32px;
         border-right: 1px solid #E7E8EB;
-
         &.no-border {
           border: none;
         }

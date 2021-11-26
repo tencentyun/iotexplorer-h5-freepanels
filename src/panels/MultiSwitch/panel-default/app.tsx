@@ -1,11 +1,17 @@
-import React, { useMemo } from 'react';
+import React, { useEffect, useMemo, useState, createContext } from 'react';
 import { useDeviceInfo } from '@hooks/useDeviceInfo';
 import { SwitchPanel } from './SwitchPanel';
-import { entryWrap } from "@src/entryWrap";
-import { getCountdownStrWithoutDevice } from "@components/FuncFooter";
-import { PanelPageWithMultiFeatures } from "@components/PanelPageWithMultiFeatures";
+import { entryWrap } from '@src/entryWrap';
+import { getCountdownStrWithoutDevice } from '@components/FuncFooter';
+import { PanelPageWithMultiFeatures } from '@components/PanelPageWithMultiFeatures';
 import { StatusTip } from '@components/StatusTip';
 import './style.less';
+
+interface SwitchNames {
+  switchNames: any,
+  onChangeSwitchNames?: any
+}
+export const SwitchNamesContext = createContext<any>({} as SwitchNames);
 
 function App() {
   const [{
@@ -38,17 +44,22 @@ function App() {
     return switchList;
   }, [templateMap]);
 
+  const [switchNames, setSwitchNames] = useState<any>({});
+
+  const onChangeSwitchNames = (names) => {
+    setSwitchNames(names);
+  };
   return (
     statusTip
       ? <StatusTip fillContainer {...statusTip}/>
       : <PanelPageWithMultiFeatures
       timingProjectList={switchList.map(item => ({
         id: item.id,
-        label: item.name,
+        label: switchNames[item.id] || item.name,
       }))}
       countdownList={switchList.map(item => ({
         id: item.id,
-        label: item.name,
+        label: switchNames[item.id] || item.name,
         text: deviceData[item.countdownId] > 0
           ? getCountdownStrWithoutDevice(deviceData[item.countdownId], !deviceData[item.id])
           : '',
@@ -67,8 +78,9 @@ function App() {
         powerOff={powerOff}
         doControlDeviceData={doControlDeviceData}
         switchList={switchList}
-      />
-    </PanelPageWithMultiFeatures>
+        onChangeSwitchNames={onChangeSwitchNames}
+        />
+      </PanelPageWithMultiFeatures>
   );
 }
 

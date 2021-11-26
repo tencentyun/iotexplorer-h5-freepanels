@@ -105,6 +105,7 @@ export interface FooterConfirmBtnGroup extends ConfirmBtnGroupProps {
 	isInFixedBottomModal?: boolean;
 	noBorder?: boolean;
 	btnSize?: number;
+	btnFootClass?: string;
 }
 
 Modal.Divider = () => (
@@ -125,6 +126,7 @@ Modal.FooterConfirmBtnGroup = ({
 	isInFixedBottomModal,
 	noBorder,
 	btnSize = 32,
+	btnFootClass,
 }: FooterConfirmBtnGroup) => {
 	const renderContent = () => {
 		if (isInFixedBottomModal) {
@@ -150,6 +152,7 @@ Modal.FooterConfirmBtnGroup = ({
 					<Modal.FooterBtn
 						noBorder={noBorder}
 						onClick={onCancel}
+						className = {btnFootClass}
 						style={{
 							color: cancelColor,
 							fontSize: `${btnSize}rpx`,
@@ -162,9 +165,11 @@ Modal.FooterConfirmBtnGroup = ({
 					<Modal.FooterBtn
 						noBorder={noBorder}
 						onClick={onConfirm}
+						className={btnFootClass}
 						style={{
 							color: confirmColor,
 							fontSize: `${btnSize}rpx`,
+							outline: 'none'
 						}}
 					>
 						{confirmText}
