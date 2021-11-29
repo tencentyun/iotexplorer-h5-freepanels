@@ -1,0 +1,42 @@
+/*重置ant=============================Start*/
+/*icon*/
+.adm-radio {
+  .adm-radio-icon {
+    border: 0;
+    color: var(--global-color-primary);
+  }
+  &.adm-radio-checked {
+    .adm-radio-icon {
+      color: @color-compared;
+      background-color: var(--global-color-primary);
+    }
+  }
+}
+
+/*List*/
+.adm-list {
+  &.no-border .adm-list-item-content {
+    border: 0 !important;
+  }
+  &.adm-list-default {
+    border: 0;
+    .adm-list-item-content {
+      border-bottom: 3px solid @color-line;
+      padding: 49px 62px 49px 0;
+      .adm-list-item-content-prefix {
+        color: @color-active;
+      }
+      .adm-list-item-content-extra,
+      .adm-list-item-content-arrow
+      {
+        color: var(--global-color-primary);
+      }
+    }
+  }
+  a.adm-list-item:active {
+    background-color: transparent;
+    opacity: .7;
+  }
+}
+
+/*重置ant=============================End*/

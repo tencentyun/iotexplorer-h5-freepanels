@@ -1,0 +1,32 @@
+@import '../../../themes/var.less';
+
+._component_common_icon_ {
+  &.svg-icon {
+    width: 64px;
+    height: 64px;
+    vertical-align: -0.15em;
+    fill: @color_1;
+    overflow: hidden;
+  }
+
+  // 黑白配色
+  &.icon-theme-normal {
+    fill: var(--global-color-primary);
+  }
+  // 蓝白配色
+  &.icon-theme-blue_white {
+    fill: url(#linear-fill_blue_white_color);
+  }
+  // 暗黑配色
+  &.icon-theme-dark {
+    fill: url(#linear-fill_dark_color);
+  }
+  // 多彩配色
+  &.icon-theme-colorful {
+    fill: url(#linear-fill_colorful_color);
+  }
+  // 莫兰迪配色
+  &.icon-theme-morandi {
+    fill: #566172;
+  }
+}

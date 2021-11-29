@@ -39,6 +39,10 @@ module.exports = {
     enable: true,
     panels: [["panel-default", { enable: true }]],
   },
+  Ebike: {
+    enable: true,
+    panels: [["panel-default", { enable: true }]],
+  },
   KugouMusic: {
     enable: true,
     panels: [

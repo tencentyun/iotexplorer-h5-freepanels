@@ -1,0 +1,40 @@
+@import '../../../themes/styles/variable.less';
+
+._component_business_battery_ {
+  display: flex;
+  align-items: center;
+
+  .battery-wrap {
+    flex-shrink: 0;
+    width: 95px;
+    height: 57px;
+    background: url(./icon-battery.svg) no-repeat center;
+    background-size: contain;
+    display: flex;
+    align-items: center;
+
+    .inner {
+      margin-left: 10px;
+      width: 70px;
+      height: 35px;
+    }
+
+    .current-level {
+      width: 0;
+      height: 100%;
+      background-color: @color_2;
+      border-radius: 8px;
+    }
+  }
+
+  .battery-percent {
+    font-size: @font_36;
+    color: @color_1;
+    margin-left: 10px;
+  }
+
+  .battery-tip {
+    white-space: nowrap;
+    margin-left: 22px;
+  }
+}
