@@ -1,13 +1,13 @@
+import './styles/index.less';
+
+import { UseDeviceInfoHandler, UserDeviceInfoData } from '@hooks/useDeviceInfo';
+
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { UseDeviceInfoHandler, UserDeviceInfoData } from "@hooks/useDeviceInfo";
-import './styles/index.less';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 
 try {
-  sdk.setTriggerVibrateShortFilter((property) => {
-    return property.define.type === 'bool' && property.id === 'power_switch';
-  });
+  sdk.setTriggerVibrateShortFilter(property => property.define.type === 'bool' && property.id === 'power_switch');
 } catch (err) {
   console.warn('setAutoTriggerVibrateShort fail', err);
 }
@@ -25,17 +25,17 @@ export function entryWrap(Component) {
     const windowWidth = docEle.getBoundingClientRect().width;
 
     if (windowWidth >= 640) {
-      docEle.style.fontSize = "40px"
+      docEle.style.fontSize = '40px';
     } else {
       if (windowWidth <= 320) {
-        docEle.style.fontSize = "20px"
+        docEle.style.fontSize = '20px';
       } else {
-        docEle.style.fontSize = windowWidth / 320 * 20 + "px"
+        docEle.style.fontSize = `${(windowWidth / 320) * 20}px`;
       }
     }
   }
 
-  window.addEventListener("resize", resize);
+  window.addEventListener('resize', resize);
 
   resize();
 
