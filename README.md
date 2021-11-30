@@ -28,25 +28,71 @@ https://127.0.0.1:9000/FiveRoadLight_panel-default.css
 
 ### 代理配置
 
-1、下载whistle
-
-
-如果是基于H5面板开发，代理配置为：
+1、下载[whistle](http://wproxy.org/whistle/) 通过浏览器代理
 
 ```
+npm install -g whistle
+w2 help # 查看对应的命令
+whistle start -p 8888 # 指定端口启动浏览器代理，如果不指定默认为 8899
+# w2 restart 重启
+# w2 stop 停止
+相关文档请查看 http://wproxy.org/whistle/quickstart.html
+```
+
+如果是基于H5面板开发，代理配置为：
+需要在[iot控制台](https://console.cloud.tencent.com/iotexplorer)按照流程
+创建项目 -> 创建产品 -> 选择物模型 -> 交互开发 --> 面板配置 -> 自定义面板 -> 设置白名单 -> 设备调试
+
+可以在线拼接调试地址(见调试)，也可以通过小程序长按获取已配置设备联调的h5页面地址。
+```
+# 通过在whistle 的 rule 中配置代理规则，可以实现代理到本地服务的功能。
 developing.script/developing.js https://127.0.0.1:9000/FiveRoadLight_panel-default.js
 developing.style/developing.css https://127.0.0.1:9000/FiveRoadLight_panel-default.css
 ```
 
 ### 调试与展示
 4. 调试虚拟面板，在浏览器访问
-`https://iot.cloud.tencent.com/h5panel/developing?productId=${对应品类的产品id}&uin=mmtest`
+`https://iot.cloud.tencent.com/h5panel/developing?productId=${对应品类的产品id}&uin={白名单的用户}`
 
 
 5. 真实面板的调试
    方法见[官方文档](https://cloud.tencent.com/document/product/1081/49028)
 
 
+
+### 目录说明
+
+---
+|-- dist # 构建编译的页面级js 文件
+|-- src  # 源码目录
+    |-- assets  # 普通静态资源、svg等
+        |-- common
+        |-- device
+        |-- kugou
+        |-- panel
+    |-- components # 基础组件库
+        |-- custom # 行业定制的面开发面板依赖的基础组件库
+        |-- # 自定义开发 基础组件
+        |--
+    |-- constants # 页面里面所含有的静态变量
+        |--
+    |-- hooks # 使用到 react 的hooks 或jsSdk 中的hook信息，主要用于请求与设备通信接口
+        |--
+        |--
+    |-- libs # 集成的第三库或公共库
+        |-- wxlib
+        |-- 
+    |-- models # 特定面板数据请求响应
+        |--
+    |-- panels # 独立页面面板区域[主要开发目录]
+        |--
+        |--
+    |-- style # 依赖的样式信息，公共的样式信息
+        |-- custom 
+        |-- themes
+    |-- verdor 
+        |-- underscore # underscore 提供的基础方法
+        |--
 
 
 
