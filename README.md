@@ -18,12 +18,12 @@ https://127.0.0.1:9000/FiveRoadLight_panel-default.js
 // css地址：
 https://127.0.0.1:9000/FiveRoadLight_panel-default.css
 
-其中 'socket' 为前面指定的 category 参数，'panel-default' 为前面指定的 panel 参数
+其中 'FiveRoadLight' 为前面命令行指定的 `category` 参数，'panel-default' 为前面命令行指定的 `panel` 参数
 ```
 
 4.新开发的面板需添加配置
 
-需要在panel-config.js文件中增加面板配置,可以参考已有目录和panel-config.js中的写法
+需要在 `webpack/panel-config.js` 文件中增加面板配置,可以参考已有目录和写法
 
 
 ### 代理配置
@@ -37,6 +37,23 @@ whistle start -p 8888 # 指定端口启动浏览器代理，如果不指定默�
 # w2 restart 重启
 # w2 stop 停止
 相关文档请查看 http://wproxy.org/whistle/quickstart.html
+```
+
+```
+浏览器安装代理插件：Proxy SwitchyOmega
+主要是将浏览器页面请求代理到 127.0.0.1:8888 [即 whistle 启动端口]
+
+chrome 市场直接安装下载[需翻墙] https://chrome.google.com/webstore/detail/proxy-switchyomega/padekgcemlokbadohgkifijomclgjgif
+
+国内可以通过github下载 [SwitchyOmega_Chromium.crx] 文件手动安装。
+地址：https://github.com/FelisCatus/SwitchyOmega/releases
+
+安装方法
+https://jingyan.baidu.com/article/219f4bf7a0b737de442d38e8.html
+
+插件配置与使用方法
+http://c.biancheng.net/python_spider/SwitchyOmega.html
+
 ```
 
 如果是基于H5面板开发，代理配置为：
