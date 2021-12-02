@@ -79,7 +79,8 @@ developing.style/developing.css https://127.0.0.1:9000/FiveRoadLight_panel-defau
 
 ### 目录说明
 
----
+```
+_
 |-- dist # 构建编译的页面级js 文件
 |-- src  # 源码目录
     |-- assets  # 普通静态资源、svg等
@@ -110,7 +111,7 @@ developing.style/developing.css https://127.0.0.1:9000/FiveRoadLight_panel-defau
     |-- verdor 
         |-- underscore # underscore 提供的基础方法
         |--
-
+```
 
 
 
