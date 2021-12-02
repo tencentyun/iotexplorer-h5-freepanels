@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "dev": "npx webpack serve --config webpack/webpack.config.js --mode=development --watch",
-    "build": "npx webpack --config webpack/webpack.config.js --mode=production"
+    "build": "npx webpack --config webpack/webpack.config.js --mode=production",
+    "lint": "eslint  ./src",
+    "lint:fix": "eslint ./src --ext .ts --fix"
   },
   "repository": {
     "type": "git",

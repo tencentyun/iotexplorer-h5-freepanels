@@ -1,4 +1,5 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
+
 import { StatusTipProps } from '@components/StatusTip';
 import { getErrorMsg } from '@utillib';
 
@@ -31,7 +32,7 @@ export const useInfiniteList = <T extends {}>({
   dependences = [],
   shouldUpdate = null,
   statusTipOpts = {},
-  needReloadByDependences = false,  //提供这个默认值，用于函数在根据dependences自动reload而非手动调用的时候传参
+  needReloadByDependences = false,  // 提供这个默认值，用于函数在根据 dependences 自动 reload 而非手动调用的时候传参
 }: {
   getData: (props: {
     context?: any;
@@ -182,7 +183,7 @@ export const useInfiniteList = <T extends {}>({
       || (typeof shouldUpdate === 'function' && shouldUpdate(dependences))
     ) {
     // 根据依赖去更新值的情况有些是需要relaod的，所以传入reset参数
-      fetchData({reset: needReloadByDependences });
+      fetchData({ reset: needReloadByDependences });
     }
   }, [...dependences]);
 

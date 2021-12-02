@@ -5,10 +5,11 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const panelConfig = require('./panel-conf');
 const TerserPlugin = require('terser-webpack-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
-
+const autoPreFixer = require('autoprefixer');
+const postcss = require('postcss-pxtorem');
 class ModifiedMiniCssExtractPlugin extends MiniCssExtractPlugin {
   getCssChunkObject(mainChunk) {
-    return {}
+    return {};
   }
 }
 
@@ -27,7 +28,7 @@ module.exports = (env, argv) => {
     if (enable && panels && panels.length) {
       panels.forEach((panelInfo) => {
         let panelName;
-        let options = { enable: true, entry: 'app.tsx' };
+        const options = { enable: true, entry: 'app.tsx' };
 
         if (typeof panelInfo === 'string') {
           panelName = panelInfo;
@@ -52,11 +53,10 @@ module.exports = (env, argv) => {
     output: {
       path: outputPath,
       filename: isDevMode ? '[name].js' : '[name].[contenthash:10].js',
-      // filename: '[name].js',
-      libraryTarget: 'umd'
+      libraryTarget: 'umd',
     },
     externals: {
-      react: "React",
+      react: 'React',
       'react-dom': 'ReactDOM',
       'qcloud-iotexplorer-h5-panel-sdk': 'h5PanelSdk',
     },
@@ -78,25 +78,25 @@ module.exports = (env, argv) => {
             loader: 'babel-loader',
             options: {
               sourceType: 'unambiguous',
-              presets: ['@babel/preset-env', '@babel/preset-react',],
+              presets: ['@babel/preset-env', '@babel/preset-react'],
               plugins: [
                 '@babel/plugin-proposal-class-properties',
                 [
                   '@babel/plugin-transform-runtime',
                   {
-                    'absoluteRuntime': false,
-                    'corejs': false,
-                    'helpers': true,
-                    'regenerator': false,
-                    'useESModules': false,
-                  }
+                    absoluteRuntime: false,
+                    corejs: false,
+                    helpers: true,
+                    regenerator: false,
+                    useESModules: false,
+                  },
                 ],
-              ]
+              ],
             },
-          }
+          },
         },
         {
-          loader: "ts-loader",
+          loader: 'ts-loader',
           options: {
             transpileOnly: true,
           },
@@ -111,15 +111,15 @@ module.exports = (env, argv) => {
               loader: 'css-loader',
               options: {
                 url: true,
-              }
+              },
             },
             {
               loader: 'postcss-loader',
               options: {
                 ident: 'postcss',
                 plugins: [
-                  require('autoprefixer')(),
-                  require('postcss-pxtorem')({
+                  autoPreFixer(),
+                  postcss({
                     rootValue: 46.875,
                     propList: ['*'],
                   }),
@@ -134,10 +134,10 @@ module.exports = (env, argv) => {
         {
           test: /\.svg$/,
           use: [
-            "url-loader",
-            "svg-transform-loader",
+            'url-loader',
+            'svg-transform-loader',
             {
-              loader: "svgo-loader",
+              loader: 'svgo-loader',
               options: {
                 plugins: [{ removeTitle: true }, { convertStyleToAttrs: true }],
               },
@@ -155,7 +155,7 @@ module.exports = (env, argv) => {
         '@hooks': path.resolve(__dirname, '../src/hooks'),
         '@utillib': path.resolve(__dirname, '../src/libs/utillib.ts'),
         '@libs': path.resolve(__dirname, '../src/libs'),
-        "@constants": path.resolve(__dirname, '../src/constants/index.ts'),
+        '@constants': path.resolve(__dirname, '../src/constants/index.ts'),
         '@icons': path.resolve(__dirname, '../src/assets'),
         '@underscore': path.resolve(__dirname, '../src/vendor/underscore/index'),
         '@wxlib': path.resolve(__dirname, '../src/libs/wxlib/index.js'),
