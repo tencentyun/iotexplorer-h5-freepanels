@@ -10,16 +10,16 @@ export function useSwitchEditName({
 }) {
   const switchs = localStorage.getItem(`switchNames${sdk.deviceId}`);
   const [switchNames, { updateAsyncFetch, statusTip }] = useAsyncFetch({
-    initData: switchs || {},
+    initData: switchs,
     fetch: async ({ reload = false, id } = {}) => {
       const names = (switchs && JSON.parse(switchs)) || {};
-      if (!id && switchs) { // 名称只能通过updateAsyncFetch改变然后更新本地缓存中的值
+      if (!id && switchs && switchs !== '{}') { // 不重复拉，用localstorage中的数据
         onChangeSwitchNames(names);
         return names;
       }
       // eslint-disable-next-line no-restricted-syntax
       for (const value of switchList) {
-        if (id !== value.id) continue;
+        if (id && (id !== value.id)) continue;
         const { Configs } = await getModalName({
           DeviceKey: value.id,
         });
