@@ -5,7 +5,7 @@ import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 import { rpx2px } from '@utillib';
 import * as models from '../../models';
 import * as icons from '../../icons';
-import { TMapApiKey } from '../../constants';
+import { tMapApiKey } from '../../constants';
 import { TMapV2, Marker, Polyline } from './TMapV2';
 import { MapControl } from './MapControl';
 import { LocatorPanelContext } from '../../LocatorPanelContext';
@@ -282,7 +282,7 @@ export function MapTab({
     <div className={classNames('locator-tab locator-map-tab', `locator-map-view-${viewType}`)}>
       <div className="locator-map-layer-container">
         <TMapV2
-          apiKey={TMapApiKey}
+          apiKey={tMapApiKey}
           onInited={onMapInited}
           getInitOptions={() => ({
             mapTypeControl: false,

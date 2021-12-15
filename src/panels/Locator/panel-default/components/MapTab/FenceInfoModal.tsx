@@ -259,6 +259,7 @@ export function FenceInfoModal({
     if (submitting || !center) {
       return;
     }
+
     const centerWgs84 = convertGCJ02ToWGS84([center.lng, center.lat]);
 
     const newFenceInfo = {
@@ -274,6 +275,11 @@ export function FenceInfoModal({
 
     if (!newFenceInfo.FenceName) {
       sdk.tips.showError('请填写区域名称');
+      return;
+    }
+
+    if (sdk.isMock) {
+      sdk.tips.showInfo('虚拟设备不支持创建或修改围栏');
       return;
     }
 

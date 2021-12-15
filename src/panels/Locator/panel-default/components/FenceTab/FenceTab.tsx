@@ -25,6 +25,11 @@ function FenceItem({
   const [enabled, setEnabled] = useState(data.FenceEnable);
   const [submitting, setSubmitting] = useState(false);
   const onFenceEnableChange = async (enabled: boolean) => {
+    if (sdk.isMock) {
+      sdk.tips.showInfo('虚拟设备不支持修改围栏开启状态');
+      return;
+    }
+
     setSubmitting(true);
     sdk.tips.showLoading('围栏修改中');
     try {

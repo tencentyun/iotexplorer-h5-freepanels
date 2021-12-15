@@ -77,8 +77,8 @@ interface FenceEventListContext {
   endTime: number;
 }
 
-const EventListMaxLenTime = 365 * 24 * 60 * 60 * 1000;
-const EventListPageSize = 100;
+const eventListMaxLenTime = 365 * 24 * 60 * 60 * 1000;
+const eventListPageSize = 100;
 
 export function FenceEventList() {
   const [listState, { loadMore, statusTip }] = useInfiniteList({
@@ -93,7 +93,7 @@ export function FenceEventList() {
         context = {
           offset: 0,
           endTime: now,
-          startTime: now - EventListMaxLenTime,
+          startTime: now - eventListMaxLenTime,
         };
       }
 
@@ -101,7 +101,7 @@ export function FenceEventList() {
         ProductId: sdk.productId,
         DeviceName: sdk.deviceName,
         Offset: context.offset,
-        Limit: EventListPageSize,
+        Limit: eventListPageSize,
         StartTime: context.startTime,
         EndTime: context.endTime,
       });
@@ -109,7 +109,7 @@ export function FenceEventList() {
       const { list } = resp;
       list.sort((a, b) => b.CreateTime - a.CreateTime);
 
-      const nextOffset = context.offset + EventListPageSize;
+      const nextOffset = context.offset + eventListPageSize;
 
       return {
         context: {

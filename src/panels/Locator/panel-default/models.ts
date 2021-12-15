@@ -1,8 +1,24 @@
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 import jsonp from 'jsonp';
-import { TMapApiKey } from './constants';
+import {
+  getMockDeviceFenceList,
+  getMockDeviceLocation,
+  getMockDeviceLocationHistory,
+  getMockFenceEventList,
+  tMapApiKey,
+} from './constants';
 import { appendParams } from '@utillib';
-import { AlertConditionType, AlertMethodType, CoordinateType, DeviceFenceEvent, DeviceFenceInfo, DevicePosition, GeoJSON, GeoJSONGeometrySubType, GeoJSONGeometryType } from './types';
+import {
+  AlertConditionType,
+  AlertMethodType,
+  CoordinateType,
+  DeviceFenceEvent,
+  DeviceFenceInfo,
+  DevicePosition,
+  GeoJSON,
+  GeoJSONGeometrySubType,
+  GeoJSONGeometryType,
+} from './types';
 
 export const getDeviceLocation = async ({
   DeviceId,
@@ -11,6 +27,10 @@ export const getDeviceLocation = async ({
   DeviceId: string;
   CoordType: CoordinateType;
 }): Promise<DevicePosition> => {
+  if (sdk.isMock) {
+    return getMockDeviceLocation();
+  }
+
   const { Data } = await sdk.requestTokenApi('AppGetDeviceLocation', {
     DeviceId,
     CoordType,
@@ -30,6 +50,10 @@ export const getDeviceLocationHistory = async ({
   MinTime: number;
   MaxTime: number;
 }): Promise<DevicePosition[]> => {
+  if (sdk.isMock) {
+    return getMockDeviceLocationHistory(MaxTime);
+  }
+
   const { Data } = await sdk.requestTokenApi('AppGetDeviceLocationHistory', {
     DeviceId,
     CoordType,
@@ -54,6 +78,11 @@ export const getFenceList = async ({
   total: number;
   list: DeviceFenceInfo[];
 }> => {
+  if (sdk.isMock) {
+    const fenceList = getMockDeviceFenceList();
+    return { list: fenceList, total: fenceList.length };
+  }
+
   const resp: {
     List: (Omit<DeviceFenceInfo, 'FenceArea'> & { FenceArea: string; })[];
     Total: number;
@@ -226,6 +255,14 @@ export const getFenceEventList = async ({
   list: DeviceFenceEvent[];
   total: number;
 }> => {
+  if (sdk.isMock) {
+    const list = getMockFenceEventList();
+    return {
+      list,
+      total: list.length,
+    };
+  }
+
   const resp = await sdk.requestTokenApi('AppGetFenceEventList', {
     ProductId,
     DeviceName,
@@ -248,7 +285,7 @@ export const requestTMapWebService = async <T>({
 }) => {
   const url = appendParams(`https://apis.map.qq.com/ws/${action}`, {
     ...params,
-    key: TMapApiKey,
+    key: tMapApiKey,
     output: 'jsonp',
   });
 

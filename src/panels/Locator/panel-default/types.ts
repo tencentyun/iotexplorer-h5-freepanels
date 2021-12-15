@@ -54,7 +54,7 @@ export enum GeoJSONGeometrySubType {
 export enum AlertConditionType {
   In = 'In',
   Out = 'Out',
-InOrOut = 'InOrOut',
+  InOrOut = 'InOrOut',
 }
 
 export const AlertConditionTypeStr = {
@@ -73,14 +73,14 @@ export const AlertMethodTypeStr = {
 
 export interface DeviceFenceInfo {
   FenceId: number;
-	FenceName: string;
-	FenceDesc: string;
-	FenceArea: GeoJSON | null;
-	AlertCondition: AlertConditionType;
-	FenceEnable: boolean;
-	Method: AlertMethodType;
-	CreateTime: number;
-	UpdateTime: number;
+  FenceName: string;
+  FenceDesc: string;
+  FenceArea: GeoJSON | null;
+  AlertCondition: AlertConditionType;
+  FenceEnable: boolean;
+  Method: AlertMethodType;
+  CreateTime: number;
+  UpdateTime: number;
 }
 
 export enum CoordinateType {
@@ -95,8 +95,8 @@ export interface DevicePosition {
 }
 
 export interface DeviceFenceEvent {
-	EventType: AlertConditionType;
-	CreateTime: number;
+  EventType: AlertConditionType;
+  CreateTime: number;
 }
 
 export enum DetailPage {

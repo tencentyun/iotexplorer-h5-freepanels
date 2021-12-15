@@ -2,13 +2,14 @@ import React, { useEffect, useReducer } from 'react';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 import { HashRouter } from 'react-router-dom';
 import { useDeviceInfo } from '@hooks/useDeviceInfo';
-import { entryWrap } from "@src/entryWrap";
+import { entryWrap } from '@src/entryWrap';
 import { fetchAllList } from '@src/libs/utillib';
 import { LocatorPanel } from './LocatorPanel';
 import { LocatorPanelContext } from './LocatorPanelContext';
 import { LatLngWithTime, CoordinateType, DeviceFenceInfo } from './types';
-import { StatusTip } from "@components/StatusTip";
+import { StatusTip } from '@components/StatusTip';
 import * as models from './models';
+import { locatorThingModalProperties, tMapApiKey } from './constants';
 
 interface LocatorPanelState {
   deviceLocation: LatLngWithTime | null;
@@ -133,7 +134,9 @@ function App() {
             time: Date.now(),
           });
         },
-        fail: (err) => { reject(err); },
+        fail: (err) => {
+          reject(err);
+        },
       });
     });
   };
@@ -180,10 +183,8 @@ function App() {
   };
 
   const handleWsReport = ({ deviceId, deviceData }) => {
-    // 监听设备通过物模型 GPS_Ext 或 LBS_BS 上报位置信息
-    if (deviceId === sdk.deviceId && (
-      deviceData['GPS_Ext'] || deviceData['LBS_BS']
-    )) {
+    // 监听设备通过物模型属性上报位置信息
+    if (deviceId === sdk.deviceId && Object.keys(deviceData).some(id => locatorThingModalProperties[id])) {
       // 拉取最新的设备位置
       getDeviceLocation().catch((err) => {
         console.error('getDeviceLocation fail', err);
@@ -192,6 +193,11 @@ function App() {
   };
 
   useEffect(() => {
+    if (!tMapApiKey) {
+      console.warn('地图与地理位置功能需要配置腾讯地图 API Key 才能调用，请前往 https://lbs.qq.com/ 注册后获取，填写到 tMapApiKey 常量中');
+      console.warn('腾讯地图 API Key 帮助文档: https://lbs.qq.com/faq/accountQuota/faqKey');
+    }
+
     sdk.on('wsReport', handleWsReport);
 
     return () => {
