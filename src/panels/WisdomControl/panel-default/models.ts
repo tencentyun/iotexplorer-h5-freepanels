@@ -5,10 +5,10 @@ export const getGatewayBindProducts = async({ offset,limit = 40}) => {
     GatewayProductId: sdk.productId,
     Limit: limit,
     Offset: offset,
-  })
-  console.log(Products, Total)
-  return { total: Total, list: Products }
-}
+  });
+  console.log(Products, Total);
+  return { total: Total, list: Products };
+};
 
 // export const AppBindedGatewayByProduct
 export const getGatewayBindDeviceList = async({ Offset,Limit = 50, ProductId }) => {
@@ -17,10 +17,10 @@ export const getGatewayBindDeviceList = async({ Offset,Limit = 50, ProductId }) 
     GatewayProductId: sdk.productId,
     GatewayDeviceName: sdk.deviceName,
     Offset,
-    Limit
-  })
-  return { total: Total, list: DeviceList }
-}
+    Limit,
+  });
+  return { total: Total, list: DeviceList };
+};
 
 export async function getFreePanelInfo({ PanelId }) {
   try {

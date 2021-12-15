@@ -20,9 +20,15 @@ export function useSwitchEditName({
       // eslint-disable-next-line no-restricted-syntax
       for (const value of switchList) {
         if (id && (id !== value.id)) continue;
-        const { Configs } = await getModalName({
-          DeviceKey: value.id,
-        });
+        let Configs = [];
+        try {
+          ({ Configs } = await getModalName({
+            DeviceKey: value.id,
+          }));
+        } catch (err) {
+          //
+          console.log(err.msg);
+        }
         const name = Configs[value.id] || '';
         names[value.id] = name ? name : value.name;
       }
