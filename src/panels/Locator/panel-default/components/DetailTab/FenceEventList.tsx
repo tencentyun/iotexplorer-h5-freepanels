@@ -86,7 +86,8 @@ export function FenceEventList() {
       emptyMessage: '暂无报警',
       fillContainer: true,
     },
-    getData: async ({ context } : { context: FenceEventListContext }) => {
+    getData: async ({ context: _context } : { context: FenceEventListContext }) => {
+      let context = _context;
       if (!context) {
         const now = Date.now();
         context = {
@@ -105,7 +106,7 @@ export function FenceEventList() {
         EndTime: context.endTime,
       });
 
-      const list: DeviceFenceEvent[] = resp.list;
+      const { list } = resp;
       list.sort((a, b) => b.CreateTime - a.CreateTime);
 
       const nextOffset = context.offset + EventListPageSize;
@@ -137,7 +138,7 @@ export function FenceEventList() {
       }}
     >
       <div className={classNames('locator-fence-event-list', { empty: listState.list.length === 0 })}>
-        {groupedList.map((data) => (
+        {groupedList.map(data => (
           <DeviceEventGroup
             key={`${data.year}/${data.month}/${data.date}`}
             {...data}

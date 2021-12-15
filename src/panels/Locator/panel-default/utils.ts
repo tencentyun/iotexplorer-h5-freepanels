@@ -11,11 +11,13 @@ import {
 export const approximately = (a: number, b: number) => Math.abs(a - b) < 1e-6;
 
 // 坐标系转换
-export function WGS84ToGCJ02(coord: LngLat): LngLat {
+type LngLat = [number, number];
+
+export function convertWGS84ToGCJ02(coord: LngLat): LngLat {
   return gcoord.transform(coord, gcoord.WGS84, gcoord.GCJ02);
 }
 
-export function GCJ02ToWGS84(coord: LngLat): LngLat {
+export function convertGCJ02ToWGS84(coord: LngLat): LngLat {
   return gcoord.transform(coord, gcoord.GCJ02, gcoord.WGS84);
 }
 
