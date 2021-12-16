@@ -5,7 +5,7 @@ import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 import { rpx2px } from '@utillib';
 import * as models from '../../models';
 import * as icons from '../../icons';
-import { TMapApiKey } from '../../constants';
+import { tMapApiKey } from '../../constants';
 import { TMapV2, Marker, Polyline } from './TMapV2';
 import { MapControl } from './MapControl';
 import { LocatorPanelContext } from '../../LocatorPanelContext';
@@ -115,15 +115,14 @@ export function MapTab({
     mapRef.current = map;
     qqMapsRef.current = qqMaps;
 
-    const getDeviceLocationWithZoom = async () => {
-      return {
-        center: await getDeviceLocation(),
-        zoom: 17,
-      };
-    };
+    const getDeviceLocationWithZoom = async () => ({
+      center: await getDeviceLocation(),
+      zoom: 17,
+    });
 
     const getCityLocationWithZoom = async () => {
       const ipLocation = await models.getIpLocation();
+
       return {
         center: {
           lat: ipLocation.location.lat,
@@ -131,7 +130,7 @@ export function MapTab({
           time: Date.now(),
         },
         zoom: 10,
-      }
+      };
     };
 
     const getMapInitialProps = () => getDeviceLocationWithZoom()
@@ -193,7 +192,7 @@ export function MapTab({
           let y = point.getY();
 
           if (moveElement) {
-            const scaleParams = /scale\(([\d.]+)\)/.exec(moveElement.style.transform)
+            const scaleParams = /scale\(([\d.]+)\)/.exec(moveElement.style.transform);
             if (scaleParams) {
               const scale = parseFloat(scaleParams[1]);
               x *= scale;
@@ -202,7 +201,7 @@ export function MapTab({
           }
 
           if (onDrag && moveElement) {
-            const offsetParams = /^(-?[\d.]+)px (-?[\d.]+)px$/.exec(moveElement.style.transformOrigin)
+            const offsetParams = /^(-?[\d.]+)px (-?[\d.]+)px$/.exec(moveElement.style.transformOrigin);
             if (offsetParams) {
               x += parseFloat(offsetParams[1]);
               y += parseFloat(offsetParams[2]);
@@ -214,8 +213,12 @@ export function MapTab({
       };
 
       const listeners = [
-        qqMaps.event.addListener(map, 'drag', () => { updateInfoWindowPosition(true); }),
-        qqMaps.event.addListener(map, 'center_changed', () => { updateInfoWindowPosition(); }),
+        qqMaps.event.addListener(map, 'drag', () => {
+          updateInfoWindowPosition(true);
+        }),
+        qqMaps.event.addListener(map, 'center_changed', () => {
+          updateInfoWindowPosition();
+        }),
         qqMaps.event.addListener(map, 'click', () => {
           setInfoWindow({ visible: false, location: null });
         }),
@@ -245,7 +248,9 @@ export function MapTab({
             {...mapComponentParams}
             position={deviceLocation}
             icon={DeviceMarkerIcon}
-            onClick={() => { onDeviceMarkerClick(deviceLocation); }}
+            onClick={() => {
+              onDeviceMarkerClick(deviceLocation);
+            }}
           />
         ) : null;
       case MapViewType.DeviceHistory:
@@ -257,7 +262,9 @@ export function MapTab({
                 key={index}
                 position={item}
                 icon={DeviceMarkerIcon}
-                onClick={() => { onDeviceMarkerClick(item); }}
+                onClick={() => {
+                  onDeviceMarkerClick(item);
+                }}
               />
             ))}
             <Polyline
@@ -275,7 +282,7 @@ export function MapTab({
     <div className={classNames('locator-tab locator-map-tab', `locator-map-view-${viewType}`)}>
       <div className="locator-map-layer-container">
         <TMapV2
-          apiKey={TMapApiKey}
+          apiKey={tMapApiKey}
           onInited={onMapInited}
           getInitOptions={() => ({
             mapTypeControl: false,

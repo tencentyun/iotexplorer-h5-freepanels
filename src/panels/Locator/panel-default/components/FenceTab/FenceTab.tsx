@@ -25,6 +25,11 @@ function FenceItem({
   const [enabled, setEnabled] = useState(data.FenceEnable);
   const [submitting, setSubmitting] = useState(false);
   const onFenceEnableChange = async (enabled: boolean) => {
+    if (sdk.isMock) {
+      sdk.tips.showInfo('虚拟设备不支持修改围栏开启状态');
+      return;
+    }
+
     setSubmitting(true);
     sdk.tips.showLoading('围栏修改中');
     try {
@@ -64,7 +69,9 @@ function FenceItem({
         <div className="fence-address">{data.FenceDesc}</div>
       </div>
 
-      <div className="fence-switch" onClick={(evt) => { evt.stopPropagation(); }}>
+      <div className="fence-switch" onClick={(evt) => {
+        evt.stopPropagation();
+      }}>
         <Switch
           checked={enabled}
           onChange={(checked) => {
@@ -124,7 +131,7 @@ export function FenceTab() {
       pathname: '/map/fence',
       state: {
         data: { fence: data },
-      }
+      },
     });
   };
 
@@ -150,11 +157,13 @@ export function FenceTab() {
             <div className="locator-fence-list">
               <div className="locator-fence-list-header clearfix">
                 <span className="locator-fence-list-title">围栏列表</span>
-                <RawBtn className="locator-fence-list-add-btn" onClick={() => { goAddFence(); }}>
+                <RawBtn className="locator-fence-list-add-btn" onClick={() => {
+                  goAddFence();
+                }}>
                   <img src={icons.iconAddBtn} className="locator-fence-list-add-btn-icon" />
                 </RawBtn>
               </div>
-              {listState.data.map((data) => (
+              {listState.data.map(data => (
                 <FenceItem
                   data={data}
                   key={data.FenceId}
@@ -166,7 +175,7 @@ export function FenceTab() {
               ))}
             </div>
           </ScrollView>
-        )}
+      )}
     </div>
   );
 }

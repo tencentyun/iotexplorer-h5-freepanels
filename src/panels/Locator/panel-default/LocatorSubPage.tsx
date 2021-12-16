@@ -6,9 +6,11 @@ import './LocatorSubPage.less';
 
 export function LocatorSubPage({
   children,
+}: {
+  children: React.ReactNode;
 }) {
   const ipx = useIpx();
-  
+
   return (
     <div className={classNames('locator-sub-page clearfix', { ipx })}>
       {children}

@@ -1,6 +1,6 @@
 import React from 'react';
 import * as icons from './icons';
-import { FooterBtnConfig, PageFooter } from "@components/PageFooter";
+import { FooterBtnConfig, PageFooter } from '@components/PageFooter';
 import { LocatorPanelTab } from './types';
 
 interface LocatorPanelFooterProps {
@@ -46,7 +46,7 @@ export function LocatorPanelFooter({
 
     return [configMap.map, configMap.fence, configMap.detail];
   };
-  
+
   return (
     <PageFooter
       footerConfig={getBtnConfig()}

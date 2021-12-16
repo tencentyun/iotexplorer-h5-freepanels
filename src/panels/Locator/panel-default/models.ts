@@ -1,8 +1,24 @@
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 import jsonp from 'jsonp';
-import { TMapApiKey } from './constants';
+import {
+  getMockDeviceFenceList,
+  getMockDeviceLocation,
+  getMockDeviceLocationHistory,
+  getMockFenceEventList,
+  tMapApiKey,
+} from './constants';
 import { appendParams } from '@utillib';
-import { AlertConditionType, AlertMethodType, CoordinateType, DeviceFenceEvent, DeviceFenceInfo, DevicePosition, GeoJSON, GeoJSONGeometrySubType, GeoJSONGeometryType } from './types';
+import {
+  AlertConditionType,
+  AlertMethodType,
+  CoordinateType,
+  DeviceFenceEvent,
+  DeviceFenceInfo,
+  DevicePosition,
+  GeoJSON,
+  GeoJSONGeometrySubType,
+  GeoJSONGeometryType,
+} from './types';
 
 export const getDeviceLocation = async ({
   DeviceId,
@@ -11,6 +27,10 @@ export const getDeviceLocation = async ({
   DeviceId: string;
   CoordType: CoordinateType;
 }): Promise<DevicePosition> => {
+  if (sdk.isMock) {
+    return getMockDeviceLocation();
+  }
+
   const { Data } = await sdk.requestTokenApi('AppGetDeviceLocation', {
     DeviceId,
     CoordType,
@@ -30,6 +50,10 @@ export const getDeviceLocationHistory = async ({
   MinTime: number;
   MaxTime: number;
 }): Promise<DevicePosition[]> => {
+  if (sdk.isMock) {
+    return getMockDeviceLocationHistory(MaxTime);
+  }
+
   const { Data } = await sdk.requestTokenApi('AppGetDeviceLocationHistory', {
     DeviceId,
     CoordType,
@@ -54,6 +78,11 @@ export const getFenceList = async ({
   total: number;
   list: DeviceFenceInfo[];
 }> => {
+  if (sdk.isMock) {
+    const fenceList = getMockDeviceFenceList();
+    return { list: fenceList, total: fenceList.length };
+  }
+
   const resp: {
     List: (Omit<DeviceFenceInfo, 'FenceArea'> & { FenceArea: string; })[];
     Total: number;
@@ -117,18 +146,16 @@ export const createFence = async ({
   AlertCondition: AlertConditionType;
   FenceEnable: boolean;
   Method: AlertMethodType;
-}): Promise<void> => {
-  return sdk.requestTokenApi('AppCreateFence', {
-    ProductId,
-    DeviceName,
-    FenceName,
-    FenceArea: JSON.stringify(FenceArea),
-    FenceDesc,
-    AlertCondition,
-    FenceEnable,
-    Method,
-  });
-};
+}): Promise<void> => sdk.requestTokenApi('AppCreateFence', {
+  ProductId,
+  DeviceName,
+  FenceName,
+  FenceArea: JSON.stringify(FenceArea),
+  FenceDesc,
+  AlertCondition,
+  FenceEnable,
+  Method,
+});
 
 export const modifyFence = async ({
   ProductId,
@@ -150,19 +177,17 @@ export const modifyFence = async ({
   AlertCondition: AlertConditionType;
   FenceEnable: boolean;
   Method: AlertMethodType;
-}): Promise<void> => {
-  return sdk.requestTokenApi('AppModifyFence', {
-    ProductId,
-    DeviceName,
-    FenceId,
-    FenceName,
-    FenceArea: JSON.stringify(FenceArea),
-    FenceDesc,
-    AlertCondition,
-    FenceEnable,
-    Method,
-  });
-};
+}): Promise<void> => sdk.requestTokenApi('AppModifyFence', {
+  ProductId,
+  DeviceName,
+  FenceId,
+  FenceName,
+  FenceArea: JSON.stringify(FenceArea),
+  FenceDesc,
+  AlertCondition,
+  FenceEnable,
+  Method,
+});
 
 export const deleteFence = async ({
   ProductId,
@@ -178,16 +203,14 @@ export const deleteFence = async ({
   AlertCondition: AlertConditionType;
   FenceEnable: boolean;
   Method: AlertMethodType;
-}): Promise<void> => {
-  return sdk.requestTokenApi('AppDeleteFence', {
-    ProductId,
-    DeviceName,
-    FenceId,
-    AlertCondition,
-    FenceEnable,
-    Method,
-  });
-};
+}): Promise<void> => sdk.requestTokenApi('AppDeleteFence', {
+  ProductId,
+  DeviceName,
+  FenceId,
+  AlertCondition,
+  FenceEnable,
+  Method,
+});
 
 export const modifyFenceStatus = async ({
   ProductId,
@@ -203,16 +226,14 @@ export const modifyFenceStatus = async ({
   AlertCondition: AlertConditionType;
   FenceEnable: boolean;
   Method: AlertMethodType;
-}): Promise<void> => {
-  return sdk.requestTokenApi('AppModifyFenceStatus', {
-    ProductId,
-    DeviceName,
-    FenceId,
-    AlertCondition,
-    FenceEnable,
-    Method,
-  });
-};
+}): Promise<void> => sdk.requestTokenApi('AppModifyFenceStatus', {
+  ProductId,
+  DeviceName,
+  FenceId,
+  AlertCondition,
+  FenceEnable,
+  Method,
+});
 
 export const getFenceEventList = async ({
   ProductId,
@@ -234,6 +255,14 @@ export const getFenceEventList = async ({
   list: DeviceFenceEvent[];
   total: number;
 }> => {
+  if (sdk.isMock) {
+    const list = getMockFenceEventList();
+    return {
+      list,
+      total: list.length,
+    };
+  }
+
   const resp = await sdk.requestTokenApi('AppGetFenceEventList', {
     ProductId,
     DeviceName,
@@ -250,17 +279,19 @@ export const getFenceEventList = async ({
   };
 };
 
-export const requestTMapWebService = async ({
+export const requestTMapWebService = async <T>({
   action,
   params = {},
 }) => {
   const url = appendParams(`https://apis.map.qq.com/ws/${action}`, {
     ...params,
-    key: TMapApiKey,
+    key: tMapApiKey,
     output: 'jsonp',
   });
 
-  return new Promise((resolve, reject) => {
+  return new Promise<{
+    result: T;
+  }>((resolve, reject) => {
     jsonp(url, {
       timeout: 20000,
     }, (err, data) => {
@@ -275,10 +306,16 @@ export const requestTMapWebService = async ({
       }
     });
   });
-}
+};
 
 export const getAddressByLatLng = async ({ lat, lng }) => {
-  const resp: any = await requestTMapWebService({
+  const resp = await requestTMapWebService<{
+    address: string;
+    formatted_addresses?: {
+      recommend: string;
+      rough: string;
+    };
+  }>({
     action: 'geocoder/v1/',
     params: {
       location: `${lat},${lng}`,
@@ -289,7 +326,12 @@ export const getAddressByLatLng = async ({ lat, lng }) => {
 };
 
 export const getIpLocation = async () => {
-  const resp: any = await requestTMapWebService({
+  const resp = await requestTMapWebService<{
+    location: {
+      lat: number;
+      lng: number;
+    },
+  }>({
     action: 'location/v1/ip',
   });
 
