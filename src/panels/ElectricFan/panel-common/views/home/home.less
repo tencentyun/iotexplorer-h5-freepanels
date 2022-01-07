@@ -1,0 +1,52 @@
+.home {
+  .dashboard {
+    width: 760px;
+    height: 760px;
+    //height: 676px;
+    margin: 0 auto;
+    //background-color: white;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+
+    @keyframes myrotate
+    {
+      from {transform:rotate(0deg);}
+      to {transform:rotate(360deg);}
+    }
+
+    .dashboard-img{
+      width: 860px;
+      height: 860px;
+      border-radius: 50%;
+      // animation:linear myrotate 1s infinite;
+    }
+  }
+  > .title {
+    padding: 53px 0 56px;
+  }
+
+  /*ant重置*/
+  /*List*/
+  .adm-list {
+    &.adm-list-default {
+      .adm-list-item {
+        //padding-left: 90px;
+        .adm-list-item-content {
+          padding-right: 73px;
+          border-bottom: 0;
+        }
+      }
+    }
+  }
+  &.power-off {
+    #power{
+      pointer-events: auto !important;
+    }
+    *{
+      /*color: @color-disabled !important;*/
+      pointer-events: none;
+    }
+  }
+}

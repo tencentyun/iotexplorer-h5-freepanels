@@ -599,3 +599,47 @@ export function parseUrl(url) {
   }
   return uri;
 }
+export function numberToArray(number: number, desc?: string): string[] {
+  const result: string[] = [];
+  for (let i = 0; i < number; i++) {
+    let value = i + 1 + '';
+
+    if (desc) {
+      value += desc;
+    }
+    result.push(value);
+  }
+  return result;
+}
+import viewportConfig from '../../webpack/pxToViewport.config';
+export const px2vw = (px: number): string | number => {
+  const viewportWidth = viewportConfig.viewportWidth;
+  const vw = px * (100 / viewportWidth);
+
+  if (px === 0) {
+    return px;
+  }
+  return vw.toFixed(viewportConfig.unitPrecision || 3) + 'vw';
+};
+
+export function toUnderscores(str: string): string {
+  return str
+    .replace(/([A-Z])/g, '_$1')
+    .toLowerCase()
+    .replace(/^_/, '');
+}
+/**
+ * 将 px 单位转换为 vw 单位
+ */
+export const formatPxUnit = (unit: string | number): string | number => {
+  if (typeof unit === 'number') {
+    return px2vw(unit);
+  }
+
+  const reg = /\d+px/gi;
+  return unit.replace(reg, function (t) {
+    const val = parseInt(t);
+
+    return px2vw(val);
+  });
+};

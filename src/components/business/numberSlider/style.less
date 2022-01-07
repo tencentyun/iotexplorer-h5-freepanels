@@ -1,0 +1,94 @@
+._component_business_number-slider_ {
+  position: relative;
+  display: flex;
+  align-items: center;
+
+  .slider-wrap {
+    position: relative;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    z-index: 2;
+  }
+  .slider-button {
+    flex-shrink: 0;
+    display: block;
+    width: 60px;
+    height: 60px;
+    background: red;
+  }
+
+  .slider {
+    flex: 1;
+    overflow: hidden;
+  }
+
+  ul, li {
+    margin: 0;
+    padding: 0;
+  }
+  ul li {
+    list-style: none;
+  }
+
+  ul {
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+    width: 800px;
+    height: 150px;
+    overflow: hidden;
+    margin: 0 auto;
+  }
+
+  li {
+    flex-shrink: 0;
+    width: 120px;
+    height: 120px;
+    border-radius: 20px;
+    border: 3px solid #B5C4D1;
+    box-sizing: border-box;
+    font-size: 90px;
+    color: #B5C4D1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    & + li {
+      margin-left: 50px;
+    }
+
+    &.is_current {
+      border: none;
+      color: #ffffff;
+    }
+  }
+
+  .current-block {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-left: -75px;
+    margin-top: -75px;
+    width: 150px;
+    height: 150px;
+    border-radius: 40px;
+    border: none;
+    color: #fff;
+    background-color: #0f0f0f;
+    z-index: 1;
+    &::before {
+      position: absolute;
+      left: 50%;
+      top: -67px;
+      margin-left: -15px;
+      content: '';
+      display: block;
+      width: 30px;
+      height: 30px;
+      background-color: #0f0f0f;
+      border-radius: 50%;
+    }
+  }
+}
