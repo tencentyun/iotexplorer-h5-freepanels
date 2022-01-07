@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="34px" height="34px" viewBox="0 0 34 34" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 59.1 (86144) - https://sketch.com -->
+    <title>三角形</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M444.472136,147.944272 L456.381966,171.763932 C457.616912,174.233825 456.615791,177.23719 454.145898,178.472136 C453.451621,178.819275 452.686056,179 451.90983,179 L428.09017,179 C425.328746,179 423.09017,176.761424 423.09017,174 C423.09017,173.223775 423.270895,172.458209 423.618034,171.763932 L435.527864,147.944272 C436.76281,145.474379 439.766175,144.473258 442.236068,145.708204 C443.203705,146.192022 443.988317,146.976635 444.472136,147.944272 Z" id="path-1"></path>
+        <filter x="-374.8%" y="-352.1%" width="849.6%" height="849.6%" filterUnits="objectBoundingBox" id="filter-2">
+            <feOffset dx="0" dy="6" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="50" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0.125490196   0 0 0 0 0.127812629   0 0 0 0 0.129411765  0 0 0 0.1 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="3" transform="translate(-506.000000, -1182.000000)">
+            <g id="编组-8" transform="translate(83.000000, 1043.000000)">
+                <g id="倒计时"></g>
+                <g id="三角形" transform="translate(440.000000, 159.000000) scale(1, -1) translate(-440.000000, -159.000000) ">
+                    <use fill="black" fill-opacity="1" filter="url(#filter-2)" xlink:href="#path-1"></use>
+                    <use fill="#FFC205" fill-rule="evenodd" xlink:href="#path-1"></use>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

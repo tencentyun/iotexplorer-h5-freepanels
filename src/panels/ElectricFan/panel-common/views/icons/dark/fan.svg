@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="840px" height="840px" viewBox="0 0 840 840" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 59.1 (86144) - https://sketch.com -->
+    <title>编组 7</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="linearGradient-1">
+            <stop stop-color="#F8F8F8" offset="0%"></stop>
+            <stop stop-color="#E9E9E9" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="linearGradient-2">
+            <stop stop-color="#F8F8F8" offset="0%"></stop>
+            <stop stop-color="#E9E9E9" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="linearGradient-3">
+            <stop stop-color="#F8F8F8" offset="0%"></stop>
+            <stop stop-color="#E9E9E9" offset="100%"></stop>
+        </linearGradient>
+        <circle id="path-4" cx="420.5" cy="419.5" r="110.5"></circle>
+        <filter x="-69.2%" y="-66.5%" width="238.5%" height="238.5%" filterUnits="objectBoundingBox" id="filter-5">
+            <feOffset dx="0" dy="6" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="50" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0.125490196   0 0 0 0 0.127812629   0 0 0 0 0.129411765  0 0 0 0.1 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="1" transform="translate(-94.000000, -382.000000)">
+            <g id="编组-8" transform="translate(94.000000, 382.000000)">
+                <g id="编组-7">
+                    <g id="编组-4" fill="#2A3644" stroke="#3E4454" stroke-opacity="0.2" stroke-width="3">
+                        <g id="温度显示表">
+                            <ellipse id="椭圆形" cx="420.073582" cy="420" rx="418.000595" ry="418.5"></ellipse>
+                        </g>
+                    </g>
+                    <g id="风扇叶" transform="translate(173.000000, 135.000000)" fill-rule="nonzero">
+                        <path d="M155.24684,276 C155.24684,276 -26.9408447,211.226336 64.8445659,75.7621837 C156.131549,-58.917211 336.487513,15.0617869 332.948679,75.3137507 C329.409844,135.565714 277.112346,132.912485 280.613799,195.817678 L155.24684,276 Z" id="路径" fill="url(#linearGradient-1)"></path>
+                        <path d="M288.861382,390.393339 C288.861382,390.393339 323.837124,580.215942 160.275565,568.477158 C-2.4365834,556.750809 -28.5934418,363.943769 25.5065361,336.922183 C79.6065141,309.900597 103.502441,356.432937 156.365776,322 L288.861382,390.393339 Z" id="路径" fill="url(#linearGradient-2)"></path>
+                        <path d="M320,218.680646 C320,218.680646 467.230288,93.5391781 538.627884,240.482772 C609.639277,386.580647 455.395056,505.590656 404.989425,472.396204 C354.583794,439.201751 383.013268,395.38607 326.752311,367.042062 L320,218.680646 Z" id="路径" fill="url(#linearGradient-3)"></path>
+                    </g>
+                    <g id="椭圆形">
+                        <use fill="black" fill-opacity="1" filter="url(#filter-5)" xlink:href="#path-4"></use>
+                        <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-4"></use>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,46 @@
+
+.reset() {
+  ul,li {
+    list-style: none;
+  }
+  /*reset*/
+  button {
+    border: none;
+    outline: none;
+  }
+
+  button:active {
+    opacity: .7;
+  }
+
+  .adm-card {
+    border-radius: 40px;
+
+    .adm-card-header .adm-card-header-title {
+      font-size: 48px;
+    }
+  }
+
+  .adm-list {
+    font-size: 48px;
+    .adm-list-item-content {
+      font-size: 48px;
+
+      .adm-list-item-content-prefix {
+        color: var(--global-color-text-primary);
+      }
+    }
+
+    .adm-list-item-content-extra {
+      font-size: 48px;
+      color: var(--global-color-text-regular);
+    }
+  }
+
+  ._component_base_modal_ {
+    .adm-list {
+      padding: 0 90px;
+    }
+  }
+
+}

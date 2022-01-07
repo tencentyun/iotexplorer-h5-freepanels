@@ -15,7 +15,7 @@ class ModifiedMiniCssExtractPlugin extends MiniCssExtractPlugin {
 
 module.exports = (env, argv) => {
   const { mode } = argv;
-  const isDevMode = mode === 'development';
+  const isDevMode = true;// mode === 'development';
   const rootPath = path.join(__dirname, '../');
   const srcPath = path.join(rootPath, 'src');
   const outputPath = path.join(rootPath, 'dist', isDevMode ? 'debug' : 'release');

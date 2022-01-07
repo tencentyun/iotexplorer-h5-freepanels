@@ -1,0 +1,32 @@
+._component_business_bluetooth_ {
+  display: flex;
+  align-items: center;
+  .bluetooth-icon {
+    position: relative;
+    display: block;
+    width: 37px;
+    height: 55px;
+    margin-right: 20px;
+    background: url('./icon-bluetooth.svg') no-repeat center;
+    background-size: cover;
+
+    &.is_error::after {
+      display: none;
+      content: '';
+      position: absolute;
+      right: -39px;
+      top: -24px;
+      width: 31px;
+      height: 31px;
+      border-radius: 50%;
+      background-color: #FF5447;
+    }
+  }
+
+  .connect-state {
+    font-style: normal;
+    &.is_hidden {
+      display: none;
+    }
+  }
+}

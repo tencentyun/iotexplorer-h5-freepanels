@@ -1,0 +1,59 @@
+@border_color: rgba(181, 196, 209, 0.5);
+@column_height: 114px;
+@column_max_count: 3;
+
+._component_business_value_picker_ {
+  .adm-popup-body {
+    border-radius: 120px 120px 0 0;
+  }
+  .picker-title {
+    font-size: 48px;
+    line-height: 67px;
+    color: #0F0F0F;
+    text-align: center;
+    padding: 71px 0 20px;
+    border-bottom: 3px solid @border_color;
+  }
+
+  .picker-footer {
+    font-size: 48px;
+    line-height: 67px;
+    color: #000000;
+    border-top: 3px solid @border_color;
+    padding: 60px 0 125px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    button {
+      flex: 1;
+      background-color: transparent;
+      border: none;
+      outline: none;
+    }
+  }
+
+  .value-picker-view {
+    width: 670px;
+    --height: calc(@column_height * @column_max_count);
+    margin: 53px auto;
+    border-radius: 60px;
+    overflow: hidden;
+    .adm-picker-view-column {
+      background-image: linear-gradient(180deg, #222222 0%, #0F0F0F 100%);
+    }
+    .adm-picker-view-mask {
+      // display: none;
+      background: rgba(0, 0, 0, .4);
+      // height: @column_height;
+      border-color: #DAE1E8;
+    }
+    .adm-picker-view-column-item {
+      // height: @column_height;
+      font-family: PingFangSC-Medium;
+      font-size: 60px;;
+      // line-height: @lineHeight_84;
+      color: #ffffff;
+    }
+  }
+}
