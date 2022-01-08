@@ -1,4 +1,4 @@
-/*!
+/* !
  * is-plain-object <https://github.com/jonschlinkert/is-plain-object>
  *
  * Copyright (c) 2014-2017, Jon Schlinkert.
@@ -10,16 +10,14 @@ function isObject(o) {
 }
 
 export function isPlainObject(o): boolean {
-  var ctor, prot;
-
   if (isObject(o) === false) return false;
 
   // If has modified constructor
-  ctor = o.constructor;
+  const ctor = o.constructor;
   if (ctor === undefined) return true;
 
   // If has modified prototype
-  prot = ctor.prototype;
+  const prot = ctor.prototype;
   if (isObject(prot) === false) return false;
 
   // If constructor does not have an Object-specific method

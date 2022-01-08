@@ -443,7 +443,7 @@ export function mergeConnectDeviceConfig(defaultConfig, config) {
       if (config[section][key] !== '' && config[section][key] !== undefined) {
         mergedConfig[section][key] = config[section][key];
       }
-    })
+    });
   });
   return mergedConfig;
 }
@@ -500,15 +500,15 @@ export function subscribeStore({
 }
 
 export function isH5PanelAvailable(productConfig) {
-  return productConfig &&
-    productConfig.Panel &&
-    productConfig.Panel.h5 && (
-      productConfig.Panel.h5.url || (
-        productConfig.Panel.h5.release &&
-        productConfig.Panel.h5.release.scripts &&
-        productConfig.Panel.h5.release.scripts.length
-      )
-    );
+  return productConfig
+    && productConfig.Panel
+    && productConfig.Panel.h5 && (
+    productConfig.Panel.h5.url || (
+      productConfig.Panel.h5.release
+        && productConfig.Panel.h5.release.scripts
+        && productConfig.Panel.h5.release.scripts.length
+    )
+  );
 }
 
 export function isFullScreen() {
@@ -544,13 +544,11 @@ export const rpx2px = (rpx: number): number => {
   return (rpx / 2) * (Math.min(640, clientWidth) / 375);
 };
 
-export const px2rem = (px, withUnit?: any) => {
-  return rpx2rem(px2rpx(px), withUnit);
-}
+export const px2rem = (px, withUnit?: any) => rpx2rem(px2rpx(px), withUnit);
 
 export function rpx2rem(rpx, withUnit?: true): string;
 export function rpx2rem(rpx, withUnit?: false): number;
-export function rpx2rem(rpx, withUnit: boolean = true) {
+export function rpx2rem(rpx, withUnit = true) {
   const rem = rpx / 46.875;
 
   if (withUnit) {
