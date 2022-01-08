@@ -39,7 +39,7 @@ export function DeviceLocationHistoryList() {
               lat: item.Location.Latitude,
               lng: item.Location.Longitude,
               time: item.CreateTime,
-            }))
+            })),
           },
         },
       });
@@ -57,7 +57,7 @@ export function DeviceLocationHistoryList() {
       to: number;
     }[] = [];
 
-    let d = new Date();
+    const d = new Date();
     d.setMilliseconds(0);
     d.setSeconds(0);
     d.setMinutes(0);

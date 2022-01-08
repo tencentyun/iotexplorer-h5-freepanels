@@ -24,7 +24,9 @@ export function MapControlBtn({
       className={classNames('locator-map-control-btn', {
         'locator-map-control-btn-big': bigStyle,
       })}
-      onClick={() => { onClick && onClick(); }}
+      onClick={() => {
+        onClick && onClick();
+      }}
     >
       {children}
     </RawBtn>
@@ -49,48 +51,56 @@ export function MapControl({
   onOpenInfoWindow,
 }: MapControlProps) {
   const { deviceData, getDeviceLocation, getUserLocation } = useContext(LocatorPanelContext);
-  const batteryValue = typeof deviceData.battery_state === 'number' ? deviceData.battery_state : null
+  const batteryValue = typeof deviceData.battery_state === 'number' ? deviceData.battery_state : null;
 
   const buttons = [
     {
       icon: icons.iconLocateControl,
       onClick: () => {
-        getDeviceLocation().then((deviceLocation) => {
-          map.setCenter(new qqMaps.LatLng(deviceLocation.lat, deviceLocation.lng));
-          map.setZoom(17);
-        }).catch((err) => {
-          console.error('getDeviceLocation fail', err);
-          sdk.tips.showError(err);
-        });
+        getDeviceLocation()
+          .then((deviceLocation) => {
+            map.setCenter(new qqMaps.LatLng(deviceLocation.lat, deviceLocation.lng));
+            map.setZoom(17);
+          })
+          .catch((err) => {
+            console.error('getDeviceLocation fail', err);
+            sdk.tips.showError(err);
+          });
       },
       visible: showLocationControl,
     },
     {
       icon: icons.iconPhoneControl,
       onClick: () => {
-        getUserLocation().then((latLng) => {
-          onOpenInfoWindow(latLng);
-          map.setCenter(new qqMaps.LatLng(latLng.lat, latLng.lng));
-          map.setZoom(17);
-        }).catch((err) => {
-          console.error('getUserLocation fail', err);
-          if (err && err.errMsg === 'getLocation:fail') {
-            sdk.tips.showError('无法获取位置信息。请打开手机的定位功能，并允许微信获取你的位置信息。');
-          } else {
-            sdk.tips.showError(err);
-          }
-        });
+        getUserLocation()
+          .then((latLng) => {
+            onOpenInfoWindow(latLng);
+            map.setCenter(new qqMaps.LatLng(latLng.lat, latLng.lng));
+            map.setZoom(17);
+          })
+          .catch((err) => {
+            console.error('getUserLocation fail', err);
+            if (err && err.errMsg === 'getLocation:fail') {
+              sdk.tips.showError('无法获取位置信息。请打开手机的定位功能，并允许微信获取你的位置信息。');
+            } else {
+              sdk.tips.showError(err);
+            }
+          });
       },
       visible: showLocationControl,
     },
     {
       icon: icons.iconPlusControl,
-      onClick: () => { map.zoomBy(1); },
+      onClick: () => {
+        map.zoomBy(1);
+      },
       visible: showScaleControl,
     },
     {
       icon: icons.iconMinusControl,
-      onClick: () => { map.zoomBy(-1); },
+      onClick: () => {
+        map.zoomBy(-1);
+      },
       visible: showScaleControl,
     },
   ].filter(Boolean);
@@ -113,11 +123,11 @@ export function MapControl({
         )}
       </div>
       <div className="locator-map-bottom-right-control">
-        {buttons.map((button, index) => button.visible ? (
+        {buttons.map((button, index) => (button.visible ? (
           <MapControlBtn onClick={button.onClick} key={index}>
             <img className="locator-map-control-icon" src={button.icon} />
           </MapControlBtn>
-        ) : null)}
+        ) : null))}
       </div>
     </div>
   );

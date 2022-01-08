@@ -7,7 +7,7 @@ import { LocatorPanelTab } from './types';
 import './LocatorTabPage.less';
 
 interface LocatorTabPageProps {
-  children?: React.ReactNode | React.ReactNodeArray;
+  children?: React.ReactNode;
   activeTab?: LocatorPanelTab;
   switchTab?: (tab: LocatorPanelTab) => void;
   visible?: boolean;
@@ -20,7 +20,7 @@ export function LocatorTabPage({
   visible = true,
 }: LocatorTabPageProps) {
   const ipx = useIpx();
-  
+
   return switchTab ? (
     <div className={classNames('locator-tab-page clearfix', { ipx, hide: !visible })}>
       {children}

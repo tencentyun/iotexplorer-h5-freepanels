@@ -17,9 +17,9 @@ export function PositioningModeSelect() {
   };
 
   const options = [
-    { text: '省电模式', value: 0, },
-    { text: '普通模式', value: 1, },
-    { text: '性能模式', value: 2, },
+    { text: '省电模式', value: 0 },
+    { text: '普通模式', value: 1 },
+    { text: '性能模式', value: 2 },
   ];
 
   return (

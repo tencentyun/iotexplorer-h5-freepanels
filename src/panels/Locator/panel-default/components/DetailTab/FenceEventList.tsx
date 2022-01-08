@@ -77,8 +77,8 @@ interface FenceEventListContext {
   endTime: number;
 }
 
-const EventListMaxLenTime = 365 * 24 * 60 * 60 * 1000;
-const EventListPageSize = 100;
+const eventListMaxLenTime = 365 * 24 * 60 * 60 * 1000;
+const eventListPageSize = 100;
 
 export function FenceEventList() {
   const [listState, { loadMore, statusTip }] = useInfiniteList({
@@ -86,13 +86,14 @@ export function FenceEventList() {
       emptyMessage: '暂无报警',
       fillContainer: true,
     },
-    getData: async ({ context } : { context: FenceEventListContext }) => {
+    getData: async ({ context: _context } : { context: FenceEventListContext }) => {
+      let context = _context;
       if (!context) {
         const now = Date.now();
         context = {
           offset: 0,
           endTime: now,
-          startTime: now - EventListMaxLenTime,
+          startTime: now - eventListMaxLenTime,
         };
       }
 
@@ -100,15 +101,15 @@ export function FenceEventList() {
         ProductId: sdk.productId,
         DeviceName: sdk.deviceName,
         Offset: context.offset,
-        Limit: EventListPageSize,
+        Limit: eventListPageSize,
         StartTime: context.startTime,
         EndTime: context.endTime,
       });
 
-      const list: DeviceFenceEvent[] = resp.list;
+      const { list } = resp;
       list.sort((a, b) => b.CreateTime - a.CreateTime);
 
-      const nextOffset = context.offset + EventListPageSize;
+      const nextOffset = context.offset + eventListPageSize;
 
       return {
         context: {
@@ -137,7 +138,7 @@ export function FenceEventList() {
       }}
     >
       <div className={classNames('locator-fence-event-list', { empty: listState.list.length === 0 })}>
-        {groupedList.map((data) => (
+        {groupedList.map(data => (
           <DeviceEventGroup
             key={`${data.year}/${data.month}/${data.date}`}
             {...data}

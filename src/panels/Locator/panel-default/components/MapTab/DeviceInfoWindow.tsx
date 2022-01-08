@@ -24,7 +24,7 @@ export function DeviceInfoWindow({
       name: '',
     },
     fetch: async () => {
-      const data: any = await getAddressByLatLng({ lat: location.lat, lng: location.lng });
+      const data = await getAddressByLatLng({ lat: location.lat, lng: location.lng });
       return {
         address: data.address,
         name: (data.formatted_addresses && (data.formatted_addresses.recommend || data.formatted_addresses.rough))
@@ -37,11 +37,13 @@ export function DeviceInfoWindow({
   const getLocationText = () => {
     if (addressState.loading) {
       return '获取地址中';
-    } else if (addressState.hasError) {
-      return '获取地址失败';
-    } else {
-      return addressState.data.address;
     }
+
+    if (addressState.hasError) {
+      return '获取地址失败';
+    }
+
+    return addressState.data.address;
   };
 
   return (

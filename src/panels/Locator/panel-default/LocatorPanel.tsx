@@ -28,7 +28,7 @@ function Route({
       document.title = title;
     }
   }, [title]);
-  
+
   return <ReactRouterRoute {...props} />;
 }
 
@@ -45,22 +45,23 @@ export function LocatorPanel() {
       {/* 地图组件常驻，切换到其他 Tab 页面时仅隐藏，不卸载 */}
       <ReactRouterRoute
         path="/map/:view(history|fence)?"
-        children={({ match }) => {
-          const view = match && match.params.view || MapViewType.DeviceCurrent;
+      >
+        {({ match }) => {
+          const view = (match && match.params.view) || MapViewType.DeviceCurrent;
           const tabParams = view !== MapViewType.DeviceCurrent ? {} : {
             switchTab,
             activeTab: LocatorPanelTab.Map,
           };
           return (
             <LocatorTabPage visible={!!match} {...tabParams}>
-              <MapTab 
+              <MapTab
                 active={!!match}
                 view={view}
               />
             </LocatorTabPage>
           );
         }}
-      />
+      </ReactRouterRoute>
 
       <Switch>
         <Redirect exact from="/" to="/map" />
