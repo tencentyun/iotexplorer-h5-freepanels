@@ -62,7 +62,7 @@ export function SvgIcon(props: SvgIconProps) {
         '_component_common_icon_',
         'svg-icon',
         `svg-${props.name}`,
-        `icon-theme-${toUnderscores(theme || 'normal')}`,
+        `icon-theme-${toUnderscores(theme)}`,
         props.className
       )}
       style={iconStyle()}
