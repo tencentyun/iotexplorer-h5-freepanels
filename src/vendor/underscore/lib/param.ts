@@ -90,26 +90,26 @@
  * @see https://www.npmjs.com/package/jquery-param
  */
 export const param = function (a): string {
-  var s: string[] = [];
-  var add = function (k, v) {
+  const s: string[] = [];
+  const add = function (k, v) {
     v = typeof v === 'function' ? v() : v;
     v = v === null ? '' : v === undefined ? '' : v;
-    s[s.length] = encodeURIComponent(k) + '=' + encodeURIComponent(v);
+    s[s.length] = `${encodeURIComponent(k)}=${encodeURIComponent(v)}`;
   };
   var buildParams = function (prefix, obj) {
-    var i, len, key;
+    let i; let len; let key;
 
     if (prefix) {
       if (Array.isArray(obj)) {
         for (i = 0, len = obj.length; i < len; i++) {
           buildParams(
-            prefix + '[' + (typeof obj[i] === 'object' && obj[i] ? i : '') + ']',
-            obj[i]
+            `${prefix}[${typeof obj[i] === 'object' && obj[i] ? i : ''}]`,
+            obj[i],
           );
         }
       } else if (String(obj) === '[object Object]') {
         for (key in obj) {
-          buildParams(prefix + '[' + key + ']', obj[key]);
+          buildParams(`${prefix}[${key}]`, obj[key]);
         }
       } else {
         add(prefix, obj);

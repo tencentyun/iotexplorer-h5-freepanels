@@ -1,7 +1,7 @@
 import { useEffect, useReducer, useRef, Reducer } from 'react';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
-import { tips } from "@wxlib";
-import { StatusTipProps } from "@components/StatusTip";
+import { tips } from '@wxlib';
+import { StatusTipProps } from '@components/StatusTip';
 
 export interface UseDeviceInfoState {
   deviceInfo: any;
@@ -109,7 +109,7 @@ function initState(sdk): UseDeviceInfoState {
   });
 
   result.deviceInfo.Status = deviceStatus;
-  result.deviceInfo.isVirtualDevice = deviceInfo.DeviceName === '~virtualDev'
+  result.deviceInfo.isVirtualDevice = deviceInfo.DeviceName === '~virtualDev';
 
   return result;
 }
@@ -133,7 +133,7 @@ export const useDeviceInfo = (): UseDeviceInfoResult => {
         payload: {
           deviceData,
         },
-      })
+      });
     } catch (err) {
       await tips.showError(err);
     }
@@ -182,20 +182,20 @@ export const useDeviceInfo = (): UseDeviceInfoResult => {
     };
 
     sdk
-      .on("wsReport", handleWsReport)
-      .on("wsStatusChange", handleWsStatusChange);
+      .on('wsReport', handleWsReport)
+      .on('wsStatusChange', handleWsStatusChange);
 
     sdk.sdkReady().then(() => {
       dispatch({
         type: UseDeviceInfoAction.Init,
         payload: initState(sdk),
-      })
+      });
     });
 
     return () => {
       sdk
-        .off("wsReport", handleWsReport)
-        .off("wsStatusChange", handleWsStatusChange);
+        .off('wsReport', handleWsReport)
+        .off('wsStatusChange', handleWsStatusChange);
     };
   }, []);
 

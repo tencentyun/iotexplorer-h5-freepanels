@@ -1,7 +1,7 @@
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 
-export const getGatewayBindProducts = async({ offset,limit = 40}) => {
-  const { Products, Total } = await sdk.requestTokenApi("AppDescribeBindedProducts",{
+export const getGatewayBindProducts = async ({ offset, limit = 40 }) => {
+  const { Products, Total } = await sdk.requestTokenApi('AppDescribeBindedProducts', {
     GatewayProductId: sdk.productId,
     Limit: limit,
     Offset: offset,
@@ -11,9 +11,9 @@ export const getGatewayBindProducts = async({ offset,limit = 40}) => {
 };
 
 // export const AppBindedGatewayByProduct
-export const getGatewayBindDeviceList = async({ Offset,Limit = 50, ProductId }) => {
-  const { Total, DeviceList } = await sdk.requestTokenApi('AppGetGatewayBindDeviceList',{
-    ProductId: ProductId,
+export const getGatewayBindDeviceList = async ({ Offset, Limit = 50, ProductId }) => {
+  const { Total, DeviceList } = await sdk.requestTokenApi('AppGetGatewayBindDeviceList', {
+    ProductId,
     GatewayProductId: sdk.productId,
     GatewayDeviceName: sdk.deviceName,
     Offset,

@@ -76,14 +76,14 @@ export const getStatusTipProps = (state: any, opts: getStatusTipPropsOptions = {
       className,
       fillContainer,
     };
-  } else if (loading || !hasInit) {
+  } if (loading || !hasInit) {
     return {
       status: 'loading',
       style,
       className,
       fillContainer,
     };
-  } else if (hasInit && !loading) {
+  } if (hasInit && !loading) {
     let isEmptyData = false;
 
     if (!ignoreEmpty) {

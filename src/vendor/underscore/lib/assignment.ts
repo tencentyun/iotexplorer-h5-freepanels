@@ -3,9 +3,9 @@
  * @see https://github.com/bevacqua/assignment
  */
 export function assignment(result: any, ...sources): any {
-  var stack = sources;
-  var item;
-  var key;
+  const stack = sources;
+  let item;
+  let key;
   while (stack.length) {
     item = stack.shift();
     for (key in item) {
