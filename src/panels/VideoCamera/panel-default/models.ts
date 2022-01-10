@@ -15,7 +15,7 @@ export const describeCloudStorageEvents = async ({
   }) => {
   const DeviceName = sdk.deviceName;
   const ProductId = sdk.productId;
-  const params = {
+  const params: any = {
     ProductId,
     DeviceName,
   };
@@ -38,7 +38,11 @@ export const describeCloudStorageEvents = async ({
   if (Events) {
     for (let i = 0; i < Events.length; i++) {
       if (Events[i].Thumbnail) {
-        Events[i].ThumbnailURL = await describeCloudStorageThumbnail({ Thumbnail: Events[i].Thumbnail, ProductId, DeviceName });
+        Events[i].ThumbnailURL = await describeCloudStorageThumbnail({
+          Thumbnail: Events[i].Thumbnail,
+          ProductId,
+          DeviceName,
+        });
       }
     }
   }

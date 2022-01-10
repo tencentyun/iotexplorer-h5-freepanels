@@ -116,9 +116,15 @@ export const getStatusTipProps = (state: any, opts: getStatusTipPropsOptions = {
   return null;
 };
 
-declare type Reducer<T> = (state: UseAsyncFetchState<T>, action: ReducerAction<AsyncFetchAction>) => UseAsyncFetchState<T>;
+declare type Reducer<T> = (
+  state: UseAsyncFetchState<T>,
+  action: ReducerAction<AsyncFetchAction>
+) => UseAsyncFetchState<T>;
 
-export function reducer<T>(state: UseAsyncFetchState<T>, action: ReducerAction<AsyncFetchAction>): UseAsyncFetchState<T> {
+export function reducer<T>(
+  state: UseAsyncFetchState<T>,
+  action: ReducerAction<AsyncFetchAction>,
+): UseAsyncFetchState<T> {
   const { type, payload } = action;
 
   // console.log('action => ', action.type, payload);

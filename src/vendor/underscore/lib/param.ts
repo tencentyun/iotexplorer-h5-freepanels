@@ -96,7 +96,7 @@ export const param = function (a): string {
     v = v === null ? '' : v === undefined ? '' : v;
     s[s.length] = `${encodeURIComponent(k)}=${encodeURIComponent(v)}`;
   };
-  var buildParams = function (prefix, obj) {
+  const buildParams = function (prefix, obj) {
     let i; let len; let key;
 
     if (prefix) {

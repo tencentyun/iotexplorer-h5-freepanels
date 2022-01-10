@@ -3,7 +3,9 @@ import { RefAttributes, ForwardRefExoticComponent } from 'react';
 import urlParse from 'url-parse';
 import querystring from 'query-string';
 
-export const delay = timeout => new Promise(resolve => setTimeout(() => resolve(), timeout));
+export const delay = timeout => new Promise(resolve => setTimeout(() => {
+  resolve();
+}, timeout));
 
 export const genReqId = () => `${Date.now().toString()}-${Math.floor(Math.random() * 10000)}`;
 
@@ -14,7 +16,7 @@ export const getStrLen = (str) => {
   for (let i = 0; i < str.length; i++) {
     const c = str.charCodeAt(i); // 单字节加1
     if ((c >= 0x0001 && c <= 0x007e) || (c >= 0xff60 && c <= 0xff9f)) {
-      len++;
+      len += 1;
     } else {
       len += 2;
     }
@@ -164,25 +166,25 @@ export function transBytes(bytes, base, preferFormat, isTraffic = false) {
   let value;
   let format;
 
-  const _oneKb = isTraffic ? 1000 : oneKb;
-  const _oneMb = isTraffic ? (_oneKb * 1000) : oneMb;
-  const _oneGb = isTraffic ? (_oneMb * 1000) : oneGb;
-  const _oneTb = isTraffic ? (_oneGb * 1000) : oneTb;
+  const theOneKb = isTraffic ? 1000 : oneKb;
+  const theOneMb = isTraffic ? (theOneKb * 1000) : oneMb;
+  const theOneGb = isTraffic ? (theOneMb * 1000) : oneGb;
+  const theOneTb = isTraffic ? (theOneGb * 1000) : oneTb;
 
-  if (bytes >= _oneTb || preferFormat === 'TB') {
-    value = (bytes / _oneTb).toFixed(2);
+  if (bytes >= theOneTb || preferFormat === 'TB') {
+    value = (bytes / theOneTb).toFixed(2);
     base = base ? `Tb${base}` : 'TB';
     format = 'TB';
-  } else if (bytes >= _oneGb || preferFormat === 'GB') {
-    value = (bytes / _oneGb).toFixed(2);
+  } else if (bytes >= theOneGb || preferFormat === 'GB') {
+    value = (bytes / theOneGb).toFixed(2);
     base = base ? `Gb${base}` : 'GB';
     format = 'GB';
-  } else if (bytes >= _oneMb || preferFormat === 'MB') {
-    value = (bytes / _oneMb).toFixed(2);
+  } else if (bytes >= theOneMb || preferFormat === 'MB') {
+    value = (bytes / theOneMb).toFixed(2);
     base = base ? `Mb${base}` : 'MB';
     format = 'MB';
-  } else if (bytes >= _oneKb || preferFormat === 'KB') {
-    value = (bytes / _oneKb).toFixed(2);
+  } else if (bytes >= theOneKb || preferFormat === 'KB') {
+    value = (bytes / theOneKb).toFixed(2);
     base = base ? `Kb${base}` : 'KB';
     format = 'KB';
   } else {
@@ -227,6 +229,7 @@ export function flattenArray(input, prefix = '') {
 
 // @ts-ignore
 export const noop = (a?: any): void => {
+  console.log('noop');
 };
 
 export function defineMap2SelectorList(defineMap: { [propName: string]: string }): SelectorOption[] {
@@ -277,7 +280,10 @@ export function getPrecision(value) {
   return 0;
 }
 
-export async function fetchAllList<T>(fetchFn: (props: { offset: number; limit: number }) => Promise<ListResponse<T>>): Promise<T[]> {
+export async function fetchAllList<T>(fetchFn: (props: {
+    offset: number;
+    limit: number;
+  }) => Promise<ListResponse<T>>): Promise<T[]> {
   const limit = 100;
   let offset = 0;
   let total = 100;
