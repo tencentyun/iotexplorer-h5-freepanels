@@ -1,0 +1,126 @@
+.ticker{
+  height: 100%;
+  width: 100%;
+  position: relative;
+  .badly{
+    background-image: linear-gradient(137deg, #F72F2F 0%, #F72F2F 100%) !important;
+  }
+  .badly-info{
+    .title, .value, .text{
+      color: #FFFFFF !important;
+    }
+  }
+  .bg {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%,11%);
+    width: 80%;
+    height: 80%;
+    z-index: 2;
+    border-radius: 50%;
+    /*background-color: #fff;*/
+    box-shadow: 0 6px 100px 0 rgba(32,33,33,0.10);
+  }
+
+  .bg-img-wrap{
+    position: absolute;
+    left: 50%;
+    top: 30px;
+    transform: translate(-50%,10%);
+    width: 85%;
+    height: 85%;
+    z-index: 3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border-radius: 50%;
+  }
+
+  @keyframes img-spread {
+    from {width: 80%;height: 80%;opacity: 1;}
+    to {width: 100%;height: 100%;opacity: 0;}
+  }
+  .bg-img{
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+  }
+  .bg-img-animation{
+    animation-name: img-spread;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+  }
+
+  .bg-fleck-wrap{
+    position: absolute;
+    top: -200px;
+    left: 50%;
+    transform: translate(-50%,10%);
+    width: 140%;
+    height: 140%;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  @keyframes img-fleck-spread {
+    from {width: 80%;height: 80%;opacity: 1;}
+    to {width: 100%;height: 100%;opacity: 0;}
+  }
+
+  .bg-fleck{
+    width: 100%;
+    height: 100%;
+  }
+  .bg-fleck-animation{
+    animation-name: img-fleck-spread;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+  }
+
+  > section {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    font-size: 40px;
+    color: var(--global-color-primary);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 3;
+    .title {
+
+    }
+    .value {
+      margin: 110px 0;
+      font-size: 130px;
+      &.power-off {
+        font-size: 72px;
+      }
+      > span {
+
+      }
+    }
+    .text {
+
+    }
+  }
+  .grad {
+    height: 30px;
+    width: 5px;
+    border-radius: 3px;
+    background-color: var(--global-color-primary);
+    position: absolute;
+    left: 50%;
+    top: 0;
+    transform: translate3d(-50%, -50%);
+    transform-origin: center 380px;
+    &.active {
+      background-color: #000000;
+    }
+  }
+}
+

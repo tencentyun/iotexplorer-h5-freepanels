@@ -1,0 +1,229 @@
+@color_on: #000000;
+@color_off: #818288;
+
+._component_business_switch_ {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: @color_off;
+
+  .switch-name {
+    margin-bottom: 115px;
+    color: #818288;
+  }
+
+  .switch-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: 400px;
+    height: 940px;
+    background-color: #F4F8FB;
+    border-radius: 200px;
+    
+    .switch-panel {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+      width: 354px;
+      height: 887px;
+      background-image: linear-gradient(3deg, #D7D9DD 0%, #EFEFF2 90%);
+      border-radius: 200px;
+    }
+    
+
+    .switch-bar {
+      position: absolute;
+      left: 50%;
+      top: 568px;
+      transform: translateX(-50%);
+      width: 286.58px;
+      height: 286.58px;
+      border-radius: 100%;
+      box-shadow: 0 5px 20px #CCCFD4;
+      transition: .3s top ease-out;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: url('./icon-bar-normal.svg') no-repeat center;
+      background-size: 100%;
+      &::before {
+        display: block;
+        content: '';
+        width: 65px;
+        height: 65px;
+        border-radius: 100%;
+        background-color: #000000;
+        border: 5px solid #EBEBF3;
+      }
+    }
+
+    .switch-status-desc {
+      position: absolute;
+      left: 50%;
+      top: 140px;
+      transform: translateX(-50%);
+      color: #C3C5CA;
+      font-family: PingFangSC-Medium;
+      text-align: center;
+      transition: .3s top ease-out;
+      z-index: 1;
+    }
+  }
+
+  &.is_on {
+    .switch-name {
+      color: #000;
+    }
+    .switch-wrapper {
+      .switch-bar{
+        top: 32px;
+      }
+      .switch-status-desc{
+        top: 680px;
+      }
+    }
+  }
+
+  &.theme_type_blueWhite {
+    .switch-name {
+      color: #6CAFFD;
+    }
+    .switch-wrapper {
+      background-color: #F4F8FB;
+      .switch-panel {
+        background-image: linear-gradient(3deg, #D7D9DD 0%, #EFEFF2 90%);
+      }
+      .switch-bar {
+        background: url('./icon-bar-blue_white.svg') no-repeat center;
+        &::before {
+          background-color: #2885FE;
+        }
+      }
+    }
+
+
+    &.is_on {
+      .switch-name {
+        color: #fff;
+      }
+    }
+  }
+  &.theme_type_dark {
+    .switch-name {
+      color: #B5C4D1;
+    }
+    .switch-wrapper {
+      background-image: linear-gradient(139deg, #333E4D 0%, #202C3A 100%);
+      border: 3px solid rgba(62,68,84,0.20);
+      box-shadow: 0 6px 100px 0 #242735;
+      .switch-panel {
+        background-image: linear-gradient(139deg, #333E4D 0%, #202C3A 100%);
+        box-shadow: 0 6px 100px 0 #242735;
+      }
+      .switch-bar {
+        box-shadow: none;
+        background-image: linear-gradient(139deg, #333E4D 0%, #202C3A 100%);
+        border: 3px solid rgba(62, 68, 84, 1);
+        box-sizing: border-box;
+        &::before {
+          background-color: #FF3C5E;
+          border: none;
+        }
+      }
+    }
+
+
+    &.is_on {
+      .switch-name {
+        color: #fff;
+      }
+      .switch-wrapper {
+        .switch-panel {
+          background-image: linear-gradient(137deg, #00F0FF 0%, #704DF0 100%);
+          box-shadow: 0 6px 100px 0 rgba(32,33,33,0.10);
+        }
+      }
+    }
+  }
+
+  &.theme_type_colorful {
+    .switch-name {
+      color: #818288;
+    }
+    .switch-wrapper {
+      background: #F4F8FB;
+      .switch-panel {
+        background-image: linear-gradient(3deg, #D7D9DD 0%, #EFEFF2 90%);
+      }
+      .switch-bar {
+        background: url('./icon-bar-colorful.svg') no-repeat center;
+        &::before {
+          background: #EFEFF2;
+          border: 5px solid #EBEBF3;
+        }
+      }
+    }
+
+
+    &.is_on {
+      .switch-name {
+        color: #000;
+      }
+      .switch-wrapper {
+        .switch-panel {
+          background-image: linear-gradient(138deg, #527DF4 0%, #044DFF 100%);
+        }
+        .switch-bar {
+          box-shadow: none;
+          &::before {
+            background: #000000;
+            border: 5px solid #EBEBF3;
+          }
+        }
+      }
+    }
+  }
+
+  &.theme_type_morandi {
+    .switch-name {
+      color: #B5C4D1;
+    }
+    .switch-wrapper {
+      background: #F4F8FB;
+      .switch-panel {
+        background-image: linear-gradient(3deg, #D7D9DD 0%, #EFEFF2 90%);
+      }
+      .switch-bar {
+        background-image: linear-gradient(0deg, #D9DBDF 0%, #EFEFF2 90%);
+        &::before {
+          background: #576273;
+          border: none;
+        }
+      }
+    }
+
+
+    &.is_on {
+      .switch-name {
+        color: #fff;
+      }
+      .switch-wrapper {
+        .switch-panel {
+          background-image: linear-gradient(138deg, #527DF4 0%, #044DFF 100%);
+        }
+        .switch-bar {
+          box-shadow: none;
+          &::before {
+            background: #000000;
+            border: 5px solid #EBEBF3;
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="242px" height="244px" viewBox="0 0 242 244" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 59.1 (86144) - https://sketch.com -->
+    <title>电机反向</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="9.23353305%" y1="0%" x2="110.694892%" y2="112.510417%" id="linearGradient-1">
+            <stop stop-color="#00F0FF" offset="0%"></stop>
+            <stop stop-color="#704DF0" offset="100%"></stop>
+        </linearGradient>
+        <path d="M253.248711,2173.53109 C255.181708,2173.53109 256.748711,2175.09809 256.748711,2177.03109 C256.748711,2178.96409 255.181708,2180.53109 253.248711,2180.53109 L206.589149,2180.5305 L213.843267,2184.71891 C215.459566,2185.65208 216.049989,2187.67975 215.218863,2189.32523 L215.124356,2189.5 C214.157857,2191.17402 212.017291,2191.74759 210.343267,2190.78109 L210.343267,2190.78109 L192.156733,2180.28109 C190.482709,2179.31459 189.909146,2177.17402 190.875644,2175.5 C191.201054,2174.93637 191.659554,2174.4975 192.18853,2174.20015 C192.766507,2173.77984 193.47856,2173.53109 194.248711,2173.53109 L253.248711,2173.53109 Z M230.624356,2126.03109 C231.590854,2124.35706 233.73142,2123.7835 235.405445,2124.75 L235.405445,2124.75 L253.591978,2135.25 C253.793418,2135.3663 253.978924,2135.4996 254.147729,2135.64705 C255.644496,2136.04371 256.748711,2137.40845 256.748711,2139.03109 C256.748711,2140.96409 255.181708,2142.53109 253.248711,2142.53109 L253.248711,2142.53109 L194.248711,2142.53109 C192.315715,2142.53109 190.748711,2140.96409 190.748711,2139.03109 C190.748711,2137.09809 192.315715,2135.53109 194.248711,2135.53109 L194.248711,2135.53109 L240.078149,2135.5305 L231.905445,2130.81218 C230.289145,2129.87901 229.698722,2127.85134 230.529849,2126.20586 Z" id="path-2"></path>
+        <filter x="-230.6%" y="-219.5%" width="561.2%" height="556.9%" filterUnits="objectBoundingBox" id="filter-3">
+            <feOffset dx="0" dy="6" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="50" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0.125490196   0 0 0 0 0.127812629   0 0 0 0 0.129411765  0 0 0 0.1 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="1" transform="translate(-103.000000, -2042.000000)">
+            <g id="电机反向">
+                <use fill="black" fill-opacity="1" filter="url(#filter-3)" xlink:href="#path-2"></use>
+                <use fill="url(#linearGradient-1)" fill-rule="evenodd" xlink:href="#path-2"></use>
+            </g>
+        </g>
+    </g>
+</svg>

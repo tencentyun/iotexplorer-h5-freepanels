@@ -1,0 +1,57 @@
+.icon-check-bg {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .icon-selected {
+    display: inline-block;
+    width: 55px;
+    height: 55px;
+    background-image: url('./icon/icon-select.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+  }
+  .icon-unselected {
+    display: inline-block;
+    width: 55px;
+    height: 55px;
+    background-image: url('icon/icon-unselect.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+  }
+  &.checked {
+    background: #000000;
+  }
+}
+body.theme_blue_white {
+  .icon-check-bg {
+    &.checked {
+      background: #006FFF;
+    }
+  }
+}
+body.theme_dark {
+  .icon-check-bg {
+    &.checked {
+      background-image: linear-gradient(137deg, #00F0FF 0%, #704DF0 100%);
+    }
+  }
+}
+body.theme_colorful {
+  .icon-check-bg {
+    &.checked {
+      background: #F23830;
+    }
+  }
+}
+body.theme_morandi {
+  .icon-check-bg {
+    &.checked {
+      background: #B6ACA3;
+    }
+  }
+}

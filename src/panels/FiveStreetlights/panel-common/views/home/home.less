@@ -1,0 +1,166 @@
+.menu {
+  width: 967px;
+  height: 200px;
+  background: #FFFFFF;
+  box-shadow: 0 10px 100px 0 rgba(32, 33, 33, 0.10);
+  border-radius: 60px;
+
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 57px;
+
+  .menu_left {
+    display: flex;
+    align-items: center;
+  }
+
+  .menu_center {
+    display: flex;
+    align-items: center;
+  }
+
+  .menu_right {
+    display: flex;
+    align-items: center;
+  }
+
+  .menu_left_font {
+    width: 76px;
+    height: 50px;
+    font-family: PingFangSC-Regular;
+    font-size: 36px;
+    color: #B5C4D1;
+    text-align: center;
+    margin-left: 25px;
+  }
+
+  .menu_center_font {
+    width: 74px;
+    height: 50px;
+    font-family: PingFangSC-Regular;
+    font-size: 36px;
+    color: #B5C4D1;
+    text-align: center;
+    margin-left: 25px;
+  }
+
+  .menu_right_font {
+    width: 72px;
+    height: 43px;
+    font-family: PingFangSC-Regular;
+    font-size: 36px;
+    color: #B5C4D1;
+    text-align: center;
+    margin-left: 25px;
+  }
+}
+
+.home {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+
+  .light_temperature_wrap {
+    width: 967px;
+    height: 80px;
+  }
+
+  .vhide {
+    display: none;
+  }
+
+  .dashboard {
+    width: 760px;
+    height: 760px;
+    //height: 676px;
+    margin: 0 auto;
+    //background-color: white;
+  }
+
+  > .title {
+    padding: 53px 0 56px;
+  }
+
+  /*ant重置*/
+  /*List*/
+
+  .adm-list {
+    &.adm-list-default {
+      .adm-list-item {
+        //padding-left: 90px;
+        .adm-list-item-content {
+          padding-right: 73px;
+          border-bottom: 0;
+        }
+      }
+    }
+  }
+
+  &.power-off {
+    #power {
+      pointer-events: auto !important;
+    }
+
+    * {
+      /*color: @color-disabled !important;*/
+      pointer-events: none;
+    }
+  }
+
+  .menu_left {
+    display: flex;
+    align-items: center;
+
+    .menu_center {
+      display: flex;
+      align-items: center;
+    }
+
+    .menu_right {
+      display: flex;
+      align-items: center;
+    }
+
+    .menu_left_font {
+      width: 76px;
+      height: 50px;
+      font-family: PingFangSC-Regular;
+      font-size: 36px;
+      color: #B5C4D1;
+      text-align: center;
+      margin-left: 25px;
+    }
+
+    .menu_center_font {
+      width: 74px;
+      height: 50px;
+      font-family: PingFangSC-Regular;
+      font-size: 36px;
+      color: #B5C4D1;
+      text-align: center;
+      margin-left: 25px;
+    }
+
+    .menu_right_font {
+      width: 72px;
+      height: 43px;
+      font-family: PingFangSC-Regular;
+      font-size: 36px;
+      color: #B5C4D1;
+      text-align: center;
+      margin-left: 25px;
+    }
+
+  }
+
+  .lightbright {
+    // margin: 80px 60px;
+    // margin-left: 160px;
+    width: 805px;
+    height: 200px;
+    border-radius: 60px;
+    font-size: 36px;
+    margin-bottom: 100px;
+  }
+}

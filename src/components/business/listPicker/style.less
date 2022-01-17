@@ -1,0 +1,75 @@
+._component_business_list_picker_ {
+  &.is_hidden {
+    display: none;
+  }
+
+  .dialog-selection {
+    .dialog-selection-item {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 48px;
+      line-height: 67px;
+      color: #0f0f0f;
+
+      &.is_disabled {
+        color: #B5C4D1;
+        .svg-icon {
+          color: #B5C4D1;
+        }
+      }
+    }
+    .item-label {
+      margin-right: 43px;
+      padding: 41px 0;
+    }
+  }
+
+  .adm-list, .adm-list-item-content {
+    border: none;
+  }
+
+  .adm-dialog-wrap {
+    border-radius: 60px;
+
+    .adm-dialog-body {
+      padding: 0;
+      // 弹窗标题样式
+      .adm-dialog-body-title {
+        font-size: 48px;
+        line-height: 67px;
+        color: #000000;
+        padding: 72px 0 23px;
+      }
+      // 弹窗内容部分样式
+      .adm-dialog-body-message {
+        width: 100%;
+        max-height: 1100px;
+      }
+      // .adm-dialog-body-message-wrapper {
+      //   .adm-list-inner {
+      //     .adm-list-item {
+      //       .adm-list-item-content {
+      //         padding: 0;
+      //         border: none;
+      //       }
+      //     }
+      //   }
+      // }
+    }
+    // 弹窗底部 footer 样式
+    .adm-dialog-footer {
+      .adm-dialog-action-row {
+        padding: 84px 0 72px;
+        border-top: 3px solid #EDEEF2;
+      }
+      .adm-dialog-action-row > button.adm-dialog-button {
+        font-size: 48px;
+        line-height: 67px;
+        color: #000;
+        border: none;
+        padding: 0;
+      }
+    }
+  }
+}

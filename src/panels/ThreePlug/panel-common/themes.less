@@ -1,0 +1,472 @@
+/*蓝白主题*/
+.theme_blue_white {
+  height: 100%;
+  background-image: var(--global-background-color-gradient);
+  min-height: 100vh;
+  .home-close{
+    min-height: 100vh;
+    background-color: #134179 !important;
+  }
+
+  .home{
+
+    &.power-off {
+
+      #power {
+      }
+
+      #timing {
+
+        .label{
+          color: #B5C4D1 !important;
+        }
+      }
+
+      #setting {
+
+        .label{
+          color: #B5C4D1 !important;
+        }
+      }
+
+      #title{
+        color: #B5C4D1 !important;
+      }
+    }
+
+    .btn-off{
+      color: #B5C4D1 !important;
+    }
+
+    .dashboard {
+
+      .ticker {
+        height: 800px;
+        width: 800px;
+        position: relative;
+
+        .title{
+          position: absolute;
+          bottom: 30px;
+          width: 100%;
+          font-size: 40px;
+          color: #000000;
+          display: flex;
+          justify-content: center;
+          z-index: 1;
+        }
+
+        .bg {
+          position: absolute;
+          left: 50%;
+          transform: translate(-50%, 11%);
+          width: 100%;
+          height: 100%;
+          border-radius: 50%;
+          background-color: var(--global-color-compared);
+          box-shadow: 0 6px 100px 0 rgba(32, 33, 33, 0.10);
+        }
+
+        .bg-img{
+          position: absolute;
+          left: 50%;
+          top: 250px;
+          transform: translate(-50%,10%);
+          width: 45%;
+          height: 45%;
+          z-index: 1;
+        }
+      }
+    }
+
+    .power-tools-bar {
+      width: 90%;
+      padding: 200px 5% 100px;
+
+      #timing {
+
+        img {
+          width: 80px;
+          height: 80px;
+        }
+
+        .label{
+          color: #000000;
+        }
+      }
+
+      #setting {
+
+        img {
+          width: 80px;
+          height: 80px;
+        }
+
+        .label{
+          color: #000000;
+        }
+      }
+    }
+  }
+}
+
+/*暗色主题*/
+.theme_dark {
+  height: 100%;
+
+  .home {
+    background: var(--global-background-color);
+    min-height: 100vh;
+    &.power-off {
+      #power {}
+    }
+
+    .btn-off{
+      color: #B5C4D1 !important;
+    }
+
+    .dashboard {
+
+      .ticker {
+        height: 800px;
+        width: 800px;
+        position: relative;
+
+        .title{
+          position: absolute;
+          bottom: 30px;
+          width: 100%;
+          font-size: 40px;
+          color: #FFFFFF;
+          display: flex;
+          justify-content: center;
+          z-index: 1;
+        }
+
+        .bg {
+          position: absolute;
+          left: 50%;
+          transform: translate(-50%, 11%);
+          width: 100%;
+          height: 100%;
+          border-radius: 50%;
+          background-image: var(--global-background-color-gradient);
+          box-shadow: 0 6px 100px 0 rgba(32, 33, 33, 0.10);
+        }
+
+        .bg-img{
+          position: absolute;
+          left: 50%;
+          top: 250px;
+          transform: translate(-50%,10%);
+          width: 45%;
+          height: 45%;
+          z-index: 1;
+        }
+      }
+    }
+
+    .power-tools-bar {
+      width: 90%;
+      padding: 200px 5% 100px;
+
+      #timing {
+        background-image: var(--global-background-color-gradient);
+        box-shadow: none;
+        img {
+          width: 80px;
+          height: 80px;
+        }
+
+        .label{
+          color: #FFFFFF;
+        }
+      }
+
+      #setting {
+        background-image: var(--global-background-color-gradient);
+        box-shadow: none;
+        img {
+          width: 80px;
+          height: 80px;
+        }
+
+        .label{
+          color: #FFFFFF;
+        }
+      }
+    }
+  }
+}
+
+/*多彩主题*/
+.theme_colorful {
+  height: 100%;
+
+  .home {
+    background-color: #f4f8fb;
+    min-height: 100vh;
+    &.power-off {
+      #power {}
+      #bg{
+        background-color: #B4C3D0;
+      }
+    }
+
+    .bg-off{
+      background-image: none !important;
+      background-color: #B5C4D1 !important;
+    }
+    .dashboard {
+
+      .ticker {
+        height: 800px;
+        width: 800px;
+        position: relative;
+
+        .title{
+          position: absolute;
+          bottom: 30px;
+          width: 100%;
+          font-size: 40px;
+          color: #FFFFFF;
+          display: flex;
+          justify-content: center;
+          z-index: 1;
+        }
+
+        .bg {
+          position: absolute;
+          left: 50%;
+          transform: translate(-50%, 11%);
+          width: 100%;
+          height: 100%;
+          border-radius: 50%;
+          background-image: linear-gradient(139deg, #527DF4 0%, #044DFF 100%);
+          box-shadow: 0 6px 100px 0 rgba(32, 33, 33, 0.10);
+        }
+
+        .bg-img{
+          position: absolute;
+          left: 50%;
+          top: 250px;
+          transform: translate(-50%,10%);
+          width: 45%;
+          height: 45%;
+          z-index: 1;
+        }
+      }
+    }
+
+    .power-tools-bar {
+      width: 90%;
+      padding: 200px 5% 100px;
+
+      #timing, #setting{
+        .btn-off{
+          color: #B5C4D1 !important;
+        }
+      }
+
+      #timing {
+        img {
+          width: 80px;
+          height: 80px;
+        }
+
+        .label{
+          color: #000000;
+        }
+      }
+
+      #setting {
+
+        img {
+          width: 80px;
+          height: 80px;
+        }
+
+        .label{
+          color: #000000;
+        }
+      }
+    }
+  }
+}
+
+/*莫兰迪主题*/
+.theme_morandi {
+  height: 100%;
+
+  .home {
+    &.power-off {
+      #power {}
+    }
+
+    .btn-off{
+      color: #B5C4D1 !important;
+    }
+
+    .dashboard {
+      width: 100%;
+      height: 1200px;
+      display: flex;
+      justify-content: center;
+      background-image: linear-gradient(139deg, #576273 0%, #414B5B 100%);
+
+      .ticker {
+        height: 800px;
+        width: 800px;
+        position: relative;
+
+        .title{
+          position: absolute;
+          bottom: 30px;
+          width: 100%;
+          font-size: 40px;
+          color: #B5ABA1;
+          display: flex;
+          justify-content: center;
+          z-index: 1;
+        }
+
+        .bg {
+          position: absolute;
+          left: 50%;
+          transform: translate(-50%, 11%);
+          width: 100%;
+          height: 100%;
+          border-radius: 50%;
+          background-color: #FFFFFF;
+          box-shadow: 0 6px 100px 0 rgba(32, 33, 33, 0.10);
+        }
+
+        .bg-img{
+          position: absolute;
+          left: 50%;
+          top: 250px;
+          transform: translate(-50%,10%);
+          width: 45%;
+          height: 45%;
+          z-index: 1;
+        }
+      }
+    }
+
+    .power-tools-bar {
+      width: 90%;
+      padding: 200px 5%;
+
+      #timing {
+        img {
+          width: 80px;
+          height: 80px;
+        }
+
+        .label{
+          color: #414B5B;
+        }
+      }
+
+      #setting {
+        img {
+          width: 80px;
+          height: 80px;
+        }
+
+        .label{
+          color: #414B5B;
+        }
+      }
+    }
+  }
+}
+
+/*黑白主题*/
+.theme_normal {
+  height: 100%;
+
+  .home-close{
+    min-height: 100vh;
+    background-color: #2D3134 !important;
+  }
+
+  .home {
+    min-height: 100vh;
+    background-color: #f4f8fb;
+
+    &.power-off {
+      #power {}
+      #setting{}
+      #timing{}
+      }
+    }
+
+  .dashboard {
+
+    .ticker {
+      height: 800px;
+      width: 800px;
+      position: relative;
+
+      .title{
+        position: absolute;
+        bottom: 30px;
+        width: 100%;
+        font-size: 40px;
+        color: #000000;
+        display: flex;
+        justify-content: center;
+        z-index: 1;
+      }
+
+      .bg {
+        position: absolute;
+        left: 50%;
+        transform: translate(-50%, 11%);
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        background-color: var(--global-color-compared);
+        box-shadow: 0 6px 100px 0 rgba(32, 33, 33, 0.10);
+      }
+
+      .bg-img{
+        position: absolute;
+        left: 50%;
+        top: 250px;
+        transform: translate(-50%,10%);
+        width: 45%;
+        height: 45%;
+        z-index: 1;
+      }
+    }
+  }
+
+  .power-tools-bar {
+    width: 90%;
+    padding: 200px 5% 100px;
+
+    #timing {
+      img {
+        width: 80px;
+        height: 80px;
+      }
+
+      .label{
+        color: #000000;
+      }
+    }
+
+    #setting {
+      img {
+        width: 80px;
+        height: 80px;
+      }
+
+      .label{
+        color: #000000;
+      }
+    }
+  }
+}

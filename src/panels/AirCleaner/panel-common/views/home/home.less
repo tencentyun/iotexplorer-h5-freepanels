@@ -1,0 +1,35 @@
+.home {
+  .dashboard {
+    width: 760px;
+    height: 760px;
+    //height: 676px;
+    margin: 0 auto;
+    //background-color: white;
+  }
+  > .title {
+    padding: 53px 0 56px;
+  }
+
+  /*ant重置*/
+  /*List*/
+  .adm-list {
+    &.adm-list-default {
+      .adm-list-item {
+        //padding-left: 90px;
+        .adm-list-item-content {
+          padding-right: 73px;
+          border-bottom: 0;
+        }
+      }
+    }
+  }
+  &.power-off {
+    #power{
+      pointer-events: auto !important;
+    }
+    *{
+      /*color: @color-disabled !important;*/
+      pointer-events: none;
+    }
+  }
+}

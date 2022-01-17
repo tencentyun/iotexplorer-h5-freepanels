@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="66px" height="66px" viewBox="0 0 66 66" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 59.1 (86144) - https://sketch.com -->
+    <title>报警号码</title>
+    <desc>Created with Sketch.</desc>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="切图黑白" transform="translate(-369.000000, -645.000000)">
+            <g id="编组" transform="translate(52.000000, 96.000000)">
+                <g id="报警号码" transform="translate(317.000000, 549.000000)">
+                    <circle id="椭圆形" fill="#F72F2F" cx="33" cy="33" r="33"></circle>
+                    <line x1="20.5" y1="33.5" x2="46.5" y2="33.5" id="直线-2" stroke="#FFFFFF" stroke-width="5" stroke-linecap="round"></line>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

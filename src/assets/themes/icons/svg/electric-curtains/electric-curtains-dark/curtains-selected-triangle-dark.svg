@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="34px" height="34px" viewBox="0 0 34 34" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 59.1 (86144) - https://sketch.com -->
+    <title>选中三角形</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="0%" y1="50%" x2="96.0833961%" y2="50%" id="linearGradient-1">
+            <stop stop-color="#00E6FF" offset="0%"></stop>
+            <stop stop-color="#00B0F7" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="1" transform="translate(-545.000000, -1682.000000)" fill="url(#linearGradient-1)">
+            <g id="编组-3" transform="translate(77.000000, 1394.000000)">
+                <path d="M489.472136,296.944272 L501.381966,320.763932 C502.616912,323.233825 501.615791,326.23719 499.145898,327.472136 C498.451621,327.819275 497.686056,328 496.90983,328 L473.09017,328 C470.328746,328 468.09017,325.761424 468.09017,323 C468.09017,322.223775 468.270895,321.458209 468.618034,320.763932 L480.527864,296.944272 C481.76281,294.474379 484.766175,293.473258 487.236068,294.708204 C488.203705,295.192022 488.988317,295.976635 489.472136,296.944272 Z" id="选中三角形" transform="translate(485.000000, 308.000000) scale(1, -1) translate(-485.000000, -308.000000) "></path>
+            </g>
+        </g>
+    </g>
+</svg>

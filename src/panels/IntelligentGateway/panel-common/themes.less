@@ -1,0 +1,465 @@
+
+/*蓝白主题*/
+.color_primary() {
+  color: var(--global-color-white);
+}
+.theme_blue_white {
+  height: 100%;
+  position: relative;
+  .home {
+    .color_primary;
+    background-image: var(--global-background-color-gradient);
+    min-height: 100vh;
+    .dashboard{
+      width: 950px;
+      height: 600px;
+      padding-top: 50px;
+
+      .dashboard-detail{
+        width: 100%;
+        height: 600px;
+        display: flex;
+        flex-wrap: wrap;
+        position: relative;
+      }
+      img{
+        margin: 0 auto;
+        width: 750px;
+      }
+
+      .equipment_num{
+        position: absolute;
+        top: 200px;
+        left: 50px;
+        font-size: 36px;
+      }
+    }
+
+    /*详情*/
+    .detail {
+      .environment {
+        width: 100%;
+        height: 1000px;
+        border-radius: 70px 70px 0 0;
+        background-color: var(--global-color-white);
+        color: #000000;
+        position: absolute;
+        bottom: 0;
+        min-height: 55vh;
+
+        .title{
+          font-size: 42px;
+          padding-top: 80px;
+          padding-bottom: 50px;
+          color: #727c84;
+        }
+
+        .gateways{
+          min-height: 40vh;
+          .gateway_info{
+            position: relative;
+            margin: 30px auto;
+            width: 80%;
+            height: 200px;
+            border-radius: 50px;
+            box-shadow: 0 6px 100px 0 rgba(32,33,33,0.10);
+            text-align: left;
+            img{
+              position: absolute;
+              width: 100px;
+              margin: 50px 0 50px 50px;
+            }
+            .description{
+              margin: 50px 0 50px 200px;
+              display: inline-block;
+              font-size: 36px;
+              .state{
+                color: #B5C4D1;
+              }
+            }
+          }
+        }
+
+        .add{
+          position: absolute;
+          left: 120px;
+          bottom: 100px;
+          width: 80%;
+          height: 200px;
+          border-radius: 50px;
+          box-shadow: 0 6px 100px 0 rgba(32,33,33,0.10);
+          font-size: 42px;
+          line-height: 200px;
+        }
+      }
+    }
+  }
+}
+/*暗色主题*/
+.theme_dark {
+  height: 100%;
+  position: relative;
+  .home {
+    .color_primary;
+
+    .dashboard{
+      width: 950px;
+      height: 600px;
+      padding-top: 50px;
+
+      .dashboard-detail{
+        width: 100%;
+        height: 600px;
+        display: flex;
+        flex-wrap: wrap;
+        position: relative;
+      }
+      img{
+        margin: 0 auto;
+        width: 750px;
+      }
+
+      .equipment_num{
+        position: absolute;
+        top: 200px;
+        left: 50px;
+        font-size: 36px;
+      }
+    }
+
+    /*详情*/
+    .detail {
+      .environment {
+        width: 100%;
+        height: 1000px;
+        border-radius: 70px 70px 0 0;
+
+        .title{
+          font-size: 42px;
+          padding-bottom: 30px;
+          color: #727c84;
+        }
+
+        .gateways{
+          min-height: 50vh;
+          .gateway_info{
+            position: relative;
+            margin: 30px auto;
+            width: 80%;
+            height: 200px;
+            border-radius: 50px;
+            background-image: linear-gradient(180deg, #333E4D 0%, #202C3A 100%);
+            text-align: left;
+            img{
+              position: absolute;
+              width: 100px;
+              margin: 50px 0 50px 50px;
+            }
+            .description{
+              margin: 50px 0 50px 200px;
+              display: inline-block;
+              font-size: 36px;
+            }
+          }
+        }
+
+        .add{
+          position: absolute;
+          left: 120px;
+          bottom: 100px;
+          width: 80%;
+          height: 200px;
+          border-radius: 50px;
+          background-image: linear-gradient(180deg, #333E4D 0%, #202C3A 100%);
+          font-size: 42px;
+          line-height: 200px;
+        }
+      }
+    }
+  }
+}
+/*多彩主题*/
+.theme_colorful {
+  height: 100%;
+  position: relative;
+  .home {
+    .color_primary;
+    background-color: var(--global-background-color);
+
+    .dashboard{
+      width: 950px;
+      height: 600px;
+      padding-top: 80px;
+      .dashboard-detail{
+        width: 100%;
+        height: 600px;
+        display: flex;
+        flex-wrap: wrap;
+        border-radius: 70px;
+        background-color: #FFFFFF;
+        box-shadow: 0 6px 100px 0 rgba(32,33,33,0.10);
+        position: relative;
+        img{
+          margin: 0 auto;
+          width: 750px;
+        }
+
+        .equipment_num{
+          position: absolute;
+          top: 100px;
+          left: 100px;
+          font-size: 36px;
+          color: var(--global-color-text-regular);
+        }
+      }
+    }
+
+    /*详情*/
+    .detail {
+      .environment {
+        width: 100%;
+        border-radius: 70px 70px 0 0;
+        background-color: var(--global-background-color);
+        color: #000000;
+
+        .title{
+          font-size: 42px;
+          color: #727c84;
+        }
+
+        .gateways{
+          min-height: 50vh;
+          .gateway_info{
+            position: relative;
+            margin: 30px auto;
+            width: 80%;
+            height: 200px;
+            border-radius: 50px;
+            background-color: #FFFFFF;
+            box-shadow: 0 6px 100px 0 rgba(32,33,33,0.10);
+            text-align: left;
+            img{
+              position: absolute;
+              width: 100px;
+              margin: 50px 0 50px 50px;
+            }
+            .description{
+              margin: 50px 0 50px 200px;
+              display: inline-block;
+              font-size: 36px;
+              .state{
+                color: #727c84;
+              }
+            }
+          }
+        }
+
+        .add{
+          position: absolute;
+          left: 120px;
+          bottom: 100px;
+          width: 80%;
+          height: 200px;
+          border-radius: 50px;
+          background-color: #FFFFFF;
+          box-shadow: 0 6px 100px 0 rgba(32,33,33,0.10);
+          font-size: 42px;
+          line-height: 200px;
+        }
+      }
+    }
+  }
+}
+/*莫兰迪主题*/
+.theme_morandi {
+  height: 100%;
+  #app{
+    position: relative;
+  }
+  .home {
+    .color_primary;
+    background-image: var(--global-background-color-gradient);
+
+    .dashboard{
+      width: 950px;
+      height: 800px;
+      padding-top: 50px;
+      display: flex;
+      flex-wrap: wrap;
+      position: relative;
+
+      .dashboard-detail{
+        width: 100%;
+        height: 800px;
+        display: flex;
+        flex-wrap: wrap;
+      }
+      img{
+        margin: 0 auto;
+        width: 750px;
+      }
+
+      .equipment_num{
+        position: absolute;
+        top: 200px;
+        left: 50px;
+        font-size: 36px;
+      }
+    }
+
+    /*详情*/
+    .detail {
+      margin-top: 0;
+
+      .environment {
+        width: 100%;
+        height: 1000px;
+        border-radius: 70px 70px 0 0;
+        background-color: var(--global-color-white);
+        color: #000000;
+        min-height: 58vh;
+        .title{
+          font-size: 42px;
+          padding-top: 80px;
+          padding-bottom: 50px;
+          color: #727c84;
+        }
+
+        .gateways{
+          min-height: 40vh;
+          .gateway_info{
+            position: relative;
+            margin: 30px auto;
+            width: 80%;
+            height: 200px;
+            border-radius: 50px;
+            box-shadow: 0 6px 100px 0 rgba(32,33,33,0.10);
+            text-align: left;
+            img{
+              position: absolute;
+              width: 100px;
+              margin: 50px 0 50px 50px;
+            }
+            .description{
+              margin: 50px 0 50px 200px;
+              display: inline-block;
+              font-size: 36px;
+              .state{
+                color: #727c84;
+              }
+            }
+          }
+        }
+
+        .add{
+          position: absolute;
+          left: 120px;
+          bottom: 100px;
+          width: 80%;
+          height: 200px;
+          border-radius: 50px;
+          box-shadow: 0 6px 100px 0 rgba(32,33,33,0.10);
+          font-size: 42px;
+          line-height: 200px;
+          color: #FFFFFF;
+          background-color: var(--global-color-primary);
+        }
+      }
+    }
+  }
+}
+/*黑白主题*/
+.theme_normal {
+  height: 100%;
+  position: relative;
+  .home {
+    .color_primary;
+    background-image: var(--global-background-color);
+
+    .dashboard{
+      width: 950px;
+      height: 600px;
+      padding-top: 50px;
+
+      .dashboard-detail{
+        width: 100%;
+        height: 600px;
+        display: flex;
+        flex-wrap: wrap;
+        position: relative;
+      }
+      img{
+        margin: 0 auto;
+        width: 650px;
+      }
+      .equipment_num{
+        position: absolute;
+        top: 670px;
+        right: 80px;
+        z-index: 10;
+        font-size: 36px;
+        color: #000000;
+        font-weight: bold;
+      }
+    }
+
+    /*详情*/
+    .detail {
+      .environment {
+        width: 100%;
+        height: 1000px;
+        border-radius: 70px 70px 0 0;
+        background-color: var(--global-color-white);
+        color: #000000;
+
+        .title{
+          font-size: 42px;
+          text-align: left;
+          margin-left: 200px;
+          padding-bottom: 30px;
+          font-weight: bold;
+        }
+
+        .gateways{
+          min-height: 50vh;
+          .gateway_info{
+            position: relative;
+            margin: 30px auto;
+            width: 80%;
+            height: 200px;
+            border-radius: 50px;
+            box-shadow: 0 6px 100px 0 rgba(32,33,33,0.10);
+            text-align: left;
+            img{
+              position: absolute;
+              width: 100px;
+              margin: 50px 0 50px 50px;
+            }
+            .description{
+              margin: 50px 0 50px 200px;
+              display: inline-block;
+              font-size: 36px;
+              .state{
+                color: #B5C4D1;
+              }
+            }
+          }
+        }
+
+        .add{
+          position: absolute;
+          left: 120px;
+          bottom: 100px;
+          width: 80%;
+          height: 200px;
+          border-radius: 50px;
+          box-shadow: 0 6px 100px 0 rgba(32,33,33,0.10);
+          font-size: 42px;
+          line-height: 200px;
+          font-weight: bold;
+        }
+      }
+    }
+  }
+}
+

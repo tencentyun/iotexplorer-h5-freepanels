@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="63px" height="63px" viewBox="0 0 63 63" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 59.1 (86144) - https://sketch.com -->
+    <title>内脏脂肪指数</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <rect id="path-1" x="0" y="0" width="63" height="63" rx="10"></rect>
+        <filter x="-242.9%" y="-233.3%" width="585.7%" height="585.7%" filterUnits="objectBoundingBox" id="filter-2">
+            <feOffset dx="0" dy="6" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="50" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0.125490196   0 0 0 0 0.127812629   0 0 0 0 0.129411765  0 0 0 0.1 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="1备份" transform="translate(-676.000000, -1422.000000)">
+            <rect fill="#FFFFFF" x="0" y="0" width="1125" height="2866"></rect>
+            <rect id="矩形" fill="#222532" x="-1" y="-6" width="1128" height="2872"></rect>
+            <g id="莫兰迪" transform="translate(33.000000, 1257.000000)">
+                <g id="内脏脂肪指数" transform="translate(643.000000, 165.000000)">
+                    <g id="矩形">
+                        <use fill="black" fill-opacity="1" filter="url(#filter-2)" xlink:href="#path-1"></use>
+                        <use fill="#566172" fill-rule="evenodd" xlink:href="#path-1"></use>
+                    </g>
+                    <g id="ic_内脏脂肪" transform="translate(10.000000, 20.000000)" fill="#FFFFFF" fill-rule="nonzero">
+                        <path d="M43.6899826,0 L27.9052147,0 C26.7777313,0 25.9321187,0.85104671 25.9321187,1.98577566 L25.9321187,16.1698875 C25.9321187,17.0209342 26.4958604,17.5882987 27.341473,17.5882987 C29.314569,17.5882987 31.287665,17.3046164 32.6970193,17.0209342 C32.9788901,17.0209342 33.260761,17.0209342 33.260761,16.737252 C39.4619198,14.1841118 43.1262409,8.5104671 44.8174661,1.98577566 C45.3812078,0.85104671 44.5355952,0 43.6899826,0 Z M21.1403142,0 L9.01986738,0 C3.94619198,0 0,3.97155131 0,9.07783158 L0,24.9640368 C0.281870856,26.6661303 2.25496685,27.517177 3.66432112,26.6661303 L15.5028971,20.7088033 L21.7040559,17.5882987 C22.2677976,17.5882987 22.5496685,17.0209342 22.5496685,16.4535697 L22.5496685,1.41841118 C22.5496685,0.567364473 21.9859267,0 21.1403142,0 Z" id="形状"></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

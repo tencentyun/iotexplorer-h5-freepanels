@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="63px" height="63px" viewBox="0 0 63 63" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 59.1 (86144) - https://sketch.com -->
+    <title>体脂等级</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="8.45868644%" y1="0%" x2="111.848517%" y2="112.510417%" id="linearGradient-1">
+            <stop stop-color="#00F0FF" offset="0%"></stop>
+            <stop stop-color="#704DF0" offset="100%"></stop>
+        </linearGradient>
+        <rect id="path-2" x="0" y="0" width="63" height="63" rx="10"></rect>
+        <filter x="-242.9%" y="-233.3%" width="585.7%" height="585.7%" filterUnits="objectBoundingBox" id="filter-3">
+            <feOffset dx="0" dy="6" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="50" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0.125490196   0 0 0 0 0.127812629   0 0 0 0 0.129411765  0 0 0 0.1 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="1备份" transform="translate(-240.000000, -526.000000)">
+            <rect fill="#FFFFFF" x="0" y="0" width="1125" height="2866"></rect>
+            <rect id="矩形" fill="#222532" x="-1" y="-6" width="1128" height="2872"></rect>
+            <g id="暗色" transform="translate(96.000000, 350.000000)">
+                <g id="体脂等级" transform="translate(144.000000, 176.000000)">
+                    <g id="矩形">
+                        <use fill="black" fill-opacity="1" filter="url(#filter-3)" xlink:href="#path-2"></use>
+                        <use fill="url(#linearGradient-1)" fill-rule="evenodd" xlink:href="#path-2"></use>
+                    </g>
+                    <circle id="椭圆形" fill="#FFFFFF" cx="30" cy="38" r="15"></circle>
+                    <circle id="椭圆形备份" fill="#FFFFFF" cx="44.5" cy="16.5" r="6.5"></circle>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,58 @@
+.ticker{
+  height: 100%;
+  width: 100%;
+  position: relative;
+  .bg {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%,11%);
+    width: 80%;
+    height: 80%;
+    border-radius: 50%;
+    background-color: #fff;
+    box-shadow: 0 6px 100px 0 rgba(32,33,33,0.10);
+  }
+  > section {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    font-size: 40px;
+    color: var(--global-color-primary);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+    .title {
+
+    }
+    .value {
+      margin: 110px 0;
+      font-size: 130px;
+      &.power-off {
+        font-size: 72px;
+      }
+      > span {
+
+      }
+    }
+    .text {
+
+    }
+  }
+  .grad {
+    height: 30px;
+    width: 5px;
+    border-radius: 3px;
+    background-color: var(--global-color-primary);
+    position: absolute;
+    left: 50%;
+    top: 0;
+    transform: translate3d(-50%, -50%);
+    transform-origin: center 380px;
+    &.active {
+      background-color: @color-active;
+    }
+  }
+}
+

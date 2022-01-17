@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="66px" height="66px" viewBox="0 0 66 66" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 59.1 (86144) - https://sketch.com -->
+    <title>紧急号码</title>
+    <desc>Created with Sketch.</desc>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="切图莫兰迪" transform="translate(-457.000000, -645.000000)">
+            <g id="编组-2" transform="translate(52.000000, 159.000000)">
+                <g id="紧急号码" transform="translate(405.000000, 486.000000)">
+                    <circle id="椭圆形" fill="#566172" cx="33" cy="33" r="33"></circle>
+                    <line x1="20.5" y1="33.5" x2="46.5" y2="33.5" id="直线-2" stroke="#FFFFFF" stroke-width="5" stroke-linecap="round"></line>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,307 @@
+.oven_head{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-top: 55px;
+
+    .head_card{
+        width: 975px;
+        height: 944px;
+        background: #FFFFFF;
+        box-shadow: 0 6px 50px 0 rgba(32,33,33,0.10);
+        border-radius: 60px;
+
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+
+
+        .card_top{
+            width: 855px;
+            height: 184px;
+
+            // border: solid 1px;
+            display: flex;
+            flex-direction: column;
+            margin-top: 60px;
+            justify-content: space-between;
+            // justify-content: center;
+
+
+
+            .card_span{
+                // width: 500px;
+                display: flex;
+                justify-content: space-between;
+
+                .span_center{
+                    width: 280px;
+                    height: 67px;
+                    font-family: PingFangSC-Semibold;
+                    font-weight: Semibold;
+                    font-size: 48px;
+                    // color: #0F0F0F;
+                    margin-right: 380px;
+                }
+
+
+            }
+            .card_span1{
+
+                .foot_size{
+                    width: 192px;
+                    height: 67px;
+                    font-family: PingFangSC-Medium;
+                    font-weight: Medium;
+                    font-size: 48px;
+                    // color: #0F0F0F;
+                    margin-left: 10px;
+                }
+
+            }
+        }
+    }
+    .card_center{
+        height: 190px;
+        width: 850px;
+        // border: solid 1px;
+        display: flex;
+        justify-content: space-between;
+
+        .center_left{
+            display: flex;
+            flex-direction: column;
+
+            .left_size{
+                width: 144px;
+                height: 50px;
+                font-family: PingFangSC-Medium;
+                font-weight: Medium;
+                font-size: 36px;
+                // color: #B5C4D1;
+            }
+            .left_num{
+                width: 223px;
+                height: 140px;
+                font-family: PingFangSC-Semibold;
+                font-weight: Semibold;
+                font-size: 100px;
+                // color: #000000;
+            }
+
+        }
+        .center_right{
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+
+            .right_size{
+                width: 144px;
+                height: 50px;
+                font-family: PingFangSC-Medium;
+                font-weight: Medium;
+                font-size: 36px;
+                // color: #B5C4D1;
+            }
+            .right_num{
+                width: 249px;
+                height: 140px;
+                font-family: PingFangSC-Semibold;
+                font-weight: Semibold;
+                font-size: 100px;
+                // color: #0F0F0F;
+                text-align: right;
+            }
+        }
+    }
+    .card_cooking{
+        margin-top: 200px;
+    }
+
+    .card_foot{
+        display: flex;
+        justify-content: space-between;
+        width: 855px;
+        height: 312px;
+        // border: solid 1px;
+
+        .foot_span{
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+
+            .right_botton{
+                display: flex;
+                align-items: baseline;
+                justify-content: space-between;
+
+                .font_icon{
+                    height: 180px;
+                    display: flex;
+                    justify-content: center;
+
+                    .arrowhead{
+                        padding-bottom: 10px;
+                    }
+                }
+                &.power-off{
+                    text-align: center;
+                    .arrowhead{
+                        display: none;
+                    }
+                }
+                &.idle-state{
+                    text-align: center;
+                    .arrowhead{
+                        display: none;
+                    }
+                }
+            }
+            .right_botton1{
+                display: flex;
+                align-items: baseline;
+                justify-content: space-between;
+
+                .font_icon{
+                    margin-bottom: 10px;
+                }
+                &.power-off{
+                    text-align: center;
+                    .arrowhead{
+                        display: none;
+                    }
+                }
+
+                &.idle-state{
+                    text-align: center;
+                    .arrowhead{
+                        display: none;
+                    }
+                    .font_right1{
+                        text-align: center;
+                    }
+                }
+            }
+
+            .span_size1{
+                width: 144px;
+                height: 50px;
+                font-family: PingFangSC-Medium;
+                font-weight: Medium;
+                font-size: 36px;
+                // color: #B5C4D1;
+            }
+            .span_size2{
+                width: 200px;
+                height: 50px;
+                font-family: PingFangSC-Medium;
+                font-weight: Medium;
+                font-size: 36px;
+                // color: #B5C4D1;
+            }
+            .span_size{
+                width: 144px;
+                height: 50px;
+                font-family: PingFangSC-Medium;
+                font-weight: Medium;
+                font-size: 36px;
+                // color: #000000;
+            }
+            .span_num{
+                width: 180px;
+                // height: 50px;
+                font-family: PingFangSC-Medium;
+                font-weight: Medium;
+                font-size: 36px;
+                margin-right: 20px;
+                text-align: center;
+                // color: #0F0F0F;
+
+            }
+            .font_right1{
+                width: 180px;
+                // height: 50px;
+                font-family: PingFangSC-Medium;
+                font-weight: Medium;
+                font-size: 36px;
+                margin-right: 20px;
+                text-align: center;
+            }
+
+            .span_num1{
+                width: 109px;
+                // height: 50px;
+                font-family: PingFangSC-Medium;
+                font-weight: Medium;
+                font-size: 36px;
+                // color: #0F0F0F;
+                text-align: right;
+
+
+
+            }
+
+        }
+    }
+}
+
+
+.cooking_icon_foot_card{
+    height: 20px;
+    width: 1125px;
+    display: flex;
+    justify-content: center;
+    .cooking_icon_foot_card_progress{
+        width: 0%;
+        background-color: #fff;
+        height: 20px;
+        border-radius: 10px;
+
+        @keyframes cooking-spread {
+            from {width: 0%;}
+            to {width: 100%;}
+        }
+
+        &.cooking_effect_animation{
+            animation-name: cooking-spread;
+            animation-duration: 2s;
+            animation-iteration-count: infinite;
+        }
+    }
+}
+.cooking_icon_card{
+    width: 830px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    .cooking_icon_foot_card_progress{
+        width: 0%;
+        background-color: #fff;
+        height: 50px;
+        border-radius: 50px;
+
+        @keyframes cooking-spread {
+            from {width: 0%;}
+            to {width: 100%;}
+        }
+
+        &.cooking_effect_animation{
+            animation-name: cooking-spread;
+            animation-duration: 2s;
+            animation-iteration-count: infinite;
+        }
+    }
+}
+
+@keyframes cooking-icon-spread {
+    from {scale: 1;opacity: 1;margin-top: 0px;}
+    to {scale: 2;opacity: 0;margin-top: -30px;}
+}
+
+.icon-electric-oven-cooking-effect{
+    animation-name: cooking-icon-spread;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+}

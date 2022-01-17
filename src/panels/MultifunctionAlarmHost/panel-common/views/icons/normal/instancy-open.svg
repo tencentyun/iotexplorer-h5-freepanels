@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="88px" height="88px" viewBox="0 0 88 88" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 59.1 (86144) - https://sketch.com -->
+    <title>紧急</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="61.5645064%" y1="-28.7259615%" x2="61.5645064%" y2="100%" id="linearGradient-1">
+            <stop stop-color="#00F0FF" offset="0%"></stop>
+            <stop stop-color="#5A6CF3" offset="100%"></stop>
+        </linearGradient>
+        <path d="M40.5,0 L0,17.5118644 L0,52.4881356 L40.5,70 L81,52.4881356 L81,17.5118644 L40.5,0 Z M75.6869965,48.9288136 L40.5,64.1627119 L5.26639816,48.9288136 L5.26639816,21.0711864 L40.5,5.83728814 L75.6869965,21.0711864 L75.6869965,48.9288136 Z" id="path-2"></path>
+        <filter x="-188.9%" y="-210.0%" width="477.8%" height="537.1%" filterUnits="objectBoundingBox" id="filter-3">
+            <feOffset dx="0" dy="6" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="50" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0.125490196   0 0 0 0 0.127812629   0 0 0 0 0.129411765  0 0 0 0.1 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="切图暗色" transform="translate(-241.000000, -865.000000)">
+            <g id="编组" transform="translate(38.000000, 96.000000)">
+                <g id="紧急" transform="translate(206.000000, 778.000000)">
+                    <g id="形状">
+                        <use fill="black" fill-opacity="1" filter="url(#filter-3)" xlink:href="#path-2"></use>
+                        <use fill="url(#linearGradient-1)" fill-rule="evenodd" xlink:href="#path-2"></use>
+                    </g>
+                    <text id="sos" fill="#17CEFC" font-family="PingFangSC-Medium, PingFang SC" font-size="35" font-weight="400">
+                        <tspan x="12" y="43">sos</tspan>
+                    </text>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

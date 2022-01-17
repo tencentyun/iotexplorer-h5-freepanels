@@ -1,0 +1,83 @@
+.home {
+  .dashboard {
+    width: 760px;
+    height: 760px;
+    //height: 676px;
+    margin: 0 auto;
+    //background-color: white;
+  }
+  > .title {
+    padding: 53px 0 56px;
+  }
+
+  .product-detail{
+    width: 1070px;
+    height: 200px;
+    margin: 0 auto;
+    padding-top: 50px;
+    border-radius: 50px;
+
+    .detail_info{
+      display: inline-block;
+      width: 350px;
+      height: 150px;
+      border-right: 3px solid rgba(62,68,84,0.20);
+      text-align: center;
+
+      .val{
+        font-size: 40px;
+        font-weight: bold;
+        color: #0a5f47;
+      }
+    }
+
+    .electric_quantity_state{
+
+    }
+
+    .electric_quantity{
+      border-right: 0;
+    }
+  }
+
+  .product-setting{
+    ._component_base_cell_{
+      width: 840px;
+      height: 80px;
+      margin: 50px auto;
+      border-radius: 50px;
+      padding-top: 60px;
+      padding-bottom: 60px;
+    }
+
+    ._color_white_{
+      background-color: #FFFFFF;
+    }
+    ._color_gray_{
+      background-color: #fdfdfd;
+    }
+  }
+
+  /*ant重置*/
+  /*List*/
+  .adm-list {
+    &.adm-list-default {
+      .adm-list-item {
+        //padding-left: 90px;
+        .adm-list-item-content {
+          padding-right: 73px;
+          border-bottom: 0;
+        }
+      }
+    }
+  }
+  &.power-off {
+    #power{
+      pointer-events: auto !important;
+    }
+    *{
+      /*color: @color-disabled !important;*/
+      pointer-events: none;
+    }
+  }
+}

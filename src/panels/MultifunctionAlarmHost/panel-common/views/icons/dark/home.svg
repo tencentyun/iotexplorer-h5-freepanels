@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="254px" height="276px" viewBox="0 0 254 276" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 59.1 (86144) - https://sketch.com -->
+    <title>主机在家</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="61.5645064%" y1="-28.7259615%" x2="61.5645064%" y2="100%" id="linearGradient-1">
+            <stop stop-color="#00F0FF" offset="0%"></stop>
+            <stop stop-color="#5A6CF3" offset="100%"></stop>
+        </linearGradient>
+        <path d="M122.017692,1.37944073 C88.5806213,23.8246854 49.8556599,36.9503859 9.76923075,39.425694 C4.37383359,39.425694 4.54747351e-13,43.8386183 4.54747351e-13,49.2822363 L4.54747351e-13,114.631112 C-0.0029758268,190.810336 51.3849285,257.214389 124.635846,275.687014 C126.237783,276.104329 127.918525,276.104329 129.520461,275.687014 L134.405077,274.366237 C205.173579,254.073163 254,188.859881 254,114.631112 L254,49.2822363 C254,43.8386183 249.626166,39.425694 244.230769,39.425694 C221.702923,39.425694 183.661538,26.6516152 131.259385,0.985179102 C128.308423,-0.456396659 124.837507,-0.308323222 122.017692,1.37944073 Z" id="path-2"></path>
+        <filter x="-60.2%" y="-53.3%" width="220.5%" height="210.9%" filterUnits="objectBoundingBox" id="filter-3">
+            <feOffset dx="0" dy="6" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="50" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0.125490196   0 0 0 0 0.127812629   0 0 0 0 0.129411765  0 0 0 0.1 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+        <linearGradient x1="61.5645064%" y1="-28.7259615%" x2="61.5645064%" y2="100%" id="linearGradient-4">
+            <stop stop-color="#00F0FF" offset="0%"></stop>
+            <stop stop-color="#5A6CF3" offset="100%"></stop>
+        </linearGradient>
+        <polygon id="path-5" points="123.676856 126.15625 132.078495 126.15625 127.058003 138.257348 136.996528 138.257348 119.834643 162.25 125.572347 146.534289 115.121528 146.534289"></polygon>
+        <filter x="-699.4%" y="-407.3%" width="1498.9%" height="947.8%" filterUnits="objectBoundingBox" id="filter-6">
+            <feOffset dx="0" dy="6" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="50" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0.125490196   0 0 0 0 0.127812629   0 0 0 0 0.129411765  0 0 0 0.1 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="切图暗色" transform="translate(-638.000000, -227.000000)">
+            <g id="编组" transform="translate(38.000000, 96.000000)">
+                <g id="主机在家" transform="translate(600.000000, 131.000000)">
+                    <g id="路径">
+                        <use fill="black" fill-opacity="1" filter="url(#filter-3)" xlink:href="#path-2"></use>
+                        <use fill="url(#linearGradient-1)" fill-rule="evenodd" xlink:href="#path-2"></use>
+                    </g>
+                    <polygon id="路径" fill="#2A3544" fill-rule="nonzero" points="167.621528 136.620384 158.094128 136.620384 158.094128 171 97.4605153 171 97.4605153 136.620384 87.7777778 136.620384 87.7777778 136.206795 127.699653 101 167.621528 136.206795"></polygon>
+                    <g id="路径">
+                        <use fill="black" fill-opacity="1" filter="url(#filter-6)" xlink:href="#path-5"></use>
+                        <use fill="url(#linearGradient-4)" fill-rule="evenodd" xlink:href="#path-5"></use>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

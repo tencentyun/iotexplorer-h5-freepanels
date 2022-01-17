@@ -1,0 +1,175 @@
+.dark_body{
+    margin-top:20px;
+    height: 676px;
+    display: flex;
+    justify-content: flex-end;
+    flex-direction: column;
+    align-items: center;
+    // flex-wrap: wrap;
+    // align-content: flex-end;
+    .adm-list {
+        &.adm-list-default {
+          .adm-list-item {
+            //padding-left: 90px;
+            .adm-list-item-content {
+              padding-right: 73px;
+              border-bottom: 0;
+            }
+          }
+        }
+      }
+      &.power-off {
+        #power{
+          pointer-events: auto !important;
+        }
+        *{
+          /*color: @color-disabled !important;*/
+          pointer-events: none;
+        }
+      }
+
+    .dark_body_card{
+        width: 90%;
+        height: 568px;
+        background-image: url('../../../icons/electric-curtains-dark-body.svg');
+        background-size: 100% 100%;
+        // background-image: linear-gradient(139deg, #333E4D 0%, #202C3A 100%);
+        // border: 3px solid rgba(62,68,84,0.20);
+        box-shadow: 0 6px 100px 0 #242735;
+        border-radius: 60px;
+        z-index: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+
+        .progress{
+            // margin-top: 100px;
+            margin-top: -50px;
+            height: 240px;
+            width: 860px;
+            // border: solid 1px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+
+            .morandi-progress-card-dot-wrap{
+                width: 860px;
+                display: flex;
+                justify-content: center;
+                .morandi-progress-card-tra{
+                    width: 0px;
+                    height: 0px;
+                    // border-radius: 50%;
+                    // background-color: #fff;
+                    border-left: 20px solid transparent;
+                    border-right: 20px solid transparent;
+                    border-top: 36px solid #00f0ff;
+                }
+            }
+
+            .morandi-progress-card-mark{
+                display: flex;
+                width: 860px;
+                justify-content: space-between;
+                color: #fff;
+            }
+
+            .morandi-progress-card-border{
+                display: flex;
+                height: 40px;
+                width: 860px;
+                border-radius: 20px;
+                align-items: center;
+                background-color: #222633;
+            }
+
+            .morandi-progress-card-wrap{
+                display: flex;
+                height: 40px;
+                width: 430px;
+                border-radius: 20px;
+                align-items: center;
+                position: absolute;
+                overflow: hidden;
+                // transition: width 0.3s;
+            }
+
+            .morandi-progress-card-bar{
+                display: flex;
+                height: 40px;
+                width: 860px;
+                border-radius: 20px;
+                align-items: center;
+                position: absolute;
+                background-image: linear-gradient(137deg, #00F0FF 0%, #704DF0 100%);
+            }
+
+            .morandi-progress-card-dot-wrap2{
+                height: 64px;
+                position:absolute;
+                width: 860px;
+                // float: left;
+                .morandi-progress-card-point-dot{
+                    background-color: white;
+                    width: 32px;
+                    height: 32px;
+                    border-radius: 50%;
+                    // float: left;
+                    margin-top:16px;
+                    position: absolute;
+                    // transition: 0.3s;
+                }
+                .morandi-progress-card-point-dot-bordered{
+                    margin-top: 12px;
+                    border: solid 4px #00CBFB;
+                    // transition: 0.3s;
+                }
+            }
+        }
+    }
+    .dark_body_fond{
+        width: 975px;
+        height: 117px;
+        z-index: 2;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .start_btn{
+        position: absolute;
+        z-index: 2;
+    }
+    .side_botton{
+        // margin-top: 89px;
+        width: 980px;
+        height: 300px;
+        display: flex;
+        // flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .side_span{
+        // margin-right: 100px;
+        width: 295px;
+        height: 300px;
+        // background: #FFFFFF;
+        // box-shadow: 0 6px 100px 0 rgba(32,33,33,0.10);
+        // border-radius: 60px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        color: #FFFFFF;;
+        &.button_select{
+            // background-color: #2683FC;
+        }
+        .close_font{
+            margin-top: 45px;
+        }
+        .open_font{
+            margin-top: 45px;
+        }
+    }
+}

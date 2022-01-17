@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="77px" height="77px" viewBox="0 0 77 77" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 59.1 (86144) - https://sketch.com -->
+    <title>配件</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="61.5645064%" y1="-28.7259615%" x2="61.5645064%" y2="100%" id="linearGradient-1">
+            <stop stop-color="#00F0FF" offset="0%"></stop>
+            <stop stop-color="#5A6CF3" offset="100%"></stop>
+        </linearGradient>
+        <path d="M0,0 L0,73 L40,73 L40,0 L0,0 Z M34.5945946,67.6043478 L5.40540541,67.6043478 L5.40540541,5.39565217 L34.5945946,5.39565217 L34.5945946,67.6043478 Z" id="path-2"></path>
+        <filter x="-382.5%" y="-201.4%" width="865.0%" height="519.2%" filterUnits="objectBoundingBox" id="filter-3">
+            <feOffset dx="0" dy="6" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="50" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0.125490196   0 0 0 0 0.127812629   0 0 0 0 0.129411765  0 0 0 0.1 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+        <linearGradient x1="61.5645064%" y1="-28.7259615%" x2="61.5645064%" y2="100%" id="linearGradient-4">
+            <stop stop-color="#00F0FF" offset="0%"></stop>
+            <stop stop-color="#5A6CF3" offset="100%"></stop>
+        </linearGradient>
+        <path d="M46,14 L46,59 L66,59 L66,14 L46,14 Z M60.3973941,53.6503497 L51.5374593,53.6503497 L51.5374593,19.5384615 L60.3973941,19.5384615 L60.3973941,53.6503497 Z" id="path-5"></path>
+        <filter x="-765.0%" y="-326.7%" width="1630.0%" height="780.0%" filterUnits="objectBoundingBox" id="filter-6">
+            <feOffset dx="0" dy="6" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="50" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0.125490196   0 0 0 0 0.127812629   0 0 0 0 0.129411765  0 0 0 0.1 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+        <linearGradient x1="61.5645064%" y1="-28.7259615%" x2="61.5645064%" y2="100%" id="linearGradient-7">
+            <stop stop-color="#00F0FF" offset="0%"></stop>
+            <stop stop-color="#5A6CF3" offset="100%"></stop>
+        </linearGradient>
+        <circle id="path-8" cx="20" cy="21" r="7"></circle>
+        <filter x="-1092.9%" y="-1050.0%" width="2285.7%" height="2285.7%" filterUnits="objectBoundingBox" id="filter-9">
+            <feOffset dx="0" dy="6" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="50" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0.125490196   0 0 0 0 0.127812629   0 0 0 0 0.129411765  0 0 0 0.1 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="切图暗色" transform="translate(-318.000000, -1685.000000)">
+            <g id="编组" transform="translate(38.000000, 96.000000)">
+                <g id="配件" transform="translate(286.000000, 1591.000000)">
+                    <g id="形状">
+                        <use fill="black" fill-opacity="1" filter="url(#filter-3)" xlink:href="#path-2"></use>
+                        <use fill="url(#linearGradient-1)" fill-rule="evenodd" xlink:href="#path-2"></use>
+                    </g>
+                    <g id="形状">
+                        <use fill="black" fill-opacity="1" filter="url(#filter-6)" xlink:href="#path-5"></use>
+                        <use fill="url(#linearGradient-4)" fill-rule="evenodd" xlink:href="#path-5"></use>
+                    </g>
+                    <g id="椭圆形">
+                        <use fill="black" fill-opacity="1" filter="url(#filter-9)" xlink:href="#path-8"></use>
+                        <use fill="url(#linearGradient-7)" fill-rule="evenodd" xlink:href="#path-8"></use>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

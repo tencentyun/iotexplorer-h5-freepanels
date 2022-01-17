@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="88px" height="88px" viewBox="0 0 88 88" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 59.1 (86144) - https://sketch.com -->
+    <title>工作</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="linearGradient-1">
+            <stop stop-color="#517AF4" offset="0%"></stop>
+            <stop stop-color="#21C1FB" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="61.5645064%" y1="-28.7259615%" x2="61.5645064%" y2="100%" id="linearGradient-2">
+            <stop stop-color="#5A6CF3" offset="0%"></stop>
+            <stop stop-color="#00F0FF" offset="100%"></stop>
+        </linearGradient>
+        <path d="M40.1918605,0 L33.8604651,0 C25.6736479,0 19.0288268,6.44212784 19,14.4072727 L19,70 L55,70 L55,14.4072727 C55,6.45035571 48.3701701,0 40.1918605,0 Z M49,67 L25,67 L25,13.9669421 C24.9862739,11.6023391 25.9294413,9.32917421 27.6221589,7.64753784 C29.3148764,5.96590147 31.6184794,5.01355062 34.0261812,5 L39.8696227,5 C44.9121908,5 49,9.01463675 49,13.9669421 L49,67 Z" id="path-3"></path>
+        <filter x="-425.0%" y="-210.0%" width="950.0%" height="537.1%" filterUnits="objectBoundingBox" id="filter-4">
+            <feOffset dx="0" dy="6" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="50" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0.125490196   0 0 0 0 0.127812629   0 0 0 0 0.129411765  0 0 0 0.1 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="切图暗色" transform="translate(-345.000000, -876.000000)">
+            <g id="编组" transform="translate(38.000000, 96.000000)">
+                <g id="工作" transform="translate(314.000000, 788.000000)">
+                    <path d="M0,23.2692308 L0,67.1643802 C4.01713235e-15,69.925804 2.23857625,72.1643802 5,72.1643802 L69.9632533,72.1643802 C72.7246771,72.1643802 74.9632533,69.925804 74.9632533,67.1643802 L74.9632533,23.2692308 C74.9632533,20.507807 72.7246771,18.2692308 69.9632533,18.2692308 L5,18.2692308 C2.23857625,18.2692308 -3.38176876e-16,20.507807 0,23.2692308 Z" id="路径" stroke="url(#linearGradient-1)" stroke-width="6"></path>
+                    <g id="形状">
+                        <use fill="black" fill-opacity="1" filter="url(#filter-4)" xlink:href="#path-3"></use>
+                        <use fill="url(#linearGradient-2)" fill-rule="evenodd" xlink:href="#path-3"></use>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,62 @@
+.home {
+  .dashboard {
+    width: 970px;
+    height: 700px;
+    margin: 0 auto;
+    padding-top: 50px;
+
+    .dashboard-info{
+      border-radius: 60px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      .dashboard-img{
+        width: 450px;
+      }
+      .dashboard-value{
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+        padding-bottom: 50px;
+
+        .dashboard-rate{
+          .rate-title, .rate-val{
+            display: flex;
+            flex-direction: row;
+            align-items: baseline;
+          }
+          .rate-title{
+            font-size: 36px;
+            img{
+              width: 38px;
+              height: 38px;
+              margin-right: 10px;
+            }
+          }
+          .rate-val{
+            margin-top: 10px;
+            font-size: 70px;
+            .unit{
+              font-size: 48px;
+            }
+          }
+        }
+      }
+    }
+  }
+  .rate-setting{
+    width: 970px;
+    margin: 0 auto;
+
+    ._component_base_cell_{
+      box-shadow: 0 6px 100px 0 rgba(32,33,33,0.10);
+      border-radius: 60px;
+      padding: 65px 71px 65px 65px;
+      .details-icon{
+        width: 100%;
+      }
+    }
+  }
+}

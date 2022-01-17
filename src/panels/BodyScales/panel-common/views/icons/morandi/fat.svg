@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="63px" height="63px" viewBox="0 0 63 63" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 59.1 (86144) - https://sketch.com -->
+    <title>脂肪量</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <rect id="path-1" x="0" y="0" width="63" height="63" rx="10"></rect>
+        <filter x="-242.9%" y="-233.3%" width="585.7%" height="585.7%" filterUnits="objectBoundingBox" id="filter-2">
+            <feOffset dx="0" dy="6" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="50" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0.125490196   0 0 0 0 0.127812629   0 0 0 0 0.129411765  0 0 0 0.1 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="1备份" transform="translate(-210.000000, -1422.000000)">
+            <rect fill="#FFFFFF" x="0" y="0" width="1125" height="2866"></rect>
+            <rect id="矩形" fill="#222532" x="-1" y="-6" width="1128" height="2872"></rect>
+            <g id="莫兰迪" transform="translate(33.000000, 1257.000000)">
+                <g id="脂肪量" transform="translate(177.000000, 165.000000)">
+                    <g id="矩形">
+                        <use fill="black" fill-opacity="1" filter="url(#filter-2)" xlink:href="#path-1"></use>
+                        <use fill="#566172" fill-rule="evenodd" xlink:href="#path-1"></use>
+                    </g>
+                    <g transform="translate(9.000000, 12.000000)">
+                        <circle id="椭圆形" fill="#FFFFFF" fill-rule="nonzero" cx="10.5" cy="3.5" r="3.5"></circle>
+                        <circle id="椭圆形" fill="#FFFFFF" fill-rule="nonzero" cx="18.5" cy="3.5" r="3.5"></circle>
+                        <circle id="椭圆形" fill="#FFFFFF" fill-rule="nonzero" cx="27.5" cy="3.5" r="3.5"></circle>
+                        <circle id="椭圆形" fill="#FFFFFF" fill-rule="nonzero" cx="35.5" cy="3.5" r="3.5"></circle>
+                        <circle id="椭圆形" fill="#FFFFFF" fill-rule="nonzero" cx="14.5" cy="11.5" r="3.5"></circle>
+                        <circle id="椭圆形" fill="#FFFFFF" fill-rule="nonzero" cx="23.5" cy="11.5" r="3.5"></circle>
+                        <circle id="椭圆形" fill="#FFFFFF" fill-rule="nonzero" cx="31.5" cy="11.5" r="3.5"></circle>
+                        <circle id="椭圆形" fill="#FFFFFF" fill-rule="nonzero" cx="10.5" cy="35.5" r="3.5"></circle>
+                        <circle id="椭圆形" fill="#FFFFFF" fill-rule="nonzero" cx="18.5" cy="35.5" r="3.5"></circle>
+                        <circle id="椭圆形" fill="#FFFFFF" fill-rule="nonzero" cx="27.5" cy="35.5" r="3.5"></circle>
+                        <circle id="椭圆形" fill="#FFFFFF" fill-rule="nonzero" cx="35.5" cy="35.5" r="3.5"></circle>
+                        <circle id="椭圆形" fill="#FFFFFF" fill-rule="nonzero" cx="14.5" cy="27.5" r="3.5"></circle>
+                        <circle id="椭圆形" fill="#FFFFFF" fill-rule="nonzero" cx="23.5" cy="27.5" r="3.5"></circle>
+                        <circle id="椭圆形" fill="#FFFFFF" fill-rule="nonzero" cx="31.5" cy="27.5" r="3.5"></circle>
+                        <circle id="椭圆形" fill="#FFFFFF" fill-rule="nonzero" cx="17.5" cy="19.5" r="3.5"></circle>
+                        <circle id="椭圆形" fill="#FFFFFF" fill-rule="nonzero" cx="26.5" cy="19.5" r="3.5"></circle>
+                        <path d="M1.15475245,0 C4.96712879,5.61210837 7.01008481,12.3234498 7,19.2021759 C7.01080772,26.7652594 4.54063669,34.1044676 0,40" id="路径" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round"></path>
+                        <path d="M44.8415698,0 C36.6429796,12.1129864 37.1154107,28.4257906 46,40" id="路径" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round"></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="150px" height="66px" viewBox="0 0 150 66" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>滑动条</title>
+    <defs>
+        <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="linearGradient-1">
+            <stop stop-color="#2CE74F" offset="0%"></stop>
+            <stop stop-color="#00E1AD" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="9" transform="translate(-833.000000, -383.000000)">
+            <g id="编组-6" transform="translate(1.000000, 306.000000)">
+                <g transform="translate(79.000000, -1133.000000)" id="编组-3">
+                    <g transform="translate(66.000000, 358.000000)">
+                        <g id="编组-2备份-6" transform="translate(0.000000, 851.000000)">
+                            <g id="滑动条" transform="translate(687.000000, 1.000000)">
+                                <rect id="矩形" fill="url(#linearGradient-1)" x="0" y="0" width="150" height="66" rx="33"></rect>
+                                <circle id="椭圆形" fill="#FFFFFF" cx="116" cy="33" r="24"></circle>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,60 @@
+._component_business_route-list_ {
+  .svg-icon {
+    width: 75px;
+    height: 75px;
+  }
+
+  &.layout_type_grid {
+    .route-list-item {
+      margin-bottom: 40px;
+    }
+
+    .explorer-h5-col__content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 295px;
+      height: 300px;
+      border-radius: 60px;
+      background-color: #fff;
+      box-shadow: 0 6px 100px 0 rgba(32,33,33,0.10);
+      color: #B5C4D1;
+      margin: 0 auto;
+    }
+
+    .svg-icon {
+      margin-bottom: 36px;
+    }
+  }
+
+  &.layout_type_list {
+    .route-list-item {
+      margin-bottom: 50px;
+    }
+    .explorer-h5-col__content {
+      display: flex;
+      align-items: center;
+      border-radius: 60px;
+      background-color: #fff;
+      box-shadow: 0 6px 100px 0 rgba(32,33,33,0.10);
+      color: #000000;
+      font-size: 48px;
+      padding: 70px 66px;
+
+      .svg-icon {
+        margin-right: 41px;
+      }
+
+      &::after {
+        content: '';
+        display: block;
+        width: 30px;
+        height: 60px;
+        background: url('./icons/icon-arrow-right.svg') no-repeat center;
+        background-size: contain;
+        margin-left: auto;
+      }
+    }
+  }
+}

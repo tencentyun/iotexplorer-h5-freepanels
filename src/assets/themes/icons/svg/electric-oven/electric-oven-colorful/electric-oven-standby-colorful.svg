@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="442px" height="177px" viewBox="0 0 442 177" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 59.1 (86144) - https://sketch.com -->
+    <title>待机效果</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M0,62 L0,882 C4.19339326e-15,916.241654 27.7583455,944 62,944 L913,944 C947.241654,944 975,916.241654 975,882 L975,62 C975,27.7583455 947.241654,-6.29008989e-15 913,0 L62,0 C27.7583455,1.33955172e-14 -4.19339326e-15,27.7583455 0,62 Z" id="path-1"></path>
+        <circle id="path-3" cx="221" cy="221" r="127"></circle>
+        <filter x="-60.2%" y="-57.9%" width="220.5%" height="220.5%" filterUnits="objectBoundingBox" id="filter-4">
+            <feOffset dx="0" dy="6" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="50" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0.125490196   0 0 0 0 0.127812629   0 0 0 0 0.129411765  0 0 0 0.1 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+        <path d="M0,62 L0,882 C4.19339326e-15,916.241654 27.7583455,944 62,944 L913,944 C947.241654,944 975,916.241654 975,882 L975,62 C975,27.7583455 947.241654,-6.29008989e-15 913,0 L62,0 C27.7583455,1.33955172e-14 -4.19339326e-15,27.7583455 0,62 Z" id="path-5"></path>
+    </defs>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="1备份-2" transform="translate(-20.000000, -115.000000)">
+            <g id="效果" transform="translate(-247.000000, -652.000000)">
+                <g id="待机效果">
+                    <mask id="mask-2" fill="white">
+                        <use xlink:href="#path-1"></use>
+                    </mask>
+                    <use id="蒙版" fill-opacity="0" fill="#FFFFFF" xlink:href="#path-1"></use>
+                    <g id="编组-8" mask="url(#mask-2)">
+                        <g transform="translate(267.000000, 767.000000)" id="椭圆形">
+                            <g>
+                                <use fill="black" fill-opacity="1" filter="url(#filter-4)" xlink:href="#path-3"></use>
+                                <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-3"></use>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+                <g id="烹饪中效果" transform="translate(472.000000, 0.000000)">
+                    <mask id="mask-6" fill="white">
+                        <use xlink:href="#path-5"></use>
+                    </mask>
+                    <use id="蒙版" fill-opacity="0" fill="#FFFFFF" xlink:href="#path-5"></use>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

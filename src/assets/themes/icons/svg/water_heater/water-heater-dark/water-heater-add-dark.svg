@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="400px" height="400px" viewBox="0 0 400 400" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>编组 7</title>
+    <defs>
+        <linearGradient x1="9.23611111%" y1="1.30781938%" x2="90.7415254%" y2="96.3203125%" id="linearGradient-1">
+            <stop stop-color="#333E4D" offset="0%"></stop>
+            <stop stop-color="#202C3A" offset="100%"></stop>
+        </linearGradient>
+        <circle id="path-2" cx="100" cy="100" r="100"></circle>
+        <filter x="-76.5%" y="-73.5%" width="253.0%" height="253.0%" filterUnits="objectBoundingBox" id="filter-3">
+            <feOffset dx="0" dy="6" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="50" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feComposite in="shadowBlurOuter1" in2="SourceAlpha" operator="out" result="shadowBlurOuter1"></feComposite>
+            <feColorMatrix values="0 0 0 0 0.139279426   0 0 0 0 0.152179267   0 0 0 0 0.208078578  0 0 0 1 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="1" transform="translate(-720.000000, -1124.000000)">
+            <g id="编组-5" transform="translate(106.000000, 1218.000000)">
+                <g id="编组-7" transform="translate(714.000000, 0.000000)">
+                    <g id="椭圆形备份-5">
+                        <use fill="black" fill-opacity="1" filter="url(#filter-3)" xlink:href="#path-2"></use>
+                        <circle stroke-opacity="0.2" stroke="#3E4454" stroke-width="3" stroke-linejoin="square" fill="url(#linearGradient-1)" fill-rule="evenodd" cx="100" cy="100" r="98.5"></circle>
+                    </g>
+                    <rect id="矩形备份-3" fill="#B5C4D1" x="60" y="88" width="80" height="16" rx="8"></rect>
+                    <rect id="矩形备份-3" fill="#B5C4D1" transform="translate(100.000000, 96.000000) rotate(-90.000000) translate(-100.000000, -96.000000) " x="60" y="88" width="80" height="16" rx="8"></rect>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

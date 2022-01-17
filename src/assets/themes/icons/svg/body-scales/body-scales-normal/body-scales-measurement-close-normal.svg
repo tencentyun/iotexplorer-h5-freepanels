@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="63px" height="63px" viewBox="0 0 63 63" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 59.1 (86144) - https://sketch.com -->
+    <title>测量</title>
+    <desc>Created with Sketch.</desc>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="1" transform="translate(-144.000000, -433.000000)">
+            <g id="测量" transform="translate(144.000000, 433.000000)">
+                <g>
+                    <rect id="矩形" fill="#B5C4D1" x="0" y="0" width="63" height="63" rx="11"></rect>
+                    <line x1="13.3870968" y1="15.5" x2="36.6129032" y2="15.5" id="直线-3" stroke="#FFFFFF" stroke-width="5" stroke-linecap="round"></line>
+                    <line x1="13.3863636" y1="47.5" x2="46.6136364" y2="47.5" id="直线-3备份-2" stroke="#FFFFFF" stroke-width="5" stroke-linecap="round"></line>
+                    <line x1="13.3863636" y1="31.5" x2="46.6136364" y2="31.5" id="直线-3备份" stroke="#FFFFFF" stroke-width="5" stroke-linecap="round"></line>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

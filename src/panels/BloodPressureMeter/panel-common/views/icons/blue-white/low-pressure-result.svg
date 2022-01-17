@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="114px" height="40px" viewBox="0 0 114 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 59.1 (86144) - https://sketch.com -->
+    <title>低压</title>
+    <desc>Created with Sketch.</desc>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+        <g id="切图" transform="translate(-452.000000, -531.000000)" stroke="#0071FF" stroke-width="5">
+            <g id="蓝白" transform="translate(30.000000, 506.000000)">
+                <path d="M426,60.1164352 C433.78125,62.9054977 439.324219,62.2896123 442.628906,58.268779 C447.585938,52.237529 440.087891,28.7922165 454.101563,28.0148727 C468.115234,27.237529 461.994054,57.177807 465.21875,60.1164352 C468.443446,63.0550634 479.219727,64.0890915 485.783203,60.6066696 C492.34668,57.1242477 481.536133,35.7228805 496.947266,30.4855759 C512.358398,25.2482712 504.969508,57.5830045 508.838867,60.9992477 C511.41844,63.2767432 519.472151,62.9824723 533,60.1164352" id="低压"></path>
+            </g>
+        </g>
+    </g>
+</svg>

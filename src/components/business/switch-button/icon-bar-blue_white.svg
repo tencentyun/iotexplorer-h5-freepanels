@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="288px" height="288px" viewBox="0 0 288 288" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 61.2 (89653) - https://sketch.com -->
+    <title>编组 2</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="52.0366468%" y1="0%" x2="52.0366468%" y2="156.12497%" id="linearGradient-1">
+            <stop stop-color="#FFFFFF" offset="0%"></stop>
+            <stop stop-color="#9A9EA5" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="57.9125381%" y1="112.425869%" x2="57.9125381%" y2="10.3696646%" id="linearGradient-2">
+            <stop stop-color="#D9DBDF" offset="0%"></stop>
+            <stop stop-color="#EFEFF2" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="1" transform="translate(-419.000000, -743.000000)" fill-rule="nonzero">
+            <g id="编组-4" transform="translate(363.000000, 505.000000)">
+                <g id="开关" transform="translate(0.000000, 182.000000)">
+                    <g id="编组-3" transform="translate(56.509695, 56.509695)">
+                        <g id="编组-2">
+                            <path d="M143.251246,286.502492 C64.1357675,286.502492 0,222.366725 0,143.251246 C0,64.1357675 64.1357675,0 143.251246,0 C222.366725,0 286.502492,64.1357675 286.502492,143.251246 C286.502492,181.243839 271.409994,217.680354 244.545174,244.545174 C217.680354,271.409994 181.243839,286.502492 143.251246,286.502492 Z" id="路径" fill="url(#linearGradient-1)"></path>
+                            <g id="编组" opacity="0.75" style="mix-blend-mode: screen;" fill="url(#linearGradient-2)">
+                                <path d="M143.288944,286.577888 C64.1526453,286.577888 0,222.425242 0,143.288944 C0,64.1526453 64.1526453,0 143.288944,0 C222.425242,0 286.577888,64.1526453 286.577888,143.288944 C286.577888,181.291535 271.481417,217.737638 244.609528,244.609528 C217.737638,271.481417 181.291535,286.577888 143.288944,286.577888 Z" id="路径"></path>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

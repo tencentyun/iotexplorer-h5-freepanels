@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="64px" height="64px" viewBox="0 0 64 64" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 59.1 (86144) - https://sketch.com -->
+    <title>记录蓝白未选</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M147,0 C164.673112,0 179,14.326888 179,32 C179,49.673112 164.673112,64 147,64 C129.326888,64 115,49.673112 115,32 C115,14.326888 129.326888,0 147,0 Z M145.5,16 C144.119288,16 143,17.1192881 143,18.5 L143,18.5 L143,35.5 C143,36.6261488 143.744607,37.5783853 144.767486,37.8910036 C144.86928,37.9927496 144.981295,38.0870747 145.103267,38.1724804 L145.103267,38.1724804 L159.028851,47.9232798 C160.159864,48.7152236 161.718729,48.4403538 162.510672,47.3093408 C163.302616,46.1783278 163.027746,44.6194634 161.896733,43.8275196 L161.896733,43.8275196 L148,34.096 L148,18.5 C148,17.1192881 146.880712,16 145.5,16 Z" id="path-1"></path>
+        <filter x="-239.1%" y="-229.7%" width="578.1%" height="578.1%" filterUnits="objectBoundingBox" id="filter-2">
+            <feOffset dx="0" dy="6" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="50" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0.125490196   0 0 0 0 0.127812629   0 0 0 0 0.129411765  0 0 0 0.1 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="1备份" transform="translate(-357.000000, -798.000000)">
+            <g id="暗色" transform="translate(242.000000, 671.000000)">
+                <g id="蓝白备份-2" transform="translate(0.000000, 127.000000)">
+                    <g id="记录蓝白未选">
+                        <use fill="black" fill-opacity="1" filter="url(#filter-2)" xlink:href="#path-1"></use>
+                        <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-1"></use>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

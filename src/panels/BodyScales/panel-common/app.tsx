@@ -1,0 +1,89 @@
+/**
+ * 体脂称
+ */
+import React, { useEffect, useState } from 'react';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
+import { useDeviceData } from '@hooks/useDeviceData';
+import { Container } from './views/container/container';
+import UnitSetting from './views/unitSetting/unitSetting';
+import '@icons/themes/global.less';
+import '@icons/themes/icons/svg/body-scales';
+import './style.less';
+import './themes.less';
+
+export function App() {
+  const isBluetoothDevice = true;
+  const isDev = process.env.NODE_ENV !== 'production';
+  //新旧链接的兼容
+  const hasScf = /\/scf\//.test(location.href);
+
+  let basename = isDev
+    ? `${hasScf ? '/scf' : ''}/h5panel/developing`
+    : `${hasScf ? '/scf' : ''}/h5panel`;
+
+  console.log('----basename----', basename);
+  // 蓝牙的调试模式下路由需要加上 /live
+  if (isBluetoothDevice && isDev) {
+    basename += '/live';
+  }
+
+  const [state, { onDeviceDataChange, onDeviceStatusChange }] =
+    useDeviceData(sdk);
+  console.log(state, 'state===============');
+
+  // webSecket 监听
+  useEffect(() => {
+    const handleWsControl = ({ deviceId, deviceData }) => {
+      console.log('wsControl==========', deviceData);
+      if (deviceId === sdk.deviceId) {
+        onDeviceDataChange(deviceData);
+      }
+    };
+    const handleWsReport = ({ deviceId, deviceData }) => {
+      console.log('wsReport==========', deviceData);
+      if (deviceId === sdk.deviceId) {
+        onDeviceDataChange(deviceData);
+      }
+    };
+    const handleWsStatusChange = ({ deviceId, deviceStatus }) => {
+      if (deviceId === sdk.deviceId) {
+        onDeviceStatusChange(deviceStatus);
+      }
+    };
+
+    sdk
+      .on('wsControl', handleWsControl)
+      .on('wsReport', handleWsReport)
+      .on('wsStatusChange', handleWsStatusChange);
+
+    return () => {
+      sdk
+        .off('wsControl', handleWsControl)
+        .off('wsReport', handleWsReport)
+        .off('wsStatusChange', handleWsStatusChange);
+    };
+  }, []);
+  const [sdkReady, setSdkReady] = useState(false);
+  useEffect(() => {
+    sdk.sdkReady().then(() => setSdkReady(true));
+  }, []);
+  return (
+    <>
+      {!sdkReady ? (
+        <div>loading...</div>
+      ) : (
+        <Router basename={basename}>
+          <Switch>
+            <Route path="/unitSetting">
+              <UnitSetting />
+            </Route>
+            <Route path="/">
+              <Container />
+            </Route>
+          </Switch>
+        </Router>
+      )}
+    </>
+  );
+}

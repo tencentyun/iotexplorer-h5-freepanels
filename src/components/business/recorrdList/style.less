@@ -1,0 +1,57 @@
+._component_business_record_list_ {
+  ._component_business_record_list-item_.record-item {
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding-top: 50px;
+
+    &::before {
+      position: absolute;
+      left: 26px;
+      top: 0;
+      content: '';
+      display: block;
+      width: 3px;
+      height: 100%;
+      background-color: #B5C4D1;
+      z-index: 1;
+    }
+    .item-timeline {
+      position: relative;
+      flex-shrink: 0;
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background-color: #000;
+      margin-right: 93px;
+      z-index: 2;
+    }
+
+    .item-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      & > div {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+    }
+    .item-top {
+      margin-bottom: 40px;
+    }
+    .day {
+      margin-left: 48px;
+    }
+    .time {
+      font-family: PingFangSC-Medium;
+      font-size: 92px;
+    }
+    .item-value {
+      font-size: 92px;
+    }
+  }
+}

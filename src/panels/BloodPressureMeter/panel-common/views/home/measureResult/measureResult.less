@@ -1,0 +1,122 @@
+.head{
+  display: flex;
+  justify-content: space-between;
+  margin: 50px 10px;
+}
+.measure-result{
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 80px;
+
+  .title{
+    width: 200px;
+    height: 640px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    .unit{
+      font-size: 24px;
+      text-align: right;
+    }
+  }
+  .values{
+    width: 400px;
+    height: 640px;
+    border-radius: 60px;
+    font-size: 120px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+
+    .pre-img{
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      align-items: center;
+      img{
+        display: inline-block;
+        height: 40px;
+      }
+    }
+    .pre-value{
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      align-items: flex-end;
+    }
+  }
+  .unit{
+    font-size: 36px;
+  }
+}
+
+body.theme_blue_white {
+  .measure-result{
+    .pre-value {
+      color: #0071FF;
+    }
+  }
+}
+
+body.theme_dark {
+  ._component_base_modal_{
+    background-image: var(--global-background-color-gradient) !important;
+    .modal-inner{
+      color: #FFFFFF !important;
+      .measure-result{
+        .pre-value {
+        }
+      }
+      .footer-buttons{
+        button{
+          background: 0;
+        }
+        .button-cancel{
+          color: #A6AFC2 !important;
+        }
+        .button-confirm{
+          color: #FFFFFF !important;
+        }
+      }
+    }
+  }
+}
+body.theme_colorful {
+  ._component_base_modal_{
+    .modal-inner{
+      .footer-buttons{
+        .button-confirm{
+          color: #F23830 !important;
+        }
+      }
+    }
+  }
+}
+
+body.theme_morandi {
+  ._component_base_modal_{
+    .modal-inner{
+      color: #4F5A69 !important;
+      .measure-result{
+        .pre-value {
+          color: #B5ABA1 !important;
+        }
+      }
+      .footer-buttons{
+        button{
+          background: 0;
+        }
+        .button-cancel{
+          color: #A6AFC2 !important;
+        }
+        .button-confirm{
+          color: #4F5A69 !important;
+        }
+      }
+    }
+  }
+}

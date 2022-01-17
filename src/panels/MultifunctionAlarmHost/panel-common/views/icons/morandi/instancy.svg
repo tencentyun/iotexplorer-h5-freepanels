@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="254px" height="276px" viewBox="0 0 254 276" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 59.1 (86144) - https://sketch.com -->
+    <title>主机紧急</title>
+    <desc>Created with Sketch.</desc>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="切图莫兰迪" transform="translate(-122.000000, -2054.000000)">
+            <g id="编组-2" transform="translate(52.000000, 159.000000)">
+                <g id="主机紧急" transform="translate(70.000000, 1895.000000)">
+                    <path d="M122.017692,1.37944073 C88.5806213,23.8246854 49.8556599,36.9503859 9.76923075,39.425694 C4.37383359,39.425694 0,43.8386183 0,49.2822363 L0,114.631112 C-0.0029758268,190.810336 51.3849285,257.214389 124.635846,275.687014 C126.237783,276.104329 127.918525,276.104329 129.520461,275.687014 L134.405077,274.366237 C205.173579,254.073163 254,188.859881 254,114.631112 L254,49.2822363 C254,43.8386183 249.626166,39.425694 244.230769,39.425694 C221.702923,39.425694 183.661538,26.6516152 131.259385,0.985179102 C128.308423,-0.456396659 124.837507,-0.308323222 122.017692,1.37944073 Z" id="路径" fill="#FDFBFC"></path>
+                    <polygon id="路径" fill="#4C5667" fill-rule="nonzero" points="127.277778 103 86.7777778 120.511864 86.7777778 155.488136 127.277778 173 167.777778 155.488136 167.777778 120.511864"></polygon>
+                    <text id="sos" fill="#FFFFFF" font-family="PingFangSC-Medium, PingFang SC" font-size="35" font-weight="400">
+                        <tspan x="97.7777778" y="146">sos</tspan>
+                    </text>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
