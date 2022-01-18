@@ -6,8 +6,8 @@ import { getThemeType } from '@libs/theme';
 import { apiControlDeviceData } from '@hooks/useDeviceData';
 import './phoneList.less';
 
-import PhoneImage from "../icons/normal/phone-icon.png";
-import PhoneImageMorandi from "../icons/morandi/phone-icon.png";
+import PhoneImage from "../icons/normal/phone-icon.svg";
+import PhoneImageMorandi from "../icons/morandi/phone-icon.svg";
 
 export function PhoneList() {
   const themeType = getThemeType();

@@ -1,20 +1,12 @@
-/**
- * @Description:
- * @Author: RuiXue
- * @Date: 2021-10-31 19:12:08
- * @LastEditors:
- * @LastEditTime:
- */
 import React from 'react';
+import { DeviceSateContext } from '@/products/air-conditioner/deviceStateContext';
 import { List } from 'antd-mobile';
-
 const Desc = () => {
   return (
-        <List.Item prefix={'备注'} extra={''} onClick={() => {}} />
+    <DeviceSateContext.Consumer>
+      {() => <List.Item prefix={'备注'} extra={''} onClick={() => {}} />}
+    </DeviceSateContext.Consumer>
   );
 };
-
-//Desc.propTypes = {
-//};
 
 export default Desc;

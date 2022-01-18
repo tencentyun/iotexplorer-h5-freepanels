@@ -2,10 +2,9 @@ import _ from '@underscore';
 import { RefAttributes, ForwardRefExoticComponent } from 'react';
 import urlParse from 'url-parse';
 import querystring from 'query-string';
+import { rgb } from 'd3';
 
-export const delay = timeout => new Promise(resolve => setTimeout(() => {
-  resolve();
-}, timeout));
+export const delay = timeout => new Promise(resolve => setTimeout(() => resolve(), timeout));
 
 export const genReqId = () => `${Date.now().toString()}-${Math.floor(Math.random() * 10000)}`;
 
@@ -16,7 +15,7 @@ export const getStrLen = (str) => {
   for (let i = 0; i < str.length; i++) {
     const c = str.charCodeAt(i); // 单字节加1
     if ((c >= 0x0001 && c <= 0x007e) || (c >= 0xff60 && c <= 0xff9f)) {
-      len += 1;
+      len++;
     } else {
       len += 2;
     }
@@ -166,25 +165,25 @@ export function transBytes(bytes, base, preferFormat, isTraffic = false) {
   let value;
   let format;
 
-  const theOneKb = isTraffic ? 1000 : oneKb;
-  const theOneMb = isTraffic ? (theOneKb * 1000) : oneMb;
-  const theOneGb = isTraffic ? (theOneMb * 1000) : oneGb;
-  const theOneTb = isTraffic ? (theOneGb * 1000) : oneTb;
+  const _oneKb = isTraffic ? 1000 : oneKb;
+  const _oneMb = isTraffic ? (_oneKb * 1000) : oneMb;
+  const _oneGb = isTraffic ? (_oneMb * 1000) : oneGb;
+  const _oneTb = isTraffic ? (_oneGb * 1000) : oneTb;
 
-  if (bytes >= theOneTb || preferFormat === 'TB') {
-    value = (bytes / theOneTb).toFixed(2);
+  if (bytes >= _oneTb || preferFormat === 'TB') {
+    value = (bytes / _oneTb).toFixed(2);
     base = base ? `Tb${base}` : 'TB';
     format = 'TB';
-  } else if (bytes >= theOneGb || preferFormat === 'GB') {
-    value = (bytes / theOneGb).toFixed(2);
+  } else if (bytes >= _oneGb || preferFormat === 'GB') {
+    value = (bytes / _oneGb).toFixed(2);
     base = base ? `Gb${base}` : 'GB';
     format = 'GB';
-  } else if (bytes >= theOneMb || preferFormat === 'MB') {
-    value = (bytes / theOneMb).toFixed(2);
+  } else if (bytes >= _oneMb || preferFormat === 'MB') {
+    value = (bytes / _oneMb).toFixed(2);
     base = base ? `Mb${base}` : 'MB';
     format = 'MB';
-  } else if (bytes >= theOneKb || preferFormat === 'KB') {
-    value = (bytes / theOneKb).toFixed(2);
+  } else if (bytes >= _oneKb || preferFormat === 'KB') {
+    value = (bytes / _oneKb).toFixed(2);
     base = base ? `Kb${base}` : 'KB';
     format = 'KB';
   } else {
@@ -229,7 +228,6 @@ export function flattenArray(input, prefix = '') {
 
 // @ts-ignore
 export const noop = (a?: any): void => {
-  console.log('noop');
 };
 
 export function defineMap2SelectorList(defineMap: { [propName: string]: string }): SelectorOption[] {
@@ -280,10 +278,7 @@ export function getPrecision(value) {
   return 0;
 }
 
-export async function fetchAllList<T>(fetchFn: (props: {
-    offset: number;
-    limit: number;
-  }) => Promise<ListResponse<T>>): Promise<T[]> {
+export async function fetchAllList<T>(fetchFn: (props: { offset: number; limit: number }) => Promise<ListResponse<T>>): Promise<T[]> {
   const limit = 100;
   let offset = 0;
   let total = 100;
@@ -449,7 +444,7 @@ export function mergeConnectDeviceConfig(defaultConfig, config) {
       if (config[section][key] !== '' && config[section][key] !== undefined) {
         mergedConfig[section][key] = config[section][key];
       }
-    });
+    })
   });
   return mergedConfig;
 }
@@ -506,15 +501,15 @@ export function subscribeStore({
 }
 
 export function isH5PanelAvailable(productConfig) {
-  return productConfig
-    && productConfig.Panel
-    && productConfig.Panel.h5 && (
-    productConfig.Panel.h5.url || (
-      productConfig.Panel.h5.release
-        && productConfig.Panel.h5.release.scripts
-        && productConfig.Panel.h5.release.scripts.length
-    )
-  );
+  return productConfig &&
+    productConfig.Panel &&
+    productConfig.Panel.h5 && (
+      productConfig.Panel.h5.url || (
+        productConfig.Panel.h5.release &&
+        productConfig.Panel.h5.release.scripts &&
+        productConfig.Panel.h5.release.scripts.length
+      )
+    );
 }
 
 export function isFullScreen() {
@@ -550,11 +545,13 @@ export const rpx2px = (rpx: number): number => {
   return (rpx / 2) * (Math.min(640, clientWidth) / 375);
 };
 
-export const px2rem = (px, withUnit?: any) => rpx2rem(px2rpx(px), withUnit);
+export const px2rem = (px, withUnit?: any) => {
+  return rpx2rem(px2rpx(px), withUnit);
+}
 
 export function rpx2rem(rpx, withUnit?: true): string;
 export function rpx2rem(rpx, withUnit?: false): number;
-export function rpx2rem(rpx, withUnit = true) {
+export function rpx2rem(rpx, withUnit: boolean = true) {
   const rem = rpx / 46.875;
 
   if (withUnit) {
@@ -602,4 +599,167 @@ export function parseUrl(url) {
     uri.query = querystring.parse(uri.query);
   }
   return uri;
+}
+export function numberToArray(number: number, desc?: string): string[] {
+  const result: string[] = [];
+  for (let i = 0; i < number; i++) {
+    let value = i + 1 + '';
+
+    if (desc) {
+      value += desc;
+    }
+    result.push(value);
+  }
+  return result;
+}
+import viewportConfig from '../../webpack/pxToViewport.config';
+export const px2vw = (px: number): string | number => {
+  const viewportWidth = viewportConfig.viewportWidth;
+  const vw = px * (100 / viewportWidth);
+
+  if (px === 0) {
+    return px;
+  }
+  return vw.toFixed(viewportConfig.unitPrecision || 3) + 'vw';
+};
+
+export function toUnderscores(str: string): string {
+  return str
+    .replace(/([A-Z])/g, '_$1')
+    .toLowerCase()
+    .replace(/^_/, '');
+}
+/**
+ * 将 px 单位转换为 vw 单位
+ */
+export const formatPxUnit = (unit: string | number): string | number => {
+  if (typeof unit === 'number') {
+    return px2vw(unit);
+  }
+
+  const reg = /\d+px/gi;
+  return unit.replace(reg, function (t) {
+    const val = parseInt(t);
+
+    return px2vw(val);
+  });
+};
+/**
+ * 把1或0的枚举转换为boolean
+ * @param value
+ */
+export const toggleBooleanByNumber = (value: number) => {
+  return value !== 0;
+};
+/**
+ * 枚举转数组
+ * @param enumCNObj
+ */
+export const enumToArray = (enumCNObj: {}): {
+  label: string;
+  value: number;
+}[] => {
+  const result: any[] = [];
+  for (const key in enumCNObj) {
+    // 排除掉key
+    if (isNaN(+key)) {
+      result.push({
+        label: key,
+        value: enumCNObj[key]
+      });
+    }
+  }
+  // return [{ value: 1, label: '智能' }];
+  return result;
+};
+import { EventEmitter } from 'events';
+export default new EventEmitter();
+
+export function hsv2rgb(arr) {
+  let h = arr[0];
+  let s = arr[1];
+  let  v = arr[2];
+  s = s / 100;
+  v = v / 100;
+  let r = 0,
+    g = 0,
+    b = 0;
+  const i = parseInt((h / 60) % 6);
+  const f = h / 60 - i;
+  const p = v * (1 - s);
+  const q = v * (1 - f * s);
+  const t = v * (1 - (1 - f) * s);
+  switch (i) {
+    case 0:
+      r = v;
+      g = t;
+      b = p;
+      break;
+    case 1:
+      r = q;
+      g = v;
+      b = p;
+      break;
+    case 2:
+      r = p;
+      g = v;
+      b = t;
+      break;
+    case 3:
+      r = p;
+      g = q;
+      b = v;
+      break;
+    case 4:
+      r = t;
+      g = p;
+      b = v;
+      break;
+    case 5:
+      r = v;
+      g = p;
+      b = q;
+      break;
+    default:
+      break;
+  }
+  r = parseInt(r * 255.0);
+  g = parseInt(g * 255.0);
+  b = parseInt(b * 255.0);
+  return rgb(r, g, b);
+}
+
+export function rgb2hsv(arr) {
+  let h = 0,
+    s = 0,
+    v = 0;
+  const r = arr[0],
+    g = arr[1],
+    b = arr[2];
+  arr.sort(function (a, b) {
+    return a - b;
+  });
+  const max = arr[2];
+  const min = arr[0];
+  v = max / 255;
+  if (max === 0) {
+    s = 0;
+  } else {
+    s = 1 - min / max;
+  }
+  if (max === min) {
+    h = 0;
+  } else if (max === r && g >= b) {
+    h = 60 * ((g - b) / (max - min)) + 0;
+  } else if (max === r && g < b) {
+    h = 60 * ((g - b) / (max - min)) + 360;
+  } else if (max === g) {
+    h = 60 * ((b - r) / (max - min)) + 120;
+  } else if (max === b) {
+    h = 60 * ((r - g) / (max - min)) + 240;
+  }
+  h = parseInt(h);
+  s = parseInt(s * 100);
+  v = parseInt(v * 100);
+  return [h, s, v];
 }

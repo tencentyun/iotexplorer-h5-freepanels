@@ -28,7 +28,7 @@ import MountingsImageMorandi from "../../icons/morandi/mountings.svg";
 
 import SettingImage from "../../icons/normal/setting.svg";
 import SettingImageBlueWhite from "../../icons/blue-white/setting.svg";
-import SettingImageDark from "../../icons/dark/setting.png";
+import SettingImageDark from "../../icons/dark/setting.svg";
 import SettingImageColorful from "../../icons/colorful/setting.svg";
 import SettingImageMorandi from "../../icons/morandi/setting.svg";
 import dayjs from "dayjs";

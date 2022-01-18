@@ -1,10 +1,3 @@
-/**
- * @Description:
- * @Author: RuiXue
- * @Date: 2021-10-31 16:06:28
- * @LastEditors:
- * @LastEditTime:
- */
 
 import React, { FC, useState } from 'react';
 import { Modal } from '@components/base';

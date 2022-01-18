@@ -12,7 +12,8 @@ const iconDown =
       'https://tencent-1305105198.cos.ap-guangzhou.myqcloud.com/laundry-rack/normal/down.svg';
 
 export function Home() {
-  const [position, setPosition] = useState((sdk.deviceData.position>=0&&sdk.deviceData.position<=100)?sdk.deviceData.position:0);
+  const [position, setPosition] = useState((sdk.deviceData.position >= 0 && sdk.deviceData.position <= 100)
+    ? sdk.deviceData.position : 0);
   const [srcDown] = useState(iconDown);
   const [animInfo, setAnimInfo] = useState({dire:''});
   const progress = useRef();
@@ -74,8 +75,10 @@ export function Home() {
     progress.current.style.height = (position*(PROCESS_MAX-PROCESS_MIN)/100.0+PROCESS_MIN)+'%';
   })
   const getTimeToHour = (time: number) => {
-    const minute = (time % 3600 / 60).toString().length < 2 ? "0" + (time % 3600 / 60).toString() : (time % 3600 / 60).toString();
-    const hour = Math.floor(time / 3600).toString().length < 2 ? '0' + Math.floor(time / 3600).toString() : Math.floor(time / 3600).toString();
+    const minute = (time % 3600 / 60).toString().length < 2
+      ? "0" + (time % 3600 / 60).toString() : (time % 3600 / 60).toString();
+    const hour = Math.floor(time / 3600).toString().length < 2
+      ? '0' + Math.floor(time / 3600).toString() : Math.floor(time / 3600).toString();
     const times = ' ' + hour + ':' + minute + ':00';
     return times;
   };
@@ -86,13 +89,10 @@ export function Home() {
         sdk.deviceData.power_switch === 1 ? '' : 'power-off'
       )}
     >
-      {/*仪表盘*/}
       <section className={classNames('dashboard')}>
         <div className={classNames('lr-rack-wrapper')}>
           <img className={classNames('lr-rack-img-up')} src={iconUp} alt="" />
           <div className={classNames('lr-rack-div-middle')} >
-            {/* <div ref={progress} className={classNames('lr-rack-div-progress')} style={{height: (position*(58-12)/100.0+12)+'%'}}> */}
-            {/* <div onTransitionEnd={onTransitionEnd} ref={progress} className={classNames('lr-rack-div-progress')} style={{height: (position*(PROCESS_MAX-PROCESS_MIN)/100.0+PROCESS_MIN)+'%'}}> */}
             <div onTransitionEnd={onTransitionEnd} ref={progress} className={classNames('lr-rack-div-progress')}>
               <img className={classNames('lr-rack-img-middle')} src={iconMiddle} alt=""/>
             </div>
@@ -120,7 +120,6 @@ export function Home() {
           </div>
         </div>
       </section>
-      {/*详情区域*/}
       <Detail />
     </article>
   );

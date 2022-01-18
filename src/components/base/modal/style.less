@@ -63,3 +63,30 @@
     transform: translateY(-50%) scale(1);
   }
 }
+
+body.theme_dark {
+  ._component_base_modal_ {
+    .modal-inner {
+      background-image: linear-gradient(137deg, #333E4D 0%, #202C3A 100%);
+      .modal-title{
+        color: #ffffff;
+      }
+      .adm-list{
+        background: none;
+      }
+      .modal-footer{
+        background-image: linear-gradient(137deg, #333E4D 0%, #202C3A 100%);
+        border-top: 3px solid #354152;
+        button{
+          background: none;
+        }
+        button:first-child{
+          color: #A6AFC2;
+        }
+        button:last-child{
+          color: #ffffff;
+        }
+      }
+    }
+  }
+}

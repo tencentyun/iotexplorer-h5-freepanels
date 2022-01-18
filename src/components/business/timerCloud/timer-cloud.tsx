@@ -1,20 +1,10 @@
-/**
- * @Description:
- * @Author: RuiXue
- * @Date: 2021-10-18 13:57:19
- * @LastEditors:
- * @LastEditTime:
- */
-
 import React, { FC, useEffect, useRef, useState } from 'react';
-import './style.less';
+import './timer-cloud.less';
 import AddTimer from './add-timer/add-timer';
-import ListTimer from '@components/business/timerCloud/list-timer/list-timer';
-
+import ListTimer from './list-timer/list-timer';
 export interface ITimerDataBind {
   [key: string]: string | number;
 }
-
 export interface ITimerOptions {
   [key: string]: {
     label: string;
@@ -26,7 +16,6 @@ export interface ITimerOptions {
       | any;
   };
 }
-
 export interface ITimerCloud {
   children: React.ComponentProps<any>;
   dataBind: ITimerDataBind;
@@ -60,10 +49,8 @@ const TimerCloud: FC<ITimerCloud> = props => {
   });
 
   return (
-    <>
-      {/*列表*/}
+    <div className="timer-cloud">
       <ListTimer cRef={refList} dataBind={dataBind} options={options} />
-      {/*添加定时*/}
       <AddTimer
         onClose={handleClose}
         visible={isShowAdd}
@@ -74,7 +61,7 @@ const TimerCloud: FC<ITimerCloud> = props => {
       </AddTimer>
       <button
         style={{ display: isShowAdd ? 'none' : '' }}
-        className={'btn-add-timer-cloud'}
+        className="btn-add-timer-cloud"
         onClick={() => {
           setIsNewAdd(Date.now());
           setIsShowAdd(true);
@@ -82,7 +69,7 @@ const TimerCloud: FC<ITimerCloud> = props => {
       >
         添加定时
       </button>
-    </>
+    </div>
   );
 };
 

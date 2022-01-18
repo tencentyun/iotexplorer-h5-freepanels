@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import classNames from 'classnames';
 import './environment.less';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
-import { getThemeType, onControlDevice } from '@/business';
-import { Cell } from '@/components/base';
+import { getThemeType } from '@libs/theme';
+import { onControlDevice } from '@hooks/useDeviceData';
+import { Cell } from '@components/base';
 
 import addIcon from '../../../icons/normal/add.svg';
 const lampIcon =

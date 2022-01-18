@@ -1,7 +1,7 @@
 export const WhiteLightColorTheme = {
-  warn: '#EAB250',
-  normal: '#fff',
-  cold: '#5FBCFD',
+	warn: '#EAB250',
+	normal: '#fff',
+	cold: '#5FBCFD',
 };
 
 export const ColorTempRange = [2000, 7000];

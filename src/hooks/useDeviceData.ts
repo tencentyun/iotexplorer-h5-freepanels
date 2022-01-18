@@ -1,4 +1,5 @@
 import { useReducer } from 'react';
+import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 
 export interface DeviceDataState {
   deviceData: unknown;
@@ -89,7 +90,6 @@ export function useDeviceData(sdk: any) {
   ];
 }
 
-import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 export const apiControlDeviceData = (data: any) => {
   sdk
     .controlDeviceData(data)
@@ -129,6 +129,16 @@ export function formatDeviceData(templateMap: object) {
 
   return data;
 }
+
+export const requestTokenApi = (action: string, data: any) => {
+  const { ProductId, DeviceName, UserID } = sdk.deviceInfo;
+  return sdk.requestTokenApi(action, {
+    UserID,
+    ProductId,
+    DeviceName,
+    ...data
+  });
+};
 
 export function onControlDevice(id: string, value: any) {
   console.log(id, value);

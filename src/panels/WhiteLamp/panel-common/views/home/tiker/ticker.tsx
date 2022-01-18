@@ -26,8 +26,8 @@ const Ticker = () => {
             name={
               (sdk.deviceData.power_switch === 1 && sdk.deviceData.color_mode != 1) && ('icon-whitemode-' + themeType) || ('icon-whitemode-' + themeType + '2')
             }
-            width={65}
-            height={65}
+            width={35}
+            height={35}
           />
           <span
             className={classNames(
@@ -49,8 +49,8 @@ const Ticker = () => {
             name={
               (sdk.deviceData.power_switch === 1 && sdk.deviceData.color_mode === 1) && ('icon-white-lamp-scene-' + themeType) || ('icon-white-lamp-scene-' + themeType + '2')
             }
-            width={65}
-            height={65}
+            width={35}
+            height={35}
           />
           <span
             className={classNames(

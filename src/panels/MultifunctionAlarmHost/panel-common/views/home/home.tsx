@@ -7,14 +7,14 @@ import { onControlDevice } from '@hooks/useDeviceData';
 import { Detail } from './detail/detail';
 import './home.less';
 
-import armingImage from '../icons/normal/arming.png';
+import armingImage from '../icons/normal/arming.svg';
 import armingImageBlueWhite from '../icons/blue-white/arming.svg';
 const armingImageDark =
   'https://tencent-1305105198.cos.ap-guangzhou.myqcloud.com/multifunction-alarm-host/dark/arming.png';
 import armingImageColorful from '../icons/colorful/arming.svg';
 import armingImageMorandi from '../icons/morandi/arming.svg';
 
-import disarmingImage from '../icons/normal/disarming.png';
+import disarmingImage from '../icons/normal/disarming.svg';
 import disarmingImageBlueWhite from '../icons/blue-white/disarming.svg';
 const disarmingImageDark =
   'https://tencent-1305105198.cos.ap-guangzhou.myqcloud.com/multifunction-alarm-host/dark/disarming.png';
@@ -49,7 +49,7 @@ const workImageDark =
 import workImageColorful from '../icons/colorful/work.svg';
 import workImageMorandi from '../icons/morandi/work.svg';
 
-import ArmingImageOpen from '../icons/normal/arming-open.png';
+import ArmingImageOpen from '../icons/normal/arming-open.svg';
 import ArmingImageOpenBlueWhite from '../icons/blue-white/arming-open.svg';
 import ArmingImageOpenDark from '../icons/dark/arming-open.svg';
 import ArmingImageOpenColorful from '../icons/colorful/arming-open.svg';
@@ -65,7 +65,7 @@ import DisarmingImageOpenMorandi from '../icons/morandi/disarming-open.svg';
 import DisarmingImageClose from '../icons/normal/disarming-close.svg';
 import DisarmingImageCloseBlueWhite from '../icons/blue-white/disarming-close.svg';
 
-import HomeImageOpen from '../icons/normal/home-open.png';
+import HomeImageOpen from '../icons/normal/home-open.svg';
 import HomeImageOpenBlueWhite from '../icons/blue-white/home-open.svg';
 import HomeImageOpenDark from '../icons/dark/home-open.svg';
 import HomeImageOpenColorful from '../icons/colorful/home-open.svg';
@@ -73,7 +73,7 @@ import HomeImageOpenMorandi from '../icons/morandi/home-open.svg';
 import HomeImageClose from '../icons/normal/home-close.svg';
 import HomeImageCloseBlueWhite from '../icons/blue-white/home-close.svg';
 
-import InstancyImageOpen from '../icons/normal/instancy-open.png';
+import InstancyImageOpen from '../icons/normal/instancy-open.svg';
 import InstancyImageOpenBlueWhite from '../icons/blue-white/instancy-open.svg';
 import InstancyImageOpenDark from '../icons/dark/instancy-open.svg';
 import InstancyImageOpenColorful from '../icons/colorful/instancy-open.svg';
@@ -81,7 +81,7 @@ import InstancyImageOpenMorandi from '../icons/morandi/instancy-open.svg';
 import InstancyImageClose from '../icons/normal/instancy-close.svg';
 import InstancyImageCloseBlueWhite from '../icons/blue-white/instancy-close.svg';
 
-import RelaxImageOpen from '../icons/normal/relax-open.png';
+import RelaxImageOpen from '../icons/normal/relax-open.svg';
 import RelaxImageOpenBlueWhite from '../icons/blue-white/relax-open.svg';
 import RelaxImageOpenDark from '../icons/dark/relax-open.svg';
 import RelaxImageOpenColorful from '../icons/colorful/relax-open.svg';
@@ -89,7 +89,7 @@ import RelaxImageOpenMorandi from '../icons/morandi/relax-open.svg';
 import RelaxImageClose from '../icons/normal/relax-close.svg';
 import RelaxImageCloseBlueWhite from '../icons/blue-white/relax-close.svg';
 
-import WorkImageOpen from '../icons/normal/work-open.png';
+import WorkImageOpen from '../icons/normal/work-open.svg';
 import WorkImageOpenBlueWhite from '../icons/blue-white/work-open.svg';
 import WorkImageOpenDark from '../icons/dark/work-open.svg';
 import WorkImageOpenColorful from '../icons/colorful/work-open.svg';

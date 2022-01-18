@@ -25,14 +25,14 @@ const Environment = () => {
           {/* <img src={workSrc} alt="" /> */}
           <SvgIcon
             name={sdk.deviceData.power_switch != 1 && 'icon-white-lamp-switch-' + themeType + '2' || 'icon-white-lamp-switch-' + themeType}
-            color="#0F0F0F" width={79} height={78}/>
+            color="#0F0F0F" width={65} height={65}/>
           <div className={classNames('clock_height')}>开关</div>
         </div>
 
         <div id={'hand'} className={classNames('clock')} onClick={handleToggle}>
           <SvgIcon
             name={sdk.deviceData.power_switch != 1 && 'icon-white-lamp-timer-' + themeType + '2' || 'icon-white-lamp-timer-' + themeType}
-            color="#0F0F0F" width={79} height={78}/>
+            color="#0F0F0F" width={65} height={65}/>
           <div className={classNames('clock_height')}>定时</div>
         </div>
       </div>

@@ -7,18 +7,18 @@ import { Detail } from './detail/detail';
 import {useHistory} from "react-router";
 import './home.less';
 
-import UpImage from "../icons/normal/up.png";
-import UpImageColorful from "../icons/colorful/up.png";
-import UpImageMorandi from "../icons/morandi/up.png";
+import UpImage from "../icons/normal/up.svg";
+import UpImageColorful from "../icons/colorful/up.svg";
+import UpImageMorandi from "../icons/morandi/up.svg";
 
-import DownImage from "../icons/normal/down.png";
-import DownImageColorful from "../icons/colorful/down.png";
-import DownImageMorandi from "../icons/morandi/down.png";
+import DownImage from "../icons/normal/down.svg";
+import DownImageColorful from "../icons/colorful/down.svg";
+import DownImageMorandi from "../icons/morandi/down.svg";
 
-import IconImage from "../icons/normal/icon.png";
-import IconImageDark from "../icons/dark/icon.png";
-import IconImageColorful from "../icons/colorful/icon.png";
-import IconImageMorandi from "../icons/morandi/icon.png";
+import IconImage from "../icons/normal/icon.svg";
+import IconImageDark from "../icons/dark/icon.svg";
+import IconImageColorful from "../icons/colorful/icon.svg";
+import IconImageMorandi from "../icons/morandi/icon.svg";
 
 const routerIcon =
   'https://tencent-1305105198.cos.ap-guangzhou.myqcloud.com/router/blue-white/router.png';

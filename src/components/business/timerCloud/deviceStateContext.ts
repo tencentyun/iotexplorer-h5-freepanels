@@ -1,13 +1,5 @@
 import { createContext } from 'react';
 
-/**
- * @Description:
- * @Author: RuiXue
- * @Date: 2021-09-22 14:31:37
- * @LastEditors:
- * @LastEditTime:
- */
-
 export const DeviceSateContext = createContext({
   deviceStatus: 0,
   deviceData: {

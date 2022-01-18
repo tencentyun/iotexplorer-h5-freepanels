@@ -26,7 +26,7 @@ export function Oven_head() {
     } else {
       return (<SvgIcon className={sdk.deviceData.work_state === '1' && 'icon-electric-oven-cooking-effect'}
                        name={(sdk.deviceData.power_switch != 1 || sdk.deviceData.work_state === '0') && 'icon-electric-oven-standby-' + themeType || 'icon-electric-oven-cooking-' + themeType}
-                       color="#0F0F0F" width={200} height={160}/>)
+                       color="#0F0F0F" width={200} height={120}/>)
     }
   }
   const getCookingProgressBar = () => {

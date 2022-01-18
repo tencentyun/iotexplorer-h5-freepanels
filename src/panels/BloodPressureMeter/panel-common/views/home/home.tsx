@@ -84,13 +84,13 @@ export function Home() {
   };
   useEffect(() => {
     const toggle_test_value = () => {
-      const val = sdk.deviceData.systolic_pressure ? (sdk.deviceData.systolic_pressure + sdk.deviceData.disatolic_pressure) / 2 : 110;
+      const val = sdk.deviceData.systolic_pressure
+        ? (sdk.deviceData.systolic_pressure + sdk.deviceData.disatolic_pressure) / 2 : 110;
 
       const el = document.getElementById('num-wrap');
       const h = el?.clientHeight;
 
-      const diff =
-        ((MAX_TICK_VAL - val) * h) / (MAX_TICK_VAL - MIN_TICK_VAL + 10);
+      const diff = ((MAX_TICK_VAL - val) * h) / (MAX_TICK_VAL - MIN_TICK_VAL + 10);
       el.style.marginTop =
         document.getElementById('num')?.clientHeight / 2 - diff + 'px';
       //$("#num-wrap").animate({marginTop: (document.getElementById("num")?.clientHeight/2-diff)+"px"});
