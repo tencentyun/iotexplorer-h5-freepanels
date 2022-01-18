@@ -1,0 +1,34 @@
+.theme_dark {
+  .timer-cloud {
+    --global-color-primary-image: linear-gradient(
+      180deg,
+      #333e4d 0%,
+      #202c3a 100%
+    );
+    background: #222532;
+    .switch-inner.is_checked {
+      background: linear-gradient(151deg, #00f0ff 0%, #704df0 100%);
+    }
+    .timer-list-card,
+    .btn-add-timer-cloud,
+    .adm-list,
+    .timer-cloud-footer-bar {
+      background: var(--global-color-primary-image);
+      color: #a6afc2;
+    }
+    .timer-cloud-footer-bar {
+      button {
+        color: #768092;
+        &:last-of-type {
+          color: #ffffff;
+        }
+      }
+    }
+    .timer-cloud-wrap .timer-list-card.curr {
+      color: #ffffff;
+    }
+    .AddTimer-wrap {
+      background: #222532;
+    }
+  }
+}
