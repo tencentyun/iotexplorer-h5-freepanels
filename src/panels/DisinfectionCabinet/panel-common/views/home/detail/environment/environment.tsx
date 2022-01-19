@@ -10,12 +10,12 @@ import './environment.less';
 import TimingImage from '../../../icons/normal/timing.svg';
 import TimingImageClose from '../../../icons/normal/timing-close.svg';
 
-const themeType = getThemeType();
 const Environment = () => {
+  const themeType = getThemeType();
   const timingImageSrc = () => {
     switch (themeType) {
       case 'normal':
-        return sdk.deviceData.power_switch === '1'
+        return sdk.deviceData.power_switch === 1
           ? cellIcon(TimingImage)
           : cellIcon(TimingImageClose);
       default:

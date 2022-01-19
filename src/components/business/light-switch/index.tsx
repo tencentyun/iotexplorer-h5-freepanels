@@ -13,11 +13,13 @@ export interface LightSwitchProps extends StyledProps {
   defaultValue?: number; // 0 - 1
   desc?: string;
   theme?: ThemeType;
+  disable?: number;
   onChange?: any;
 }
 
 export function LightSwitch(props: LightSwitchProps) {
   const [value, setValue] = useState(0);
+  const [returnValue, setReturnValue] = useState(0);
   const currentHeight = (value * 100).toFixed(3) + '%';
   const wrapper = useRef();
   const current = useRef();
@@ -27,41 +29,34 @@ export function LightSwitch(props: LightSwitchProps) {
   }, []);
 
   useEffect(() => {
-    props.onChange && props.onChange(value);
-  }, [value]);
+    props.onChange && props.onChange(returnValue);
+  }, [returnValue]);
 
-  const updateValue = (target: any) => {
-    const { pageY } = target;
-    const { clientHeight: height, offsetTop } = wrapper.current as any;
-    let value = 1 - (pageY - offsetTop) / height;
+  const updateValue = (target: any, endTouch: boolean) => {
+    if (props.disable == 1) {
+      const { pageY } = target;
+      const { clientHeight: height, offsetTop } = wrapper.current as any;
+      let value = 1 - (pageY - offsetTop) / height;
 
-    if (value < 0) {
-      value = 0;
-    } else if (value > 1) {
-      value = 1;
+      if (value < 0) {
+        value = 0;
+      } else if (value > 1) {
+        value = 1;
+      }
+      setValue(value);
+      if(endTouch){
+        setReturnValue(value);
+      }
     }
-    setValue(value);
   };
 
   const onTouchMove = (e: TouchEvent) => {
-    updateValue(e.touches[0]);
+    updateValue(e.touches[0], false);
   };
 
   const onTouchUp = (e: TouchEvent) => {
-    e.preventDefault();
-    e.stopPropagation();
-
-    document.removeEventListener('touchmove', onTouchMove);
-    document.removeEventListener('touchup', onTouchUp);
-  };
-
-  const onTouchStart = (e: TouchEvent) => {
-    const touchTarget = e.touches[0];
-
-    updateValue(touchTarget);
-
-    document.addEventListener('touchmove', onTouchMove);
-    document.addEventListener('touchup', onTouchUp);
+    const touchTarget = e.changedTouches[0];
+    updateValue(touchTarget, true);
   };
 
   return (
@@ -74,7 +69,8 @@ export function LightSwitch(props: LightSwitchProps) {
       <div
         className="light-switch-wrapper"
         ref={wrapper}
-        onTouchStart={onTouchStart}
+        onTouchMove={onTouchMove}
+        onTouchEnd={onTouchUp}
       >
         <div className="wrap-text">
           <SvgIcon name="icon-light" />

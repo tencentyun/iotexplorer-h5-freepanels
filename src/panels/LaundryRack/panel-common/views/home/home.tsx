@@ -22,6 +22,9 @@ export function Home() {
 
   const stopAnim = ()=>{
     let ts = new Date().getTime()-animInfo.sTime;
+    if(!animInfo.sTime){
+      return position==undefined?0:position;
+    }
     let tSpan = animInfo.tSpan;
     let newPosition = ts/tSpan*(animInfo.h2 - animInfo.h1)+animInfo.h1;
     if(newPosition<=0) newPosition=0;
