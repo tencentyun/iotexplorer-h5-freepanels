@@ -147,7 +147,7 @@ export function Home() {
     >
       {/*电量*/}
       <Battery
-        isShowPercent={true}
+        isShowPercent={false}
         isShowTip={false}
         value={sdk.deviceData.battery_percentage}
         color={BatteryColor()}
@@ -180,6 +180,7 @@ export function Home() {
         <Cell
           className="_color_white_"
           title="防拆报警"
+          isLink={false}
           value={
             sdk.deviceData.tamper_event === '1' ? '拆卸告警' : '未拆卸'
           }

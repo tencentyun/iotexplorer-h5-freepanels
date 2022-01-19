@@ -7,6 +7,9 @@ const TerserPlugin = require('terser-webpack-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const autoPreFixer = require('autoprefixer');
 const postcss = require('postcss-pxtorem');
+const viewportConfig = require('./pxToViewport.config');
+const argv = require('minimist')(process.argv.slice(2));
+const category = argv.category || process.env.npm_config_category || '';
 class ModifiedMiniCssExtractPlugin extends MiniCssExtractPlugin {
   getCssChunkObject(mainChunk) {
     return {};
@@ -23,9 +26,12 @@ module.exports = (env, argv) => {
   const entry = {};
 
   Object.keys(panelConfig).forEach((categoryKey) => {
-    const { enable, panels } = panelConfig[categoryKey];
+    const { enable, panels, viewportWidth } = panelConfig[categoryKey];
 
-    if (enable && panels && panels.length) {
+    if (enable && panels && panels.length && (!isDevMode || categoryKey === category)) {
+      if (viewportWidth) {
+        viewportConfig.viewportWidth = viewportWidth;
+      }
       panels.forEach((panelInfo) => {
         let panelName;
         const options = { enable: true, entry: 'app.tsx' };
@@ -78,7 +84,7 @@ module.exports = (env, argv) => {
             loader: 'babel-loader',
             options: {
               sourceType: 'unambiguous',
-              presets: ['@babel/preset-env', '@babel/preset-react'],
+              presets: ['@babel/preset-env', '@babel/preset-react', '@babel/preset-typescript'],
               plugins: [
                 '@babel/plugin-proposal-class-properties',
                 [
@@ -91,6 +97,16 @@ module.exports = (env, argv) => {
                     useESModules: false,
                   },
                 ],
+                ['babel-plugin-styled-components-px2vw', viewportConfig],
+                // antd 按需引入
+                [
+                  'import',
+                  {
+                    libraryName: 'antd-mobile',
+                    libraryDirectory: 'es/components',
+                    style: false
+                  }
+                ]
               ],
             },
           },
@@ -118,11 +134,8 @@ module.exports = (env, argv) => {
               options: {
                 ident: 'postcss',
                 plugins: [
+                  require('postcss-px-to-viewport')(viewportConfig),
                   autoPreFixer(),
-                  postcss({
-                    rootValue: 46.875,
-                    propList: ['*'],
-                  }),
                 ],
               },
             },
@@ -133,6 +146,7 @@ module.exports = (env, argv) => {
         },
         {
           test: /\.svg$/,
+          exclude: [path.resolve(__dirname, '../src/assets/themes')],
           use: [
             'url-loader',
             'svg-transform-loader',
@@ -144,6 +158,18 @@ module.exports = (env, argv) => {
             },
           ],
         },
+        {
+          test: /\.svg$/,
+          include: [path.resolve(__dirname, '../src/assets/themes')],
+          use: [
+            {
+              loader: 'svg-sprite-loader',
+              options: {
+                symbolId: 'icon-[name]'
+              }
+            }
+          ]
+        }
       ],
     },
     resolve: {
