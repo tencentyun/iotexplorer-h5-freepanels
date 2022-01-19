@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="145px" height="116px" viewBox="0 0 145 116" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 59.1 (86144) - https://sketch.com -->
+    <title>烟雾报警黑</title>
+    <desc>Created with Sketch.</desc>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round">
+        <g id="切图" transform="translate(-60.000000, -74.000000)" stroke="#000000" stroke-width="10">
+            <g id="黑白" transform="translate(65.000000, 72.000000)">
+                <g id="烟雾报警黑" transform="translate(0.000000, 7.000000)">
+                    <path d="M0,9.23776563 C8.39439671,22.4125885 20.8931159,29 37.4961576,29 C62.4007202,29 70.652839,0 93.4825153,0 C108.7023,0 122.541461,9.66666667 135,29" id="路径-2"></path>
+                    <path d="M0,48.2377656 C8.39439671,61.4125885 20.8931159,68 37.4961576,68 C62.4007202,68 70.652839,39 93.4825153,39 C108.7023,39 122.541461,48.6666667 135,68" id="路径-2备份"></path>
+                    <path d="M0,86.2377656 C8.39439671,99.4125885 20.8931159,106 37.4961576,106 C62.4007202,106 70.652839,77 93.4825153,77 C108.7023,77 122.541461,86.6666667 135,106" id="路径-2备份-2"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

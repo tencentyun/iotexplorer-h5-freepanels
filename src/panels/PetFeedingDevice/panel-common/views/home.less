@@ -1,0 +1,854 @@
+.pet-device-view {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid transparent;
+  box-sizing: border-box;
+
+  // 头部样式
+  header {
+    flex-shrink: 0;
+    height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 57px;
+    margin-right: 71px;
+
+    .power-switch {
+      display: flex;
+      align-items: center;
+      background-color: #fff;
+      height: 120px;
+      border-radius: 0 60px 60px 0;
+      padding: 0 26px 0 78px;
+      box-shadow: 0 10px 100px 0 rgba(32,33,33,0.10);
+
+      ._component_base_switch_ .switch-inner {
+        width: 110px;
+        &.is_checked::before {
+          left: 52px;
+        }
+      }
+    }
+
+    .battery {
+      margin-right: 71px;
+    }
+  }
+
+  .view-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+
+    .device-info {
+      width: 821px;
+      height: 580px;
+      h2 {
+        margin: 0;
+        margin-bottom: 26px;
+      }
+    }
+
+    .device-img {
+      margin: 100px auto;
+      width: 650px;
+      height: 250px;
+      display: block;
+      transform: translateY(-50px);
+      & > p {
+        & + p {
+          margin-top: 16px;
+        }
+      }
+    }
+
+    .next-plan-desc {
+      transform: translateY(-56px - 50px);
+      color: #A3A6AB;
+    }
+
+    .page-route-list {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin: 0 80px 66px;
+
+      & > .button-block {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 295px;
+        height: 300px;
+        margin-right: 40px;
+        color: #B5C4D1;
+        &:last-child {
+          margin-right: 0;
+        }
+        .button-icon {
+          display: block;
+          width: 75px;
+          height: 75px;
+          margin-bottom: 36px;
+        }
+        .icon-record {
+          background: url('~@/assets/icons/gas-alarm/icon-record-normal.svg') no-repeat center;
+          background-size: 100% 100%;
+        }
+        .icon-record-default {
+          background: url('~@/assets/icons/gas-alarm/icon-record-default.svg') no-repeat center;
+          background-size: 100% 100%;
+        }
+        .button-name {
+          line-height: 50px;
+          font-family: PingFangSC-Medium;
+          font-size: 36px;
+        }
+      }
+    }
+  }
+
+  // 底部样式
+  & > footer {
+    flex-shrink: 0;
+    // height: 793px;
+    min-height: calc(~"100vh - 1236px");
+    box-sizing: border-box;
+    background-color: #fff;
+    box-shadow: 0 6px 100px 0 rgba(32,33,33,0.10);
+    border-radius: 120px 120px 0 0;
+    margin-top: 0;
+    padding: 153px 62px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .number-selector {
+      width: 100%;
+      height: 124px;
+    }
+
+    .submit-area {
+      text-align: center;
+      & > p {
+        margin: 77px 0 64px;
+        color: #B5C4D1;
+      }
+    }
+    .submit-button {
+      width: 649px;
+      height: 120px;
+      line-height: 120px;
+      border-radius: 75px;
+      font-size: 48px;
+      color: #FFFFFF;
+      background: #000000;
+    }
+  }
+}
+
+body.theme_blue_white {
+  .pet-device-view {
+    border-top: 1px solid transparent;
+    box-sizing: border-box;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-color: #E3F1FF;
+  
+    .header-wrap {
+      min-height: 1114px;
+      background-image: linear-gradient(133deg, #0081FF 0%, #005BFF 100%);
+    }
+    // 头部样式
+    header {
+      flex-shrink: 0;
+      height: 120px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 57px;
+      margin-right: 71px;
+  
+      .power-switch {
+        display: flex;
+        align-items: center;
+        background-color: #fff;
+        height: 120px;
+        border-radius: 0 60px 60px 0;
+        padding: 0 26px 0 78px;
+        box-shadow: 0 10px 100px 0 rgba(32,33,33,0.10);
+  
+        ._component_base_switch_ .switch-inner {
+          width: 110px;
+          &.is_checked::before {
+            left: 52px;
+          }
+        }
+      }
+  
+      .battery {
+        margin-right: 71px;
+      }
+    }
+  
+    .view-container {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+  
+      .device-info {
+        margin-top: 55px;
+        color: #FFFFFF;
+        h2 {
+          margin: 0;
+          margin-bottom: 26px;
+        }
+      }
+  
+      .device-img {
+        width: 650px;
+        height: 250px;
+        display: block;
+        transform: translateY(-50px);
+        & > p {
+          & + p {
+            margin-top: 16px;
+          }
+        }
+      }
+  
+      .next-plan-desc {
+        transform: translateY(-56px);
+        color: #FDFDFD;
+      }
+  
+      .page-route-list {
+        position: absolute;
+        top: 970px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin: 0 80px 66px;
+  
+        & > .button-block {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          width: 295px;
+          height: 300px;
+          margin-right: 40px;
+          color: #0F0F0F;
+          &:last-child {
+            margin-right: 0;
+          }
+          .button-icon {
+            display: block;
+            width: 75px;
+            height: 75px;
+            margin-bottom: 36px;
+          }
+          .icon-record {
+            background: url('~@/assets/icons/gas-alarm/icon-record-blue.svg') no-repeat center;
+            background-size: 100% 100%;
+          }
+          .button-name {
+            line-height: 50px;
+            font-family: PingFangSC-Medium;
+            font-size: 36px;
+          }
+        }
+      }
+    }
+  
+    // 底部样式
+    & > footer {
+      flex-shrink: 0;
+      height: 793px;
+      box-sizing: border-box;
+      background-color: #fff;
+      box-shadow: 0 6px 100px 0 rgba(32,33,33,0.10);
+      border-radius: 120px 120px 0 0;
+      margin-top: 222px;
+      padding: 153px 62px 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+  
+      .number-selector {
+        width: 100%;
+        height: 124px;
+      }
+  
+      .submit-area {
+        text-align: center;
+        & > p {
+          margin: 77px 0 64px;
+          color: #A6AFC2;
+        }
+      }
+      .submit-button {
+        width: 650px;
+        height: 120px;
+        line-height: 120px;
+        border-radius: 75px;
+        font-size: 48px;
+        color: #FFFFFF;
+        background-image: linear-gradient(133deg, #0081FF 0%, #005BFF 100%);
+      }
+    }
+  }
+}
+body.theme_dark {
+  .pet-device-view {
+    border-top: 1px solid transparent;
+    box-sizing: border-box;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+  
+    // 头部样式
+    header {
+      position: relative;
+      flex-shrink: 0;
+      height: 120px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 57px;
+      margin-right: 71px;
+      z-index: 2;
+  
+      .power-switch {
+        display: flex;
+        align-items: center;
+        background-image: linear-gradient(175deg, #333E4D 1%, #202C3A 100%);
+        border: 3px solid rgba(62,68,84,0.20);
+        height: 120px;
+        border-radius: 0 60px 60px 0;
+        padding: 0 26px 0 78px;
+        box-shadow: 0 10px 100px 0 rgba(32,33,33,0.10);
+  
+        ._component_base_switch_ .switch-inner {
+          width: 110px;
+          &.is_checked::before {
+            left: 52px;
+          }
+        }
+      }
+  
+      .battery {
+        margin-right: 71px;
+      }
+    }
+  
+    .view-container {
+      position: absolute;
+      top: 105px;
+      text-align: center;
+
+      .device-dashbord {
+        position: relative;
+        margin-bottom: 62px;
+      }
+
+      .device-info {
+        margin: 0;
+        position: absolute;
+        top: 0;
+        width: 764px;
+        height: 764px;
+      }
+
+      .next-plan-desc {
+        position: absolute;
+        left: 50%;
+        top: 142px;
+        transform: translateX(-50%);
+        line-height: 50px;
+        font-family: PingFangSC-Medium;
+        font-weight: Medium;
+        font-size: 36px;
+        color: #FDFDFD;
+        p {
+          &:last-child {
+            margin-top: 15px;
+            color: #B5C4D1;
+          }
+        }
+      }
+  
+      .device-img {
+        position: absolute;
+        left: 50%;
+        bottom: 256px;
+        margin: 0;
+        margin-left: -213px;
+        width: 426px;
+        height: 140px;
+        display: block;
+        transform: translateY(-50px);
+      }
+      .device-status {
+        position: absolute;
+        left: 50%;
+        bottom: 176px;
+        transform: translateX(-50%);
+        line-height: 50px;
+        font-size: 36px;
+        color: #B5C4D1;
+      }
+      .food-status {
+        position: absolute;
+        left: 50%;
+        bottom: 55px;
+        transform: translateX(-50%);
+        line-height: 50px;
+        font-size: 36px;
+        font-family: PingFangSC-Semibold;
+        font-weight: Semibold;
+        color: #FDFDFD;
+      }
+
+      
+  
+      .page-route-list {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin: 0 80px 66px;
+  
+        & > .button-block {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          width: 295px;
+          height: 300px;
+          margin-right: 40px;
+          color: #FFFFFF;
+          &:last-child {
+            margin-right: 0;
+          }
+          .button-icon {
+            display: block;
+            width: 75px;
+            height: 75px;
+            margin-bottom: 36px;
+          }
+          .icon-record {
+            background: url('~@/assets/icons/gas-alarm/icon-record-dark.svg') no-repeat center;
+            background-size: 100% 100%;
+          }
+          .button-name {
+            line-height: 50px;
+            font-family: PingFangSC-Medium;
+            font-size: 36px;
+          }
+        }
+      }
+    }
+  
+    // 底部样式
+    & > footer {
+      margin: 1120px 80px 134px;
+      padding: 0;
+      height: 730px;
+      min-height: 730px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      border-radius: 60px;
+      border: 3px solid rgba(62,68,84,0.20);
+      background-image: linear-gradient(139deg, #333E4D 0%, #202C3A 100%);
+      box-shadow: 0 6px 100px 0 #242735;
+
+      .submit-label {
+        padding: 52px 0 47px;
+        width: 100%;
+        border-bottom: 3px solid #3A4657;
+        color: #F1F2F3;
+        text-align: center;
+      }
+  
+      .number-selector {
+        margin: 116px 0 110px;
+        padding: 0 20px;
+        width: 100%;
+        height: 120px;
+      }
+  
+      .submit-area {
+        text-align: center;
+        & > p {
+          margin: 77px 0 64px;
+          color: #FFFFFF;
+        }
+      }
+      .submit-button {
+        width: 650px;
+        height: 120px;
+        line-height: 120px;
+        border-radius: 75px;
+        font-size: 48px;
+        color: #FFFFFF;
+        background-image: linear-gradient(137deg, #00F0FF 0%, #704DF0 100%);
+        box-shadow: 0 6px 100px 0 rgba(32,33,33,0.10);
+      }
+    }
+  }
+}
+body.theme_colorful {
+  .pet-device-view {
+    border-top: 1px solid transparent;
+    box-sizing: border-box;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+  
+    // 头部样式
+    header {
+      flex-shrink: 0;
+      height: 120px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 57px;
+      margin-right: 71px;
+  
+      .power-switch {
+        display: flex;
+        align-items: center;
+        background-color: #fff;
+        height: 120px;
+        border-radius: 0 60px 60px 0;
+        padding: 0 26px 0 78px;
+        box-shadow: 0 10px 100px 0 rgba(32,33,33,0.10);
+  
+        ._component_base_switch_ .switch-inner {
+          width: 110px;
+          &.is_checked::before {
+            left: 52px;
+          }
+        }
+      }
+  
+      .battery {
+        margin-right: 71px;
+      }
+    }
+  
+    .view-container {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+  
+      .device-info {
+        h2 {
+          margin: 0;
+          margin-bottom: 26px;
+        }
+      }
+  
+      .device-img {
+        width: 650px;
+        height: 250px;
+        display: block;
+        transform: translateY(-50px);
+        & > p {
+          & + p {
+            margin-top: 16px;
+          }
+        }
+      }
+  
+      .next-plan-desc {
+        transform: translateY(-56px);
+        color: #A3A6AB;
+      }
+  
+      .page-route-list {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin: 0 80px 66px;
+  
+        & > .button-block {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          width: 295px;
+          height: 300px;
+          margin-right: 40px;
+          color: #000000;
+          &:last-child {
+            margin-right: 0;
+          }
+          .button-icon {
+            display: block;
+            width: 75px;
+            height: 75px;
+            margin-bottom: 36px;
+          }
+          .icon-record {
+            background: url('~@/assets/icons/gas-alarm/icon-record-colorful.svg') no-repeat center;
+            background-size: 100% 100%;
+          }
+          .button-name {
+            line-height: 50px;
+            font-family: PingFangSC-Medium;
+            font-size: 36px;
+          }
+        }
+      }
+    }
+  
+    // 底部样式
+    & > footer {
+      margin: 0 80px;
+      flex-shrink: 0;
+      height: 793px;
+      box-sizing: border-box;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      border-radius: none;
+      background-color: #F4F8FB;
+      box-shadow: none;
+  
+      .number-selector {
+        padding: 146px 20px 38px;
+        width: 100%;
+        height: 447px;
+        background-color: #FFFFFF;
+        box-shadow: 0 6px 100px 0 rgba(32,33,33,0.10);
+        border-radius: 60px;
+        .submit-label {
+          margin-top: 76px;
+          text-align: center;
+          color: #A3A6AB;
+        }
+      }
+  
+      .submit-area {
+        margin-top: 86px;
+        text-align: center;
+        & > p {
+          margin: 77px 0 64px;
+        }
+      }
+      .submit-button {
+        width: 650px;
+        height: 120px;
+        line-height: 120px;
+        border-radius: 75px;
+        font-size: 48px;
+        color: #FFFFFF;
+        background-image: linear-gradient(138deg, #527DF4 0%, #044DFF 100%);
+        box-shadow: 0 6px 100px 0 rgba(32,33,33,0.10);
+      }
+    }
+  }
+}
+body.theme_morandi {
+  .pet-device-view {
+    border-top: 1px solid transparent;
+    box-sizing: border-box;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-image: linear-gradient(180deg, #576273 0%, #414B5B 86%);
+  
+    // 头部样式
+    header {
+      flex-shrink: 0;
+      height: 55px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin: 57px 71px 0;
+  
+      .power-switch {
+        display: flex;
+        align-items: center;
+        background-color: #fff;
+        height: 120px;
+        border-radius: 0 60px 60px 0;
+        padding: 0 26px 0 78px;
+        box-shadow: 0 10px 100px 0 rgba(32,33,33,0.10);
+  
+        ._component_base_switch_ .switch-inner {
+          width: 110px;
+          &.is_checked::before {
+            left: 52px;
+          }
+        }
+      }
+    }
+  
+    .view-container {
+      position: relative;
+      padding: 168px 0 115px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      color: #FFFFFF;
+      
+      .device-info {
+        width: 822px;
+        height: 582px;
+        h2 {
+          position: absolute;
+          top: 59px;
+          left: 50%;
+          transform: translate(-50%, 0);
+          margin: 0;
+          margin-bottom: 26px;
+        }
+      }
+  
+      .device-img {
+        margin: 205px 86px 137px;
+        width: 650px;
+        height: 250px;
+        display: block;
+        transform: translateY(-50px);
+      }
+  
+      .next-plan-desc {
+        transform: translateY(-56px - 50px);
+        color: #A3A6AB;
+      }
+  
+      .page-route-list {
+        position: absolute;
+        top: 711px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin: 0 80px 66px;
+        z-index: 9;
+  
+        & > .button-block {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          width: 295px;
+          height: 300px;
+          margin-right: 40px;
+          color: #B5C4D1;
+          &:last-child {
+            margin-right: 0;
+          }
+          .button-icon {
+            display: block;
+            width: 75px;
+            height: 75px;
+            margin-bottom: 36px;
+          }
+          .icon-record {
+            background: url('~@/assets/icons/gas-alarm/icon-record-morandi.svg') no-repeat center;
+            background-size: 100% 100%;
+          }
+          .button-name {
+            line-height: 50px;
+            font-family: PingFangSC-Medium;
+            font-size: 36px;
+          }
+        }
+      }
+    }
+  
+    // 底部样式
+    & > footer {
+      position: relative;
+      flex-shrink: 0;
+      height: 1140px;
+      box-sizing: border-box;
+      background-color: #fff;
+      box-shadow: 0 6px 100px 0 rgba(32,33,33,0.10);
+      border-radius: 120px 120px 0 0;
+      margin-top: 0;
+      padding: 298px 0 280px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+  
+      .number-selector {
+        padding: 0 62px;
+        width: 100%;
+        height: 124px;
+      }
+  
+      .submit-area {
+        padding-bottom: 52px;
+        width: 100%;
+        border-bottom: 3px solid #EDEEF2;
+        text-align: center;
+
+        & > p {
+          margin: 44px 0 74px;
+        }
+
+        .submit-button {
+          margin: 0 auto;
+          width: 651px;
+          height: 120px;
+          background: #B5C4D1;
+          border-radius: 75px;
+        }
+        .submit-active {
+          background: #4C5667;
+        }
+      }
+    }
+    .morandi-power-wrap {
+      position: fixed;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      padding: 64px 105px 128px 114px;
+      display: flex;
+      justify-content: space-between;
+      border-top-left-radius: 120px;
+      border-top-right-radius: 120px;
+      background: #B5ABA1;
+      text-align: center;
+      z-index: 10;
+
+      .power-switch {
+        width: 319px;
+        height: 120px;
+        line-height: 120px;
+        border-radius: 41px;
+        font-size: 48px;
+        color: #FFFFFF;
+        background: #A19283;
+      }
+      .next-plan-desc {
+        margin-top: 18px;
+        width: 476px;
+        font-size: 36px;
+        color: #FFFFFF;
+        > p {
+          line-height: 50px;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,828 @@
+html, body {
+  min-height: 100vh;
+}
+ul, li {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.electricity-stats-receptacle {
+  padding: 137px 0 130px;
+  min-height: 100vh;
+
+  .header-content {
+    padding: 0 170px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .content-item {
+      text-align: center;
+      .num {
+        margin-bottom: 10px;
+        line-height: 91px;
+        font-size: 72px;
+        color: #0F0F0F;
+        letter-spacing: 0.1px;
+      }
+      .label {
+        line-height: 67px;
+        font-size: 48px;
+        color: #B5C4D1;
+      }
+    }
+    .split {
+      display: inline-block;
+      width: 3px;
+      height: 80px;
+      background-color: #B5C4D1;
+    }
+  }
+  .receptacle-wrap {
+    position: relative;
+    margin: 128px auto 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 701px;
+    height: 701px;
+    border-radius: 50%;
+    background: #FFFFFF;
+    box-shadow: 0 6px 100px 0 rgba(32,33,33,0.10);
+    .receptacle-icon {
+      width: 267px;
+      height: 215px;
+    }
+    .receptacle-status {
+      position: absolute;
+      bottom: 112px;
+      line-height: 50px;
+      font-size: 36px;
+      color: #C9D4DD;
+    }
+  }
+  .receptacle-setting {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    & > .setting-button {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 85px 70px 54px;
+      .button-icon {
+        display: block;
+        width: 78px;
+        height: 78px;
+        margin-bottom: 34px;
+      }
+
+      .button-name {
+        line-height: 50px;
+        font-family: PingFangSC-Medium;
+        font-size: 36px;
+        color: #D8D8D8;
+      }
+      & + .setting-button {
+        margin-left: 42px;
+      }
+    }
+  }
+  .total-switch {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 154px auto 0;
+    width: 229px;
+    height: 230px;
+    border-radius: 50%;
+    background: #B5C4D1;
+    box-shadow: 0 6px 50px 0 rgba(32, 33, 33, 0.10);
+    .switch-icon {
+      width: 95px;
+      height: 86px;
+    }
+  }
+  .total-switch-open {
+    background: #0F0F0F;
+  }
+}
+
+.electricity-monitoring {
+  min-height: 100vh;
+  .monitoring-switch-button {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 58px auto 0;
+    width: 967px;
+    height: 200px;
+    .button-name {
+      width: 40%;
+      line-height: 50px;
+      font-size: 36px;
+      color: #0F0F0F;
+      text-align: center;
+    }
+    .split {
+      width: 3px;
+      height: 80px;
+      background-color: #B5C4D1;
+    }
+  }
+  .monitoring-data {
+    margin: 49px auto 0;
+    padding: 64px 66px 95px 67px;
+    width: 967px;
+    min-height: 1200px;
+    .time-select {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 70px;
+      padding: 0 70px;
+      font-family: PingFangSC-Medium;
+      font-size: 48px;
+      color: #0F0F0F;
+      .time {
+        padding: 0 70px;
+      }
+      .slider-button {
+        flex-shrink: 0;
+        display: block;
+        width: 35px;
+        height: 35px;
+        fill: #B5C4D1;
+        cursor: pointer;
+      }
+      .prev {
+        transform: rotate(-180deg);
+      }   
+    }
+    .select-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 145px;
+      color: #B5C4D1;
+      .desc {
+        font-family: PingFangSC-Regular;
+        font-size: 36px;
+        .number {
+          margin-right: 25px;
+          font-size: 72px;
+          color: #0F0F0F;
+          letter-spacing: 0.1px;
+        }
+      }
+      .button-wrap {
+        display: flex;
+        align-items: center;
+      }
+      .button-month, .button-year {
+        width: 160px;
+        height: 90px;
+        line-height: 90px;
+        background: none;
+        border-radius: 20px;
+        font-family: PingFangSC-Medium;
+        font-size: 36px;
+        text-align: center;
+      }
+      .button-year {
+        margin-left: 30px;
+      }
+      .active {
+        background: #0F0F0F;
+        color: #FFFFFF;
+      }
+    }
+    .footer-data {
+      margin-top: 98px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-family: PingFangSC-Medium;
+      font-size: 36px;
+      color: #B9BABD;
+    }
+  }
+}
+
+body.theme_blue_white {
+  .electricity-stats-receptacle {
+    padding-top: 48px;
+    background-image: linear-gradient(180deg, #45A3FF 6%, #005BFF 100%);
+    
+    .header-content {
+      margin-bottom: 135px;
+      .content-item {
+        .num {
+          margin-bottom: 19px;
+          line-height: 91px;
+          font-size: 120px;;
+          color: #FFFFFF;
+          letter-spacing: 0.17px;
+          font-family: DINCondensed-Bold;
+        }
+        .label {
+          color: #FFFFFF;
+        }
+      }
+    }
+    .receptacle-wrap {
+      position: relative;
+      margin: 128px auto 150px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 701px;
+      height: 701px;
+      border-radius: 50%;
+      background: #FFFFFF;
+      box-shadow: 0 6px 100px 0 rgba(32,33,33,0.10);
+      .receptacle-icon {
+        width: 267px;
+        height: 215px;
+      }
+      .receptacle-status {
+        position: absolute;
+        bottom: 112px;
+        line-height: 50px;
+        font-size: 36px;
+        color: #C9D4DD;
+      }
+    }
+    .receptacle-setting {
+      & > .setting-button {
+        .button-name {
+          color: #0F0F0F;
+        }
+      }
+    }
+    .total-switch {
+      margin: 140px auto 104px;
+      background: #B5C4D1;
+    }
+    .total-switch-open {
+      background: #FFFFFF;
+    }
+  }
+  .electricity-monitoring {
+    min-height: 100vh;
+    padding: 58px 0;
+    background-image: linear-gradient(180deg, #45A3FF 6%, #005BFF 100%);
+    .monitoring-switch-button {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin: 0 auto 0;
+      width: 967px;
+      height: 200px;
+      .button-name {
+        width: 40%;
+        line-height: 50px;
+        font-size: 36px;
+        color: #B6C4D2;
+        text-align: center;
+      }
+      .button-name-active {
+        color: #0F0F0F;
+      }
+      .split {
+        width: 3px;
+        height: 80px;
+        background-color: #B5C4D1;
+      }
+    }
+    .monitoring-data {
+      margin: 49px auto 0;
+      padding: 64px 66px 95px 67px;
+      width: 967px;
+      height: auto;
+      .time-select {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 70px;
+        padding: 0 70px;
+        font-family: PingFangSC-Medium;
+        font-size: 48px;
+        color: #0F0F0F;
+        .time {
+          padding: 0 70px;
+        }
+      }
+      .select-wrap {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 145px;
+        color: #B5C4D1;
+        .desc {
+          font-family: PingFangSC-Regular;
+          font-size: 36px;
+          .number {
+            margin-right: 25px;
+            font-size: 72px;
+            color: #0F0F0F;
+            letter-spacing: 0.1px;
+          }
+        }
+        .button-wrap {
+          display: flex;
+          align-items: center;
+        }
+        .button-month, .button-year {
+          width: 160px;
+          height: 90px;
+          line-height: 90px;
+          background: none;
+          border-radius: 20px;
+          font-family: PingFangSC-Medium;
+          font-size: 36px;
+          text-align: center;
+        }
+        .button-year {
+          margin-left: 30px;
+        }
+        .active {
+          color: #FFFFFF;
+          background-color: #2885FE;
+          box-shadow: 0 6px 100px 0 rgba(32,33,33,0.10);
+        }
+      }
+      .footer-data {
+        margin-top: 98px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-family: PingFangSC-Medium;
+        font-size: 36px;
+        color: #0F0F0F;
+      }
+    }
+  }
+}
+
+body.theme_dark {
+  .electricity-stats-receptacle {
+    padding-top: 151px;
+
+    .receptacle-wrap {
+      position: relative;
+      margin: 0 auto 229px;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      width: 751px;
+      height: 751px;
+      border-radius: 50%;
+      background-image: linear-gradient(139deg, #333E4D 0%, #202C3A 100%);
+      border: 3px solid rgba(62,68,84,0.20);
+      box-shadow: 0 6px 100px 0 #242735;
+      .receptacle-icon {
+        margin-top: 203px;
+        width: 267px;
+        height: 215px;
+      }
+      .receptacle-status {
+        position: absolute;
+        bottom: 123px;
+        line-height: 50px;
+        font-size: 36px;
+        color: #C9D4DD;
+      }
+    }
+    .receptacle-setting {
+      & > .setting-button {
+        .button-name {
+          color: #B5C4D1;
+        }
+      }
+    }
+    
+    .total-switch {
+      position: absolute;
+      top: 868px;
+      left: 50%;
+      margin-left: -114px;
+      background-image: linear-gradient(137deg, #FAFAFA 0%, #E8E8E8 100%);
+    }
+    .total-switch-open {
+      background-image: linear-gradient(137deg, #FF3A5F 0%, #EA0D40 100%);
+    }
+    .header-content {
+      align-items: flex-start;
+      margin: 0 76px 135px;
+      padding: 0 100px;
+      width: 975px;
+      height: 352px;
+      border-radius: 60px;
+      border: 3px solid rgba(62,68,84,0.20);
+      border-top: none;
+      background-image: url('~@/assets/images/aromatherapy-machine/groove.svg');
+      background-position: top center;
+      background-size: 115%;
+      background-repeat: no-repeat;
+      .content-item {
+        margin-top: 100px;
+        .num {
+          margin-bottom: 29px;
+          line-height: 91px;
+          font-size: 120px;;
+          color: #FFFFFF;
+          letter-spacing: 0.17px;
+          font-family: DINCondensed-Bold;
+        }
+        .label {
+          color: #B5C4D1;
+        }
+      }
+      .split {
+        display: none;
+      }
+    }
+  }
+  .electricity-monitoring {
+    .monitoring-switch-button {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin: 58px auto 0;
+      width: 967px;
+      height: 200px;
+      .button-name {
+        width: 40%;
+        line-height: 50px;
+        font-size: 36px;
+        color: #B6C4D2;
+        text-align: center;
+      }
+      .button-name-active {
+        color: #FEFEFE;
+      }
+      .split {
+        width: 3px;
+        height: 80px;
+        background-color: #B5C4D1;
+      }
+    }
+    .monitoring-data {
+      margin: 49px auto 0;
+      padding: 64px 66px 95px 67px;
+      width: 967px;
+      height: 1362px;
+      .time-select {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 70px;
+        padding: 0 70px;
+        font-family: PingFangSC-Medium;
+        font-size: 48px;
+        color: #FEFEFE;
+        .time {
+          padding: 0 70px;
+        }
+      }
+      .select-wrap {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 145px;
+        color: #B5C4D1;
+        .desc {
+          font-family: PingFangSC-Regular;
+          font-size: 36px;
+          .number {
+            margin-right: 25px;
+            font-size: 72px;
+            color: #FEFEFE;
+            letter-spacing: 0.1px;
+          }
+        }
+        .button-wrap {
+          display: flex;
+          align-items: center;
+        }
+        .button-month, .button-year {
+          width: 160px;
+          height: 90px;
+          line-height: 90px;
+          background: none;
+          border-radius: 20px;
+          font-family: PingFangSC-Medium;
+          font-size: 36px;
+          text-align: center;
+        }
+        .button-year {
+          margin-left: 30px;
+        }
+        .active {
+          color: #FFFFFF;
+          background-image: linear-gradient(137deg, #00F0FF 0%, #704DF0 100%);
+          box-shadow: 0 6px 100px 0 rgba(32,33,33,0.10);
+        }
+      }
+      .footer-data {
+        margin-top: 98px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-family: PingFangSC-Medium;
+        font-size: 36px;
+        color: #FEFEFE;
+      }
+    }
+  }
+}
+
+body.theme_colorful {
+  .electricity-stats-receptacle {
+    padding-top: 133px;
+    .header-content {
+      .content-item {
+        .num {
+          margin-bottom: 14px;
+          line-height: 91px;
+          font-size: 72px;
+          color: #0F0F0F;
+          letter-spacing: 0.17px;
+          font-family: PingFangSC-Semibold;
+        }
+        .label {
+          color: #B5C4D1;
+        }
+      }
+    }
+    .receptacle-wrap {
+      position: relative;
+      margin: 128px auto 150px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 751px;
+      height: 751px;
+      border-radius: 50%;
+      background-image: linear-gradient(138deg, #527DF4 0%, #044DFF 100%);
+      &::before {
+        content: '';
+        position: absolute;
+        top: 78px;
+        display: inline-block;
+        width: 0;
+        height: 0;
+        border-left: 28px solid transparent;
+        border-right: 28px solid transparent;
+        border-top: 40px solid #FFD102;
+      }
+      .receptacle-status {
+        color: #FEFEFE;
+      }
+    }
+    .receptacle-setting {
+      & > .setting-button {
+        .button-name {
+          color: #B5C4D1;
+        }
+      }
+    }
+    
+    .total-switch {
+      margin: 140px auto 104px;
+      background-color: #B5C4D1;
+    }
+    .total-switch-open {
+      background-image: linear-gradient(137deg, #FF3A5F 0%, #EA0D40 100%);
+    }
+  }
+  .electricity-monitoring {
+    .monitoring-switch-button {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin: 58px auto 0;
+      width: 967px;
+      height: 200px;
+      .button-name {
+        width: 40%;
+        line-height: 50px;
+        font-size: 36px;
+        color: #B6C4D2;
+        text-align: center;
+      }
+      .button-name-active {
+        color: #527DF4;
+      }
+      .split {
+        width: 3px;
+        height: 80px;
+        background-color: #B6C4D2;
+      }
+    }
+    .monitoring-data {
+      margin: 49px auto 0;
+      padding: 64px 66px 95px 67px;
+      width: 967px;
+      height: 1362px;
+      .time-select {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 70px;
+        padding: 0 70px;
+        font-family: PingFangSC-Medium;
+        font-size: 48px;
+        color: #527DF4;
+        .time {
+          padding: 0 70px;
+        }
+      }
+      .select-wrap {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 145px;
+        color: #B5C4D1;
+        .desc {
+          font-family: PingFangSC-Regular;
+          font-size: 36px;
+          .number {
+            margin-right: 25px;
+            font-size: 72px;
+            color: #527DF4;
+            letter-spacing: 0.1px;
+          }
+        }
+        .button-wrap {
+          display: flex;
+          align-items: center;
+        }
+        .button-month, .button-year {
+          width: 160px;
+          height: 90px;
+          line-height: 90px;
+          background: none;
+          border-radius: 20px;
+          font-family: PingFangSC-Medium;
+          font-size: 36px;
+          text-align: center;
+        }
+        .button-year {
+          margin-left: 30px;
+        }
+        .active {
+          color: #FFFFFF;
+          background-image: linear-gradient(137deg, #FF3A5F 0%, #EA0D40 100%);
+        }
+      }
+      .footer-data {
+        margin-top: 98px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-family: PingFangSC-Medium;
+        font-size: 36px;
+        color: #2F2F2F;
+      }
+    }
+  }
+}
+
+body.theme_morandi {
+  .electricity-stats-receptacle {
+    padding-top: 0;
+    .header-content {
+      padding: 0 220px;
+      .content-item {
+        .num {
+          margin-bottom: 30px;
+          line-height: 91px;
+          font-size: 72px;
+          color: #FDFBFC;
+          letter-spacing: 0.17px;
+          font-family: PingFangSC-Semibold;
+        }
+        .label {
+          color: #B5C4D1;
+        }
+      }
+      .split {
+        display: none;
+      }
+    }
+    .morandi-wrap {
+      padding: 191px 0 89px;
+      background-image: linear-gradient(180deg, #576273 0%, #414B5B 86%);
+      box-shadow: 0 6px 100px 0 rgba(32,33,33,0.10);
+    }
+    .receptacle-wrap {
+      position: relative;
+      margin: 0 auto 134px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 751px;
+      height: 751px;
+      border-radius: 50%;
+      background: #FDFBFC;
+      &::before {
+        content: '';
+        display: inline-block;
+        position: absolute;
+        top: 74px;
+        display: inline-block;
+        width: 31px;
+        height: 31px;
+        border-radius: 50%;
+        background-color: #B6ACA3;
+      }
+      .receptacle-status {
+        color: #576273;
+      }
+    }
+    .receptacle-setting {
+      & > .setting-button {
+        .button-name {
+          color: #4C5667;
+        }
+      }
+    }
+    
+    .total-switch {
+      margin: 61px auto 69px;
+      background-image: linear-gradient(180deg, #576273 0%, #414B5B 86%);
+      box-shadow: 0 6px 100px 0 rgba(32,33,33,0.10);
+    }
+    .total-switch-open {
+      background-color: #B5ABA1;
+      background-image: none;
+    }
+  }
+  .electricity-monitoring {
+    .monitoring-switch-button {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin: 58px auto 0;
+      width: 967px;
+      height: 200px;
+      .button-name {
+        width: 40%;
+        line-height: 50px;
+        font-size: 36px;
+        color: #0F0F0F;
+        text-align: center;
+      }
+      .button-name-active {
+        color: #B6ACA3;
+      }
+      .split {
+        width: 3px;
+        height: 80px;
+        background-color: #B5C4D1;
+      }
+    }
+    .monitoring-data {
+      margin: 49px auto 0;
+      padding: 64px 66px 95px 67px;
+      width: 967px;
+      height: 1362px;
+      color: #B6ACA3;
+      .time-select {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 70px;
+        padding: 0 70px;
+        font-family: PingFangSC-Medium;
+        font-size: 48px;
+        color: #B6ACA3;
+        .time {
+          padding: 0 70px;
+        }
+      }
+      .select-wrap {
+        color: #B6ACA3;
+        .desc {
+          .number {
+            color: #B6ACA3;
+          }
+        }
+        .button-month, .button-year {
+          color: #B6ACA3;
+        }
+        .active {
+          background-image: linear-gradient(180deg, #576273 0%, #414B5B 86%);
+          box-shadow: 0 6px 100px 0 rgba(32,33,33,0.10);
+          color: #FFFFFF;
+        }
+      }
+      .footer-data {
+        color: #414A5A;
+      }
+    }
+  }
+}

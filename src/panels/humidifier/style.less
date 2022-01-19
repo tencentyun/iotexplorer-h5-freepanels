@@ -1,0 +1,148 @@
+* {
+  margin: 0;
+  padding: 0;
+  line-height: 1.38;
+}
+
+html, body {
+  font-size: 48px;
+  color: var(--global-color-text-regular);
+}
+
+/*文字*/
+.text-regular {
+  color: var(--global-color-text-regular);
+}
+
+.text-primary {
+  color: var(--global-color-text-primary);
+}
+
+.hide {
+  display: none;
+}
+.show {
+  display: inline-block;
+}
+.active {
+  color: var(--global-color-text-primary);
+}
+.disabled {
+  color: var(--global-color-lighter);
+}
+strong {
+  font-weight: 700;
+}
+
+li {
+  list-style: none;
+}
+h1 {
+  font-size: 48px;
+  line-height: 67px;
+}
+button {
+  border: none;
+  outline: none;
+}
+
+.box-shadow {
+  box-shadow: 0 6px 50px 0 rgba(32,33,33,0.10);
+}
+.text-align-center {
+  text-align: center;
+}
+.text-align-right {
+  text-align: right;
+}
+
+.border-bottom {
+  border-bottom: 3px solid var(--global-color-border);
+}
+
+button:active {
+  opacity: .7;
+}
+.button-circle {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background: #FFFFFF;
+}
+.modal-body {
+  padding: 0 53px 0 90px;
+}
+
+body ._component_base_button_ {
+  .button-inner {
+    background-color: var(--global-color-lighter);
+  }
+  &.active {
+    .button-inner {
+      background: linear-gradient(90deg, #559DFC 3%, #3171FA 98%);
+    }
+  }
+}
+
+/*ant*/
+body {
+  .adm-card {
+    border-radius: 40px;
+
+    .adm-card-header .adm-card-header-title {
+      font-size: 48px;
+    }
+  }
+
+  .adm-list {
+    font-size: 48px;
+    .adm-list-item-content {
+      font-size: 48px;
+      border-bottom-color: rgba(181,196,209,0.50);
+      .adm-list-item-content-prefix {
+        color: var(--global-color-text-primary);
+      }
+    }
+
+    .adm-list-item-content-extra {
+      font-size: 48px;
+      color: var(--global-color-text-regular);
+    }
+  }
+
+  .AddTimer-wrap ._component_base_modal_ .adm-list {
+    padding: 0;
+  }
+}
+
+
+.icon-check-bg {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  background-color: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  svg {
+    width: 32px;
+    height: 32px;
+    stroke: var(--global-color-lighter);
+  }
+  &.checked {
+    background-color: var(--global-color-primary);
+    svg {
+      width: 60px;
+      height: 60px;
+      stroke: var(--global-color-white);
+    }
+  }
+}
+
+@keyframes fadeInOut {
+  0% {opacity: 0;}/*初始状态 透明度为0*/
+  50% {opacity: 1;}/*过渡状态 透明度为0*/
+  100% {opacity: 0;}/*结束状态 透明度为1*/
+}
+
+
