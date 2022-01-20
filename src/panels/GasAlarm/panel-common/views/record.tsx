@@ -3,6 +3,7 @@
  */
 
 import React, { useState, useEffect } from 'react';
+import classNames from 'classnames';
 import { Steps } from 'antd-mobile';
 import dayjs from 'dayjs';
 // @ts-ignore
@@ -100,7 +101,7 @@ export function Record() {
   };
 
   return (
-    <main className="gas-alarm-record">
+    <main className={classNames('gas-alarm-record', {'bottom-fill': recordList.length > 0 })}>
       {recordList.length > 0 ? (
         <Steps direction="vertical">
           {recordList.map((value, index) => (

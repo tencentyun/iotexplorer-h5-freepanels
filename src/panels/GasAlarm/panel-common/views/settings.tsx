@@ -12,6 +12,9 @@ import { useDeviceData } from '@hooks/useDeviceData';
 // 接口，处理属性更改
 import { formatDeviceData, onControlDevice } from '@hooks/useDeviceData';
 import { toggleBooleanByNumber, mapsToOptions } from '@libs/utillib';
+import { getThemeType } from '@libs/theme';
+
+const themeType = getThemeType();
 
 interface DeviceMaps {
   alarm_vol: [];
@@ -30,21 +33,18 @@ export function Settings() {
   // 报警时长选择器
   const [alarmTimeVisible, onToggleAlarmTime] = useState(false);
 
-  // const transformShowMapping = (val, defalut) => {
-  //   if (airPurifierDisabled) {
-  //     return "-";
-  //   } else {
-  //     if (deviceData[val] || deviceData[val] === 0) {
-  //       return templateMap[val].define.mapping[deviceData[val]];
-  //     } else {
-  //       if (deviceInfo.isVirtualDevice) {
-  //         return defalut;
-  //       } else {
-  //         return "-";
-  //       }
-  //     }
-  //   }
-  // };
+  // 获取声音描述文字
+  const getVolDesc = (type: string): string => {
+    const { alarm_vol } = state.templateMap;
+
+    return alarm_vol.define.mapping[type];
+  };
+  // 获取铃声字段
+  const getRingtoneData = (type: string): string => {
+    const { alarm_ringtone } = state.templateMap;
+
+    return alarm_ringtone.define.mapping[type];
+  };
 
   const volOptions = () => {
     if (deviceMaps.alarm_vol) {
@@ -81,7 +81,7 @@ export function Settings() {
               value={
                 <Switch
                   name="mode"
-                  // theme={themeType}
+                  theme={themeType}
                   checked={
                     deviceData.self_checking
                       ? toggleBooleanByNumber(deviceData.self_checking)
@@ -112,7 +112,7 @@ export function Settings() {
               <ListPicker
                 visible={alarmVolVisible}
                 title="报警音量"
-                defaultValue={[deviceData.alarm_vol]}
+                defaultValue={[getVolDesc(deviceData.alarm_vol)]}
                 options={volOptions()}
                 onCancel={() => onToggleAlarmVol(false)}
                 onConfirm={value => {
@@ -133,7 +133,7 @@ export function Settings() {
               <ListPicker
                 visible={alarmRingtoneVisible}
                 title="报警铃声"
-                defaultValue={[deviceData.alarm_ringtone]}
+                defaultValue={[getRingtoneData(deviceData.alarm_ringtone)]}
                 options={ringtoneOptions()}
                 onCancel={() => onToggleAlarmRingtone(false)}
                 onConfirm={value => {
@@ -173,7 +173,7 @@ export function Settings() {
               value={
                 <Switch
                   name="mode"
-                  // theme={themeType}
+                  theme={themeType}
                   checked={
                     deviceData.alarm_switch
                       ? toggleBooleanByNumber(deviceData.alarm_switch)

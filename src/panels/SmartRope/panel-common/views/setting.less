@@ -1,0 +1,92 @@
+.setting-view {
+  --text-color: @color_1;
+  --text-background: unset;
+
+  .setting-main {
+    margin-bottom: 50px;
+  }
+
+  .setting-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 90px 82px;
+    .target-tip {
+      font-size: 48px;
+      margin: 0;
+    }
+
+    .target-value {
+      font-family: DINCondensed-Bold;
+      height: 100px;
+      font-size: 120px;
+      letter-spacing: 0.17px;
+      color: #0f0f0f;
+    }
+  //  底部文字颜色
+    .target-value {
+      color: var(--text-color);
+      background: var(--text-background);
+      background-clip: text;
+    }
+  }
+}
+
+.adm-dialog-mask {
+  .adm-dialog-wrap {
+    background: #FFFFFF;
+    box-shadow: 0 6px 50px 0 rgba(32,33,33,0.10);
+    border-radius: 60px;
+    input {
+      padding: 83px 90px;
+      color: #000000;
+    }
+  }
+}
+
+body.theme_blue_white {
+  .setting-view {
+    .target-value {
+      --text-color: transparent;
+      --text-background: linear-gradient(133deg, #0081ff 0%, #005bff 100%);
+    }
+  }
+}
+body.theme_colorful {
+  .setting-view {
+    .setting-footer {
+      background-image: linear-gradient(180deg, #FADA00 0%, #FFBE00 100%);
+      color: #fff;
+    }
+
+    .target-value {
+      --text-color: #fff;
+      --text-background: unset;
+    }
+  }
+}
+body.theme_dark {
+  .setting-view {
+    --text-color: transparent;
+    --text-background: linear-gradient(137deg, #00F0FF 0%, #704DF0 100%);
+    .target-tip {
+      color: #FDFDFD;
+    }
+  }
+}
+body.theme_morandi {
+  .setting-view {
+    --text-color: #fff;
+    --text-background: unset;
+
+    .setting-footer {
+      color: var(--text-color);
+      background-color: unset;
+      background-image: linear-gradient(180deg, #576273 0%, #414B5B 86%);
+
+      .svg-icon {
+        fill: #fff!important;
+      }
+    }
+  }
+}

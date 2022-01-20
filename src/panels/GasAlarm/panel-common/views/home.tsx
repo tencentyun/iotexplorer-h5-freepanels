@@ -9,8 +9,6 @@ import { SvgIcon } from '@components/common';
 import { Block } from '@components/layout';
 import { Battery } from '@components/business';
 import { DataShowDisk } from '../components/data-show-disk/data-show-disk';
-
-// @ts-ignore
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 import dayjs from 'dayjs';
 
@@ -137,9 +135,9 @@ export function Home() {
                 {date.format('YYYY-MM-DD HH:mm')}&nbsp;&nbsp;
                 {statusLabel[Number(recordStatus)]
                   ? statusLabel[Number(recordStatus)]
-                  : '未知'}
+                  : '暂无数据'}
               </span>
-            ) : null}
+            ) : <span>暂无数据</span>}
           </div>
           <div className="footer-button">
             <Block className="button-block" onClick={handleMoreRecording}>
@@ -147,8 +145,7 @@ export function Home() {
               <SvgIcon
                 className="button-icon"
                 name="icon-record"
-                color="#999"
-                // {...CurrentSkinProps.settings}
+                {...CurrentSkinProps.record}
               />
               <p className="button-name">更多记录</p>
             </Block>

@@ -1,0 +1,560 @@
+html, body {
+  min-height: 100vh;
+  user-select: none;
+}
+
+ul, li {
+  margin: 0;
+  padding: 0;
+}
+
+.temperature-humidity-sensor {
+  padding: 87px 82px;
+  min-height: 100vh;
+
+  .chart-wrap {
+    margin: 0 auto;
+    text-align: center;
+    padding-bottom: 67px;
+    min-height: 342px;
+
+    .chart-block {
+      display: flex;
+      align-items: center;
+      min-height: 171px;
+      .chart-name {
+        margin-right: 38px;
+        width: 94px;
+        line-height: 50px;
+        font-family: PingFangSC-Medium;
+        font-weight: Medium;
+        font-size: 36px;
+        color: #0F0F0F;
+      }
+    }
+  }
+  .sensor-block {
+    margin-bottom: 60px;
+    padding: 0 66px;
+    .block-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 51px 0 40px;
+      .item {
+        padding: 0 33px 0 33px;
+        text-align: center;
+        color: #0F0F0F;
+      }
+      .num {
+        margin-bottom: 11px;
+        font-family: PingFangSC-Semibold;
+        font-size: 72px;
+        line-height: 91px;
+        letter-spacing: 0.1px;
+      }
+      .label {
+        font-family: PingFangSC-Regular;
+        font-size: 48px;
+        line-height: 67px;
+        color: #000000;
+      }
+      .split {
+        width: 3px;
+        height: 80px;
+        background-color: #B5C4D1;
+      }
+    }
+    .svg-icon {
+      width: 63px;
+      height: 63px;
+    }
+    .set-hollow {
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: 100% 100%;
+      background-image: url('~@/assets/icons/temperature-humidity-sensor/set-hollow-normal.svg');
+    }
+    ._cell_size_medium_ {
+      padding: 67px 3px 66px 0px;
+    }
+    .history-items {
+      margin-left: 148px;
+      padding-top: 14px;
+      font-family: PingFangSC-Regular;
+      font-size: @font_48;
+      .item {
+        padding-bottom: 50px;
+        color: #B5C4D1;
+        &:first-child {
+          color: #000000;
+        }
+        &:last-child {
+          padding-bottom: 102px;
+        }
+      }
+    }
+  }
+}
+
+.sensor-setting {
+  padding: 108px 84px 108px 76px;
+  min-height: 100vh;
+
+  .setting-block {
+    padding: 31px 49px 30px 66px;
+    ._cell_size_medium_ {
+      padding: 49px 24px 53px 0px;
+      border-bottom: 3px solid rgba(181, 196, 209, 0.50);
+      &:last-child {
+        border-bottom: 0;
+      }
+    }
+    .cell_content_style_gray {
+      font-family: PingFangSC-Regular;
+    }
+  }
+}
+
+body.theme_blue_white {
+  .temperature-humidity-sensor {
+    padding: 87px 0 0;
+    background-image: linear-gradient(133deg, #0081FF 0%, #005BFF 100%);
+    .chart-wrap {
+      margin: 0 auto;
+      text-align: center;
+      padding-bottom: 0;
+      .chart-block {
+        display: flex;
+        align-items: center;
+        .chart-name {
+          margin-right: 38px;
+          width: 94px;
+          line-height: 50px;
+          font-family: PingFangSC-Medium;
+          font-weight: Medium;
+          font-size: 36px;
+          color: #FFFFFF;
+        }
+      }
+    }
+    .block-header-wrap {
+      padding: 0 120px 80px 140px;
+      .block-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 51px 43px 40px 61px;
+        .item {
+          text-align: center;
+          &:first-child {
+            margin-left: 33px;
+          }
+        }
+        .num {
+          margin-bottom: 11px;
+          font-family: PingFangSC-Semibold;
+          font-size: 72px;
+          line-height: 91px;
+          color: #FFFFFF;
+          letter-spacing: 0.1px;
+        }
+        .label {
+          font-family: PingFangSC-Regular;
+          font-size: 48px;
+          line-height: 67px;
+          color: #FFFFFF;
+        }
+        .split {
+          width: 3px;
+          height: 80px;
+          background-color: #2686FF;
+        }
+      }
+    }
+    .set-hollow {
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: 100% 100%;
+      background-image: url('~@/assets/icons/temperature-humidity-sensor/set-hollow-blue-white.svg');
+    }
+    .cell-wrap {
+      position: relative;
+      min-height: calc(~"100vh - 790px");
+      padding: 126px 60px 60px;
+      border-top-left-radius: 120px;
+      border-top-right-radius: 120px;
+      background: #FFFFFF;
+      box-shadow: 0 6px 100px 0 rgba(32,33,33,0.10);
+      &::before {
+        content: '';
+        position: absolute;
+        top: 78px;
+        left: 50%;
+        margin-left: -50px;
+        display: inline-block;
+        width: 100px;
+        height: 12px;
+        border-radius: 6px;
+        background: #B5C4D1;
+      }
+      .sensor-block { 
+        box-shadow: 0 6px 50px 0 rgba(32,33,33,0.10);
+      }
+    }
+  }
+  .sensor-setting { 
+    background-color: #F4F8FB;
+  }
+}
+
+body.theme_dark {
+  .temperature-humidity-sensor {
+    padding: 87px 82px;
+    .chart-wrap {
+      margin: 0 auto;
+      padding-bottom: 67px;
+      text-align: center;
+      .chart-block {
+        display: flex;
+        align-items: center;
+        .chart-name {
+          margin-right: 38px;
+          line-height: 50px;
+          font-family: PingFangSC-Medium;
+          font-weight: Medium;
+          font-size: 36px;
+          color: #1EC4FB;
+        }
+        &:last-child {
+          .chart-name {
+            color: #FDFBFC;
+          }
+        }
+      }
+    }
+    .block-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 51px 0 40px;
+      .item {
+        color: #FFFFFF;
+        text-align: center;
+        &:first-child {
+          margin-left: 33px;
+          color: #1EC4FB;
+          .label {
+            color: #1EC4FB;
+          }
+        }
+      }
+      .label {
+        color: #FFFFFF;
+      }
+      .split {
+        background-color: #374354;
+      }
+    }
+    .cell-wrap {
+      border-radius: 60px;
+      border: 3px solid rgba(62,68,84,0.20);
+      background-image: linear-gradient(139deg, #333E4D 0%, #202C3A 100%);
+      box-shadow: 0 6px 100px 0 #242735;
+      .sensor-block {
+        margin-bottom: 0;
+        padding: 0 66px;
+        color: #FFFFFF;
+        border-radius: 0;
+        border: 0;
+        background-image: none;
+        box-shadow: none;
+        border-bottom: 3px solid #3B4757;
+        &:last-child {
+          border-bottom: 0;
+        }
+        .block-header {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          padding: 51px 0 40px;
+          .item {
+            padding: 0 33px 0 33px;
+            text-align: center;
+          }
+          .num {
+            margin-bottom: 11px;
+            font-family: PingFangSC-Semibold;
+            font-size: 72px;
+            line-height: 91px;
+            color: #FFFFFF;
+            letter-spacing: 0.1px;
+          }
+          .label {
+            font-family: PingFangSC-Regular;
+            font-size: 48px;
+            line-height: 67px;
+            color: #FFFFFF;
+          }
+          .split {
+            width: 3px;
+            height: 80px;
+            background-color: #374354;
+          }
+        }
+        .svg-icon {
+          width: 63px;
+          height: 63px;
+        }
+        .set-hollow {
+          background-position: center;
+          background-repeat: no-repeat;
+          background-size: 100% 100%;
+          background-image: url('~@/assets/icons/temperature-humidity-sensor/set-hollow-dark.svg');
+        }
+        ._cell_size_medium_ {
+          padding: 67px 3px 66px 0px;
+        }
+        .history-items {
+          margin-left: 148px;
+          padding-top: 14px;
+          font-family: PingFangSC-Regular;
+          font-size: @font_48;
+          .item {
+            padding-bottom: 50px;
+            color: #B5C4D1;
+            &:first-child {
+              color: #FFFFFF;
+            }
+            &:last-child {
+              padding-bottom: 102px;
+            }
+          }
+        }
+      }
+    }
+    
+  }
+  .sensor-setting {
+    .setting-block {
+      padding: 31px 49px 30px 66px;
+      .cell-title {
+        color: #FFFFFF;
+      }
+      ._cell_size_medium_ {
+        padding: 49px 24px 53px 0px;
+        border-bottom: 3px solid #333F4F;
+        &:last-child {
+          border-bottom: 0;
+        }
+      }
+    }
+  }
+}
+
+body.theme_colorful {
+  .temperature-humidity-sensor {
+    padding: 87px 82px;
+    .chart-wrap {
+      margin: 0 auto;
+      padding-bottom: 67px;
+      text-align: center;
+      .chart-block {
+        display: flex;
+        align-items: center;
+        .chart-name {
+          margin-right: 38px;
+          line-height: 50px;
+          font-family: PingFangSC-Medium;
+          font-weight: Medium;
+          font-size: 36px;
+          color: #000000;
+        }
+      }
+    }
+    .block-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 51px 0 40px;
+      .item {
+        color: #0F0F0F;
+        text-align: center;
+        &:first-child {
+          margin-left: 33px;
+        }
+      }
+      .label {
+        color: #0F0F0F;
+      }
+      .split {
+        background-color: #B5C4D1;
+      }
+    }
+    .cell-wrap {
+      padding: 10px 64px 0;
+      border-radius: 60px;
+      background: #FFFFFF;
+      box-shadow: 0 6px 100px 0 rgba(32,33,33,0.10);
+      .sensor-block {
+        margin-bottom: 0;
+        padding: 0 0 8px;
+        color: #0F0F0F;
+        border-radius: 0;
+        border: 0;
+        background-image: none;
+        box-shadow: none;
+        border-bottom: 3px solid #DAE1E8;
+        &:last-child {
+          border-bottom: 0;
+        }
+        .block-header {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          padding: 51px 0 40px;
+          .item {
+            padding: 0 33px 0 33px;
+            text-align: center;
+          }
+          .num {
+            margin-bottom: 11px;
+            font-family: PingFangSC-Semibold;
+            font-size: 72px;
+            line-height: 91px;
+            color: #FFFFFF;
+            letter-spacing: 0.1px;
+          }
+          .label {
+            font-family: PingFangSC-Regular;
+            font-size: 48px;
+            line-height: 67px;
+            color: #FFFFFF;
+          }
+          .split {
+            width: 3px;
+            height: 80px;
+            background-color: #374354;
+          }
+        }
+        .svg-icon {
+          width: 63px;
+          height: 63px;
+        }
+        .set-hollow {
+          background-position: center;
+          background-repeat: no-repeat;
+          background-size: 100% 100%;
+          background-image: url('~@/assets/icons/temperature-humidity-sensor/set-hollow-colorful.svg');
+        }
+        ._cell_size_medium_ {
+          padding: 67px 3px 66px 0px;
+        }
+        .history-items {
+          margin-left: 148px;
+          padding-top: 14px;
+          font-family: PingFangSC-Regular;
+          font-size: @font_48;
+          .item {
+            padding-bottom: 50px;
+            color: #B5C4D1;
+            &:first-child {
+              color: #0F0F0F;
+            }
+            &:last-child {
+              padding-bottom: 102px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+body.theme_morandi {
+  .temperature-humidity-sensor {
+    padding: 0;
+    .chart-wrap {
+      margin: 0 auto;
+      text-align: center;
+      padding-bottom: 0;
+      .chart-block {
+        display: flex;
+        align-items: center;
+        .chart-name {
+          margin-right: 38px;
+          width: 94px;
+          line-height: 50px;
+          font-family: PingFangSC-Medium;
+          font-weight: Medium;
+          font-size: 36px;
+          color: #FDFBFC;
+        }
+      }
+    }
+    .block-header-wrap {
+      background-image: linear-gradient(180deg, #576273 0%, #414B5B 86%);
+      box-shadow: 0 6px 100px 0 rgba(32,33,33,0.10);
+      padding: 43px 173px 126px 148px;
+      margin-bottom: 96px;
+      .block-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 51px 0 40px;
+        .item {
+          text-align: center;
+          &:first-child {
+            margin-left: 33px;
+          }
+        }
+        .num {
+          margin-bottom: 11px;
+          font-family: PingFangSC-Semibold;
+          font-size: 72px;
+          line-height: 91px;
+          color: #FDFBFC;
+          letter-spacing: 0.1px;
+        }
+        .label {
+          font-family: PingFangSC-Regular;
+          font-size: 48px;
+          line-height: 67px;
+          color: #FDFBFC;
+        }
+        .split {
+          width: 3px;
+          height: 80px;
+          background-color: #B5C4D1;
+        }
+      }
+    }
+    .set-hollow {
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: 100% 100%;
+      background-image: url('~@/assets/icons/temperature-humidity-sensor/set-hollow-morandi.svg');
+    }
+    .sensor-block {
+      margin-left: 80px;
+      margin-right: 80px;
+      color: #566172;
+      .history-items {
+        margin-left: 148px;
+        padding-top: 14px;
+        font-family: PingFangSC-Regular;
+        font-size: @font_48;
+        .item {
+          padding-bottom: 50px;
+          color: #B5C4D1;
+          &:first-child {
+            color: #B5ABA1;
+          }
+          &:last-child {
+            padding-bottom: 102px;
+          }
+        }
+      }
+    }
+  }
+}

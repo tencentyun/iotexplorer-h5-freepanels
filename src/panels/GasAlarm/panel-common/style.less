@@ -93,8 +93,7 @@ p {
 }
 
 .alarm-setting {
-  min-height: 100vh;
-  padding: 108px 84px 300px 76px;
+  padding: 108px 84px 0 76px;
   .setting-block {
     padding: 31px 49px 30px 66px;
     ._cell_size_medium_ {
@@ -113,7 +112,7 @@ p {
 
 .gas-alarm-record {
   min-height: 100vh;
-  padding: 0 80px 400px 78px;
+  padding: 0 80px 0 78px;
   .no-record-tips {
     padding-top: 867px;
     font-family: PingFangSC-Medium;
@@ -234,6 +233,10 @@ p {
       border-radius: 60px;
     }
   }
+}
+
+.bottom-fill {
+  padding-bottom: 400px;
 }
 
 body.theme_blue_white {
@@ -378,7 +381,7 @@ body.theme_colorful {
     }
   }
   .tips {
-    margin: 174px 0 112px;
+    // margin: 174px 0 112px;
     span {
       color: #656565;
       &::before {
@@ -420,6 +423,7 @@ body.theme_morandi {
       }
     }
     .tips {
+      margin: 174px 0 112px;
       span {
         color: #656565;
         &::before {

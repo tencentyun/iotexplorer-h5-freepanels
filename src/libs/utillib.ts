@@ -644,6 +644,16 @@ export const formatPxUnit = (unit: string | number): string | number => {
     return px2vw(val);
   });
 };
+export function mapsToOptions(name: string, maps: any): string[] {
+  if (!maps[name]) return [];
+
+  const { min, max, step } = maps[name];
+  const result: string[] = [];
+  for (let i: number = min; i <= max; i += step) {
+    result.push(i.toString());
+  }
+  return result;
+}
 /**
  * 把1或0的枚举转换为boolean
  * @param value

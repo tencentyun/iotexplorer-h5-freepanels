@@ -1,0 +1,550 @@
+.home-container {
+  position: relative;
+  & > header {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 20px 66px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .home-body {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 50px;
+
+    .body-image {
+      position: relative;
+      &::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        bottom: -94px;
+        width: 965px;
+        height: 290px;
+        background: url('~@/assets/images/smart-rope/image-map-bg.png') no-repeat center;
+        background-size: contain;
+      }
+    }
+
+    .image-map {
+      position: relative;
+      z-index: 2;
+      display: block;
+      width: 390px;
+      height: 1013px;
+      margin-left: 150px;
+      background-image: url('~@/assets/images/smart-rope/training-image-map.svg');
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: contain;
+    }
+  }
+
+  .daily-target-float {
+    position: absolute;
+    right: 66px;
+    top: 328px;
+    padding: 45px 54px;
+    text-align: center;
+    & > p {
+      font-size: 48px;
+      line-height: 67px;
+      color: #0f0f0f;
+      margin-bottom: 81px;
+      letter-spacing: 0.07px;
+    }
+    & > span {
+      display: inline-block;
+      font-family: DINCondensed-Bold;
+      font-size: 200px;
+      height: 147px;
+      line-height: 19.067vw;
+      color: #b6c4d2;
+      letter-spacing: 0.28px;
+
+      i {
+        font-size: 72px;
+        font-style: normal;
+      }
+    }
+  }
+
+  .training-data-area {
+    position: relative;
+    z-index: 1;
+  }
+  .footer {
+    margin-top: 50px;
+  }
+}
+
+body.theme_blue_white {
+  min-height: 100vh;
+
+  .app-container {
+    padding-bottom: 120px;
+    background-image: linear-gradient(133deg, #0081FF 0%, #005BFF 100%);
+  }
+
+  .home-container {
+    position: relative;
+    .home-middle {
+      padding: 64px 64px 0;
+      margin-bottom: 50px;
+      border-radius: 60px;
+      background: #FFFFFF;
+      box-shadow: 0 6px 15px 0 rgba(32,33,33,0.05);
+
+      & > header {
+        position: absolute;
+        left: 0;
+        top: 64px;
+        width: 100%;
+        padding: 0 91px 0 84px;
+        box-sizing: border-box;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        ._component_business_battery_ {
+          .battery-wrap {
+            width: 86px;
+            height: 50px;
+            .inner {
+              margin-left: 9px;
+              width: 65px;
+              height: 32px;
+            }
+          }
+        }
+      }
+      .home-body {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 0;
+    
+        .body-image {
+          position: relative;
+          &::after {
+            content: '';
+            position: absolute;
+            left: 320px;
+            bottom: 0;
+            width: 521px;
+            height: 151px;
+            background: url('~@/assets/images/smart-rope/image-map-bg-blueWhite.svg') no-repeat center;
+            background-size: contain;
+            z-index: 1;
+          }
+        }
+    
+        .image-map {
+          position: relative;
+          display: block;
+          width: 289px;
+          height: 752px;
+          margin-top: 55px;
+          margin-left: 491px;
+          margin-bottom: 27px;
+          background-image: url('~@/assets/images/smart-rope/training-image-map-blueWhite.svg');
+          background-repeat: no-repeat;
+          background-position: center;
+          background-size: contain;
+          z-index: 2;
+        }
+      }
+    
+      .daily-target-float {
+        position: absolute;
+        left: 12px;
+        top: 368px;
+        padding: 45px 0;
+        width: 300px;
+        height: 385px;
+        text-align: center;
+        background: #FFFFFF;
+        box-shadow: 0 6px 20px 0 rgba(32,33,33,0.10);
+        & > p {
+          font-size: 48px;
+          line-height: 67px;
+          color: #0F0F0F;
+          margin-bottom: 81px;
+          letter-spacing: 0.07px;
+        }
+        & > span {
+          display: inline-block;
+          font-family: DINCondensed-Bold;
+          font-size: 200px;
+          height: 147px;
+          line-height: 19.067vw;
+          color: #006FFF;
+          letter-spacing: 0.28px;
+    
+          i {
+            font-size: 72px;
+            font-style: normal;
+          }
+        }
+      }
+    }
+
+    .tips {
+      position: absolute;
+      top: 236px;
+      left: 112px;
+      font-family: PingFangSC-Medium;
+      font-weight: Medium;
+      font-size: 36px;
+      line-height: 50px;
+      color: #A6AFC2;
+      text-align: center;
+    }
+  
+    .training-data-area {
+      position: relative;
+      z-index: 1;
+    }
+  }
+}
+
+body.theme_dark {
+  .home-container {
+    position: relative;
+    padding-bottom: 415px;
+    .home-middle {
+      padding: 80px 80px 0;
+      margin-bottom: 229px;
+      border-radius: 60px;
+      border: 3px solid rgba(62,68,84,0.20);
+      background-image: linear-gradient(139deg, #333E4D 0%, #202C3A 100%);
+      box-shadow: 0 6px 100px 0 #242735;
+      & > header {
+        position: absolute;
+        left: 571px;
+        top: 80px;
+        padding: 0 64px 0 0;
+        box-sizing: border-box;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        ._component_business_battery_ {
+          margin-right: 70px;
+        }
+      }
+      .home-body {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 0;
+    
+        .body-image {
+          position: relative;
+          &::after {
+            content: '';
+            position: absolute;
+            left: 3px;
+            bottom: 0;
+            width: 611px;
+            height: 175px;
+            background: url('~@/assets/images/smart-rope/image-map-bg-dark.svg') no-repeat center;
+            background-size: contain;
+            z-index: 1;
+          }
+        }
+    
+        .image-map {
+          position: relative;
+          display: block;
+          width: 415px;
+          height: 1079px;
+          margin-left: 22px;
+          background-image: url('~@/assets/images/smart-rope/training-image-map-dark.svg');
+          background-repeat: no-repeat;
+          background-position: center;
+          background-size: contain;
+          z-index: 2;
+        }
+      }
+    
+      .daily-target-float {
+        position: absolute;
+        right: 3px;
+        top: 307px;
+        padding: 45px 0;
+        width: 300px;
+        height: 385px;
+        text-align: center;
+        background-image: linear-gradient(139deg, #333E4D 0%, #202C3A 100%);
+        border: 3px solid rgba(62,68,84,0.20);
+        box-shadow: 0 6px 100px 0 #242735;
+        & > p {
+          font-size: 48px;
+          line-height: 67px;
+          color: #FFFFFF;
+          margin-bottom: 81px;
+          letter-spacing: 0.07px;
+        }
+        & > span {
+          display: inline-block;
+          font-family: DINCondensed-Bold;
+          font-size: 200px;
+          height: 147px;
+          line-height: 19.067vw;
+          color: #FFFFFF;
+          letter-spacing: 0.28px;
+    
+          i {
+            font-size: 72px;
+            font-style: normal;
+          }
+        }
+      }
+    }
+
+    .tips {
+      position: absolute;
+      top: 1223px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: PingFangSC-Medium;
+      font-weight: Medium;
+      font-size: 36px;
+      line-height: 50px;
+      color: #FFFFFF;
+      text-align: center;
+    }
+  
+    .training-data-area {
+      position: relative;
+      margin-bottom: 75px;
+      z-index: 1;
+    }
+  }
+}
+
+body.theme_colorful {
+  .home-container {
+    position: relative;
+    
+    .home-middle {
+      padding: 80px 64px 0;
+      margin-bottom: 229px;
+      border-radius: 60px;
+      background-image: linear-gradient(138deg, #527DF4 0%, #044DFF 100%);
+      box-shadow: 0 6px 100px 0 rgba(124,121,245,0.30);
+      & > header {
+        position: absolute;
+        left: 0;
+        top: 80px;
+        width: 100%;
+        padding: 0 64px;
+        box-sizing: border-box;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        .battery-percent {
+          margin-left: 20px;
+          font-size: 36px;
+          color: #FFFFFF;
+          letter-spacing: 0.05px;
+        }
+      }
+      .home-body {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+    
+        .body-image {
+          position: relative;
+          &::after {
+            content: '';
+            position: absolute;
+            left: 231px;
+            bottom: 0;
+            width: 611px;
+            height: 175px;
+            background: url('~@/assets/images/smart-rope/image-map-bg-colorful.svg') no-repeat center;
+            background-size: contain;
+            z-index: 1;
+          }
+        }
+    
+        .image-map {
+          position: relative;
+          display: block;
+          width: 396px;
+          height: 1027px;
+          margin-top: 55px;
+          margin-left: 351px;
+          background-image: url('~@/assets/images/smart-rope/training-image-map-colorful.svg');
+          background-repeat: no-repeat;
+          background-position: center;
+          background-size: contain;
+          z-index: 2;
+        }
+      }
+    
+      .daily-target-float {
+        position: absolute;
+        left: 12px;
+        right: 527px;
+        top: 280px;
+        padding: 45px 0;
+        width: 300px;
+        height: 385px;
+        text-align: center;
+        background: #FFFFFF;
+        box-shadow: 0 6px 20px 0 rgba(32,33,33,0.10);
+        & > p {
+          font-size: 48px;
+          line-height: 67px;
+          color: #0F0F0F;
+          margin-bottom: 81px;
+          letter-spacing: 0.07px;
+        }
+        & > span {
+          display: inline-block;
+          font-family: DINCondensed-Bold;
+          font-size: 200px;
+          height: 147px;
+          line-height: 19.067vw;
+          color: #006FFF;
+          letter-spacing: 0.28px;
+    
+          i {
+            font-size: 72px;
+            font-style: normal;
+          }
+        }
+      }
+    }
+
+    .tips {
+      position: absolute;
+      top: 1223px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: PingFangSC-Medium;
+      font-weight: Medium;
+      font-size: 36px;
+      line-height: 50px;
+      color: #B6C4D2;
+      text-align: center;
+    }
+    
+    .training-data-area {
+      position: relative;
+      z-index: 1;
+    }
+  }
+}
+
+body.theme_morandi {
+  .home-container {
+    position: relative;
+    & > header {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      box-sizing: border-box;
+      padding: 20px 66px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+  
+    .home-body {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 50px;
+  
+      .body-image {
+        position: relative;
+        &::after {
+          content: '';
+          position: absolute;
+          left: 0;
+          bottom: -94px;
+          width: 965px;
+          height: 290px;
+          background: url('~@/assets/images/smart-rope/image-map-bg.png') no-repeat center;
+          background-size: contain;
+          z-index: -1;
+        }
+      }
+  
+      .image-map {
+        position: relative;
+        z-index: 2;
+        display: block;
+        width: 390px;
+        height: 1013px;
+        margin-top: 21px;
+        margin-left: 150px;
+        background-image: url('~@/assets/images/smart-rope/training-image-map-morandi.svg');
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: contain;
+      }
+    }
+  
+    .daily-target-float {
+      position: absolute;
+      right: 66px;
+      top: 328px;
+      padding: 45px 54px;
+      text-align: center;
+      background-image: linear-gradient(180deg, #576273 0%, #414B5B 86%);
+      box-shadow: 0 6px 100px 0 rgba(32,33,33,0.10);
+      & > p {
+        font-size: 48px;
+        line-height: 67px;
+        color: #FFFFFF;
+        margin-bottom: 81px;
+        letter-spacing: 0.07px;
+      }
+      & > span {
+        display: inline-block;
+        font-family: DINCondensed-Bold;
+        font-size: 200px;
+        height: 147px;
+        line-height: 19.067vw;
+        color: #FFFFFF;
+        letter-spacing: 0.28px;
+  
+        i {
+          font-size: 72px;
+          font-style: normal;
+        }
+      }
+    }
+  
+    .tips {
+      position: absolute;
+      top: 176px;
+      right: 93px;
+      font-family: PingFangSC-Medium;
+      font-weight: Medium;
+      font-size: 36px;
+      line-height: 50px;
+      color: #B5ABA1;
+      text-align: right;
+    }
+
+    .training-data-area {
+      position: relative;
+      z-index: 1;
+    }
+    .footer {
+      margin-top: 0;
+    }
+  }
+}
