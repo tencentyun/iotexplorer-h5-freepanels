@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { px2vw } from '@/utils';
+import { px2vw } from '@libs/utillib';
 import './index.less';
 
 interface UnlockProps {

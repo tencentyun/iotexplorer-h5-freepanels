@@ -652,6 +652,16 @@ export const toggleBooleanByNumber = (value: number) => {
   return value !== 0;
 };
 /**
+ * 根据设备状态，设置dom元素样式是否可用（高亮）
+ * @param deviceStatus
+ */
+ export const setDomClassActive = (deviceStatus: number) => {
+  if (deviceStatus === 1) {
+    return 'disabled';
+  }
+  return 'active';
+};
+/**
  * 枚举转数组
  * @param enumCNObj
  */

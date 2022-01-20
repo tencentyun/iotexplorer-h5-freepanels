@@ -2,11 +2,11 @@
  * @Description: 首页-开/关按钮
  */
 
-import React, { useState } from 'react';
+import React from 'react';
 import classNames from 'classnames';
-import { useHistory } from 'react-router-dom';
-import { Block } from '@/components/layout';
-import { getThemeType, formatDeviceData, onControlDevice } from '@/business';
+import { Block } from '@components/layout';
+import { getThemeType } from '@libs/theme';
+import { onControlDevice } from '@hooks/useDeviceData';
 import SwipeUnlock from '../unlock/index';
 // @ts-ignore
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
@@ -15,7 +15,6 @@ import './index.less';
 const themeType = getThemeType();
 
 export function StatusBlock() {
-  const history = useHistory();
 
   // 处理开锁/关锁
   const handleLock = () => {

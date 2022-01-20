@@ -1,4 +1,4 @@
-import { getThemeType } from '@/business';
+import { getThemeType } from '@libs/theme';
 const themeType = getThemeType();
 
 const skinProps = {

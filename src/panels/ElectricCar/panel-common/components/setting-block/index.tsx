@@ -2,20 +2,16 @@
  * @Description: 首页-设置按钮
  */
 
-import React, { useState } from 'react';
+import React from 'react';
 import classNames from 'classnames';
-import { getThemeType, formatDeviceData, onControlDevice } from '@/business';
-import { useHistory } from 'react-router-dom';
-import { SvgIcon } from '@/components/common';
-import { Block } from '@/components/layout';
-// @ts-ignore
+import { SvgIcon } from '@components/common';
+import { Block } from '@components/layout';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
-// @ts-ignore
+import { onControlDevice } from '@hooks/useDeviceData';
 import { CurrentSkinProps } from '../skinProps';
 import './index.less';
 
 export function SettingBlock() {
-  const history = useHistory();
 
   const buttonProps = {
     width: 295,

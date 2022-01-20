@@ -2,34 +2,24 @@
  * @Description: 首页-头部
  */
 
-import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
-import { SvgIcon } from '@/components/common';
-import { Block } from '@/components/layout';
-import { Battery } from '@/components/business';
-import { getThemeType } from '@/business';
-// @ts-ignore
+import React from 'react';
+import { SvgIcon } from '@components/common';
+import { Block } from '@components/layout';
+import { Battery } from '@components/business';
+import { getThemeType } from '@libs/theme';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
-// @ts-ignore
 import CarImage from '@/assets/images/electric-car/car.svg';
-// @ts-ignore
 import SoundImage from '@/assets/images/electric-car/sound.png';
-// @ts-ignore
 import SoundImageBlueWhite from '@/assets/images/electric-car/sound-blueWhite.png';
-// @ts-ignore
 import SoundImageDark from '@/assets/images/electric-car/sound-dark.png';
-// @ts-ignore
 import SoundImageColorful from '@/assets/images/electric-car/sound-colorful.png';
-// @ts-ignore
 import SoundImageMorandi from '@/assets/images/electric-car/sound-morandi.png';
-// @ts-ignore
 import { CurrentSkinProps } from '../skinProps';
 import './index.less';
 
 const themeType = getThemeType();
 
 export function HeaderBlock() {
-  const history = useHistory();
 
   const soundImageSrc = () => {
     switch (themeType) {
