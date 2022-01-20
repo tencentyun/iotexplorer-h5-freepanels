@@ -21,24 +21,28 @@ const TimingImageColorful = "https://tencent-1305105198.cos.ap-guangzhou.myqclou
 import TimingImageMorandi from "./icons/morandi/timing.svg";
 
 import ReadImage from "./icons/normal/read.svg";
+import ReadImageCheck from "./icons/normal/read-check.svg";
 import ReadImageBlueWhite from "./icons/blue-white/read.svg";
 import ReadImageDark from "./icons/dark/read.svg";
 import ReadImageColorful from "./icons/colorful/read.svg";
 import ReadImageMorandi from "./icons/morandi/read.svg";
 
 import SleepImage from "./icons/normal/sleep.svg";
+import SleepImageCheck from "./icons/normal/sleep-check.svg";
 import SleepImageBlueWhite from "./icons/blue-white/sleep.svg";
 import SleepImageDark from "./icons/dark/sleep.svg";
 import SleepImageColorful from "./icons/colorful/sleep.svg";
 import SleepImageMorandi from "./icons/morandi/sleep.svg";
 
 import WorkImage from "./icons/normal/work.svg";
+import WorkImageCheck from "./icons/normal/work-check.svg";
 import WorkImageBlueWhite from "./icons/blue-white/work.svg";
 import WorkImageDark from "./icons/dark/work.svg";
 import WorkImageColorful from "./icons/colorful/work.svg";
 import WorkImageMorandi from "./icons/morandi/work.svg";
 
 import RelaxImage from "./icons/normal/relax.svg";
+import RelaxImageCheck from "./icons/normal/relax-check.svg";
 import RelaxImageBlueWhite from "./icons/blue-white/relax.svg";
 import RelaxImageDark from "./icons/dark/relax.svg";
 import RelaxImageColorful from "./icons/colorful/relax.svg";
@@ -173,28 +177,28 @@ export function Scene() {
       <div className="scene-box">
         <Row>
           <Col onClick={() => handleMode('1')}>
-            <Block>
-              <img src={readImageSrc()} alt="" />
+            <Block className={sdk.deviceData.scene === '1' && 'check'}>
+              <img src={sdk.deviceData.scene === '1' ? ReadImageCheck : readImageSrc()} alt="" />
             </Block>
             <div className="label">阅读</div>
           </Col>
           <Col onClick={() => handleMode('2')}>
-            <Block>
-              <img src={sleepImageSrc()} alt="" />
+            <Block className={sdk.deviceData.scene === '2' && 'check'}>
+              <img src={sdk.deviceData.scene === '2' ? SleepImageCheck : sleepImageSrc()} alt="" />
             </Block>
             <div className="label">晚安</div>
           </Col>
           <Col onClick={() => handleMode('0')}>
-            <Block>
-              <img src={workImageSrc()} alt="" />
+            <Block className={sdk.deviceData.scene === '0' && 'check'}>
+              <img src={sdk.deviceData.scene === '0' ? WorkImageCheck : workImageSrc()} alt="" />
             </Block>
             <div className="label">工作</div>
           </Col>
         </Row>
         <Row>
           <Col onClick={() => handleMode('3')}>
-            <Block>
-              <img src={relaxImageSrc()} alt="" />
+            <Block className={sdk.deviceData.scene === '3' && 'check'}>
+              <img src={sdk.deviceData.scene === '3' ? RelaxImageCheck : relaxImageSrc()} alt="" />
             </Block>
             <div className="label">休闲</div>
           </Col>

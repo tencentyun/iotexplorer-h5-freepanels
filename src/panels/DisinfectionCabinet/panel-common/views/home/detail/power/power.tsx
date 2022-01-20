@@ -14,8 +14,8 @@ import PowerImageDarkDown from "../../../icons/dark/switch-close.svg";
 import PowerImageMorandi from "../../../icons/morandi/switch.svg";
 import PowerImageMorandiDown from "../../../icons/morandi/switch-close.svg";
 
-const themeType = getThemeType();
 export function Power() {
+  const themeType = getThemeType();
   const powerImageSrc = () => {
     switch (themeType) {
       case 'normal':

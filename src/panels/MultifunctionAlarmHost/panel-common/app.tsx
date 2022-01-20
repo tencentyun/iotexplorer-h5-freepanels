@@ -12,6 +12,7 @@ import { Setting } from './views/setting/setting';
 import { PhoneList } from './views/phoneList/phoneList';
 import { Mountings } from './views/mountings/mountings';
 import { AddDevExplanatory } from './views/addDevExplanatory/addDevExplanatory';
+import 'antd-mobile/es/global';
 import '@icons/themes/global.less';
 import './style.less';
 import './themes.less'; // 5套皮肤 构建前要修改var.less变量文件

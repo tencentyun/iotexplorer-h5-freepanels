@@ -1,6 +1,5 @@
 import React from 'react';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
-import './title.less';
 
 export function Title() {
   return (

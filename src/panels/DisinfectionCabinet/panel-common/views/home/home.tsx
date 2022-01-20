@@ -5,12 +5,12 @@ import { getThemeType } from '@libs/theme';
 import { Detail } from './detail/detail';
 import { apiControlDeviceData } from '@hooks/useDeviceData';
 import './home.less';
-import LockImage from "../icons/normal/lock.svg";
-import LockImageClose from "../icons/normal/lock-close.svg";
-import LockImageBlueWhite from "../icons/blue-white/lock.svg";
-import LockImageBlueWhiteClose from "../icons/blue-white/lock-close.svg";
-import LockImageColorful from "../icons/colorful/lock.svg";
-import LockImageColorfulClose from "../icons/colorful/lock-close.svg";
+import LockImageClose from "../icons/normal/lock.svg";
+import LockImage from "../icons/normal/lock-close.svg";
+import LockImageBlueWhiteClose from "../icons/blue-white/lock.svg";
+import LockImageBlueWhite from "../icons/blue-white/lock-close.svg";
+import LockImageColorfulClose from "../icons/colorful/lock.svg";
+import LockImageColorful from "../icons/colorful/lock-close.svg";
 import MoreImage from "../icons/normal/more.svg";
 import MoreImageClose from "../icons/normal/more-close.svg";
 import MoreImageBlueWhite from "../icons/blue-white/more.svg";
@@ -69,11 +69,13 @@ export function Home() {
       {/*仪表盘*/}
       <section className={classNames('dashboard')}>
         <div className="dashboard-btn">
-          <img src={lockImageSrc()} alt="" onClick={handleLock} />
+          <div className="lock">
+            <img id={'lock'} src={lockImageSrc()} alt="" onClick={handleLock} />
+          </div>
           <div className="title">
             童锁{sdk.deviceData.child_lock === 1 ? '开' : '关'}
           </div>
-          <img src={moreImageSrc()} alt="" onClick={handleSetting} />
+          <img id={'more'} src={moreImageSrc()} alt="" onClick={handleSetting} />
         </div>
         <div className="disinfection-img">
           <img src={disinfectionImage} alt="" />

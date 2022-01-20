@@ -9,9 +9,9 @@ import { apiControlDeviceData, onControlDevice} from '@hooks/useDeviceData';
 import { toggleBooleanByNumber } from '@libs/utillib';
 import './setting.less';
 
-const themeType = getThemeType();
 export function Setting() {
-  const alarmVolValue = (value: String) => {
+  const themeType = getThemeType();
+  const alarmVolValue = (value: string) => {
     switch (value) {
       case 'low':
         return '低';
@@ -154,7 +154,7 @@ export function Setting() {
             title="报警时长"
             value={
               sdk.deviceData.alarm_time
-                ? sdk.deviceData.alert_state + '分钟'
+                ? sdk.deviceData.alarm_time + '分钟'
                 : '1分钟'
             }
             valueStyle="gray"
@@ -166,7 +166,7 @@ export function Setting() {
               visible={alarmStateVisible}
               title="报警时长"
               defaultValue={[
-                sdk.deviceData.alarm_time ? sdk.deviceData.alert_state : '1'
+                sdk.deviceData.alarm_time ? sdk.deviceData.alarm_time : '1'
               ]}
               options={[
                 {

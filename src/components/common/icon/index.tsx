@@ -10,8 +10,6 @@ import './style.less';
 import { StyledProps, ThemeType } from '@libs/global';
 import { px2vw, toUnderscores } from '@src/libs/utillib';
 
-const ENVIRO_THEME = getThemeType();
-
 export interface SvgIconProps extends StyledProps {
   name: string;
   theme?: ThemeType;
@@ -30,6 +28,7 @@ interface IconStyle {
 }
 
 export function SvgIcon(props: SvgIconProps) {
+  const ENVIRO_THEME = getThemeType();
   // 主题类型默认会从 webpack 的环境变量中取，如果 props 中传入了类型，会优先以 props 中的为准，默认 normal
   const theme: SvgIconProps['theme'] = props.theme || ENVIRO_THEME || 'normal';
   // 根据 theme 类型，渲染不同类型的 icon

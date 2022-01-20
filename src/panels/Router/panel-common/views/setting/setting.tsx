@@ -1,61 +1,24 @@
 import React, {useState} from 'react';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
-import { Dialog, Input } from 'antd-mobile';
 import classNames from 'classnames';
 import { Cell, Switch } from '@components/base';
 import { getThemeType } from '@libs/theme';
 import { toggleBooleanByNumber } from '@libs/utillib';
 import { apiControlDeviceData } from '@hooks/useDeviceData';
 import './setting.less';
+import TwoWifiName from './twoWifiName/twoWifiName';
+import TwoWifiPassword from './twoWifiPassword/twoWifiPassword';
+import FiveWifiName from './fiveWifiName/fiveWifiName';
+import FiveWifiPassword from './fiveWifiPassword/fiveWifiPassword';
 
 export function Setting() {
   const themeType = getThemeType();
   // 2.4G
-  const [nameTwoFour, onEditNameTwoFour] = useState('');
-  const nameTwoFourEditor = (
-    <Input
-      placeholder="请输入名称"
-      value={nameTwoFour}
-      onChange={val => {
-        onEditNameTwoFour(val);
-        apiControlDeviceData({ name_24g: val });
-      }}
-    />
-  );
-  const [pwdTwoFour, onEditPwdTwoFour] = useState('');
-  const pwdTwoFourEditor = (
-    <Input
-      placeholder="请输入密码"
-      value={pwdTwoFour}
-      onChange={val => {
-        onEditPwdTwoFour(val);
-        apiControlDeviceData({ sta_config_24g: val });
-      }}
-    />
-  );
+  const [isShowTwoFour, setIsShowTwoFour] = useState(false);
+  const [isShowTwoFourPwd, setIsShowTwoFourPwd] = useState(false);
   // 5G
-  const [nameFive, onEditNameFive] = useState('');
-  const nameFiveEditor = (
-    <Input
-      placeholder="请输入名称"
-      value={nameFive}
-      onChange={val => {
-        onEditNameFive(val);
-        apiControlDeviceData({ name_24g: val });
-      }}
-    />
-  );
-  const [pwdFive, onEditPwdFive] = useState('');
-  const pwdFiveEditor = (
-    <Input
-      placeholder="请输入密码"
-      value={pwdFive}
-      onChange={val => {
-        onEditPwdFive(val);
-        apiControlDeviceData({ sta_config_24g: val });
-      }}
-    />
-  );
+  const [isShowFive, setIsShowFive] = useState(false);
+  const [isShowFivePwd, setIsShowFivePwd] = useState(false);
   return (
     <article className={classNames('setting')}>
       <ul className="setting-list">
@@ -85,13 +48,7 @@ export function Setting() {
             value={sdk.deviceData.name_24g}
             valueStyle="gray"
             onClick={() => {
-              Dialog.confirm({
-                title: '设置2.4G Wi-Fi名称',
-                content: nameTwoFourEditor,
-                cancelText: '取消',
-                confirmText: '完成',
-                onConfirm: () => {}
-              });
+              setIsShowTwoFour(true);
             }}
           />
           <Cell
@@ -100,13 +57,7 @@ export function Setting() {
             value={sdk.deviceData.sta_config_24g}
             valueStyle="gray"
             onClick={() => {
-              Dialog.confirm({
-                title: '设置2.4G Wi-Fi密码',
-                content: pwdTwoFourEditor,
-                cancelText: '取消',
-                confirmText: '完成',
-                onConfirm: () => {}
-              });
+              setIsShowTwoFourPwd(true);
             }}
           />
         </li>
@@ -136,13 +87,7 @@ export function Setting() {
             value={sdk.deviceData.name_5g}
             valueStyle="gray"
             onClick={() => {
-              Dialog.confirm({
-                title: '设置密码',
-                content: nameFiveEditor,
-                cancelText: '取消',
-                confirmText: '完成',
-                onConfirm: () => {}
-              });
+              setIsShowFive(true);
             }}
           />
           <Cell
@@ -151,17 +96,35 @@ export function Setting() {
             value={sdk.deviceData.sta_config_5g}
             valueStyle="gray"
             onClick={() => {
-              Dialog.confirm({
-                title: '设置密码',
-                content: pwdFiveEditor,
-                cancelText: '取消',
-                confirmText: '完成',
-                onConfirm: () => {}
-              });
+              setIsShowFivePwd(true);
             }}
           />
         </li>
       </ul>
+      <TwoWifiName
+        isShow={isShowTwoFour}
+        onClose={() => {
+          setIsShowTwoFour(false);
+        }}
+      />
+      <TwoWifiPassword
+        isShow={isShowTwoFourPwd}
+        onClose={() => {
+          setIsShowTwoFourPwd(false);
+        }}
+      />
+      <FiveWifiName
+        isShow={isShowFive}
+        onClose={() => {
+          setIsShowFive(false);
+        }}
+      />
+      <FiveWifiPassword
+        isShow={isShowFivePwd}
+        onClose={() => {
+          setIsShowFivePwd(false);
+        }}
+      />
     </article>
   );
 }
