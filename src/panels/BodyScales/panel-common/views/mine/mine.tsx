@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
 import classNames from 'classnames';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
-import { DatePicker, Dialog, Input } from 'antd-mobile';
+import { DatePicker } from 'antd-mobile';
 import { ListPicker, ValuePicker } from '@components/business';
 import { useHistory } from 'react-router';
 import { Cell, Switch } from '@components/base';
 import { getThemeType } from '@libs/theme';
-import { apiControlDeviceData, onControlDevice, useUserInfo, useDeviceData} from '@hooks/useDeviceData';
+import { apiControlDeviceData, onControlDevice, useDeviceData} from '@hooks/useDeviceData';
+import { useUserInfo } from '@hooks/useUserInfo';
 import { numberToArray, toggleBooleanByNumber} from '@libs/utillib';
+import NickName from "./nickName/nickName";
 import dayjs from 'dayjs';
 import './mine.less';
 
@@ -51,7 +53,7 @@ export function Mine() {
   // 从 sdk 读取到的物模型 maps
   const [userInfo, { onUpdateUserInfo }] = useUserInfo();
   // 昵称
-  const [editNickname, onEditNickname] = useState('');
+  const [editNickname, onEditNickname] = useState(false);
   // 性别选择器
   const [genderVisible, onToggleGender] = useState(false);
   // 生日选择器
@@ -60,17 +62,6 @@ export function Mine() {
   const [heightVisible, onToggleHeight] = useState(false);
   // 体重选择器
   const [weightVisible, onToggleWeight] = useState(false);
-  // 获取性别描述文字
-  const nicknameEditor = (
-    <Input
-      placeholder="请输入昵称"
-      value={editNickname}
-      onChange={val => {
-        onEditNickname(val);
-        apiControlDeviceData({ nickName: val });
-      }}
-    />
-  );
   const history = useHistory();
   const handleUnit = () => {
     // 单位跳转
@@ -105,19 +96,19 @@ export function Mine() {
               <div
                 className="edit"
                 onClick={() => {
-                  Dialog.confirm({
-                    title: '编辑昵称',
-                    content: nicknameEditor,
-                    cancelText: '取消',
-                    confirmText: '完成',
-                    onConfirm: () => {}
-                  });
+                  onEditNickname(true);
                 }}
               >
                 {userInfo.nickName || '编辑昵称'}
                 <img className="edit_img" src={editImageSrc()} alt="" />
               </div>
             </div>
+            <NickName
+              isShow={editNickname}
+              onClose={() => {
+                onEditNickname(false);
+              }}
+            />
           </div>
           <div>
             <Cell
@@ -189,7 +180,7 @@ export function Mine() {
               <ValuePicker
                 visible={heightVisible}
                 title="身高"
-                value={[sdk.deviceData.height + 'cm']}
+                value={[sdk.deviceData.height ? sdk.deviceData.height + 'cm' : '100cm']}
                 columns={heightColumns}
                 onCancel={() => onToggleHeight(false)}
                 onConfirm={value => {
@@ -214,7 +205,7 @@ export function Mine() {
             >
               <ValuePicker
                 visible={weightVisible}
-                value={[sdk.deviceData.weight + '千克']}
+                value={[sdk.deviceData.weight ? sdk.deviceData.weight + '千克' : '45千克']}
                 title="体重"
                 columns={weightColumns}
                 onCancel={() => onToggleWeight(false)}

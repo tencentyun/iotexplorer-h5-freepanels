@@ -7,8 +7,10 @@ import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 import { useDeviceData } from '@hooks/useDeviceData';
 import { Container } from './views/container/container';
 import UnitSetting from './views/unitSetting/unitSetting';
+import 'antd-mobile/es/global';
 import '@icons/themes/global.less';
 import '@icons/themes/icons/svg/body-scales';
+import '@icons/themes/icons/svg/common';
 import './style.less';
 import './themes.less';
 

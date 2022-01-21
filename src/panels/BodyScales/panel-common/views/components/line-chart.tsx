@@ -50,12 +50,12 @@ const pxToView = (px: number): string | number => {
 const margin = {
   top: pxToView(20) as number,
   right: pxToView(13) as number,
-  bottom: pxToView(60) as number,
+  bottom: pxToView(50) as number,
   left: pxToView(13) as number
 };
 
-const themeType = getThemeType();
 export function LineChart(props: lineChartProps) {
+  const themeType = getThemeType();
   const [width] = useState(props.width);
   const [height] = useState(props.height);
   const WIDTH = pxToView(width) as number;

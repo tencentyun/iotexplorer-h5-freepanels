@@ -7,7 +7,9 @@ import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 import { DeviceSateContext } from './deviceStateContext';
 import { useDeviceData } from '@hooks/useDeviceData';
 import { Home } from './views/home/home';
+import 'antd-mobile/es/global';
 import '@icons/themes/global.less';
+import '@icons/themes/icons/svg/common';
 import './style.less';
 import './themes.less'; // 5套皮肤 构建前要修改var.less变量文件
 

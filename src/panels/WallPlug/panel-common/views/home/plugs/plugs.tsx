@@ -170,14 +170,18 @@ const plugs = () => {
   };
 
   const handlePlug1 = () => {
-    apiControlDeviceData({
-      switch_1: sdk.deviceData.switch_1 === 0 ? 1 : 0
-    });
+    if (sdk.deviceData.power_switch === 1) {
+      apiControlDeviceData({
+        switch_1: sdk.deviceData.switch_1 === 0 ? 1 : 0
+      });
+    }
   };
   const handlePlug2 = () => {
-    apiControlDeviceData({
-      switch_2: sdk.deviceData.switch_2 === 0 ? 1 : 0
-    });
+    if (sdk.deviceData.power_switch === 1) {
+      apiControlDeviceData({
+        switch_2: sdk.deviceData.switch_2 === 0 ? 1 : 0
+      });
+    }
   };
   return (
     <article className={classNames('plugs')} id={'plugs'}>

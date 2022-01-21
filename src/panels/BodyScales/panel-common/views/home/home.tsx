@@ -392,8 +392,8 @@ export function Home() {
                   脂肪量
                 </div>
                 <div className="coll-detail-right">
-                  <img src={numImage} alt="" />
-                  <img src={rightImage} alt="" />
+                  <img className="body-val" src={numImage} alt="" />
+                  <img className="body-right" src={rightImage} alt="" />
                 </div>
               </div>
               <div className="coll-detail">
@@ -402,8 +402,8 @@ export function Home() {
                   体脂等级
                 </div>
                 <div className="coll-detail-right">
-                  <img src={numImage} alt="" />
-                  <img src={rightImage} alt="" />
+                  <img className="body-val" src={numImage} alt="" />
+                  <img className="body-right" src={rightImage} alt="" />
                 </div>
               </div>
               <div className="coll-detail">
@@ -412,8 +412,8 @@ export function Home() {
                   肥胖等级
                 </div>
                 <div className="coll-detail-right">
-                  <img src={numImage} alt="" />
-                  <img src={rightImage} alt="" />
+                  <img className="body-val" src={numImage} alt="" />
+                  <img className="body-right" src={rightImage} alt="" />
                 </div>
               </div>
               <div className="coll-detail">
@@ -422,8 +422,8 @@ export function Home() {
                   体重控制
                 </div>
                 <div className="coll-detail-right">
-                  <img src={numImage} alt="" />
-                  <img src={rightImage} alt="" />
+                  <img className="body-val" src={numImage} alt="" />
+                  <img className="body-right" src={rightImage} alt="" />
                 </div>
               </div>
               <div className="coll-detail">
@@ -432,8 +432,8 @@ export function Home() {
                   内脏脂肪指数
                 </div>
                 <div className="coll-detail-right">
-                  <img src={numImage} alt="" />
-                  <img src={rightImage} alt="" />
+                  <img className="body-val" src={numImage} alt="" />
+                  <img className="body-right" src={rightImage} alt="" />
                 </div>
               </div>
               <div className="coll-detail">
@@ -442,8 +442,8 @@ export function Home() {
                   去脂体重
                 </div>
                 <div className="coll-detail-right">
-                  <img src={numImage} alt="" />
-                  <img src={rightImage} alt="" />
+                  <img className="body-val" src={numImage} alt="" />
+                  <img className="body-right" src={rightImage} alt="" />
                 </div>
               </div>
               <div className="coll-detail">
@@ -452,8 +452,8 @@ export function Home() {
                   水分
                 </div>
                 <div className="coll-detail-right">
-                  <img src={numImage} alt="" />
-                  <img src={rightImage} alt="" />
+                  <img className="body-val" src={numImage} alt="" />
+                  <img className="body-right" src={rightImage} alt="" />
                 </div>
               </div>
               <div className="coll-detail">
@@ -462,8 +462,8 @@ export function Home() {
                   骨量
                 </div>
                 <div className="coll-detail-right">
-                  <img src={numImage} alt="" />
-                  <img src={rightImage} alt="" />
+                  <img className="body-val" src={numImage} alt="" />
+                  <img className="body-right" src={rightImage} alt="" />
                 </div>
               </div>
               <div className="coll-detail">
@@ -472,8 +472,8 @@ export function Home() {
                   蛋白率
                 </div>
                 <div className="coll-detail-right">
-                  <img src={numImage} alt="" />
-                  <img src={rightImage} alt="" />
+                  <img className="body-val" src={numImage} alt="" />
+                  <img className="body-right" src={rightImage} alt="" />
                 </div>
               </div>
               <div className="coll-detail">
@@ -482,8 +482,8 @@ export function Home() {
                   基础代谢
                 </div>
                 <div className="coll-detail-right">
-                  <img src={numImage} alt="" />
-                  <img src={rightImage} alt="" />
+                  <img className="body-val" src={numImage} alt="" />
+                  <img className="body-right" src={rightImage} alt="" />
                 </div>
               </div>
               <div className="coll-detail">
@@ -492,8 +492,8 @@ export function Home() {
                   身体年龄
                 </div>
                 <div className="coll-detail-right">
-                  <img src={numImage} alt="" />
-                  <img src={rightImage} alt="" />
+                  <img className="body-val" src={numImage} alt="" />
+                  <img className="body-right" src={rightImage} alt="" />
                 </div>
               </div>
               <div className="coll-detail">
@@ -502,8 +502,8 @@ export function Home() {
                   体型
                 </div>
                 <div className="coll-detail-right">
-                  <img src={numImage} alt="" />
-                  <img src={rightImage} alt="" />
+                  <img className="body-val" src={numImage} alt="" />
+                  <img className="body-right" src={rightImage} alt="" />
                 </div>
               </div>
               <div className="coll-detail">
@@ -512,8 +512,8 @@ export function Home() {
                   得分
                 </div>
                 <div className="coll-detail-right">
-                  <img src={numImage} alt="" />
-                  <img src={rightImage} alt="" />
+                  <img className="body-val" src={numImage} alt="" />
+                  <img className="body-right" src={rightImage} alt="" />
                 </div>
               </div>
             </Collapse.Panel>
@@ -544,7 +544,7 @@ export function Home() {
               </div>
               <div className="right_span_foot">
                 {/*折线图*/}
-                <LineChart size={''} width={680} height={200} />
+                <LineChart size={''} width={680} height={130} />
               </div>
             </div>
           </div>
