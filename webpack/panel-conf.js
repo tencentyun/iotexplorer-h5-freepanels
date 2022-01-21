@@ -1,5 +1,5 @@
 module.exports = {
-  ImmersionSensor: {
+  BodyScales: {
     enable: true,
     viewportWidth: 1125,
     panels: [

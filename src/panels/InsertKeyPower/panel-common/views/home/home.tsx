@@ -21,7 +21,7 @@ export function Home() {
   const themeType = getThemeType();
   useEffect(() => {
     apiControlDeviceData({
-      switch: sdk.deviceData.card_status_report === '1' ? 0 : 1
+      switch: sdk.deviceData.card_status_report === '1' ? 1 : 0
     });
   }, []);
   const sleepImageSrc = () => {

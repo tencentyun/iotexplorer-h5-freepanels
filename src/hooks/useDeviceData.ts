@@ -144,20 +144,3 @@ export function onControlDevice(id: string, value: any) {
   console.log(id, value);
   sdk.controlDeviceData({ [id]: value });
 }
-export function useUserInfo() {
-  const [state, dispatch] = useReducer(reducer, null, initState);
-
-  const onUpdateUserInfo = (info: object) => {
-    dispatch({
-      type: 'update',
-      payload: info
-    });
-  };
-
-  return [
-    state,
-    {
-      onUpdateUserInfo
-    }
-  ];
-}
