@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { Modal } from '@components/base';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
-import { apiControlDeviceData } from '@hooks/useDeviceData';
 import { getThemeType } from '@libs/theme';
+import dayjs from 'dayjs';
 import './measureResult.less';
 
 import HighImage from '../../icons/normal/hight-pressure-result.svg';
@@ -69,9 +69,6 @@ const MeasureResult = ({ isShow, onClose }) => {
   };
   const [dataUser, setDataUser] = useState();
   const handleCommit = () => {
-    apiControlDeviceData({
-      spray_mode: dataUser
-    });
     onClose();
   };
   return (
@@ -83,7 +80,7 @@ const MeasureResult = ({ isShow, onClose }) => {
     >
       <div className="head">
         <div className="head-title">血压正常</div>
-        <div className="head-time">2021-10-1 10:22</div>
+        <div className="head-time">{dayjs(sdk.deviceData.measure ? sdk.deviceData.measure : new Date()).format('YYYY-MM-DD HH:mm')}</div>
       </div>
       <div className="measure-result">
         <div className="title">

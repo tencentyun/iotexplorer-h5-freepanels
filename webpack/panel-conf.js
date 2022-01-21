@@ -1,5 +1,9 @@
 module.exports = {
+<<<<<<< HEAD
   ImmersionSensor: {
+=======
+  BloodPressureMeter: {
+>>>>>>> sklf
     enable: true,
     viewportWidth: 1125,
     panels: [

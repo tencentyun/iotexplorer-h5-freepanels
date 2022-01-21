@@ -126,7 +126,7 @@ export function Container() {
     switch (themeType) {
       case 'normal':
         return (
-          <SvgIcon name="icon-body-scales-mine-normal" width={65} height={65} />
+          <SvgIcon name="icon-body-scales-mine-normal" width={40} height={40} />
         );
       case 'blueWhite':
         return (

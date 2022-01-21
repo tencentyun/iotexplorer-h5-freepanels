@@ -9,7 +9,7 @@ import { getThemeType } from '@libs/theme';
 import { apiControlDeviceData, onControlDevice, useDeviceData} from '@hooks/useDeviceData';
 import { useUserInfo } from '@hooks/useUserInfo';
 import { numberToArray, toggleBooleanByNumber} from '@libs/utillib';
-import NickName from "./nickName/nickName";
+import NickName from './nickName/nickName';
 import dayjs from 'dayjs';
 import './mine.less';
 
