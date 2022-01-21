@@ -93,55 +93,6 @@ export function ListPicker(props: ListPickerProps) {
     }
   };
 
-  const themeColor: any = {
-    normal: { 
-      selected: {
-        color: '#000000'
-      },
-      unselected: {
-        color: '#B5C4D1'
-      }
-    },
-    blueWhite: {
-      selected: {
-        color: '#2885FE'
-      },
-      unselected: {
-        color: '#0F0F0F'
-      }
-    },
-    dark: {
-      selected: {
-        gradientId: 'icon',
-        startColor: '#00F0FF',
-        endColor: '#704DF0',
-        x1: '11.8644068%',
-        y1: '18.182147%',
-        x2: '104.602754%',
-        y2: '88.2505064%'
-      },
-      unselected: {
-        color: '#A6AFC2'
-      }
-    },
-    colorful: {
-      selected: {
-        color: '#ED2F26'
-      },
-      unselected: {
-        color: '#B5C4D1'
-      }
-    },
-    morandi: {
-      selected: {
-        color: '#B5ABA1'
-      },
-      unselected: {
-        color: '#B5C4D1'
-      }
-    }
-  };
-
   const selectItem = (item: Option) => {
     const isSelected = checkList.indexOf(item.value) > -1;
 
@@ -156,10 +107,15 @@ export function ListPicker(props: ListPickerProps) {
       >
         <div className="item-label">{item.label}</div>
         <div className="item-select-icon">
-          <SvgIcon
-            name={isSelected ? 'icon-selected' : 'icon-unselected'}
-            {...themeColor[theme][isSelected ? 'selected' : 'unselected']}
-          />
+          {
+            theme === 'dark' ? 
+            <SvgIcon
+              name={isSelected ? 'icon-selected-dark' : 'icon-unselected'}
+            /> : 
+            <SvgIcon
+              name={isSelected ? 'icon-selected' : 'icon-unselected'}
+            />
+          }
         </div>
       </div>
     );
