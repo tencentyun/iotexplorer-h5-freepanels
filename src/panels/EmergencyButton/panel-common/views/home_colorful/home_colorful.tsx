@@ -40,7 +40,7 @@ export function Home_colorful() {
 
         <div className="icon_card">
           <div className="head-icon">
-            <SvgIcon name={'icon-emergency-button-' + themeType} width={202} height={201}/>
+            <SvgIcon name={'icon-emergency-button-' + themeType} width={160} height={160}/>
           </div>
 
           <div id={'center_scale'}>
@@ -70,7 +70,7 @@ export function Home_colorful() {
           }
           valueStyle="gray"
           size="medium"
-          prefixIcon={<SvgIcon name={'icon-emergency-disarm-' + themeType} width={58} height={63}/>}
+          prefixIcon={<SvgIcon name={'icon-emergency-disarm-' + themeType} width={40} height={40}/>}
         />
 
         <Cell
@@ -92,7 +92,7 @@ export function Home_colorful() {
           }
           valueStyle="gray"
           size="medium"
-          prefixIcon={<SvgIcon name={'icon-emergency-go-out-and-arm-' + themeType} width={58} height={63}/>}
+          prefixIcon={<SvgIcon name={'icon-emergency-go-out-and-arm-' + themeType} width={40} height={40}/>}
         />
 
         <Cell
@@ -114,7 +114,7 @@ export function Home_colorful() {
           }
           valueStyle="gray"
           size="medium"
-          prefixIcon={<SvgIcon name={'icon-emergency-arm-your-home-' + themeType} width={58} height={63}/>}
+          prefixIcon={<SvgIcon name={'icon-emergency-arm-your-home-' + themeType} width={40} height={40}/>}
         />
 
         <Cell
@@ -136,7 +136,7 @@ export function Home_colorful() {
           }
           valueStyle="gray"
           size="medium"
-          prefixIcon={<SvgIcon name={'icon-emergency-urgent-' + themeType} width={57.6} height={55.2}/>}
+          prefixIcon={<SvgIcon name={'icon-emergency-urgent-' + themeType} width={45} height={45}/>}
         />
       </div>
     </article>

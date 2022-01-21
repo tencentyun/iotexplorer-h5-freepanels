@@ -29,7 +29,7 @@ export function Curtain_button() {
              onClick={() => openLeave(0)}>
           <SvgIcon
             name={sdk.deviceData.control === 'open' && 'icon-curtains-open-unlock-normal' || 'icon-curtains-open-normal'}
-            color="#FFFFF" width={89} height={32}/>
+            color="#FFFFF" width={60} height={20}/>
           <div className="curtain_button_font">
             开启
           </div>
@@ -37,14 +37,14 @@ export function Curtain_button() {
         <div className="button_center" id="power" onClick={onSwitch}>
           <SvgIcon
             name={!sdk.deviceData.control || sdk.deviceData.control === 'pause' ? 'icon-curtains-total-unlock-normal' : 'icon-curtains-total-paused-normal'}
-            color="#000000" width={180} height={180}/>
+            color="#000000" width={120} height={120}/>
         </div>
 
         <div className={classNames("button_left", sdk.deviceData.control === 'close' && "button_select")}
              onClick={() => openLeave(100)}>
           <SvgIcon
             name={sdk.deviceData.control === 'close' && 'icon-curtains-close-unlock-normal' || 'icon-curtains-close-normal'}
-            color="#FFFFF" width={89} height={32}/>
+            color="#FFFFF" width={60} height={20}/>
           <div className="curtain_button_font">
             关闭
           </div>

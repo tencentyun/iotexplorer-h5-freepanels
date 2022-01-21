@@ -6,6 +6,8 @@ import {getThemeType} from '@libs/theme';
 import { apiControlDeviceData, onControlDevice} from '@hooks/useDeviceData';
 import {Cell, Switch} from '@components/base';
 import {ListPicker} from '@components/business';
+import IconChecked from '@components/base/icon-checked/icon-checked';
+
 import './setup_page.less';
 
 export function SetupPage() {
@@ -95,6 +97,7 @@ export function SetupPage() {
           <ListPicker
             visible={batteryStateVisible}
             title="电池电量状态"
+            
             defaultValue={[
               sdk.deviceData.battery_state ? sdk.deviceData.battery_state : ''
             ]}

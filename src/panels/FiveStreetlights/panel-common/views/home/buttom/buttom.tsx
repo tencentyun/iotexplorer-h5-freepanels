@@ -38,7 +38,7 @@ export function Buttom() {
         <div className="icon">
           <SvgIcon
             name={sdk.deviceData.power_switch === 1 && 'icon-five-bw-timer-' + themeType || 'icon-five-bw-timer-' + themeType + '2'}
-            color="#000000" width={79} height={79}/>
+            color="#000000" width={60} height={60}/>
         </div>
 
         <div className="timing_font">
@@ -48,13 +48,13 @@ export function Buttom() {
       <div id="power" onClick={handlePower}>
         <SvgIcon
           name={sdk.deviceData.power_switch === 1 && 'icon-five-bw-switch-' + themeType || 'icon-five-bw-switch-' + themeType + '2'}
-          color="#000000" width={180} height={180}/>
+          color="#000000" width={140} height={140}/>
       </div>
       <div className="buttom_timing" onClick={handleCountdown}>
         <div className="icon">
           <SvgIcon
             name={sdk.deviceData.power_switch === 1 && 'icon-five-bw-countdown-' + themeType || 'icon-five-bw-countdown-' + themeType + '2'}
-            color="#000000" width={54} height={79}/>
+            color="#000000" width={60} height={60}/>
         </div>
         <div className="timing_font">
           倒计时
