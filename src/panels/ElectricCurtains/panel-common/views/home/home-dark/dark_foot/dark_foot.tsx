@@ -8,8 +8,12 @@ import {useHistory} from 'react-router-dom';
 
 export function Dark_foot() {
   const history = useHistory();
+
   const onCurtainWork = () => {
-    history.push('/curtain_more')
+    history.push('/curtain_more');
+    // history.push('/timer');
+
+    
   }
 
   const [selectTheCurtain, theCurtain_options] = useState(false);
@@ -52,7 +56,7 @@ export function Dark_foot() {
              onClick={onCurtainWork}
         >
           <div className="box_icon">
-            <SvgIcon name={'icon-curtains-more-dark'} color="#FFFFF" width={98} height={32}/>
+            <SvgIcon name={'icon-curtains-more-dark'} color="#FFFFF" width={60} height={20}/>
           </div>
           <div className="card_font1">
             更多

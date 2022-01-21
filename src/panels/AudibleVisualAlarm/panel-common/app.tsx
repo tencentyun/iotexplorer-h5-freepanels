@@ -12,6 +12,8 @@ import '@icons/themes/global.less';
 import '@icons/themes/icons/svg/audible-visual-alarm';
 import './style.less';
 import './themes.less'; // 4套皮肤 构建前要修改var.less变量文件
+import 'antd-mobile/es/global'
+import  '@icons/themes/icons/svg/common'
 
 export function App() {
   const isBluetoothDevice = true;

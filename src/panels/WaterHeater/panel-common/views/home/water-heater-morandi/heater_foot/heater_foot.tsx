@@ -36,13 +36,13 @@ export function Normal_Foot() {
           <div className="botton_span">
             <div onClick={onMinus}><SvgIcon
               name={sdk.deviceData.power_switch == 1 && 'icon-water-heater-subtract-morandi2' || 'icon-water-heater-subtract-morandi'}
-              width={280} height={280}/></div>
+              width={230} height={230}/></div>
             <div onClick={onSwitch}><SvgIcon
               name={sdk.deviceData.power_switch == 1 && 'icon-water-heater-switch-morandi2' || 'icon-water-heater-switch-morandi'}
-              width={200} height={200}/></div>
+              width={170} height={170}/></div>
             <div onClick={onAdd}><SvgIcon
               name={sdk.deviceData.power_switch == 1 && 'icon-water-heater-add-morandi2' || 'icon-water-heater-add-morandi'}
-              width={280} height={280}/></div>
+              width={230} height={230}/></div>
           </div>
         </div>
       </div>

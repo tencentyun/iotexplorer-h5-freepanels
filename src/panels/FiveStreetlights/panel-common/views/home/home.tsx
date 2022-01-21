@@ -40,7 +40,7 @@ export function Home() {
         <div className="menu_left" onClick={onClickLeft}>
           <SvgIcon
             name={sdk.deviceData.power_switch != 1 && ('icon-five-bw-whitemode-' + themeType + '1') || (stateFlag == 0 && 'icon-five-bw-whitemode-' + themeType || 'icon-five-bw-whitemode-' + themeType + '2')}
-            color="#000000" width={65} height={65}/>
+            color="#000000" width={50} height={50}/>
           {/* <div id={'menu-left-font'} className={classNames(sdk.deviceData.power_switch != 1 && "menu_left_font" || (stateFlag==0 &&"select_font_color"||""))}>白光</div> */}
           <div id={'menu-left-font'}
                className={classNames("menu_left_font", stateFlag == 0 && "select_font_color" || "")}>白光
@@ -51,7 +51,7 @@ export function Home() {
         <div className="menu_center" onClick={onClickMiddle}>
           <SvgIcon
             name={sdk.deviceData.power_switch != 1 && ('icon-five-bw-coloredmode-' + themeType + '1') || (stateFlag == 1 && 'icon-five-bw-coloredmode-' + themeType || 'icon-five-bw-coloredmode-' + themeType + '2')}
-            color="#000000" width={65} height={65}/>
+            color="#000000" width={50} height={50}/>
 
           {/* <SvgIcon name={stateFlag==1 && 'icon-five-bw-coloredmode-'+ themeType || 'icon-five-bw-coloredmode-' + themeType + '2'} color="#000000" width={65} height={65}/> */}
           <div id={'menu-center-font'}
@@ -62,7 +62,7 @@ export function Home() {
         <div className="menu_right" onClick={onClickRight}>
           <SvgIcon
             name={sdk.deviceData.power_switch != 1 && ('icon-five-bw-scene-' + themeType + '1') || (stateFlag == 2 && 'icon-five-bw-scene-' + themeType || 'icon-five-bw-scene-' + themeType + '2')}
-            color="#000000" width={65} height={65}/>
+            color="#000000" width={50} height={50}/>
 
           {/* <SvgIcon name={stateFlag==2 && 'icon-five-bw-scene-'+ themeType || 'icon-five-bw-scene-'+ themeType + '2'} color="#000000" width={65} height={65}/> */}
           <div id={'menu-right-font'}
@@ -79,7 +79,7 @@ export function Home() {
         <div className="menu_left" onClick={onClickLeft}>
           <SvgIcon
             name={sdk.deviceData.power_switch != 1 && ('icon-five-bw-whitemode-' + themeType + '2') || (stateFlag == 0 && 'icon-five-bw-whitemode-' + themeType || 'icon-five-bw-whitemode-' + themeType + '2')}
-            color="#000000" width={65} height={65}/>
+            color="#000000" width={50} height={50}/>
           <div id={'menu-left-font'}
                className={classNames("menu_left_font", stateFlag == 0 && "select_font_color" || "")}>白光
           </div>
@@ -88,7 +88,7 @@ export function Home() {
         <div className="menu_center" onClick={onClickMiddle}>
           <SvgIcon
             name={sdk.deviceData.power_switch != 1 && ('icon-five-bw-coloredmode-' + themeType + '2') || (stateFlag == 1 && 'icon-five-bw-coloredmode-' + themeType || 'icon-five-bw-coloredmode-' + themeType + '2')}
-            color="#000000" width={65} height={65}/>
+            color="#000000" width={50} height={50}/>
 
           {/* <SvgIcon name={stateFlag==1 && 'icon-five-bw-coloredmode-'+ themeType || 'icon-five-bw-coloredmode-' + themeType + '2'} color="#000000" width={65} height={65}/> */}
           <div id={'menu-center-font'}
@@ -99,7 +99,7 @@ export function Home() {
         <div className="menu_right" onClick={onClickRight}>
           <SvgIcon
             name={sdk.deviceData.power_switch != 1 && ('icon-five-bw-scene-' + themeType + '2') || (stateFlag == 2 && 'icon-five-bw-scene-' + themeType || 'icon-five-bw-scene-' + themeType + '2')}
-            color="#000000" width={65} height={65}/>
+            color="#000000" width={50} height={50}/>
 
           {/* <SvgIcon name={stateFlag==2 && 'icon-five-bw-scene-'+ themeType || 'icon-five-bw-scene-'+ themeType + '2'} color="#000000" width={65} height={65}/> */}
           <div id={'menu-right-font'}

@@ -162,7 +162,7 @@ export function Curtain_options() {
       <div className="button_model">
         <div className="options_box" onClick={onCurtain}>
           <div>
-            <SvgIcon name={'icon-curtains-motor-reverse-normal'} color="#FFFFF" width={67} height={71}/>
+            <SvgIcon name={'icon-curtains-motor-reverse-normal'} color="#FFFFF" width={55} height={55}/>
           </div>
           <div className="options_font1">
             电机反向
@@ -171,8 +171,8 @@ export function Curtain_options() {
 
         <div className="options_box" onClick={onWork}>
           <div className="icon_wh">
-            <SvgIcon className="icon_margtop" name={'icon-curtains-morning-mode-normal'} color="#FFFFF" width={204}
-                     height={225}/>
+            <SvgIcon className="icon_margtop" name={'icon-curtains-morning-mode-normal'} color="#FFFFF" width={150}
+                     height={150}/>
           </div>
           <div className="options_font2">
             早安模式
@@ -183,7 +183,7 @@ export function Curtain_options() {
              onClick={onCurtainWork}
         >
           <div>
-            <SvgIcon name={'icon-curtains-more-normal'} color="#FFFFF" width={81.5} height={23}/>
+            <SvgIcon name={'icon-curtains-more-normal'} color="#FFFFF" width={60} height={20}/>
           </div>
           <div className="options_font3">
             更多

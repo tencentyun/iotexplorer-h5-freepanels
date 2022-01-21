@@ -118,7 +118,7 @@ export function Home() {
             value={sdk.deviceData.alert_state === 1 ? '布防' : '撤防'}
             valueStyle="gray"
             size="medium"
-            prefixIcon={<SvgIcon name={'icon-audible-bw-deployed-' + themeType} width={58} height={63}/>}
+            prefixIcon={<SvgIcon name={'icon-audible-bw-deployed-' + themeType} width={40} height={40}/>}
             onClick={() => {
               onToggleAlarmState(true);
             }}
@@ -164,7 +164,7 @@ export function Home() {
             value=""
             valueStyle="gray"
             size="medium"
-            prefixIcon={<SvgIcon name={'icon-audible-bw-setup-' + themeType} width={52} height={52}/>}
+            prefixIcon={<SvgIcon name={'icon-audible-bw-setup-' + themeType} width={40} height={40}/>}
             onClick={() => onClick('/setupPage')}
           />
           <AlarmStatus

@@ -47,7 +47,7 @@ export function Normal_Foot() {
         <div className="foot_botton">
           <div className="botton_span">
             <div onClick={onMinus}><SvgIcon name={'icon-water-heater-subtract-dark'} width={280} height={280}/></div>
-            <div onClick={onSwitch}><SvgIcon name={sdk.deviceData.power_switch == 1 && 'icon-water-heater-switch-dark2' || 'icon-water-heater-switch-dark'} width={200} height={200}/></div>
+            <div onClick={onSwitch}><SvgIcon name={sdk.deviceData.power_switch == 1 && 'icon-water-heater-switch-dark2' || 'icon-water-heater-switch-dark'} width={170} height={170}/></div>
             <div onClick={onAdd}><SvgIcon name={'icon-water-heater-add-dark'} width={280} height={280}/></div>
           </div>
         </div>
