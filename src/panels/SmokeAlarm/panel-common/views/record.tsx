@@ -1,8 +1,8 @@
 /*
  * @Description: 烟雾报警器记录
  */
-
 import React, { useState, useEffect } from 'react';
+import classNames from 'classnames';
 import { Steps } from 'antd-mobile';
 import dayjs from 'dayjs';
 
@@ -100,7 +100,7 @@ export function Record() {
   };
 
   return (
-    <main className="smoke-alarm-record">
+    <main className={classNames('smoke-alarm-record', {'bottom-fill': recordList.length > 0 })}>
       {recordList.length > 0 ? (
         <Steps direction="vertical">
           {recordList.map((value, index) => (

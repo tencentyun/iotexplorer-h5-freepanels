@@ -37,13 +37,13 @@ export function Settings() {
   const getVolDesc = (type: string): string => {
     const { alarm_vol } = state.templateMap;
 
-    return alarm_vol.define.mapping[type];
+    return alarm_vol.define.mapping[type] || '';
   };
   // 获取铃声字段
   const getRingtoneData = (type: string): string => {
     const { alarm_ringtone } = state.templateMap;
 
-    return alarm_ringtone.define.mapping[type];
+    return alarm_ringtone.define.mapping[type] || '';
   };
 
   const volOptions = () => {
@@ -54,7 +54,10 @@ export function Settings() {
       }));
       return options.length > 0 ? options : [];
     }
-    return [];
+    return [{
+      label: 'asdfasdfas',
+      value: '1'
+    }];
   };
 
   const ringtoneOptions = () => {
@@ -95,7 +98,7 @@ export function Settings() {
             ></Cell>
             <Cell
               title="设备自检结果"
-              value={deviceData.checking_result}
+              value={deviceData.checking_result || '无'}
               valueStyle={'gray'}
               size="medium"
               isLink={false}
@@ -110,9 +113,10 @@ export function Settings() {
               }}
             >
               <ListPicker
+                theme={themeType}
                 visible={alarmVolVisible}
                 title="报警音量"
-                defaultValue={[getVolDesc(deviceData.alarm_vol)]}
+                defaultValue={[deviceData.alarm_vol]}
                 options={volOptions()}
                 onCancel={() => onToggleAlarmVol(false)}
                 onConfirm={value => {
@@ -131,9 +135,10 @@ export function Settings() {
               }}
             >
               <ListPicker
+                theme={themeType}
                 visible={alarmRingtoneVisible}
                 title="报警铃声"
-                defaultValue={[getRingtoneData(deviceData.alarm_ringtone)]}
+                defaultValue={[deviceData.alarm_ringtone]}
                 options={ringtoneOptions()}
                 onCancel={() => onToggleAlarmRingtone(false)}
                 onConfirm={value => {
@@ -152,6 +157,7 @@ export function Settings() {
               }}
             >
               <ValuePicker
+                theme={themeType}
                 visible={alarmTimeVisible}
                 value={[
                   deviceData.alarm_time ? deviceData.alarm_time.toString() : ''
@@ -193,7 +199,7 @@ export function Settings() {
               value={
                 <Switch
                   name="mode"
-                  // theme={themeType}
+                  theme={themeType}
                   checked={
                     deviceData.muffling
                       ? toggleBooleanByNumber(deviceData.muffling)

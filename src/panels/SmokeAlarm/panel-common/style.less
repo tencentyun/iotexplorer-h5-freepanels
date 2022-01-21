@@ -3,6 +3,10 @@ html, body {
   user-select: none;
 }
 
+p {
+  margin: 0;
+}
+
 .smoke-alarm {
   padding: 60px 69px 60px 78px;
   min-height: 100vh;
@@ -68,15 +72,12 @@ html, body {
       justify-content: center;
       width: 295px;
       height: 300px;
+      padding: 55px 75px;
       .button-icon {
         display: block;
         width: 78px;
         height: 78px;
         margin-bottom: 40px;
-      }
-      .icon-record {
-        background: url('~@/assets/icons/gas-alarm/icon-record-normal.svg') no-repeat center;
-        background-size: 100% 100%;
       }
       .button-name {
         line-height: 50px;
@@ -108,7 +109,7 @@ html, body {
 
 .smoke-alarm-record {
   min-height: 100vh;
-  padding: 0 80px 400px 78px;
+  padding: 0 80px 0 78px;
   .no-record-tips {
     padding-top: 867px;
     font-family: PingFangSC-Medium;
@@ -231,6 +232,10 @@ html, body {
   }
 }
 
+.bottom-fill {
+  padding-bottom: 400px;
+}
+
 body.theme_blue_white {
   .smoke-alarm {
     background-image: linear-gradient(180deg, #45A3FF 6%, #005BFF 100%);
@@ -256,12 +261,6 @@ body.theme_blue_white {
   }
   .footer-button {
     color: #323232;
-    & > .button-block {
-      .icon-record {
-        background: url('~@/assets/icons/gas-alarm/icon-record-blue.svg') no-repeat center;
-        background-size: 100% 100%;
-      }
-    }
   } 
 
   .smoke-alarm-record {
@@ -300,12 +299,6 @@ body.theme_dark {
   }
   .footer-button {
     color: #FFFFFF;
-    & > .button-block {
-      .icon-record {
-        background: url('~@/assets/icons/gas-alarm/icon-record-dark.svg') no-repeat center;
-        background-size: 100% 100%;
-      }
-    }
   } 
   .alarm-setting {
     .setting-block {
@@ -383,12 +376,6 @@ body.theme_colorful {
   }
   .footer-button {
     color: #323232;
-    & > .button-block {
-      .icon-record {
-        background: url('~@/assets/icons/gas-alarm/icon-record-colorful.svg') no-repeat center;
-        background-size: 100% 100%;
-      }
-    }
   }
   .smoke-alarm-record {
     .adm-step-icon-dot {
@@ -425,12 +412,6 @@ body.theme_morandi {
     .footer-button {
       padding: 0 79px 0 78px;
       color: #323232;
-      & > .button-block {
-        .icon-record {
-          background: url('~@/assets/icons/gas-alarm/icon-record-morandi.svg') no-repeat center;
-          background-size: 100% 100%;
-        }
-      }
     }
   }
   .smoke-alarm-record {

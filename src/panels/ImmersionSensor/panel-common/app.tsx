@@ -10,7 +10,7 @@ import { DeviceContext } from './deviceContext';
 
 import 'antd-mobile/es/global';
 import '@icons/themes/global.less';
-import '@icons/themes/icons/svg/immersion-alarm';
+import '@icons/themes/icons/svg/immersion-sensor';
 import './style.less';
 
 import { Home } from './views/home';

@@ -3,6 +3,7 @@
  */
 
 import React, { useState, useEffect } from 'react';
+import classNames from 'classnames';
 import { Steps } from 'antd-mobile';
 import dayjs from 'dayjs';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
@@ -99,7 +100,7 @@ export function Record() {
   };
 
   return (
-    <main className="immersion-sensor-record">
+    <main className={classNames('immersion-sensor-record', {'bottom-fill': recordList.length > 0 })}>
       {recordList.length > 0 ? (
         <Steps direction="vertical">
           {recordList.map((value, index) => (

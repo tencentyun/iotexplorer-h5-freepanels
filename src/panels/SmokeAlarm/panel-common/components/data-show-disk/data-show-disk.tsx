@@ -3,7 +3,7 @@
  */
 import React from 'react';
 import classNames from 'classnames';
-import { getThemeType } from '@/business';
+import { getThemeType } from '@libs/theme';
 import './data-show-disk.less';
 
 const themeType = getThemeType();

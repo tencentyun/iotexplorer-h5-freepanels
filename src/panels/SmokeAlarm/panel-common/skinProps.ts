@@ -1,4 +1,4 @@
-import { getThemeType } from '@/business';
+import { getThemeType } from '@libs/theme';
 const themeType = getThemeType();
 
 const skinProps = {
@@ -29,12 +29,22 @@ const skinProps = {
       color: 'white'
     },
     record: {
-      color: '#2885FE'
+      gradientId: 'record',
+      startColor: '#0DDFFE',
+      endColor: '#2885FE',
+      x1: '18.8378836%',
+      y1: '13.9723887%',
+      x2: '100%',
+      y2: '100%'
     },
     settings: {
       gradientId: 'setting',
       startColor: '#0DDFFE',
-      endColor: '#2885FE'
+      endColor: '#2885FE',
+      x1: '18.8378836%',
+      y1: '13.9723887%',
+      x2: '100%',
+      y2: '100%'
     }
   },
   colorful: {
@@ -44,12 +54,20 @@ const skinProps = {
     record: {
       gradientId: 'record',
       startColor: '#27E75B',
-      endColor: '#01E1A9'
+      endColor: '#01E1A9',
+      x1: '18.8378836%',
+      y1: '13.9723887%',
+      x2: '100%',
+      y2: '100%'
     },
     settings: {
       gradientId: 'setting',
       startColor: '#FFDA01',
-      endColor: '#FFC405'
+      endColor: '#FFC405',
+      x1: '18.8378836%',
+      y1: '13.9723887%',
+      x2: '100%',
+      y2: '100%'
     }
   },
   morandi: {

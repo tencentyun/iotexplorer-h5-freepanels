@@ -137,7 +137,7 @@ export function Home() {
                   ? statusLabel[Number(recordStatus)]
                   : '暂无数据'}
               </span>
-            ) : <span>暂无数据</span>}
+            ) : <span>暂无报警</span>}
           </div>
           <div className="footer-button">
             <Block className="button-block" onClick={handleMoreRecording}>

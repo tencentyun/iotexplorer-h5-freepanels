@@ -3,8 +3,8 @@
  */
 import React from 'react';
 import classNames from 'classnames';
-import { SvgIcon } from '@/components/common';
-import { getThemeType } from '@/business';
+import { SvgIcon } from '@components/common';
+import { getThemeType } from '@libs/theme';
 import './data-show-disk.less';
 
 const themeType = getThemeType();

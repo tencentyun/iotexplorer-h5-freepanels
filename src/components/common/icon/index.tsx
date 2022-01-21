@@ -19,6 +19,10 @@ export interface SvgIconProps extends StyledProps {
   gradientId?: string;
   startColor?: string;
   endColor?: string;
+  x1?: string;
+  x2?: string;
+  y1?: string;
+  y2?: string;
 }
 
 interface IconStyle {
@@ -33,7 +37,6 @@ export function SvgIcon(props: SvgIconProps) {
   const theme: SvgIconProps['theme'] = props.theme || ENVIRO_THEME || 'normal';
   // 根据 theme 类型，渲染不同类型的 icon
   const iconName = `#${props.name}`;
-  console.log(iconName);
   const iconStyle = () => {
     const style: IconStyle = {};
 
@@ -69,10 +72,10 @@ export function SvgIcon(props: SvgIconProps) {
         <defs>
           <linearGradient
             id={props.gradientId}
-            x1="0%"
-            y1="0%"
-            x2="0%"
-            y2="100%"
+            x1={props.x1 ? props.x1 : '0%'}
+            y1={props.y1 ? props.y1 : '0%'}
+            x2={props.x2 ? props.x2 : '0%'}
+            y2={props.y2 ? props.y2 : '100%'}
           >
             <stop
               offset="0%"

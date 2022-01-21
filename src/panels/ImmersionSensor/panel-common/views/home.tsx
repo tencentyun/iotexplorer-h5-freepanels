@@ -134,7 +134,11 @@ export function Home() {
           </div>
           <div className="footer-button">
             <Block className="button-block" onClick={handleMoreRecording}>
-              <div className="button-icon icon-record"></div>
+              <SvgIcon
+                className="button-icon"
+                name="icon-record"
+                {...CurrentSkinProps.record}
+              />
               <p className="button-name">更多记录</p>
             </Block>
             <Block className="button-block" onClick={handleSetting}>

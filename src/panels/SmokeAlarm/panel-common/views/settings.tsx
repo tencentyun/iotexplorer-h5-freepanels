@@ -83,7 +83,7 @@ export function Settings() {
             ></Cell>
             <Cell
               title="设备自检结果"
-              value={deviceData['checking_result']}
+              value={deviceData['checking_result'] || '无'}
               valueStyle={'gray'}
               size="medium"
               isLink={false}
