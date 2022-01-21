@@ -131,6 +131,9 @@ export function Home() {
   const handleSwitch = () => {
     onControlDevice('power_switch', 1);
   };
+  const handleSetting = () => {
+    sdk.goDeviceDetailPage({});
+  };
   return (
     <article className={classNames('home')}>
       {/*仪表盘*/}
@@ -150,8 +153,8 @@ export function Home() {
               }
               color={BatteryColor()}
             />
-            <div className="setting">
-              设备 <img src={settingImageSrc()} alt="" />
+            <div className="setting" >
+              设备 <img src={settingImageSrc()} alt="" onClick={handleSetting}/>
             </div>
           </div>
           <div className="my-head" onClick={handleMyInfo}>

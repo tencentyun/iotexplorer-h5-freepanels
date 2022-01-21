@@ -1,5 +1,5 @@
 module.exports = {
-  BodyScales: {
+  BloodPressureMeter: {
     enable: true,
     viewportWidth: 1125,
     panels: [

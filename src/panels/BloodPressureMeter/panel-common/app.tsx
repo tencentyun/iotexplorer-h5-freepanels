@@ -9,7 +9,9 @@ import { useDeviceData } from '@hooks/useDeviceData';
 import { Home } from './views/home/home';
 import { Record } from './views/record/record';
 import { MyInfo } from './views/myInfo/myInfo';
+import 'antd-mobile/es/global';
 import '@icons/themes/global.less';
+import '@icons/themes/icons/svg/common';
 import './style.less';
 import './themes.less'; // 4套皮肤 构建前要修改var.less变量文件
 
