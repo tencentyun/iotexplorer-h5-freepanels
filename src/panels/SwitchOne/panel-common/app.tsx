@@ -12,7 +12,7 @@ import { useDeviceData } from '@hooks/useDeviceData';
 import { DeviceSateContext } from './deviceStateContext';
 
 import 'antd-mobile/es/global';
-import '../../themes/global.less';
+import '@icons/themes/global.less';
 import './style.less';
 
 import { Home } from './views/home';

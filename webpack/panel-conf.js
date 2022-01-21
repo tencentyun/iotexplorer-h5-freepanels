@@ -1,9 +1,5 @@
 module.exports = {
-<<<<<<< HEAD
-  ImmersionSensor: {
-=======
-  BloodPressureMeter: {
->>>>>>> sklf
+  SwitchOne: {
     enable: true,
     viewportWidth: 1125,
     panels: [
