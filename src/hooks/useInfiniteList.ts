@@ -2,7 +2,9 @@ import { useEffect, useState } from 'react';
 
 import { StatusTipProps } from '@components/StatusTip';
 import { getErrorMsg } from '@utillib';
-
+type HashMap = {
+  [key : string]: number | string | any[]
+}
 const initState = {
   list: [],
   context: '',
@@ -27,7 +29,7 @@ interface InfiniteListState<T> {
   total: number;
 }
 
-export const useInfiniteList = <T extends {}>({
+export const useInfiniteList = <T extends HashMap>({
   getData,
   dependences = [],
   shouldUpdate = null,

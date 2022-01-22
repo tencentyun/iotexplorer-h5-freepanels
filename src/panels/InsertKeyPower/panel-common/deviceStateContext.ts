@@ -22,9 +22,9 @@ export const DeviceSateContext: React.Context<{
 }> = createContext({
   deviceStatus: 0,
   deviceData: {
-    power_switch: 0, //电源开关 关开 - -O 1
-    timer_cut: 100, //断电延时 数值范围：0-100 初始值：0 步长：1
-    card_status_report: 0 //枚举值： 0-取卡 1 -插卡
+    power_switch: 0, // 电源开关 关开 - -O 1
+    timer_cut: 100, // 断电延时 数值范围：0-100 初始值：0 步长：1
+    card_status_report: 0, // 枚举值： 0-取卡 1 -插卡
   },
   userInfo: {
     Avatar: '',
@@ -34,7 +34,7 @@ export const DeviceSateContext: React.Context<{
     HasWxOpenID: 1,
     NickName: '',
     PhoneNumber: '',
-    UserID: ''
+    UserID: '',
   },
-  togglePower: noop
+  togglePower: noop,
 });

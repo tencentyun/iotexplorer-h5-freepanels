@@ -3,7 +3,7 @@
  */
 export function addClass(
   target: HTMLElement,
-  className: string | string[]
+  className: string | string[],
 ): void {
   if (typeof className === 'string') {
     target.classList.add(className);
@@ -21,7 +21,7 @@ export function addClass(
  */
 export function removeClass(
   target: Element,
-  className: string | string[]
+  className: string | string[],
 ): void {
   if (typeof className === 'string') {
     target.classList.remove(className);
@@ -45,7 +45,7 @@ export function getOffset(element: any, target?: any): OffsetResult {
   const t = target || window;
   const offset = {
     top: element.offsetTop,
-    left: element.offsetLeft
+    left: element.offsetLeft,
   };
   let parent = element.offsetParent;
   while (parent !== null && parent !== t) {

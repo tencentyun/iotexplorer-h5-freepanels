@@ -38,6 +38,6 @@ export const DeviceSateContext = createContext({
     angle_horizontal: 0,
     display: false,
     uv: false,
-    fresh_air_valve: false
-  }
+    fresh_air_valve: false,
+  },
 });

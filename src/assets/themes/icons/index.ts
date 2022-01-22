@@ -6,8 +6,7 @@
  */
 // import { SvgIcon } from '../../components/common';
 
-const requireAll = (requireContext: any) =>
-  requireContext.keys().map(requireContext);
+const requireAll = (requireContext: any) => requireContext.keys().map(requireContext);
 const req = require.context('./svg', true, /\.svg$/);
 
 requireAll(req);

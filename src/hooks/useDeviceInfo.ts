@@ -70,13 +70,11 @@ function reducer(state: UseDeviceInfoState, action: ReducerAction<UseDeviceInfoA
         };
       }
       case UseDeviceInfoAction.UpdateDeviceStatus:
-        const { deviceStatus } = payload;
-
         return {
           ...state,
           deviceInfo: {
             ...state.deviceInfo,
-            Status: deviceStatus,
+            Status: payload.deviceStatus,
           },
         };
     }

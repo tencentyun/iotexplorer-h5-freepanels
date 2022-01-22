@@ -20,7 +20,7 @@ export const DeviceSateContext: React.Context<{
 }> = createContext({
   deviceStatus: 0,
   deviceData: {
-    tvoc: 0
+    tvoc: 0,
   },
   userInfo: {
     Avatar: '',
@@ -30,7 +30,7 @@ export const DeviceSateContext: React.Context<{
     HasWxOpenID: 1,
     NickName: '',
     PhoneNumber: '',
-    UserID: ''
+    UserID: '',
   },
-  togglePower: noop
+  togglePower: noop,
 });

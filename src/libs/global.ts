@@ -1,7 +1,7 @@
 /**
  * 表示组件支持通过 className 和 style 进行样式定制
  */
-// eslint-disable-next-line no-unused-vars 
+// eslint-disable-next-line no-unused-vars
 export declare interface StyledProps {
   /**
    * 组件自定义类名

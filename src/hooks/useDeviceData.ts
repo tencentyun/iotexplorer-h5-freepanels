@@ -13,27 +13,27 @@ function reducer(
   action: {
     type: string;
     payload: any;
-  }
+  },
 ) {
   const { type, payload } = action;
 
   switch (type) {
     case 'data': {
-      const deviceData: any = state.deviceData;
+      const { deviceData } = state;
 
-      Object.keys(payload || {}).forEach(key => {
+      Object.keys(payload || {}).forEach((key) => {
         deviceData[key] = payload[key].Value;
       });
 
       return {
         ...state,
-        deviceData
+        deviceData,
       };
     }
     case 'status':
       return {
         ...state,
-        deviceStatus: payload
+        deviceStatus: payload,
       };
   }
 
@@ -44,23 +44,21 @@ function initState(sdk: any) {
   const templateMap: any = {};
 
   // 过滤掉 string 和 timestamp 类型
-  const templateList = sdk.dataTemplate.properties.filter(
-    (item: TemplatePropertyConfig) => {
-      if (item.define.type !== 'string' && item.define.type !== 'timestamp') {
-        templateMap[item.id] = item;
+  const templateList = sdk.dataTemplate.properties.filter((item: TemplatePropertyConfig) => {
+    if (item.define.type !== 'string' && item.define.type !== 'timestamp') {
+      templateMap[item.id] = item;
 
-        return true;
-      }
-
-      return false;
+      return true;
     }
-  );
+
+    return false;
+  });
 
   return {
     templateMap,
     templateList,
     deviceData: sdk.deviceData,
-    deviceStatus: sdk.deviceStatus
+    deviceStatus: sdk.deviceStatus,
   };
 }
 
@@ -70,14 +68,14 @@ export function useDeviceData(sdk: any) {
   const onDeviceDataChange = (deviceData: unknown) => {
     dispatch({
       type: 'data',
-      payload: deviceData
+      payload: deviceData,
     });
   };
 
   const onDeviceStatusChange = (deviceStatus: 0 | 1) => {
     dispatch({
       type: 'status',
-      payload: deviceStatus
+      payload: deviceStatus,
     });
   };
 
@@ -85,8 +83,8 @@ export function useDeviceData(sdk: any) {
     state,
     {
       onDeviceDataChange,
-      onDeviceStatusChange
-    }
+      onDeviceStatusChange,
+    },
   ];
 }
 
@@ -102,8 +100,8 @@ export const apiControlDeviceData = (data: any) => {
 };
 
 
-export function formatDeviceData(templateMap: object) {
-  const data: object = {};
+export function formatDeviceData(templateMap: HashMap) {
+  const data: HashMap = {};
 
   Object.keys(templateMap).forEach((key: string) => {
     const templateData: TemplateData = templateMap[key];
@@ -114,7 +112,7 @@ export function formatDeviceData(templateMap: object) {
 
       data[id] = Object.keys(mapping).map((key: string) => ({
         name: key,
-        desc: mapping[key]
+        desc: mapping[key],
       }));
     } else if (define.type === 'int') {
       data[id] = {
@@ -122,7 +120,7 @@ export function formatDeviceData(templateMap: object) {
         max: +(define.max || 0),
         start: +(define.start || 0),
         step: +(define.step || 0),
-        unit: define.unit
+        unit: define.unit,
       };
     }
   });
@@ -136,7 +134,7 @@ export const requestTokenApi = (action: string, data: any) => {
     UserID,
     ProductId,
     DeviceName,
-    ...data
+    ...data,
   });
 };
 
@@ -147,17 +145,17 @@ export function onControlDevice(id: string, value: any) {
 export function useUserInfo() {
   const [state, dispatch] = useReducer(reducer, null, initState);
 
-  const onUpdateUserInfo = (info: object) => {
+  const onUpdateUserInfo = (info: HashMap) => {
     dispatch({
       type: 'update',
-      payload: info
+      payload: info,
     });
   };
 
   return [
     state,
     {
-      onUpdateUserInfo
-    }
+      onUpdateUserInfo,
+    },
   ];
 }
