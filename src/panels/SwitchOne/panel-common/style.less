@@ -3,6 +3,10 @@ html, body {
   user-select: none;
 }
 
+p {
+  margin: 0;
+}
+
 .switch-one-home-view {
   padding-top: 198px;
   padding-bottom: 198px;
@@ -19,24 +23,27 @@ html, body {
       display: flex;
       flex-direction: column;
       align-items: center;
+      width: 300px;
+      height: 300px;
       .button-icon {
         display: block;
-        width: 79px;
-        height: 79px;
         margin-bottom: 44px;
         background-position: center;
         background-repeat: no-repeat;
         background-size: 100% 100%;
       }
       .icon-clock {
-        background-image: url('~@icons/themes/icons/svg/switch-one/timer-normal.svg');
+        width: 79px;
+        height: 79px;
+        background-image: url('images/timer-normal.svg');
       }
       .icon-countdown {
         width: 50px;
         height: 79px;
-        // background-image: url('~@/assets/icons/switch-one/countdown-normal.svg');
+        background-image: url('images/countdown-normal.svg');
       }
       .button-name {
+        line-height: 50px;
         color: #B5C4D1;
       }
 
@@ -53,12 +60,12 @@ body.theme_blue_white {
     .switch-setting {
       & > .setting-button {
         .icon-clock {
-          // background-image: url('~@/assets/icons/switch-one/timer-blue.svg');
+          background-image: url('images/timer-blue.svg');
         }
         .icon-countdown {
           width: 50px;
           height: 79px;
-          // background-image: url('~@/assets/icons/switch-one/countdown-blue.svg');
+          background-image: url('images/countdown-blue.svg');
         }
         .button-name {
           color: #0F0F0F;
@@ -72,12 +79,12 @@ body.theme_dark {
     .switch-setting {
       & > .setting-button {
         .icon-clock {
-          // background-image: url('~@/assets/icons/switch-one/timer-dark.svg');
+          background-image: url('images/timer-dark.svg');
         }
         .icon-countdown {
           width: 50px;
           height: 79px;
-          // background-image: url('~@/assets/icons/switch-one/countdown-dark.svg');
+          background-image: url('images/countdown-dark.svg');
         }
         .button-name {
           color: #B6C4D2;
@@ -91,12 +98,12 @@ body.theme_colorful {
     .switch-setting {
       & > .setting-button {
         .icon-clock {
-          // background-image: url('~@/assets/icons/switch-one/timer-colorful.svg');
+          background-image: url('images/timer-colorful.svg');
         }
         .icon-countdown {
           width: 50px;
           height: 79px;
-          // background-image: url('~@/assets/icons/switch-one/countdown-colorful.svg');
+          background-image: url('images/countdown-colorful.svg');
         }
         .button-name {
           color: #0F0F0F;
@@ -117,12 +124,12 @@ body.theme_morandi {
       margin-top: 129px;
       & > .setting-button {
         .icon-clock {
-          // background-image: url('~@/assets/icons/switch-one/timer-morandi.svg');
+          background-image: url('images/timer-morandi.svg');
         }
         .icon-countdown {
           width: 50px;
           height: 79px;
-          // background-image: url('~@/assets/icons/switch-one/countdown-morandi.svg');
+          background-image: url('images/countdown-morandi.svg');
         }
         .button-name {
           color: #414A5A;

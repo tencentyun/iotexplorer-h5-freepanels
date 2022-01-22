@@ -15,11 +15,11 @@ import dayjs from 'dayjs';
 
 import { DeviceContext } from '../deviceContext';
 import { getThemeType } from '@libs/theme';
-import { CurrentSkinProps } from '../skinProps';
-
-const themeType = getThemeType();
+import { SkinProps } from '../skinProps';
 
 export function Home() {
+  const themeType = getThemeType();
+  const CurrentSkinProps: any = SkinProps[themeType];
   const history = useHistory();
   const [recordTime, setRecordTime] = useState('');
   const [recordStatus, setRecordStatus] = useState('');

@@ -7,8 +7,6 @@ import { SvgIcon } from '@components/common';
 import { getThemeType } from '@libs/theme';
 import './data-show-disk.less';
 
-const themeType = getThemeType();
-
 const skinProps = {
   normal: {
     normal: { color: '#000000' },
@@ -34,8 +32,6 @@ const skinProps = {
 
 const bubbles = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
 
-const currentSkin: any = skinProps[themeType];
-
 interface DiskProps {
   status: string;
   value: number;
@@ -43,6 +39,8 @@ interface DiskProps {
 }
 export function DataShowDisk(props: DiskProps) {
   const { status = 'normal', value = 0, unit = '%' } = props;
+  const themeType = getThemeType();
+  const currentSkin: any = skinProps[themeType];
 
   return (
     <div className="data-show-disk">

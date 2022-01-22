@@ -15,14 +15,13 @@ import { getThemeType } from '@libs/theme';
 import { formatDeviceData, onControlDevice } from '@hooks/useDeviceData';
 import { toggleBooleanByNumber, mapsToOptions } from '@libs/utillib';
 
-const themeType = getThemeType();
-
 interface DeviceMaps {
   alarm_vol: [];
   alarm_ringtone: [];
 }
 
 export function Settings() {
+  const themeType = getThemeType();
   const [state] = useDeviceData(sdk);
   // 从 sdk 读取到的物模型 maps
   const deviceMaps = formatDeviceData((state as any).templateMap) as DeviceMaps;

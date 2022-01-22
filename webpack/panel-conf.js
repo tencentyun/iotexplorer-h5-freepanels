@@ -1,5 +1,5 @@
 module.exports = {
-  SwitchOne: {
+  ImmersionSensor: {
     enable: true,
     viewportWidth: 1125,
     panels: [

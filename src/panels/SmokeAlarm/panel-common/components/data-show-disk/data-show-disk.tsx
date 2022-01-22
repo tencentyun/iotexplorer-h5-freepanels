@@ -6,8 +6,6 @@ import classNames from 'classnames';
 import { getThemeType } from '@libs/theme';
 import './data-show-disk.less';
 
-const themeType = getThemeType();
-
 const circleColor = {
   normal: {
     normal: { color: '#0F0F0F' },
@@ -42,8 +40,6 @@ const circleColor = {
 };
 
 const bubbles = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
-
-const currentColor: any = circleColor[themeType];
 
 interface DiskProps {
   status: string;
@@ -112,6 +108,10 @@ const getViewbox = () => {
 };
 
 export function DataShowDisk(props: DiskProps) {
+  const themeType = getThemeType();
+  console.log(themeType, '!!');
+  const currentColor: any = circleColor[themeType];
+
   const { status = 'normal', value = 0, unit = 'ppm' } = props;
 
   let currentStatus: string = '';

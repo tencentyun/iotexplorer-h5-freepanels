@@ -17,10 +17,7 @@ const themeType = getThemeType();
 
 export function Home() {
   const history = useHistory();
-  const buttonProps = {
-    width: 300,
-    height: 300
-  };
+
   // 倒计时
   const [countDownVisible, onToggleCountDown] = useState(false);
   const [countdownTime, setCountdown] = useState([]);
@@ -61,21 +58,19 @@ export function Home() {
       <div className="switch-setting">
         <Block
           className="setting-button"
-          {...buttonProps}
           onClick={() => {
             handleClock();
           }}
         >
           <div className="button-icon icon-clock"></div>
-          <p className="button-name font_line_2">定时</p>
+          <p className="button-name">定时</p>
         </Block>
         <Block
           className="setting-button"
-          {...buttonProps}
           onClick={handleCountdown}
         >
           <div className="button-icon icon-countdown"></div>
-          <p className="button-name font_line_2">倒计时</p>
+          <p className="button-name">倒计时</p>
         </Block>
       </div>
 

@@ -22,7 +22,7 @@ export declare type ThemeType =
 const THEME_INFO = {theme_type: 'normal'};
 export function getThemeType(): string {
   // webpack 环境变量
-  const { theme_type } = _BUSINESS_ || {};
+  const { theme_type } = THEME_INFO || {};
   // 非预制的主题类型，则使用默认 normal 主题
   return theme_type || 'normal';
 }
