@@ -12,18 +12,16 @@ import { Battery } from '@components/business';
 import { Block } from '@components/layout';
 import { SvgIcon } from '@components/common';
 import { onControlDevice } from '@hooks/useDeviceData';
-import { CurrentSkinProps } from '../skinProps';
+import { getThemeType } from '@libs/theme';
+import { SkinProps } from '../skinProps';
 import dayjs from 'dayjs';
 import './home.less';
 
 export function Home() {
-  const buttonProps = {
-    width: 295,
-    height: 300
-  };
+  const themeType = getThemeType();
+  const CurrentSkinProps: any = SkinProps[themeType];
   const history = useHistory();
   const [state] = useDeviceData(sdk);
-  // @ts-ignore
   const deviceData: any = state.deviceData;
   // 设备状态
   const [isOn, setPowerOn] = useState(false);
@@ -123,22 +121,20 @@ export function Home() {
       <div className="control-area">
         <Block
           className="control-button"
-          {...buttonProps}
           onClick={() => {
             history.push('/records');
           }}
         >
-          <div className="button-icon icon-record"></div>
+          <SvgIcon
+            className="button-icon"
+            name="icon-record"
+            {...CurrentSkinProps.record}
+          />
           <p className="button-name font_line_2">更多记录</p>
         </Block>
         <Block
           className="control-button"
-          {...buttonProps}
           onClick={() => {
-            // sdk.goDeviceDetailPage({
-            //   isShareDevice: false,
-            //   reload: true
-            // });
             sdk.showDeviceDetail();
           }}
         >

@@ -34,7 +34,7 @@ export function Home() {
       <div className="menu_left" onClick={onClickLeft}>
         <SvgIcon
           name={stateFlag == 0 && 'icon-four-bw-whitemode-' + themeType || 'icon-four-bw-whitemode-' + themeType + '1'}
-          color="#000000" width={65} height={65}/>
+          color="#000000" width={40} height={40}/>
         <div id={'menu-left-font'}
              className={classNames("menu_left_font", "menu_font", stateFlag == 0 && "select_font_color" || "")}>白光
         </div>
@@ -43,7 +43,7 @@ export function Home() {
       <div className="menu_center" onClick={onClickMiddle}>
         <SvgIcon
           name={stateFlag == 1 && 'icon-four-bw-coloredmode-' + themeType || 'icon-four-bw-coloredmode-' + themeType + '1'}
-          color="#000000" width={65} height={65}/>
+          color="#000000" width={40} height={40}/>
         <div id={'menu-center-font'}
              className={classNames("menu_center_font", "menu_font", stateFlag == 1 && "select_font_color" || "")}>彩光
         </div>
@@ -51,7 +51,7 @@ export function Home() {
 
       <div className="menu_right" onClick={onClickRight}>
         <SvgIcon name={stateFlag == 2 && 'icon-four-bw-scene-' + themeType || 'icon-four-bw-scene-' + themeType + '1'}
-                 color="#000000" width={65} height={65}/>
+                 color="#000000" width={40} height={40}/>
         <div id={'menu-right-font'}
              className={classNames("menu_right_font", "menu_font", stateFlag == 2 && "select_font_color" || "")}>场景
         </div>

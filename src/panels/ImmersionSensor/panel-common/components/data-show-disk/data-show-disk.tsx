@@ -70,17 +70,19 @@ export function DataShowDisk(props: DiskProps) {
       <div
         className={classNames(
           'bg-bubbles',
-          currentStatus === 'alarm' ? 'animation' : ''
+          { 'bubbles-animation': currentStatus === 'alarm' }
         )}
       >
-        <div>
-          <span></span>
-        </div>
-        <div>
-          <span></span>
-        </div>
-        <div>
-          <span></span>
+        <div className="bubbles-wrap">
+          <div className="bubble">
+            <span></span>
+          </div>
+          <div className="bubble">
+            <span></span>
+          </div>
+          <div className="bubble">
+            <span></span>
+          </div>
         </div>
       </div>
     </div>

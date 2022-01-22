@@ -148,7 +148,7 @@ export function Dark_body() {
       <div className="dark_body_fond" id='power' onClick={onSwitch}>
         <SvgIcon className={"start_btn"}
                  name={!sdk.deviceData.control || sdk.deviceData.control === 'pause' ? 'icon-curtains-total-unlock-dark' : 'icon-curtains-total-paused-dark'}
-                 color="#000000" width={234} height={235}/>
+                 color="#000000" width={140} height={140}/>
       </div>
 
       <div className="dark_body_card">
@@ -157,7 +157,7 @@ export function Dark_body() {
                onClick={() => openLeave(0)}>
             <SvgIcon
               name={sdk.deviceData.control === 'open' && 'icon-curtains-open-unlock-dark' || 'icon-curtains-open-dark'}
-              color="#FFFFF" width={131} height={33}/>
+              color="#FFFFF" width={80} height={20}/>
             {/* <img className="span_open" src={require('../images/curtains-open-blueWhite.png')}></img> */}
             <div className={classNames("open_font", sdk.deviceData.control === 'open' && "font_select")}>
               开启
@@ -168,7 +168,7 @@ export function Dark_body() {
                onClick={() => openLeave(100)}>
             <SvgIcon
               name={sdk.deviceData.control === 'close' && 'icon-curtains-close-unlock-dark' || 'icon-curtains-close-open-dark'}
-              color="#FFFFF" width={131} height={33}/>
+              color="#FFFFF" width={80} height={20}/>
             <div className={classNames("close_font", sdk.deviceData.control === 'close' && "font_select")}>
               关闭
             </div>

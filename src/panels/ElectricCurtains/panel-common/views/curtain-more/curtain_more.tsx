@@ -29,7 +29,7 @@ export function CurtainMore () {
                 //   isLink={false}
                 //   value= "布防中"
                 valueStyle="gray"
-                prefixIcon={<SvgIcon name={'icon-curtains-cloud-timing-'+themeType} width={60} height={60}/>}
+                prefixIcon={<SvgIcon name={'icon-curtains-cloud-timing-'+themeType} width={40} height={40}/>}
                 size="medium"
                 />
 
@@ -53,10 +53,9 @@ export function CurtainMore () {
                 prefixIcon={
                   (themeType == 'dark')?
                   (
-                    {/*<img src={require('../../views/home/img_icon/curtains-self-start-switch-dark.png')} />*/}
-                    // <SvgIcon name={'icon-curtains-self-start-switch-'+themeType} width={60} height={60}/>
+                    <SvgIcon name={'icon-curtains-self-start-switch-'+themeType} width={40} height={40}/>
                     ):
-                    (<SvgIcon name={'icon-curtains-self-start-switch-'+themeType} width={60} height={60}/>
+                    (<SvgIcon name={'icon-curtains-self-start-switch-'+themeType} width={40} height={40}/>
                   )
                 }
                 size="medium"

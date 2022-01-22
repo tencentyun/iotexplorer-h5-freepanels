@@ -54,7 +54,7 @@ export function Colorful_body() {
           <div className="card_botton"
                onClick={onCurtain}
           >
-            <SvgIcon name={'icon-curtains-motor-reverse-colorful'} color="#FFFFF" width={67} height={69}/>
+            <SvgIcon name={'icon-curtains-motor-reverse-colorful'} color="#FFFFF" width={55} height={55}/>
             <div className="card_font">
               电机反向
             </div>
@@ -63,7 +63,7 @@ export function Colorful_body() {
           <div className="card_botton"
                onClick={onWork}
           >
-            <SvgIcon name={'icon-curtains-morning-mode-colorful'} color="#FFFFF" width={68} height={75}/>
+            <SvgIcon name={'icon-curtains-morning-mode-colorful'} color="#FFFFF" width={60} height={60}/>
             <div className="card_font">
               早安模式
             </div>
@@ -72,7 +72,7 @@ export function Colorful_body() {
           <div className="card_botton"
                onClick={onCurtainWork}
           >
-            <SvgIcon name={'icon-curtains-more-colorful'} color="#FFFFF" width={67} height={69}/>
+            <SvgIcon name={'icon-curtains-more-colorful'} color="#FFFFF" width={60} height={60}/>
             <div className="card_font">
               更多
             </div>
@@ -91,7 +91,7 @@ export function Colorful_body() {
                onClick={() => openLeave(0)}>
             <SvgIcon
               name={sdk.deviceData.control === 'open' && 'icon-curtains-open-unlock-colorful' || 'icon-curtains-open-colorful'}
-              color="#FFFFF" width={86.6} height={28.5}/>
+              color="#FFFFF" width={60} height={20}/>
             <div className={classNames("card_font1", sdk.deviceData.control === 'open' && "font_select")}>
               开启
             </div>
@@ -101,24 +101,23 @@ export function Colorful_body() {
           <div className="card_botton1" id='power' onClick={onSwitch}>
             {
               !sdk.deviceData.control || sdk.deviceData.control === 'pause' ?
-                (<SvgIcon name={'icon-curtains-total-unlock-colorful'} color="#FFFFF" width={180} height={180}/>) :
-                (''/*<img className='open_img' src={require('../../img_icon/curtains-total-paused-colorful.png')}/>*/)
-            }
-
-            {/* <SvgIcon name={sdk.deviceData.control === 'pause'&&'icon-curtains-total-paused-colorful'||'icon-curtains-total-unlock-colorful'} color="#000000" width={180} height={180}/>    */}
+                (<SvgIcon name={'icon-curtains-total-unlock-colorful'} color="#FFFFF" width={120} height={120}/>) : (<SvgIcon name={'icon-curtains-total-paused-colorful'} color="#FFFFF" width={120} height={120}/>)
+                /*<img className='open_img' src={require('../../img_icon/curtains-total-paused-colorful.png')}/>*/
+            }                
+            {/* <SvgIcon name={sdk.deviceData.control === 'pause'&&'icon-curtains-total-paused-colorful'||'icon-curtains-total-unlock-colorful'} color="#000000" width={120} height={120}/>    */}
           </div>
 
           {/* <div className="card_botton">
                         <SvgIcon className="botton_icon" name={'icon-curtains-close-colorful'} color="#FFFFF" width={240} height={200}/>
                         <div className="card_font2">
                             关闭
-                        </div>
+                        </div>  
                     </div> */}
           <div className={classNames("card_botton", sdk.deviceData.control === 'close' && "button_select2")}
                onClick={() => openLeave(100)}>
             <SvgIcon
               name={sdk.deviceData.control === 'close' && 'icon-curtains-close-unlock-colorful' || 'icon-curtains-close-colorful'}
-              color="#FFFFF" width={86.6} height={28.5}/>
+              color="#FFFFF" width={60} height={20}/>
             <div className={classNames("card_font2", sdk.deviceData.control === 'close' && "font_select")}>
               关闭
             </div>

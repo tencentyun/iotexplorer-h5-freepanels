@@ -12,10 +12,12 @@ import { Setting } from './views/setting/setting';
 import { PhoneList } from './views/phoneList/phoneList';
 import { Mountings } from './views/mountings/mountings';
 import { AddDevExplanatory } from './views/addDevExplanatory/addDevExplanatory';
+import Timer from "./views/timer/timer"; // 5套皮肤 构建前要修改var.less变量文件
 import 'antd-mobile/es/global';
 import '@icons/themes/global.less';
+import '@icons/themes/icons/svg/common';
 import './style.less';
-import './themes.less'; // 5套皮肤 构建前要修改var.less变量文件
+import './themes.less';
 
 export function App() {
   const isBluetoothDevice = true;
@@ -147,6 +149,9 @@ export function App() {
           <DeviceSateContext.Provider value={state}>
             <Router basename={basename}>
               <Switch>
+                <Route path="/timer">
+                  <Timer />
+                </Route>
                 {/*配件*/}
                 <Route path="/mountings">
                   <Mountings />

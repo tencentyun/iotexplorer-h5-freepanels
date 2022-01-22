@@ -3,6 +3,7 @@
  */
 
 import React, { useState, useEffect } from 'react';
+import classNames from 'classnames';
 import { Steps } from 'antd-mobile';
 import dayjs from 'dayjs';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
@@ -106,7 +107,7 @@ export function Records() {
   };
 
   return (
-    <main className="magnetic-door-record">
+    <main className={classNames('magnetic-door-record', {'bottom-fill': recordList.length > 0 })}>
       {recordList.length > 0 ? (
         <Steps direction="vertical">
           {recordList.map((value, index) => (

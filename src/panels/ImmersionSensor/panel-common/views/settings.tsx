@@ -30,7 +30,7 @@ export function Settings() {
                   theme={themeType}
                   checked={
                     deviceData['muffling']
-                      ? toggleBooleanByNumber(deviceData['muffling'])
+                      ? Boolean(deviceData['muffling'])
                       : false
                   }
                   onChange={(val: boolean) => {

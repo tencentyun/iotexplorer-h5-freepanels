@@ -58,7 +58,7 @@ export function Side_Foot() {
              onClick={onCurtain}
         >
           <div className="icon_reverse">
-            <SvgIcon name={'icon-curtains-motor-reverse-blueWhite'} color="#FFFFF" width={67} height={71}/>
+            <SvgIcon name={'icon-curtains-motor-reverse-blueWhite'} color="#FFFFF" width={55} height={55}/>
           </div>
           <div className="span_font reverse_font">
             电机反向
@@ -69,8 +69,8 @@ export function Side_Foot() {
              onClick={onWork}
         >
           <div className="icon_morning">
-            <SvgIcon className="icon_margtop" name={'icon-curtains-morning-mode-blueWhite'} color="#FFFFF" width={204}
-                     height={225}/>
+            <SvgIcon className="icon_margtop" name={'icon-curtains-morning-mode-blueWhite'} color="#FFFFF" width={160}
+                     height={160}/>
           </div>
           <div className="morning_font">
             早安模式
@@ -81,7 +81,7 @@ export function Side_Foot() {
              onClick={onCurtainWork}
         >
           <div className="icon_curtains">
-            <SvgIcon name={'icon-curtains-more-blueWhite'} color="#FFFFF" width={81.5} height={23}/>
+            <SvgIcon name={'icon-curtains-more-blueWhite'} color="#FFFFF" width={60} height={20}/>
           </div>
           <div className="curtains_font">
             更多
@@ -94,7 +94,7 @@ export function Side_Foot() {
              onClick={() => openLeave(0)}>
           <SvgIcon
             name={sdk.deviceData.control === 'open' && 'icon-curtains-open-unlock-blueWhite' || 'icon-curtains-open-blueWhite'}
-            color="#FFFFF" width={89} height={32}/>
+            color="#FFFFF" width={60} height={20}/>
           {/* <img className="span_open" src={require('../images/curtains-open-blueWhite.png')}></img> */}
           <div className={classNames("open_font", sdk.deviceData.control === 'open' && "font_select")}>
             开启
@@ -111,7 +111,7 @@ export function Side_Foot() {
              onClick={() => openLeave(100)}>
           <SvgIcon
             name={sdk.deviceData.control === 'close' && 'icon-curtains-close-unlock-blueWhite' || 'icon-curtains-close-blueWhite'}
-            color="#FFFFF" width={89} height={32}/>
+            color="#FFFFF" width={60} height={20}/>
           <div className={classNames("close_font", sdk.deviceData.control === 'close' && "font_select")}>
             关闭
           </div>

@@ -78,18 +78,18 @@ export function Bormal_foot() {
         <div onClick={onSwitchFlow} className="water_icon">
           <SvgIcon
             name={sdk.deviceData.switch === 1 && 'icon-purifier-take-water-morandi' || 'icon-purifier-take-water-notopen-morandi'}
-            color="#000000" width={59} height={66}/>
+            color="#000000" width={50} height={50}/>
         </div>
         <div onClick={() => sdk.deviceData.switch === 1 ? setIsShowTempMode(true) : ''}>
           <SvgIcon
             name={sdk.deviceData.switch === 1 && 'icon-purifier-coffee-morandi' || 'icon-purifier-coffee-notopen-morandi'}
-            color="#000000" width={77} height={70}/>
+            color="#000000" width={50} height={50}/>
         </div>
 
         <div onClick={onSetup}>
           <SvgIcon
             name={sdk.deviceData.switch === 1 && 'icon-purifier-setup-morandi' || 'icon-purifier-setup-notopen-morandi'}
-            color="#000000" width={66} height={66}/>
+            color="#000000" width={50} height={50}/>
         </div>
         <TempModel
           isShow={isShowTempModeVisible}

@@ -9,8 +9,8 @@ p {
 }
 
 .immersion-sensor {
-  padding: 60px 69px 60px 78px;
-  min-height: 100vh;
+  padding: 60px 69px 0 78px;
+  min-height: calc(~"100vh - 60px");
   .sensor-header {
     display: flex;
     align-items: center;
@@ -73,6 +73,9 @@ p {
       width: 295px;
       height: 300px;
       padding: 55px 75px;
+      svg {
+        overflow: visible;
+      }
       .button-icon {
         display: block;
         width: 78px;
@@ -89,8 +92,8 @@ p {
 }
 
 .sensor-setting {
-  min-height: 100vh;
-  padding: 108px 84px 300px 76px;
+  min-height: calc(~"100vh - 108px");
+  padding: 108px 84px 0 76px;
   .setting-block {
     padding: 31px 49px 30px 66px;
     ._cell_size_medium_ {
@@ -351,6 +354,7 @@ body.theme_dark {
       color: #FFFFFF;
       .footer-button {
         background-image: linear-gradient(137deg, #333E4D 0%, #222D3B 100%);
+        box-shadow: none;
       }
     }
   }

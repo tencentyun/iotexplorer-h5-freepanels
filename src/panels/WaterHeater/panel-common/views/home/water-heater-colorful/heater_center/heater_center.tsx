@@ -95,13 +95,13 @@ export function Normal_Center() {
         <div className="botton_span">
           <div onClick={onMinus}><SvgIcon
             name={sdk.deviceData.power_switch == 1 && 'icon-water-heater-subtract-colorful2' || 'icon-water-heater-subtract-colorful'}
-            width={280} height={280}/></div>
+            width={230} height={230}/></div>
           <div onClick={onSwitch}><SvgIcon
             name={sdk.deviceData.power_switch == 1 && 'icon-water-heater-switch-colorful2' || 'icon-water-heater-switch-colorful'}
-            width={200} height={200}/></div>
+            width={170} height={170}/></div>
           <div onClick={onAdd}><SvgIcon
             name={sdk.deviceData.power_switch == 1 && 'icon-water-heater-add-colorful2' || 'icon-water-heater-add-colorful'}
-            width={280} height={280}/></div>
+            width={230} height={230}/></div>
         </div>
       </div>
       <div className="normal_card">
@@ -110,7 +110,7 @@ export function Normal_Center() {
         >
           <SvgIcon
             name={sdk.deviceData.power_switch == 1 && 'icon-water-heater-automatic-colorful2' || 'icon-water-heater-automatic-colorful'}
-            width={82} height={82}/>
+            width={60} height={60}/>
           <div className="botton_font">
             {sdk.deviceData.mode ? modeSrc(sdk.deviceData.mode) : '-'}
           </div>
@@ -121,7 +121,7 @@ export function Normal_Center() {
         >
           <SvgIcon
             name={sdk.deviceData.power_switch == 1 && 'icon-water-heater-2000w-colorful2' || 'icon-water-heater-2000w-colorful'}
-            width={77} height={77}/>
+            width={60} height={60}/>
           <div className="botton_font">
             {sdk.deviceData.capacity_set ? capacitySrc(sdk.deviceData.capacity_set) : '-'}
           </div>
@@ -133,7 +133,7 @@ export function Normal_Center() {
         >
           <SvgIcon
             name={sdk.deviceData.power_switch == 1 && 'icon-water-heater-more-colorful2' || 'icon-water-heater-more-colorful'}
-            width={74} height={74}/>
+            width={60} height={60}/>
           <div className="botton_font">
             设置
           </div>
