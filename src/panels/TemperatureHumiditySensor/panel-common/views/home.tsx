@@ -1,22 +1,18 @@
 /*
  * @Description: 温湿度传感器首页
  */
-
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
-import { Block } from '@/components/layout';
-import { Cell } from '@/components/base';
-import { SvgIcon } from '@/components/common';
+import { Block } from '@components/layout';
+import { Cell } from '@components/base';
+import { SvgIcon } from '@components/common';
 import { LineChart } from '../components/line-chart';
 // 模版数据
 import { DeviceContext } from '../deviceContext';
-import { getThemeType } from '@/business';
-import { CurrentSkinProps } from '../skinProps';
-// @ts-ignore
+import { getThemeType } from '@libs/theme';
+import { SkinProps } from '../skinProps';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 import dayjs from 'dayjs';
-
-const themeType = getThemeType();
 
 // 聚合数据接口内结构
 interface AggsDataProps {
@@ -78,6 +74,8 @@ const data2: any = [
 ];
 
 export function Home() {
+  const themeType = getThemeType();
+  const CurrentSkinProps: any = SkinProps[themeType];
   const history = useHistory();
 
   // 历史记录

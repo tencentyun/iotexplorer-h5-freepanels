@@ -4,7 +4,7 @@ const SkinProps = {
       color: ''
     },
     triangle: {
-      color: '#000000'
+      color: '#B5C4D1'
     },
     record: {
       color: '#000000'
@@ -18,7 +18,7 @@ const SkinProps = {
       color: 'white'
     },
     triangle: {
-      color: '#000000'
+      color: '#B5C4D1'
     },
     record: {
       color: '#2885FE'
@@ -64,7 +64,7 @@ const SkinProps = {
       color: ''
     },
     triangle: {
-      color: '#000000'
+      color: '#B5C4D1'
     },
     record: {
       gradientId: 'record',
@@ -90,7 +90,7 @@ const SkinProps = {
       color: 'white'
     },
     triangle: {
-      color: '#000000'
+      color: '#B5C4D1'
     },
     record: {
       color: '#4F596A'

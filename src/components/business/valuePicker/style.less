@@ -62,7 +62,7 @@
           width: 30px;
           height: 30px;
           border-radius: 50%;
-          background: #FF5447;
+          background: rgba(222,222,227,0.50)
         }
       }
     }
@@ -162,6 +162,22 @@ body.theme_morandi {
         background: #FDFBFC !important;
         .adm-picker-view-column-item{
           color: #576273 !important;
+        }
+      }
+      .adm-picker-view-mask-middle {
+        position: relative;
+        opacity: 1;
+        &::before {
+          content: '';
+          position: absolute;
+          top: 50%;
+          left: 57px;
+          margin-top: -15px;
+          display: inline-block;
+          width: 30px;
+          height: 30px;
+          border-radius: 50%;
+          background: #576273;
         }
       }
     }

@@ -1,5 +1,5 @@
 module.exports = {
-  MagneticDoor: {
+  GasAlarm: {
     enable: true,
     viewportWidth: 1125,
     panels: [

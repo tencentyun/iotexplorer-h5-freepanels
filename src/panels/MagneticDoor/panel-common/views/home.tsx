@@ -79,7 +79,7 @@ export function Home() {
             {...CurrentSkinProps.battery}
           />
 
-          <span className="status-desc font_line_3">
+          <span className="status-desc">
             {isOn ? '打开' : '关闭'}
           </span>
         </div>
@@ -130,7 +130,7 @@ export function Home() {
             name="icon-record"
             {...CurrentSkinProps.record}
           />
-          <p className="button-name font_line_2">更多记录</p>
+          <p className="button-name">更多记录</p>
         </Block>
         <Block
           className="control-button"
@@ -143,7 +143,7 @@ export function Home() {
             name="icon-setting"
             {...CurrentSkinProps.settings}
           />
-          <p className="button-name font_line_2">设置</p>
+          <p className="button-name">设置</p>
         </Block>
       </div>
     </div>
