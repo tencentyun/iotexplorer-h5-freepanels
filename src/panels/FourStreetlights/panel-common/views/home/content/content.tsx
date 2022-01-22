@@ -7,7 +7,7 @@ import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 export function Content() {
   const [brightness, setBrightness] = useState(sdk.deviceData.brightness ? sdk.deviceData.brightness : 80)
   useEffect(() => {
-    setBrightness(sdk.deviceData.brightness);
+    setBrightness(sdk.deviceData.brightness ? sdk.deviceData.brightness : 80);
   }, [sdk.deviceData.brightness])
 
   const handleSelectColor = (e: React.MouseEvent) => {

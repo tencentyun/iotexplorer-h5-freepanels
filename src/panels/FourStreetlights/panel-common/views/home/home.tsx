@@ -3,7 +3,6 @@ import classNames from 'classnames';
 import './home.less';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 import {SvgIcon} from '@components/common/icon';
-import {White_light_body} from './white-light-body/white_light_body';
 import {Content} from './content/content';
 import {ScenarioContent} from './scenario-content/scenario_content';
 import {Progress_bar} from './progress-bar/progress_bar';
@@ -11,6 +10,7 @@ import {Scenario_progress_bar} from './scenario-progress-bar/scenario_progress_b
 import {Buttom} from './buttom/buttom';
 import { getThemeType } from '@libs/theme';
 import {onControlDevice} from '@hooks/useDeviceData';
+import {LightSwitch} from "@components/business";
 
 export function Home() {
   const themeType = getThemeType();
@@ -65,7 +65,15 @@ export function Home() {
         <article id={'home'} className={classNames('home', sdk.deviceData.power_switch != 1 && 'power-off')}>
           {getMenu()}
           <div id={'white-light-body'} className={classNames(stateFlag != 0 && 'vhide' || "")}>
-            <White_light_body/>
+            <LightSwitch
+              defaultValue={sdk.deviceData.brightness ? sdk.deviceData.brightness / 100 : 0.4}
+              disable={sdk.deviceData.power_switch === 1 ? 1 : 0}
+              onChange={(value: any) => {
+                if (sdk.deviceData.power_switch === 1){
+                  onControlDevice('brightness', value.toFixed(2) * 100);
+                }
+              }}
+            />
           </div>
           <div id={'colorful-body'} className={classNames(stateFlag != 1 && 'vhide' || "")}>
             <Content/>
@@ -86,7 +94,15 @@ export function Home() {
         <article id={'home'} className={classNames('home', sdk.deviceData.power_switch != 1 && 'power-off')}>
           <div className={classNames('body_card')}>
             <div id={'white-light-body'} className={classNames(stateFlag != 0 && 'vhide' || "")}>
-              <White_light_body/>
+              <LightSwitch
+                defaultValue={sdk.deviceData.brightness ? sdk.deviceData.brightness / 100 : 0.8}
+                disable={sdk.deviceData.power_switch === 1 ? 1 : 0}
+                onChange={(value: any) => {
+                  if (sdk.deviceData.power_switch === 1){
+                    onControlDevice('brightness', value.toFixed(2) * 100);
+                  }
+                }}
+              />
             </div>
             <div id={'colorful-body'} className={classNames(stateFlag != 1 && 'vhide' || "")}>
               <Content/>
@@ -109,7 +125,15 @@ export function Home() {
         <article id={'home'} className={classNames('home', sdk.deviceData.power_switch != 1 && 'power-off')}>
           <div className={classNames('body_card')}>
             <div id={'white-light-body'} className={classNames(stateFlag != 0 && 'vhide' || "")}>
-              <White_light_body/>
+              <LightSwitch
+                defaultValue={sdk.deviceData.brightness ? sdk.deviceData.brightness / 100 : 0.4}
+                disable={sdk.deviceData.power_switch === 1 ? 1 : 0}
+                onChange={(value: any) => {
+                  if (sdk.deviceData.power_switch === 1){
+                    onControlDevice('brightness', value.toFixed(2) * 100);
+                  }
+                }}
+              />
             </div>
             <div id={'colorful-body'} className={classNames(stateFlag != 1 && 'vhide' || "")}>
               <Content/>
