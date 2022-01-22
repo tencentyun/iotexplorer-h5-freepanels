@@ -9,7 +9,7 @@ import {SvgIcon} from '@components/common/icon';
 export function White_light_body() {
   const wrapper = useRef();
   const [brightness, onToggleSetBrightness] = useState(
-    sdk.deviceData.brightness ? sdk.deviceData.brightness : 40
+    sdk.deviceData.brightness ? sdk.deviceData.brightness : 80
   );
   const currentHeight = brightness + '%';
 

@@ -10,18 +10,6 @@
     }
   }
 
-  .body_brightness{
-    background: #FFFFFF;
-    .brightness_withe{
-      background: #FFFFFF;
-    }
-    .brightness_percent{
-      color: #006FFF;
-    }
-    .brightness_font{
-      color: #0F0F0F;
-    }
-  }
   .botton_card{
     width: 1125px;
     height: 786px;
@@ -45,6 +33,47 @@
   position: relative;
   .home {
     min-height: 100vh;
+    &.power-off {
+      #white-light-body {
+        .value-text, .desc{
+          color: #B5C4D1 !important;
+        }
+      }
+      #buttom_card{
+        .switch_font{
+          color: #B5C4D1 !important;
+        }
+      }
+    }
+    #white-light-body{
+      margin: 250px auto 0;
+      height: 950px;
+      ._component_business_light-switch_{
+        height: 920px;
+        background: rgba(254, 254, 254, 0.2);
+        .light-switch-wrapper{
+          .wrap-text{
+            svg{
+              fill: #FFFFFF !important;
+            }
+            .value-text{
+              color: #006FFF;
+            }
+            .desc{
+              color: #0f0f0f;
+            }
+          }
+          .current-wrap{
+            background: #FFFFFF;
+          }
+        }
+      }
+    }
+    .buttom_card{
+      .switch_font{
+        color: #000000;
+      }
+    }
     .scenario-progress-bar-font1{
       color: #4e98ff;
       &.font_select{
@@ -76,25 +105,7 @@
     .color_primary;
     background-image: var(--global-background-color-gradient);
 
-    &.power-off {
-      #body_brightness {
-        .brightness_percent, .brightness_font{
-          color: #B5C4D1 !important;
-        }
-      }
-      #hand{
-        color: #B5C4D1 !important;
-      }
-      #automatic{
-        color: #B5C4D1 !important;
-      }
-      #comfort{
-        color: #B5C4D1 !important;
-      }
-      #sleep{
-        color: #B5C4D1 !important;
-      }
-    }
+
   }
 }
 /*暗色主题*/
@@ -139,25 +150,44 @@
       }
     }
   }
-  .body_brightness{
-    background-image: linear-gradient(137deg, #00F0FF 0%, #704DF0 100%);
-    box-shadow: 0 6px 100px 0 rgba(32,33,33,0.10);
-    .brightness_withe{
-      background: #FFFFFF;
-    }
-    .brightness_percent{
-      color: #F4F8FB;
-    }
-    .brightness_font{
-      color: #F4F8FB;
-    }
-  }
+
   .body{
     background-image: linear-gradient(139deg, #333E4D 0%, #202C3A 100%);
     border: 3px solid rgba(62,68,84,0.20);
   }
   .home {
     min-height: 100vh;
+    &.power-off {
+      #white-light-body {
+        .current-wrap{
+          background: #B5C4D1 !important;
+        }
+      }
+    }
+    #white-light-body{
+      margin: 250px auto 0;
+      height: 950px;
+      ._component_business_light-switch_{
+        height: 920px;
+        background-image: var(--global-background-color-gradient);
+        .light-switch-wrapper{
+          .wrap-text{
+            svg{
+              fill: #FFFFFF;
+            }
+            .value-text{
+              color: #FFFFFF !important;
+            }
+            .desc{
+              color: #FFFFFF;
+            }
+          }
+          .current-wrap{
+            background-image: var(--global-color-gradient);
+          }
+        }
+      }
+    }
     .scenario_content{
       .rotundity{
         background-image: linear-gradient(139deg, #333E4D 0%, #202C3A 100%);
@@ -188,12 +218,6 @@
 
     .border-bottom {
       border: 0;
-    }
-
-    &.power-off {
-      #body_brightness {
-        background: #B5C4D1 !important;
-      }
     }
 
     .dashboard{
@@ -417,18 +441,6 @@
   // padding-top: 93px;
   position: relative;
 
-  .body_brightness{
-    background-image: linear-gradient(138deg, #527DF4 0%, #044DFF 100%);
-    .brightness_withe{
-      background: #FFFFFF;
-    }
-    .brightness_percent{
-      color: #F4F8FB;
-    }
-    .brightness_font{
-      color: #F4F8FB;
-    }
-  }
   //进度条加减
     .lightbright-mark{
       margin-bottom: 30px;
@@ -481,30 +493,16 @@
   }
   .home {
     min-height: 100vh;
-    .scenario-progress-bar-font1{
-      color: #B5C4D1;
-      &.font_select{
-        color: #0F0F0F;
-      }
-    }
-    .scenario-progress-bar-font2{
-      color: #B5C4D1;
-      &.font_select{
-        color: #0F0F0F;
-      }
-    }
-    .scenario-progress-bar-font3{
-      color: #B5C4D1;
-      &.font_select{
-        color: #0F0F0F;
-      }
-    }
-    .border-bottom {
-      border: 0;
-    }
     &.power-off {
-      #body_brightness {
-        background: #B5C4D1 !important;
+      #white-light-body {
+        .wrap-text{
+          svg{
+            fill: #B5C4D1 !important;
+          }
+        }
+        .current-wrap{
+          background: #B5C4D1 !important;
+        }
       }
       #position-wrap{
         ul{
@@ -529,6 +527,51 @@
         color: #B5C4D1 !important;
       }
     }
+    #white-light-body{
+      margin: 50px auto;
+      height: 950px;
+      ._component_business_light-switch_{
+        height: 920px;
+        .light-switch-wrapper{
+          .wrap-text{
+            svg{
+              fill: #FFD102 !important;
+            }
+            .value-text{
+              color: #ffffff;
+            }
+            .desc{
+              color: #ffffff;
+            }
+          }
+          .current-wrap{
+            background-image: linear-gradient(180deg, #527DF4 6%, #044DFF 100%);
+          }
+        }
+      }
+    }
+    .scenario-progress-bar-font1{
+      color: #B5C4D1;
+      &.font_select{
+        color: #0F0F0F;
+      }
+    }
+    .scenario-progress-bar-font2{
+      color: #B5C4D1;
+      &.font_select{
+        color: #0F0F0F;
+      }
+    }
+    .scenario-progress-bar-font3{
+      color: #B5C4D1;
+      &.font_select{
+        color: #0F0F0F;
+      }
+    }
+    .border-bottom {
+      border: 0;
+    }
+
     .dashboard{
       .ticker{
         > section{
@@ -778,6 +821,58 @@
   }
   .home {
     min-height: 100vh;
+    &.power-off {
+      #white-light-body {
+        .wrap-text{
+          svg{
+            fill: #B5C4D1 !important;
+          }
+        }
+        .current-wrap{
+          background: #B5C4D1 !important;
+        }
+      }
+      /*#menu{
+        .menu_font{
+          color: #B5C4D1 !important;
+        }
+      }*/
+      #hand{
+        color: #B5C4D1 !important;
+      }
+      #automatic{
+        color: #B5C4D1 !important;
+      }
+      #comfort{
+        color: #B5C4D1 !important;
+      }
+      #sleep{
+        color: #B5C4D1 !important;
+      }
+    }
+    #white-light-body{
+      margin: 150px auto 0;
+      height: 950px;
+      ._component_business_light-switch_{
+        height: 920px;
+        .light-switch-wrapper{
+          .wrap-text{
+            svg{
+              fill: #B5ABA1;
+            }
+            .value-text{
+              color: #ffffff;
+            }
+            .desc{
+              color: #ffffff;
+            }
+          }
+          .current-wrap{
+            background-image: linear-gradient(180deg, #B5ABA1 6%, #8E755C 100%);
+          }
+        }
+      }
+    }
     .scenario-progress-bar-font1{
       color: #B5C4D1;
       &.font_select{
@@ -797,21 +892,6 @@
       }
     }
 
-    // padding-top: 150px;
-    .body_brightness{
-      background-image: linear-gradient(180deg, #B5ABA1 0%, #8E755C 100%);
-      box-shadow: 0 6px 100px 0 rgba(32,33,33,0.10);
-      .brightness_withe{
-        background: #FFFFFF;
-      }
-      .brightness_percent{
-        color: #F4F8FB;
-      }
-      .brightness_font{
-        color: #F4F8FB;
-      }
-    }
-
     background-color: #F4F8FB;
     .body_card{
       width: 1250px;
@@ -827,29 +907,6 @@
     }
     .border-bottom {
       border: 0;
-    }
-
-    &.power-off {
-      #body_brightness {
-        background: #B5C4D1 !important;
-      }
-      /*#menu{
-        .menu_font{
-          color: #B5C4D1 !important;
-        }
-      }*/
-      #hand{
-        color: #B5C4D1 !important;
-      }
-      #automatic{
-        color: #B5C4D1 !important;
-      }
-      #comfort{
-        color: #B5C4D1 !important;
-      }
-      #sleep{
-        color: #B5C4D1 !important;
-      }
     }
 
     .dashboard{
@@ -1100,26 +1157,21 @@
       color: #000000 ;
     }
   }
-  .body_brightness{
-    background: #000000;
-      .brightness_withe{
-        background: #FFFFFF;
-      }
-      .brightness_percent{
-        color: #F4F8FB;
-      }
-      .brightness_font{
-        color: #F4F8FB;
-      }
-    }
 
   .home {
     min-height: 100vh;
     background: #F4F8FB;
 
     &.power-off {
-      #body_brightness {
-        background: #B5C4D1 !important;
+      #white-light-body {
+        .wrap-text{
+          svg{
+            fill: #B5C4D1 !important;
+          }
+        }
+        .current-wrap{
+          background: #B5C4D1 !important;
+        }
       }
       #ticker{
         section{
@@ -1137,6 +1189,30 @@
       }
       #sleep{
         color: #B5C4D1 !important;
+      }
+    }
+  }
+
+  #white-light-body{
+    margin: 50px auto;
+    height: 950px;
+    ._component_business_light-switch_{
+      height: 920px;
+      .light-switch-wrapper{
+        .wrap-text{
+          svg{
+            fill: #000000;
+          }
+          .value-text{
+            color: #ffffff;
+          }
+          .desc{
+            color: #ffffff;
+          }
+        }
+        .current-wrap{
+          background: #000000;
+        }
       }
     }
   }

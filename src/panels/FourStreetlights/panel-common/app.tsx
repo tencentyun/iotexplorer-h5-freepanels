@@ -9,6 +9,7 @@ import { useDeviceData } from '@hooks/useDeviceData';
 import { Home } from './views/home/home';
 import Timer from './views/timer/timer';
 import 'antd-mobile/es/global';
+import '@icons/themes/icons/svg/common';
 import '@icons/themes/icons/svg/four-streetlights';
 import '@icons/themes/global.less';
 import './style.less';
