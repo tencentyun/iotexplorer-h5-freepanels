@@ -10,7 +10,8 @@ import { LineChart } from '../components/line-chart';
 import { DeviceContext } from '../deviceContext';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 import dayjs from 'dayjs';
-import { CurrentSkinProps } from '../skinProps';
+import { getThemeType } from '@libs/theme';
+import { SkinProps } from '../skinProps';
 
 const MONTH_DESC: string[] = [
   '一月',
@@ -78,6 +79,8 @@ interface ChartItem {
 }
 
 export function Monitoring() {
+  const themeType = getThemeType();
+  const CurrentSkinProps: any = SkinProps[themeType];
   const [currentStatus, setCurrentStatus] = useState('power');
   const [lineChartList, setLineChartList] = useState<ChartItem>();
   // 电量
@@ -317,7 +320,7 @@ export function Monitoring() {
               </div>
             </div>
             {lineChartList ? (
-              <LineChart data={lineChartList} {...CurrentSkinProps.lineChart} />
+              <LineChart className="line-chart" data={lineChartList} {...CurrentSkinProps.lineChart} />
             ) : null}
             <div className="footer-data">
               <div>功耗:{power}W</div>

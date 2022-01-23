@@ -1,10 +1,14 @@
 /**
  * 数字滑动选择器
  */
-import React, { useRef } from 'react';
+import React, { useMemo, useState, useEffect } from 'react';
 import classNames from 'classnames';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import SwiperCore, { Controller } from 'swiper';
 import { StyledProps, ThemeType } from '@libs/global';
+import { SvgIcon } from '@components/common';
 import './style.less';
+import 'swiper/less';
 
 export interface NumberSliderProps extends StyledProps {
   defaultValue?: number;
@@ -21,37 +25,82 @@ export interface NumberSliderProps extends StyledProps {
 
 export function NumberSlider(props: NumberSliderProps) {
   const { className } = props;
-  const ref = useRef();
-  //const isDragged = useDrag(ref);
-  //console.log(isDragged);
 
-  const slideRender = () => {
-    const { min, max } = props;
-    const len = max - min + 1;
-    if (max <= min) {
-      console.error('props max must greater than min');
-      return null;
-    }
-    const datas = Array.from({ length: len }, (_, index) => min + index);
-    return (
-      <ul ref={ref}>
-        {datas.map(num => (
-          <li key={num}>{num}</li>
-        ))}
-      </ul>
-    );
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [swiperInstance, setSwiperInstance] = useState<SwiperCore>();
+
+  useEffect(() => {
+    props.defaultValue ? setActiveIndex(props.defaultValue) : setActiveIndex(3);
+  }, []);
+
+  useMemo(() => {
+    props.onChange && props.onChange(activeIndex);
+  }, [activeIndex]);
+
+  // 上一页
+  const handleChangeSlidePre = () => {
+    const instance = swiperInstance;
+    instance?.slidePrev();
+  };
+
+  // 下一页
+  const handleChangeSlideNext = () => {
+    const instance = swiperInstance;
+    instance?.slideNext();
   };
 
   return (
     <div
-      className={classNames('_component_business_number-slider_', className)}
+      className={classNames(
+        'component_business_number-slider',
+        props.disabled ? 'active' : 'default',
+        'theme-' + props.theme,
+        className
+      )}
     >
       <div className="slider-wrap">
-        <a className="slider-button prev"></a>
-        <div className="slider">{slideRender()}</div>
-        <a className="slider-button prev"></a>
+        <div
+          onClick={() => {
+            handleChangeSlidePre();
+          }}
+        >
+          <SvgIcon className="slider-button prev" name="icon-triangle" />
+        </div>
+        <Swiper
+          className="slider"
+          modules={[Controller]}
+          spaceBetween={Math.floor(50 / 3)}
+          slidesPerView={5}
+          centeredSlides={true}
+          controller={{ control: swiperInstance }}
+          onSwiper={setSwiperInstance}
+          onSlideChange={swiper => {
+            setActiveIndex(swiper.realIndex + 1);
+          }}
+          loop
+        >
+          <SwiperSlide>1</SwiperSlide>
+          <SwiperSlide>2</SwiperSlide>
+          <SwiperSlide>3</SwiperSlide>
+          <SwiperSlide>4</SwiperSlide>
+          <SwiperSlide>5</SwiperSlide>
+          <SwiperSlide>6</SwiperSlide>
+          <SwiperSlide>7</SwiperSlide>
+          <SwiperSlide>8</SwiperSlide>
+          <SwiperSlide>9</SwiperSlide>
+          <SwiperSlide>10</SwiperSlide>
+          <SwiperSlide>11</SwiperSlide>
+          <SwiperSlide>12</SwiperSlide>
+        </Swiper>
+        <div
+          onClick={() => {
+            handleChangeSlideNext();
+          }}
+        >
+          <SvgIcon className="slider-button next" name="icon-triangle" />
+        </div>
       </div>
-      <div className="current-block"></div>
+      {props.disabled ? <div className="current-block"></div> : null}
     </div>
   );
 }

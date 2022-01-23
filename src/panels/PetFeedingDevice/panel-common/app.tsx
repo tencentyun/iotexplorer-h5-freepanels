@@ -12,8 +12,8 @@ import { useDeviceData } from '@hooks/useDeviceData';
 import { DeviceContext } from './deviceContext';
 
 import 'antd-mobile/es/global';
-import '@/themes/global.less';
-import '@/themes/variable.less'; // 暂时引入，不确实是否需要引入
+import '@icons/themes/global.less';
+import '@icons/themes/icons/svg/pet-feeding-device';
 import './style.less';
 
 import { Home } from './views/home';
@@ -22,21 +22,6 @@ import { Records } from './views/records';
 import { Plan } from './views/plan';
 
 export function App() {
-  const isBluetoothDevice = true;
-  const isDev = process.env.NODE_ENV !== 'production';
-  //新旧链接的兼容
-  const hasScf = /\/scf\//.test(location.href);
-
-  let basename = isDev
-    ? `${hasScf ? '/scf' : ''}/h5panel/developing`
-    : `${hasScf ? '/scf' : ''}/h5panel`;
-
-  console.log('----basename----', basename);
-  // 蓝牙的调试模式下路由需要加上 /live
-  if (isBluetoothDevice && isDev) {
-    basename += '/live';
-  }
-
   const [state, { onDeviceDataChange, onDeviceStatusChange }] =
     useDeviceData(sdk);
   console.log(state, 'state===============');
@@ -85,7 +70,7 @@ export function App() {
         <div>loading...</div>
       ) : (
         <DeviceContext.Provider value={state}>
-          <HashRouter basename={basename}>
+          <HashRouter>
             <Redirect exact from="/" to="/home"></Redirect>
             <Switch>
               <Route

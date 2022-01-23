@@ -9,10 +9,8 @@ import { SvgIcon } from '@components/common';
 import { DeviceContext } from '../deviceContext';
 import { getThemeType } from '@libs/theme';
 import { onControlDevice } from '@hooks/useDeviceData';
-import { CurrentSkinProps } from '../skinProps';
+import { SkinProps } from '../skinProps';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
-
-const themeType = getThemeType();
 
 // 聚合数据接口内结构
 interface AggsDataProps {
@@ -22,14 +20,11 @@ interface AggsDataProps {
 }
 
 export function Home() {
+  const themeType = getThemeType();
+  const CurrentSkinProps: any = SkinProps[themeType];
   const history = useHistory();
   const [dayElectricity, setDayElectricity] = useState(0.0);
   const [monthElectricity, setMonthElectricity] = useState(0.0);
-
-  const buttonProps = {
-    width: 295,
-    height: 300
-  };
 
   useEffect(() => {
     // 获取当日电量
@@ -216,7 +211,6 @@ export function Home() {
           <div className="receptacle-setting">
             <Block
               className="setting-button"
-              {...buttonProps}
               onClick={handleTiming}
             >
               <SvgIcon
@@ -228,7 +222,6 @@ export function Home() {
             </Block>
             <Block
               className="setting-button"
-              {...buttonProps}
               onClick={handleElectricity}
             >
               <SvgIcon
@@ -240,7 +233,6 @@ export function Home() {
             </Block>
             <Block
               className="setting-button"
-              {...buttonProps}
               onClick={handleSettings}
             >
               <SvgIcon

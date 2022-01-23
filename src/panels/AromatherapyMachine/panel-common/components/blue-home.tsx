@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import classNames from 'classnames';
 import { useHistory } from 'react-router-dom';
 import { SvgIcon } from '@components/common';
-import { Block } from '../../../../components/layout';
+import { Block } from '@components/layout';
 import { Slider } from 'antd-mobile';
 import { onControlDevice } from '@hooks/useDeviceData';
 import { DeviceContext } from '../deviceContext';

@@ -1,5 +1,5 @@
 module.exports = {
-  GasAlarm: {
+  ElectricCar: {
     enable: true,
     viewportWidth: 1125,
     panels: [

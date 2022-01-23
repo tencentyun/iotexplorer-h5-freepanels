@@ -8,10 +8,13 @@ import { SvgIcon } from '@components/common';
 import { Block } from '@components/layout';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 import { onControlDevice } from '@hooks/useDeviceData';
-import { CurrentSkinProps } from '../skinProps';
+import { getThemeType } from '@libs/theme';
+import { SkinProps } from '../skinProps';
 import './index.less';
 
 export function SettingBlock() {
+  const themeType = getThemeType();
+  const CurrentSkinProps: any = SkinProps[themeType];
 
   const buttonProps = {
     width: 295,

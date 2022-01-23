@@ -13,11 +13,11 @@ import { DeviceContext } from '../deviceContext';
 import { getThemeType } from '@libs/theme';
 import { onControlDevice } from '@hooks/useDeviceData';
 import { toggleBooleanByNumber } from '@libs/utillib';
-import { CurrentSkinProps } from '../skinProps';
-
-const themeType = getThemeType();
+import { SkinProps } from '../skinProps';
 
 export function More() {
+  const themeType = getThemeType();
+  const CurrentSkinProps: any = SkinProps[themeType];
   const history = useHistory();
   const [countdown, setCountdown] = useState(0);
 

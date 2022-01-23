@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 709 104" class="design-iconfont">
+  <defs>
+    <filter x="-6.4%" y="-110.5%" width="112.8%" height="321.1%" id="2ogpl9v3za">
+      <feGaussianBlur stdDeviation="14" in="SourceGraphic"/>
+    </filter>
+    <filter x="-7.6%" y="-105.9%" width="115.3%" height="311.8%" id="ad64ukefob">
+      <feGaussianBlur stdDeviation="12" in="SourceGraphic"/>
+    </filter>
+    <filter x="-2.5%" y="-34.6%" width="105%" height="169.2%" id="oy9ymcl0ac">
+      <feGaussianBlur stdDeviation="3" in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g fill="none" fill-rule="evenodd">
+    <path fill-opacity=".5" fill="#B9C2C6" filter="url(#2ogpl9v3za)" d="M327.5 0A327.5 19 0 1 0 327.5 38A327.5 19 0 1 0 327.5 0Z" transform="translate(27 33)"/>
+    <path fill="#B9C2C6" filter="url(#ad64ukefob)" d="M323 2A236 17 0 1 0 323 36A236 17 0 1 0 323 2Z" transform="translate(27 33)"/>
+    <path fill="#7B8285" filter="url(#oy9ymcl0ac)" d="M323 6A180 13 0 1 0 323 32A180 13 0 1 0 323 6Z" transform="translate(27 33)"/>
+  </g>
+</svg>

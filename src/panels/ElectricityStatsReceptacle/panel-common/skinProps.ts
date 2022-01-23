@@ -1,7 +1,4 @@
-import { getThemeType } from '@libs/theme';
-const themeType = getThemeType();
-
-const skinProps = {
+const SkinProps = {
   normal: {
     receptacle: {
       color: '#000000'
@@ -232,4 +229,4 @@ const skinProps = {
   }
 };
 
-export const CurrentSkinProps: any = skinProps[themeType];
+export { SkinProps };

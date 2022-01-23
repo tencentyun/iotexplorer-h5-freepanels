@@ -8,14 +8,16 @@ import { Block } from '@components/layout';
 import { RingDashboard } from '../components/ring-dashboard';
 import { getThemeType } from '@libs/theme';
 import { onControlDevice } from '@hooks/useDeviceData';
-import { CurrentSkinProps } from '../skinProps';
+import { SkinProps } from '../skinProps';
 import { DeviceContext } from '../deviceContext';
+import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 import dayjs from 'dayjs';
 import './home.less';
 
-const themeType = getThemeType();
-
 export function Home() {
+  const themeType = getThemeType();
+  const CurrentSkinProps: any = SkinProps[themeType];
+
   const history = useHistory();
   let numberFeed = 3;
 
@@ -147,19 +149,11 @@ export function Home() {
                   className="button-block"
                   onClick={() => history.push('/plan')}
                 >
-                  {themeType !== 'morandi' && (
-                    <div className="button-icon icon-record"></div>
-                  )}
-                  {themeType === 'morandi' && (
-                    <div
-                      className={classNames(
-                        'button-icon',
-                        deviceData.power_switch === 1
-                          ? 'icon-record'
-                          : 'icon-record-default'
-                      )}
-                    ></div>
-                  )}
+                  <SvgIcon
+                    className="button-icon"
+                    name="icon-record"
+                    {...currentColor(deviceData.power_switch, 'record')}
+                  />
                   <p className="button-name">喂食计划</p>
                 </Block>
                 <Block
@@ -169,7 +163,7 @@ export function Home() {
                   <SvgIcon
                     className="button-icon"
                     name="icon-feeding-records"
-                    {...currentColor(deviceData.power_switch, 'record')}
+                    {...currentColor(deviceData.power_switch, 'feedingRecords')}
                   />
                   <p className="button-name">喂食记录</p>
                 </Block>
@@ -210,6 +204,7 @@ export function Home() {
                   onClick={() => {
                     if (!deviceData.power_switch) return;
                     onControlDevice('manual_feed', numberFeed);
+                    sdk.tips.showSuccess('喂食成功');
                   }}
                 >
                   快速喂食
@@ -271,6 +266,7 @@ export function Home() {
                   onClick={() => {
                     if (!deviceData.power_switch) return;
                     onControlDevice('manual_feed', numberFeed);
+                    sdk.tips.showSuccess('喂食成功');
                   }}
                 >
                   快速喂食

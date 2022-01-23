@@ -14,9 +14,9 @@ import {
 } from '../components/index';
 import './home.less';
 
-const themeType = getThemeType();
-
 export function Home() {
+  const themeType = getThemeType();
+
   const renderChooseBySkin = () => {
     switch (themeType) {
       case 'normal':
