@@ -1,5 +1,5 @@
 module.exports = {
-  ElectricCar: {
+  SmokeAlarm: {
     enable: true,
     viewportWidth: 1125,
     panels: [

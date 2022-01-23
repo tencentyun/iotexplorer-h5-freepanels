@@ -116,6 +116,13 @@ export function formatDeviceData(templateMap: object) {
         name: key,
         desc: mapping[key]
       }));
+    } else if (define.type === 'enum') {
+      const { mapping } = define;
+
+      data[id] = Object.keys(mapping).map((key: string) => ({
+        name: key,
+        desc: mapping[key]
+      }));
     } else if (define.type === 'int') {
       data[id] = {
         min: +(define.min || 0),

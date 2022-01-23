@@ -109,7 +109,6 @@ const getViewbox = () => {
 
 export function DataShowDisk(props: DiskProps) {
   const themeType = getThemeType();
-  console.log(themeType, '!!');
   const currentColor: any = circleColor[themeType];
 
   const { status = 'normal', value = 0, unit = 'ppm' } = props;

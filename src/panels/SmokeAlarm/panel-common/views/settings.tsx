@@ -34,11 +34,14 @@ export function Settings() {
   const [alarmTimeVisible, onToggleAlarmTime] = useState(false);
 
   const volOptions = () => {
+    console.log(deviceMaps);
+    console.log(deviceMaps['alarm_vol']);
     if (deviceMaps['alarm_vol']) {
       const options = deviceMaps['alarm_vol'].map((t: any) => ({
         label: t.desc,
         value: t.name
       }));
+      console.log(options);
       return options.length > 0 ? options : [];
     }
     return [];
@@ -101,6 +104,7 @@ export function Settings() {
                 title="报警音量"
                 defaultValue={[deviceData['alarm_vol']]}
                 options={volOptions()}
+                layoutType="spaceBetween"
                 onCancel={() => onToggleAlarmVol(false)}
                 onConfirm={value => {
                   onControlDevice('alarm_vol', value[0]);
@@ -122,6 +126,7 @@ export function Settings() {
                 title="报警铃声"
                 defaultValue={[deviceData['alarm_ringtone']]}
                 options={ringtoneOptions()}
+                layoutType="spaceBetween"
                 onCancel={() => onToggleAlarmRingtone(false)}
                 onConfirm={value => {
                   onControlDevice('alarm_ringtone', value[0]);
@@ -142,11 +147,11 @@ export function Settings() {
                 visible={alarmTimeVisible}
                 value={[
                   deviceData['alarm_time']
-                    ? deviceData['alarm_time'].toString()
+                    ? deviceData['alarm_time'].toString() + 's'
                     : ''
                 ]}
                 title="报警时长"
-                columns={[mapsToOptions('alarm_time', deviceMaps)]}
+                columns={[mapsToOptions('alarm_time', deviceMaps)] || ['1', '2', '3']}
                 onCancel={() => onToggleAlarmTime(false)}
                 onConfirm={value => {
                   onControlDevice('alarm_time', +(value[0] || '0'));
