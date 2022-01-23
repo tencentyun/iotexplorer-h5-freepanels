@@ -13,9 +13,8 @@ import { getThemeType } from '@libs/theme';
 import { onControlDevice } from '@hooks/useDeviceData';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 
-const themeType = getThemeType();
-
 export function Home() {
+  const themeType = getThemeType();
   const history = useHistory();
 
   // 倒计时

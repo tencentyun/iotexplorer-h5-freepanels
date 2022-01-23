@@ -12,10 +12,10 @@ import { DeviceSateContext } from '../deviceStateContext';
 import { getThemeType } from '@libs/theme';
 import { onControlDevice } from '@hooks/useDeviceData';
 import './setting.less';
-
-const themeType = getThemeType();
+import { sdk } from '@src/models/kugou';
 
 export function Setting() {
+  const themeType = getThemeType();
   const [typeVisible, onToggleTypeSelect] = useState(false);
 
   const [isUnlock, onToggleIsUnlock] = useState(false);
@@ -90,6 +90,7 @@ export function Setting() {
               onClick={() => {
                 if (!isUnlock) return;
                 onControlDevice('brightness_min', brightValue);
+                sdk.tips.show('修改成功');
               }}
             >
               完成
@@ -107,6 +108,7 @@ export function Setting() {
               { value: 'incandescent', label: '白炽灯' },
               { value: 'eco', label: '节能灯' }
             ]}
+            layoutType="spaceBetween"
             onCancel={() => onToggleTypeSelect(false)}
             onConfirm={value => {
               onToggleTypeSelect(false);

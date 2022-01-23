@@ -46,7 +46,7 @@
       // background: rgba(0, 0, 0, .4);
       // border-color: #DAE1E8;
       .adm-picker-view-mask-top, .adm-picker-view-mask-bottom {
-        background: rgba(0, 0, 0, 0.2);
+        background: rgba(0, 0, 0, 0.1);
       }
       .adm-picker-view-mask-middle {
         position: relative;
@@ -77,6 +77,28 @@ body.theme_blue_white {
   .value-picker-view {
     .adm-picker-view-column {
       background-image: linear-gradient(180deg, #559DFC 0%, #3171FA 100%) !important;
+    }
+    .adm-picker-view-mask {
+      .adm-picker-view-mask-top, .adm-picker-view-mask-bottom {
+        background: rgba(0, 0, 0, 0.1);
+      }
+      .adm-picker-view-mask-middle {
+        position: relative;
+        border: none;
+        opacity: 1;
+        &::before {
+          content: '';
+          position: absolute;
+          top: 50%;
+          left: 57px;
+          margin-top: -15px;
+          display: inline-block;
+          width: 30px;
+          height: 30px;
+          border-radius: 50%;
+          background: #FF5447;
+        }
+      }
     }
   }
 }

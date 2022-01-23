@@ -13,10 +13,13 @@ import { Dimmer } from './dimmer';
 import { DeviceSateContext } from '../deviceStateContext';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 import { useDeviceData } from '@hooks/useDeviceData';
-import { CurrentSkinProps } from '../skinProps';
+import { getThemeType } from '@libs/theme';
+import { SkinProps } from '../skinProps';
 import './main.less';
 
 export function Main() {
+  const themeType = getThemeType();
+  const CurrentSkinProps: any = SkinProps[themeType];
   const history = useHistory();
   const [state] = useDeviceData(sdk);
   const deviceData = state.deviceData || {};
@@ -24,7 +27,7 @@ export function Main() {
   const [isOpen, onToggleIsOpen] = useState(false);
 
   useEffect(() => {
-    setBrightValue(deviceData.bright_value);
+    setBrightValue(deviceData.bright_value/100);
   }, [deviceData.bright_value]);
 
   const currentColor = (value: number) => {
@@ -39,7 +42,8 @@ export function Main() {
         <div
           className={classNames(
             'dimmer-switch-main-view',
-            brightValue > 0.3 ? 'bright' : ''
+            {'bright': brightValue > 0.3 },
+            {'dark': brightValue <= 0.3 }
           )}
         >
           {!isOpen ? (
@@ -47,10 +51,12 @@ export function Main() {
           ) : (
             <Dimmer
               onClick={(value: boolean) => {
+                if (!value) {
+                  document.body.style.overflow = 'auto';
+                }
                 onToggleIsOpen(value);
               }}
               onChange={(value: number) => {
-                console.log(value, 'asdfasd');
                 setBrightValue(value);
               }}
             ></Dimmer>
@@ -62,34 +68,48 @@ export function Main() {
               deviceData.power_switch === 1 ? 'active' : ''
             )}
           >
-            <Block className="button" onClick={() => history.push('/timing')}>
+            <Block className="button"
+              onClick={() => {
+                if (!deviceData.power_switch) return
+                history.push('/timing')
+              }}>
               <SvgIcon
                 name="icon-clock"
                 {...currentColor(deviceData.power_switch).clock}
               />
-              <p className="font_2">定时</p>
+              <p>定时</p>
             </Block>
             <Block
               className="button"
               onClick={() => {
-                onToggleIsOpen(!isOpen);
+                if (!deviceData.power_switch) return
+                if (!isOpen) {
+                  document.body.style.overflow = 'hidden';
+                  onToggleIsOpen(true);
+                } else {
+                  document.body.style.overflow = 'auto';
+                  onToggleIsOpen(false);
+                }
               }}
             >
               <SvgIcon
                 name="icon-light"
                 {...currentColor(deviceData.power_switch).light}
               />
-              <p className="font_2">灯光</p>
+              <p>灯光</p>
             </Block>
             <Block
               className="button"
-              onClick={() => history.replace('/setting')}
+              onClick={() => {
+                if (!deviceData.power_switch) return
+                history.replace('/setting')
+              }}
             >
               <SvgIcon
                 name="icon-setting"
                 {...currentColor(deviceData.power_switch).settings}
               />
-              <p className="font_2">设置</p>
+              <p>设置</p>
             </Block>
           </div>
         </div>

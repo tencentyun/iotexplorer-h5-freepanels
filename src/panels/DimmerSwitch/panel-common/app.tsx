@@ -3,7 +3,6 @@
  * @Date: 2021-10-23 16:33:33
  * @Description: 调光开关
  */
-/*eslint-disable*/
 import React, { useState, useEffect } from 'react';
 import { HashRouter, Switch, Route, Redirect } from 'react-router-dom';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
@@ -12,7 +11,8 @@ import { useDeviceData } from '@hooks/useDeviceData';
 import { DeviceSateContext } from './deviceStateContext';
 
 import 'antd-mobile/es/global';
-import '../../themes/global.less';
+import '@icons/themes/global.less';
+import '@icons/themes/icons/svg/dimmer-switch';
 import './style.less';
 
 import { Main } from './views/main';
@@ -20,21 +20,6 @@ import { Setting } from './views/setting';
 import { Timing } from './views/timing';
 
 export function App() {
-  const isBluetoothDevice = true;
-  const isDev = process.env.NODE_ENV !== 'production';
-  //新旧链接的兼容
-  const hasScf = /\/scf\//.test(location.href);
-
-  let basename = isDev
-    ? `${hasScf ? '/scf' : ''}/h5panel/developing`
-    : `${hasScf ? '/scf' : ''}/h5panel`;
-
-  console.log('----basename----', basename);
-  // 蓝牙的调试模式下路由需要加上 /live
-  if (isBluetoothDevice && isDev) {
-    basename += '/live';
-  }
-
   const [state, { onDeviceDataChange, onDeviceStatusChange }] =
     useDeviceData(sdk);
   console.log(state, 'state===============');
@@ -83,7 +68,7 @@ export function App() {
         <div>loading...</div>
       ) : (
         <DeviceSateContext.Provider value={state}>
-          <HashRouter basename={basename}>
+          <HashRouter>
             <Redirect exact from="/" to="/home"></Redirect>
             <Switch>
               

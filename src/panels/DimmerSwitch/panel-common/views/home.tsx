@@ -6,7 +6,7 @@
 import React from 'react';
 import classNames from 'classnames';
 import { DeviceSateContext } from '../deviceStateContext';
-import { onControlDevice } from '@/business';
+import { onControlDevice } from '@hooks/useDeviceData';
 import './home.less';
 
 export function Home() {
@@ -27,7 +27,7 @@ export function Home() {
 
           <div className="switch-button font_line_3">
             {deviceData.power_switch === 1
-              ? '亮度: ' + (deviceData.bright_value || 0) + '%'
+              ? '亮度: ' + parseInt(deviceData.bright_value ? deviceData.bright_value.toString() : '0') + '%'
               : '轻触开启'}
           </div>
         </div>
