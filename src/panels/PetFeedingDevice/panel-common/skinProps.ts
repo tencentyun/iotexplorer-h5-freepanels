@@ -1,12 +1,12 @@
-import { getThemeType } from '@/business';
-const themeType = getThemeType();
-
-const skinProps = {
+const SkinProps = {
   normal: {
     battery: {
       color: ''
     },
     record: {
+      color: '#000000'
+    },
+    feedingRecords: {
       color: '#000000'
     },
     settings: {
@@ -20,6 +20,9 @@ const skinProps = {
     record: {
       color: '#2885FE'
     },
+    feedingRecords: {
+      color: '#2885FE'
+    },
     settings: {
       color: '#2885FE'
     }
@@ -30,6 +33,15 @@ const skinProps = {
     },
     record: {
       gradientId: 'record',
+      startColor: '#0DDFFE',
+      endColor: '#2885FE',
+      x1: '18.8378836%',
+      y1: '13.9723887%',
+      x2: '100%',
+      y2: '100%'
+    },
+    feedingRecords: {
+      gradientId: 'feedingRecords',
       startColor: '#0DDFFE',
       endColor: '#2885FE',
       x1: '18.8378836%',
@@ -53,6 +65,15 @@ const skinProps = {
     },
     record: {
       gradientId: 'record',
+      startColor: '#3FE83F',
+      endColor: '#00D8B2',
+      x1: '50%',
+      y1: '0%',
+      x2: '50%',
+      y2: '100%'
+    },
+    feedingRecords: {
+      gradientId: 'feedingRecords',
       startColor: '#57C6D6',
       endColor: '#60A1DF',
       x1: '50%',
@@ -77,10 +98,13 @@ const skinProps = {
     record: {
       color: '#4F596A'
     },
+    feedingRecords: {
+      color: '#4F596A'
+    },
     settings: {
       color: '#4F596A'
     }
   }
 };
 
-export const CurrentSkinProps: any = skinProps[themeType];
+export { SkinProps };

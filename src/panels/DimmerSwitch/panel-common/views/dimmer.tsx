@@ -10,14 +10,13 @@ import { getThemeType } from '@libs/theme';
 import { onControlDevice } from '@hooks/useDeviceData';
 import './dimmer.less';
 
-const themeType = getThemeType();
-
 export interface DimmerProps {
   onClick?: any;
   onChange?: any;
 }
 
 export function Dimmer(props: DimmerProps) {
+  const themeType = getThemeType();
   const [isVisible, onToggleIsVisible] = useState(true);
   const [brightValue, setBrightValue] = useState(0);
 
@@ -36,9 +35,10 @@ export function Dimmer(props: DimmerProps) {
           <div className="lamp-switch">
             <LightSwitch
               defaultValue={
-                deviceData.bright_value ? deviceData.bright_value / 100 : 0
+                deviceData.bright_value ? (deviceData.bright_value / 100) : 0
               }
               theme={themeType}
+              disable={1}
               onChange={(value: any) => {
                 setBrightValue(value);
                 onControlDevice('bright_value', value * 100);

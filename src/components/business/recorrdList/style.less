@@ -33,6 +33,8 @@
       flex-direction: column;
       align-items: center;
       justify-content: space-between;
+      color: #0F0F0F;
+
       & > div {
         width: 100%;
         display: flex;
@@ -45,6 +47,7 @@
     }
     .day {
       margin-left: 48px;
+      color: #B5C4D1;
     }
     .time {
       font-family: PingFangSC-Medium;
@@ -52,6 +55,91 @@
     }
     .item-value {
       font-size: 92px;
+    }
+  }
+}
+
+body.theme_blue_white {
+  ._component_business_record_list_ {
+    ._component_business_record_list-item_.record-item {
+      .item-timeline {
+        background-color: #027CFE;
+      }
+    }
+  }
+}
+
+body.theme_dark {
+  ._component_business_record_list_ {
+    ._component_business_record_list-item_.record-item {
+      .item-timeline {
+        background-image: linear-gradient(137deg, #00F0FF 0%, #704DF0 100%);
+      }
+      .item-content {
+        color: #F8FDFF;
+      }
+      .day {
+        color: #F8FDFF;
+      }
+      .item-value {
+        color: #F8FDFF;
+      }
+      .item-bottom {
+        color: #F8FDFF;
+      }
+      .item-bottom-time {
+        color: #F8FDFF;
+      }
+    }
+  }
+}
+
+body.theme_colorful {
+  ._component_business_record_list_ {
+    ._component_business_record_list-item_.record-item {
+      .item-timeline {
+        background-image: linear-gradient(180deg, #2CE74F 0%, #00E1AD 100%);
+      }
+      &:nth-child(3n+1) {
+        .item-timeline {
+          background-image: linear-gradient(180deg, #2CE74F 0%, #00E1AD 100%);
+        }
+      }
+      &:nth-child(3n+2) {
+        .item-timeline {
+          background-image: linear-gradient(138deg, #527DF4 0%, #044DFF 100%);
+        }
+      }
+      &:nth-child(3n+3) {
+        .item-timeline {
+          background-image: linear-gradient(180deg, #F773B2 0%, #9879F1 100%);
+        }
+      }
+    }
+  }
+}
+
+body.theme_morandi{
+  ._component_business_record_list_ {
+    ._component_business_record_list-item_.record-item {
+      .item-timeline {
+        background-color: #576273;
+      }
+      .item-content {
+        color: #576273;
+      }
+      .day {
+        color: #576273;
+      }
+      .item-value {
+        color: #B5ABA1;
+      }
+      .item-bottom {
+        color: #B5ABA1;
+      }
+      .item-bottom-time {
+        color: #576273;
+      }
     }
   }
 }

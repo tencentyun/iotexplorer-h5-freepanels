@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import * as d3 from 'd3';
-import viewportConfig from '../../../../scripts/config/pxToViewport.config';
+import viewportConfig from '../../../../../webpack/pxToViewport.config';
 
 interface ItemProps {
   x: string;

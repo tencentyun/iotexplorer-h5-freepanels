@@ -1,41 +1,41 @@
 /*
  * @Description: 首页-头部
  */
-
 import React from 'react';
 import { SvgIcon } from '@components/common';
 import { Block } from '@components/layout';
 import { Battery } from '@components/business';
-import { getThemeType } from '@libs/theme';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
-import CarImage from '@/assets/images/electric-car/car.svg';
-import SoundImage from '@/assets/images/electric-car/sound.png';
-import SoundImageBlueWhite from '@/assets/images/electric-car/sound-blueWhite.png';
-import SoundImageDark from '@/assets/images/electric-car/sound-dark.png';
-import SoundImageColorful from '@/assets/images/electric-car/sound-colorful.png';
-import SoundImageMorandi from '@/assets/images/electric-car/sound-morandi.png';
-import { CurrentSkinProps } from '../skinProps';
+// import CarImage from '@icons/images/electric-car/car.svg';
+// import SoundImage from '@icons/images/electric-car/sound.png';
+// import SoundImageBlueWhite from '@icons/images/electric-car/sound-blueWhite.png';
+// import SoundImageDark from '@icons/images/electric-car/sound-dark.png';
+// import SoundImageColorful from '@icons/images/electric-car/sound-colorful.png';
+// import SoundImageMorandi from '@icons/images/electric-car/sound-morandi.png';
+import { getThemeType } from '@libs/theme';
+import { SkinProps } from '../skinProps';
 import './index.less';
 
-const themeType = getThemeType();
-
 export function HeaderBlock() {
+  const themeType = getThemeType();
+  const CurrentSkinProps: any = SkinProps[themeType];
 
   const soundImageSrc = () => {
-    switch (themeType) {
-      case 'normal':
-        return SoundImage;
-      case 'blueWhite':
-        return SoundImageBlueWhite;
-      case 'dark':
-        return SoundImageDark;
-      case 'colorful':
-        return SoundImageColorful;
-      case 'morandi':
-        return SoundImageMorandi;
-      default:
-        return SoundImage;
-    }
+    // switch (themeType) {
+    //   case 'normal':
+    //     return SoundImage;
+    //   case 'blueWhite':
+    //     return SoundImageBlueWhite;
+    //   case 'dark':
+    //     return SoundImageDark;
+    //   case 'colorful':
+    //     return SoundImageColorful;
+    //   case 'morandi':
+    //     return SoundImageMorandi;
+    //   default:
+    //     return SoundImage;
+    // }
+    return '';
   };
 
   // 设备详情页
@@ -69,7 +69,7 @@ export function HeaderBlock() {
         />
       </div>
       <div className="image-wrap">
-        <img className="car-image" src={CarImage}></img>
+        {/* <img className="car-image" src={CarImage}></img> */}
         {sdk.deviceData.search === 'sound' ? (
           <img className="car-sound" src={soundImageSrc()}></img>
         ) : null}

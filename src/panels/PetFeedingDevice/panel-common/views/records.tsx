@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { RecordList, RecordItemProps } from '@components/business/recorrdList';
-// @ts-ignore
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 import './records.less';
 

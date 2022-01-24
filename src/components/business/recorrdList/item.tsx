@@ -1,6 +1,6 @@
 import React from 'react';
 import dayjs from 'dayjs';
-import { Block } from '@/components/layout';
+import { Block } from '@components/layout';
 import { RecordItemProps } from './index';
 
 const DAY_DESC: string[] = [
@@ -15,7 +15,7 @@ const DAY_DESC: string[] = [
 
 export function RecordItem(props: RecordItemProps) {
   // 获取时间
-  const date = dayjs(props.date);
+  const date = dayjs(Number(props.date));
 
   return (
     <div className="_component_business_record_list-item_ record-item">
@@ -24,15 +24,17 @@ export function RecordItem(props: RecordItemProps) {
       {/* 内容区域 */}
       <Block className="item-content">
         <div className="item-top">
-          <div className="font_line_2 color_2">
+          <div className="font_line_2">
             <span className="time">{date.format('HH:mm')}</span>
-            <span className="day color_3">{DAY_DESC[date.day()]}</span>
+            <span className="day">{DAY_DESC[date.day()]}</span>
           </div>
-          <p className="item-value font_line_3 color_2">{props.value}</p>
+          <p className="item-value font_line_3">{props.value}</p>
         </div>
         <div className="item-bottom">
-          <p className="font_line_2 color_2">{date.format('YYYY-MM-DD')}</p>
-          <p className="font_line_2 color_2">{props.label}</p>
+          <p className="item-bottom-time font_line_2">
+            {date.format('YYYY-MM-DD')}
+          </p>
+          <p className="font_line_2">{props.label}</p>
         </div>
       </Block>
     </div>

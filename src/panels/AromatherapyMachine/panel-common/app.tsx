@@ -3,37 +3,21 @@
  * @Date: 2021-09-22 21:15:26
  * @Description: 香薰机
  */
-/*eslint-disable*/
 import React, { useEffect, useState } from 'react';
 import { HashRouter, Switch, Route, Redirect } from 'react-router-dom';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 import { useDeviceData } from '@hooks/useDeviceData';
 import { DeviceContext } from './deviceContext';
 // css
-import '@/assets/styles/normalize.css';
+import '@icons/themes/global.less';
+import '@icons/themes/icons/svg/aromatherapy-machine';
 import './style.less';
-import '../../themes/global.less';
 // 页面
 import { Home } from './views/home';
 import { More } from './views/more';
 import { Timing } from './views/timing';
 
 export function App() {
-  const isBluetoothDevice = true;
-  const isDev = process.env.NODE_ENV !== 'production';
-  //新旧链接的兼容
-  const hasScf = /\/scf\//.test(location.href);
-
-  let basename = isDev
-    ? `${hasScf ? '/scf' : ''}/h5panel/developing`
-    : `${hasScf ? '/scf' : ''}/h5panel`;
-
-  console.log('----basename----', basename);
-  // 蓝牙的调试模式下路由需要加上 /live
-  if (isBluetoothDevice && isDev) {
-    basename += '/live';
-  }
-
   const [state, { onDeviceDataChange, onDeviceStatusChange }] =
     useDeviceData(sdk);
 
@@ -81,7 +65,7 @@ export function App() {
       <div>loading...</div>
     ) : (
       <DeviceContext.Provider value={state}>
-        <HashRouter basename={basename}>
+        <HashRouter>
           <Redirect exact from="/" to="/home"></Redirect>
           <Switch>
             {/* 首页 */}

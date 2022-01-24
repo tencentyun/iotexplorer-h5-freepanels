@@ -1,7 +1,4 @@
-import { getThemeType } from '@/business';
-const themeType = getThemeType();
-
-const skinProps = {
+const SkinProps = {
   normal: {
     tempChart: {
       id: 'tempChart',
@@ -190,4 +187,4 @@ const skinProps = {
   }
 };
 
-export const CurrentSkinProps: any = skinProps[themeType];
+export { SkinProps };

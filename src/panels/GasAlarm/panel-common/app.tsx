@@ -9,6 +9,7 @@ import { DeviceContext } from './deviceContext';
 
 import 'antd-mobile/es/global';
 import '@icons/themes/global.less';
+import '@icons/themes/icons/svg/common';
 import '@icons/themes/icons/svg/gas-alarm';
 import './style.less';
 

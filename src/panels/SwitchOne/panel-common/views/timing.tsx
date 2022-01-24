@@ -6,11 +6,11 @@ import React, { useState } from 'react';
 import TimerCloud, {
   ITimerDataBind,
   ITimerOptions
-} from '@/components/business/timerCloud/timer-cloud';
+} from '@components/business/timerCloud/timer-cloud';
 import { DeviceSateContext } from '../deviceStateContext';
-import { Modal } from '@/components/base';
+import { Modal } from '@components/base';
 import { List, Radio } from 'antd-mobile';
-import IconChecked from '@/components/base/icon-checked/icon-checked';
+import IconChecked from '@components/base/icon-checked/icon-checked';
 import './timing.less';
 
 export function Timing() {

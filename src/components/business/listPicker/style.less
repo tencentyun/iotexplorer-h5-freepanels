@@ -88,6 +88,33 @@
       height: 70px;
     }
   }
+  &.layout-middle {
+    .dialog-selection-item {
+      display: flex;
+      justify-content: center;
+      padding-bottom: 30px;
+      .item {
+        position: relative;
+        .item-label {
+          margin-right: 0;
+          padding: 41px 0;
+        }
+        .item-select-icon {
+          position: absolute;
+          top: 50%;
+          right: -139px;
+          margin-top: -35px;
+        }
+      }
+    }
+  }
+  &.layout-spaceBetween {
+    .dialog-selection-item {
+      padding: 0 73px 30px 90px;
+      display: flex;
+      justify-content: space-between;
+    }
+  }
 }
 body.theme_dark {
   ._component_business_list_picker_{
@@ -103,6 +130,11 @@ body.theme_dark {
         }
         button:last-child{
           color: #ffffff !important;
+        }
+      }
+      .adm-dialog-footer {
+        .adm-dialog-action-row {
+          border-top: 3px solid #344050;
         }
       }
     }

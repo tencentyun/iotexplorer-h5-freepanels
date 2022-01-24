@@ -1,7 +1,6 @@
 .data-show-disk {
   position: relative;
   padding: 120px 100px;
-  overflow: hidden;
   .disk {
     display: flex;
     align-items: center;
@@ -182,17 +181,22 @@
   height: 750px;
   z-index: 1;
 }
-.bg-bubbles div {
+.bg-bubbles > .bubbles-wrap {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.bg-bubbles .bubble {
   position: absolute;
-  top: 375px;
-  left: 375px; 
+  top: 50%;
+  left: 50%; 
+  margin-top: -375px;
+  margin-left: -375px;
   width: 750px;
   height: 750px;
   border-radius: 50%;
-  transform: translate(-50%, -50%);
 }
-
-.bg-bubbles div span {
+.bg-bubbles .bubble span {
   display: block;
   width: 750px;
   height: 750px;
@@ -200,46 +204,40 @@
   border-radius: 50%;
   opacity: 0.76;
 }
-.bg-bubbles div:nth-child(1) span {
+.bg-bubbles .bubble:nth-child(1) span {
   top: 46px;
   left: -100px;
   background-image: linear-gradient(-87deg, rgba(238, 238, 238, 0) 50%, rgba(216,216,216,0.60) 100%);
 }
-.bg-bubbles div:nth-child(2) span {
+.bg-bubbles .bubble:nth-child(2) span {
   top: -100px;
   right: -57px;
   background-image: linear-gradient(30deg, rgba(238, 238, 238, 0) 50%, rgba(216,216,216,0.60) 100%);
 }
-.bg-bubbles div:nth-child(3) span {
+.bg-bubbles .bubble:nth-child(3) span {
   right: -60px;
   bottom: -80px;
   background-image: linear-gradient(120deg, rgba(238, 238, 238, 0) 50%, rgba(216,216,216,0.60) 100%);
 }
 
-.animation {
-  div:nth-child(1) {
+.bubbles-animation {
+  .bubble:nth-child(1) {
     animation: revolve 3s infinite linear;
   }
-  div:nth-child(2) {
+  .bubble:nth-child(2) {
     animation: revolve 3s infinite linear;
   }
-  div:nth-child(3) {
+  .bubble:nth-child(3) {
     animation: revolve 3s infinite linear;
   }
-  div:nth-child(1) span { 
+  .bubble:nth-child(1) span { 
     background-image: linear-gradient(-87deg, rgba(238, 238, 238, 0) 50%, rgba(221,178,178,0.60) 100%);
   }
-  div:nth-child(2) span { 
+  .bubble:nth-child(2) span { 
     background-image: linear-gradient(30deg, rgba(238, 238, 238, 0) 50%, rgba(221,178,178,0.6) 100%);
   }
-  div:nth-child(3) span { 
+  .bubble:nth-child(3) span { 
     background-image: linear-gradient(120deg, rgba(238, 238, 238, 0) 50%, rgba(221,178,178,0.6) 100%);
-  }
-}
-
-@keyframes revolve {
-  100% {
-    transform: translate(-50%, -50%) rotate(360deg);
   }
 }
 
@@ -257,14 +255,14 @@ body.theme_blue_white {
       border-color: #FFFFFF;
     }
   }
-  .animation {
-    div:nth-child(1) span { 
+  .bubbles-animation {
+    .bubble:nth-child(1) span { 
       background-image: linear-gradient(-87deg, rgba(238, 238, 238, 0) 50%, rgba(216,216,216,0.60) 100%);
     }
-    div:nth-child(2) span { 
+    .bubble:nth-child(2) span { 
       background-image: linear-gradient(30deg, rgba(238, 238, 238, 0) 50%, rgba(216,216,216,0.60) 100%);
     }
-    div:nth-child(3) span { 
+    .bubble:nth-child(3) span { 
       background-image: linear-gradient(120deg, rgba(238, 238, 238, 0) 50%, rgba(216,216,216,0.60) 100%);
     }
   }
@@ -272,8 +270,8 @@ body.theme_blue_white {
 
 body.theme_dark {
   .disk {
+    border: 1px solid #222532;
     background-image: linear-gradient(144deg, #313C4B 0%, #242F3E 99%);
-    box-shadow: none;
     .pulse {
       border-color: rgba(255, 255, 255, 0.49);
     }
@@ -288,23 +286,23 @@ body.theme_dark {
       border-color: rgba(255, 255, 255, 0.49);
     }
   }
-  .bg-bubbles div:nth-child(1) span {
+  .bg-bubbles .bubble:nth-child(1) span {
     background-image: linear-gradient(-87deg, #222532 5%, #1B1F2A 100%);
   }
-  .bg-bubbles div:nth-child(2) span {
+  .bg-bubbles .bubble:nth-child(2) span {
     background-image: linear-gradient(30deg, #222532 5%, #1B1F2A 100%);
   }
-  .bg-bubbles div:nth-child(3) span {
+  .bg-bubbles .bubble:nth-child(3) span {
     background-image: linear-gradient(120deg, #222532 5%, #1B1F2A 100%);
   }
-  .animation {
-    div:nth-child(1) span { 
+  .bubbles-animation {
+    .bubble:nth-child(1) span { 
       background-image: linear-gradient(-87deg, r#222532 5%, #1B1F2A 100%);
     }
-    div:nth-child(2) span { 
+    .bubble:nth-child(2) span { 
       background-image: linear-gradient(30deg, #222532 5%, #1B1F2A 100%);
     }
-    div:nth-child(3) span { 
+    .bubble:nth-child(3) span { 
       background-image: linear-gradient(120deg, #222532 5%, #1B1F2A 100%);
     }
   }
@@ -328,23 +326,23 @@ body.theme_colorful {
       border-color: rgba(255, 255, 255, 0.49);
     }
   }
-  .bg-bubbles div:nth-child(1) span {
+  .bg-bubbles .bubble:nth-child(1) span {
     background-image: linear-gradient(-87deg, rgba(255,255,255,0.00) 50%, #AFC4FF 100%);
   }
-  .bg-bubbles div:nth-child(2) span {
+  .bg-bubbles .bubble:nth-child(2) span {
     background-image: linear-gradient(30deg, rgba(255,255,255,0.00) 50%, #AFC4FF 100%);
   }
-  .bg-bubbles div:nth-child(3) span {
+  .bg-bubbles .bubble:nth-child(3) span {
     background-image: linear-gradient(120deg, rgba(255,255,255,0.00) 50%, #AFC4FF 100%);
   }
-  .animation {
-    div:nth-child(1) span { 
+  .bubbles-animation {
+    .bubble:nth-child(1) span { 
       background-image: linear-gradient(-87deg, rgba(238,238,238,0.00) 50%, rgba(221,178,178,0.60) 100%);
     }
-    div:nth-child(2) span { 
+    .bubble:nth-child(2) span { 
       background-image: linear-gradient(30deg, rgba(238,238,238,0.00) 50%, rgba(221,178,178,0.60) 100%);
     }
-    div:nth-child(3) span { 
+    .bubble:nth-child(3) span { 
       background-image: linear-gradient(120deg, rgba(238,238,238,0.00) 50%, rgba(221,178,178,0.60) 100%);
     }
   }
@@ -369,27 +367,38 @@ body.theme_morandi {
       color: #FFFFFF;
     }
   }
-  .bg-bubbles div span {
+  .bg-bubbles .bubble span {
     opacity: 0.12;
   }
-  .bg-bubbles div:nth-child(1) span {
+  .bg-bubbles .bubble:nth-child(1) span {
     background-image: linear-gradient(-87deg, rgba(135,135,135,0.00) 21%, #FFFFFF 100%);
   }
-  .bg-bubbles div:nth-child(2) span {
+  .bg-bubbles .bubble:nth-child(2) span {
     background-image: linear-gradient(30deg, rgba(135,135,135,0.00) 21%, #FFFFFF 100%);
   }
-  .bg-bubbles div:nth-child(3) span {
+  .bg-bubbles .bubble:nth-child(3) span {
     background-image: linear-gradient(120deg, rgba(135,135,135,0.00) 21%, #FFFFFF 100%);
   }
-  .animation {
-    div:nth-child(1) span { 
+  .bubbles-animation {
+    .bubble:nth-child(1) span { 
       background-image: linear-gradient(-87deg, rgba(135,135,135,0.00) 21%, #FFFFFF 100%);
     }
-    div:nth-child(2) span { 
+    .bubble:nth-child(2) span { 
       background-image: linear-gradient(30deg, rgba(135,135,135,0.00) 21%, #FFFFFF 100%);
     }
-    div:nth-child(3) span { 
+    .bubble:nth-child(3) span { 
       background-image: linear-gradient(120deg, rgba(135,135,135,0.00) 21%, #FFFFFF 100%);
     }
+  }
+}
+
+@keyframes revolve {
+  0% {
+    transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+    -webkit-transform: rotate(360deg);
   }
 }

@@ -19,8 +19,12 @@
     
     .battery-percent {
       color: #B5C4D1;
-      font-size: @font_48;
+      font-size: 48px;
       margin-left: 18px;
+    }
+    .status-desc {
+      font-size: 36px;
+      line-height: 50px;
     }
   }
 
@@ -117,13 +121,19 @@
   .control-area {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
+    margin: 0 160px;
     & > .control-button {
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-
+      width: 295px;
+      height: 300px;
+      padding: 55px 72px;
+      svg {
+        overflow: visible;
+      }
       .button-icon {
         width: 76px;
         height: 76px;
@@ -133,16 +143,11 @@
         background-size: 100% 100%;
       }
 
-      .icon-record {
-        background-image: url('~@/assets/icons/gas-alarm/icon-record-normal.svg');
-      }
-
       .button-name {
+        line-height: 50px;
+        font-size: 36px;
+        font-family: PingFangSC-Medium;
         color: #B5C4D1;
-      }
-
-      & + .control-button {
-        margin-left: 215px;
       }
     }
   }
@@ -168,9 +173,6 @@ body.theme_blue_white {
     }
     .control-area {
       & > .control-button {
-        .icon-record {
-          background-image: url('~@/assets/icons/gas-alarm/icon-record-blue.svg');
-        }
         .button-name {
           color: #323232;
         }
@@ -237,9 +239,7 @@ body.theme_dark {
     }
     .control-area {
       & > .control-button {
-        .icon-record {
-          background-image: url('~@/assets/icons/gas-alarm/icon-record-dark.svg');
-        }
+        padding: 55px 72px;
         .button-name {
           color: #FFFFFF;
         }
@@ -307,9 +307,6 @@ body.theme_colorful {
     }
     .control-area {
       & > .control-button {
-        .icon-record {
-          background-image: url('~@/assets/icons/gas-alarm/icon-record-colorful.svg');
-        }
         .button-name {
           color: #323232;
         }
@@ -359,9 +356,6 @@ body.theme_morandi {
     }
     .control-area {
       & > .control-button {
-        .icon-record {
-          background-image: url('~@/assets/icons/gas-alarm/icon-record-morandi.svg');
-        }
         .button-name {
           color: #424C5C;
         }

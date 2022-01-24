@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="60px" height="80px" viewBox="0 0 60 80" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 59.1 (86144) - https://sketch.com -->
+    <title>锁</title>
+    <desc>Created with Sketch.</desc>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="1" transform="translate(-80.000000, -383.000000)">
+            <g id="锁" transform="translate(80.000000, 387.000000)">
+                <path d="M50,0 L50,9.10447761 C50,20.644756 41.045695,30 30,30 C18.954305,30 10,20.644756 10,9.10447761 L10,0" id="矩形" stroke="#C9D4DD" stroke-width="7" transform="translate(30.000000, 15.000000) scale(1, -1) translate(-30.000000, -15.000000) "></path>
+                <rect id="矩形" stroke="#C9D4DD" stroke-width="7" x="3.5" y="29.5" width="53" height="43" rx="13"></rect>
+                <circle id="椭圆形" fill="#C9D4DD" cx="30" cy="51" r="7"></circle>
+            </g>
+        </g>
+    </g>
+</svg>

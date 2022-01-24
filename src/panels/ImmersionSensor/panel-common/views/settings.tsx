@@ -11,9 +11,9 @@ import { getThemeType } from '@libs/theme';
 import { onControlDevice } from '@hooks/useDeviceData';
 import { toggleBooleanByNumber } from '@libs/utillib';
 
-const themeType = getThemeType();
-
 export function Settings() {
+  const themeType = getThemeType();
+
   return (
     <DeviceContext.Consumer>
       {({ deviceData }) => (
@@ -30,7 +30,7 @@ export function Settings() {
                   theme={themeType}
                   checked={
                     deviceData['muffling']
-                      ? toggleBooleanByNumber(deviceData['muffling'])
+                      ? Boolean(deviceData['muffling'])
                       : false
                   }
                   onChange={(val: boolean) => {

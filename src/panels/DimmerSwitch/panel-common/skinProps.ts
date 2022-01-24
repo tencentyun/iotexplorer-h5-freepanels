@@ -1,7 +1,4 @@
-import { getThemeType } from '@/business';
-const themeType = getThemeType();
-
-const skinProps = {
+const SkinProps = {
   normal: {
     default: {
       clock: {
@@ -154,4 +151,4 @@ const skinProps = {
   }
 };
 
-export const CurrentSkinProps: any = skinProps[themeType];
+export { SkinProps };

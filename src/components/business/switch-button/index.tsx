@@ -50,10 +50,6 @@ export function BizSwitch(props: BizSwitchProps) {
 
       <div className="switch-wrapper">
         <div className="switch-panel">
-          {/* <img
-            className="switch-bar"
-            src={themIcon(props.theme || 'normal')}
-          ></img> */}
           <span className="switch-bar"></span>
           <span className="switch-status-desc font_line_3">
             {status ? 'ON' : 'OFF'}

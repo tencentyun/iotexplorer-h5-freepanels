@@ -36,7 +36,7 @@ export function Settings() {
           <Block className="setting-block">
             <Cell
               title="电池电量状态"
-              value={deviceData.power_switch == 1 ? '开启' : '关闭'}
+              value={deviceData.battery_state}
               valueStyle={'gray'}
               size="medium"
               isLink={false}

@@ -8,7 +8,6 @@ import { Block } from '@components/layout';
 import { getThemeType } from '@libs/theme';
 import { onControlDevice } from '@hooks/useDeviceData';
 import SwipeUnlock from '../unlock/index';
-// @ts-ignore
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 import './index.less';
 

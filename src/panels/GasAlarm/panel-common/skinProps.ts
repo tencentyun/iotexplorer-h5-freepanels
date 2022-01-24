@@ -1,10 +1,10 @@
-import { getThemeType } from '@libs/theme';
-const themeType = getThemeType();
-
-const skinProps = {
+const SkinProps =  {
   normal: {
     battery: {
       color: ''
+    },
+    record: {
+      color: '#000000'
     },
     settings: {
       color: '#000000'
@@ -79,5 +79,4 @@ const skinProps = {
     }
   }
 };
-
-export const CurrentSkinProps: any = skinProps[themeType];
+export { SkinProps };

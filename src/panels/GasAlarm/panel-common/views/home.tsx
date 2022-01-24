@@ -14,11 +14,10 @@ import dayjs from 'dayjs';
 
 import { DeviceContext } from '../deviceContext';
 import { getThemeType } from '@libs/theme';
-import { CurrentSkinProps } from '../skinProps';
-
-const themeType = getThemeType();
+import { SkinProps } from '../skinProps';
 
 export function Home() {
+  const themeType = getThemeType();
   const history = useHistory();
   const [recordTime, setRecordTime] = useState('');
   const [recordStatus, setRecordStatus] = useState('');
@@ -80,7 +79,7 @@ export function Home() {
                   isShowPercent={true}
                   isShowTip={false}
                   value={deviceData.battery_percentage}
-                  {...CurrentSkinProps.battery}
+                  {...SkinProps[themeType].battery}
                 />
                 <div
                   className={classNames(
@@ -108,7 +107,7 @@ export function Home() {
                   isShowPercent={true}
                   isShowTip={false}
                   value={deviceData.battery_percentage}
-                  {...CurrentSkinProps.battery}
+                  {...SkinProps[themeType].battery}
                 />
                 <div
                   className={classNames(
@@ -141,11 +140,10 @@ export function Home() {
           </div>
           <div className="footer-button">
             <Block className="button-block" onClick={handleMoreRecording}>
-              {/* <div className="button-icon icon-record"></div> */}
               <SvgIcon
                 className="button-icon"
                 name="icon-record"
-                {...CurrentSkinProps.record}
+                {...SkinProps[themeType].record}
               />
               <p className="button-name">更多记录</p>
             </Block>
@@ -153,7 +151,7 @@ export function Home() {
               <SvgIcon
                 className="button-icon"
                 name="icon-setting"
-                {...CurrentSkinProps.settings}
+                {...SkinProps[themeType].settings}
               />
               <p className="button-name">设置</p>
             </Block>

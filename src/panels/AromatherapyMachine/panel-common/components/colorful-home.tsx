@@ -5,10 +5,13 @@ import { SvgIcon } from '@components/common';
 import { Block } from '@components/layout';
 import { onControlDevice } from '@hooks/useDeviceData';
 import { DeviceContext } from '../deviceContext';
-import { CurrentSkinProps } from '../skinProps';
+import { getThemeType } from '@libs/theme';
+import { SkinProps } from '../skinProps';
 import '../components/colorful-home.less';
 
 export function ColorfulHome() {
+  const themeType = getThemeType();
+  const CurrentSkinProps: any = SkinProps[themeType];
   const history = useHistory();
   const [currentMode, setCurrentMode] = useState('middle');
 

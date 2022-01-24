@@ -85,6 +85,7 @@
         justify-content: center;
         width: 295px;
         height: 300px;
+        padding: 55px 70px;
         margin-right: 40px;
         color: #B5C4D1;
         &:last-child {
@@ -95,14 +96,6 @@
           width: 75px;
           height: 75px;
           margin-bottom: 36px;
-        }
-        .icon-record {
-          background: url('~@/assets/icons/gas-alarm/icon-record-normal.svg') no-repeat center;
-          background-size: 100% 100%;
-        }
-        .icon-record-default {
-          background: url('~@/assets/icons/gas-alarm/icon-record-default.svg') no-repeat center;
-          background-size: 100% 100%;
         }
         .button-name {
           line-height: 50px;
@@ -116,7 +109,6 @@
   // 底部样式
   & > footer {
     flex-shrink: 0;
-    // height: 793px;
     min-height: calc(~"100vh - 1236px");
     box-sizing: border-box;
     background-color: #fff;
@@ -236,7 +228,7 @@ body.theme_blue_white {
         display: flex;
         align-items: center;
         justify-content: space-between;
-        margin: 0 80px 66px;
+        margin: 0 auto 66px;
   
         & > .button-block {
           display: flex;
@@ -255,10 +247,6 @@ body.theme_blue_white {
             width: 75px;
             height: 75px;
             margin-bottom: 36px;
-          }
-          .icon-record {
-            background: url('~@/assets/icons/gas-alarm/icon-record-blue.svg') no-repeat center;
-            background-size: 100% 100%;
           }
           .button-name {
             line-height: 50px;
@@ -445,7 +433,7 @@ body.theme_dark {
             margin-bottom: 36px;
           }
           .icon-record {
-            background: url('~@/assets/icons/gas-alarm/icon-record-dark.svg') no-repeat center;
+            // background: url('~@/assets/icons/gas-alarm/icon-record-dark.svg') no-repeat center;
             background-size: 100% 100%;
           }
           .button-name {
@@ -601,10 +589,6 @@ body.theme_colorful {
             height: 75px;
             margin-bottom: 36px;
           }
-          .icon-record {
-            background: url('~@/assets/icons/gas-alarm/icon-record-colorful.svg') no-repeat center;
-            background-size: 100% 100%;
-          }
           .button-name {
             line-height: 50px;
             font-family: PingFangSC-Medium;
@@ -740,7 +724,7 @@ body.theme_morandi {
         display: flex;
         align-items: center;
         justify-content: space-between;
-        margin: 0 80px 66px;
+        margin: 0 auto 66px;
         z-index: 9;
   
         & > .button-block {
@@ -760,10 +744,6 @@ body.theme_morandi {
             width: 75px;
             height: 75px;
             margin-bottom: 36px;
-          }
-          .icon-record {
-            background: url('~@/assets/icons/gas-alarm/icon-record-morandi.svg') no-repeat center;
-            background-size: 100% 100%;
           }
           .button-name {
             line-height: 50px;
@@ -793,6 +773,9 @@ body.theme_morandi {
         padding: 0 62px;
         width: 100%;
         height: 124px;
+        .component_business_number-slider {
+          margin: 0 63px;
+        }
       }
   
       .submit-area {

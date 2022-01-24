@@ -7,6 +7,10 @@ ul, li {
   list-style: none;
 }
 
+p {
+  margin: 0;
+}
+
 .electricity-stats-receptacle {
   padding: 137px 0 130px;
   min-height: 100vh;
@@ -70,6 +74,8 @@ ul, li {
       display: flex;
       flex-direction: column;
       align-items: center;
+      width: 295px;
+      height: 300px;
       padding: 85px 70px 54px;
       .button-icon {
         display: block;
@@ -196,6 +202,10 @@ ul, li {
       .active {
         background: #0F0F0F;
         color: #FFFFFF;
+      }
+      .line-chart {
+        width: 834px;
+        height: 650px;
       }
     }
     .footer-data {
@@ -417,12 +427,11 @@ body.theme_dark {
       align-items: flex-start;
       margin: 0 76px 135px;
       padding: 0 100px;
-      width: 975px;
       height: 352px;
       border-radius: 60px;
       border: 3px solid rgba(62,68,84,0.20);
       border-top: none;
-      background-image: url('~@/assets/images/aromatherapy-machine/groove.svg');
+      background-image: url('images/groove.svg');
       background-position: top center;
       background-size: 115%;
       background-repeat: no-repeat;

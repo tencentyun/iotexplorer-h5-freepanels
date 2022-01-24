@@ -1,16 +1,19 @@
 import React, { useState } from 'react';
 import classNames from 'classnames';
 import { useHistory } from 'react-router-dom';
-import { ScrollView } from '../../../../components/base';
+import { ScrollView } from '@components/base';
 import { SvgIcon } from '@components/common';
-import { Block } from '../../../../components/layout';
+import { Block } from '@components/layout';
 import { Slider } from 'antd-mobile';
 import { onControlDevice } from '@hooks/useDeviceData';
 import { DeviceContext } from '../deviceContext';
-import { CurrentSkinProps } from '../skinProps';
+import { getThemeType } from '@libs/theme';
+import { SkinProps } from '../skinProps';
 import '../components/normal-home.less';
 
 export function NormalHome() {
+  const themeType = getThemeType();
+  const CurrentSkinProps: any = SkinProps[themeType];
   const history = useHistory();
   const [currentMode, setCurrentMode] = useState('middle');
 

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="99px" height="50px" viewBox="0 0 99 50" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 59.1 (86144) - https://sketch.com -->
+    <title>开关</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="linearGradient-1">
+            <stop stop-color="#2CE74F" offset="0%"></stop>
+            <stop stop-color="#00E1AD" offset="100%"></stop>
+        </linearGradient>
+        <path d="M74.009899,0 C87.8115507,0 99,11.1928813 99,25 C99,38.8071187 87.8115507,50 74.009899,50 C66.0117962,50 58.8912696,46.2411609 54.3171583,40.3929825 L15.1960784,40.3921569 C6.80351606,40.3921569 1.02779246e-15,33.5886408 0,25.1960784 C-1.02779246e-15,16.8035161 6.80351606,10 15.1960784,10 L54.0164401,9.99939791 C58.5756935,3.92750686 65.8343187,0 74.009899,0 Z" id="path-2"></path>
+        <filter x="-154.5%" y="-294.0%" width="409.1%" height="712.0%" filterUnits="objectBoundingBox" id="filter-3">
+            <feOffset dx="0" dy="6" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="50" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0.125490196   0 0 0 0 0.127812629   0 0 0 0 0.129411765  0 0 0 0.1 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="2" transform="translate(-143.000000, -424.000000)">
+            <g id="编组-6" transform="translate(78.000000, 368.000000)">
+                <g id="开关" transform="translate(65.000000, 56.000000)">
+                    <g id="形状结合">
+                        <use fill="black" fill-opacity="1" filter="url(#filter-3)" xlink:href="#path-2"></use>
+                        <use fill="url(#linearGradient-1)" fill-rule="evenodd" xlink:href="#path-2"></use>
+                    </g>
+                    <circle id="椭圆形" fill="#FFFFFF" cx="75.0196078" cy="25" r="14.2156863"></circle>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -64,6 +64,7 @@ export function Setting() {
                     value: 'grid'
                   }
                 ]}
+                layoutType="middle"
                 onCancel={() => onToggleUnit(false)}
                 onConfirm={value => {
                   onControlDevice('unit_switch', value[0]);

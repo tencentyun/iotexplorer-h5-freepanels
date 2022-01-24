@@ -1,5 +1,5 @@
 module.exports = {
-  FourStreetlights: {
+  SwitchOne: {
     enable: true,
     viewportWidth: 1125,
     panels: [
@@ -10,6 +10,10 @@ module.exports = {
       ['panel-morandi', { enable: true, entry: 'app.tsx' }],
     ],
   },
+  // SwitchOne
+  // PetFeedingDevice
+  // DimmerSwitch
+  // SmokeAlarm
   // WallPlug: {
   //   enable: true,
   //   viewportWidth: 1125,

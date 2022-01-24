@@ -4,10 +4,10 @@
  * @Description:
  */
 import React, { useEffect, useMemo, useRef, useState } from 'react';
-import { StyledProps, ThemeType } from '@/global';
-import { getOffset } from '@/utils/dom';
-import './style.less';
 import classNames from 'classnames';
+import { StyledProps, ThemeType } from '@libs/global';
+import { getOffset } from '@libs/dom';
+import './style.less';
 
 export interface SliderProps extends StyledProps {
   defaultValue?: number;

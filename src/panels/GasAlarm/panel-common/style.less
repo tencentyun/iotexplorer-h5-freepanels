@@ -72,7 +72,10 @@ p {
       justify-content: center;
       width: 295px;
       height: 300px;
-      padding: 55px 75px;
+      padding: 55px 72px;
+      svg {
+        overflow: visible;
+      }
       .button-icon {
         display: block;
         width: 78px;
@@ -90,6 +93,7 @@ p {
 
 .alarm-setting {
   padding: 108px 84px 0 76px;
+  min-height: calc(~"100vh - 108px");
   .setting-block {
     padding: 31px 49px 30px 66px;
     ._cell_size_medium_ {
@@ -346,6 +350,7 @@ body.theme_dark {
     .footer {
       color: #FFFFFF;
       .footer-button {
+        border: 1px solid #222532;
         background-image: linear-gradient(137deg, #333E4D 0%, #222D3B 100%);
       }
     }

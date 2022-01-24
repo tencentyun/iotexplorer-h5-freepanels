@@ -7,8 +7,6 @@ import { SvgIcon } from '@components/common';
 import { getThemeType } from '@libs/theme';
 import './data-show-disk.less';
 
-const themeType = getThemeType();
-
 const skinProps = {
   normal: {
     normal: { color: '#000000' },
@@ -32,12 +30,13 @@ const skinProps = {
   }
 };
 
-const currentSkin: any = skinProps[themeType];
-
 interface DiskProps {
   status: string;
 }
 export function DataShowDisk(props: DiskProps) {
+  const themeType = getThemeType();
+  const currentSkin: any = skinProps[themeType];
+
   const { status = 'normal' } = props;
 
   let currentStatus = '';
@@ -71,17 +70,19 @@ export function DataShowDisk(props: DiskProps) {
       <div
         className={classNames(
           'bg-bubbles',
-          currentStatus === 'alarm' ? 'animation' : ''
+          { 'bubbles-animation': currentStatus === 'alarm' }
         )}
       >
-        <div>
-          <span></span>
-        </div>
-        <div>
-          <span></span>
-        </div>
-        <div>
-          <span></span>
+        <div className="bubbles-wrap">
+          <div className="bubble">
+            <span></span>
+          </div>
+          <div className="bubble">
+            <span></span>
+          </div>
+          <div className="bubble">
+            <span></span>
+          </div>
         </div>
       </div>
     </div>
