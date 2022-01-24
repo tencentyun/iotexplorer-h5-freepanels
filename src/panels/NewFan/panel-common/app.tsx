@@ -6,13 +6,14 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 import { DeviceSateContext } from './deviceStateContext';
 import { useDeviceData } from '@hooks/useDeviceData';
+import {QuicknessMode} from '@components/base/quicknessMode';
 import { Home } from './views/home/home';
 import '@icons/themes/icons/svg/common';
 import '@icons/themes/global.less';
 import './style.less';
 import './themes.less'; // 4套皮肤 构建前要修改var.less变量文件
 
-export function App() {
+export const App = QuicknessMode(function App() {
   const isBluetoothDevice = true;
   // eslint-disable-next-line no-undef
   const isDev = process.env.NODE_ENV !== 'production';
@@ -165,4 +166,4 @@ export function App() {
       )}
     </>
   );
-}
+});

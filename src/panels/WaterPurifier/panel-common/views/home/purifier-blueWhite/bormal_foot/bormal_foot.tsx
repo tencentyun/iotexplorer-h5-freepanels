@@ -51,7 +51,7 @@ export function Bormal_foot() {
 
         <div onClick={onSwitchFlow} className="water_icon">
           <SvgIcon
-            name={sdk.deviceData.switch === 1 && 'icon-purifier-take-water-blueWhite' || 'icon-purifier-take-water-notopen-blueWhite'}
+            name={sdk.deviceData.switch_flow === 1 && 'icon-purifier-take-water-blueWhite' || 'icon-purifier-take-water-notopen-blueWhite'}
             color="#000000" width={50} height={50}/>
         </div>
         <div onClick={() => sdk.deviceData.switch === 1 ? setIsShowTempMode(true) : ''}>

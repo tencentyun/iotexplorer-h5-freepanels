@@ -12,4 +12,5 @@ export * from './scroll-view';
 export * from './button';
 export * from './input';
 export * from './date-picker';
+export * from './quicknessMode';
 export { Dialog };

@@ -1,8 +1,9 @@
-import React from 'react';
+import React, {useState} from 'react';
 import classNames from 'classnames';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 import { getThemeType } from '@libs/theme';
 import {onControlDevice} from '@hooks/useDeviceData';
+import {ListPicker} from "@components/business";
 import './environment.less';
 
 import AutomaticImage from '../../../icons/normal/automatic.svg';
@@ -96,6 +97,7 @@ const Environment = () => {
         return SleepImage;
     }
   };
+  const [rangeVisible, onToggleRange] = useState(false);
   const handleMode = (type: string) => {
     if(sdk.deviceData.power_switch === 1){
       onControlDevice('mode', type);
@@ -126,26 +128,55 @@ const Environment = () => {
         </div>
       </div>
       <div className={'environment-wrap1'}>
-        <div id={'interval'} className={classNames('temperature')} onClick={() => handleMode('4')}>
+        <div id={'interval'} className={classNames('temperature')} onClick={() => handleMode('6')}>
           <img
             src={
-              sdk.deviceData.mode === '4' ? intervalImageSrc() : IntervalImageClose
+              sdk.deviceData.mode === '6' ? intervalImageSrc() : IntervalImageClose
             }
             alt=""
           />
-          <div className={sdk.deviceData.mode === '4' ? 'check' : ''}>间歇</div>
+          <div className={sdk.deviceData.mode === '6' ? 'check' : ''}>间歇</div>
         </div>
         <span className="line" />
         <span className="line1" />
-        <div id={'fan'} className={classNames('humidity')} onClick={() => handleMode('2')}>
+        <div
+          id={'fan'}
+          className={classNames('humidity')}
+          onClick={() => {
+            onToggleRange(true);
+          }}>
           <img
             src={
-              sdk.deviceData.mode === '2' ? fanImageSrc() : FanImageClose
+              sdk.deviceData.range ? fanImageSrc() : FanImageClose
             }
             alt=""
           />
-          <div className={sdk.deviceData.mode === '2' ? 'check' : ''}>1挡</div>
+          <div className={sdk.deviceData.range ? 'check' : ''}>{sdk.deviceData.range ? sdk.deviceData.range + '挡' : '-'}</div>
         </div>
+        <ListPicker
+          visible={rangeVisible}
+          title="档位"
+          defaultValue={[sdk.deviceData.range]}
+          options={[
+            {
+              label: '1档',
+              value: '1'
+            },
+            {
+              label: '2档',
+              value: '2'
+            },
+            {
+              label: '3档',
+              value: '3'
+            }
+          ]}
+          onCancel={() => onToggleRange(false)}
+          onConfirm={value => {
+            onControlDevice('range', value[0]);
+            onToggleRange(false);
+          }}
+        />
       </div>
     </article>
   );
