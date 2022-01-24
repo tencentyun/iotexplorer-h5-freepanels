@@ -140,30 +140,18 @@ export const App = QuicknessMode(function App() {
   if (!headPanelTemplateId && state.templateList.length > 0) {
     headPanelTemplateId = state.templateList[0].id;
   }
-
-  const [sdkReady, setSdkReady] = useState(false);
-  useEffect(() => {
-    sdk.sdkReady().then(() => setSdkReady(true));
-  }, []);
-
   return (
-    <>
-      {!sdkReady ? (
-        <div>loading...</div>
-      ) : (
-        <article>
-          <DeviceSateContext.Provider value={state}>
-            <Router basename={basename}>
-              <Switch>
-                {/*首页*/}
-                <Route path="/">
-                  <Home />
-                </Route>
-              </Switch>
-            </Router>
-          </DeviceSateContext.Provider>
-        </article>
-      )}
-    </>
+    <article>
+      <DeviceSateContext.Provider value={state}>
+        <Router basename={basename}>
+          <Switch>
+            {/*首页*/}
+            <Route path="/">
+              <Home />
+            </Route>
+          </Switch>
+        </Router>
+      </DeviceSateContext.Provider>
+    </article>
   );
 });

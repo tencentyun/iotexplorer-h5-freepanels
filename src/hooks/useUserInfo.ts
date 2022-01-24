@@ -1,4 +1,4 @@
-import React, { useReducer, useState, useEffect } from 'react';
+import { useReducer } from 'react';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 import { isObject } from 'lodash';
 import CryptoJS from 'crypto-js';
@@ -104,14 +104,4 @@ export function useUserInfo() {
       onUpdateUserInfo
     }
   ];
-}
-export const connect = (App) => {
-  console.log(App)
-  return () => {
-    const [sdkReady, setSdkReady] = useState(false);
-    useEffect(() => {
-      sdk.sdkReady().then(() => setSdkReady(true));
-      }, []);
-    return sdkReady ? <App /> : (<div>loading...</div>);
-  }
 }
