@@ -41,12 +41,21 @@
     overflow: hidden;
     .adm-picker-view-column {
       background-image: linear-gradient(180deg, #222222 0%, #0F0F0F 100%);
+      overflow: hidden;
     }
     .adm-picker-view-mask {
       // background: rgba(0, 0, 0, .4);
       // border-color: #DAE1E8;
       .adm-picker-view-mask-top, .adm-picker-view-mask-bottom {
         background: rgba(0, 0, 0, 0.1);
+      }
+      .adm-picker-view-mask-top {
+        border-top-left-radius: 60px;
+        border-top-right-radius: 60px;
+      }
+      .adm-picker-view-mask-bottom {
+        border-bottom-left-radius: 60px;
+        border-bottom-right-radius: 60px;
       }
       .adm-picker-view-mask-middle {
         position: relative;
@@ -106,6 +115,7 @@ body.theme_blue_white {
 body.theme_dark {
   ._component_business_value_picker_ {
     .adm-popup-body {
+      border-top: 1px solid #333E4D;
       background-image: linear-gradient(180deg, #333E4D 0%, #202C3A 100%) !important;
 
       .picker-title{
@@ -127,9 +137,10 @@ body.theme_dark {
       --height: calc(@column_height * @column_max_count);
       margin: 53px auto;
       border-radius: 60px;
-      border: 1px solid #242735;
       overflow: hidden;
+      background-color: #242735;
       .adm-picker-view-column {
+        border: 1px solid transparent;
         background-image: linear-gradient(153deg, #00F0FF 0%, #704DF0 100%);
       }
       .adm-picker-view-mask {
@@ -180,9 +191,10 @@ body.theme_morandi {
       color: #FFFFFF !important;
     }
     .value-picker-view {
-      .adm-picker-view-column{
-        background: #FDFBFC !important;
-        .adm-picker-view-column-item{
+      .adm-picker-view-column {
+        // background: #FDFBFC !important;
+        background-image: linear-gradient(180deg, #FDFBFC 0%, #FDFBFC 100%) !important;
+        .adm-picker-view-column-item {
           color: #576273 !important;
         }
       }

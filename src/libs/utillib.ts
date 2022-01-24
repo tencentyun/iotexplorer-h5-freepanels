@@ -645,7 +645,7 @@ export const formatPxUnit = (unit: string | number): string | number => {
   });
 };
 export function mapsToOptions(name: string, maps: any): string[] {
-  if (!maps[name]) return [];
+  if (!maps[name]) return ['1', '2', '3'];
 
   const { min, max, step } = maps[name];
   const result: string[] = [];

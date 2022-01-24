@@ -141,7 +141,7 @@ export function Home() {
           <div className="footer-button">
             <Block className="button-block" onClick={handleMoreRecording}>
               <SvgIcon
-                className="button-icon"
+                className="button-icon icon-record"
                 name="icon-record"
                 {...SkinProps[themeType].record}
               />

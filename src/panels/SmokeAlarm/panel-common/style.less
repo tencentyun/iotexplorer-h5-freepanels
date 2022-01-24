@@ -73,14 +73,17 @@ p {
       width: 295px;
       height: 300px;
       padding: 55px 75px;
-      svg {
-        overflow: visible;
-      }
       .button-icon {
         display: block;
-        width: 78px;
-        height: 78px;
         margin-bottom: 40px;
+      }
+      .icon-record {
+        width: 76px;
+        height: 76px;
+      }
+      .icon-setting {
+        width: 75px;
+        height: 75px;
       }
       .button-name {
         line-height: 50px;
@@ -92,7 +95,7 @@ p {
 }
 
 .alarm-setting {
-  padding: 108px 84px 300px 76px;
+  padding: 108px 84px 0 76px;
   min-height: calc(~"100vh - 108px");
   .setting-block {
     padding: 31px 49px 30px 66px;
@@ -354,6 +357,7 @@ body.theme_dark {
     .footer {
       color: #FFFFFF;
       .footer-button {
+        border: 1px solid #222D3B;
         background-image: linear-gradient(137deg, #333E4D 0%, #222D3B 100%);
         box-shadow: 0 6px 100px 0 #242735;
       }
