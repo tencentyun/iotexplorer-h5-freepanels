@@ -8,6 +8,7 @@ import { useDeviceData } from '@hooks/useDeviceData';
 
 import 'antd-mobile/es/global';
 import '@icons/themes/global.less';
+import '@icons/themes/icons/svg/electric-car';
 import './style.less';
 
 import { Home } from './views/home';

@@ -8,17 +8,17 @@
 
 import React, { useState } from 'react';
 import classNames from 'classnames';
-import { Block } from '@/components/layout';
-import { Cell, Switch } from '@/components/base';
-import { Card, List } from 'antd-mobile';
-import { DeviceSateContext } from '@/products/humidifier/deviceStateContext';
-import { toggleBooleanByNumber } from '@/utils';
+import { Block } from '@components/layout';
+import { Cell, Switch } from '@components/base';
+import { DeviceSateContext } from '../../../deviceStateContext';
+import { toggleBooleanByNumber } from '@libs/utillib';
 import ModalSprayVolume, {
   enumSprayVolume
 } from './modalSprayVolume/modalSprayVolume';
 import ModalSprayMode, { enumSprayMode } from './modalSprayMode/modalSprayMode';
-import { apiControlDeviceData } from '@/utils/api';
-import { getThemeType, onControlDevice } from '@/business';
+import { apiControlDeviceData } from '@hooks/useDeviceData';
+import { getThemeType } from '@libs/theme';
+import { onControlDevice } from '@hooks/useDeviceData';
 
 const themeType = getThemeType();
 

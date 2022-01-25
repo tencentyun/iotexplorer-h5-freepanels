@@ -1,19 +1,20 @@
 import React, { useState } from 'react';
 import { RoundDashboard } from '../components/round-dashboard';
-import { SvgIcon } from '@/components/common/icon';
-import { CurrentSkinProps } from './SkinProps';
-
+import { SvgIcon } from '@components/common/icon';
+import { getThemeType } from '@libs/theme';
+import { SkinProps } from './SkinProps';
 import classNames from 'classnames';
 import './style.less';
 
-import { getThemeType } from '@/business';
-const themeType = getThemeType();
 
 interface dashboardProps {
   value: number;
   dashboardStatus: string;
 }
 const HeaterDashboard: React.FC<dashboardProps> = props => {
+  const themeType = getThemeType();
+  const CurrentSkinProps: any = SkinProps[themeType];
+
   const { value, dashboardStatus } = props;
 
   const skinProps = (CurrentSkinProps as any)[dashboardStatus];

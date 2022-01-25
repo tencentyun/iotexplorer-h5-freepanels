@@ -9,10 +9,10 @@
 import React from 'react';
 import { Card } from 'antd-mobile';
 import classNames from 'classnames';
-import { DeviceSateContext } from '@/products/humidifier/deviceStateContext';
-import { Button } from '@/components/base';
-import IconTheme from '@/components/common/icon/icon-theme';
-import { apiControlDeviceData } from '@/utils/api';
+import { DeviceSateContext } from '../../../deviceStateContext';
+import { Button } from '@components/base';
+import { SvgIcon } from '@components/common/icon';
+import { apiControlDeviceData } from '@hooks/useDeviceData';
 import './temperature-unit.less';
 
 const TemperatureUnit = () => {
@@ -30,7 +30,7 @@ const TemperatureUnit = () => {
             className={classNames('temperatureUnit-wrap')}
             title={
               <div>
-                <IconTheme kind={'temp_unit_convert'} width={66} height={56} />
+                <SvgIcon name="icon-temp_unit_convert" width={66} height={56} color='#414B5B'></SvgIcon>
                 温标切换
               </div>
             }

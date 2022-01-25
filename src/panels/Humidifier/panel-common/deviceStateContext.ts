@@ -1,5 +1,5 @@
 import React, { createContext } from 'react';
-import { noop } from '@/utils';
+import { noop } from '@libs/utillib';
 
 /**
  * @Description:

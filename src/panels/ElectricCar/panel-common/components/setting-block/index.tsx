@@ -16,11 +16,6 @@ export function SettingBlock() {
   const themeType = getThemeType();
   const CurrentSkinProps: any = SkinProps[themeType];
 
-  const buttonProps = {
-    width: 295,
-    height: 300
-  };
-
   // 报警
   const handleAlarm = () => {
     onControlDevice('alert_status', Number(!sdk.deviceData.alert_status));
@@ -33,12 +28,27 @@ export function SettingBlock() {
 
   return (
     <div className="electric-car-setting">
-      <Block className="setting-button" {...buttonProps} onClick={() => {}}>
-        <SvgIcon
-          className="button-icon icon-bluetooth"
-          name="icon-bluetooth"
-          {...CurrentSkinProps.bluetooth.default}
-        />
+      <Block
+        className={classNames(
+          'setting-button',
+          sdk.deviceData.bluetooth === 1 ? 'active' : ''
+        )}
+        onClick={() => {
+          onControlDevice('bluetooth', Number(!sdk.deviceData.bluetooth));
+        }}>
+        {sdk.deviceData.bluetooth === 1 ? (
+          <SvgIcon
+            className="button-icon icon-bluetooth"
+            name="icon-bluetooth"
+              {...CurrentSkinProps.alarm.active}
+            />
+          ) : (
+            <SvgIcon
+            className="button-icon icon-bluetooth"
+            name="icon-bluetooth"
+              {...CurrentSkinProps.alarm.default}
+            />
+        )}
         <p className="button-name">蓝牙未连接</p>
       </Block>
       <Block
@@ -46,7 +56,6 @@ export function SettingBlock() {
           'setting-button',
           sdk.deviceData.alert_status === 1 ? 'active' : ''
         )}
-        {...buttonProps}
         onClick={handleAlarm}
       >
         {sdk.deviceData.alert_status === 1 ? (
@@ -71,7 +80,6 @@ export function SettingBlock() {
           'setting-button',
           sdk.deviceData.search === 'sound' ? 'active' : ''
         )}
-        {...buttonProps}
         onClick={handleMute}
       >
         {sdk.deviceData.search !== 'sound' ? (

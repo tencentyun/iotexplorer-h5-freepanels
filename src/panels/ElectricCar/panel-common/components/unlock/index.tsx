@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { px2vw } from '@libs/utillib';
+import viewportConfig from '../../../../../../webpack/pxToViewport.config';
 import './index.less';
 
 interface UnlockProps {
@@ -37,6 +37,15 @@ export default class SwipeUnlock extends React.Component<
     movedColor: '#4090FF',
     successTips: '已开锁'
   };
+  public px2vw (px: number) {
+    const viewportWidth = 1125;
+    const vw = px * (100 / viewportWidth);
+  
+    if (px === 0) {
+      return px;
+    }
+    return vw.toFixed(viewportConfig.unitPrecision || 3) + 'vw';
+  };
 
   /**
    * 初始数据
@@ -52,14 +61,14 @@ export default class SwipeUnlock extends React.Component<
   private max = this.props.width - 308 * 2;
   /** 盒子样式 */
   private style = {
-    width: px2vw(this.props.width),
-    height: px2vw(this.props.height),
+    width: this.px2vw(this.props.width),
+    height: this.px2vw(this.props.height),
     backgroundColor: this.props.bgColor,
-    borderRadius: px2vw(this.props.borderRadius)
+    borderRadius: this.px2vw(this.props.borderRadius)
   };
   /** 滑条盒子样式 */
   private slideBoxStyle = {
-    borderRadius: px2vw(this.props.borderRadius)
+    borderRadius: this.px2vw(this.props.borderRadius)
   };
 
   constructor(props: UnlockProps) {
@@ -187,9 +196,9 @@ export default class SwipeUnlock extends React.Component<
   public render() {
     /** 滑条样式 */
     const slideStyle = {
-      borderRadius: px2vw(this.props.borderRadius),
+      borderRadius: this.px2vw(this.props.borderRadius),
       background: this.props.movedColor,
-      left: px2vw(308 - this.props.width),
+      left: this.px2vw(308 - this.props.width),
       opacity: this.state.isMouseEnter ? 1 : 0,
       transitionDuration:
         !this.state.isMouseEnter || !this.isMousedown ? '.3s' : '0s',

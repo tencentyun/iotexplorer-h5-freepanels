@@ -8,15 +8,15 @@
 
 import React from 'react';
 import { useHistory } from 'react-router-dom';
-import { DeviceSateContext } from '@/products/humidifier/deviceStateContext';
-import { Block } from '@/components/layout';
-import { Cell, Switch } from '@/components/base';
-import { toggleBooleanByNumber } from '@/utils';
-import { getThemeType, onControlDevice } from '@/business';
-
-const themeType = getThemeType();
+import { DeviceSateContext } from '../../../deviceStateContext';
+import { Block } from '@components/layout';
+import { Cell, Switch } from '@components/base';
+import { toggleBooleanByNumber } from '@libs/utillib';
+import { getThemeType } from '@libs/theme';
+import { onControlDevice } from '@hooks/useDeviceData';
 
 const Features = () => {
+  const themeType = getThemeType();
   const history = useHistory();
 
   return (

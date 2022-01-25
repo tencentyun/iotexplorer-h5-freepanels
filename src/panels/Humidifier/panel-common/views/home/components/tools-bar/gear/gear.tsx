@@ -7,12 +7,11 @@
  */
 
 import React, { useImperativeHandle, useState } from 'react';
-// @ts-ignore
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 import { List, Radio } from 'antd-mobile';
-import { enumToArray } from '@/utils';
-import { apiControlDeviceData } from '@/utils/api';
-import IconChecked from '@/components/base/icon-checked/icon-checked';
+import { enumToArray } from '@libs/utillib';
+import { apiControlDeviceData } from '@hooks/useDeviceData';
+import IconChecked from '@components/base/icon-checked/icon-checked';
 export const enumGear = {
   level_1: '1档',
   level_2: '2档',

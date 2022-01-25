@@ -1,9 +1,9 @@
 import React, { useState, useMemo } from 'react';
 import classNames from 'classnames';
-import { SvgIcon } from '@/components/common/icon';
+import { SvgIcon } from '@components/common/icon';
 import { Popup } from 'antd-mobile';
-import { StyledProps, ThemeType } from '@/global';
-import { getThemeType } from '@/business';
+import { StyledProps, ThemeType } from '@libs/global';
+import { getThemeType } from '@libs/theme';
 import './list-popup.less';
 
 const themeType = getThemeType();

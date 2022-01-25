@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import classNames from 'classnames';
 import './tools-button.less';
 import { useHistory } from 'react-router-dom';
-import { ToolsBarConfig } from '@/products/humidifier/views/home/components/tools-bar/ClassToolBar';
-import { noop } from '@/utils';
-import IconTheme from '@/components/common/icon/icon-theme';
+import { ToolsBarConfig } from '../../tools-bar/ClassToolBar';
+import { noop } from '@libs/utillib';
+// import IconTheme from '@components/common/icon/icon-theme';
 
 function ToolsButton({
   isActive,
@@ -28,7 +28,7 @@ function ToolsButton({
   };
   return (
     <div className={classNames('button')} onClick={handleToggle}>
-      <IconTheme kind={icon} size={size} isFillNone={isFillNone} />
+      {/* <IconTheme kind={icon} size={size} isFillNone={isFillNone} /> */}
       <div className={classNames('label')}>{label}</div>
     </div>
   );

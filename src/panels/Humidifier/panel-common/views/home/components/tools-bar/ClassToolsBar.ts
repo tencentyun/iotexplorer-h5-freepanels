@@ -5,8 +5,7 @@
  * @LastEditors:
  * @LastEditTime:
  */
-import { ToolsBarConfig } from '@/products/humidifier/views/home/components/tools-bar/ClassToolBar';
-// @ts-ignore
+import { ToolsBarConfig } from './ClassToolBar';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 
 export default class ClassToolsBar {

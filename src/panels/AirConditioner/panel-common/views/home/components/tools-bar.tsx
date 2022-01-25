@@ -10,14 +10,13 @@ import { getThemeType } from '@libs/theme';
 import { formatDeviceData, onControlDevice } from '@hooks/useDeviceData';
 import './tools-bar.less';
 
-const themeType = getThemeType();
-
 interface DeviceMaps {
   mode: [];
   fan_speed_enum: [];
 }
 
 export function ToolsBar() {
+  const themeType = getThemeType();
   const history = useHistory();
   const [state] = useDeviceData(sdk);
   // 工作模式弹窗
@@ -293,6 +292,7 @@ export function ToolsBar() {
         theme={themeType}
         defaultValue={[sdk.deviceData.work_mode]}
         options={modeOptions()}
+        layoutType='spaceBetween'
         onCancel={() => setModeVisible(false)}
         onConfirm={value => {
           onControlDevice('mode', value[0]);
@@ -307,6 +307,7 @@ export function ToolsBar() {
         theme={themeType}
         defaultValue={[sdk.deviceData.gear]}
         options={gearOptions()}
+        layoutType='spaceBetween'
         onCancel={() => setGearVisible(false)}
         onConfirm={value => {
           onControlDevice('fan_speed_enum', value[0]);

@@ -7,7 +7,7 @@
  */
 
 import React from 'react';
-import { Modal, ModalProps } from '@/components/base';
+import { Modal, ModalProps } from '@components/base';
 
 export interface IModalEvaporation extends ModalProps {
   isVisible: boolean; // 是否显示弹窗

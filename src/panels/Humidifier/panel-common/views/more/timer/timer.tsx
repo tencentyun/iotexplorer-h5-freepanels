@@ -10,14 +10,14 @@ import React, { useState } from 'react';
 import TimerCloud, {
   ITimerDataBind,
   ITimerOptions
-} from '@/components/business/timerCloud/timer-cloud';
+} from '@components/business/timerCloud/timer-cloud';
 import { List, Radio } from 'antd-mobile';
-import { DeviceSateContext } from '@/products/humidifier/deviceStateContext';
-import WorkMode, {
-  enumWorkMode
-} from '@/products/humidifier/views/home/components/tools-bar/work-mode/work-mode';
-import { Modal } from '@/components/base';
-import IconChecked from '@/components/base/icon-checked/icon-checked';
+import { DeviceSateContext } from '../../../deviceStateContext';
+// import WorkMode, {
+//   enumWorkMode
+// } from '../../../tools-bar/work-mode/work-mode';
+import { Modal } from '@components/base';
+import IconChecked from '@components/base/icon-checked/icon-checked';
 import './timer.less';
 
 const Timer = () => {
@@ -60,7 +60,7 @@ const Timer = () => {
               />
               <List.Item
                 prefix={'工作模式'}
-                extra={enumWorkMode[data['work_mode']]}
+                // extra={enumWorkMode[data['work_mode']]}
                 onClick={() => {
                   setIsShowWorkMode(true);
                 }}
@@ -114,11 +114,11 @@ const Timer = () => {
                 setData(Object.assign(data, { work_mode: tempWorkMode }));
               }}
             >
-              <WorkMode
+              {/* <WorkMode
                 onChange={(val: any) => {
                   setTempWorkMode(val);
                 }}
-              />
+              /> */}
             </Modal>
           </TimerCloud>
         </>

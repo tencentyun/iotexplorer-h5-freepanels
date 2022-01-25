@@ -2,19 +2,19 @@
  * 首页
  */
 import React from 'react';
-import styled from 'styled-components';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
-import { Block } from '../../../components/layout';
-import { Battery, Bluetooth } from '../../../components/business';
+import { Block } from '@components/layout';
+import { Battery, Bluetooth } from '@components/business';
 import { TrainingMode } from '../components/traningMode';
 import { TrainingData } from '../components/trainingData';
-import { getThemeType } from '@/business';
-import { ThemeType } from '@/global';
-import { CurrentSkinProps } from '../skinProps';
+import { getThemeType } from '@libs/theme';
+import { ThemeType } from '@libs/global';
+import { SkinProps } from '../skinProps';
 import './home.less';
 
 export function Home() {
   const theme: ThemeType = getThemeType();
+  const CurrentSkinProps: any = SkinProps[theme];
 
   const renderHeader = () => {
     switch (theme) {

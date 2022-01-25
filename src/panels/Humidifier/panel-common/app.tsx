@@ -8,9 +8,11 @@ import { More } from './views/more/more';
 import { Home } from './views/home/home';
 import Timer from './views/more/timer/timer';
 
-import '../../themes/global.less';
+import 'antd-mobile/es/global';
+import '@icons/themes/global.less';
 import './style.less';
 import './themes/themes.less'; // 4套皮肤 构建前要修改var.less变量文件
+import '@icons/themes/icons/svg/humidifier';
 import { QuicknessMode } from '@components/base/quicknessMode';
 
 export const App = QuicknessMode(function App() {

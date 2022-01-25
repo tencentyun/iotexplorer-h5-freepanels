@@ -7,14 +7,13 @@
  */
 import React, { useRef, useState } from 'react';
 import classNames from 'classnames';
-// @ts-ignore
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 import ClassToolsBar from './ClassToolsBar';
 import ToolsButton from './components/tools-button';
-import { Modal } from '@/components/base';
+import { Modal } from '@components/base';
 import Gear, { enumGear } from './gear/gear';
 import WorkMode, { enumWorkMode } from './work-mode/work-mode';
-import { DeviceSateContext } from '@/products/humidifier/deviceStateContext';
+import { DeviceSateContext } from '../../../../deviceStateContext';
 import './tools-bar.less';
 
 const WORK_MODE = 'work_mode';

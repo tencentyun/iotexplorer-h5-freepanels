@@ -1,5 +1,5 @@
 module.exports = {
-  AromatherapyMachine: {
+  ElectricCar: {
     enable: true,
     viewportWidth: 1125,
     panels: [
@@ -10,6 +10,7 @@ module.exports = {
       ['panel-morandi', { enable: true, entry: 'app.tsx' }],
     ],
   },
+  // AirConditioner
   // ElectricCar
   // SwitchOne
   // PetFeedingDevice
@@ -20,6 +21,7 @@ module.exports = {
   // GasAlarm
   // TemperatureHumiditySensor
   // AromatherapyMachine
+  // Humidifier
   // WallPlug: {
   //   enable: true,
   //   viewportWidth: 1125,

@@ -3,25 +3,23 @@
  */
 import React, { useEffect, useState } from 'react';
 import classNames from 'classnames';
-import { useUserInfo } from '@/hooks/useUserInfo';
+import { useUserInfo } from '@hooks/useUserInfo';
 import { PickerValue, PickerColumn } from 'antd-mobile/es/components/picker';
 import { useHistory } from 'react-router-dom';
-import { Block, Row, Col } from '../../../components/layout';
-import { Hoverable, SvgIcon } from '../../../components/common';
-import { Battery } from '../../../components/business';
+import { Block, Row, Col } from '@components/layout';
+import { Hoverable, SvgIcon } from '@components/common';
+import { Battery } from '@components/business';
 import { TrainingData } from '../components/trainingData';
 import { TrainingCard } from '../components/trainingCard';
-import { ValuePicker } from '@/components/business/valuePicker';
-import { useDeviceData } from '@/hooks/useDeviceData';
-import { onControlDevice, formatDeviceData } from '@/business';
+import { ValuePicker } from '@components/business/valuePicker';
+import { useDeviceData } from '@hooks/useDeviceData';
+import { onControlDevice, formatDeviceData } from '@hooks/useDeviceData';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
-import { StyledProps } from '@/global';
-import { mapsToOptions } from '@/utils';
+import { StyledProps, ThemeType } from '@libs/global';
+import { mapsToOptions, noop } from '@libs/utillib';
 import { get } from 'lodash';
 import './training.less';
-import { noop } from '@/utils';
-import { getThemeType } from '@/business';
-import { ThemeType } from '@/global';
+import { getThemeType } from '@libs/theme';
 import { CurrentSkinProps } from '../skinProps';
 
 const TRAINING_MODE = {

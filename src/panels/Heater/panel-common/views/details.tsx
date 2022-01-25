@@ -1,16 +1,17 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 import classNames from 'classnames';
-import { Block } from '@/components/layout';
-import { Cell, Switch } from '@/components/base';
-import { toggleBooleanByNumber } from '@/utils';
+import { Block } from '@components/layout';
+import { Cell, Switch } from '@components/base';
+import { toggleBooleanByNumber } from '@libs/utillib';
 // @ts-ignore
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 // 模版数据
 import { DeviceContext } from '../deviceContext';
 // 接口，处理属性更改
-import { getThemeType, formatDeviceData, onControlDevice } from '@/business';
-import { SvgIcon } from '@/components/common';
+import { getThemeType } from '@libs/theme';
+import { onControlDevice } from '@hooks/useDeviceData';
+import { SvgIcon } from '@components/common';
 import { CurrentSkinProps } from '../skinProps';
 import './details.less';
 

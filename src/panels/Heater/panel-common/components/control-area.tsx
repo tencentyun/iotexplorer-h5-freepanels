@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import classNames from 'classnames';
-import { SvgIcon } from '@/components/common/icon';
-// @ts-ignore
+import { SvgIcon } from '@components/common/icon';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
-import { onControlDevice } from '@/business';
+import { onControlDevice } from '@hooks/useDeviceData';
 import './control-area.less';
 
 interface IFunExampleProps {

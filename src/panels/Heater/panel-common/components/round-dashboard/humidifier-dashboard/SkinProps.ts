@@ -1,7 +1,4 @@
-import { getThemeType } from '@/business';
-const themeType = getThemeType();
-
-const skinProps = {
+const SkinProps = {
   normal: {
     shutdown: {
       // 关机
@@ -216,4 +213,4 @@ const skinProps = {
   }
 };
 
-export const CurrentSkinProps = skinProps[themeType];
+export { SkinProps };

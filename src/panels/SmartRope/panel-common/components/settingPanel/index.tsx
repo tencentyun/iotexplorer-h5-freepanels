@@ -11,15 +11,14 @@ import { useUserInfo } from '@hooks/useUserInfo';
 import { Block } from '@components/layout';
 import { Cell, Switch } from '@components/base';
 import { ListPicker, ValuePicker } from '@components/business';
-import { StyledProps } from '@/global';
+import { StyledProps } from '@libs/global';
 import { SvgIcon } from '@components/common';
-import { getThemeType, formatDeviceData, onControlDevice } from '@/business';
+import { getThemeType } from '@libs/theme';
+import { onControlDevice, formatDeviceData } from '@hooks/useDeviceData';
 import { mapsToOptions } from '@libs/utillib';
 import dayjs from 'dayjs';
-import { CurrentSkinProps } from '../../skinProps';
+import { SkinProps } from '../../skinProps';
 import './style.less';
-
-const themeType = getThemeType();
 
 export interface SettingPannelProps extends StyledProps {
   // 表单字段
@@ -35,6 +34,8 @@ interface DeviceMaps {
 }
 
 export const SettingPannel = (props: SettingPannelProps) => {
+  const themeType = getThemeType();
+  const CurrentSkinProps: any = SkinProps[themeType];
   const { className } = props;
   const [state] = useDeviceData(sdk);
   const deviceData = state.deviceData || {};

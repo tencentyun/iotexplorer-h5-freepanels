@@ -4,9 +4,11 @@ import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 import { DeviceSateContext } from './deviceStateContext';
 import { useDeviceData } from '@hooks/useDeviceData';
 
-import '../../themes/global.less';
+import 'antd-mobile/es/global';
+import '@icons/themes/global.less';
 import './style.less';
 import './theme.less';
+import '@icons/themes/icons/svg/air-conditioner';
 
 import { Home } from './views/home/home';
 import { More } from './views/more/more';

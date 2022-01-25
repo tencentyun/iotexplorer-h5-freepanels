@@ -8,11 +8,11 @@
 
 import React, { useState } from 'react';
 import classNames from 'classnames';
-import { Block } from '@/components/layout';
-import { Cell } from '@/components/base';
-import { DeviceSateContext } from '@/products/humidifier/deviceStateContext';
-import { Modal } from '@/components/base';
-import { apiControlDeviceData } from '@/utils/api';
+import { Block } from '@components/layout';
+import { Cell } from '@components/base';
+import { DeviceSateContext } from '../../../deviceStateContext';
+import { Modal } from '@components/base';
+import { apiControlDeviceData } from '@hooks/useDeviceData';
 import './filter-reset.less';
 
 const FilterReset = () => {
