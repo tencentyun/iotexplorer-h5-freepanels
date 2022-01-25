@@ -20,6 +20,7 @@ export function Home() {
   // 倒计时
   const [countDownVisible, onToggleCountDown] = useState(false);
   const [countdownTime, setCountdown] = useState([]);
+  const [enterFlag, setEnterFlag] = useState(false);
   const countDownColumns = () => {
     const hourCols = numberToArray(12, '时');
     const minuteCols = numberToArray(60, '分');
@@ -47,10 +48,13 @@ export function Home() {
       <BizSwitch
         className="biz-switch"
         name="开关1"
-        value={Boolean(sdk.deviceData.power_switch)}
+        value={sdk.deviceData.power_switch === 1 ? true : false }
         theme={themeType}
+        onInitChange={value => {setEnterFlag(value)}}
         onChange={value => {
-          onControlDevice('power_switch', value ? 1 : 0);
+          if (enterFlag) {
+            onControlDevice('power_switch', value ? 1 : 0);
+          }
         }}
       />
 

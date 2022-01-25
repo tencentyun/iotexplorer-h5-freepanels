@@ -1,7 +1,6 @@
 /*
  * @Description: 电源/运行监测
  */
-
 import React, { useState, useEffect } from 'react';
 import classNames from 'classnames';
 import { Block } from '@components/layout';

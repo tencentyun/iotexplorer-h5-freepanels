@@ -1,7 +1,7 @@
 /*
  * @Description: 水浸传感器
  */
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { HashRouter, Switch, Route, Redirect } from 'react-router-dom';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 
@@ -16,8 +16,9 @@ import './style.less';
 import { Home } from './views/home';
 import { Record } from './views/record';
 import { Settings } from './views/settings';
+import { QuicknessMode } from '@components/base/quicknessMode';
 
-export function App() {
+export const App = QuicknessMode(function App() {
   const [state, { onDeviceDataChange, onDeviceStatusChange }] = useDeviceData(sdk);
   console.log(state, 'state===============')
 
@@ -45,7 +46,7 @@ export function App() {
       .on('wsControl', handleWsControl)
       .on('wsReport', handleWsReport)
       .on('wsStatusChange', handleWsStatusChange);
-    
+
     return () => {
       sdk
         .off("wsControl", handleWsControl)
@@ -54,44 +55,32 @@ export function App() {
     }
   }, []);
 
-  const [sdkReady, setSdkReady] = useState(false);
-  useEffect(() => {
-    sdk.sdkReady().then(() => setSdkReady(true));
-  }, []);
-
   return (
-    <>
-      {!sdkReady ? (
-        <div>loading...</div>
-      ) : (
-        <DeviceContext.Provider value={state}>
-          <HashRouter>
-            <Redirect exact from="/" to="/home"></Redirect>
-            <Switch>
-              {/* 首页 */}
-              <Route
-                path="/home"
-                render={() => (
-                  <Home></Home>
-                )}>
-              </Route>
-              <Route
-                path="/record"
-                render={() => (
-                  <Record></Record>
-                )}>
-              </Route>
-              <Route
-                path="/settings"
-                render={() => (
-                  <Settings></Settings>
-                )}>
-              </Route>
-            </Switch>
-          </HashRouter>
-        </DeviceContext.Provider>
-      )}
-    </>
+    <DeviceContext.Provider value={state}>
+      <HashRouter>
+        <Redirect exact from="/" to="/home"></Redirect>
+        <Switch>
+          {/* 首页 */}
+          <Route
+            path="/home"
+            render={() => (
+              <Home></Home>
+            )}>
+          </Route>
+          <Route
+            path="/record"
+            render={() => (
+              <Record></Record>
+            )}>
+          </Route>
+          <Route
+            path="/settings"
+            render={() => (
+              <Settings></Settings>
+            )}>
+          </Route>
+        </Switch>
+      </HashRouter>
+    </DeviceContext.Provider>
   );
-}
-
+});

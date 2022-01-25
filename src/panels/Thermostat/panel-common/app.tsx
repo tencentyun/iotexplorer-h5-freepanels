@@ -15,8 +15,9 @@ import './style.less';
 
 import { Home } from './views/home';
 import { Settings } from './views/settings';
+import { QuicknessMode } from '@components/base/quicknessMode';
 
-export function App() {
+export const App = QuicknessMode(function App() {
   const isBluetoothDevice = true;
   const isDev = process.env.NODE_ENV !== 'production';
   //新旧链接的兼容
@@ -68,31 +69,20 @@ export function App() {
     };
   }, []);
 
-  const [sdkReady, setSdkReady] = useState(false);
-  useEffect(() => {
-    sdk.sdkReady().then(() => setSdkReady(true));
-  }, []);
-
   return (
-    <>
-      {!sdkReady ? (
-        <div>loading...</div>
-      ) : (
-        <DeviceContext.Provider value={state}>
-          <HashRouter basename={basename}>
-            <Redirect exact from="/" to="/home"></Redirect>
-            <Switch>
-              {/* 首页 */}
-              <Route path="/home" render={() => <Home></Home>}></Route>
-              {/* 设置 */}
-              <Route
-                path="/settings"
-                render={() => <Settings></Settings>}
-              ></Route>
-            </Switch>
-          </HashRouter>
-        </DeviceContext.Provider>
-      )}
-    </>
+    <DeviceContext.Provider value={state}>
+      <HashRouter basename={basename}>
+        <Redirect exact from="/" to="/home"></Redirect>
+        <Switch>
+          {/* 首页 */}
+          <Route path="/home" render={() => <Home></Home>}></Route>
+          {/* 设置 */}
+          <Route
+            path="/settings"
+            render={() => <Settings></Settings>}
+          ></Route>
+        </Switch>
+      </HashRouter>
+    </DeviceContext.Provider>
   );
-}
+});

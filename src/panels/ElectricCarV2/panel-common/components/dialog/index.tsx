@@ -47,16 +47,12 @@ export function AuthorizationDialog(props: AuthorizationDialogProps) {
       <div className="dialog-wrap">
         <header>{props.title}</header>
         <div className="content">
-          <input
-            placeholder="获取授权"
-            onChange={(val) => {
-              setAuthorizationInfo(val.target.value);
-            }}
-          ></input>
+          为了向您提供无感解锁的功能，我们需要获取您的蓝牙能力及后台蓝牙权限，您
+          需要选择<strong>始终允许</strong>方能正常使用。
         </div>
         <footer>
           <div className="btn cancel" onClick={handleCancel}>取消</div>
-          <div className="btn confirm" onClick={handleConfirm}>允许</div>
+          <div className="btn confirm" onClick={handleConfirm}>始终允许</div>
         </footer>
       </div>
     </Mask>

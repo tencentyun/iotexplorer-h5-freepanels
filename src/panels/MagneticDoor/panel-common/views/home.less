@@ -4,10 +4,9 @@
 @tringle_off_color: #000000;
 
 .app-magnetic-door-view {
-  border-top: 1px solid transparent;
   box-sizing: border-box;
-  padding-bottom: 211px;
-  min-height: 100vh;
+  padding-bottom: 120px;
+  min-height: calc(~"100vh - 120px");
 
   .status-bar {
     display: flex;
@@ -131,18 +130,18 @@
       width: 295px;
       height: 300px;
       padding: 55px 72px;
-      svg {
-        overflow: visible;
-      }
       .button-icon {
+        display: block;
+        margin-bottom: 36px;
+      }
+      .icon-record {
         width: 76px;
         height: 76px;
-        margin-bottom: 30px;
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: 100% 100%;
       }
-
+      .icon-setting {
+        width: 75px;
+        height: 75px;
+      }
       .button-name {
         line-height: 50px;
         font-size: 36px;

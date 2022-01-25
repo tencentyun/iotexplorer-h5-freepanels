@@ -126,7 +126,7 @@ export function Home() {
           }}
         >
           <SvgIcon
-            className="button-icon"
+            className="button-icon icon-record"
             name="icon-record"
             {...CurrentSkinProps.record}
           />
@@ -139,7 +139,7 @@ export function Home() {
           }}
         >
           <SvgIcon
-            className="button-icon"
+            className="button-icon icon-setting"
             name="icon-setting"
             {...CurrentSkinProps.settings}
           />

@@ -21,7 +21,7 @@
     align-items: center;
     justify-content: space-between;
     margin-top: 145px;
-    padding: 0 80px 80px;
+    padding: 0 80px 120px;
     box-sizing: border-box;
 
     & > ._component_layout_block_ {
@@ -41,23 +41,29 @@
     }
     .icon-clock {
       width: 78px;
-      height: 78px;
+      height: 77px;
     }
     .icon-light {
-      width: 72px;
+      width: 71px;
       height: 79px;
     }
     .icon-setting {
-      width: 74px;
-      height: 74px;
+      width: 75px;
+      height: 75px;
     }
   }
 
   &.dark {
     background-color: #2D3134;
+    .switch-button {
+      color: #FEFEFE;
+    }
   }
   &.bright {
     background-color: #F4F8FB;
+    .switch-button {
+      color: #000000;
+    }
   }
 }
 

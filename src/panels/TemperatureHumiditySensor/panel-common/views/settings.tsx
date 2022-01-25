@@ -29,6 +29,12 @@ export function Settings() {
   // 温标选择器
   const [tempUnitVisible, onToggleTempUnit] = useState(false);
 
+  const getDes: any = {
+    low: '低',
+    middle: '中',
+    high: '高'
+  }
+
   return (
     <DeviceContext.Consumer>
       {({ deviceData }) => (
@@ -36,7 +42,7 @@ export function Settings() {
           <Block className="setting-block">
             <Cell
               title="电池电量状态"
-              value={deviceData.battery_state}
+              value={getDes[deviceData.battery_state] || '暂无'}
               valueStyle={'gray'}
               size="medium"
               isLink={false}

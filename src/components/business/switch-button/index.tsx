@@ -15,6 +15,7 @@ export interface BizSwitchProps extends StyledProps {
   size?: 'normal' | 'small';
   theme?: ThemeType;
   onChange?: (value: boolean) => void;
+  onInitChange?: (value: boolean) => void;
 }
 
 export function BizSwitch(props: BizSwitchProps) {
@@ -28,6 +29,7 @@ export function BizSwitch(props: BizSwitchProps) {
   }, [props.value]);
   useMemo(() => {
     props.onChange && props.onChange(status);
+    props.onInitChange && props.onInitChange(true);
   }, [status]);
 
   const handleClick = () => {

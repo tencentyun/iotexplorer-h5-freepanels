@@ -24,7 +24,9 @@ export function removeClass(
   className: string | string[]
 ): void {
   if (typeof className === 'string') {
-    target.classList.remove(className);
+    if (target && target.classList) {
+      target.classList.remove(className);
+    }
   } else {
     for (let i = 0; i < className.length; i++) {
       const name = className[i];

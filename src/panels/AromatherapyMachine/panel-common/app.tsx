@@ -3,12 +3,13 @@
  * @Date: 2021-09-22 21:15:26
  * @Description: 香薰机
  */
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { HashRouter, Switch, Route, Redirect } from 'react-router-dom';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 import { useDeviceData } from '@hooks/useDeviceData';
 import { DeviceContext } from './deviceContext';
 // css
+import 'antd-mobile/es/global';
 import '@icons/themes/global.less';
 import '@icons/themes/icons/svg/aromatherapy-machine';
 import './style.less';
@@ -16,8 +17,9 @@ import './style.less';
 import { Home } from './views/home';
 import { More } from './views/more';
 import { Timing } from './views/timing';
+import { QuicknessMode } from '@components/base/quicknessMode';
 
-export function App() {
+export const App = QuicknessMode(function App() {
   const [state, { onDeviceDataChange, onDeviceStatusChange }] =
     useDeviceData(sdk);
 
@@ -54,43 +56,32 @@ export function App() {
     };
   }, []);
 
-  const [sdkReady, setSdkReady] = useState(false);
-  useEffect(() => {
-    sdk.sdkReady().then(() => setSdkReady(true));
-  }, []);
-
   return (
-    <>
-    {!sdkReady ? (
-      <div>loading...</div>
-    ) : (
-      <DeviceContext.Provider value={state}>
-        <HashRouter>
-          <Redirect exact from="/" to="/home"></Redirect>
-          <Switch>
-            {/* 首页 */}
-            <Route
-              path="/home"
-              render={() => (
-                <Home></Home>
-              )}>
-            </Route>
-            <Route
-              path="/more"
-              render={() => (
-                <More></More>
-              )}>
-            </Route>
-            <Route
-              path="/timing"
-              render={() => (
-                <Timing></Timing>
-              )}>
-            </Route>
-          </Switch>
-        </HashRouter>
-      </DeviceContext.Provider>
-    )}
-  </>
+    <DeviceContext.Provider value={state}>
+      <HashRouter>
+        <Redirect exact from="/" to="/home"></Redirect>
+        <Switch>
+          {/* 首页 */}
+          <Route
+            path="/home"
+            render={() => (
+              <Home></Home>
+            )}>
+          </Route>
+          <Route
+            path="/more"
+            render={() => (
+              <More></More>
+            )}>
+          </Route>
+          <Route
+            path="/timing"
+            render={() => (
+              <Timing></Timing>
+            )}>
+          </Route>
+        </Switch>
+      </HashRouter>
+    </DeviceContext.Provider>
   );
-}
+});

@@ -52,10 +52,10 @@ export function DarkHome() {
               <Block
                 className={classNames(
                   'control-block',
-                  deviceData.spray_switch === 1 ? 'selected' : ''
+                  (deviceData.power_switch === 1 && deviceData.spray_switch === 1) ? 'selected' : 'unselected'
                 )}
                 onClick={() => {
-                  if (deviceData.power_switch === 0) return;
+                  if (!deviceData.power_switch) return;
                   onControlDevice(
                     'spray_switch',
                     Number(!deviceData.spray_switch)
@@ -72,10 +72,10 @@ export function DarkHome() {
               <Block
                 className={classNames(
                   'control-block',
-                  deviceData.light_switch === 1 ? 'selected' : ''
+                  (deviceData.power_switch === 1 && deviceData.light_switch === 1) ? 'selected' : 'unselected'
                 )}
                 onClick={() => {
-                  if (deviceData.power_switch === 0) return;
+                  if (!deviceData.power_switch) return;
                   onControlDevice(
                     'light_switch',
                     Number(!deviceData.light_switch)

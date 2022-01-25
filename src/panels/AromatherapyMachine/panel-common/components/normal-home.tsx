@@ -84,7 +84,7 @@ export function NormalHome() {
                   <Block
                     className={classNames(
                       'setting-button',
-                      deviceData.spray_switch === 1 ? 'selected' : ''
+                      (deviceData.power_switch === 1 && deviceData.spray_switch === 1) ? 'selected' : 'unselected'
                     )}
                     onClick={() => {
                       if (deviceData.power_switch === 0) return;
@@ -107,7 +107,7 @@ export function NormalHome() {
                   <div
                     className={classNames(
                       'control-power',
-                      deviceData.power_switch === 1 ? 'power-open' : ''
+                      (deviceData.power_switch == 1 && deviceData.power_switch === 1) ? 'power-open' : ''
                     )}
                     onClick={() => {
                       onControlDevice(
@@ -125,7 +125,7 @@ export function NormalHome() {
                   <Block
                     className={classNames(
                       'setting-button',
-                      deviceData.light_switch === 1 ? 'selected' : ''
+                      (deviceData.power_switch === 1 && deviceData.light_switch === 1) ? 'selected' : 'unselected'
                     )}
                     onClick={() => {
                       if (deviceData.power_switch === 0) return;

@@ -74,6 +74,7 @@ export function Main() {
                 history.push('/timing')
               }}>
               <SvgIcon
+                className="icon-clock"
                 name="icon-clock"
                 {...currentColor(deviceData.power_switch).clock}
               />
@@ -93,6 +94,7 @@ export function Main() {
               }}
             >
               <SvgIcon
+                className="icon-light"
                 name="icon-light"
                 {...currentColor(deviceData.power_switch).light}
               />
@@ -106,6 +108,7 @@ export function Main() {
               }}
             >
               <SvgIcon
+                className="icon-setting"
                 name="icon-setting"
                 {...currentColor(deviceData.power_switch).settings}
               />

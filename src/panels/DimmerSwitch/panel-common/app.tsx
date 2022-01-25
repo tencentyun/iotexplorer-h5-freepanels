@@ -3,7 +3,7 @@
  * @Date: 2021-10-23 16:33:33
  * @Description: 调光开关
  */
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { HashRouter, Switch, Route, Redirect } from 'react-router-dom';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 
@@ -18,8 +18,9 @@ import './style.less';
 import { Main } from './views/main';
 import { Setting } from './views/setting';
 import { Timing } from './views/timing';
+import { QuicknessMode } from '@components/base/quicknessMode';
 
-export function App() {
+export const App = QuicknessMode(function App() {
   const [state, { onDeviceDataChange, onDeviceStatusChange }] =
     useDeviceData(sdk);
   console.log(state, 'state===============');
@@ -57,46 +58,35 @@ export function App() {
     };
   }, []);
 
-  const [sdkReady, setSdkReady] = useState(false);
-  useEffect(() => {
-    sdk.sdkReady().then(() => setSdkReady(true));
-  }, []);
-
   return (
-    <>
-      {!sdkReady ? (
-        <div>loading...</div>
-      ) : (
-        <DeviceSateContext.Provider value={state}>
-          <HashRouter>
-            <Redirect exact from="/" to="/home"></Redirect>
-            <Switch>
-              
-              {/* 首页 */}
-              <Route
-                path="/home"
-                render={() => (
-                  <Main></Main>
-                )}>
-              </Route>
-              {/* 设置 */}
-              <Route
-                path="/setting"
-                render={() => (
-                  <Setting></Setting>
-                )}>
-              </Route>
-              {/* 定时 */}
-              <Route
-                path="/timing"
-                render={() => (
-                  <Timing></Timing>
-                )}>
-              </Route>
-            </Switch>
-          </HashRouter>
-        </DeviceSateContext.Provider>
-      )}
-    </>
-  );
-}
+    <DeviceSateContext.Provider value={state}>
+      <HashRouter>
+        <Redirect exact from="/" to="/home"></Redirect>
+        <Switch>
+
+          {/* 首页 */}
+          <Route
+            path="/home"
+            render={() => (
+              <Main></Main>
+            )}>
+          </Route>
+          {/* 设置 */}
+          <Route
+            path="/setting"
+            render={() => (
+              <Setting></Setting>
+            )}>
+          </Route>
+          {/* 定时 */}
+          <Route
+            path="/timing"
+            render={() => (
+              <Timing></Timing>
+            )}>
+          </Route>
+        </Switch>
+      </HashRouter>
+    </DeviceSateContext.Provider>
+  )
+});

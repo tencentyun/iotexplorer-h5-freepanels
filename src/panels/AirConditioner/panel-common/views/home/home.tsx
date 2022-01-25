@@ -1,14 +1,15 @@
 import React from 'react';
 import classNames from 'classnames';
 import { DeviceSateContext } from '../../deviceStateContext';
-import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 import { ToolsBar } from './components/tools-bar';
 import Device from './components/device/device';
 import { Power } from './components/power/power';
 import Environment from './components/environment/environment';
 import { getThemeType } from '@libs/theme';
-const themeType = getThemeType();
+
 export function Home() {
+  const themeType = getThemeType();
+
   const domPosition = () => {
     switch (themeType) {
       case 'normal':
@@ -41,7 +42,7 @@ export function Home() {
         <article
           className={classNames(
             'home',
-            sdk.deviceData.power_switch === 0 && 'power-off'
+            deviceData.power_switch === 0 && 'power-off'
           )}
         >
           <Device />

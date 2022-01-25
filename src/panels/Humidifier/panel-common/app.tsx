@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { HashRouter, Switch, Route, Redirect } from 'react-router-dom';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 import { DeviceSateContext } from './deviceStateContext';
@@ -11,8 +11,9 @@ import Timer from './views/more/timer/timer';
 import '../../themes/global.less';
 import './style.less';
 import './themes/themes.less'; // 4套皮肤 构建前要修改var.less变量文件
+import { QuicknessMode } from '@components/base/quicknessMode';
 
-export function App() {
+export const App = QuicknessMode(function App() {
   const isBluetoothDevice = true;
   // eslint-disable-next-line no-undef
   const isDev = process.env.NODE_ENV !== 'production';
@@ -108,39 +109,24 @@ export function App() {
     headPanelTemplateId = state.templateList[0].id;
   }
 
-  // setTimeout(() => {
-  //   onControlDeviceData(sdk.deviceId, 666);
-  // }, 2000);
-
-  const [sdkReady, setSdkReady] = useState(false);
-  useEffect(() => {
-    sdk.sdkReady().then(() => setSdkReady(true));
-  }, []);
-
   return (
-    <>
-      {!sdkReady ? (
-        <div>loading...</div>
-      ) : (
-        <DeviceSateContext.Provider value={state}>
-          <HashRouter basename={basename}>
-            <Redirect exact from="/" to="/home"></Redirect>
-            <Switch>
-              {/*定时*/}
-              <Route path="/timer" render={() => <Timer></Timer>}></Route>
-              {/*更多页*/}
-              <Route path="/more" render={() => <More></More>}></Route>
-              {/*首页*/}
-              <Route
-                path="/home"
-                render={() =>
-                  <Home></Home>
-                }
-              ></Route>
-            </Switch>
-          </HashRouter>
-        </DeviceSateContext.Provider>
-      )}
-    </>
+    <DeviceSateContext.Provider value={state}>
+      <HashRouter basename={basename}>
+        <Redirect exact from="/" to="/home"></Redirect>
+        <Switch>
+          {/*定时*/}
+          <Route path="/timer" render={() => <Timer></Timer>}></Route>
+          {/*更多页*/}
+          <Route path="/more" render={() => <More></More>}></Route>
+          {/*首页*/}
+          <Route
+            path="/home"
+            render={() =>
+              <Home></Home>
+            }
+          ></Route>
+        </Switch>
+      </HashRouter>
+    </DeviceSateContext.Provider>
   );
-}
+});

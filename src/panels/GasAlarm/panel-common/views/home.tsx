@@ -1,7 +1,6 @@
 /*
  * @Description: 燃气报警器首页
  */
-
 import React, { useState, useEffect } from 'react';
 import classNames from 'classnames';
 import { useHistory } from 'react-router-dom';
@@ -149,7 +148,7 @@ export function Home() {
             </Block>
             <Block className="button-block" onClick={handleSetting}>
               <SvgIcon
-                className="button-icon"
+                className="button-icon icon-setting"
                 name="icon-setting"
                 {...SkinProps[themeType].settings}
               />

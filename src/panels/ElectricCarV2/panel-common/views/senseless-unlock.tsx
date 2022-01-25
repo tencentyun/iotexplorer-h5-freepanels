@@ -81,10 +81,9 @@ export function SenselessUnlock() {
       </Block>
       <AuthorizationDialog
         visible={authorization}
-        title="获取授权"
+        title="无感功能授权"
         onCancel={() => {
           onToggleAuthorization(false);
-          setEnter(false);
         }}
         onConfirm={(vlaue) => {
           console.log(vlaue);
