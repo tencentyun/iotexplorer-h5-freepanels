@@ -1,5 +1,5 @@
 import { createContext } from 'react';
-import { noop } from '@/utils';
+import { noop } from '@libs/utillib';
 
 export const DeviceSateContext = createContext({
   deviceStatus: 0,

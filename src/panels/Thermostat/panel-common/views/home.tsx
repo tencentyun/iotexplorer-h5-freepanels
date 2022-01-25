@@ -1,7 +1,6 @@
 /*
  * @Description: 温控器首页
  */
-
 import React, { useState } from 'react';
 import classNames from 'classnames';
 import { useHistory } from 'react-router-dom';
@@ -15,10 +14,8 @@ import { useDeviceData } from '@hooks/useDeviceData';
 import { DeviceContext } from '../deviceContext';
 import { getThemeType } from '@libs/theme';
 import { formatDeviceData, onControlDevice } from '@hooks/useDeviceData';
-import { CurrentSkinProps } from '../skinProps';
+import { SkinProps } from '../skinProps';
 import './home.less';
-
-const themeType = getThemeType();
 
 interface DeviceMaps {
   spray_mode: [];
@@ -26,6 +23,8 @@ interface DeviceMaps {
 }
 
 export function Home() {
+  const themeType = getThemeType();
+  const CurrentSkinProps: any = SkinProps[themeType];
   const history = useHistory();
   const [state] = useDeviceData(sdk);
   // 从 sdk 读取到的物模型 maps
@@ -323,6 +322,7 @@ export function Home() {
                 theme={themeType}
                 defaultValue={[deviceData['spray_mode']]}
                 options={modeOptions()}
+                layoutType='spaceBetween'
                 onCancel={() => onToggleMode(false)}
                 onConfirm={value => {
                   onControlDevice('spray_mode', value[0]);
@@ -349,6 +349,7 @@ export function Home() {
                 theme={themeType}
                 defaultValue={[deviceData['level']]}
                 options={gearOptions()}
+                layoutType='spaceBetween'
                 onCancel={() => onToggleGear(false)}
                 onConfirm={value => {
                   onControlDevice('level', value[0]);

@@ -2,7 +2,7 @@
  * @Description: 温控器
  */
 
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { HashRouter, Switch, Route, Redirect } from 'react-router-dom';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 
@@ -10,7 +10,8 @@ import { useDeviceData } from '@hooks/useDeviceData';
 import { DeviceContext } from './deviceContext';
 
 import 'antd-mobile/es/global';
-import '../../themes/global.less';
+import '@icons/themes/global.less';
+import '@icons/themes/icons/svg/thermostat';
 import './style.less';
 
 import { Home } from './views/home';

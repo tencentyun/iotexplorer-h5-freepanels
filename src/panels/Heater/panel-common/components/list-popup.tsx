@@ -6,8 +6,6 @@ import { StyledProps, ThemeType } from '@libs/global';
 import { getThemeType } from '@libs/theme';
 import './list-popup.less';
 
-const themeType = getThemeType();
-
 export type SelectType = {
   Radio: 'radio';
   Multiple: 'multiple';
@@ -31,6 +29,8 @@ export interface ListPopupProps extends StyledProps {
 }
 
 export function ListPopup(props: ListPopupProps) {
+  const themeType = getThemeType();
+
   const { type = 'radio', options, value, theme = themeType } = props;
   const [checkList, setCheckList] = useState(['']);
 

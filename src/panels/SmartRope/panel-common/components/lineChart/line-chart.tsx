@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import * as d3 from 'd3';
-import viewportConfig from '../../../../../scripts/config/pxToViewport.config';
+import viewportConfig from '../../../../../../webpack/pxToViewport.config';
 
 interface ItemProps {
   x: string;
@@ -11,7 +11,8 @@ interface lineChartProps {
   data: Array<ItemProps>;
   lineColor?: string; // 折线颜色
   pointColor?: string; // 拐点颜色
-  wordColor?: string; // 文字颜色
+  wordColor?: string; // 文字颜色\
+  className?: string;
 }
 
 const pxToView = (px: number): string | number => {
@@ -90,7 +91,7 @@ export function LineChart(props: lineChartProps) {
   };
 
   return (
-    <svg width={WIDTH} height={HEIGHT} ref={svgRef} viewBox={getViewbox()}>
+    <svg className={props.className} width={WIDTH} height={HEIGHT} ref={svgRef} viewBox={getViewbox()}>
       {/* x轴 */}
       <g
         className="x-axis"

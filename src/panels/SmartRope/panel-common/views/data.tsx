@@ -132,7 +132,7 @@ export function Data() {
             </div>
             
             {data ? (
-              <LineChart data={data} {...CurrentSkinProps.lineChart}/>
+              <LineChart className="line-chart" data={data} {...CurrentSkinProps.lineChart}/>
             ) : null}
             <div className="footer-select-wrap">
               <div className="button-wrap">

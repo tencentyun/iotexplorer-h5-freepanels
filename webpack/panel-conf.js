@@ -1,5 +1,5 @@
 module.exports = {
-  ElectricCar: {
+  Thermostat: {
     enable: true,
     viewportWidth: 1125,
     panels: [
@@ -10,18 +10,6 @@ module.exports = {
       ['panel-morandi', { enable: true, entry: 'app.tsx' }],
     ],
   },
-  // AirConditioner
-  // ElectricCar
-  // SwitchOne
-  // PetFeedingDevice
-  // DimmerSwitch
-  // SmokeAlarm
-  // ElectricityStatsReceptacle
-  // ImmersionSensor
-  // GasAlarm
-  // TemperatureHumiditySensor
-  // AromatherapyMachine
-  // Humidifier
   // WallPlug: {
   //   enable: true,
   //   viewportWidth: 1125,

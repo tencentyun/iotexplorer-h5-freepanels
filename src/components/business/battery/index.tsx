@@ -13,7 +13,7 @@ export interface BatteryProps {
   // 是否显示电量百分比
   isShowPercent?: boolean;
   isShowTip?: boolean;
-  // 颜色: 黑色、白色、蓝色、绿色、莫兰迪
+  // 颜色: 黑色(默认)、白色white、蓝色blue、绿色green、莫兰迪brown、多彩colorful, royalBlue, royalBlueGradient
   color?: string;
 }
 

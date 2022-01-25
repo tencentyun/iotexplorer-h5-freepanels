@@ -20,7 +20,7 @@ import { mapsToOptions, noop } from '@libs/utillib';
 import { get } from 'lodash';
 import './training.less';
 import { getThemeType } from '@libs/theme';
-import { CurrentSkinProps } from '../skinProps';
+import { SkinProps } from '../skinProps';
 
 const TRAINING_MODE = {
   FREE: 'free_jump',
@@ -61,6 +61,7 @@ function modeDesc(type: string) {
 
 export function Training() {
   const theme: ThemeType = getThemeType();
+  const CurrentSkinProps: any = SkinProps[theme];
   let startTimer: any = null;
   // 接收跳转的训练类型
   const history = useHistory();

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="78px" height="73px" viewBox="0 0 78 73" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 59.1 (86144) - https://sketch.com -->
+    <title>模式</title>
+    <desc>Created with Sketch.</desc>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="2" transform="translate(-189.000000, -1362.000000)">
+            <g id="模式开关" transform="translate(80.000000, 1277.000000)">
+                <g id="模式" transform="translate(109.000000, 85.000000)">
+                    <rect id="矩形" fill="#0F0F0F" x="7" y="0" width="9" height="73" rx="4.5"></rect>
+                    <rect id="矩形备份-6" fill="#0F0F0F" x="35" y="0" width="9" height="73" rx="4.5"></rect>
+                    <rect id="矩形备份-8" fill="#0F0F0F" x="63" y="0" width="9" height="73" rx="4.5"></rect>
+                    <circle id="椭圆形" stroke="#0F0F0F" stroke-width="6" fill="#FFFFFF" cx="11" cy="48" r="8"></circle>
+                    <circle id="椭圆形备份-3" stroke="#0F0F0F" stroke-width="6" fill="#FFFFFF" cx="39" cy="23" r="8"></circle>
+                    <circle id="椭圆形备份-4" stroke="#0F0F0F" stroke-width="6" fill="#FFFFFF" cx="67" cy="48" r="8"></circle>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

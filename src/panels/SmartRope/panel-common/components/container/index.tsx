@@ -17,6 +17,7 @@ const { TabPane } = Tabs;
 
 export function Container() {
   const theme: ThemeType = getThemeType();
+  const CurrentSkinProps: any = SkinProps[theme];
   const [activeKey, setActiveKey] = useState('training');
 
   return (

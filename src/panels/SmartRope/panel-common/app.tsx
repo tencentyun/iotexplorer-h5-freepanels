@@ -8,7 +8,8 @@ import { Container } from './components/container';
 import { Training } from './views/training';
 
 import 'antd-mobile/es/global';
-import '../../themes/global.less';
+import '@icons/themes/global.less';
+import '@icons/themes/icons/svg/smart-rope';
 import './style.less';
 import { QuicknessMode } from '@components/base/quicknessMode';
 

@@ -8,7 +8,8 @@ import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 import { DeviceContext } from './deviceContext';
 
 import 'antd-mobile/es/global';
-import '../../themes/global.less';
+import '@icons/themes/global.less';
+import '@icons/themes/icons/svg/heater';
 import './style.less';
 
 import { Home } from './views/home';
