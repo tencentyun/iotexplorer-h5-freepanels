@@ -15,10 +15,9 @@ import './style.less';
 import { Home } from './views/home';
 import { Record } from './views/record';
 import { Settings } from './views/settings';
+import { QuicknessMode } from '@components/base/quicknessMode';
 
-import { connect } from './connect';
-
-export const App = connect(function App () {
+export const App = QuicknessMode(function App () {
 
   const [state, { onDeviceDataChange, onDeviceStatusChange }] = useDeviceData(sdk);
   // console.log(state, 'state===============')
