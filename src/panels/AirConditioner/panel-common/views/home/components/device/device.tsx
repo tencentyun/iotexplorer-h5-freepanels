@@ -10,6 +10,7 @@ import React from 'react';
 import './device.less';
 import classNames from 'classnames';
 // import IconTheme from '@components/common/icon/icon-theme';
+import { SvgIcon } from '@components/common/icon';
 import { DeviceSateContext } from '../../../../deviceStateContext';
 const airDeviceImg = 'https://tencent-1305105198.cos.ap-guangzhou.myqcloud.com/air-conditioner/air_device.bd91b10a.png';
 const Device = () => {
@@ -18,11 +19,11 @@ const Device = () => {
       {({ deviceData }) => (
         <article className="device-wrap">
           <img
-            className={'icon-theme-air_conditioner'}
+            className={'icon-theme-air-conditioner'}
             src={airDeviceImg}
             alt=""
           />
-          {/* {deviceData.power_switch === 1 && <IconTheme kind={'air_cloud'} />} */}
+          {deviceData.power_switch === 1 && <SvgIcon name="icon-air-cloud" />}
           <section className="content">
             <div className={classNames('text-primary')}>
               <span>

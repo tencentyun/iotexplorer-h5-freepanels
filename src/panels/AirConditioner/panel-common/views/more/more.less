@@ -5,10 +5,25 @@
   background-color:#F4F8FB;
   color: #000000;
 
+  .adm-list-body {
+    border-bottom: 0;
+  }
+
   .adm-list .adm-list-item-content{
     padding: 49px 64px 52px 0;
     border-bottom: 1px solid var(--global-color-border);
   }
+
+  .adm-list-item {
+    padding-left: 0;
+
+    &:last-child {
+      .adm-list-item-content{
+        border-bottom: 0;
+      }
+    }
+  }
+
   /*Card*/
   .adm-card {
     margin-top: 50px;

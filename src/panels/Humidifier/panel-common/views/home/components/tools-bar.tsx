@@ -232,6 +232,7 @@ export function ToolsBar() {
           sdk.deviceData.power_switch ? 'active' : ''
         )}
         onClick={() => {
+          if (!sdk.deviceData.power_switch) return
           setModeVisible(true);
         }}
       >
@@ -248,6 +249,7 @@ export function ToolsBar() {
           sdk.deviceData.power_switch ? 'active' : ''
         )}
         onClick={() => {
+          if (!sdk.deviceData.power_switch) return
           setGearVisible(true);
         }}
       >
@@ -281,6 +283,7 @@ export function ToolsBar() {
         theme={themeType}
         defaultValue={[sdk.deviceData.work_mode]}
         options={modeOptions()}
+        layoutType="spaceBetween"
         onCancel={() => setModeVisible(false)}
         onConfirm={value => {
           onControlDevice('work_mode', value[0]);
@@ -294,6 +297,7 @@ export function ToolsBar() {
         theme={themeType}
         defaultValue={[sdk.deviceData.spray_gears]}
         options={gearOptions()}
+        layoutType="spaceBetween"
         onCancel={() => setGearVisible(false)}
         onConfirm={value => {
           onControlDevice('spray_gears', value[0]);

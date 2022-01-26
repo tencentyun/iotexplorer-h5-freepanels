@@ -36,7 +36,7 @@
             <feGaussianBlur stdDeviation="30" in="SourceGraphic"></feGaussianBlur>
         </filter>
     </defs>
-    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round">
+    <g id="页面-1" stroke="none" stroke-width="1" fill-rule="evenodd" stroke-linecap="round">
         <g id="2" transform="translate(36.000000, -532.000000)">
             <g id="空调冷气" transform="translate(74.000000, 643.000000)">
                 <g id="编组-3">

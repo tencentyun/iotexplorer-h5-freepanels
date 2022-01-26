@@ -12,7 +12,7 @@ import classNames from 'classnames';
 import './power.less';
 import { apiControlDeviceData } from '@hooks/useDeviceData';
 import { SvgIcon } from '@components/common/icon';
-// import IconTheme from '@components/common/icon/icon-theme';
+import { onControlDevice } from '@hooks/useDeviceData';
 
 export enum enumTempKey {
   set_temp,
@@ -37,11 +37,7 @@ export function Power() {
     }
 
   };
-  const handlePowerSwitch = () => {
-    apiControlDeviceData({
-      power_switch: sdk.deviceData.power_switch === 0 ? 1 : 0
-    });
-  };
+
   return (
     <DeviceSateContext.Consumer>
       {({ deviceData }) => (
@@ -51,31 +47,34 @@ export function Power() {
           deviceData.power_switch === 1 ? 'power-open' : 'power-close' 
           )}>
           <button
-            className={classNames('button-circle', 'box-shadow', 'reduce')}
+            className={classNames('button-circle', 'reduce')}
             onClick={() => {
+              if (!deviceData.power_switch) return
               handleToggle(false);
             }}
           >
-            <SvgIcon name="icon-reduce" width={80} height={12}></SvgIcon>
+            <SvgIcon name="icon-reduce"></SvgIcon>
           </button>
           <button
             id={'power'}
             className={classNames(
               'button-circle',
-              'box-shadow',
               'btn-power-switch'
             )}
-            onClick={handlePowerSwitch}
+            onClick={()=> {
+              onControlDevice('power_switch', Number(!deviceData.power_switch));
+            }}
           >
-            <SvgIcon name="icon-power_humidifier" width={94} height={85}></SvgIcon>
+            <SvgIcon name="icon-power"></SvgIcon>
           </button>
           <button
-            className={classNames('button-circle', 'box-shadow', 'add')}
+            className={classNames('button-circle', 'add')}
             onClick={() => {
+              if (!deviceData.power_switch) return
               handleToggle(true);
             }}
           >
-            <SvgIcon name="icon-add" width={80} height={80}></SvgIcon>
+            <SvgIcon name="icon-add"></SvgIcon>
           </button>
         </article>
       )}
