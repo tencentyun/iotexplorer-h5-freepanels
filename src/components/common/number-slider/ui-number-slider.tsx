@@ -10,9 +10,9 @@ import React, { useEffect, useState } from 'react';
 import './style.less';
 import { Slider } from 'antd-mobile';
 import classNames from 'classnames';
-import { noop } from '@/utils';
-import { SvgIcon } from '@/components/common';
-import IconTheme from '@/components/common/icon/icon-theme';
+import { noop } from '@libs/utillib';
+import { SvgIcon } from '@components/common';
+// import IconTheme from '@components/common/icon/icon-theme';
 export interface IUINumberSlider {
   min?: number | 0;
   max?: number | 100;
@@ -68,9 +68,9 @@ const UINumberSlider = (props: IUINumberSlider) => {
   return (
     <>
       <div className={classNames('flex', 'space-between', 'slider-tools-bar')}>
-        <IconTheme kind={'reduce'} size={40} onClick={handleReduce} />
+        {/* <IconTheme kind={'reduce'} size={40} onClick={handleReduce} /> */}
         <span>{value}</span>
-        <IconTheme kind={'add'} size={40} onClick={handleAdd} />
+        {/* <IconTheme kind={'add'} size={40} onClick={handleAdd} /> */}
       </div>
 
       <div className={classNames('slider-wrap')}>

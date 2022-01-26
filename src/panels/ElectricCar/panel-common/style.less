@@ -14,7 +14,7 @@ p {
 }
 
 .electric-car {
-  min-height: 100vh;
+  min-height: calc(~"100vh - 443px");
   position: relative;
   padding: 56px 80px 387px;
   text-align: center;
@@ -34,12 +34,13 @@ p {
     width: 100%;
     height: 387px;
     min-height: calc(~"100vh - 1686px");
-    padding: 30px 80px 0;
+    // padding: 30px 80px 0;
     border-top-left-radius: 120px;
     border-top-right-radius: 120px;
     background: #FFFFFF;
     box-shadow: 0 6px 100px 0 rgba(32,33,33,0.10);
     ._cell_size_medium_ {
+      margin: 30px 80px 0;
       padding: 60px 62px 66px 77px;
       border-bottom: 3px solid rgba(181, 196, 209, 0.50);
       &:last-child {
@@ -50,6 +51,7 @@ p {
 }
 
 .senseless-unlock {
+  min-height: calc(~"100vh - 170px");
   padding: 85px 80px;
   text-align: center;
   .header-block {
@@ -70,7 +72,7 @@ p {
       .icon-unlock {
         width: 66px;
         height: 66px;
-        // background-image: url('~@/assets/images/electric-car/lock.svg');
+        background-image: url('./images/lock.svg');
         background-size: 100% 100%;
       }
       .tips-name {
@@ -125,6 +127,7 @@ body.theme_blue_white {
     background: #FFFFFF;
     box-shadow: 0 6px 100px 0 rgba(32,33,33,0.10);
     ._cell_size_medium_ {
+      margin: 0;
       padding: 40px 67px 43px 77px;
       border-bottom: 3px solid rgba(181, 196, 209, 0.50);
       &:last-child {
@@ -141,7 +144,7 @@ body.theme_blue_white {
         .icon-unlock {
           width: 66px;
           height: 66px;
-          // background-image: url('~@/assets/images/electric-car/lock-morandi.svg');
+          background-image: url('./images/lock-morandi.svg');
           background-size: 100% 100%;
         }
         .tips-name {
@@ -158,26 +161,27 @@ body.theme_dark {
   background-color: #222532;
   .decoration-block {
     position: absolute;
-    top: 1022px;
+    top: 1084px;
     left: 0;
     width: 100%;
     // height: 912px;
-    min-height: calc(~"100vh - 1023px");
+    min-height: calc(~"100vh - 1084px");
     padding-top: 316px;
-    // background-image: url('~@/assets/images/electric-car/decoration-dark.svg');
+    background-image: url('./images/decoration-dark.svg');
     background-position: top center;
     background-size: cover;
     background-repeat: no-repeat;
+    background-color: #222532;
   }
   .footer {
     position: relative;
     width: 100%;
     height: 150px;
-    padding: 0;
+    padding: 0 0 120px 0;
     border-radius: 0;
-    padding: 0 81px 0;
+    // padding: 0 81px 0;
     ._cell_size_medium_ {
-      padding: 40px 67px 43px 77px;
+      padding: 40px 148px 43px 158px;
       border-bottom: 3px solid rgba(181, 196, 209, 0.50);
       &:last-child {
         border-bottom: 0;
@@ -192,7 +196,7 @@ body.theme_dark {
         .icon-unlock {
           width: 66px;
           height: 66px;
-          // background-image: url('~@/assets/images/electric-car/lock-morandi.svg');
+          background-image: url('./images/lock-morandi.svg');
           background-size: 100% 100%;
         }
         .tips-name {
@@ -217,6 +221,7 @@ body.theme_colorful {
       background: #FFFFFF;
       box-shadow: 0 6px 100px 0 rgba(32,33,33,0.10);
       ._cell_size_medium_ {
+        margin: 0;
         padding: 40px 67px 43px 77px;
         border-bottom: 3px solid rgba(181, 196, 209, 0.50);
         &:last-child {
@@ -242,13 +247,12 @@ body.theme_morandi {
 
     .decoration-block {
       position: absolute;
-      top: 1093px;
+      top: 1154px;
       left: 0;
       width: 100%;
-      // height: 798px;
-      min-height: calc(~"100vh - 1093px");
+      min-height: calc(~"100vh - 1154px");
       padding-top: 202px;
-      // background-image: url('~@/assets/images/electric-car/decoration-morandi.svg');
+      background-image: url('./images/decoration-morandi.svg');
       background-position: top center;
       background-size: cover;
       background-repeat: no-repeat;
@@ -257,11 +261,10 @@ body.theme_morandi {
       position: relative;
       width: 100%;
       height: 150px;
-      padding: 0;
+      padding: 0 0 120px 0;
       border-radius: 0;
-      padding: 0 81px 0;
       ._cell_size_medium_ {
-        padding: 40px 67px 43px 77px;
+        padding: 40px 148px 43px 158px;
         border-bottom: 3px solid rgba(181, 196, 209, 0.50);
         &:last-child {
           border-bottom: 0;
@@ -278,7 +281,7 @@ body.theme_morandi {
         .icon-unlock {
           width: 66px;
           height: 66px;
-          // background-image: url('~@/assets/images/electric-car/lock-morandi.svg');
+          background-image: url('./images/lock-morandi.svg');
           background-size: 100% 100%;
         }
         .tips-name {

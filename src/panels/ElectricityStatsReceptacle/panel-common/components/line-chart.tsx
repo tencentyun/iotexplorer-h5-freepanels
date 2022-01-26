@@ -12,6 +12,7 @@ interface lineChartProps {
   lineColor?: string; // 折线颜色
   pointColor?: string; // 拐点颜色
   wordColor?: string; // 文字颜色
+  className?: string;
 }
 
 const pxToView = (px: number): string | number => {
@@ -81,16 +82,11 @@ export function LineChart(props: lineChartProps) {
     .curve(d3.curveLinear);
 
   const getViewbox = () => {
-    // px2vw(props.width) as string
     return [0, 0, WIDTH, HEIGHT].join(' ');
   };
 
-  const getYAxisWordStyle = () => {
-    return '';
-  };
-
   return (
-    <svg width={WIDTH} height={HEIGHT} ref={svgRef} viewBox={getViewbox()}>
+    <svg className={props.className} width={WIDTH} height={HEIGHT} ref={svgRef} viewBox={getViewbox()}>
       {/* x轴 */}
       <g
         className="x-axis"

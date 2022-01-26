@@ -1,15 +1,11 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import classNames from 'classnames';
-import { SvgIcon } from '@/components/common/icon';
-// @ts-ignore
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
-import { Block } from '@/components/layout';
 import { ListPopup } from './list-popup';
-import { Popup } from 'antd-mobile';
 
-import { onControlDevice } from '@/business';
-import { useDeviceData } from '@/hooks/useDeviceData';
+import { onControlDevice } from '@hooks/useDeviceData';
+import { useDeviceData } from '@hooks/useDeviceData';
 import './tools-bar.less';
 
 interface IFunExampleProps {

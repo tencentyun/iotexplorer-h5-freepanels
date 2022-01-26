@@ -645,7 +645,7 @@ export const formatPxUnit = (unit: string | number): string | number => {
   });
 };
 export function mapsToOptions(name: string, maps: any): string[] {
-  if (!maps[name]) return [];
+  if (!maps[name]) return ['1', '2', '3'];
 
   const { min, max, step } = maps[name];
   const result: string[] = [];
@@ -661,6 +661,15 @@ export function mapsToOptions(name: string, maps: any): string[] {
 export const toggleBooleanByNumber = (value: number) => {
   return value !== 0;
 };
+/**
+ * 补零函数
+ */
+ export function zeroize(arg: number): string {
+  if (arg < 10) {
+    return `0${arg}`;
+  }
+  return arg.toString();
+}
 /**
  * 根据设备状态，设置dom元素样式是否可用（高亮）
  * @param deviceStatus

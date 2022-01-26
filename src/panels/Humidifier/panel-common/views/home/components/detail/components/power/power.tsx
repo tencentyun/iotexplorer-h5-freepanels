@@ -11,7 +11,8 @@ import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 import classNames from 'classnames';
 import './power.less';
 import { apiControlDeviceData } from '@hooks/useDeviceData';
-import IconTheme from '@components/common/icon/icon-theme';
+import { SvgIcon } from '@components/common/icon';
+// import IconTheme from '@components/common/icon/icon-theme';
 
 export enum enumTempKey {
   set_temp,
@@ -55,7 +56,7 @@ export function Power() {
               handleToggle(false);
             }}
           >
-            <IconTheme kind={'reduce'} size={82} />
+            <SvgIcon name="icon-reduce" width={80} height={12}></SvgIcon>
           </button>
           <button
             id={'power'}
@@ -66,7 +67,7 @@ export function Power() {
             )}
             onClick={handlePowerSwitch}
           >
-            <IconTheme kind={'power_humidifier'} size={94} />
+            <SvgIcon name="icon-power_humidifier" width={94} height={85}></SvgIcon>
           </button>
           <button
             className={classNames('button-circle', 'box-shadow', 'add')}
@@ -74,7 +75,7 @@ export function Power() {
               handleToggle(true);
             }}
           >
-            <IconTheme kind={'add'} size={82} />
+            <SvgIcon name="icon-add" width={80} height={80}></SvgIcon>
           </button>
         </article>
       )}

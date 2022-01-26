@@ -7,14 +7,13 @@
  */
 
 import React, { FC, useImperativeHandle, useState } from 'react';
-import { enumToArray } from '@/utils';
+import { enumToArray } from '@libs/utillib';
 import { List, Radio } from 'antd-mobile';
-import { stringKey } from '@/global';
-import { DeviceSateContext } from '@/products/humidifier/deviceStateContext';
-// @ts-ignore
+import { stringKey } from '@libs/global';
+import { DeviceSateContext } from '../../../../../deviceStateContext';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
-import { apiControlDeviceData } from '@/utils/api';
-import IconChecked from '@/components/base/icon-checked/icon-checked';
+import { apiControlDeviceData } from '@hooks/useDeviceData';
+import IconChecked from '@components/base/icon-checked/icon-checked';
 export const enumWorkMode: stringKey = {
   natural_evaporation: '自然蒸发',
   heating_evaporation: '加热蒸发',

@@ -3,7 +3,7 @@
  * @Date: 2021-10-16 14:45:03
  * @Description: 一路开关
  */
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { HashRouter, Switch, Route, Redirect } from 'react-router-dom';
 
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
@@ -16,8 +16,9 @@ import './style.less';
 
 import { Home } from './views/home';
 import { Timing } from './views/timing';
+import { QuicknessMode } from '@components/base/quicknessMode';
 
-export function App() {
+export const App = QuicknessMode(function App() {
   const [state, { onDeviceDataChange, onDeviceStatusChange }] =
     useDeviceData(sdk);
   console.log(state, 'state===============');
@@ -55,15 +56,7 @@ export function App() {
     };
   }, []);
 
-  // 急速渲染适配
-  const [sdkReady, setSdkReady] = useState(false);
-  useEffect(() =>  {
-    sdk.sdkReady().then(() =>  setSdkReady(true));
-  }, []);
-
-  return !sdkReady ? (
-    <div> loading...</div>
-  ) : (
+  return (
     <DeviceSateContext.Provider value={state}>
       <HashRouter>
         <Redirect exact from="/" to="/home"></Redirect>
@@ -85,4 +78,4 @@ export function App() {
       </HashRouter>
     </DeviceSateContext.Provider>
   );
-}
+});

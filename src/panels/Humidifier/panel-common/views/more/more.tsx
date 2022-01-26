@@ -11,13 +11,13 @@ import classNames from 'classnames';
 import FilterReset from './filter-reset/filter-reset';
 import Features from './features/features';
 import Features2 from './features2/features2';
-import { Block } from '@/components/layout';
-import { Cell, Switch } from '@/components/base';
-import { SvgIcon } from '@/components/common';
+import { Block } from '@components/layout';
+import { SvgIcon } from '@components/common';
 // 模版数据
-import { DeviceSateContext } from '@/products/humidifier/deviceStateContext';
+import { DeviceSateContext } from '../../deviceStateContext';
 // 接口，处理属性更改
-import { getThemeType, onControlDevice } from '@/business';
+import { getThemeType } from '@libs/theme';
+import { onControlDevice } from '@hooks/useDeviceData';
 import './more.less';
 
 const themeType = getThemeType();

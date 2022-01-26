@@ -29,10 +29,10 @@ const SkinProps = {
     },
     switch: {
       active: {
-        color: '#000000'
+        color: '#FFFFFF'
       },
       default: {
-        color: '#000000'
+        color: '#FFFFFF'
       }
     },
     lineChart: {

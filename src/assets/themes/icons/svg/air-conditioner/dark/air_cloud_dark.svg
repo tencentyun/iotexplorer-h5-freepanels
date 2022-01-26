@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1197px" height="615px" viewBox="0 0 1197 615" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>空调冷气</title>
+    <defs>
+        <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="linearGradient-1">
+            <stop stop-color="#8FCDFF" offset="0%"></stop>
+            <stop stop-color="#C2E8FF" stop-opacity="0" offset="100%"></stop>
+        </linearGradient>
+        <filter x="-68.3%" y="-29.3%" width="236.7%" height="158.6%" filterUnits="objectBoundingBox" id="filter-2">
+            <feGaussianBlur stdDeviation="30" in="SourceGraphic"></feGaussianBlur>
+        </filter>
+        <filter x="-68.3%" y="-29.3%" width="236.7%" height="158.6%" filterUnits="objectBoundingBox" id="filter-3">
+            <feGaussianBlur stdDeviation="30" in="SourceGraphic"></feGaussianBlur>
+        </filter>
+        <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="linearGradient-4">
+            <stop stop-color="#8FCDFF" offset="0%"></stop>
+            <stop stop-color="#C2E8FF" stop-opacity="0" offset="100%"></stop>
+        </linearGradient>
+        <filter x="-83.6%" y="-30.6%" width="267.2%" height="161.3%" filterUnits="objectBoundingBox" id="filter-5">
+            <feGaussianBlur stdDeviation="30" in="SourceGraphic"></feGaussianBlur>
+        </filter>
+        <filter x="-68.3%" y="-29.3%" width="236.7%" height="158.6%" filterUnits="objectBoundingBox" id="filter-6">
+            <feGaussianBlur stdDeviation="30" in="SourceGraphic"></feGaussianBlur>
+        </filter>
+        <filter x="-68.3%" y="-29.3%" width="236.7%" height="158.6%" filterUnits="objectBoundingBox" id="filter-7">
+            <feGaussianBlur stdDeviation="30" in="SourceGraphic"></feGaussianBlur>
+        </filter>
+        <filter x="-83.6%" y="-30.6%" width="267.2%" height="161.3%" filterUnits="objectBoundingBox" id="filter-8">
+            <feGaussianBlur stdDeviation="30" in="SourceGraphic"></feGaussianBlur>
+        </filter>
+        <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="linearGradient-9">
+            <stop stop-color="#8FCDFF" offset="0%"></stop>
+            <stop stop-color="#C2E8FF" stop-opacity="0.25314139" offset="100%"></stop>
+        </linearGradient>
+        <filter x="-10950.0%" y="-50.2%" width="22000.0%" height="200.4%" filterUnits="objectBoundingBox" id="filter-10">
+            <feGaussianBlur stdDeviation="30" in="SourceGraphic"></feGaussianBlur>
+        </filter>
+    </defs>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round">
+        <g id="2" transform="translate(36.000000, -532.000000)">
+            <g id="空调冷气" transform="translate(74.000000, 643.000000)">
+                <g id="编组-3">
+                    <path d="M159.5,0 C170.744792,40 117.578125,165.070312 1.42108547e-14,375.210938" id="路径-2" stroke="url(#linearGradient-1)" stroke-width="40" filter="url(#filter-2)"></path>
+                    <path d="M271.5,16 C282.744792,56 229.578125,181.070312 112,391.210938" id="路径-2备份-2" stroke="url(#linearGradient-1)" stroke-width="40" filter="url(#filter-3)"></path>
+                    <path d="M368.527684,13 C356.887059,132.601562 344.027684,259.5 231,388.210938" id="路径-2备份" stroke="url(#linearGradient-4)" stroke-width="50" filter="url(#filter-5)"></path>
+                </g>
+                <g id="编组-3备份" transform="translate(789.500000, 196.000000) scale(-1, 1) translate(-789.500000, -196.000000) translate(602.000000, 0.000000)">
+                    <path d="M159.5,0 C170.744792,40 117.578125,165.070312 1.42108547e-14,375.210938" id="路径-2" stroke="url(#linearGradient-1)" stroke-width="40" filter="url(#filter-6)"></path>
+                    <path d="M258.5,16 C269.744792,56 216.578125,181.070312 99,391.210938" id="路径-2备份-2" stroke="url(#linearGradient-1)" stroke-width="40" filter="url(#filter-7)"></path>
+                    <path d="M375,13 C363.359375,132.601562 350.5,259.5 237.472316,388.210938" id="路径-2备份" stroke="url(#linearGradient-4)" stroke-width="50" filter="url(#filter-8)"></path>
+                </g>
+                <line x1="485.5" y1="0" x2="485.5" y2="219.140625" id="路径-3" stroke="url(#linearGradient-9)" stroke-width="40" filter="url(#filter-10)"></line>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -1,12 +1,10 @@
 import React, { useState, useMemo } from 'react';
 import classNames from 'classnames';
-import { SvgIcon } from '@/components/common/icon';
+import { SvgIcon } from '@components/common/icon';
 import { Popup } from 'antd-mobile';
-import { StyledProps, ThemeType } from '@/global';
-import { getThemeType } from '@/business';
+import { StyledProps, ThemeType } from '@libs/global';
+import { getThemeType } from '@libs/theme';
 import './list-popup.less';
-
-const themeType = getThemeType();
 
 export type SelectType = {
   Radio: 'radio';
@@ -31,6 +29,8 @@ export interface ListPopupProps extends StyledProps {
 }
 
 export function ListPopup(props: ListPopupProps) {
+  const themeType = getThemeType();
+
   const { type = 'radio', options, value, theme = themeType } = props;
   const [checkList, setCheckList] = useState(['']);
 

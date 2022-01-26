@@ -50,7 +50,7 @@ export function BlueHome() {
         <div
           className={classNames(
             'app-container',
-            deviceData.power_switch === 0 ? 'close' : ''
+            !deviceData.power_switch ? 'close' : ''
           )}
         >
           {/* 产品图 */}
@@ -158,7 +158,7 @@ export function BlueHome() {
               <li
                 className="content-item "
                 onClick={() => {
-                  if (deviceData.power_switch === 0) return;
+                  if (!deviceData.power_switch) return;
                   onControlDevice(
                     'spray_switch',
                     Number(!deviceData.spray_switch)
@@ -174,7 +174,7 @@ export function BlueHome() {
               <li
                 className="content-item"
                 onClick={() => {
-                  if (deviceData.power_switch === 0) return;
+                  if (!deviceData.power_switch) return;
                   onControlDevice(
                     'light_switch',
                     Number(!deviceData.light_switch)

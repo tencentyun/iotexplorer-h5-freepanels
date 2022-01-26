@@ -82,7 +82,7 @@ export function ColorfulHome() {
               <li
                 className="content-item"
                 onClick={() => {
-                  if (deviceData.power_switch === 0) return;
+                  if (!deviceData.power_switch) return;
                   onControlDevice(
                     'spray_switch',
                     Number(!deviceData.spray_switch)
@@ -98,7 +98,7 @@ export function ColorfulHome() {
               <li
                 className="content-item"
                 onClick={() => {
-                  if (deviceData.power_switch === 0) return;
+                  if (!deviceData.power_switch) return;
                   onControlDevice(
                     'light_switch',
                     Number(!deviceData.light_switch)

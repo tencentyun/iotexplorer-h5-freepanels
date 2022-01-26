@@ -2,8 +2,8 @@ import React from 'react';
 import classNames from 'classnames';
 import { ToolsBar } from './components/tools-bar';
 import { Detail } from './components/detail/detail';
-import { DeviceSateContext } from '@/products/humidifier/deviceStateContext';
-import HumidifierDashboard from '@/components/business/round-dashboard/humidifier-dashboard';
+import { DeviceSateContext } from '../../deviceStateContext';
+import HumidifierDashboard from '@components/business/round-dashboard/humidifier-dashboard';
 import './home.less';
 
 export function Home() {

@@ -11,9 +11,8 @@ import {
   StatusBlock
 } from '../components';
 
-const themeType = getThemeType();
-
 export function Home() {
+  const themeType = getThemeType();
   const history = useHistory();
 
   // 跳转页面

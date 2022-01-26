@@ -9,7 +9,7 @@
 import React from 'react';
 import './device.less';
 import classNames from 'classnames';
-import IconTheme from '@components/common/icon/icon-theme';
+// import IconTheme from '@components/common/icon/icon-theme';
 import { DeviceSateContext } from '../../../../deviceStateContext';
 const airDeviceImg = 'https://tencent-1305105198.cos.ap-guangzhou.myqcloud.com/air-conditioner/air_device.bd91b10a.png';
 const Device = () => {
@@ -22,7 +22,7 @@ const Device = () => {
             src={airDeviceImg}
             alt=""
           />
-          {deviceData.power_switch === 1 && <IconTheme kind={'air_cloud'} />}
+          {/* {deviceData.power_switch === 1 && <IconTheme kind={'air_cloud'} />} */}
           <section className="content">
             <div className={classNames('text-primary')}>
               <span>

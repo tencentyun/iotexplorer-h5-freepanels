@@ -6,12 +6,13 @@
 import React from 'react';
 import classNames from 'classnames';
 import { useHistory } from 'react-router-dom';
-import { StyledProps } from '@/global';
-import { onControlDevice } from '@/business';
-import { Block } from '../../../../components/layout';
-import { Hoverable } from '../../../../components/common';
-import { SvgIcon } from '@/components/common/icon';
-import { CurrentSkinProps } from '../../skinProps';
+import { StyledProps } from '@libs/global';
+import { onControlDevice } from '@hooks/useDeviceData';
+import { Block } from '@components/layout';
+import { Hoverable } from '@components/common';
+import { SvgIcon } from '@components/common/icon';
+import { getThemeType } from '@libs/theme';
+import { SkinProps } from '../../skinProps';
 import './style.less';
 
 interface ModeProps {
@@ -52,6 +53,8 @@ export function TrainingMode({ layoutMode = 'grid' }: TraningModeProps) {
   };
 
   const itemIcon = (name: string) => {
+    const themeType = getThemeType();
+    const CurrentSkinProps: any = SkinProps[themeType];
     switch (name) {
       case 'free_jump':
         return <SvgIcon className="item-icon" name="icon-training-free" {...CurrentSkinProps.free}/>;

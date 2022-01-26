@@ -4,19 +4,18 @@
  * @Description: 设置页
  */
 import React from 'react';
-import { Block } from '../../../components/layout';
+import { Block } from '@components/layout';
 import { SettingPannel } from '../components/settingPanel';
-import styled from 'styled-components';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
-import { SvgIcon } from '@/components/common';
-import { getThemeType } from '@/business';
-import { ThemeType } from '@/global';
-import { CurrentSkinProps } from '../skinProps';
+import { SvgIcon } from '@components/common';
+import { getThemeType } from '@libs/theme';
+import { ThemeType } from '@libs/global';
+import { SkinProps } from '../skinProps';
 import './setting.less';
 
 export function Setting() {
   const theme: ThemeType = getThemeType();
-
+  const CurrentSkinProps: any = SkinProps[theme];
   return (
     <main className="setting-view">
       <SettingPannel className="setting-main" />

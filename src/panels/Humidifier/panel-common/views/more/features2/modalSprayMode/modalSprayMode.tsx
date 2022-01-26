@@ -8,15 +8,15 @@
 
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { DeviceSateContext } from '@/products/humidifier/deviceStateContext';
+import { DeviceSateContext } from '../../../../deviceStateContext';
 import classNames from 'classnames';
-import { stringKey } from '@/global';
-import ModalSprayVolume from '@/products/humidifier/views/more/features2/modalSprayVolume/modalSprayVolume';
-import { Modal } from '@/components/base';
-import { enumToArray } from '@/utils';
+import { stringKey } from '@libs/global';
+import ModalSprayVolume from '../modalSprayVolume/modalSprayVolume';
+import { Modal } from '@components/base';
+import { enumToArray } from '@libs/utillib';
 import { List, Radio } from 'antd-mobile';
-import { apiControlDeviceData } from '../../../../../../utils/api';
-import IconChecked from '@/components/base/icon-checked/icon-checked';
+import { apiControlDeviceData } from '@hooks/useDeviceData';
+import IconChecked from '@components/base/icon-checked/icon-checked';
 
 /**
  * 喷雾模式

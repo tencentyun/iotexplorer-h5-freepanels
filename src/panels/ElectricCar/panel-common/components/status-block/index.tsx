@@ -11,10 +11,8 @@ import SwipeUnlock from '../unlock/index';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 import './index.less';
 
-const themeType = getThemeType();
-
 export function StatusBlock() {
-
+  const themeType = getThemeType();
   // 处理开锁/关锁
   const handleLock = () => {
     onControlDevice('lock_switch', Number(!sdk.deviceData.lock_switch));

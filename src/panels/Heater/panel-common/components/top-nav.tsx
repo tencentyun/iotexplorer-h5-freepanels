@@ -1,20 +1,18 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 import classNames from 'classnames';
-import { SvgIcon } from '@/components/common/icon';
+import { SvgIcon } from '@components/common/icon';
 import { CurrentSkinProps } from '../skinProps';
-import { getThemeType, formatDeviceData, onControlDevice } from '@/business';
-// @ts-ignore
-import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
+import { getThemeType } from '@libs/theme';
+import { onControlDevice } from '@hooks/useDeviceData';
 import './top-nav.less';
-
-const themeType = getThemeType();
 
 interface TopNavProps {
   status: number;
 }
 
 export function TopNav(props: TopNavProps) {
+  const themeType = getThemeType();
   const history = useHistory();
   const navStatus = props.status === 1 ? 'active' : 'default';
 

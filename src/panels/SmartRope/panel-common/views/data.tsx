@@ -1,16 +1,16 @@
 /**
  * 数据
  */
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import classNames from 'classnames';
-import { Block } from '@/components/layout';
-import { SvgIcon } from '@/components/common';
+import { Block } from '@components/layout';
+import { SvgIcon } from '@components/common';
 import { LineChart } from '../components/lineChart/line-chart';
 import { TrainingData } from '../components/trainingData';
 import { DeviceSateContext } from '../deviceStateContext';
-import { getThemeType } from '@/business';
-import { ThemeType } from '@/global';
-import { CurrentSkinProps } from '../skinProps';
+import { getThemeType } from '@libs/theme';
+import { ThemeType } from '@libs/global';
+import { SkinProps } from '../skinProps';
 
 import { CalendarPopup } from '../components/calendar';
 import dayjs from 'dayjs';
@@ -46,6 +46,7 @@ interface ChartItem {
 
 export function Data() {
   const theme: ThemeType = getThemeType();
+  const CurrentSkinProps: any = SkinProps[theme];
   // 时间单位类型，天、周、月、年
   const [unitType, setUnitType] = useState('day');
   const [mode, setMode] = useState('duration');
@@ -131,7 +132,7 @@ export function Data() {
             </div>
             
             {data ? (
-              <LineChart data={data} {...CurrentSkinProps.lineChart}/>
+              <LineChart className="line-chart" data={data} {...CurrentSkinProps.lineChart}/>
             ) : null}
             <div className="footer-select-wrap">
               <div className="button-wrap">

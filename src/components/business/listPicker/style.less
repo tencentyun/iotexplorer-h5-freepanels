@@ -9,7 +9,7 @@
       align-items: center;
       justify-content: center;
       font-size: 48px;
-      line-height: 67px;
+      line-height: 70px;
       color: #0f0f0f;
 
       &.is_disabled {
@@ -70,10 +70,12 @@
         border: none;
         padding: 0;
       }
+      .adm-button::before {
+        background-color: transparent;
+      }
     }
   }
   .item-select-icon{
-    // text-align: center;
     .svg-icon-unselected {
       padding: 22px 17px;
       width: 36px;
@@ -109,10 +111,22 @@
     }
   }
   &.layout-spaceBetween {
-    .dialog-selection-item {
-      padding: 0 73px 30px 90px;
-      display: flex;
-      justify-content: space-between;
+    .dialog-selection {
+      padding-top: 30px;
+      .dialog-selection-item {
+        padding: 0 73px 73px 90px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .item-label {
+        margin-right: 0;
+        padding: 0;
+      }
+      .item-select-icon {
+        display: flex;
+        font-size: 0;
+      }
     }
   }
 }

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="66px" height="57px" viewBox="0 0 66 57" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 59.1 (86144) - https://sketch.com -->
+    <title>温标切换</title>
+    <desc>Created with Sketch.</desc>
+    <g id="页面-1" stroke="none" stroke-width="1">
+        <g id="7.1" transform="translate(-146.000000, -1387.000000)" >
+            <g id="编组-6" transform="translate(76.000000, 364.000000)">
+                <g id="编组-4">
+                    <g transform="translate(4.000000, 960.000000)">
+                        <g id="温标切换" transform="translate(65.000000, 61.531089)">
+                            <rect id="矩形" x="1" y="51" width="66" height="7" rx="3.5"></rect>
+                            <rect id="矩形备份-2" transform="translate(34.000000, 16.500000) scale(-1, 1) translate(-34.000000, -16.500000) " x="1" y="13" width="66" height="7" rx="3.5"></rect>
+                            <rect id="矩形备份" transform="translate(14.000000, 48.500000) rotate(-30.000000) translate(-14.000000, -48.500000) " x="0" y="45" width="28" height="7" rx="3.5"></rect>
+                            <rect id="矩形备份-3" transform="translate(53.000000, 10.500000) scale(-1, 1) rotate(-30.000000) translate(-53.000000, -10.500000) " x="39" y="7" width="28" height="7" rx="3.5"></rect>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

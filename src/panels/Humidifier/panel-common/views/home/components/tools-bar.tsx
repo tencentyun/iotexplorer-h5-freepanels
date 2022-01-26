@@ -6,10 +6,9 @@ import { ListPicker } from '@components/business';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 
 import { useDeviceData } from '@hooks/useDeviceData';
-import { getThemeType, formatDeviceData, onControlDevice } from '@/business';
+import { getThemeType } from '@libs/theme';
+import { onControlDevice, formatDeviceData } from '@hooks/useDeviceData';
 import './tools-bar.less';
-
-const themeType = getThemeType();
 
 interface DeviceMaps {
   work_mode: [];
@@ -17,6 +16,7 @@ interface DeviceMaps {
 }
 
 export function ToolsBar() {
+  const themeType = getThemeType();
   const history = useHistory();
   const [state] = useDeviceData(sdk);
   const [color, setColor] = useState('blue');

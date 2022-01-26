@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="70px" height="70px" viewBox="0 0 70 70" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <defs>
+        <linearGradient x1="11.8644068%" y1="4.18229167%" x2="104.602754%" y2="105.080729%" id="linearGradient-1">
+            <stop stop-color="#00F0FF" offset="0%"></stop>
+            <stop stop-color="#704DF0" offset="100%"></stop>
+        </linearGradient>
+        <circle id="path-2" cx="35" cy="35" r="35"></circle>
+        <filter x="-218.6%" y="-210.0%" width="537.1%" height="537.1%" filterUnits="objectBoundingBox" id="filter-3">
+            <feOffset dx="0" dy="6" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="50" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0.125490196   0 0 0 0 0.127812629   0 0 0 0 0.129411765  0 0 0 0.1 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="页面-1" stroke="none" stroke-width="1" fill-rule="evenodd">
+        <g id="6" transform="translate(-901.000000, -569.000000)">
+            <g id="总开关" transform="translate(80.000000, 363.000000)">
+                <g id="选中勾" transform="translate(821.000000, 206.000000)">
+                    <g id="椭圆形">
+                        <use fill="black" fill-opacity="1" filter="url(#filter-3)" xlink:href="#path-2"></use>
+                        <use fill="url(#linearGradient-1)" fill-rule="evenodd" xlink:href="#path-2"></use>
+                    </g>
+                    <line x1="18.5" y1="31.5" x2="32.5" y2="45.5" id="直线-2" stroke="#FFFFFF" stroke-width="5" stroke-linecap="round"></line>
+                    <line x1="33" y1="46" x2="53" y2="23" id="直线-3" stroke="#FFFFFF" stroke-width="5" stroke-linecap="round"></line>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

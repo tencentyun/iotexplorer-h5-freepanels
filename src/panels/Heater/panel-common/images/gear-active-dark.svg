@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="83px" height="76px" viewBox="0 0 83 76" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 59.1 (86144) - https://sketch.com -->
+    <title>档位</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="24.3282834%" y1="50.025163%" x2="65.0364231%" y2="50%" id="linearGradient-1">
+            <stop stop-color="#03E8FD" offset="0%"></stop>
+            <stop stop-color="#06E5FF" offset="0%"></stop>
+            <stop stop-color="#5D68F2" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="49.8726718%" y1="-5.76469561%" x2="50.1895717%" y2="119.717488%" id="linearGradient-2">
+            <stop stop-color="#00F0FF" offset="0%"></stop>
+            <stop stop-color="#704DF0" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="47.7001349%" y1="0%" x2="53.4241393%" y2="112.510417%" id="linearGradient-3">
+            <stop stop-color="#00F0FF" offset="0%"></stop>
+            <stop stop-color="#704DF0" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="49.9767284%" y1="-5.76469561%" x2="50.0346478%" y2="119.717488%" id="linearGradient-4">
+            <stop stop-color="#00F0FF" offset="0%"></stop>
+            <stop stop-color="#704DF0" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="49.0167736%" y1="0%" x2="51.4638702%" y2="112.510417%" id="linearGradient-5">
+            <stop stop-color="#00F0FF" offset="0%"></stop>
+            <stop stop-color="#704DF0" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="1备份" transform="translate(-435.000000, -904.000000)">
+            <g id="编组-2" transform="translate(305.000000, 787.000000)">
+                <g id="档位" transform="translate(134.000000, 117.000000)">
+                    <path d="M19,90 C39.4345357,90 56,73.4345357 56,53 C56,32.5654643 39.4345357,16 19,16" id="椭圆形" stroke="url(#linearGradient-1)" stroke-width="8" stroke-linecap="round" transform="translate(37.500000, 53.000000) rotate(90.000000) translate(-37.500000, -53.000000) "></path>
+                    <g id="矩形" transform="translate(20.000000, 18.000000)">
+                        <g id="path-3-link" fill="#000000" fill-rule="nonzero">
+                            <rect id="path-3" x="0" y="0" width="8" height="34" rx="4"></rect>
+                        </g>
+                        <g id="path-3-link" fill="url(#linearGradient-3)">
+                            <rect id="path-3" x="0" y="0" width="8" height="34" rx="4"></rect>
+                        </g>
+                    </g>
+                    <g id="矩形备份-9" transform="translate(34.000000, 0.000000)">
+                        <g id="path-6-link" fill="#000000" fill-rule="nonzero">
+                            <rect id="path-6" x="0" y="0" width="8" height="52" rx="4"></rect>
+                        </g>
+                        <g id="path-6-link" fill="url(#linearGradient-5)">
+                            <rect id="path-6" x="0" y="0" width="8" height="52" rx="4"></rect>
+                        </g>
+                    </g>
+                    <g id="矩形备份-10" transform="translate(48.000000, 18.000000)">
+                        <g id="path-8-link" fill="#000000" fill-rule="nonzero">
+                            <rect id="path-8" x="0" y="0" width="8" height="34" rx="4"></rect>
+                        </g>
+                        <g id="path-8-link" fill="url(#linearGradient-3)">
+                            <rect id="path-8" x="0" y="0" width="8" height="34" rx="4"></rect>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

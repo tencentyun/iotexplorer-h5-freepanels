@@ -5,18 +5,19 @@
  */
 import React, { useState } from 'react';
 import classNames from 'classnames';
-import { Tabs } from '../../../../components/business';
-import { SvgIcon } from '../../../../components/common';
+import { Tabs } from '@components/business';
+import { SvgIcon } from '@components/common';
 import { Setting } from '../../views/setting';
 import { Data } from '../../views/data';
 import { Home } from '../../views/home';
-import { getThemeType } from '@/business';
-import { ThemeType } from '@/global';
-import { CurrentSkinProps } from '../../skinProps';
+import { getThemeType } from '@libs/theme';
+import { ThemeType } from '@libs/global';
+import { SkinProps } from '../../skinProps';
 const { TabPane } = Tabs;
 
 export function Container() {
   const theme: ThemeType = getThemeType();
+  const CurrentSkinProps: any = SkinProps[theme];
   const [activeKey, setActiveKey] = useState('training');
 
   return (

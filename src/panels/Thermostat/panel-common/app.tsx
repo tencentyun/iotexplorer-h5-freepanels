@@ -2,7 +2,7 @@
  * @Description: 温控器
  */
 
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { HashRouter, Switch, Route, Redirect } from 'react-router-dom';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 
@@ -10,13 +10,15 @@ import { useDeviceData } from '@hooks/useDeviceData';
 import { DeviceContext } from './deviceContext';
 
 import 'antd-mobile/es/global';
-import '../../themes/global.less';
+import '@icons/themes/global.less';
+import '@icons/themes/icons/svg/thermostat';
 import './style.less';
 
 import { Home } from './views/home';
 import { Settings } from './views/settings';
+import { QuicknessMode } from '@components/base/quicknessMode';
 
-export function App() {
+export const App = QuicknessMode(function App() {
   const isBluetoothDevice = true;
   const isDev = process.env.NODE_ENV !== 'production';
   //新旧链接的兼容
@@ -68,31 +70,20 @@ export function App() {
     };
   }, []);
 
-  const [sdkReady, setSdkReady] = useState(false);
-  useEffect(() => {
-    sdk.sdkReady().then(() => setSdkReady(true));
-  }, []);
-
   return (
-    <>
-      {!sdkReady ? (
-        <div>loading...</div>
-      ) : (
-        <DeviceContext.Provider value={state}>
-          <HashRouter basename={basename}>
-            <Redirect exact from="/" to="/home"></Redirect>
-            <Switch>
-              {/* 首页 */}
-              <Route path="/home" render={() => <Home></Home>}></Route>
-              {/* 设置 */}
-              <Route
-                path="/settings"
-                render={() => <Settings></Settings>}
-              ></Route>
-            </Switch>
-          </HashRouter>
-        </DeviceContext.Provider>
-      )}
-    </>
+    <DeviceContext.Provider value={state}>
+      <HashRouter basename={basename}>
+        <Redirect exact from="/" to="/home"></Redirect>
+        <Switch>
+          {/* 首页 */}
+          <Route path="/home" render={() => <Home></Home>}></Route>
+          {/* 设置 */}
+          <Route
+            path="/settings"
+            render={() => <Settings></Settings>}
+          ></Route>
+        </Switch>
+      </HashRouter>
+    </DeviceContext.Provider>
   );
-}
+});

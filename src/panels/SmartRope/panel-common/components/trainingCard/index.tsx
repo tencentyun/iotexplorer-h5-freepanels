@@ -5,13 +5,12 @@
  */
 import React from 'react';
 import classNames from 'classnames';
-import { Row } from '../../../../components/layout';
+import { Row } from '@components/layout';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
-import { useDeviceData } from '@/hooks/useDeviceData';
+import { useDeviceData } from '@hooks/useDeviceData';
 import { formatTime } from '../trainingData';
-import { StyledProps } from '@/global';
-import { getThemeType } from '@/business';
-import { ThemeType } from '@/global';
+import { StyledProps, ThemeType } from '@libs/global';
+import { getThemeType } from '@libs/theme';
 import './style.less';
 
 export interface TraningCardProps extends StyledProps {

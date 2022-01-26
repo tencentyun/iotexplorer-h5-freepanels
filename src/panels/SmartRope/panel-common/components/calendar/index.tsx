@@ -1,9 +1,8 @@
 import React, { useState, useMemo } from 'react';
-import classNames from 'classnames';
-import { SvgIcon } from '@/components/common/icon';
+import { SvgIcon } from '@components/common/icon';
 import { Popup } from 'antd-mobile';
-import { StyledProps, ThemeType } from '@/global';
-import { getThemeType } from '@/business';
+import { StyledProps, ThemeType } from '@libs/global';
+import { getThemeType } from '@libs/theme';
 
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
@@ -11,7 +10,6 @@ import dayjs from 'dayjs';
 
 import './style.less';
 
-const themeType = getThemeType();
 
 export interface CalendarPopupProps extends StyledProps {
   title?: string;
@@ -23,6 +21,8 @@ export interface CalendarPopupProps extends StyledProps {
 }
 
 export function CalendarPopup(props: CalendarPopupProps) {
+  const themeType = getThemeType();
+
   const [time, setTime] = useState<Date | undefined>();
 
   useMemo(() => {

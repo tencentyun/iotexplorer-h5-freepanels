@@ -6,11 +6,11 @@
 import React from 'react';
 import classNames from 'classnames';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
-import { Block, Row, Col } from '../../../../components/layout';
-import { useDeviceData } from '@/hooks/useDeviceData';
-import { zeroize } from '@/utils';
-import { getThemeType } from '@/business';
-import { ThemeType } from '@/global';
+import { Block, Row, Col } from '@components/layout';
+import { useDeviceData } from '@hooks/useDeviceData';
+import { zeroize } from '@libs/utillib';
+import { getThemeType } from '@libs/theme';
+import { ThemeType } from '@libs/global';
 import './style.less';
 
 export interface TrainingDataProps {

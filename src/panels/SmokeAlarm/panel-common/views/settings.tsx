@@ -33,18 +33,30 @@ export function Settings() {
   // 报警时长选择器
   const [alarmTimeVisible, onToggleAlarmTime] = useState(false);
 
+  const getDesc = (key:string, type: string): string => {
+    if (state.templateMap[key]) {
+      const typeObj = state.templateMap[key];
+
+      return typeObj.define.mapping[type];
+    } else {
+      return ''
+    }
+  };
+
   const volOptions = () => {
-    console.log(deviceMaps);
-    console.log(deviceMaps['alarm_vol']);
     if (deviceMaps['alarm_vol']) {
       const options = deviceMaps['alarm_vol'].map((t: any) => ({
         label: t.desc,
         value: t.name
       }));
-      console.log(options);
       return options.length > 0 ? options : [];
     }
-    return [];
+    return [
+      {label: "low", value: "0"},
+      {label: "middle", value: "1"},
+      {label: "high", value: "2"},
+      {label: "mute", value: "3"}
+    ];
   };
 
   const ringtoneOptions = () => {
@@ -55,7 +67,10 @@ export function Settings() {
       }));
       return options.length > 0 ? options : [];
     }
-    return [];
+    return [
+      {label: "ringtone1", value: "1"},
+      {label: "ringtone2", value: "2"}
+    ];
   };
 
   return (
@@ -85,14 +100,14 @@ export function Settings() {
             ></Cell>
             <Cell
               title="设备自检结果"
-              value={deviceData['checking_result'] || '无'}
+              value={getDesc('checking_result', deviceData['checking_result']) || '无'}
               valueStyle={'gray'}
               size="medium"
               isLink={false}
             ></Cell>
             <Cell
               title="报警音量"
-              value={deviceData['alarm_vol']}
+              value={getDesc('alarm_vol', deviceData['alarm_vol'])}
               valueStyle={'gray'}
               size="medium"
               onClick={() => {
@@ -102,7 +117,7 @@ export function Settings() {
               <ListPicker
                 visible={alarmVolVisible}
                 title="报警音量"
-                defaultValue={[deviceData['alarm_vol']]}
+                defaultValue={[(deviceData['alarm_vol']||0).toString()]}
                 options={volOptions()}
                 layoutType="spaceBetween"
                 onCancel={() => onToggleAlarmVol(false)}
@@ -114,7 +129,7 @@ export function Settings() {
             </Cell>
             <Cell
               title="报警铃声"
-              value={deviceData['alarm_ringtone']}
+              value={getDesc('alarm_ringtone', deviceData['alarm_ringtone'])}
               valueStyle={'gray'}
               size="medium"
               onClick={() => {
@@ -124,7 +139,7 @@ export function Settings() {
               <ListPicker
                 visible={alarmRingtoneVisible}
                 title="报警铃声"
-                defaultValue={[deviceData['alarm_ringtone']]}
+                defaultValue={[(deviceData['alarm_ringtone']||0).toString()]}
                 options={ringtoneOptions()}
                 layoutType="spaceBetween"
                 onCancel={() => onToggleAlarmRingtone(false)}
@@ -136,7 +151,7 @@ export function Settings() {
             </Cell>
             <Cell
               title="报警时长"
-              value={deviceData['alarm_time']}
+              value={(deviceData['alarm_time'] || '0') + 's'}
               valueStyle={'gray'}
               size="medium"
               onClick={() => {
@@ -145,13 +160,9 @@ export function Settings() {
             >
               <ValuePicker
                 visible={alarmTimeVisible}
-                value={[
-                  deviceData['alarm_time']
-                    ? deviceData['alarm_time'].toString() + 's'
-                    : ''
-                ]}
+                value={[(deviceData['alarm_time']||0).toString()]}
                 title="报警时长"
-                columns={[mapsToOptions('alarm_time', deviceMaps)] || ['1', '2', '3']}
+                columns={[mapsToOptions('alarm_time', deviceMaps)]}
                 onCancel={() => onToggleAlarmTime(false)}
                 onConfirm={value => {
                   onControlDevice('alarm_time', +(value[0] || '0'));

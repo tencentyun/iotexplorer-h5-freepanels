@@ -18,7 +18,7 @@ body.theme_dark {
           margin-left: 15px;
           width: 168px;
           height: 283px;
-          background-image: url('../images/smoke.png');
+          background-image: url('../images/smoke.svg');
           background-repeat: no-repeat;
           background-position: center;
           background-size: contain;
@@ -44,6 +44,7 @@ body.theme_dark {
           align-items: center;
           flex-direction: column;
           margin-bottom: 50px;
+          padding: 85px 70px 54px;
           width: 295px;
           height: 300px;
           &:last-child {
@@ -88,6 +89,16 @@ body.theme_dark {
           }
           .label {
             color: #F3F8FF;
+          }
+
+        }
+        .unselected {
+          background-image: linear-gradient(139deg, #333E4D 0%, #202C3A 100%);
+          &::before {
+            display: none;
+          }
+          .label {
+            color: #848895;
           }
         }
       }
