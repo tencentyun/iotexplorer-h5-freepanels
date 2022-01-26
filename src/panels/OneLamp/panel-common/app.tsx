@@ -1,19 +1,20 @@
 /**
  * 一路灯
  */
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 import { useDeviceData } from '@hooks/useDeviceData';
+import {QuicknessMode} from '@components/base';
 import { Main } from './views/main';
 import { DeviceSateContext } from './deviceStateContext';
 import '@icons/themes/icons/svg/lamp-one';
 import '@icons/themes/icons/svg/common';
 import 'antd-mobile/es/global';
 import '@icons/themes/global.less';
-import './themes.less'; //5套皮肤
+import './themes.less'; // 5套皮肤 构建前要修改var.less变量文件
 
-export function App() {
+export const App = QuicknessMode(function App() {
   const isBluetoothDevice = true;
   const isDev = process.env.NODE_ENV !== 'production';
   //新旧链接的兼容
@@ -73,27 +74,18 @@ export function App() {
         .off('wsStatusChange', handleWsStatusChange);
     };
   }, []);
-  const [sdkReady, setSdkReady] = useState(false);
-  useEffect(() => {
-    sdk.sdkReady().then(() => setSdkReady(true));
-  }, []);
+
   return (
-    <>
-      {!sdkReady ? (
-        <div>loading...</div>
-      ) : (
-        <article>
-          <DeviceSateContext.Provider value={state}>
-            <Router basename={basename}>
-              <Switch>
-                <Route path="/">
-                  <Main />
-                </Route>
-              </Switch>
-            </Router>
-          </DeviceSateContext.Provider>
-        </article>
-      )}
-    </>
+    <article>
+      <DeviceSateContext.Provider value={state}>
+        <Router basename={basename}>
+          <Switch>
+            <Route path="/">
+              <Main />
+            </Route>
+          </Switch>
+        </Router>
+      </DeviceSateContext.Provider>
+    </article>
   );
-}
+});

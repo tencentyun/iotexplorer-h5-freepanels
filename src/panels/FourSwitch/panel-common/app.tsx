@@ -1,10 +1,11 @@
 /**
  * 多路开关
  */
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 import { useDeviceData } from '@hooks/useDeviceData';
+import {QuicknessMode} from '@components/base';
 import { Home } from './views/home/home';
 import Timer from './views/timer/timer';
 import { DeviceSateContext } from './deviceStateContext';
@@ -13,7 +14,7 @@ import '@icons/themes/global.less';
 import './style.less';
 import './themes.less'; // 4套皮肤 构建前要修改var.less变量文件
 
-export function App() {
+export const App = QuicknessMode(function App() {
   const isBluetoothDevice = true;
   // eslint-disable-next-line no-undef
   const isDev = process.env.NODE_ENV !== 'production';
@@ -68,32 +69,22 @@ export function App() {
     };
   }, []);
 
-  const [sdkReady, setSdkReady] = useState(false);
-  useEffect(() => {
-    sdk.sdkReady().then(() => setSdkReady(true));
-  }, []);
   return (
-    <>
-      {!sdkReady ? (
-        <div>loading...</div>
-      ) : (
-        <article>
-          <DeviceSateContext.Provider value={state}>
-            <Router basename={basename}>
-              <Switch>
-                {/*更多页*/}
-                <Route path="/timing">
-                  <Timer />
-                </Route>
-                {/*首页*/}
-                <Route path="/">
-                  <Home />
-                </Route>
-              </Switch>
-            </Router>
-          </DeviceSateContext.Provider>
-        </article>
-      )}
-    </>
+    <article>
+      <DeviceSateContext.Provider value={state}>
+        <Router basename={basename}>
+          <Switch>
+            {/*更多页*/}
+            <Route path="/timing">
+              <Timer />
+            </Route>
+            {/*首页*/}
+            <Route path="/">
+              <Home />
+            </Route>
+          </Switch>
+        </Router>
+      </DeviceSateContext.Provider>
+    </article>
   );
-}
+});

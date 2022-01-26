@@ -1,25 +1,26 @@
 /**
  * 多功能报警主机
  */
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 import { DeviceSateContext } from './deviceStateContext';
 import { useDeviceData } from '@hooks/useDeviceData';
+import {QuicknessMode} from '@components/base';
 import { Home } from './views/home/home';
 import { Record } from './views/record/record';
 import { Setting } from './views/setting/setting';
 import { PhoneList } from './views/phoneList/phoneList';
 import { Mountings } from './views/mountings/mountings';
 import { AddDevExplanatory } from './views/addDevExplanatory/addDevExplanatory';
-import Timer from "./views/timer/timer"; // 5套皮肤 构建前要修改var.less变量文件
+import Timer from './views/timer/timer';
 import 'antd-mobile/es/global';
 import '@icons/themes/global.less';
 import '@icons/themes/icons/svg/common';
 import './style.less';
-import './themes.less';
+import './themes.less';// 5套皮肤 构建前要修改var.less变量文件
 
-export function App() {
+export const App = QuicknessMode(function App() {
   const isBluetoothDevice = true;
   // eslint-disable-next-line no-undef
   const isDev = process.env.NODE_ENV !== 'production';
@@ -134,53 +135,41 @@ export function App() {
   if (!headPanelTemplateId && state.templateList.length > 0) {
     headPanelTemplateId = state.templateList[0].id;
   }
-
-  // 急速渲染适配
-  const [sdkReady, setSdkReady] = useState(false);
-  useEffect(() => {
-    sdk.sdkReady().then(() => setSdkReady(true));
-  }, []);
   return (
-    <>
-      {!sdkReady ? (
-        <div>loading...</div>
-      ) : (
-        <article>
-          <DeviceSateContext.Provider value={state}>
-            <Router basename={basename}>
-              <Switch>
-                <Route path="/timer">
-                  <Timer />
-                </Route>
-                {/*配件*/}
-                <Route path="/mountings">
-                  <Mountings />
-                </Route>
-                {/*添加设备说明*/}
-                <Route path="/addDevExplanatory">
-                  <AddDevExplanatory />
-                </Route>
-                {/*历史记录*/}
-                <Route path="/record">
-                  <Record />
-                </Route>
-                {/*设置页*/}
-                <Route path="/setting">
-                  <Setting />
-                </Route>
-                {/*电话列表*/}
-                <Route path="/phoneList">
-                  <PhoneList />
-                </Route>
-                {/*首页*/}
-                <Route path="/">
-                  <Home />
-                </Route>
-              </Switch>
-            </Router>
-          </DeviceSateContext.Provider>
-        </article>
-      )}
-    </>
+    <article>
+      <DeviceSateContext.Provider value={state}>
+        <Router basename={basename}>
+          <Switch>
+            <Route path="/timer">
+              <Timer />
+            </Route>
+            {/*配件*/}
+            <Route path="/mountings">
+              <Mountings />
+            </Route>
+            {/*添加设备说明*/}
+            <Route path="/addDevExplanatory">
+              <AddDevExplanatory />
+            </Route>
+            {/*历史记录*/}
+            <Route path="/record">
+              <Record />
+            </Route>
+            {/*设置页*/}
+            <Route path="/setting">
+              <Setting />
+            </Route>
+            {/*电话列表*/}
+            <Route path="/phoneList">
+              <PhoneList />
+            </Route>
+            {/*首页*/}
+            <Route path="/">
+              <Home />
+            </Route>
+          </Switch>
+        </Router>
+      </DeviceSateContext.Provider>
+    </article>
   );
-}
+});

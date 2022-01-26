@@ -1,10 +1,11 @@
 /**
  * 紧急按钮
  */
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 import { useDeviceData } from '@hooks/useDeviceData';
+import {QuicknessMode} from '@components/base';
 import { getThemeType } from '@libs/theme';
 import { Home } from './views/home/home';
 import { Home_morandi } from './views/home-morandi/home_morandi';
@@ -18,7 +19,7 @@ import '@icons/themes/global.less';
 import './style.less';
 import './themes.less'; // 4套皮肤 构建前要修改var.less变量文件
 
-export function App() {
+export const App = QuicknessMode(function App() {
   const isBluetoothDevice = true;
   // eslint-disable-next-line no-undef
   const isDev = process.env.NODE_ENV !== 'production';
@@ -147,11 +148,6 @@ export function App() {
     headPanelTemplateId = state.templateList[0].id;
   }
 
-  const [sdkReady, setSdkReady] = useState(false);
-  useEffect(() => {
-    sdk.sdkReady().then(() => setSdkReady(true));
-  }, []);
-
   const themeType = getThemeType();
   const getHomePage = () => {
     if (themeType == 'blueWhite') {
@@ -168,27 +164,17 @@ export function App() {
   };
 
   return (
-    <>
-      {!sdkReady ? (
-        <div>loading...</div>
-      ) : (
-        <article>
-          <DeviceSateContext.Provider value={state}>
-            <Router basename={basename}>
-              <Switch>
-                {/*首页*/}
-                <Route path="/">
-                  {getHomePage()}
-                  {/* 蓝白 */}
-                  {/* <Home_blueWhite /> */}
-
-                  {/* <Home /> */}
-                </Route>
-              </Switch>
-            </Router>
-          </DeviceSateContext.Provider>
-        </article>
-      )}
-    </>
+    <article>
+      <DeviceSateContext.Provider value={state}>
+        <Router basename={basename}>
+          <Switch>
+            {/*首页*/}
+            <Route path="/">
+              {getHomePage()}
+            </Route>
+          </Switch>
+        </Router>
+      </DeviceSateContext.Provider>
+    </article>
   );
-}
+});
