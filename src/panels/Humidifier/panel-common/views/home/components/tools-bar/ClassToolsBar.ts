@@ -17,7 +17,9 @@ export default class ClassToolsBar {
       icon: 'ultrasound',
       size: 84,
       path: '/',
-      callback: () => {}
+      callback: () => {
+        console.log('work_mode callback');
+      },
     },
     {
       isActive: false,
@@ -30,12 +32,12 @@ export default class ClassToolsBar {
         console.log('click');
         sdk
           .getDeviceStatus({
-            deviceId: sdk.deviceId
+            deviceId: sdk.deviceId,
           })
           .then((res: any) => {
             console.log('>>>>>', res);
           });
-      }
+      },
     },
     {
       isActive: false,
@@ -46,7 +48,7 @@ export default class ClassToolsBar {
       path: '/more',
       callback: () => {
         console.log('ok122221');
-      }
-    }
+      },
+    },
   ];
 }

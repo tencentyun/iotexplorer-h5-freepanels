@@ -658,7 +658,7 @@ export const toggleBooleanByNumber = (value: number) => value !== 0;
 /**
  * 补零函数
  */
- export function zeroize(arg: number): string {
+export function zeroize(arg: number): string {
   if (arg < 10) {
     return `0${arg}`;
   }
@@ -668,7 +668,7 @@ export const toggleBooleanByNumber = (value: number) => value !== 0;
  * 根据设备状态，设置dom元素样式是否可用（高亮）
  * @param deviceStatus
  */
- export const setDomClassActive = (deviceStatus: number) => {
+export const setDomClassActive = (deviceStatus: number) => {
   if (deviceStatus === 1) {
     return 'disabled';
   }

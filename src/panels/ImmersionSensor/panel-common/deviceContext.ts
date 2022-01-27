@@ -24,6 +24,6 @@ export const DeviceContext: React.Context<{
     alarm_vol: 'low',
     battery_percentage: 6,
     battery_state: 'low',
-    muffling: 0
-  }
+    muffling: 0,
+  },
 });

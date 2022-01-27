@@ -42,6 +42,6 @@ export const DeviceContext: React.Context<{
     sleep: 0,
     frost: 0,
     valve_check: 0,
-    temp_unit_convert: 0
-  }
+    temp_unit_convert: 0,
+  },
 });

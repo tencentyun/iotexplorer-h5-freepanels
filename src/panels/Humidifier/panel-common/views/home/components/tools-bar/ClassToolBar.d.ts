@@ -15,7 +15,7 @@ export interface ToolsBarConfig {
   name: string;
   label: string;
   path: string;
-  callback: Function;
-  click?: Function;
+  callback: () => void;
+  click?: (event) => void;
   isFillNone?: boolean;
 }

@@ -24,6 +24,6 @@ export const DeviceContext: React.Context<{
     temp_unit: 0,
     battery_state: '',
     tamper_event: 0,
-    battery_percentage: 0
-  }
+    battery_percentage: 0,
+  },
 });

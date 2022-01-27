@@ -2,62 +2,62 @@ const SkinProps = {
   normal: {
     default: {
       clock: {
-        color: '#2C3033'
+        color: '#2C3033',
       },
       light: {
-        color: '#2C3033'
+        color: '#2C3033',
       },
       settings: {
-        color: '#2C3033'
-      }
+        color: '#2C3033',
+      },
     },
     active: {
       clock: {
-        color: '#2C3033'
+        color: '#2C3033',
       },
       light: {
-        color: '#2C3033'
+        color: '#2C3033',
       },
       settings: {
-        color: '#2C3033'
-      }
-    }
+        color: '#2C3033',
+      },
+    },
   },
   blueWhite: {
     default: {
       clock: {
-        color: '#A4ADC0'
+        color: '#A4ADC0',
       },
       light: {
-        color: '#A4ADC0'
+        color: '#A4ADC0',
       },
       settings: {
-        color: '#A4ADC0'
-      }
+        color: '#A4ADC0',
+      },
     },
     active: {
       clock: {
-        color: '#2885FE'
+        color: '#2885FE',
       },
       light: {
-        color: '#2885FE'
+        color: '#2885FE',
       },
       settings: {
-        color: '#2885FE'
-      }
-    }
+        color: '#2885FE',
+      },
+    },
   },
   dark: {
     default: {
       clock: {
-        color: '#A4ADC0'
+        color: '#A4ADC0',
       },
       light: {
-        color: '#A4ADC0'
+        color: '#A4ADC0',
       },
       settings: {
-        color: '#A4ADC0'
-      }
+        color: '#A4ADC0',
+      },
     },
     active: {
       clock: {
@@ -67,7 +67,7 @@ const SkinProps = {
         x1: '50%',
         y1: '-9.41023805%',
         x2: '50%',
-        y2: '140.362777%'
+        y2: '140.362777%',
       },
       light: {
         gradientId: 'light',
@@ -76,7 +76,7 @@ const SkinProps = {
         x1: '50%',
         y1: '-9.41023805%',
         x2: '50%',
-        y2: '140.362777%'
+        y2: '140.362777%',
       },
       settings: {
         gradientId: 'settings',
@@ -85,21 +85,21 @@ const SkinProps = {
         x1: '50%',
         y1: '-9.41023805%',
         x2: '50%',
-        y2: '140.362777%'
-      }
-    }
+        y2: '140.362777%',
+      },
+    },
   },
   colorful: {
     default: {
       clock: {
-        color: '#2C3033'
+        color: '#2C3033',
       },
       light: {
-        color: '#2C3033'
+        color: '#2C3033',
       },
       settings: {
-        color: '#2C3033'
-      }
+        color: '#2C3033',
+      },
     },
     active: {
       clock: {
@@ -109,10 +109,10 @@ const SkinProps = {
         x1: '50%',
         y1: '0%',
         x2: '50%',
-        y2: '100%'
+        y2: '100%',
       },
       light: {
-        color: '#FFD102'
+        color: '#FFD102',
       },
       settings: {
         gradientId: 'settings',
@@ -121,34 +121,34 @@ const SkinProps = {
         x1: '50%',
         y1: '-9.41023805%',
         x2: '50%',
-        y2: '140.362777%'
-      }
-    }
+        y2: '140.362777%',
+      },
+    },
   },
   morandi: {
     default: {
       clock: {
-        color: '#A4ADC0'
+        color: '#A4ADC0',
       },
       light: {
-        color: '#A4ADC0'
+        color: '#A4ADC0',
       },
       settings: {
-        color: '#A4ADC0'
-      }
+        color: '#A4ADC0',
+      },
     },
     active: {
       clock: {
-        color: '#BCB5B7'
+        color: '#BCB5B7',
       },
       light: {
-        color: '#BCB5B7'
+        color: '#BCB5B7',
       },
       settings: {
-        color: '#BCB5B7'
-      }
-    }
-  }
+        color: '#BCB5B7',
+      },
+    },
+  },
 };
 
 export { SkinProps };

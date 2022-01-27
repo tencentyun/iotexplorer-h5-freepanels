@@ -34,7 +34,7 @@ function reducer(
   action: {
     type: string;
     payload: any;
-  }
+  },
 ) {
   const { type, payload } = action;
 
@@ -48,7 +48,7 @@ function reducer(
         throw new Error('id is cannot update');
       }
 
-      Object.keys(payload || {}).forEach(key => {
+      Object.keys(payload || {}).forEach((key) => {
         info[key] = payload[key];
       });
 
@@ -56,7 +56,7 @@ function reducer(
 
       return {
         ...state,
-        ...info
+        ...info,
       };
     }
   }
@@ -66,11 +66,11 @@ function reducer(
 
 function initState() {
   const { UserID, NickName, Email } = sdk.userInfo;
-  const userInfo: object = {
+  const userInfo = {
     id: UserID,
     nickName: NickName,
     email: Email,
-    playerMode: '0'
+    playerMode: '0',
   };
 
   const localCache = localStorage.getItem(`user_${UserID}`);
@@ -91,17 +91,17 @@ function initState() {
 export function useUserInfo() {
   const [state, dispatch] = useReducer(reducer, null, initState);
 
-  const onUpdateUserInfo = (info: object) => {
+  const onUpdateUserInfo = (info) => {
     dispatch({
       type: 'update',
-      payload: info
+      payload: info,
     });
   };
 
   return [
     state,
     {
-      onUpdateUserInfo
-    }
+      onUpdateUserInfo,
+    },
   ];
 }

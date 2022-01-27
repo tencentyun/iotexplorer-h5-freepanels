@@ -34,6 +34,6 @@ export const DeviceContext: React.Context<{
     co_state: 'alarm',
     muffling: 0,
     self_checking: 0,
-    checking_result: 'alarm'
-  }
+    checking_result: 'alarm',
+  },
 });

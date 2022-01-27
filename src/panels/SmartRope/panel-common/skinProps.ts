@@ -1,107 +1,107 @@
 const SkinProps = {
   normal: {
     homeBattery: {
-      color: ''
+      color: '',
     },
     // 首页导航栏图标
     home: {
       active: {
-        color: '#0F0F0F'
+        color: '#0F0F0F',
       },
       default: {
-        color: '#B6C4D2'
-      }
+        color: '#B6C4D2',
+      },
     },
     data: {
       active: {
-        color: '#0F0F0F'
+        color: '#0F0F0F',
       },
       default: {
-        color: '#B6C4D2'
-      }
+        color: '#B6C4D2',
+      },
     },
     setting: {
       active: {
-        color: '#0F0F0F'
+        color: '#0F0F0F',
       },
       default: {
-        color: '#B6C4D2'
-      }
+        color: '#B6C4D2',
+      },
     },
     layoutMode: 'grid',
     // 首页mode图标
     free: {
-      color: '#000000'
+      color: '#000000',
     },
     count: {
-      color: '#000000'
+      color: '#000000',
     },
     time: {
-      color: '#000000'
+      color: '#000000',
     },
     avatar: {
-      color: '#000000'
+      color: '#000000',
     },
     battery: {
-      color: ''
+      color: '',
     },
     lineChart: {
       lineColor: '#0F0F0F',
       pointColor: '#0F0F0F',
-      wordColor: '#B9BABD'
+      wordColor: '#B9BABD',
     },
     settings: {
-      color: '#000000'
+      color: '#000000',
     },
     settingAvatar: {
-      color: '#000000'
+      color: '#000000',
     },
     settingEdit: {
-      color: '#231815'
+      color: '#231815',
     },
     medal: {
-      color: '#000000'
-    }
+      color: '#000000',
+    },
   },
   blueWhite: {
     homeBattery: {
-      color: 'royalBlue'
+      color: 'royalBlue',
     },
     // 首页导航栏图标
     home: {
       active: {
-        color: '#006FFF'
+        color: '#006FFF',
       },
       default: {
-        color: '#B6C4D2'
-      }
+        color: '#B6C4D2',
+      },
     },
     data: {
       active: {
-        color: '#006FFF'
+        color: '#006FFF',
       },
       default: {
-        color: '#B6C4D2'
-      }
+        color: '#B6C4D2',
+      },
     },
     setting: {
       active: {
-        color: '#006FFF'
+        color: '#006FFF',
       },
       default: {
-        color: '#B6C4D2'
-      }
+        color: '#B6C4D2',
+      },
     },
     layoutMode: 'list',
     // 首页mode图标
     free: {
-      color: '#006FFF'
+      color: '#006FFF',
     },
     count: {
-      color: '#006FFF'
+      color: '#006FFF',
     },
     time: {
-      color: '#006FFF'
+      color: '#006FFF',
     },
     avatar: {
       gradientId: 'avatar',
@@ -110,18 +110,18 @@ const SkinProps = {
       x1: '13.6015158%',
       y1: '15.3840922%',
       x2: '91.8220339%',
-      y2: '84.297867%'
+      y2: '84.297867%',
     },
     battery: {
-      color: 'royalBlueGradient'
+      color: 'royalBlueGradient',
     },
     lineChart: {
       lineColor: '#2885FE',
       pointColor: '#2885FE',
-      wordColor: '#B9BABD'
+      wordColor: '#B9BABD',
     },
     settings: {
-      color: '#2885FE'
+      color: '#2885FE',
     },
     settingAvatar: {
       gradientId: 'settingAvatar',
@@ -130,10 +130,10 @@ const SkinProps = {
       x1: '13.6015158%',
       y1: '15.3840922%',
       x2: '91.8220339%',
-      y2: '84.297867%'
+      y2: '84.297867%',
     },
     settingEdit: {
-      color: '#231815'
+      color: '#231815',
     },
     medal: {
       gradientId: 'medal',
@@ -142,12 +142,12 @@ const SkinProps = {
       x1: '13.6015158%',
       y1: '15.3840922%',
       x2: '91.8220339%',
-      y2: '84.297867%'
-    }
+      y2: '84.297867%',
+    },
   },
   dark: {
     homeBattery: {
-      color: 'white'
+      color: 'white',
     },
     // 首页导航栏图标
     home: {
@@ -158,11 +158,11 @@ const SkinProps = {
         x1: '13.6015158%',
         y1: '15.3840922%',
         x2: '91.8220339%',
-        y2: '84.297867%'
+        y2: '84.297867%',
       },
       default: {
-        color: '#FFFFFF'
-      }
+        color: '#FFFFFF',
+      },
     },
     data: {
       active: {
@@ -172,11 +172,11 @@ const SkinProps = {
         x1: '13.6015158%',
         y1: '15.3840922%',
         x2: '91.8220339%',
-        y2: '84.297867%'
+        y2: '84.297867%',
       },
       default: {
-        color: '#FFFFFF'
-      }
+        color: '#FFFFFF',
+      },
     },
     setting: {
       active: {
@@ -186,11 +186,11 @@ const SkinProps = {
         x1: '13.6015158%',
         y1: '15.3840922%',
         x2: '91.8220339%',
-        y2: '84.297867%'
+        y2: '84.297867%',
       },
       default: {
-        color: '#FFFFFF'
-      }
+        color: '#FFFFFF',
+      },
     },
     layoutMode: 'grid',
     // 首页mode图标
@@ -201,7 +201,7 @@ const SkinProps = {
       x1: '13.6015158%',
       y1: '15.3840922%',
       x2: '91.8220339%',
-      y2: '84.297867%'
+      y2: '84.297867%',
     },
     count: {
       gradientId: 'count',
@@ -210,7 +210,7 @@ const SkinProps = {
       x1: '13.6015158%',
       y1: '15.3840922%',
       x2: '91.8220339%',
-      y2: '84.297867%'
+      y2: '84.297867%',
     },
     time: {
       gradientId: 'time',
@@ -219,18 +219,18 @@ const SkinProps = {
       x1: '13.6015158%',
       y1: '15.3840922%',
       x2: '91.8220339%',
-      y2: '84.297867%'
+      y2: '84.297867%',
     },
     avatar: {
-      color: '#FFFFFF'
+      color: '#FFFFFF',
     },
     battery: {
-      color: 'white'
+      color: 'white',
     },
     lineChart: {
       lineColor: '#03ECFF',
       pointColor: '#03ECFF',
-      wordColor: '#FDFDFD'
+      wordColor: '#FDFDFD',
     },
     settings: {
       gradientId: 'setting',
@@ -239,13 +239,13 @@ const SkinProps = {
       x1: '18.8378836%',
       y1: '13.9723887%',
       x2: '100%',
-      y2: '100%'
+      y2: '100%',
     },
     settingAvatar: {
-      color: '#FDFDFD'
+      color: '#FDFDFD',
     },
     settingEdit: {
-      color: '#FDFDFD'
+      color: '#FDFDFD',
     },
     medal: {
       gradientId: 'medal',
@@ -254,12 +254,12 @@ const SkinProps = {
       x1: '13.6015158%',
       y1: '15.3840922%',
       x2: '91.8220339%',
-      y2: '84.297867%'
-    }
+      y2: '84.297867%',
+    },
   },
   colorful: {
     homeBattery: {
-      color: 'white'
+      color: 'white',
     },
     // 首页导航栏图标
     home: {
@@ -270,11 +270,11 @@ const SkinProps = {
         x1: '13.6015158%',
         y1: '15.3840922%',
         x2: '91.8220339%',
-        y2: '84.297867%'
+        y2: '84.297867%',
       },
       default: {
-        color: '#B6C4D2'
-      }
+        color: '#B6C4D2',
+      },
     },
     data: {
       active: {
@@ -284,11 +284,11 @@ const SkinProps = {
         x1: '13.6015158%',
         y1: '15.3840922%',
         x2: '91.8220339%',
-        y2: '84.297867%'
+        y2: '84.297867%',
       },
       default: {
-        color: '#B6C4D2'
-      }
+        color: '#B6C4D2',
+      },
     },
     setting: {
       active: {
@@ -298,11 +298,11 @@ const SkinProps = {
         x1: '13.6015158%',
         y1: '15.3840922%',
         x2: '91.8220339%',
-        y2: '84.297867%'
+        y2: '84.297867%',
       },
       default: {
-        color: '#B6C4D2'
-      }
+        color: '#B6C4D2',
+      },
     },
     layoutMode: 'grid',
     // 首页mode图标
@@ -313,7 +313,7 @@ const SkinProps = {
       x1: '50%',
       y1: '0%',
       x2: '50%',
-      y2: '100%'
+      y2: '100%',
     },
     count: {
       gradientId: 'count',
@@ -322,7 +322,7 @@ const SkinProps = {
       x1: '50%',
       y1: '0%',
       x2: '50%',
-      y2: '100%'
+      y2: '100%',
     },
     time: {
       gradientId: 'time',
@@ -331,7 +331,7 @@ const SkinProps = {
       x1: '50%',
       y1: '0%',
       x2: '50%',
-      y2: '100%'
+      y2: '100%',
     },
     avatar: {
       gradientId: 'avatar',
@@ -340,15 +340,15 @@ const SkinProps = {
       x1: '13.6015158%',
       y1: '15.3840922%',
       x2: '91.8220339%',
-      y2: '84.297867%'
+      y2: '84.297867%',
     },
     battery: {
-      color: 'blue'
+      color: 'blue',
     },
     lineChart: {
       lineColor: '#FFFFFF',
       pointColor: '#FFFFFF',
-      wordColor: '#B9BABD'
+      wordColor: '#B9BABD',
     },
     settings: {
       gradientId: 'setting',
@@ -357,7 +357,7 @@ const SkinProps = {
       x1: '19.9901284%',
       y1: '0%',
       x2: '79.7644953%',
-      y2: '100%'
+      y2: '100%',
     },
     settingAvatar: {
       gradientId: 'settingAvatar',
@@ -366,79 +366,79 @@ const SkinProps = {
       x1: '13.6015158%',
       y1: '15.3840922%',
       x2: '91.8220339%',
-      y2: '84.297867%'
+      y2: '84.297867%',
     },
     settingEdit: {
-      color: '#231815'
+      color: '#231815',
     },
     medal: {
-      color: '#FFFFFF'
-    }
+      color: '#FFFFFF',
+    },
   },
   morandi: {
     // 首页电池
     homeBattery: {
-      color: 'brown'
+      color: 'brown',
     },
     // 首页导航栏图标
     home: {
       active: {
-        color: '#B5ABA1'
+        color: '#B5ABA1',
       },
       default: {
-        color: '#566172'
-      }
+        color: '#566172',
+      },
     },
     data: {
       active: {
-        color: '#B5ABA1'
+        color: '#B5ABA1',
       },
       default: {
-        color: '#566172'
-      }
+        color: '#566172',
+      },
     },
     setting: {
       active: {
-        color: '#B5ABA1'
+        color: '#B5ABA1',
       },
       default: {
-        color: '#566172'
-      }
+        color: '#566172',
+      },
     },
     layoutMode: 'list',
     free: {
-      color: '#4E5869'
+      color: '#4E5869',
     },
     count: {
-      color: '#4E5869'
+      color: '#4E5869',
     },
     time: {
-      color: '#4E5869'
+      color: '#4E5869',
     },
     avatar: {
-      color: '#4E5869'
+      color: '#4E5869',
     },
     battery: {
-      color: 'brown'
+      color: 'brown',
     },
     lineChart: {
       lineColor: '#B6ACA3',
       pointColor: '#B6ACA3',
-      wordColor: '#B9BABD'
+      wordColor: '#B9BABD',
     },
     settings: {
-      color: '#4F596A'
+      color: '#4F596A',
     },
     settingAvatar: {
-      color: '#B5ABA1'
+      color: '#B5ABA1',
     },
     settingEdit: {
-      color: '#B5ABA1'
+      color: '#B5ABA1',
     },
     medal: {
-      color: '#FFFFFF'
-    }
-  }
+      color: '#FFFFFF',
+    },
+  },
 };
 
 export { SkinProps };

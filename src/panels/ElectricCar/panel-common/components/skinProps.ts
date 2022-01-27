@@ -1,179 +1,179 @@
 const SkinProps = {
   normal: {
     battery: {
-      color: ''
+      color: '',
     },
     mileage: {
-      color: '#000000'
+      color: '#000000',
     },
     more: {
-      color: '#000000'
+      color: '#000000',
     },
     bluetooth: {
       default: {
-        color: '#000000'
+        color: '#000000',
       },
       active: {
-        color: '#FFFFFF'
-      }
+        color: '#FFFFFF',
+      },
     },
     alarm: {
       default: {
-        color: '#000000'
+        color: '#000000',
       },
       active: {
-        color: '#FFFFFF'
-      }
+        color: '#FFFFFF',
+      },
     },
     mute: {
-      color: '#000000'
+      color: '#000000',
     },
     whistle: {
-      color: '#FFFFFF'
-    }
+      color: '#FFFFFF',
+    },
   },
   blueWhite: {
     battery: {
-      color: 'white'
+      color: 'white',
     },
     mileage: {
-      color: '#FFFFFF'
+      color: '#FFFFFF',
     },
     more: {
-      color: '#FFFFFF'
+      color: '#FFFFFF',
     },
     bluetooth: {
       default: {
-        color: '#FFFFFF'
+        color: '#FFFFFF',
       },
       active: {
-        color: '#0068FC'
-      }
+        color: '#0068FC',
+      },
     },
     alarm: {
       default: {
-        color: '#FFFFFF'
+        color: '#FFFFFF',
       },
       active: {
-        color: '#0068FC'
-      }
+        color: '#0068FC',
+      },
     },
     mute: {
-      color: '#FFFFFF'
+      color: '#FFFFFF',
     },
     whistle: {
-      color: '#0068FC'
-    }
+      color: '#0068FC',
+    },
   },
   dark: {
     battery: {
-      color: 'blue'
+      color: 'blue',
     },
     mileage: {
       gradientId: 'mileage',
       startColor: '#00B4FF',
-      endColor: '#5377F5'
+      endColor: '#5377F5',
     },
     more: {
-      color: '#FFFFFF'
+      color: '#FFFFFF',
     },
     bluetooth: {
       default: {
         gradientId: 'bluetooth',
         startColor: '#1BC9FC',
-        endColor: '#5277F4'
+        endColor: '#5277F4',
       },
       active: {
-        color: '#FFFFFF'
-      }
+        color: '#FFFFFF',
+      },
     },
     alarm: {
       default: {
         gradientId: 'alarm',
         startColor: '#1BC9FC',
-        endColor: '#5277F4'
+        endColor: '#5277F4',
       },
       active: {
-        color: '#FFFFFF'
-      }
+        color: '#FFFFFF',
+      },
     },
     mute: {
       gradientId: 'mute',
       startColor: '#1BC9FC',
-      endColor: '#5277F4'
+      endColor: '#5277F4',
     },
     whistle: {
-      color: '#FFFFFF'
-    }
+      color: '#FFFFFF',
+    },
   },
   colorful: {
     battery: {
-      color: 'green'
+      color: 'green',
     },
     mileage: {
-      color: '#5CB4DB'
+      color: '#5CB4DB',
     },
     more: {
-      color: '#0068fc'
+      color: '#0068fc',
     },
     bluetooth: {
       default: {
-        color: '#FFC904'
+        color: '#FFC904',
       },
       active: {
-        color: '#FFFFFF'
-      }
+        color: '#FFFFFF',
+      },
     },
     alarm: {
       default: {
-        color: '#16DE8A'
+        color: '#16DE8A',
       },
       active: {
-        color: '#FFFFFF'
-      }
+        color: '#FFFFFF',
+      },
     },
     mute: {
       gradientId: 'mute',
       startColor: '#527DF4',
-      endColor: '#044DFF'
+      endColor: '#044DFF',
     },
     whistle: {
-      color: '#FFFFFF'
-    }
+      color: '#FFFFFF',
+    },
   },
   morandi: {
     battery: {
-      color: 'brown'
+      color: 'brown',
     },
     mileage: {
-      color: '#000000'
+      color: '#000000',
     },
     more: {
-      color: '#FFFFFF'
+      color: '#FFFFFF',
     },
     bluetooth: {
       default: {
-        color: '#566172'
+        color: '#566172',
       },
       active: {
-        color: '#FFFFFF'
-      }
+        color: '#FFFFFF',
+      },
     },
     alarm: {
       default: {
-        color: '#566172'
+        color: '#566172',
       },
       active: {
-        color: '#FFFFFF'
-      }
+        color: '#FFFFFF',
+      },
     },
     mute: {
-      color: '#566172'
+      color: '#566172',
     },
     whistle: {
-      color: '#FFFFFF'
-    }
-  }
+      color: '#FFFFFF',
+    },
+  },
 };
 
 export { SkinProps };

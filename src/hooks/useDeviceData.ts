@@ -119,7 +119,7 @@ export function formatDeviceData(templateMap: HashMap) {
 
       data[id] = Object.keys(mapping).map((key: string) => ({
         name: key,
-        desc: mapping[key]
+        desc: mapping[key],
       }));
     } else if (define.type === 'int') {
       data[id] = {
