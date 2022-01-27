@@ -1,7 +1,7 @@
 /*
  * @Description: 温控器首页
  */
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import classNames from 'classnames';
 import { useHistory } from 'react-router-dom';
 import { SvgIcon } from '@components/common';
@@ -31,11 +31,20 @@ export function Home() {
   const deviceMaps = formatDeviceData((state as any).templateMap) as DeviceMaps;
   const statusName = 'shutdown';
 
+  const [tempValue, setTempValue] = useState(0);
+
   // 工作模式选择器
   const [modeVisible, onToggleMode] = useState(false);
   // 档位选择器
   const [gearVisible, onToggleGear] = useState(false);
 
+  useEffect(() => {
+    if (!deviceMaps['temp_unit_convert']) {
+      setTempValue(deviceMaps['set_fahrenheit'].start||0);
+    } else {
+      setTempValue(deviceMaps['set_temp'].start ||0);
+    }
+  }, []);
   // 工作模式选项
   const modeOptions = () => {
     if (deviceMaps['spray_mode']) {
@@ -148,6 +157,7 @@ export function Home() {
   };
 
   const iconColor = (powerStatus: number) => {
+    console.log(powerStatus);
     if (themeType === 'colorful') {
       if (powerStatus === 1) {
         return '#667994';
@@ -205,9 +215,9 @@ export function Home() {
     high: '高档'
   };
 
-  const renderContentArea = (mode: string, level: string) => {
+  const renderContentArea = (mode: string, level: string, status: number) => {
     return (
-      <ul className="content-area">
+      <ul className={classNames('content-area', {'content-area-active': status} )}>
         <li className="content-item">
           <p className="word">{mode ? enumWorkMode[mode] : '暂无数据'}</p>
           <p className="label">工作模式</p>
@@ -226,30 +236,30 @@ export function Home() {
       {({ deviceData }) => (
         <main className="thermostat-wrap">
           {themeType === 'colorful'
-            ? renderContentArea(deviceData.spray_mode, deviceData.level)
+            ? renderContentArea(deviceData.spray_mode, deviceData.level, deviceData.power_switch)
             : null}
 
           <div className="morandi-header">
             <div className="dial">
               <ThermostatDashboard
                 value={
-                  deviceData.temp_unit_convert === 0
-                    ? deviceData.set_temp
-                      ? deviceData.set_temp
+                  deviceData.temp_unit_convert == 0
+                    ? deviceData.current_temp
+                      ? deviceData.current_temp
                       : 0
-                    : deviceData.set_fahrenheit
-                    ? deviceData.set_fahrenheit
+                    : deviceData.current_fahrenheit
+                    ? deviceData.current_fahrenheit
                     : 0
                 }
                 dashboardStatus={
-                  deviceData.power_switch === 1 ? 'initiate' : 'shutdown'
+                  deviceData.power_switch == 1 ? 'initiate' : 'shutdown'
                 }
               />
             </div>
 
             {/* 内容区 */}
             {themeType === 'morandi'
-              ? renderContentArea(deviceData.spray_mode, deviceData.level)
+              ? renderContentArea(deviceData.spray_mode, deviceData.level, deviceData.power_switch)
               : null}
           </div>
 
@@ -259,9 +269,9 @@ export function Home() {
               <div
                 className={classNames('setting-button')}
                 onClick={() => {
-                  if (deviceData.power_switch === 0) return
-                  let value = deviceData[deviceData.temp_unit_convert === 0 ? 'set_temp' : 'set_fahrenheit'] ? deviceData[deviceData.temp_unit_convert === 0 ? 'set_temp' : 'set_fahrenheit'] - 1 : 1;
-                  let key = deviceData.temp_unit_convert === 0 ? 'set_temp' : 'set_fahrenheit';
+                  if (deviceData.power_switch == 0) return
+                  let value = deviceData[deviceData.temp_unit_convert == 0 ? 'set_temp' : 'set_fahrenheit'] ? deviceData[deviceData.temp_unit_convert === 0 ? 'set_temp' : 'set_fahrenheit'] - 1 : 1;
+                  let key = deviceData.temp_unit_convert == 0 ? 'set_temp' : 'set_fahrenheit';
                   onControlDevice(key, value);
                 }}>
                 <SvgIcon className="control-icon" name="icon-ther-minus" color={iconColor(deviceData.power_switch)} />
@@ -269,7 +279,7 @@ export function Home() {
               <div
                 className={classNames(
                   'control-power',
-                  deviceData.power_switch === 1 ? 'power-open' : ''
+                  deviceData.power_switch == 1 ? 'power-open' : ''
                 )}
                 onClick={() => {
                   onControlDevice(
@@ -281,14 +291,13 @@ export function Home() {
                 <SvgIcon
                   className="icon-power"
                   name="icon-power"
-                  {...CurrentSkinProps.power}
                 />
               </div>
               <div
                 className={classNames('setting-button')}
                 onClick={() => {
-                  if (deviceData.power_switch === 0) return
-                  let value = deviceData[deviceData.temp_unit_convert === 0 ? 'set_temp' : 'set_fahrenheit'] ? deviceData[deviceData.temp_unit_convert === 0 ? 'set_temp' : 'set_fahrenheit'] + 1 : 1;
+                  if (deviceData.power_switch == 0) return
+                  let value = deviceData[deviceData.temp_unit_convert == 0 ? 'set_temp' : 'set_fahrenheit'] ? deviceData[deviceData.temp_unit_convert === 0 ? 'set_temp' : 'set_fahrenheit'] + 1 : 1;
                   let key = deviceData.temp_unit_convert === 0 ? 'set_temp' : 'set_fahrenheit';
                   onControlDevice(key, value);
                 }}>
@@ -298,7 +307,7 @@ export function Home() {
           ) : null}
 
           {themeType === 'blueWhite' || themeType === 'dark'
-            ? renderContentArea(deviceData.spray_mode, deviceData.level)
+            ? renderContentArea(deviceData.spray_mode, deviceData.level, deviceData.power_switch)
             : null}
 
           {/* 设置区 */}
@@ -336,11 +345,10 @@ export function Home() {
                 onToggleGear(true);
               }}
             >
-              <SvgIcon
-                className="button-icon"
-                name="icon-ther-gear"
-                {...currentStatus(deviceData.power_switch, 'gear')}
-              />
+              <div className={classNames(
+                'button-icon', 
+                !deviceData.power_switch? 'icon-gear-default': 'icon-gear-active'
+              )}></div>
               <p className="button-name">档位</p>
               <ListPicker
                 visible={gearVisible}
@@ -373,19 +381,9 @@ export function Home() {
                 <div
                   className={classNames('setting-button')}
                   onClick={() => {
-                    if (deviceData.power_switch === 0) return;
-                    const value = deviceData[
-                      deviceData.temp_unit_convert === 0
-                        ? 'set_temp'
-                        : 'set_fahrenheit'
-                    ]
-                      ? deviceData[
-                          deviceData.temp_unit_convert === 0
-                            ? 'set_temp'
-                            : 'set_fahrenheit'
-                        ] - 1
-                      : 1;
-                    onControlDevice('set_temp', value);
+                    if (deviceData.power_switch == 0) return;
+                      setTempValue(tempValue - 1);
+                      deviceData.temp_unit_convert == 0 ? onControlDevice('current_temp', tempValue) : onControlDevice('current_fahrenheit', tempValue)
                   }}
                 >
                   <SvgIcon
@@ -397,7 +395,7 @@ export function Home() {
                 <div
                   className={classNames(
                     'control-power',
-                    deviceData.power_switch === 1 ? 'power-open' : ''
+                    deviceData.power_switch == 1 ? 'power-open' : ''
                   )}
                   onClick={() => {
                     onControlDevice(
@@ -415,19 +413,9 @@ export function Home() {
                 <div
                   className={classNames('setting-button')}
                   onClick={() => {
-                    if (deviceData.power_switch === 0) return;
-                    const value = deviceData[
-                      deviceData.temp_unit_convert === 0
-                        ? 'set_temp'
-                        : 'set_fahrenheit'
-                    ]
-                      ? deviceData[
-                          deviceData.temp_unit_convert === 0
-                            ? 'set_temp'
-                            : 'set_fahrenheit'
-                        ] + 1
-                      : 1;
-                    onControlDevice('set_temp', value);
+                    if (deviceData.power_switch == 0) return;
+                      setTempValue(tempValue + 1);
+                      deviceData.temp_unit_convert == 0 ? onControlDevice('current_temp', tempValue) : onControlDevice('current_fahrenheit', tempValue)
                   }}
                 >
                   <SvgIcon
@@ -437,7 +425,7 @@ export function Home() {
                   />
                 </div>
               </div>
-              {renderContentArea(deviceData.spray_mode, deviceData.level)}
+              {renderContentArea(deviceData.spray_mode, deviceData.level, deviceData.power_switch)}
             </div>
           ) : null}
         </main>

@@ -9,7 +9,6 @@
 import React from 'react';
 import './device.less';
 import classNames from 'classnames';
-// import IconTheme from '@components/common/icon/icon-theme';
 import { SvgIcon } from '@components/common/icon';
 import { DeviceSateContext } from '../../../../deviceStateContext';
 const airDeviceImg = 'https://tencent-1305105198.cos.ap-guangzhou.myqcloud.com/air-conditioner/air_device.bd91b10a.png';

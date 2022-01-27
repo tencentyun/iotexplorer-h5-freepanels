@@ -6,9 +6,9 @@
     <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
         <g id="2" transform="translate(-74.000000, -383.000000)">
             <g id="锁" transform="translate(78.000000, 387.000000)">
-                <path d="M40,0 L40,9.10447761 C40,20.644756 31.045695,30 20,30 C8.954305,30 0,20.644756 0,9.10447761 L0,0" id="矩形" stroke="#FEFEFE" stroke-width="7" transform="translate(20.000000, 15.000000) scale(1, -1) translate(-20.000000, -15.000000) "></path>
-                <rect id="矩形" stroke="#FEFEFE" stroke-width="7" x="20.5" y="29.5" width="53" height="43" rx="13"></rect>
-                <circle id="椭圆形" fill="#FEFEFE" cx="47" cy="51" r="7"></circle>
+                <path d="M40,0 L40,9.10447761 C40,20.644756 31.045695,30 20,30 C8.954305,30 0,20.644756 0,9.10447761 L0,0" id="矩形" stroke="#C9D4DD" stroke-width="7" transform="translate(20.000000, 15.000000) scale(1, -1) translate(-20.000000, -15.000000) "></path>
+                <rect id="矩形" stroke="#C9D4DD" stroke-width="7" x="20.5" y="29.5" width="53" height="43" rx="13"></rect>
+                <circle id="椭圆形" fill="#C9D4DD" cx="47" cy="51" r="7"></circle>
             </g>
         </g>
     </g>

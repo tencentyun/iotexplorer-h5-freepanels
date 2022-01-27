@@ -16,6 +16,15 @@ body.theme_normal {
         display: inline-block;
         width: 60px;
         height: 76px;
+        background-image: url('../images/lock-black.svg');
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+      }
+      .icon-unlock {
+        display: inline-block;
+        width: 77px;
+        height: 76px;
         background-image: url('../images/lock-grey.svg');
         background-position: center;
         background-repeat: no-repeat;
@@ -24,6 +33,11 @@ body.theme_normal {
     }
     .open {
       .icon-lock {
+        width: 60px;
+        height: 76px;
+        background-image: url('../images/lock-black.svg');
+      }
+      .icon-unlock {
         width: 77px;
         height: 76px;
         background-image: url('../images/unlock-black.svg');
@@ -57,7 +71,26 @@ body.theme_blue_white {
         background-repeat: no-repeat;
         background-size: 100% 100%;
       }
+      .icon-unlock {
+        display: inline-block;
+        width: 77px;
+        height: 76px;
+        background-image: url('../images/unlock-white.svg');
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+      }
       .lock-status {
+        position: absolute;
+        left: 0;
+        bottom: -87px;
+        display: inline-block;
+        width: 90px;
+        line-height: 42px;
+        font-size: 30px;
+        color: #FEFEFE;
+      }
+      .lock-status-close {
         position: absolute;
         left: -15px;
         bottom: -87px;
@@ -70,12 +103,14 @@ body.theme_blue_white {
     }
     .open {
       .icon-lock {
+        width: 60px;
+        height: 76px;
+        background-image: url('../images/lock-white.svg');
+      }
+      .icon-unlock {
         width: 77px;
         height: 76px;
         background-image: url('../images/unlock-white.svg');
-      }
-      .lock-status {
-        left: 0;
       }
     }
   }
@@ -101,15 +136,34 @@ body.theme_dark {
         background-repeat: no-repeat;
         background-size: 100% 100%;
       }
+      .icon-lock-unlock {
+        display: inline-block;
+        width: 60px;
+        height: 76px;
+        background-image: url('../images/lock-white.svg');
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+      }
       .lock-status {
         position: absolute;
-        left: -15px;
+        left: 0;
         bottom: -77px;
         display: inline-block;
         width: 90px;
         line-height: 42px;
         font-size: 30px;
         color: #667994;
+      }
+      .lock-status-close {
+        position: absolute;
+        left: -15px;
+        bottom: -87px;
+        display: inline-block;
+        width: 90px;
+        line-height: 42px;
+        font-size: 30px;
+        color: #FEFEFE;
       }
     }
     .open {
@@ -118,8 +172,10 @@ body.theme_dark {
         height: 76px;
         background-image: url('../images/unlock-white.svg');
       }
-      .lock-status {
-        left: 0;
+      .icon-lock-unlock {
+        width: 77px;
+        height: 76px;
+        background-image: url('../images/unlock-white.svg');
       }
     }
   }
@@ -143,9 +199,23 @@ body.theme_colorful {
         background-repeat: no-repeat;
         background-size: 100% 100%;
       }
+      .icon-unlock {
+        display: inline-block;
+        width: 77px;
+        height: 76px;
+        background-image: url('../images/unlock-grey.svg');
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+      }
     }
     .open {
       .icon-lock {
+        width: 60px;
+        height: 76px;
+        background-image: url('../images/lock-blue.svg');
+      }
+      .icon-unlock {
         width: 77px;
         height: 76px;
         background-image: url('../images/unlock-blue.svg');
@@ -177,12 +247,26 @@ body.theme_morandi{
         background-repeat: no-repeat;
         background-size: 100% 100%;
       }
+      .icon-unlock {
+        display: inline-block;
+        width: 77px;
+        height: 76px;
+        background-image: url('../images/unlock-grey.svg');
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+      }
     }
     .open {
       .icon-lock {
+        width: 60px;
+        height: 76px;
+        background-image: url('../images/lock-white.svg');
+      }
+      .icon-unlock {
         width: 77px;
         height: 76px;
-        background-image: url('../images/unlock-white.svg');
+        background-image: url('../images/unlock-grey.svg');
       }
     }
     .top-middle {

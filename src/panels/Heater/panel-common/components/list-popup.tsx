@@ -24,6 +24,7 @@ export interface ListPopupProps extends StyledProps {
   type?: SelectType['Radio'] | SelectType['Multiple'];
   options: Option[];
   theme?: ThemeType;
+  layoutType?: string; //'middle'
   onCancel?: () => void;
   onConfirm?: (checked: string[]) => void;
 }
@@ -148,7 +149,7 @@ export function ListPopup(props: ListPopupProps) {
       onMaskClick={handleCancel}
     >
       <header>{props.title}</header>
-      <main className="block-wrap">
+      <main className={classNames(props.layoutType !== 'middle' ? 'block-wrap' : 'block-wrap-middle')}>
         {options.map((option: Option) => selectItem(option))}
       </main>
       <footer>

@@ -21,12 +21,6 @@ const HeaterDashboard: React.FC<dashboardProps> = props => {
 
   const skinProps = (CurrentSkinProps as any)[dashboardStatus];
 
-  const [number, setNumber] = useState(value);
-
-  const handleClick = () => {
-    setNumber(number + 1);
-  };
-
   // 描述信息 关机/开机
   const renderDesWord = (dashboardStatus: string) => {
     return (
@@ -37,7 +31,7 @@ const HeaterDashboard: React.FC<dashboardProps> = props => {
           {...skinProps.warmth}
         />
         <div className="number">
-          <strong>{number}</strong>
+          <strong>{value}</strong>
           <span>°C</span>
         </div>
         <div className="title">当前温度</div>

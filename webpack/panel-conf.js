@@ -1,5 +1,5 @@
 module.exports = {
-  AirConditioner: {
+  ElectricCar: {
     enable: true,
     viewportWidth: 1125,
     panels: [

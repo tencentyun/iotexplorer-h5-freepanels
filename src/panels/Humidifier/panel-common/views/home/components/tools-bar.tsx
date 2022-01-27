@@ -4,6 +4,7 @@ import classNames from 'classnames';
 import { SvgIcon } from '@components/common/icon';
 import { ListPicker } from '@components/business';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
+import { DeviceSateContext } from '../../../deviceStateContext';
 
 import { useDeviceData } from '@hooks/useDeviceData';
 import { getThemeType } from '@libs/theme';
@@ -225,86 +226,90 @@ export function ToolsBar() {
   };
 
   return (
-    <section className="tools-bar-wrap">
-      <div
-        className={classNames(
-          'item',
-          sdk.deviceData.power_switch ? 'active' : ''
-        )}
-        onClick={() => {
-          if (!sdk.deviceData.power_switch) return
-          setModeVisible(true);
-        }}
-      >
-        <SvgIcon
-          className="icon-mode"
-          name="icon-humidifier-ultrasonic"
-          {...iconColor(sdk.deviceData.power_switch, 'ultrasonic')}
-        ></SvgIcon>
-        <div className="label">超声波</div>
-      </div>
-      <div
-        className={classNames(
-          'item',
-          sdk.deviceData.power_switch ? 'active' : ''
-        )}
-        onClick={() => {
-          if (!sdk.deviceData.power_switch) return
-          setGearVisible(true);
-        }}
-      >
-        <SvgIcon
-          className="icon-gear"
-          name="icon-humidifier-gear"
-          {...iconColor(sdk.deviceData.power_switch, 'gear')}
-        ></SvgIcon>
-        <div className="label">{sdk.deviceData.spray_gears ? enumGear[sdk.deviceData.spray_gears] : '档位'}</div>
-      </div>
-      <div
-        className={classNames(
-          'item',
-          sdk.deviceData.power_switch ? 'active' : ''
-        )}
-        onClick={() => {
-          history.push('/more');
-        }}
-      >
-        <SvgIcon
-          className="icon-time"
-          name="icon-humidifier-more"
-          {...iconColor(sdk.deviceData.power_switch, 'more')}
-        ></SvgIcon>
-        <div className="label">更多</div>
-      </div>
-      <ListPicker
-        visible={modeVisible}
-        title="工作模式"
-        styleType="spaceBetween"
-        theme={themeType}
-        defaultValue={[sdk.deviceData.work_mode]}
-        options={modeOptions()}
-        layoutType="spaceBetween"
-        onCancel={() => setModeVisible(false)}
-        onConfirm={value => {
-          onControlDevice('work_mode', value[0]);
-          setModeVisible(false);
-        }}
-      />
-      <ListPicker
-        visible={gearVisible}
-        title="喷雾档位"
-        styleType="spaceBetween"
-        theme={themeType}
-        defaultValue={[sdk.deviceData.spray_gears]}
-        options={gearOptions()}
-        layoutType="spaceBetween"
-        onCancel={() => setGearVisible(false)}
-        onConfirm={value => {
-          onControlDevice('spray_gears', value[0]);
-          setGearVisible(false);
-          setGearValue(value[0]);
-        }}
-      />
-    </section>
+    <DeviceSateContext.Consumer>
+      {({ deviceData }) => (
+        <section className="tools-bar-wrap">
+          <div
+            className={classNames(
+              'item',
+              deviceData.power_switch ? 'active' : ''
+            )}
+            onClick={() => {
+              if (!deviceData.power_switch) return
+              setModeVisible(true);
+            }}
+          >
+            <SvgIcon
+              className="icon-mode"
+              name="icon-humidifier-ultrasonic"
+              {...iconColor(deviceData.power_switch, 'ultrasonic')}
+            ></SvgIcon>
+            <div className="label">超声波</div>
+          </div>
+          <div
+            className={classNames(
+              'item',
+              deviceData.power_switch ? 'active' : ''
+            )}
+            onClick={() => {
+              if (!deviceData.power_switch) return
+              setGearVisible(true);
+            }}
+          >
+            <SvgIcon
+              className="icon-gear"
+              name="icon-humidifier-gear"
+              {...iconColor(deviceData.power_switch, 'gear')}
+            ></SvgIcon>
+            <div className="label">{deviceData.spray_gears ? enumGear[deviceData.spray_gears] : '档位'}</div>
+          </div>
+          <div
+            className={classNames(
+              'item',
+              deviceData.power_switch ? 'active' : ''
+            )}
+            onClick={() => {
+              history.push('/more');
+            }}
+          >
+            <SvgIcon
+              className="icon-time"
+              name="icon-humidifier-more"
+              {...iconColor(deviceData.power_switch, 'more')}
+            ></SvgIcon>
+            <div className="label">更多</div>
+          </div>
+          <ListPicker
+            visible={modeVisible}
+            title="工作模式"
+            styleType="spaceBetween"
+            theme={themeType}
+            defaultValue={[deviceData.work_mode]}
+            options={modeOptions()}
+            layoutType="spaceBetween"
+            onCancel={() => setModeVisible(false)}
+            onConfirm={value => {
+              onControlDevice('work_mode', value[0]);
+              setModeVisible(false);
+            }}
+          />
+          <ListPicker
+            visible={gearVisible}
+            title="喷雾档位"
+            styleType="spaceBetween"
+            theme={themeType}
+            defaultValue={[deviceData.spray_gears]}
+            options={gearOptions()}
+            layoutType="spaceBetween"
+            onCancel={() => setGearVisible(false)}
+            onConfirm={value => {
+              onControlDevice('spray_gears', value[0]);
+              setGearVisible(false);
+              setGearValue(value[0]);
+            }}
+          />
+        </section>
+      )}
+    </DeviceSateContext.Consumer>
   );
 }
