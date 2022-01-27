@@ -165,25 +165,25 @@ export function transBytes(bytes, base, preferFormat, isTraffic = false) {
   let value;
   let format;
 
-  const _oneKb = isTraffic ? 1000 : oneKb;
-  const _oneMb = isTraffic ? (_oneKb * 1000) : oneMb;
-  const _oneGb = isTraffic ? (_oneMb * 1000) : oneGb;
-  const _oneTb = isTraffic ? (_oneGb * 1000) : oneTb;
+  const theOneKb = isTraffic ? 1000 : oneKb;
+  const theOneMb = isTraffic ? (theOneKb * 1000) : oneMb;
+  const theOneGb = isTraffic ? (theOneMb * 1000) : oneGb;
+  const theOneTb = isTraffic ? (theOneGb * 1000) : oneTb;
 
-  if (bytes >= _oneTb || preferFormat === 'TB') {
-    value = (bytes / _oneTb).toFixed(2);
+  if (bytes >= theOneTb || preferFormat === 'TB') {
+    value = (bytes / theOneTb).toFixed(2);
     base = base ? `Tb${base}` : 'TB';
     format = 'TB';
-  } else if (bytes >= _oneGb || preferFormat === 'GB') {
-    value = (bytes / _oneGb).toFixed(2);
+  } else if (bytes >= theOneGb || preferFormat === 'GB') {
+    value = (bytes / theOneGb).toFixed(2);
     base = base ? `Gb${base}` : 'GB';
     format = 'GB';
-  } else if (bytes >= _oneMb || preferFormat === 'MB') {
-    value = (bytes / _oneMb).toFixed(2);
+  } else if (bytes >= theOneMb || preferFormat === 'MB') {
+    value = (bytes / theOneMb).toFixed(2);
     base = base ? `Mb${base}` : 'MB';
     format = 'MB';
-  } else if (bytes >= _oneKb || preferFormat === 'KB') {
-    value = (bytes / _oneKb).toFixed(2);
+  } else if (bytes >= theOneKb || preferFormat === 'KB') {
+    value = (bytes / theOneKb).toFixed(2);
     base = base ? `Kb${base}` : 'KB';
     format = 'KB';
   } else {

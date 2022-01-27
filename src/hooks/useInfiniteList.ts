@@ -2,9 +2,7 @@ import { useEffect, useState } from 'react';
 
 import { StatusTipProps } from '@components/StatusTip';
 import { getErrorMsg } from '@utillib';
-type HashMap = {
-  [key : string]: number | string | any[]
-}
+
 const initState = {
   list: [],
   context: '',

@@ -41,9 +41,7 @@ module.exports = {
   },
   KugouMusic: {
     enable: true,
-    panels: [
-      ['panel-default', { enable: true }],
-    ],
+    panels: [['panel-default', { enable: true }]],
   },
   ElectricFan: {
     enable: true,
@@ -363,5 +361,5 @@ module.exports = {
       ['panel-blueWhite', { enable: true, entry: 'app.tsx' }],
       ['panel-morandi', { enable: true, entry: 'app.tsx' }],
     ],
-  }
+  },
 };
