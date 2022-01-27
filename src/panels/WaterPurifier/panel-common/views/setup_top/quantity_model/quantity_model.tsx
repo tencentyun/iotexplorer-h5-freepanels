@@ -15,6 +15,7 @@ export const enumSprayMode: stringKey = {
 const Quantity_model = ({isShow, onClose}) => {
   const max_value = 1000;
   const min_value = 0;
+  const step = 5;
   const [dataUser, setDataUser] = useState(sdk.deviceData.flow_set ? sdk.deviceData.flow_set : 350);
   const currentWidth = (dataUser - min_value) * 100 / (max_value - min_value) + '%';
   const handleCommit = () => {
@@ -38,6 +39,13 @@ const Quantity_model = ({isShow, onClose}) => {
     setDataUser(val);
   }
 
+  const toggleReduce =() =>{
+    updateVolumetricVal(dataUser-step);
+  }
+
+  const toggleAdd =()=>{
+    updateVolumetricVal(dataUser+step);
+  }
   const handleSelectBrightness = (e: React.MouseEvent) => {
     const slider = document.getElementById('lightbright-slider');
     let offsetModel = (document.body.clientWidth - document.getElementsByClassName('modal-body')[0].clientWidth) / 2;
@@ -73,13 +81,15 @@ const Quantity_model = ({isShow, onClose}) => {
       <div className="lightbright">
         <div className={'lightbright-container'}>
           <div id={'lightbright-mark'} className={classNames('lightbright-mark')}>
-            <div>-</div>
+            <div className={classNames('lightbright-mark-op-btn')} onClick={toggleReduce}>-</div>
+
             <div id={'lightbright-value-wrap'} className={classNames('lightbright-value-wrap')}>
               {/* <img src={brightnessIcon} alt="" /> */}
               {/* <SvgIcon name={'icon-white-lamp-Heating-normal'} color="#0F0F0F" width={160} height={160}/> */}
               <div id={'lightbright-value-text'} className={classNames('lightbright-value-text')}>{dataUser}</div>
             </div>
-            <div>+</div>
+            <div className={classNames('lightbright-mark-op-btn')} onClick={toggleAdd}>+</div>
+
           </div>
           <div id={'lightbright-slider'} className={classNames('lightbright-slider')} onClick={handleSelectBrightness}
                onTouchMove={handleMoveBrightness} onTouchEnd={handleEndMoveBrightness}>

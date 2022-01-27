@@ -1,0 +1,438 @@
+body.theme_normal{
+  .control-area {
+    position: absolute;
+    top: 839px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .setting-button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 50px;
+      height: 50px;
+    }
+
+    .control-icon {
+      display: block;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: contain;
+
+      &.icon-ther-minus {
+        position: absolute;
+        top: -280px;
+        left: -309px;
+        width: 50px;
+        height: 50px;
+      }
+
+      &.icon-ther-add {
+        position: absolute;
+        top: -280px;
+        right: -309px;
+        width: 50px;
+        height: 50px;
+      }
+    }
+
+    .control-label {
+      font-size: 36px;
+      color: #B5C4D1;
+    }
+
+    .selected {
+      background: #0F0F0F;
+      box-shadow: 0 6px 100px 0 rgba(32, 33, 33, 0.10);
+
+      .control-label {
+        color: #FFFFFF;
+      }
+    }
+
+    .control-power {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      background-color: #909CAB;
+      box-shadow: 0 6px 100px 0 rgba(32, 33, 33, 0.10);
+      text-align: center;
+
+      .icon-power {
+        width: 95px;
+        height: 95px;
+      }
+    }
+
+    .power-open {
+      background: #0F0F0F;
+    }
+  }
+}
+
+body.theme_blue_white {
+  .control-area {
+    position: absolute;
+    top: 639px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .setting-button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 29px;
+      height: 29px;
+      svg {
+        fill: #A4ADC0;
+      }
+    }
+
+    .control-icon {
+      display: block;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: contain;
+
+      &.icon-ther-minus {
+        position: absolute;
+        top: -112px;
+        left: -159px;
+        width: 29px;
+        height: 29px;
+      }
+
+      &.icon-ther-add {
+        position: absolute;
+        top: -112px;
+        right: -159px;
+        width: 29px;
+        height: 29px;
+      }
+    }
+
+    .button-active {
+      svg {
+        fill: #0F0F0F;
+      }
+    }
+
+    .control-label {
+      font-size: 36px;
+      color: #B5C4D1;
+    }
+
+    .selected {
+      background: #0F0F0F;
+      box-shadow: 0 6px 100px 0 rgba(32,33,33,0.10);
+      .control-label {
+        color: #FFFFFF;
+      }
+    }
+
+    .control-power {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 95px;
+      height: 95px;
+      border-radius: 50%;
+      background-color: #909CAB;
+      box-shadow: 0 6px 100px 0 rgba(32,33,33,0.10);
+      text-align: center;
+      .icon-power {
+        width: 39px;
+        height: 39px;
+      }
+    }
+
+    .power-open {
+      background-color: #2885FE;
+      background-image: none;
+    }
+  }
+}
+
+body.theme_dark {
+  .control-area {
+    position: absolute;
+    top: 941px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .setting-button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 50px;
+      height: 50px;
+      svg {
+        fill: #667994;
+      }
+    }
+
+    .control-icon {
+      display: block;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: contain;
+
+      &.icon-ther-minus {
+        position: absolute;
+        top: -28px;
+        left: -206px;
+        width: 50px;
+        height: 50px;
+      }
+
+      &.icon-ther-add {
+        position: absolute;
+        top: -28px;
+        right: -206px;
+        width: 50px;
+        height: 50px;
+      }
+    }
+
+    .control-label {
+      font-size: 36px;
+      color: #B5C4D1;
+    }
+
+    .selected {
+      background: #0F0F0F;
+      box-shadow: 0 6px 100px 0 rgba(32,33,33,0.10);
+      .control-label {
+        color: #FFFFFF;
+      }
+    }
+
+    .control-power {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 235px;
+      height: 235px;
+      border-radius: 50%;
+      background-color: #909CAB;
+      box-shadow: 0 6px 100px 0 rgba(32,33,33,0.10);
+      text-align: center;
+      .icon-power {
+        width: 95px;
+        height: 95px;
+      }
+    }
+
+    .power-open {
+      background-image: linear-gradient(137deg, #FF3A5F 0%, #EA0D40 100%);
+    }
+  }
+}
+
+body.theme_colorful {
+  .control-area {
+    position: absolute;
+    top: 887px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 10;
+
+    .setting-button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 110px;
+      height: 110px;
+      border-radius: 50%;
+      background: #FFFFFF;
+      box-shadow: 0 6px 50px 0 rgba(32,33,33,0.10);
+
+      .icon-ther-minus {
+        // position: absolute;
+        // top: -28px;
+        // left: -206px;
+        width: 50px;
+        height: 50px;
+      }
+
+      .icon-ther-add {
+        // position: absolute;
+        // top: -28px;
+        // right: -206px;
+        width: 50px;
+        height: 50px;
+      }
+      
+      svg {
+        fill: #667994;
+      }
+    }
+
+    .minus-btn {
+      position: absolute;
+      top: -31px;
+      left: -257px;
+    }
+
+    .add-btn {
+      position: absolute;
+      top: -31px;
+      right: -257px;
+    }
+
+    // .control-icon {
+    //   display: block;
+    //   background-repeat: no-repeat;
+    //   background-position: center;
+    //   background-size: contain;
+
+    //   &.icon-ther-minus {
+    //     position: absolute;
+    //     top: -28px;
+    //     left: -206px;
+    //     width: 50px;
+    //     height: 50px;
+    //   }
+
+    //   &.icon-ther-add {
+    //     position: absolute;
+    //     top: -28px;
+    //     right: -206px;
+    //     width: 50px;
+    //     height: 50px;
+    //   }
+    // }
+
+    .control-label {
+      font-size: 36px;
+      color: #B5C4D1;
+    }
+
+    .selected {
+      background: #0F0F0F;
+      box-shadow: 0 6px 100px 0 rgba(32,33,33,0.10);
+      .control-label {
+        color: #FFFFFF;
+      }
+    }
+
+    .control-power {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 235px;
+      height: 235px;
+      border-radius: 50%;
+      background-color: #909CAB;
+      box-shadow: 0 6px 100px 0 rgba(32,33,33,0.10);
+      text-align: center;
+      .icon-power {
+        width: 95px;
+        height: 95px;
+      }
+    }
+
+    .power-open {
+      background-image: linear-gradient(137deg, #FF3A5F 0%, #EA0D40 100%);
+    }
+  }
+}
+
+body.theme_morandi {
+  .control-area {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0;
+
+    .setting-button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .control-icon {
+      display: block;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: contain;
+
+      &.icon-ther-minus {
+        position: absolute;
+        top: 708px;
+        left: 151px;
+        width: 50px;
+        height: 50px;
+      }
+
+      &.icon-ther-add {
+        position: absolute;
+        top: 708px;
+        right: 148px;
+        width: 50px;
+        height: 50px;
+      }
+    }
+
+    .control-label {
+      font-size: 36px;
+      color: #B5C4D1;
+    }
+
+    .selected {
+      background: #0F0F0F;
+      box-shadow: 0 6px 100px 0 rgba(32,33,33,0.10);
+      .control-label {
+        color: #FFFFFF;
+      }
+    }
+
+    .button-active {
+      .icon-ther-minus {
+        fill: #B5ABA1;
+      }
+      .icon-ther-add {
+        fill: #B5ABA1;
+      }
+    }
+
+    .control-power {
+      position: absolute;
+      top: 740px;
+      left: 50%;
+      margin-left: -88px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 176px;
+      height: 176px;
+      border-radius: 50%;
+      background-color: #909CAB;
+      box-shadow: 0 6px 100px 0 rgba(32,33,33,0.10);
+      text-align: center;
+      .icon-power {
+        width: 73px;
+        height: 66px;
+      }
+    }
+
+    .power-open {
+      background-color: #B5ABA1;
+    }
+  }
+}

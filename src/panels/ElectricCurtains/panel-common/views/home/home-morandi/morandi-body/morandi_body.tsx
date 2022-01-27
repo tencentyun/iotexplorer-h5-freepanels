@@ -177,7 +177,7 @@ export function Morandi_body() {
             <div className="botton_box" onClick={() => openLeave(0)}>
               <SvgIcon
                 name={sdk.deviceData.control === 'open' && 'icon-curtains-open-unlock-morandi' || 'icon-curtains-open-morandi'}
-                color="#FFFFF" width={89} height={32}/>
+                color="#FFFFF" width={60} height={20}/>
 
               <div className={classNames("botton_open", sdk.deviceData.control === 'open' && "font_select")}>
                 开启
@@ -187,13 +187,13 @@ export function Morandi_body() {
           <div onClick={onSwitch} id='power'>
             <SvgIcon
               name={!sdk.deviceData.control || sdk.deviceData.control === 'pause' ? 'icon-curtains-total-unlock-morandi' : 'icon-curtains-total-paused-morandi'}
-              color="#000000" width={180} height={180}/>
+              color="#000000" width={140} height={140}/>
           </div>
           <div className="botton">
             <div className="botton_box" onClick={() => openLeave(100)}>
               <SvgIcon
                 name={sdk.deviceData.control === 'close' && 'icon-curtains-close-unlock-morandi' || 'icon-curtains-close-open-morandi'}
-                color="#FFFFF" width={89} height={32}/>
+                color="#FFFFF" width={60} height={20}/>
 
               <div className={classNames("botton_close", sdk.deviceData.control === 'close' && "font_select")}>
                 关闭
@@ -241,7 +241,7 @@ export function Morandi_body() {
           <div className="model_span"
                onClick={onCurtain}
           >
-            <SvgIcon name={'icon-curtains-motor-reverse-morandi'} color="#FFFFF" width={67} height={71}/>
+            <SvgIcon name={'icon-curtains-motor-reverse-morandi'} color="#FFFFF" width={55} height={55}/>
             <div className="model_font1">电机反向</div>
           </div>
 
@@ -255,7 +255,7 @@ export function Morandi_body() {
           <div className="model_span"
                onClick={onCurtainWork}
           >
-            <SvgIcon className="morandi_model_icon2" name={'icon-curtains-more-morandi'} color="#FFFFF" width={98}
+            <SvgIcon className="morandi_model_icon2" name={'icon-curtains-more-morandi'} color="#FFFFF" width={60}
                      height={23}/>
             <div className="model_font3">更多</div>
           </div>

@@ -24,44 +24,58 @@
   }
 
   .connect-state {
+    font-size: 36px;
     font-style: normal;
+    color: #000000;
     &.is_hidden {
       display: none;
     }
   }
 }
 body.theme_blue_white {
-  ._component_business_bluetooth_ {
+  .component_business_bluetooth {
     .bluetooth-icon{
-      background: url('./icon-bluetooth-dark.svg') no-repeat center;
+      background: url('./icon-bluetooth-blueWhite.svg') no-repeat center;
       background-size: cover;
+    }
+    .connect-state {
+      color: #A6AFC2;
     }
   }
 }
 
 body.theme_dark {
-  ._component_business_bluetooth_{
+  .component_business_bluetooth {
     .bluetooth-icon{
       background: url('./icon-bluetooth-dark.svg') no-repeat center;
       background-size: cover;
+    }
+    .connect-state {
+      color: #FFFFFF;
     }
   }
 }
 
 body.theme_colorful {
-  ._component_business_bluetooth_{
+  .component_business_bluetooth {
     .bluetooth-icon{
       background: url('./icon-bluetooth-colorful.svg') no-repeat center;
       background-size: cover;
+    }
+    .connect-state {
+      color: #FFFFFF;
     }
   }
 }
 
 body.theme_morandi {
-  ._component_business_bluetooth_{
+  .component_business_bluetooth {
     .bluetooth-icon{
       background: url('./icon-bluetooth-morandi.svg') no-repeat center;
       background-size: cover;
+    }
+    .connect-state {
+      color: #566172;
     }
   }
 }

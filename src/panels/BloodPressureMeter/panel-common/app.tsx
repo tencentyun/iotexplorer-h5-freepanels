@@ -1,19 +1,22 @@
 /**
  * 血压计
  */
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 import { DeviceSateContext } from './deviceStateContext';
 import { useDeviceData } from '@hooks/useDeviceData';
+import {QuicknessMode} from '@components/base';
 import { Home } from './views/home/home';
 import { Record } from './views/record/record';
 import { MyInfo } from './views/myInfo/myInfo';
+import 'antd-mobile/es/global';
 import '@icons/themes/global.less';
+import '@icons/themes/icons/svg/common';
 import './style.less';
 import './themes.less'; // 4套皮肤 构建前要修改var.less变量文件
 
-export function App() {
+export const App = QuicknessMode(function App() {
   const isBluetoothDevice = true;
   // eslint-disable-next-line no-undef
   const isDev = process.env.NODE_ENV !== 'production';
@@ -129,36 +132,26 @@ export function App() {
     headPanelTemplateId = state.templateList[0].id;
   }
 
-  const [sdkReady, setSdkReady] = useState(false);
-  useEffect(() => {
-    sdk.sdkReady().then(() => setSdkReady(true));
-  }, []);
   return (
-    <>
-      {!sdkReady ? (
-        <div>loading...</div>
-      ) : (
-        <article>
-          <DeviceSateContext.Provider value={state}>
-            <Router basename={basename}>
-              <Switch>
-                {/*历史记录*/}
-                <Route path="/record">
-                  <Record />
-                </Route>
-                {/*设置页*/}
-                <Route path="/myInfo">
-                  <MyInfo />
-                </Route>
-                {/*首页*/}
-                <Route path="/">
-                  <Home />
-                </Route>
-              </Switch>
-            </Router>
-          </DeviceSateContext.Provider>
-        </article>
-      )}
-    </>
+    <article>
+      <DeviceSateContext.Provider value={state}>
+        <Router basename={basename}>
+          <Switch>
+            {/*历史记录*/}
+            <Route path="/record">
+              <Record />
+            </Route>
+            {/*设置页*/}
+            <Route path="/myInfo">
+              <MyInfo />
+            </Route>
+            {/*首页*/}
+            <Route path="/">
+              <Home />
+            </Route>
+          </Switch>
+        </Router>
+      </DeviceSateContext.Provider>
+    </article>
   );
-}
+});

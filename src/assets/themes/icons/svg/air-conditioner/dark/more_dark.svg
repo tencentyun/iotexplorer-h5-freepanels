@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="74px" height="74px" viewBox="0 0 74 74" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <!-- Generator: Sketch 59.1 (86144) - https://sketch.com -->
+  <title>更多</title>
+  <desc>Created with Sketch.</desc>
+  <defs>
+    <linearGradient x1="8.45868644%" y1="0%" x2="111.848517%" y2="112.510417%" id="linearGradient-1">
+      <stop stop-color="#00F0FF" offset="0%"></stop>
+      <stop stop-color="#704DF0" offset="100%"></stop>
+    </linearGradient>
+    <path d="M66,40 C70.418278,40 74,43.581722 74,48 L74,66 C74,70.418278 70.418278,74 66,74 L48,74 C43.581722,74 40,70.418278 40,66 L40,48 C40,43.581722 43.581722,40 48,40 L66,40 Z M26,40 C30.418278,40 34,43.581722 34,48 L34,66 C34,70.418278 30.418278,74 26,74 L8,74 C3.581722,74 5.41083001e-16,70.418278 0,66 L0,48 C-5.41083001e-16,43.581722 3.581722,40 8,40 L26,40 Z M26,0 C30.418278,-8.11624501e-16 34,3.581722 34,8 L34,26 C34,30.418278 30.418278,34 26,34 L8,34 C3.581722,34 5.41083001e-16,30.418278 0,26 L0,8 C-5.41083001e-16,3.581722 3.581722,8.11624501e-16 8,0 L26,0 Z M66,0 C70.418278,-8.11624501e-16 74,3.581722 74,8 L74,26 C74,30.418278 70.418278,34 66,34 L48,34 C43.581722,34 40,30.418278 40,26 L40,8 C40,3.581722 43.581722,8.11624501e-16 48,0 L66,0 Z" id="path-2"></path>
+    <filter x="-206.8%" y="-198.6%" width="513.5%" height="513.5%" filterUnits="objectBoundingBox" id="filter-3">
+      <feOffset dx="0" dy="6" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+      <feGaussianBlur stdDeviation="50" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+      <feColorMatrix values="0 0 0 0 0.125490196   0 0 0 0 0.127812629   0 0 0 0 0.129411765  0 0 0 0.1 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+    </filter>
+  </defs>
+  <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+    <g id="3.3">
+      <g id="编组-4">
+        <g id="定时开关">
+          <g id="更多">
+            <g id="形状结合">
+              <use fill="black" fill-opacity="1" filter="url(#filter-3)" xlink:href="#path-2"></use>
+              <use fill="url(#linearGradient-1)" fill-rule="evenodd" xlink:href="#path-2"></use>
+            </g>
+          </g>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

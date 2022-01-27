@@ -10,6 +10,7 @@ const postcss = require('postcss-pxtorem');
 const viewportConfig = require('./pxToViewport.config');
 const argv = require('minimist')(process.argv.slice(2));
 const category = argv.category || process.env.npm_config_category || '';
+
 class ModifiedMiniCssExtractPlugin extends MiniCssExtractPlugin {
   getCssChunkObject(mainChunk) {
     return {};
@@ -231,7 +232,7 @@ module.exports = (env, argv) => {
       new webpack.ProgressPlugin(),
       isDevMode && new webpack.HotModuleReplacementPlugin(),
       new webpack.DefinePlugin({
-        'process.env.NODE_ENV': JSON.stringify(mode),
+        'process.env.NODE_ENV': JSON.stringify(mode)
       }),
       new ModifiedMiniCssExtractPlugin({
         filename: isDevMode ? '[name].css' : '[name].[contenthash:10].css',

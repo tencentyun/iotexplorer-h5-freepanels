@@ -63,6 +63,7 @@ export function LightSwitch(props: LightSwitchProps) {
     <div
       className={classNames(
         '_component_business_light-switch_',
+        'theme-' + props.theme,
         props.className
       )}
     >
@@ -83,8 +84,16 @@ export function LightSwitch(props: LightSwitchProps) {
           className="current-wrap"
           ref={current}
           style={{ height: currentHeight }}
-        ></div>
-
+        >
+          {props.theme === 'blueWhite' && 
+            <>
+              <div className="line"></div>
+              <div className="mask"></div>
+            </>
+          }
+        </div>
+        {props.theme === 'blueWhite' && <div className="line"></div>}
+        
         <div className="switch-slider">
           <span className="switch-bar"></span>
         </div>

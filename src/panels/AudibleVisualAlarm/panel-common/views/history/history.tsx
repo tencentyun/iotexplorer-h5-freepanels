@@ -52,7 +52,7 @@ export function History() {
           value=""
           valueStyle="gray"
           size="medium"
-          prefixIcon={<SvgIcon name={'icon-audible-bw-history-'+themeType} width={58} height={63}/>}
+          prefixIcon={<SvgIcon name={'icon-audible-bw-history-'+themeType} width={40} height={40}/>}
           onClick={onHistory}
         >
           {recordList.map((value, index) => (

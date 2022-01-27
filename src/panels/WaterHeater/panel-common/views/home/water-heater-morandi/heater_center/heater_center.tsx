@@ -74,7 +74,7 @@ export function Normal_Center() {
         >
           <SvgIcon
             name={sdk.deviceData.power_switch == 1 && 'icon-water-heater-automatic-morandi2' || 'icon-water-heater-automatic-morandi'}
-            width={82} height={82}/>
+            width={60} height={60}/>
           <div className="botton_font">
             {sdk.deviceData.mode ? modeSrc(sdk.deviceData.mode) : '-'}
           </div>
@@ -85,7 +85,7 @@ export function Normal_Center() {
         >
           <SvgIcon
             name={sdk.deviceData.power_switch == 1 && 'icon-water-heater-velocity-morandi2' || 'icon-water-heater-velocity-morandi'}
-            width={82} height={82}/>
+            width={60} height={60}/>
           <div className="botton_font">
             {sdk.deviceData.capacity_set ? capacitySrc(sdk.deviceData.capacity_set) : '-'}
           </div>
@@ -97,7 +97,7 @@ export function Normal_Center() {
         >
           <SvgIcon
             name={sdk.deviceData.power_switch == 1 && 'icon-water-heater-more-morandi2' || 'icon-water-heater-more-morandi'}
-            width={74} height={74}/>
+            width={60} height={60}/>
           <div className="botton_font">
             设置
           </div>

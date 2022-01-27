@@ -11,6 +11,7 @@ import './style.less';
 import { Action } from 'antd-mobile/es/components/dialog';
 import { StyledProps, ThemeType } from '@libs/global';
 import { toUnderscores } from '@libs/utillib';
+import { getThemeType } from '@libs/theme';
 
 export type SelectType = {
   Radio: 'radio';
@@ -31,6 +32,7 @@ export interface ListPickerProps extends StyledProps {
   type?: SelectType['Radio'] | SelectType['Multiple'];
   options: Option[];
   theme?: ThemeType;
+  layoutType?: string; //normal,middle,spacebetween
   confirmText?: string;
   cancelText?: string;
   onCancel?: () => void;
@@ -43,7 +45,7 @@ export function ListPicker(props: ListPickerProps) {
     options,
     value,
     defaultValue,
-    theme = 'normal'
+    theme = getThemeType()
   } = props;
   const [checkList, setCheckList] = useState(['']);
 
@@ -104,10 +106,42 @@ export function ListPicker(props: ListPickerProps) {
         key={item.value}
         onClick={() => handleSelect(item)}
       >
-        <div className="item-label">{item.label}</div>
-        <div className="item-select-icon">
-          <SvgIcon name={isSelected ? 'icon-selected' : 'icon-unselected'} />
-        </div>
+        {props.layoutType === 'middle' ? 
+        (
+          <div className="item">
+            <div className="item-label">{item.label}</div>
+            <div className="item-select-icon">
+              {
+                theme === 'dark' ? 
+                <SvgIcon
+                  name={isSelected ? 'icon-selected-dark' : 'icon-unselected'}
+                /> : 
+                <SvgIcon
+                  name={isSelected ? 'icon-selected' : 'icon-unselected'}
+                />
+              }
+            </div>
+          </div>
+        ) :
+        (
+          <>
+            <div className="item-label">{item.label}</div>
+            <div className="item-select-icon">
+              {
+                theme === 'dark' ? 
+                <SvgIcon
+                  name={isSelected ? 'icon-selected-dark' : 'icon-unselected'}
+                /> : 
+                <SvgIcon
+                  name={isSelected ? 'icon-selected' : 'icon-unselected'}
+                />
+              }
+            </div>
+          </>
+        )
+      }
+        
+        
       </div>
     );
   };
@@ -135,7 +169,9 @@ export function ListPicker(props: ListPickerProps) {
         '_component_business_list_picker_',
         `theme_${toUnderscores(theme)}`,
         { is_hidden: !props.visible },
-        props.className
+        props.className,
+        {'layout-middle': props.layoutType === 'middle'},
+        {'layout-spaceBetween': props.layoutType === 'spaceBetween'}
       )}
     >
       <Dialog

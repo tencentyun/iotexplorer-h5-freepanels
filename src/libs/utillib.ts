@@ -640,11 +640,40 @@ export const formatPxUnit = (unit: string | number): string | number => {
   const res = reg.exec(unit);
   return res?.length ? parseInt(res[1], 10) : 0;
 };
+export function mapsToOptions(name: string, maps: any): string[] {
+  if (!maps[name]) return ['1', '2', '3'];
+
+  const { min, max, step } = maps[name];
+  const result: string[] = [];
+  for (let i: number = min; i <= max; i += step) {
+    result.push(i.toString());
+  }
+  return result;
+}
 /**
  * 把1或0的枚举转换为boolean
  * @param value
  */
 export const toggleBooleanByNumber = (value: number) => value !== 0;
+/**
+ * 补零函数
+ */
+ export function zeroize(arg: number): string {
+  if (arg < 10) {
+    return `0${arg}`;
+  }
+  return arg.toString();
+}
+/**
+ * 根据设备状态，设置dom元素样式是否可用（高亮）
+ * @param deviceStatus
+ */
+ export const setDomClassActive = (deviceStatus: number) => {
+  if (deviceStatus === 1) {
+    return 'disabled';
+  }
+  return 'active';
+};
 /**
  * 枚举转数组
  * @param enumCNObj

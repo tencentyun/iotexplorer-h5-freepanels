@@ -3,7 +3,6 @@ import classNames from 'classnames';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 import {SvgIcon} from '@components/common/icon';
 import {Cell} from '@components/base';
-import AlarmStatus from './alarmStatus/alarmStatus';
 import {useHistory} from 'react-router-dom';
 import {getThemeType} from '@libs/theme';
 import { apiControlDeviceData, onControlDevice} from '@hooks/useDeviceData';
@@ -14,7 +13,7 @@ import './home.less';
 export function Home() {
   const themeType = getThemeType();
   const history = useHistory();
-  const [selectTheAlertStatus, theAlertStatus] = useState(false);
+  const [alertStateVisible, onToggleAlertState] = useState(false);
   const [alarmStateVisible, onToggleAlarmState] = useState(false);
   const getAlarmState = (val: String) => {
     switch (val) {
@@ -32,10 +31,6 @@ export function Home() {
   };
   const onClick = (path: string) => {
     history.push(path);
-    console.log(path);
-  };
-  const onAlertStatus = () => {
-    theAlertStatus(true);
   };
   const updateAlertStatus = () => {
     if (sdk.deviceData.alarm_state === 'alarm_sound' || sdk.deviceData.alarm_state === 'alarm_light' || sdk.deviceData.alarm_state === 'alarm_sound_light') {
@@ -51,10 +46,40 @@ export function Home() {
     <article className={classNames('home')}>
       <div className="round_card">
         {/*电量*/}
-        <div className="alarm" onClick={onAlertStatus}>
+        <div className="alarm" onClick={() => onToggleAlarmState(true)}>
           <SvgIcon name={'icon-audible-bw-alarm-' + themeType} color="#000000" width={78} height={72}/>
           <div className="alarm_font">报警</div>
         </div>
+        <ListPicker
+          visible={alarmStateVisible}
+          title="触发报警"
+          defaultValue={[
+            sdk.deviceData.alarm_state ? sdk.deviceData.alarm_state : 'normal'
+          ]}
+          options={[
+            {
+              label: '声音报警',
+              value: 'alarm_sound'
+            },
+            {
+              label: '光亮报警',
+              value: 'alarm_light'
+            },
+            {
+              label: '声光报警',
+              value: 'alarm_sound_light'
+            },
+            {
+              label: '正常',
+              value: 'normal'
+            }
+          ]}
+          onCancel={() => onToggleAlarmState(false)}
+          onConfirm={value => {
+            onControlDevice('alarm_state', value[0]);
+            onToggleAlarmState(false);
+          }}
+        />
         {/*仪表盘*/}
         <div className="alarm_dashboard">
           <div
@@ -118,13 +143,13 @@ export function Home() {
             value={sdk.deviceData.alert_state === 1 ? '布防' : '撤防'}
             valueStyle="gray"
             size="medium"
-            prefixIcon={<SvgIcon name={'icon-audible-bw-deployed-' + themeType} width={58} height={63}/>}
+            prefixIcon={<SvgIcon name={'icon-audible-bw-deployed-' + themeType} width={40} height={40}/>}
             onClick={() => {
-              onToggleAlarmState(true);
+              onToggleAlertState(true);
             }}
           >
             <ListPicker
-              visible={alarmStateVisible}
+              visible={alertStateVisible}
               title="触发报警"
               defaultValue={[
                 sdk.deviceData.alert_state ? sdk.deviceData.alert_state : 0
@@ -139,10 +164,10 @@ export function Home() {
                   value: 1
                 }
               ]}
-              onCancel={() => onToggleAlarmState(false)}
+              onCancel={() => onToggleAlertState(false)}
               onConfirm={value => {
                 onControlDevice('alert_state', value[0]);
-                onToggleAlarmState(false);
+                onToggleAlertState(false);
               }}
             />
           </Cell>
@@ -164,14 +189,8 @@ export function Home() {
             value=""
             valueStyle="gray"
             size="medium"
-            prefixIcon={<SvgIcon name={'icon-audible-bw-setup-' + themeType} width={52} height={52}/>}
+            prefixIcon={<SvgIcon name={'icon-audible-bw-setup-' + themeType} width={40} height={40}/>}
             onClick={() => onClick('/setupPage')}
-          />
-          <AlarmStatus
-            isShow={selectTheAlertStatus}
-            onClose={() => {
-              theAlertStatus(false);
-            }}
           />
         </div>
       </div>

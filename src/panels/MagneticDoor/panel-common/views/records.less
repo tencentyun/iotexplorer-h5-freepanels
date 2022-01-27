@@ -1,0 +1,213 @@
+.magnetic-door-record {
+  min-height: 100vh;
+  padding: 0 80px 0 78px;
+  .no-record-tips {
+    padding-top: 867px;
+    font-family: PingFangSC-Medium;
+    font-size: 48px;
+    color: #B5C4D1;
+    text-align: center;
+  }
+  .adm-steps-vertical {
+    padding: 57px 0 0;
+    .adm-step {
+      margin-bottom: 50px;
+      &:first-child {
+        .adm-step-indicator {
+          &::before {
+            content: '';
+            position: absolute;
+            display: inline-block;
+            left: 50%;
+            top: -60%;
+            width: 3px;
+            height: 340px;
+            background-color: #B5C4D1;
+            transform: translateX(-50%);
+            z-index: 0;
+          }
+        }
+      }
+      .adm-step-indicator {
+        margin-right: 93px;
+        &::after {
+          top: 50%;
+          width: 3px;
+          height: 340px;
+          background-color: #B5C4D1;
+        }
+        .adm-step-icon-container {
+          top: 50%;
+          border-radius: 50%;
+        }
+      }
+    }
+  }
+  
+  .adm-step-icon-dot {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: #000000;
+  }
+  .adm-step-content {
+    
+    width: 822px;
+    height: 290px;
+    background: #FFFFFF;
+    box-shadow: 0 6px 50px 0 rgba(32,33,33,0.10);
+    border-radius: 60px;
+  }
+
+  .item {
+    display: flex;
+    justify-content: space-between;
+    padding: 34px 65px 62px 66px;
+    color: #0F0F0F;
+    .item-left {
+      .detail {
+        margin-bottom: 40px;
+        .time {
+          display: inline-block;
+          min-width: 265px;
+          line-height: 109px;
+          font-family: PingFangSC-Medium;
+          font-size: 92px;
+          text-align: left;
+        }
+        .week {
+          margin-left: 12px;
+          font-family: PingFangSC-Medium;
+          font-size: 36px;
+          color: #B5C4D1;
+        }
+      }
+      .date {
+        line-height: 45px;
+        font-family: PingFangSC-Regular;
+        font-size: 36px;
+      }
+    }
+    .item-right {
+      .status {
+        margin-top: 38px;
+        line-height: 109px;
+        font-family: PingFangSC-Medium;
+        font-size: 48px;
+        text-align: right;
+      }
+      .label {
+        line-height: 45px;
+        font-family: PingFangSC-Regular;
+        font-size: 36px;
+        text-align: right;
+      }
+    }
+  }
+  .footer {
+    position: fixed;
+    bottom: 150px;
+    font-size: 48px;
+    color: #000000;
+    text-align: center;
+    z-index: 10;
+    .footer-button {
+      width: 965px;
+      height: 200px;
+      line-height: 200px;
+      font-family: PingFangSC-Medium;
+      background: #FFFFFF;
+      box-shadow: 0 6px 50px 0 rgba(32,33,33,0.10);
+      border-radius: 60px;
+    }
+  }
+}
+.bottom-fill {
+  padding-bottom: 400px;
+}
+
+body.theme_blue_white {
+  .magnetic-door-record {
+    background: #F4F8FB;
+    .adm-step-icon-dot {
+      background: #2885FE;
+    }
+  }
+}
+
+body.theme_dark {
+  .magnetic-door-record {
+    .adm-steps-vertical {
+      .adm-step {
+        &:first-child {
+          .adm-step-indicator {
+            &::before {
+              background-color: #3C4858;
+            }
+          }
+        }
+        .adm-step-indicator {
+          &::after {
+            background-color: #3C4858;
+          }
+        }
+      }
+    }
+    
+    .adm-step-icon-dot {
+      background-image: linear-gradient(136deg, #0BE1FE 2%, #4A85F5 100%);
+    }
+    .adm-step-content {
+      background-image: linear-gradient(180deg, #333E4D 0%, #202C3A 100%);
+      border: 3px solid rgba(62,68,84,0.20);
+      box-shadow: 0 6px 100px 0 #242735;
+    }
+  
+    .item {
+      color: #FFFFFF;
+    }
+    .footer {
+      color: #FFFFFF;
+      .footer-button {
+        background-image: linear-gradient(137deg, #333E4D 0%, #222D3B 100%);
+      }
+    }
+  }
+}
+
+body.theme_colorful {
+  .magnetic-door-record {
+    .adm-step-icon-dot {
+      background: #ED2F26;
+    }
+  }
+}
+
+body.theme_morandi {
+  .magnetic-door-record {
+    .adm-step-icon-dot {
+      background: #424C5C;
+    }
+    .item {
+      color: #424C5C;
+      .item-left {
+        .detail {
+          .week {
+            color: #424C5C;
+          }
+        }
+      }
+      .item-right {
+        .status {
+          color: #B5ABA1;
+        }
+        .label {
+          color: #B5ABA1;
+        }
+      }
+    }
+    .footer-button {
+      color: #424C5C;
+    } 
+  }
+}

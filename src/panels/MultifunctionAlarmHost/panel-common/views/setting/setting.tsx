@@ -1,13 +1,17 @@
 import React, {useState} from 'react';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
-import { Dialog, Input } from 'antd-mobile';
+import { Dialog } from 'antd-mobile';
 import classNames from 'classnames';
 import { Cell, Switch } from '@components/base';
-import { ListPicker } from '@components/business';
+import {ListPicker, Option} from '@components/business';
 import { getThemeType } from '@libs/theme';
 import { apiControlDeviceData, onControlDevice} from '@hooks/useDeviceData';
 import { toggleBooleanByNumber } from '@libs/utillib';
 import './setting.less';
+import SetPassword from "./setPassword/setPassword";
+import SetCallNumber from "./setCallNumber/setCallNumber";
+import SetSmsNumber from "./setSmsNumber/setSmsNumber";
+import {useHistory} from "react-router";
 
 export function Setting() {
   const themeType = getThemeType();
@@ -33,41 +37,11 @@ export function Setting() {
   const [alarmRingtoneVisible, onToggleAlarmRingtone] = useState(false);
   const [callLoopTimesVisible, onToggleCallLoopTimes] = useState(false);
   // 密码
-  const [password, onEditPassword] = useState('');
-  const passwordEditor = (
-    <Input
-      placeholder="请输入密码"
-      value={password}
-      onChange={val => {
-        onEditPassword(val);
-        apiControlDeviceData({ password: val });
-      }}
-    />
-  );
+  const [password, onEditPassword] = useState(false);
   // 报警电话号码
-  const [callNumber, onEditCallNumber] = useState('');
-  const callNumberEditor = (
-    <Input
-      placeholder="请输入报警电话号码"
-      value={callNumber}
-      onChange={val => {
-        onEditCallNumber(val);
-        apiControlDeviceData({ alarm_call_number: val });
-      }}
-    />
-  );
+  const [callNumber, onEditCallNumber] = useState(false);
   // 报警短信号码
-  const [smsNumber, onEditSmsNumber] = useState('');
-  const smsNumberEditor = (
-    <Input
-      placeholder="请输入报警短信号码"
-      value={smsNumber}
-      onChange={val => {
-        onEditSmsNumber(val);
-        console.log(val);
-      }}
-    />
-  );
+  const [smsNumber, onEditSmsNumber] = useState(false);
   // 回复出厂设置
   const handleRecovery = async () => {
     const result = await Dialog.confirm({
@@ -79,6 +53,42 @@ export function Setting() {
       // Toast.show({ content: '点击了取消', position: 'bottom' })
     }
   };
+  const history = useHistory();
+  const handleToggle = () => {
+    return history.push('/timer');
+  };
+  const delaySetList: Option[] = [];
+  for (let i = 0; i <= 300; i++) {
+    delaySetList.push({
+      label: i + '秒',
+      value: i,
+      disabled: false
+    });
+  }
+  const alarmTimeList: Option[] = [];
+  for (let i = 0; i <= 60; i++) {
+    alarmTimeList.push({
+      label: i + '分钟',
+      value: i,
+      disabled: false
+    });
+  }
+  const alarmBrightList: Option[] = [];
+  for (let i = 0; i <= 100; i++) {
+    alarmBrightList.push({
+      label: i,
+      value: i,
+      disabled: false
+    });
+  }
+  const callLooptimesList: Option[] = [];
+  for (let i = 1; i <= 10; i++) {
+    callLooptimesList.push({
+      label: i,
+      value: i,
+      disabled: false
+    });
+  }
   return (
     <article className={classNames('setting')}>
       <ul className="setting-list">
@@ -86,34 +96,10 @@ export function Setting() {
           <Cell
             size="medium"
             title="定时"
-            value={sdk.deviceData.alert_state === '1' ? '布防' : '撤防'}
+            value=''
             valueStyle="gray"
-            onClick={() => {
-              onToggleAlarmState(true);
-            }}
+            onClick={handleToggle}
           >
-            <ListPicker
-              visible={alarmStateVisible}
-              title="触发报警"
-              defaultValue={[
-                sdk.deviceData.alert_state ? sdk.deviceData.alert_state : '0'
-              ]}
-              options={[
-                {
-                  label: '撤防',
-                  value: '0'
-                },
-                {
-                  label: '布防',
-                  value: '1'
-                }
-              ]}
-              onCancel={() => onToggleAlarmState(false)}
-              onConfirm={value => {
-                onControlDevice('alert_state', value[0]);
-                onToggleAlarmState(false);
-              }}
-            />
           </Cell>
           <Cell
             size="medium"
@@ -132,16 +118,7 @@ export function Setting() {
               defaultValue={[
                 sdk.deviceData.delay_set ? sdk.deviceData.delay_set : '0'
               ]}
-              options={[
-                {
-                  label: '0',
-                  value: '0'
-                },
-                {
-                  label: '1',
-                  value: '1'
-                }
-              ]}
+              options={delaySetList}
               onCancel={() => onToggleDelaySet(false)}
               onConfirm={value => {
                 onControlDevice('delay_set', value[0]);
@@ -155,7 +132,7 @@ export function Setting() {
             value={
               sdk.deviceData.alarm_time
                 ? sdk.deviceData.alarm_time + '分钟'
-                : '1分钟'
+                : '-'
             }
             valueStyle="gray"
             onClick={() => {
@@ -168,20 +145,7 @@ export function Setting() {
               defaultValue={[
                 sdk.deviceData.alarm_time ? sdk.deviceData.alarm_time : '1'
               ]}
-              options={[
-                {
-                  label: '1分钟',
-                  value: '1'
-                },
-                {
-                  label: '2分钟',
-                  value: '2'
-                },
-                {
-                  label: '3分钟',
-                  value: '3'
-                }
-              ]}
+              options={alarmTimeList}
               onCancel={() => onToggleAlarmState(false)}
               onConfirm={value => {
                 onControlDevice('alarm_time', value[0]);
@@ -292,16 +256,7 @@ export function Setting() {
               defaultValue={[
                 sdk.deviceData.alarm_bright ? sdk.deviceData.alarm_bright : '0'
               ]}
-              options={[
-                {
-                  label: '0',
-                  value: '0'
-                },
-                {
-                  label: '1',
-                  value: '1'
-                }
-              ]}
+              options={alarmBrightList}
               onCancel={() => onToggleAlarmBright(false)}
               onConfirm={value => {
                 onControlDevice('alarm_bright', value[0]);
@@ -560,13 +515,7 @@ export function Setting() {
             value=""
             valueStyle="gray"
             onClick={() => {
-              Dialog.confirm({
-                title: '设置密码',
-                content: passwordEditor,
-                cancelText: '取消',
-                confirmText: '完成',
-                onConfirm: () => {}
-              });
+              onEditPassword(true);
             }}
           />
           <Cell
@@ -575,13 +524,7 @@ export function Setting() {
             value=""
             valueStyle="gray"
             onClick={() => {
-              Dialog.confirm({
-                title: '报警电话号码',
-                content: callNumberEditor,
-                cancelText: '取消',
-                confirmText: '完成',
-                onConfirm: () => {}
-              });
+              onEditCallNumber(true);
             }}
           />
           <Cell
@@ -590,15 +533,7 @@ export function Setting() {
             value=""
             valueStyle="gray"
             onClick={() => {
-              Dialog.confirm({
-                title: '报警短信号码',
-                content: smsNumberEditor,
-                cancelText: '取消',
-                confirmText: '完成',
-                onConfirm: () => {
-                  apiControlDeviceData({ alarm_sms_number: smsNumber });
-                }
-              });
+              onEditSmsNumber(true);
             }}
           />
           <Cell
@@ -644,7 +579,7 @@ export function Setting() {
           <Cell
             size="medium"
             title="未接听重复拨打次数"
-            value=""
+            value={sdk.deviceData.call_looptimes}
             valueStyle="gray"
             onClick={() => {
               onToggleCallLoopTimes(true);
@@ -656,26 +591,9 @@ export function Setting() {
               defaultValue={[
                 sdk.deviceData.call_looptimes
                   ? sdk.deviceData.call_looptimes
-                  : 'low'
+                  : '1'
               ]}
-              options={[
-                {
-                  label: '1',
-                  value: '1'
-                },
-                {
-                  label: '2',
-                  value: '2'
-                },
-                {
-                  label: '3',
-                  value: '3'
-                },
-                {
-                  label: '4',
-                  value: '4'
-                }
-              ]}
+              options={callLooptimesList}
               onCancel={() => onToggleCallLoopTimes(false)}
               onConfirm={value => {
                 onControlDevice('call_looptimes', value[0]);
@@ -700,6 +618,24 @@ export function Setting() {
           ></Cell>
         </li>*/}
       </ul>
+      <SetPassword
+        isShow={password}
+        onClose={() => {
+          onEditPassword(false);
+        }}
+      />
+      <SetCallNumber
+        isShow={callNumber}
+        onClose={() => {
+          onEditCallNumber(false);
+        }}
+      />
+      <SetSmsNumber
+        isShow={smsNumber}
+        onClose={() => {
+          onEditSmsNumber(false);
+        }}
+      />
     </article>
   );
 }

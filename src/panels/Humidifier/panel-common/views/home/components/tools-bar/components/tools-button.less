@@ -1,0 +1,38 @@
+.button {
+  width: 295px;
+  height: 300px;
+  background: #FFFFFF;
+  box-shadow: 0 6px 100px 0 rgba(32,33,33,0.10);
+  border-radius: 60px;
+  font-size: 36px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  img {
+    width: 84px;
+    height: 84px;
+    &.gear {
+      width: 78px;
+      height: 78px;
+    }
+    &.more {
+      width: 74px;
+      height: 74px;
+    }
+  }
+  .label {
+    width: 154px;
+    height: 50px;
+    line-height: 50px;
+    margin-top: 28px;
+    font-size: 36px;
+    text-align: center;
+    color: @color-disabled-level2;
+  }
+  &.circle {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+  }
+}

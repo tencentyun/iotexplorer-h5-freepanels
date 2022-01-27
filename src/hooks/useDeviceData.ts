@@ -114,6 +114,13 @@ export function formatDeviceData(templateMap: HashMap) {
         name: key,
         desc: mapping[key],
       }));
+    } else if (define.type === 'enum') {
+      const { mapping } = define;
+
+      data[id] = Object.keys(mapping).map((key: string) => ({
+        name: key,
+        desc: mapping[key]
+      }));
     } else if (define.type === 'int') {
       data[id] = {
         min: +(define.min || 0),
@@ -141,21 +148,4 @@ export const requestTokenApi = (action: string, data: any) => {
 export function onControlDevice(id: string, value: any) {
   console.log(id, value);
   sdk.controlDeviceData({ [id]: value });
-}
-export function useUserInfo() {
-  const [state, dispatch] = useReducer(reducer, null, initState);
-
-  const onUpdateUserInfo = (info: HashMap) => {
-    dispatch({
-      type: 'update',
-      payload: info,
-    });
-  };
-
-  return [
-    state,
-    {
-      onUpdateUserInfo,
-    },
-  ];
 }

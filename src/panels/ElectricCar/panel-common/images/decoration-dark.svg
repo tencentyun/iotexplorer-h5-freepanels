@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1125px" height="1129px" viewBox="0 0 1125 1129" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 59.1 (86144) - https://sketch.com -->
+    <title>icon栏界面凹凸</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="9.23611111%" y1="8.4340334%" x2="90.7415254%" y2="89.5412269%" id="linearGradient-1">
+            <stop stop-color="#333E4D" offset="0%"></stop>
+            <stop stop-color="#202C3A" offset="100%"></stop>
+        </linearGradient>
+        <path d="M774.48,0.578125 C733,0.578125 697.09,28.198125 685.23,67.908125 C685.06,68.488125 684.89,69.018125 684.71,69.518125 C665.946833,121.081558 616.839045,155.320666 561.968344,155.096503 C507.097643,154.872339 458.271244,120.233141 439.93,68.518125 C439.76,68.028125 439.59,67.518125 439.42,66.938125 C427.94,27.358125 391.09,0.578125 349.9,0.578125 L0,0.578125 L0,1040 L1125,1040 L1125,0.578125 L774.48,0.578125 Z" id="path-2"></path>
+    </defs>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="3" transform="translate(0.000000, -1307.000000)">
+            <g id="低栏" transform="translate(0.000000, 1399.000000)">
+                <g id="icon栏界面凹凸">
+                    <use fill="black" fill-opacity="1" filter="url(#filter-3)" xlink:href="#path-2"></use>
+                    <path stroke-opacity="0.2" stroke="#3E4454" stroke-width="3" d="M1.5,2.078125 L1.5,1038.5 L1123.5,1038.5 L1123.5,2.078125 L774.48,2.078125 C733.917367,2.078125 698.411923,29.0135827 686.669443,68.3300307 C686.486927,68.952733 686.307955,69.5078059 686.119577,70.0310493 C667.139995,122.189216 617.465797,156.823239 561.962216,156.59649 C506.458635,156.369741 457.069071,121.331013 438.512865,69.0097841 C438.302781,68.4042464 438.139774,67.9032398 437.979374,67.3559721 C426.756975,28.6641141 390.685777,2.078125 349.9,2.078125 L1.5,2.078125 Z" stroke-linejoin="square" fill="url(#linearGradient-1)" fill-rule="evenodd"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

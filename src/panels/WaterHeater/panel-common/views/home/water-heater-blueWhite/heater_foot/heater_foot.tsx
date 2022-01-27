@@ -45,9 +45,9 @@ export function Normal_Foot() {
       <div className="foot_card">
         <div className="foot_botton">
           <div className="botton_span">
-            <div onClick={onMinus}><SvgIcon name={'icon-water-heater-subtract-blueWhite'} width={200} height={200}/></div>
-            <div onClick={onSwitch}><SvgIcon name={sdk.deviceData.power_switch == 1 && 'icon-water-heater-switch-blueWhite2' || 'icon-water-heater-switch-normal'} width={230} height={230}/></div>
-            <div onClick={onAdd}><SvgIcon name={'icon-water-heater-add-blueWhite'} width={200} height={200}/></div>
+            <div onClick={onMinus}><SvgIcon name={'icon-water-heater-subtract-blueWhite'} width={150} height={150}/></div>
+            <div onClick={onSwitch}><SvgIcon name={sdk.deviceData.power_switch == 1 && 'icon-water-heater-switch-blueWhite2' || 'icon-water-heater-switch-normal'} width={170} height={170}/></div>
+            <div onClick={onAdd}><SvgIcon name={'icon-water-heater-add-blueWhite'} width={150} height={150}/></div>
           </div>
         </div>
 

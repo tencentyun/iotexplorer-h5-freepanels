@@ -1,11 +1,12 @@
 /**
  * 空气净化器
  */
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 import { DeviceSateContext } from './deviceStateContext';
 import { useDeviceData } from '@hooks/useDeviceData';
+import {QuicknessMode} from '@components/base/quicknessMode';
 import { Home } from './views/home/home';
 import 'antd-mobile/es/global';
 import '@icons/themes/icons/svg/common';
@@ -13,7 +14,7 @@ import '@icons/themes/global.less';
 import './style.less';
 import './themes.less';
 
-export function App() {
+export const App = QuicknessMode(function App() {
   const isBluetoothDevice = true;
   // eslint-disable-next-line no-undef
   const isDev = process.env.NODE_ENV !== 'production';
@@ -131,13 +132,7 @@ export function App() {
   if (!headPanelTemplateId && state.templateList.length > 0) {
     headPanelTemplateId = state.templateList[0].id;
   }
-  const [sdkReady, setSdkReady] = useState(false);
-  useEffect(() => {
-    sdk.sdkReady().then(() => setSdkReady(true));
-  }, []);
-  return !sdkReady ? (
-    <div>loading...</div>
-  ) : (
+  return (
     <article>
       <DeviceSateContext.Provider value={state}>
         <Router basename={basename}>
@@ -151,4 +146,4 @@ export function App() {
       </DeviceSateContext.Provider>
     </article>
   );
-}
+})

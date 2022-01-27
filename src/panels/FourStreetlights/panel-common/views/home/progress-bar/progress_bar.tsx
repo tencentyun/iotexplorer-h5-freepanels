@@ -14,7 +14,7 @@ export function Progress_bar() {
   return (
     <article className={classNames('lightbright')}>
       <LightBright defaultValue={sdk.deviceData.brightness ? sdk.deviceData.brightness : 80}
-                   onChange={changeBrightness}/>
+        onChange={changeBrightness}/>
     </article>
   );
 };

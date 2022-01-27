@@ -1,0 +1,30 @@
+.records-view {
+  position: relative;
+  padding: 0 80px;
+  min-height: 100vh;
+
+  .no-record-tips {
+    padding-top: 867px;
+    font-family: PingFangSC-Medium;
+    font-size: 48px;
+    color: #B5C4D1;
+    text-align: center;
+  }
+
+  .line {
+    position: absolute;
+    top: 0;
+    left: 104px;
+    width: 3px;
+    height: 100%;
+    background-color: #B5C4D1;
+  }
+}
+
+body.theme_morandi {
+  .records-view {
+    .line {
+      background-color: rgba(87, 98, 115, 0.50);
+    }
+  }
+}

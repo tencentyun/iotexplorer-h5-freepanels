@@ -76,6 +76,17 @@ module.exports = {
       ['panel-morandi', { enable: true, entry: 'app.tsx' }],
     ],
   },
+  AudibleVisualAlarm: {
+    enable: true,
+    viewportWidth: 1125,
+    panels: [
+      ['panel-default', { enable: true, entry: 'app.tsx' }],
+      ['panel-dark', { enable: true, entry: 'app.tsx' }],
+      ['panel-colorful', { enable: true, entry: 'app.tsx' }],
+      ['panel-blueWhite', { enable: true, entry: 'app.tsx' }],
+      ['panel-morandi', { enable: true, entry: 'app.tsx' }],
+    ],
+  },
   BloodPressureMeter: {
     enable: true,
     viewportWidth: 1125,
@@ -131,6 +142,39 @@ module.exports = {
       ['panel-morandi', { enable: true, entry: 'app.tsx' }],
     ],
   },
+  ElectricFan: {
+    enable: true,
+    viewportWidth: 1125,
+    panels: [
+      ['panel-default', { enable: true, entry: 'app.tsx' }],
+      ['panel-dark', { enable: true, entry: 'app.tsx' }],
+      ['panel-colorful', { enable: true, entry: 'app.tsx' }],
+      ['panel-blueWhite', { enable: true, entry: 'app.tsx' }],
+      ['panel-morandi', { enable: true, entry: 'app.tsx' }],
+    ],
+  },
+  ElectricOven: {
+    enable: true,
+    viewportWidth: 1125,
+    panels: [
+      ['panel-default', { enable: true, entry: 'app.tsx' }],
+      ['panel-dark', { enable: true, entry: 'app.tsx' }],
+      ['panel-colorful', { enable: true, entry: 'app.tsx' }],
+      ['panel-blueWhite', { enable: true, entry: 'app.tsx' }],
+      ['panel-morandi', { enable: true, entry: 'app.tsx' }],
+    ],
+  },
+  EmergencyButton: {
+    enable: true,
+    viewportWidth: 1125,
+    panels: [
+      ['panel-default', { enable: true, entry: 'app.tsx' }],
+      ['panel-dark', { enable: true, entry: 'app.tsx' }],
+      ['panel-colorful', { enable: true, entry: 'app.tsx' }],
+      ['panel-blueWhite', { enable: true, entry: 'app.tsx' }],
+      ['panel-morandi', { enable: true, entry: 'app.tsx' }],
+    ],
+  },
   FivePlug: {
     enable: true,
     viewportWidth: 1125,
@@ -175,28 +219,6 @@ module.exports = {
       ['panel-morandi', { enable: true, entry: 'app.tsx' }],
     ],
   },
-  ThreeSwitch: {
-    enable: true,
-    viewportWidth: 1125,
-    panels: [
-      ['panel-default', { enable: true, entry: 'app.tsx' }],
-      ['panel-dark', { enable: true, entry: 'app.tsx' }],
-      ['panel-colorful', { enable: true, entry: 'app.tsx' }],
-      ['panel-blueWhite', { enable: true, entry: 'app.tsx' }],
-      ['panel-morandi', { enable: true, entry: 'app.tsx' }],
-    ],
-  },
-  TwoSwitch: {
-    enable: true,
-    viewportWidth: 1125,
-    panels: [
-      ['panel-default', { enable: true, entry: 'app.tsx' }],
-      ['panel-dark', { enable: true, entry: 'app.tsx' }],
-      ['panel-colorful', { enable: true, entry: 'app.tsx' }],
-      ['panel-blueWhite', { enable: true, entry: 'app.tsx' }],
-      ['panel-morandi', { enable: true, entry: 'app.tsx' }],
-    ],
-  },
   InsertKeyPower: {
     enable: true,
     viewportWidth: 1125,
@@ -209,17 +231,6 @@ module.exports = {
     ],
   },
   IntelligentGateway: {
-    enable: true,
-    viewportWidth: 1125,
-    panels: [
-      ['panel-default', { enable: true, entry: 'app.tsx' }],
-      ['panel-dark', { enable: true, entry: 'app.tsx' }],
-      ['panel-colorful', { enable: true, entry: 'app.tsx' }],
-      ['panel-blueWhite', { enable: true, entry: 'app.tsx' }],
-      ['panel-morandi', { enable: true, entry: 'app.tsx' }],
-    ],
-  },
-  OneLamp: {
     enable: true,
     viewportWidth: 1125,
     panels: [
@@ -263,6 +274,17 @@ module.exports = {
       ['panel-morandi', { enable: true, entry: 'app.tsx' }],
     ],
   },
+  OneLamp: {
+    enable: true,
+    viewportWidth: 1125,
+    panels: [
+      ['panel-default', { enable: true, entry: 'app.tsx' }],
+      ['panel-dark', { enable: true, entry: 'app.tsx' }],
+      ['panel-colorful', { enable: true, entry: 'app.tsx' }],
+      ['panel-blueWhite', { enable: true, entry: 'app.tsx' }],
+      ['panel-morandi', { enable: true, entry: 'app.tsx' }],
+    ],
+  },
   Router: {
     enable: true,
     viewportWidth: 1125,
@@ -285,7 +307,7 @@ module.exports = {
       ['panel-morandi', { enable: true, entry: 'app.tsx' }],
     ],
   },
-  WallPlug: {
+  ThreeStreetlights: {
     enable: true,
     viewportWidth: 1125,
     panels: [
@@ -296,7 +318,29 @@ module.exports = {
       ['panel-morandi', { enable: true, entry: 'app.tsx' }],
     ],
   },
-  ThreeStreetlights: {
+  ThreeSwitch: {
+    enable: true,
+    viewportWidth: 1125,
+    panels: [
+      ['panel-default', { enable: true, entry: 'app.tsx' }],
+      ['panel-dark', { enable: true, entry: 'app.tsx' }],
+      ['panel-colorful', { enable: true, entry: 'app.tsx' }],
+      ['panel-blueWhite', { enable: true, entry: 'app.tsx' }],
+      ['panel-morandi', { enable: true, entry: 'app.tsx' }],
+    ],
+  },
+  TwoSwitch: {
+    enable: true,
+    viewportWidth: 1125,
+    panels: [
+      ['panel-default', { enable: true, entry: 'app.tsx' }],
+      ['panel-dark', { enable: true, entry: 'app.tsx' }],
+      ['panel-colorful', { enable: true, entry: 'app.tsx' }],
+      ['panel-blueWhite', { enable: true, entry: 'app.tsx' }],
+      ['panel-morandi', { enable: true, entry: 'app.tsx' }],
+    ],
+  },
+  WallPlug: {
     enable: true,
     viewportWidth: 1125,
     panels: [
@@ -329,37 +373,8 @@ module.exports = {
       ['panel-morandi', { enable: true, entry: 'app.tsx' }],
     ],
   },
-  AudibleVisualAlarm: {
-    enable: true,
-    viewportWidth: 1125,
-    panels: [
-      ['panel-default', { enable: true, entry: 'app.tsx' }],
-      ['panel-dark', { enable: true, entry: 'app.tsx' }],
-      ['panel-colorful', { enable: true, entry: 'app.tsx' }],
-      ['panel-blueWhite', { enable: true, entry: 'app.tsx' }],
-      ['panel-morandi', { enable: true, entry: 'app.tsx' }],
-    ],
-  },
-  EmergencyButton: {
-    enable: true,
-    viewportWidth: 1125,
-    panels: [
-      ['panel-default', { enable: true, entry: 'app.tsx' }],
-      ['panel-dark', { enable: true, entry: 'app.tsx' }],
-      ['panel-colorful', { enable: true, entry: 'app.tsx' }],
-      ['panel-blueWhite', { enable: true, entry: 'app.tsx' }],
-      ['panel-morandi', { enable: true, entry: 'app.tsx' }],
-    ],
-  },
-  ElectricOven: {
-    enable: true,
-    viewportWidth: 1125,
-    panels: [
-      ['panel-default', { enable: true, entry: 'app.tsx' }],
-      ['panel-dark', { enable: true, entry: 'app.tsx' }],
-      ['panel-colorful', { enable: true, entry: 'app.tsx' }],
-      ['panel-blueWhite', { enable: true, entry: 'app.tsx' }],
-      ['panel-morandi', { enable: true, entry: 'app.tsx' }],
-    ],
-  },
+  // SwitchOne
+  // PetFeedingDevice
+  // DimmerSwitch
+  // SmokeAlarm
 };

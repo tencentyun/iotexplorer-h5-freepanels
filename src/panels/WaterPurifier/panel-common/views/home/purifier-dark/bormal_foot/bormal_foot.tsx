@@ -26,7 +26,7 @@ export function Bormal_foot () {
   const onSwitchFlow = () => {
     if (sdk.deviceData.switch === 1) {
       apiControlDeviceData({
-        switch_flow: sdk.deviceData.switch === 1 ? 0 : 1
+        switch_flow: sdk.deviceData.switch_flow === 1 ? 0 : 1
       });
     }
   }
@@ -59,14 +59,14 @@ export function Bormal_foot () {
                 />
               </div>
               <div  onClick={onSwitchFlow} className="water_icon">
-                  <SvgIcon name={sdk.deviceData.switch === 1&&'icon-purifier-take-water-dark'||'icon-purifier-take-water-notopen-dark'} color="#000000" width={59} height={66}/>
+                  <SvgIcon name={sdk.deviceData.switch_flow === 1&&'icon-purifier-take-water-dark'||'icon-purifier-take-water-notopen-dark'} color="#000000" width={50} height={50}/>
               </div>
               <div onClick={() => sdk.deviceData.switch === 1 ? setIsShowTempMode(true) : ''}>
-                  <SvgIcon name={sdk.deviceData.switch === 1&&'icon-purifier-coffee-dark'||'icon-purifier-coffee-notopen-dark'} color="#000000" width={77} height={70}/>
+                  <SvgIcon name={sdk.deviceData.switch === 1&&'icon-purifier-coffee-dark'||'icon-purifier-coffee-notopen-dark'} color="#000000" width={50} height={50}/>
               </div>
 
               <div onClick={onSetup}>
-                <SvgIcon name={sdk.deviceData.switch === 1&&'icon-purifier-setup-dark'||'icon-purifier-setup-notopen-dark'} color="#000000" width={66} height={66}/>
+                <SvgIcon name={sdk.deviceData.switch === 1&&'icon-purifier-setup-dark'||'icon-purifier-setup-notopen-dark'} color="#000000" width={50} height={50}/>
               </div>
               <TempModel
                 isShow={isShowTempModeVisible}

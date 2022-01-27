@@ -1,11 +1,12 @@
 /**
  * 五路灯
  */
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 import { DeviceSateContext } from './deviceStateContext';
 import { useDeviceData } from '@hooks/useDeviceData';
+import {QuicknessMode} from '@components/base';
 import Timer from './views/timer/timer';
 import { Home } from './views/home/home';
 import 'antd-mobile/es/global';
@@ -14,7 +15,7 @@ import '@icons/themes/icons/svg/five-streetlights';
 import './style.less';
 import './themes.less'; // 4套皮肤 构建前要修改var.less变量文件
 
-export function App() {
+export const App = QuicknessMode(function App() {
   const isBluetoothDevice = true;
   // eslint-disable-next-line no-undef
   const isDev = process.env.NODE_ENV !== 'production';
@@ -142,13 +143,7 @@ export function App() {
     headPanelTemplateId = state.templateList[0].id;
   }
 
-  const [sdkReady, setSdkReady] = useState(false);
-  useEffect(() => {
-    sdk.sdkReady().then(() => setSdkReady(true));
-  }, []);
-  return !sdkReady ? (
-    <div>loading...</div>
-  ) : (
+  return (
     <article id={'main'}>
       <DeviceSateContext.Provider value={state}>
         <Router basename={basename}>
@@ -166,4 +161,4 @@ export function App() {
       </DeviceSateContext.Provider>
     </article>
   );
-}
+});

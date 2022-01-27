@@ -28,7 +28,7 @@ export function Buttom() {
         <div className="icon">
           <SvgIcon
             name={sdk.deviceData.power_switch === 1 && 'icon-four-bw-switch-' + themeType || 'icon-four-bw-switch-' + themeType + '2'}
-            color="#000000" width={74.91} height={66.98}/>
+            color="#000000" width={60} height={60}/>
         </div>
 
         <div className="switch_font">
@@ -40,7 +40,7 @@ export function Buttom() {
         <div className="icon">
           <SvgIcon
             name={sdk.deviceData.power_switch === 1 && 'icon-four-bw-timer-' + themeType || 'icon-four-bw-timer-' + themeType + '2'}
-            color="#000000" width={79} height={78}/>
+            color="#000000" width={60} height={60}/>
         </div>
         <div className="switch_font">
           定时

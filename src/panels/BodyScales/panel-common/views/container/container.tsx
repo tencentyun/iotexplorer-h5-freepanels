@@ -9,8 +9,8 @@ import { Recording } from '../recording/recording';
 import './container.less';
 
 const { TabPane } = Tabs;
-const themeType = getThemeType();
 export function Container() {
+  const themeType = getThemeType();
   const [activeKey, setActiveKey] = useState('measure');
   const measureImageSrc = () => {
     switch (themeType) {
@@ -18,16 +18,16 @@ export function Container() {
         return (
           <SvgIcon
             name="icon-body-scales-measurement-normal"
-            width={65}
-            height={65}
+            width={40}
+            height={40}
           />
         );
       case 'blueWhite':
         return (
           <SvgIcon
             name="icon-body-scales-measurement-blueWhite"
-            width={65}
-            height={65}
+            width={40}
+            height={40}
             color="#000"
           />
         );
@@ -35,8 +35,8 @@ export function Container() {
         return (
           <SvgIcon
             name="icon-body-scales-measurement-dark"
-            width={65}
-            height={65}
+            width={40}
+            height={40}
             color="#000"
           />
         );
@@ -44,8 +44,8 @@ export function Container() {
         return (
           <SvgIcon
             name="icon-body-scales-measurement-colorful"
-            width={65}
-            height={65}
+            width={40}
+            height={40}
             color="#000"
           />
         );
@@ -53,16 +53,16 @@ export function Container() {
         return (
           <SvgIcon
             name="icon-body-scales-measurement-morandi"
-            width={65}
-            height={65}
+            width={40}
+            height={40}
           />
         );
       default:
         return (
           <SvgIcon
             name="icon-body-scales-measurement-normal"
-            width={65}
-            height={65}
+            width={40}
+            height={40}
           />
         );
     }
@@ -73,16 +73,16 @@ export function Container() {
         return (
           <SvgIcon
             name="icon-body-scales-recording-normal"
-            width={65}
-            height={65}
+            width={40}
+            height={40}
           />
         );
       case 'blueWhite':
         return (
           <SvgIcon
             name="icon-body-scales-recording-blueWhite"
-            width={65}
-            height={65}
+            width={40}
+            height={40}
             color="#000"
           />
         );
@@ -90,8 +90,8 @@ export function Container() {
         return (
           <SvgIcon
             name="icon-body-scales-recording-dark"
-            width={65}
-            height={65}
+            width={40}
+            height={40}
             color="#000"
           />
         );
@@ -99,8 +99,8 @@ export function Container() {
         return (
           <SvgIcon
             name="icon-body-scales-recording-colorful"
-            width={65}
-            height={65}
+            width={40}
+            height={40}
             color="#000"
           />
         );
@@ -108,16 +108,16 @@ export function Container() {
         return (
           <SvgIcon
             name="icon-body-scales-recording-morandi"
-            width={65}
-            height={65}
+            width={40}
+            height={40}
           />
         );
       default:
         return (
           <SvgIcon
             name="icon-body-scales-recording-normal"
-            width={65}
-            height={65}
+            width={40}
+            height={40}
           />
         );
     }
@@ -126,14 +126,14 @@ export function Container() {
     switch (themeType) {
       case 'normal':
         return (
-          <SvgIcon name="icon-body-scales-mine-normal" width={65} height={65} />
+          <SvgIcon name="icon-body-scales-mine-normal" width={40} height={40} />
         );
       case 'blueWhite':
         return (
           <SvgIcon
             name="icon-body-scales-mine-blueWhite"
-            width={65}
-            height={65}
+            width={40}
+            height={40}
             color="#000"
           />
         );
@@ -141,8 +141,8 @@ export function Container() {
         return (
           <SvgIcon
             name="icon-body-scales-mine-dark"
-            width={65}
-            height={65}
+            width={40}
+            height={40}
             color="#000"
           />
         );
@@ -150,8 +150,8 @@ export function Container() {
         return (
           <SvgIcon
             name="icon-body-scales-mine-colorful"
-            width={65}
-            height={65}
+            width={40}
+            height={40}
             color="#000"
           />
         );
@@ -159,16 +159,16 @@ export function Container() {
         return (
           <SvgIcon
             name="icon-body-scales-mine-morandi"
-            width={65}
-            height={65}
+            width={40}
+            height={40}
           />
         );
       default:
         return (
           <SvgIcon
             name="icon-body-scales-mine-normal"
-            width={65}
-            height={65}
+            width={40}
+            height={40}
           />
         );
     }
@@ -188,8 +188,8 @@ export function Container() {
             ) : (
               <SvgIcon
                 name="icon-body-scales-measurement-close-normal"
-                width={65}
-                height={65}
+                width={40}
+                height={40}
               />
             )
           }
@@ -205,8 +205,8 @@ export function Container() {
             ) : (
               <SvgIcon
                 name="icon-body-scales-recording-close-normal"
-                width={65}
-                height={65}
+                width={40}
+                height={40}
               />
             )
           }
@@ -222,8 +222,8 @@ export function Container() {
             ) : (
               <SvgIcon
                 name="icon-body-scales-mine-close-normal"
-                width={65}
-                height={65}
+                width={40}
+                height={40}
               />
             )
           }
