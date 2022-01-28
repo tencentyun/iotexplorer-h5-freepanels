@@ -10,6 +10,9 @@ declare module "*.sass";
 declare module "*.styl";
 declare const wx;
 
+declare type HashMap = {
+  [key : string]: number | string | any[]
+}
 /**
  * 表示组件支持通过 className 和 style 进行样式定制
  */
@@ -46,7 +49,7 @@ declare interface TemplatePropertyConfig {
   mode: string;
   define: {
     type: string;
-    mapping?: object;
+    mapping?: HashMap;
     min?: string;
     max?: string;
     start?: string;

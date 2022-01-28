@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="80px" height="80px" viewBox="0 0 80 80" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 59.1 (86144) - https://sketch.com -->
+    <title>甲烷报警器</title>
+    <desc>Created with Sketch.</desc>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="切图蓝白" transform="translate(-801.000000, -634.000000)">
+            <g id="编组" transform="translate(74.000000, 96.000000)">
+                <g id="甲烷报警器" transform="translate(727.000000, 538.000000)">
+                    <circle id="椭圆形" fill="#2885FE" cx="40" cy="40" r="40"></circle>
+                    <text id="CH₄" font-family="PingFangSC-Medium, PingFang SC" font-size="24" font-weight="400" fill="#FFFFFF">
+                        <tspan x="16" y="49">CH₄</tspan>
+                    </text>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -1,26 +1,24 @@
 /**
  * 简单的deep merge实现
- * @see https://github.com/bevacqua/assignment
  */
-export function assignment(result: any, ...sources): any {
-  const stack = sources;
-  let item;
-  let key;
-  while (stack.length) {
-    item = stack.shift();
-    for (key in item) {
-      if (item.hasOwnProperty(key)) {
-        if (typeof result[key] === 'object' && result[key] && Object.prototype.toString.call(result[key]) !== '[object Array]') {
-          if (typeof item[key] === 'object' && item[key] !== null) {
-            result[key] = assignment({}, result[key], item[key]);
-          } else {
-            result[key] = item[key];
-          }
-        } else {
-          result[key] = item[key];
-        }
+function isObject(item) {
+  return (item && typeof item === 'object' && !Array.isArray(item));
+}
+
+export function assignment(target, ...sources) {
+  if (!sources.length) return target;
+  const source = sources.shift();
+
+  if (isObject(target) && isObject(source)) {
+    Object.keys(source).forEach((key) => {
+      if (isObject(source[key])) {
+        if (!target[key]) Object.assign(target, { [key]: {} });
+        mergeDeep(target[key], source[key]);
+      } else {
+        Object.assign(target, { [key]: source[key] });
       }
-    }
+    });
   }
-  return result;
+
+  return assignment(target, ...sources);
 }

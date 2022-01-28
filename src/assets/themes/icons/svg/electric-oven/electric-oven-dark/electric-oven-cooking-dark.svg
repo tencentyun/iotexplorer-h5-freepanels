@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="442px" height="177px" viewBox="0 0 442 177" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 59.1 (86144) - https://sketch.com -->
+    <title>烹饪中效果</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="16.7522852%" y1="7.26606807%" x2="75.1733105%" y2="69.5740065%" id="linearGradient-1">
+            <stop stop-color="#1FC3FB" offset="0%"></stop>
+            <stop stop-color="#4F7CF4" offset="100%"></stop>
+        </linearGradient>
+        <circle id="path-2" cx="221" cy="221" r="127"></circle>
+        <filter x="-60.2%" y="-57.9%" width="220.5%" height="220.5%" filterUnits="objectBoundingBox" id="filter-3">
+            <feOffset dx="0" dy="6" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="50" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0.125490196   0 0 0 0 0.127812629   0 0 0 0 0.129411765  0 0 0 0.1 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="1备份-2" transform="translate(-365.000000, -1732.000000)">
+            <g id="编组" transform="translate(-247.000000, -232.000000)">
+                <g id="烹饪中效果" transform="translate(345.000000, 1197.000000)">
+                    <g id="编组-8" transform="translate(267.000000, 767.000000)">
+                        <circle id="椭圆形" fill-opacity="0.1" fill="#007BFF" cx="220.5" cy="220.5" r="220.5"></circle>
+                        <circle id="椭圆形" fill="#0078FF" opacity="0.2" cx="220.5" cy="220.5" r="197.5"></circle>
+                        <circle id="椭圆形" fill="#0075FF" opacity="0.3" cx="221" cy="221" r="176"></circle>
+                        <circle id="椭圆形" fill="#0077FF" opacity="0.4" cx="221" cy="221" r="151"></circle>
+                        <g id="椭圆形">
+                            <use fill="black" fill-opacity="1" filter="url(#filter-3)" xlink:href="#path-2"></use>
+                            <use fill="url(#linearGradient-1)" fill-rule="evenodd" xlink:href="#path-2"></use>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

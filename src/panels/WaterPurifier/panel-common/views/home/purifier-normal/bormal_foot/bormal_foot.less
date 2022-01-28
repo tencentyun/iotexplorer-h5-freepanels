@@ -1,0 +1,56 @@
+.bormal_foot{
+    height: 1150px;
+    margin-top: 93px;
+    background: #FFFFFF;
+    // box-shadow: 0 6px 100px 0 rgba(32,33,33,0.10);
+    // border-radius: 120px 120px 0 0;
+
+    .bormal_foot_botton{
+        width: 967px;
+        height: 200px;
+        background: #FFFFFF !important;
+        background-image: none;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        margin: 0 auto;
+
+      .switch-inner{
+        width: 100px;
+        height: 30px;
+        &::before{
+          left: 0;
+          top: -10px;
+          width: 30px;
+          height: 30px;
+          border: 10px solid #B5C4D1;
+        }
+        &.is_checked {
+          &::before {
+            border: 10px solid #0f0f0f;
+            left: 50px;
+          }
+        }
+      }
+    }
+    .sty_life{
+        font-family: PingFangSC-Medium;
+        font-weight: Medium;
+        font-size: 55px;
+        color: #050505;
+    }
+    .sty_day{
+        font-family: PingFangSC-Regular;
+        font-weight: Regular;
+        font-size: 36px;
+        color: #050505;
+        text-align: center;
+    }
+    .across{
+        width: 1124.5px;
+        height: 1px;
+        background-color: #979797;
+    }
+
+
+}

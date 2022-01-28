@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="88px" height="88px" viewBox="0 0 88 88" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 59.1 (86144) - https://sketch.com -->
+    <title>紧急</title>
+    <desc>Created with Sketch.</desc>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="切图莫兰迪" transform="translate(-263.000000, -949.000000)">
+            <g id="编组-2" transform="translate(52.000000, 159.000000)">
+                <g id="编组" transform="translate(0.000000, 626.000000)"></g>
+                <g id="紧急" transform="translate(215.000000, 799.000000)" fill="#B5ABA1">
+                    <path d="M40.5,0 L0,17.5118644 L0,52.4881356 L40.5,70 L81,52.4881356 L81,17.5118644 L40.5,0 Z M75.6869965,48.9288136 L40.5,64.1627119 L5.26639816,48.9288136 L5.26639816,21.0711864 L40.5,5.83728814 L75.6869965,21.0711864 L75.6869965,48.9288136 Z" id="形状" fill-rule="nonzero"></path>
+                    <text id="sos" font-family="PingFangSC-Medium, PingFang SC" font-size="35" font-weight="400">
+                        <tspan x="12" y="43">sos</tspan>
+                    </text>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

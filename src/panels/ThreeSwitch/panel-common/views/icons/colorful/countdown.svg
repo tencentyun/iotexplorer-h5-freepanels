@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="54px" height="70px" viewBox="0 0 54 70" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 59.1 (86144) - https://sketch.com -->
+    <title>倒计时</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="8.45868644%" y1="30.46875%" x2="111.848517%" y2="74.4181315%" id="linearGradient-1">
+            <stop stop-color="#0950FE" offset="0%"></stop>
+            <stop stop-color="#704DF0" offset="100%"></stop>
+        </linearGradient>
+        <path d="M24,30 C10.7512582,29.9862222 0.0146963324,19.9206954 0,7.5 L0,0 L48,0 L48,7.5 C47.9853037,19.9206954 37.2487418,29.9862222 24,30 Z" id="path-2"></path>
+        <filter x="-318.8%" y="-490.0%" width="737.5%" height="1120.0%" filterUnits="objectBoundingBox" id="filter-3">
+            <feOffset dx="0" dy="6" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="50" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0.125490196   0 0 0 0 0.127812629   0 0 0 0 0.129411765  0 0 0 0.1 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="1备份" transform="translate(-242.000000, -397.000000)">
+            <g id="编组" transform="translate(88.000000, 128.000000)">
+                <g id="多彩" transform="translate(4.000000, 269.000000)">
+                    <g id="倒计时" transform="translate(153.000000, 0.000000)">
+                        <path d="M18.3074141,45.0101282 C17.9490289,45.0107671 17.59444,45.0782082 17.2647256,45.2084425 C12.8249907,46.9512846 9.4696718,50.4575979 8.13184356,54.752318 C7.82904831,55.6130826 8.05645861,56.5584418 8.72505075,57.2183185 C9.39364289,57.8781952 10.3970543,58.1476132 11.3424822,57.9211042 C12.2879102,57.6945952 13.0249518,57.0081933 13.2650794,56.1306023 C14.1754614,53.274019 16.4093832,50.9410865 19.3607969,49.7647135 C20.5407744,49.3055421 21.2043737,48.1354828 20.9436369,46.9738475 C20.6829001,45.8122123 19.570949,44.9847737 18.2913727,45.0002125 L18.3074141,45.0101282 Z" id="路径" fill="#404DF4" fill-rule="nonzero"></path>
+                        <path d="M48,67 L0.00679054997,67 L0.00679054997,59.3861276 C-0.305389916,46.7710508 10.1851833,36.3036189 23.4381419,36.0064637 C36.6911005,35.7093086 47.6878188,45.6949568 48,58.3100336 L48,67 L48,67 Z" id="路径" stroke="#414EF6" stroke-width="5" fill-rule="nonzero"></path>
+                        <g id="路径">
+                            <use fill="black" fill-opacity="1" filter="url(#filter-3)" xlink:href="#path-2"></use>
+                            <use fill="url(#linearGradient-1)" fill-rule="evenodd" xlink:href="#path-2"></use>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

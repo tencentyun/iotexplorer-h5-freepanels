@@ -1,0 +1,512 @@
+/*蓝白主题*/
+.color_primary() {
+  color: var(--global-color-white);
+}
+.theme_blue_white {
+  height: 100%;
+  .home {
+    min-height: 100vh;
+    background-image: var(--global-background-color-gradient);
+
+    &.power-off {
+      #power {
+        background: #B5C4D1 !important;
+        svg {
+          fill: #FFFFFF !important;
+        }
+      }
+    }
+  }
+
+  .dashboard{
+    .dashboard-info{
+      .dashboard-value{
+        color: #FFFFFF;
+      }
+    }
+  }
+
+  .rate-setting{
+    ._component_base_cell_{
+      background: rgba(255, 255, 255, 0.2);
+      color: #FFFFFF;
+    }
+  }
+
+  /*详情*/
+  .detail {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    .power-tools-bar {
+      width: 100%;
+      padding:30px 0 50px;
+      background: #FFFFFF;
+      #power {
+        background-color: #0074FF;
+      }
+    }
+    .environment {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background: #FFFFFF;
+      border-radius: 120px 120px 0 0;
+      .dev-title{
+        margin-top: 50px;
+      }
+      .environment-wrap {
+        overflow: scroll;
+        .temperature, .line, .humidity {
+          flex: .4;
+          width: 300px;
+          height: 700px;
+        }
+        .line {
+          height: 350px;
+          flex: .2;
+          top: 48px;
+          margin: 0 -110px;
+        }
+        .dev-list{
+          ._component_base_cell_{
+            margin: 40px 0;
+            border-radius: 60px;
+            background: #FFFFFF;
+            box-shadow: 0 6px 100px 0 rgba(32,33,33,0.10);
+            .cell-wrapper{
+              height: 120px;
+              .cell-prefix-icon{
+                width: 72px;
+                height: 120px;
+              }
+            }
+          }
+          .dev-empty{
+            img{
+              margin-top: 200px;
+            }
+            .title{
+              color: #B5C4D2;
+            }
+            .remark{
+              color: #D1DCF4;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+/*暗色主题*/
+.theme_dark {
+  position: relative;
+  .home {
+
+    &.power-off {
+      #power {
+        background: #B5C4D1 !important;
+        svg {
+          fill: #FFFFFF !important;
+        }
+      }
+    }
+
+    .dashboard{
+      .dashboard-info{
+        box-shadow: 0 6px 100px 0 rgba(32,33,33,0.10);
+        background-image: var(--global-background-color-gradient);
+        .dashboard-value{
+          color: #FFFFFF;
+        }
+      }
+    }
+
+    .rate-setting{
+      ._component_base_cell_{
+        background-image: var(--global-background-color-gradient);
+        color: #FFFFFF;
+      }
+    }
+
+    .detail {
+      .power-tools-bar {
+        width: 100%;
+        position: absolute;
+        top: 970px;
+        z-index: 10;
+        #power {
+          width: 260px;
+          height: 260px;
+          border-radius: 50%;
+          border: 30px solid var(--global-background-color);
+          background-image: var(--global-color-gradient);
+          img{
+            width: 80px;
+          }
+        }
+      }
+      .environment {
+        width: 100%;
+        margin-top:56px;
+        position: absolute;
+        top: 1030px;
+        .dev-title{
+          display: none;
+        }
+        .environment-wrap {
+          .temperature, .line, .humidity {
+            flex: .3;
+            width: 300px;
+            min-height: 48vh;
+            background-image: linear-gradient(180deg, #333E4D 0%, #202C3A 100%);
+          }
+          .line {
+            min-height: 46vh;
+            flex: .2;
+            position: relative;
+            top: 48px;
+            margin: 0 -220px;
+          }
+          .temperature {
+            border-radius: 0 130px 0 0;
+          }
+          .humidity {
+            border-radius: 130px 0 0 0;
+          }
+          .dev-list{
+            display: flex;
+            flex-wrap: wrap;
+             top: 180px;
+            .dev-info{
+              width: 290px;
+              height: 287px;
+              margin: 20px;
+              border-radius: 50px;
+              display: flex;
+              flex-direction: column;
+              justify-content: center;
+              align-items: center;
+              font-size: 36px;
+              background-image: linear-gradient(139deg, #333E4D 0%, #202C3A 100%);
+              border: 3px solid rgba(62,68,84,0.20);
+              box-shadow: 0 6px 100px 0 #242735;
+              color: #FFFFFF;
+              img{
+                height: 150px;
+                margin-bottom: 15px;
+              }
+            }
+            .dev-empty{
+              .title{
+                color: #D1DCF4;
+              }
+              .remark{
+                color: #838795;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+/*多彩主题*/
+.theme_colorful {
+  .home {
+    &.power-off {
+      #power {
+        background: #B5C4D1 !important;
+        svg {
+          fill: #FFFFFF !important;
+        }
+      }
+    }
+    .dashboard{
+      .dashboard-info{
+        .dashboard-value{
+          color: #FFFFFF;
+          .dashboard-rate{
+            &:first-child{
+              display: flex;
+              flex-direction: column;
+              justify-content: center;
+              align-items: center;
+              width: 450px;
+              height: 200px;
+              border-radius: 40px;
+              box-shadow: 0 6px 100px 0 rgba(124,121,245,0.30);
+              background-image: linear-gradient(137deg, #527DF4 0%, #044DFF 100%);
+            }
+            &:last-child{
+              display: flex;
+              flex-direction: column;
+              justify-content: center;
+              align-items: center;
+              width: 450px;
+              height: 200px;
+              border-radius: 40px;
+              box-shadow: 0 6px 100px 0 rgba(124,121,245,0.30);
+              background-image: linear-gradient(137deg, #FFDD00 0%, #FFBF06 100%);
+            }
+          }
+        }
+      }
+    }
+    .rate-setting{
+      ._component_base_cell_{
+        background: #FFFFFF;
+      }
+    }
+    .detail {
+      .power-tools-bar {
+        width: 100%;
+        padding:30px 0 50px;
+        #power {
+          background-image: linear-gradient(137deg, #527DF4 0%, #044DFF 100%);
+        }
+      }
+      .environment {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        border-radius: 120px 120px 0 0;
+        .dev-title{
+          display: none;
+        }
+        .environment-wrap {
+          overflow: scroll;
+          min-height: 40vh;
+          .temperature, .line, .line1, .humidity {
+            flex: .4;
+            width: 300px;
+            height: 700px;
+          }
+          .line {
+            height: 350px;
+            flex: .2;
+            top: 48px;
+            margin: 0 -110px;
+          }
+          .dev-list{
+            ._component_base_cell_{
+              margin: 40px 0;
+              border-radius: 60px;
+              background: #FFFFFF;
+              box-shadow: 0 6px 100px 0 rgba(32,33,33,0.10);
+              .cell-wrapper{
+                height: 120px;
+                .cell-prefix-icon{
+                  width: 72px;
+                  height: 120px;
+                }
+              }
+            }
+            .dev-empty{
+              img{
+                margin-top: 200px;
+              }
+              .title{
+                color: #B5C4D2;
+              }
+              .remark{
+                color: #D1DCF4;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+/*莫兰迪主题*/
+.theme_morandi {
+  .home {
+    background-image: linear-gradient(180deg, #333E4D 0%, #202C3A 100%);
+
+    &.power-off {
+      #power {
+        background: var(--global-color-text-regular) !important;
+        svg {
+          fill: #000000 !important;
+        }
+      }
+    }
+
+    .dashboard{
+      .dashboard-info{
+        .dashboard-value{
+          color: #FFFFFF;
+        }
+      }
+    }
+
+    .rate-setting{
+      ._component_base_cell_{
+        background: #FFFFFF;
+      }
+    }
+
+    .detail {
+      .power-tools-bar {
+        display: none;
+      }
+      .environment {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding-top: 50px;
+        background: #F4F8FB;
+
+        .environment-wrap {
+          overflow: scroll;
+          min-height: 40vh;
+          .temperature, .line, .humidity {
+            flex: .4;
+            width: 300px;
+            height: 700px;
+          }
+          .line {
+            height: 650px;
+            flex: .2;
+            top: 48px;
+            margin: 0 -110px;
+          }
+          .dev-list{
+            display: flex;
+            flex-wrap: wrap;
+            top: 30px;
+
+            #add-dev{
+              background: #B5ABA1 !important;
+              color: #FFFFFF !important;
+              img{
+                height: 70px;
+                margin: 45px 0;
+              }
+            }
+            .dev-info{
+              width: 290px;
+              height: 287px;
+              margin: 20px;
+              border-radius: 50px;
+              display: flex;
+              flex-direction: column;
+              justify-content: center;
+              align-items: center;
+              font-size: 36px;
+              background: #FFFFFF;
+              box-shadow: 0 6px 100px 0 rgba(32,33,33,0.10);
+              img{
+                height: 150px;
+                margin-bottom: 15px;
+              }
+            }
+            .dev-empty{
+              .title{
+                color: #D1DCF4;
+              }
+              .remark{
+                color: #838795;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+/*正常主题*/
+.theme_normal {
+  height: 100%;
+  .home {
+    min-height: 100vh;
+    background: #F4F8FB;
+
+    &.power-off {
+      #power {
+        background: var(--global-color-text-regular) !important;
+        svg {
+          fill: #797979 !important;
+        }
+      }
+    }
+  }
+
+  .dashboard{
+    .dashboard-info{
+      box-shadow: 0 6px 100px 0 rgba(32,33,33,0.10);
+      background: #000000;
+      .dashboard-value{
+        color: #FFFFFF;
+      }
+    }
+  }
+
+  .rate-setting{
+    ._component_base_cell_{
+      background: #FFFFFF;
+    }
+  }
+
+  .detail {
+    .power-tools-bar {
+      width: 100%;
+      padding:30px 0 50px;
+      #power {
+        background-color: #000000;
+      }
+    }
+    .environment {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      .environment-wrap {
+        overflow: scroll;
+
+        .temperature, .line, .humidity {
+          flex: .4;
+          width: 300px;
+          height: 700px;
+        }
+        .line {
+          height: 650px;
+          flex: .2;
+          top: 21px;
+          margin: 0 -110px;
+        }
+        .dev-list{
+          display: flex;
+          flex-wrap: wrap;
+          .dev-info{
+            width: 290px;
+            height: 287px;
+            margin: 30px 20px;
+            border-radius: 50px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-size: 36px;
+            background: #FFFFFF;
+            box-shadow: 0 6px 100px 0 rgba(32,33,33,0.10);
+            img{
+              height: 150px;
+              margin-bottom: 15px;
+            }
+          }
+          .dev-empty{
+            img{
+              margin-top: 200px;
+            }
+            .remark{
+              color: #B7C5D2;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+

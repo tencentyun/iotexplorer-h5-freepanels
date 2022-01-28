@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="172px" height="192px" viewBox="0 0 172 192" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 59.1 (86144) - https://sketch.com -->
+    <title>报警器暗黑</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="61.5645064%" y1="-28.7259615%" x2="61.5645064%" y2="100%" id="linearGradient-1">
+            <stop stop-color="#00F0FF" offset="0%"></stop>
+            <stop stop-color="#5A6CF3" offset="100%"></stop>
+        </linearGradient>
+        <path d="M170.979931,155.651065 C170.073484,157.038178 168.594543,157.851315 166.972479,157.851315 L4.76607422,157.851315 C3.14731171,157.852958 1.63860925,157.029895 0.760814456,155.666269 C-0.116980338,154.302643 -0.243600244,152.585285 0.424667583,151.107077 L14.1454212,120.145774 C17.3986359,112.808101 19.0792053,104.867436 19.078404,96.8375039 L19.078404,68.8082694 C19.078404,32.6476868 46.9015732,1.60985347 82.935249,0.0696805847 C101.656636,-0.788361259 119.870778,6.30951829 133.099965,19.6183976 C145.694815,32.293734 152.660149,49.0825759 152.660149,66.9715414 L152.660149,96.8375039 C152.660149,104.868406 154.339462,112.803645 157.593132,120.14099 L171.313886,151.102294 C171.981794,152.589852 171.838671,154.311785 170.979931,155.651065 L170.979931,155.651065 Z M104.952383,172.20075 C104.952383,177.318716 102.948657,182.101862 99.3705743,185.737053 C95.7447841,189.324412 90.9740074,191.333333 85.8692766,191.333333 C75.3258602,191.333333 66.7861702,182.771502 66.7861702,172.20075 C66.7861702,169.57002 68.9330197,167.417604 71.5569468,167.417604 L100.181606,167.417604 C102.805533,167.417604 104.952383,169.57002 104.952383,172.20075 Z" id="path-2"></path>
+        <filter x="-89.1%" y="-76.8%" width="278.2%" height="259.9%" filterUnits="objectBoundingBox" id="filter-3">
+            <feOffset dx="0" dy="6" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="50" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0.125490196   0 0 0 0 0.127812629   0 0 0 0 0.129411765  0 0 0 0.1 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="切图" transform="translate(-38.000000, -1332.000000)">
+            <g id="暗黑" transform="translate(38.000000, 1332.000000)">
+                <g id="报警器暗黑">
+                    <g id="形状">
+                        <use fill="black" fill-opacity="1" filter="url(#filter-3)" xlink:href="#path-2"></use>
+                        <use fill="url(#linearGradient-1)" fill-rule="evenodd" xlink:href="#path-2"></use>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

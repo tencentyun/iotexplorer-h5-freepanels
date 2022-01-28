@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="336px" height="262px" viewBox="0 0 336 262" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 59.1 (86144) - https://sketch.com -->
+    <title>滑动条</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="2.68690032%" y1="50%" x2="97.5779584%" y2="50%" id="linearGradient-1">
+            <stop stop-color="#559DFC" offset="0%"></stop>
+            <stop stop-color="#3171FA" offset="100%"></stop>
+        </linearGradient>
+        <rect id="path-2" x="0" y="0" width="150" height="66" rx="33"></rect>
+        <filter x="-102.0%" y="-222.7%" width="304.0%" height="563.6%" filterUnits="objectBoundingBox" id="filter-3">
+            <feOffset dx="0" dy="6" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="50" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0.125490196   0 0 0 0 0.127812629   0 0 0 0 0.129411765  0 0 0 0.1 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="7.1" transform="translate(-736.000000, -523.000000)">
+            <g id="编组-6" transform="translate(76.000000, 364.000000)">
+                <g id="取暖器备份">
+                    <g>
+                        <g id="编组-3" transform="translate(66.000000, 80.000000)">
+                            <g id="编组-2备份" transform="translate(0.000000, 170.000000)">
+                                <g id="滑动条" transform="translate(687.000000, 1.000000)">
+                                    <g id="矩形">
+                                        <use fill="black" fill-opacity="1" filter="url(#filter-3)" xlink:href="#path-2"></use>
+                                        <use fill="url(#linearGradient-1)" fill-rule="evenodd" xlink:href="#path-2"></use>
+                                    </g>
+                                    <circle id="椭圆形" fill="#FFFFFF" cx="116" cy="33" r="24"></circle>
+                                </g>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

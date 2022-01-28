@@ -2,15 +2,16 @@ import _ from '@underscore';
 import { RefAttributes, ForwardRefExoticComponent } from 'react';
 import urlParse from 'url-parse';
 import querystring from 'query-string';
+import { rgb } from 'd3';
+import viewportConfig from '../../webpack/pxToViewport.config';
+import { EventEmitter } from 'events';
 
-export const delay = timeout => new Promise(resolve => setTimeout(() => {
-  resolve();
-}, timeout));
+export const delay = timeout => new Promise(resolve => setTimeout(() => resolve(timeout), timeout));
 
 export const genReqId = () => `${Date.now().toString()}-${Math.floor(Math.random() * 10000)}`;
 
-export const getStrLen = (str) => {
-  if (!str) str = '';
+export const getStrLen = (string) => {
+  const str = string || '';
 
   let len = 0;
   for (let i = 0; i < str.length; i++) {
@@ -108,10 +109,8 @@ export function getStandardDate(dateStr) {
   let date = new Date(dateStr);
 
   // 先尝试直接new，如果不合法再继续走
-  // @ts-ignore
-  // eslint-disable-next-line no-restricted-globals
-  if (!isNaN(date)) {
-    return date;
+  if (typeof date !== 'object') { //  && !isNaN(date)
+    return ;
   }
 
   try {
@@ -227,7 +226,6 @@ export function flattenArray(input, prefix = '') {
   return output;
 }
 
-// @ts-ignore
 export const noop = (a?: any): void => {
   console.log('noop');
 };
@@ -250,7 +248,7 @@ export function getSecondsFromHourMinute(time) {
 
 export function getHourMinuteFromTime(seconds) {
   const hour = Math.floor(seconds / 3600);
-  const minute = Math.floor(seconds % 3600 / 60);
+  const minute = Math.floor((seconds % 3600) / 60);
   const second = seconds % 3600 % 60;
 
   return { hour, minute, second };
@@ -280,10 +278,9 @@ export function getPrecision(value) {
   return 0;
 }
 
-export async function fetchAllList<T>(fetchFn: (props: {
-    offset: number;
-    limit: number;
-  }) => Promise<ListResponse<T>>): Promise<T[]> {
+export async function fetchAllList<T>(fetchFn: (
+    props: { offset: number; limit: number }
+  ) => Promise<ListResponse<T>>): Promise<T[]> {
   const limit = 100;
   let offset = 0;
   let total = 100;
@@ -476,14 +473,14 @@ export function subscribeStore({
   onInitOrChange,
 }: {
   store: {
-    getState: Function;
-    subscribe: Function;
+    getState: () => void;
+    subscribe: (callback) => void;
   };
-  selector: Function;
-  equalComparator?: Function;
-  onInit?: Function;
-  onChange?: Function;
-  onInitOrChange?: Function;
+  selector: (str) => number;
+  equalComparator?: (pre, next) => boolean;
+  onInit?: (...obj) => void;
+  onChange?: (cur, pre) => void;
+  onInitOrChange?: (cur, pre) => void;
 }) {
   onInit = onInit || onInitOrChange;
   onChange = onChange || onInitOrChange;
@@ -602,4 +599,187 @@ export function parseUrl(url) {
     uri.query = querystring.parse(uri.query);
   }
   return uri;
+}
+export function numberToArray(number: number, desc?: string): string[] {
+  const result: string[] = [];
+  for (let i = 0; i < number; i++) {
+    let value = `${i + 1}`;
+
+    if (desc) {
+      value += desc;
+    }
+    result.push(value);
+  }
+  return result;
+}
+export const px2vw = (px: number): string | number => {
+  const { viewportWidth } = viewportConfig;
+  const vw = px * (100 / viewportWidth);
+
+  if (px === 0) {
+    return px;
+  }
+  return `${vw.toFixed(viewportConfig.unitPrecision || 3)}vw`;
+};
+
+export function toUnderscores(str: string): string {
+  return str
+    .replace(/([A-Z])/g, '_$1')
+    .toLowerCase()
+    .replace(/^_/, '');
+}
+/**
+ * 将 px 单位转换为 vw 单位
+ */
+export const formatPxUnit = (unit: string | number): string | number => {
+  if (typeof unit === 'number') {
+    return px2vw(unit);
+  }
+
+  const reg = /(\d+)px/gi;
+  const res = reg.exec(unit);
+  return res?.length ? parseInt(res[1], 10) : 0;
+};
+export function mapsToOptions(name: string, maps: any): string[] {
+  if (!maps[name]) return ['1', '2', '3'];
+
+  const { min, max, step } = maps[name];
+  const result: string[] = [];
+  for (let i: number = min; i <= max; i += step) {
+    result.push(i.toString());
+  }
+  return result;
+}
+/**
+ * 把1或0的枚举转换为boolean
+ * @param value
+ */
+export const toggleBooleanByNumber = (value: number) => value !== 0;
+/**
+ * 补零函数
+ */
+export function zeroize(arg: number): string {
+  if (arg < 10) {
+    return `0${arg}`;
+  }
+  return arg.toString();
+}
+/**
+ * 根据设备状态，设置dom元素样式是否可用（高亮）
+ * @param deviceStatus
+ */
+export const setDomClassActive = (deviceStatus: number) => {
+  if (deviceStatus === 1) {
+    return 'disabled';
+  }
+  return 'active';
+};
+/**
+ * 枚举转数组
+ * @param enumCNObj
+ */
+export const enumToArray = (enumCNObj: any): {
+  label: string;
+  value: number;
+}[] => {
+  const result: any[] = [];
+  for (const key in enumCNObj) {
+    // 排除掉key
+    if (isNaN(+key)) {
+      result.push({
+        label: key,
+        value: enumCNObj[key],
+      });
+    }
+  }
+  // return [{ value: 1, label: '智能' }];
+  return result;
+};
+export default new EventEmitter();
+
+export function hsv2rgb(arr) {
+  const h = arr[0];
+  let s = arr[1];
+  let  v = arr[2];
+  s = s / 100;
+  v = v / 100;
+  let r = 0;
+  let g = 0;
+  let b = 0;
+  const i = ((h / 60) % 6);
+  const f = h / 60 - i;
+  const p = v * (1 - s);
+  const q = v * (1 - f * s);
+  const t = v * (1 - (1 - f) * s);
+  switch (i) {
+    case 0:
+      r = v;
+      g = t;
+      b = p;
+      break;
+    case 1:
+      r = q;
+      g = v;
+      b = p;
+      break;
+    case 2:
+      r = p;
+      g = v;
+      b = t;
+      break;
+    case 3:
+      r = p;
+      g = q;
+      b = v;
+      break;
+    case 4:
+      r = t;
+      g = p;
+      b = v;
+      break;
+    case 5:
+      r = v;
+      g = p;
+      b = q;
+      break;
+    default:
+      break;
+  }
+  r = (r * 255.0);
+  g = (g * 255.0);
+  b = (b * 255.0);
+  return rgb(r, g, b);
+}
+
+export function rgb2hsv(arr) {
+  let h = 0;
+  let s = 0;
+  let v = 0;
+  const r = arr[0];
+  const g = arr[1];
+  const b = arr[2];
+  arr.sort((a, b) => a - b);
+  const max = arr[2];
+  const min = arr[0];
+  v = max / 255;
+  if (max === 0) {
+    s = 0;
+  } else {
+    s = 1 - min / max;
+  }
+  if (max === min) {
+    h = 0;
+  } else if (max === r && g >= b) {
+    h = 60 * ((g - b) / (max - min)) + 0;
+  } else if (max === r && g < b) {
+    h = 60 * ((g - b) / (max - min)) + 360;
+  } else if (max === g) {
+    h = 60 * ((b - r) / (max - min)) + 120;
+  } else if (max === b) {
+    h = 60 * ((r - g) / (max - min)) + 240;
+  }
+  // h = (h);
+  s = (s * 100);
+  v = (v * 100);
+  return [h, s, v];
 }

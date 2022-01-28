@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="300px" height="300px" viewBox="0 0 300 300" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>编组 6</title>
+    <defs>
+        <circle id="path-1" cx="100" cy="100" r="100"></circle>
+        <filter x="-39.0%" y="-36.0%" width="178.0%" height="178.0%" filterUnits="objectBoundingBox" id="filter-2">
+            <feOffset dx="0" dy="6" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="25" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0.165282409   0 0 0 0 0.189139157   0 0 0 0 0.232223732  0 0 0 0.1 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="1" transform="translate(-83.000000, -1637.000000)">
+            <g id="编组-5" transform="translate(133.000000, 1680.000000)">
+                <g id="编组-6" transform="translate(0.000000, 1.000000)">
+                    <g id="椭圆形">
+                        <use fill="black" fill-opacity="1" filter="url(#filter-2)" xlink:href="#path-1"></use>
+                        <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-1"></use>
+                    </g>
+                    <rect id="矩形备份" fill="#909CAB" x="60" y="92" width="80" height="16" rx="8"></rect>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

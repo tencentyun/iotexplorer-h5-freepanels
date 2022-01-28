@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="150px" height="66px" viewBox="0 0 150 66" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 59.1 (86144) - https://sketch.com -->
+    <title>滑动条</title>
+    <desc>Created with Sketch.</desc>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="3" transform="translate(-829.000000, -656.000000)">
+            <g id="重复" transform="translate(80.000000, 589.000000)">
+                <g id="滑动条" transform="translate(749.000000, 67.000000)">
+                    <rect id="矩形" fill="#B5ABA1" x="0" y="0" width="150" height="66" rx="33"></rect>
+                    <circle id="椭圆形" fill="#FFFFFF" cx="116" cy="33" r="24"></circle>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

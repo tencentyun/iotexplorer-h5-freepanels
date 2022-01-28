@@ -1,0 +1,122 @@
+.morandi_bormal_foot {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  align-items: center;
+
+  .foot_card {
+    width: 967px;
+    height: 508px;
+    background: #FFFFFF;
+    box-shadow: 0 6px 100px 0 rgba(32, 33, 33, 0.10);
+    border-radius: 60px;
+    margin-top: -254px;
+
+    display: flex;
+    justify-content: space-around;
+    // flex-direction: column;
+    align-items: center;
+  }
+
+  .card_img {
+    width: 283px;
+    height: 390px;
+  }
+
+  .card_right {
+    height: 390px;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    align-items: center;
+
+
+    .across {
+      width: 193px;
+      height: 3px;
+      // border: 3px solid #B5C4D1;
+      background-color: #B5C4D1;
+    }
+  }
+
+  .font_top {
+    font-family: PingFangSC-Medium;
+    font-weight: Medium;
+    font-size: 48px;
+    color: #566172;
+    text-align: center;
+  }
+
+  .font_foot {
+    font-family: PingFangSC-Medium;
+    font-weight: Medium;
+    font-size: 48px;
+    color: #566172;
+    text-align: center;
+  }
+
+
+  .foot_botton {
+    width: 1125px;
+    height: 240px;
+    // background: #FFFFFF;
+    background-image: linear-gradient(180deg, #576273 0%, #414B5B 86%);
+    box-shadow: 0 6px 100px 0 rgba(32, 33, 33, 0.10);
+    border-radius: 120px 120px 0 0;
+    // height: 242px;
+    // border: solid 1px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 0 auto;
+
+    .switch-inner {
+      width: 100px;
+      height: 30px;
+
+      &::before {
+        left: 0;
+        top: -10px;
+        width: 30px;
+        height: 30px;
+        border: 10px solid #B5C4D1;
+      }
+
+      &.is_checked {
+        &::before {
+          border: 10px solid #B5ABA1;
+          left: 50px;
+        }
+      }
+    }
+  }
+
+  .setup_img {
+    width: 66px;
+    height: 66px;
+  }
+
+  .botton_switch {
+    // margin-left: -140px;
+  }
+
+  .botton_water {
+    // margin-left: -140px;
+  }
+
+  .sty_life {
+    font-family: PingFangSC-Medium;
+    font-weight: Medium;
+    font-size: 55px;
+    color: #566172;
+  }
+
+  .sty_day {
+    font-family: PingFangSC-Regular;
+    font-weight: Regular;
+    font-size: 36px;
+    color: #566172;
+    text-align: center;
+  }
+
+}

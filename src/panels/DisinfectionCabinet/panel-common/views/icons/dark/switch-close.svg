@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="400px" height="400px" viewBox="0 0 400 400" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>总开关</title>
+    <defs>
+        <linearGradient x1="11.8644068%" y1="4.18229167%" x2="104.602754%" y2="105.080729%" id="linearGradient-1">
+            <stop stop-color="#FAFAFA" offset="0%"></stop>
+            <stop stop-color="#E8E8E8" offset="100%"></stop>
+        </linearGradient>
+        <circle id="path-2" cx="100" cy="100" r="100"></circle>
+        <filter x="-76.5%" y="-73.5%" width="253.0%" height="253.0%" filterUnits="objectBoundingBox" id="filter-3">
+            <feOffset dx="0" dy="6" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="50" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0.125490196   0 0 0 0 0.127812629   0 0 0 0 0.129411765  0 0 0 0.1 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="1" transform="translate(-363.000000, -1124.000000)">
+            <g id="总开关" transform="translate(463.000000, 1218.000000)">
+                <g id="椭圆形">
+                    <use fill="black" fill-opacity="1" filter="url(#filter-3)" xlink:href="#path-2"></use>
+                    <use fill="url(#linearGradient-1)" fill-rule="evenodd" xlink:href="#path-2"></use>
+                </g>
+                <g id="开关" transform="translate(54.218009, 54.904762)" fill="#222431" fill-rule="nonzero">
+                    <path d="M69.3724773,14.7459507 L69.3724773,14.7459507 C69.3529715,16.3851517 70.028309,17.9529057 71.2246551,19.045666 C83.6117661,30.2681042 86.9170765,48.6688607 79.2372608,63.6520695 C71.5574451,78.6352783 54.8693252,86.3441888 38.7825649,82.3397126 C22.6958046,78.3352363 11.3512141,63.648145 11.2814465,46.735833 C11.2645073,36.2100635 15.6809445,26.1854127 23.4047921,19.2176546 C24.5924873,18.0468373 25.2613811,16.4319303 25.2569699,14.7459507 L25.2569699,14.7459507 C25.072089,12.802016 23.9216667,11.0917392 22.2114285,10.2182927 C20.5011904,9.34484615 18.4714247,9.43094917 16.8379799,10.4462353 C6.19310015,19.5095251 0.0270184921,32.9247694 0,47.0798102 C0.175988538,60.080237 5.43685619,72.4683596 14.6098057,81.4825125 C23.7827552,90.4966653 36.1052092,95.3874725 48.8301418,95.0646337 C68.196757,94.3617292 85.2018954,81.7082483 91.794731,63.0947906 C98.3875666,44.4813329 93.2450175,23.6433362 78.801746,10.4462353 C77.1224728,8.98914954 74.7735544,8.64576246 72.7615623,9.56322419 C70.7495702,10.4806859 69.4316162,12.4961547 69.3724773,14.7459507 Z" id="路径"></path>
+                    <rect id="矩形" x="41.1914666" y="0" width="12.2461117" height="58.8588367" rx="6.12305584"></rect>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="66px" height="57px" viewBox="0 0 66 57" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>温标切换</title>
+    <defs>
+        <filter x="-459.1%" y="-521.1%" width="1018.2%" height="1163.2%" filterUnits="objectBoundingBox" id="filter-1">
+            <feOffset dx="0" dy="6" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="50" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0.125490196   0 0 0 0 0.127812629   0 0 0 0 0.129411765  0 0 0 0.1 0" type="matrix" in="shadowBlurOuter1" result="shadowMatrixOuter1"></feColorMatrix>
+            <feMerge>
+                <feMergeNode in="shadowMatrixOuter1"></feMergeNode>
+                <feMergeNode in="SourceGraphic"></feMergeNode>
+            </feMerge>
+        </filter>
+        <linearGradient x1="2.68690032%" y1="50%" x2="97.5779584%" y2="50%" id="linearGradient-2">
+            <stop stop-color="#559DFC" offset="0%"></stop>
+            <stop stop-color="#3171FA" offset="100%"></stop>
+        </linearGradient>
+        <path d="M25.1243557,40.5 C26.090854,42.1740242 25.5172909,44.3145906 23.8432667,45.2810889 L15.669,49.9994156 L62.5,50 C64.4329966,50 66,51.5670034 66,53.5 C66,55.4329966 64.4329966,57 62.5,57 L3.5,57 C1.56700338,57 2.36723813e-16,55.4329966 0,53.5 C-9.28767752e-17,52.7416036 0.241212768,52.0395454 0.651104208,51.4663596 C0.930288216,50.7552913 1.44367971,50.1305927 2.15673326,49.7189111 L20.3432667,39.2189111 C22.0172909,38.2524128 24.1578573,38.8259758 25.1243557,40.5 Z M39.8756443,2.5 C40.8421427,0.825975818 42.9827091,0.252412775 44.6567333,1.21891109 L44.6567333,1.21891109 L62.8432667,11.7189111 C63.0445134,11.8351009 63.229856,11.9682586 63.3985307,12.1155337 C64.8957845,12.5126168 66,13.8773567 66,15.5 C66,17.4329966 64.4329966,19 62.5,19 L62.5,19 L3.5,19 C1.56700338,19 0,17.4329966 0,15.5 C0,13.5670034 1.56700338,12 3.5,12 L3.5,12 L49.33,11.9994156 L41.1567333,7.28108891 C39.540434,6.34791813 38.9500106,4.32025341 39.7811374,2.67477189 Z" id="path-3"></path>
+        <filter x="-231.8%" y="-261.3%" width="563.6%" height="644.0%" filterUnits="objectBoundingBox" id="filter-4">
+            <feOffset dx="0" dy="6" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="50" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0.125490196   0 0 0 0 0.127812629   0 0 0 0 0.129411765  0 0 0 0.1 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="8">
+            <g id="编组-6" >
+                <g id="编组-4">
+                    <g id="温标切换" filter="url(#filter-1)">
+                        <g id="形状结合">
+                            <use fill="black" fill-opacity="1" filter="url(#filter-4)" xlink:href="#path-3"></use>
+                            <use fill="url(#linearGradient-2)" fill-rule="evenodd" xlink:href="#path-3"></use>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

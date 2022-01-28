@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="70px" height="70px" viewBox="0 0 70 70" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 59.1 (86144) - https://sketch.com -->
+    <title>工作模式</title>
+    <desc>Created with Sketch.</desc>
+    <g id="页面-1" stroke="none" stroke-width="1" fill-rule="evenodd">
+        <g id="2" transform="translate(-188.000000, -1363.000000)">
+            <g id="编组-4" transform="translate(78.000000, 1277.000000)">
+                <g id="模式开关">
+                    <g id="工作模式" transform="translate(110.000000, 86.000000)">
+                        <rect id="矩形" x="0" y="0" width="32" height="32" rx="8"></rect>
+                        <rect id="矩形备份-3" x="38" y="0" width="32" height="32" rx="8"></rect>
+                        <rect id="矩形备份-4" x="38" y="38" width="32" height="32" rx="16"></rect>
+                        <rect id="矩形备份-5" x="0" y="38" width="32" height="32" rx="8"></rect>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

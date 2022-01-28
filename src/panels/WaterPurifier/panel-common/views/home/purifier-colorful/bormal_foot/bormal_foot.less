@@ -1,0 +1,50 @@
+.colorful_bormal_foot {
+  height: 1440px;
+  // margin-top: 93px;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  align-items: center;
+  // margin-bottom: 93px;
+
+
+  .foot_botton {
+    width: 967px;
+    height: 200px;
+    background: #FFFFFF;
+    box-shadow: 0 6px 50px 0 rgba(32, 33, 33, 0.09);
+    border-radius: 60px;
+    margin-top: 50px;
+
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 0 auto;
+    // margin-top: 50px;
+    margin-bottom: 50px;
+
+    .switch-inner {
+      width: 100px;
+      height: 30px;
+
+      &::before {
+        left: 0;
+        top: -10px;
+        width: 30px;
+        height: 30px;
+        border: 10px solid #B5C4D1;
+      }
+
+      &.is_checked {
+        &::before {
+          border: 10px solid #044dff;
+          left: 50px;
+        }
+      }
+    }
+  }
+
+  .foot_card {
+    margin-top: 50px;
+  }
+}

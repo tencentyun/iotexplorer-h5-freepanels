@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="78px" height="73px" viewBox="0 0 78 73" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 59.1 (86144) - https://sketch.com -->
+    <title>模式</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="linearGradient-1">
+            <stop stop-color="#2CE74F" offset="0%"></stop>
+            <stop stop-color="#00E1AD" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="linearGradient-2">
+            <stop stop-color="#28E552" offset="0%"></stop>
+            <stop stop-color="#03E1A6" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="2" transform="translate(-187.000000, -2129.000000)">
+            <g id="模式" transform="translate(187.000000, 2129.000000)">
+                <rect id="矩形" fill="url(#linearGradient-1)" x="7" y="0" width="9" height="73" rx="4.5"></rect>
+                <rect id="矩形备份-6" fill="url(#linearGradient-1)" x="35" y="0" width="9" height="73" rx="4.5"></rect>
+                <rect id="矩形备份-8" fill="url(#linearGradient-1)" x="63" y="0" width="9" height="73" rx="4.5"></rect>
+                <circle id="椭圆形" stroke="url(#linearGradient-2)" stroke-width="6" fill="#FEFEFE" cx="11" cy="48" r="8"></circle>
+                <circle id="椭圆形备份-3" stroke="url(#linearGradient-2)" stroke-width="6" fill="#FEFEFE" cx="39" cy="23" r="8"></circle>
+                <circle id="椭圆形备份-4" stroke="url(#linearGradient-2)" stroke-width="6" fill="#FEFEFE" cx="67" cy="48" r="8"></circle>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="266px" height="296px" viewBox="0 0 266 296" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>柔和</title>
+    <defs>
+        <linearGradient x1="50%" y1="-8.88769671%" x2="50%" y2="138.087893%" id="linearGradient-1">
+            <stop stop-color="#B5ABA1" offset="0%"></stop>
+            <stop stop-color="#8E755C" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="50%" y1="-8.88769671%" x2="50%" y2="138.087893%" id="linearGradient-2">
+            <stop stop-color="#B5ABA1" offset="0%"></stop>
+            <stop stop-color="#8E755C" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="linearGradient-3">
+            <stop stop-color="#B2A79C" offset="0%"></stop>
+            <stop stop-color="#98836E" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="5" transform="translate(-430.000000, -559.000000)">
+            <g id="编组-8" transform="translate(-24.000000, 362.000000)">
+                <g id="编组-7">
+                    <g id="柔和" transform="translate(464.000000, 207.000000)">
+                        <path d="M121.5,40 C98.3951684,40 76.6728774,48.9912874 60.3354057,65.3175257 C43.9976373,81.643764 35,103.350725 35,126.439251 C35,141.858179 39.1152904,156.996112 46.900943,170.216571 C53.7024141,181.765873 63.1366744,191.614377 74.351538,198.91524 L74.351538,241.079499 C74.351538,252.063845 83.2940042,261 94.2861069,261 L148.60978,261 C159.601883,261 168.544349,252.063845 168.544349,241.079499 L168.544349,198.984304 C179.786501,191.688775 189.244491,181.836418 196.065836,170.274074 C203.873141,157.039388 208,141.881299 208,126.438954 C208,103.350132 199.002363,81.6434676 182.664298,65.3172293 C166.327123,48.9912874 144.604832,40 121.5,40 Z" id="路径" fill="url(#linearGradient-1)"></path>
+                        <path d="M148.387147,271 L95.6122578,271 C91.4079896,271 88,274.35796 88,278.500147 C88,282.642334 91.4079896,286 95.6122578,286 L148.387445,286 C152.59201,286 156,282.642334 156,278.500147 C156,274.35796 152.591713,271 148.387147,271 Z" id="路径" fill="url(#linearGradient-2)"></path>
+                        <path d="M246,123 C246,55.0689758 190.931024,0 123,0 C55.0689758,0 0,55.0689758 0,123" id="椭圆形" stroke="url(#linearGradient-3)" stroke-width="20" stroke-linecap="round"></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

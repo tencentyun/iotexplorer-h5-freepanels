@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="256px" height="258px" viewBox="0 0 256 258" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 59.1 (86144) - https://sketch.com -->
+    <title>选中勾</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="11.8644068%" y1="4.18229167%" x2="104.602754%" y2="105.080729%" id="linearGradient-1">
+            <stop stop-color="#00F0FF" offset="0%"></stop>
+            <stop stop-color="#704DF0" offset="100%"></stop>
+        </linearGradient>
+        <circle id="path-2" cx="35" cy="35.5" r="35"></circle>
+        <filter x="-218.6%" y="-210.0%" width="537.1%" height="537.1%" filterUnits="objectBoundingBox" id="filter-3">
+            <feOffset dx="0" dy="6" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="50" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0.125490196   0 0 0 0 0.127812629   0 0 0 0 0.129411765  0 0 0 0.1 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="4" transform="translate(-544.000000, -1028.000000)">
+            <g id="总开关备份" transform="translate(80.000000, 760.000000)">
+                <g id="选中勾" transform="translate(557.000000, 355.500000)">
+                    <g id="椭圆形">
+                        <use fill="black" fill-opacity="1" filter="url(#filter-3)" xlink:href="#path-2"></use>
+                        <use fill="url(#linearGradient-1)" fill-rule="evenodd" xlink:href="#path-2"></use>
+                    </g>
+                    <line x1="17.5" y1="32" x2="31.5" y2="46" id="直线-2" stroke="#FFFFFF" stroke-width="5" stroke-linecap="round"></line>
+                    <line x1="32" y1="46.5" x2="52" y2="23.5" id="直线-3" stroke="#FFFFFF" stroke-width="5" stroke-linecap="round"></line>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

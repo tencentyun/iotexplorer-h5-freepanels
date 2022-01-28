@@ -1,0 +1,219 @@
+.morandi_body{
+    height: 1228px;
+    display: flex;
+    justify-content: center;
+    // border: solid 1px;
+    display: flex;
+    align-items: flex-end;
+ 
+    &.power-off {
+        #power{
+          pointer-events: auto !important;
+        }
+        *{
+          /*color: @color-disabled !important;*/
+          pointer-events: none;
+        }
+      }
+    .adm-list {
+        &.adm-list-default {
+          .adm-list-item {
+            //padding-left: 90px;
+            .adm-list-item-content {
+              padding-right: 73px;
+              border-bottom: 0;
+            }
+          }
+        }
+      }
+
+   .morandi_card{
+        height: 1002px;
+        width: 1125px;
+        background-image: linear-gradient(180deg, #576273 0%, #414B5B 86%);
+        box-shadow: 0 6px 100px 0 rgba(32,33,33,0.10);
+        border-radius: 120px 120px 0 0;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        
+        
+   }
+   .morandi_botton{
+        width: 965px;
+        height: 300px;
+        display: flex;
+        justify-content: space-between;
+        margin-top: -150px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+
+        .botton{
+            width: 295px;
+            height: 300px;
+            background: #FFFFFF;
+            box-shadow: 0 6px 50px 0 rgba(42,48,59,0.10);
+            border-radius: 60px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+       
+   }
+   .progress{
+       padding-top: 20px;
+        height: 310px;
+        width: 860px;
+        // border: solid 1px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+
+        .morandi-progress-card-dot-wrap{
+            width: 860px;
+            display: flex;
+            justify-content: center;
+            .morandi-progress-card-dot{
+                width: 32px;
+                height: 32px;
+                border-radius: 50%;
+                background-color: #fff;
+            }
+        }
+
+        .morandi-progress-card-mark{
+            display: flex;
+            width: 860px;
+            justify-content: space-between;
+        }
+
+        .morandi-progress-card-border{
+            display: flex;
+            height: 100px;
+            width: 860px;
+            border: solid #fff 4px;
+            border-radius: 36px;
+            align-items: center;
+        }
+        .morandi-progress-card-wrap{
+            display: flex;
+            height: 100px;
+            width: 870px;
+            border-radius: 36px;
+            align-items: center;
+            position: absolute;
+            .morandi-progress-card{
+                width: 14.5%;
+                height: 110px;
+            }
+            :first-child{
+                border-top-left-radius: 36px;
+                border-bottom-left-radius: 36px;
+            }
+            :last-child{
+                border-top-right-radius: 36px;
+                border-bottom-right-radius: 36px;
+            }
+        }
+    }
+
+    .across{
+        width: 1116px;
+        height: 3px;
+        // border: 3px solid #909CAB;
+        background-color: #909CAB;
+        margin-top: 145.5px;
+    }
+    .morandi_model{
+        width: 823px;
+        height: 160px;
+        margin-top: 94px;
+        // border: solid 1px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+    }
+    .model_font1{
+        width: 154px;
+        height: 50px;
+        font-family: PingFangSC-Medium;
+        font-weight: Medium;
+        font-size: 36px;
+        color: #F6F6F6;
+        text-align: center;
+        margin-top: 38px;
+    }
+    .model_font2{
+        width: 154px;
+        height: 50px;
+        font-family: PingFangSC-Medium;
+        font-weight: Medium;
+        font-size: 36px;
+        color: #F6F6F6;
+        text-align: center;
+        margin-bottom: 55px;
+    }
+    .model_font3{
+        width: 154px;
+        height: 50px;
+        font-family: PingFangSC-Medium;
+        font-weight: Medium;
+        font-size: 36px;
+        color: #F6F6F6;
+        text-align: center;
+        margin-top: 55px;
+        margin-bottom: -30px;
+    }
+    .morandi_model_icon1{
+        width: 20vw;
+        height: 20vw;
+        margin-bottom: -30px;
+    }
+    .morandi_model_icon3{
+        margin-top: 20px;
+    }
+    .model_span{    
+        width: 200px;
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+    .botton_close{
+        width: 91px;
+        height: 50px;
+        font-family: PingFangSC-Medium;
+        font-weight: Medium;
+        font-size: 36px;
+        color: #576273;
+        text-align: center;
+        margin-top: 36px;
+        &.font_select{
+            color:#B3A99F
+        }
+
+    }
+    .botton_open{
+        width: 84px;
+        height: 50px;
+        font-family: PingFangSC-Medium;
+        font-weight: Medium;
+        font-size: 36px;
+        color: #576273;
+        text-align: center;
+        margin-top: 36px;
+        &.font_select{
+            color:#B3A99F
+        }
+    }
+    .botton_box{
+        display: flex;
+        // justify-content: center;
+        // flex-wrap: wrap;
+        // align-content: center;
+        flex-direction: column;
+        align-items: center;
+    }
+}

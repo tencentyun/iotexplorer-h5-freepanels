@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="74px" height="74px" viewBox="0 0 74 74" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 59.1 (86144) - https://sketch.com -->
+    <title>开关2</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M54.0229085,12.7930725 L54.0229085,12.7930725 C54.007861,14.0316514 54.5288389,15.2162448 55.4517401,16.0419336 C65.0075706,24.5215978 67.5573972,38.4251929 61.6329313,49.746492 C55.7084655,61.0677912 42.8346934,66.892637 30.4248302,63.8668584 C18.014967,60.8410797 9.26337163,49.7435267 9.20955065,36.9645989 C9.19648315,29.011337 12.60347,21.4367198 18.5619036,16.171888 C19.4781312,15.2872195 19.9941382,14.0669972 19.9907353,12.7930725 L19.9907353,12.7930725 C19.848112,11.3242372 18.9606379,10.0319536 17.6413031,9.37197818 C16.3219684,8.71200279 14.7561395,8.77706216 13.4960457,9.54421144 C5.28423059,16.3924251 0.527509632,26.5289717 0.506666667,37.2245078 C0.642430092,47.0476186 4.70083879,56.4080729 11.7771579,63.2191587 C18.8534769,70.0302446 28.3594288,73.7257341 38.175866,73.4817973 C53.1159186,72.9506833 66.2342493,63.3897246 71.3201825,49.3254126 C76.4061157,35.2611006 72.4389819,19.515929 61.2969607,9.54421144 C60.0015134,8.44323875 58.1894794,8.18377578 56.6373616,8.87700904 C55.0852439,9.5702423 54.0685302,11.0931287 54.0229085,12.7930725 Z" id="path-1"></path>
+        <filter x="-209.6%" y="-226.2%" width="519.2%" height="570.8%" filterUnits="objectBoundingBox" id="filter-2">
+            <feOffset dx="0" dy="6" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="50" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0.125490196   0 0 0 0 0.127812629   0 0 0 0 0.129411765  0 0 0 0.1 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+        <rect id="path-3" x="31.5066667" y="0.493150685" width="10" height="44" rx="5"></rect>
+        <filter x="-1530.0%" y="-334.1%" width="3160.0%" height="795.5%" filterUnits="objectBoundingBox" id="filter-4">
+            <feOffset dx="0" dy="6" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="50" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0.125490196   0 0 0 0 0.127812629   0 0 0 0 0.129411765  0 0 0 0.1 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="1备份" transform="translate(-439.000000, -70.000000)">
+            <g id="编组" transform="translate(153.000000, 56.000000)">
+                <g id="莫兰迪">
+                    <g id="开关2" transform="translate(285.493333, 13.506849)">
+                        <g id="路径">
+                            <use fill="black" fill-opacity="1" filter="url(#filter-2)" xlink:href="#path-1"></use>
+                            <use fill="#B4C3D0" fill-rule="evenodd" xlink:href="#path-1"></use>
+                        </g>
+                        <g id="矩形">
+                            <use fill="black" fill-opacity="1" filter="url(#filter-4)" xlink:href="#path-3"></use>
+                            <use fill="#B4C3D0" fill-rule="evenodd" xlink:href="#path-3"></use>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

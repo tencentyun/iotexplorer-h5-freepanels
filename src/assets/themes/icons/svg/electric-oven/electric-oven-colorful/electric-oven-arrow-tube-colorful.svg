@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="130px" height="130px" viewBox="0 0 130 130" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 59.1 (86144) - https://sketch.com -->
+    <title>上下管</title>
+    <desc>Created with Sketch.</desc>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="切图" transform="translate(-18.000000, -2878.000000)">
+            <g id="多彩" transform="translate(18.000000, 2561.000000)">
+                <g id="上下管" transform="translate(0.000000, 317.000000)">
+                    <circle id="椭圆形" fill="#0074FF" cx="65" cy="65" r="65"></circle>
+                    <rect id="矩形" fill="#FFFFFF" x="35" y="35" width="60" height="10" rx="5"></rect>
+                    <rect id="矩形备份-5" fill="#FFFFFF" x="35" y="85" width="60" height="10" rx="5"></rect>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,421 @@
+.dimmer-switch-setting-view {
+  display: flex;
+  flex-direction: column;
+  padding: 57px 80px 142px;
+  min-height: 100vh;
+
+  .lamp-type-select {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .icon-lamp {
+      display: block;
+      width: 82px;
+      height: 144px;
+      background: url('../images/icon-lamp.svg') no-repeat center;
+      background-size: 100%;
+    }
+    .select-explain {
+      & > p {
+        & + p {
+          margin-top: 28px;
+        }
+      }
+    }
+  }
+
+  .explain-text {
+    text-align: center;
+    margin: 131px 54px 330px;
+    & > h5 {
+      margin: 0;
+      padding: 0;
+      margin-bottom: 46px;
+    }
+  }
+
+  .control-status {
+    color: #B7C5D2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: auto;
+    margin-bottom: 40px;
+    .icon-lock {
+      width: 77px;
+      height: 76px;
+      margin-bottom: 38px;
+      background: url('../images/unlock-black.svg');
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: 100% 100%;
+    }
+    .lock {
+      width: 60px;
+      height: 76px;
+      background: url('../images/lock-grey.svg');
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: 100% 100%;
+    }
+  }
+
+  .setting-panel {
+    padding: 0;
+    .setting-slider {
+      height: 342px;
+      padding-top: 72px;
+      box-sizing: border-box;
+    }
+
+    .submit-button {
+      text-align: center;
+      padding: 84px 0 72px;
+      border-top: 1px solid #D8D8D8;
+      color: #000000;
+    }
+    .lock {
+      color: #B7C5D2;
+    }
+  }
+}
+
+body.theme_blue_white {
+  background-color: #F4F8FB;
+  .dimmer-switch-setting-view {
+    display: flex;
+    flex-direction: column;
+    padding: 57px 80px 142px;
+    min-height: 100vh;
+  
+    .lamp-type-select {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      .icon-lamp {
+        display: block;
+        width: 82px;
+        height: 144px;
+        background: url('../images/icon-lamp.svg') no-repeat center;
+        background-size: 100%;
+      }
+      .select-explain {
+        & > p {
+          & + p {
+            margin-top: 28px;
+          }
+        }
+      }
+    }
+  
+    .explain-text {
+      text-align: center;
+      margin: 131px 54px 330px;
+      & > h5 {
+        margin: 0;
+        padding: 0;
+        margin-bottom: 46px;
+      }
+    }
+  
+    .control-status {
+      color: #B7C5D2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: auto;
+      margin-bottom: 40px;
+      .icon-lock {
+        width: 77px;
+        height: 76px;
+        margin-bottom: 38px;
+        background: url('../images/unlock-blue.svg');
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: 100% 100%;
+      }
+      .lock {
+        width: 60px;
+        height: 76px;
+        background: url('../images/lock-grey.svg');
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: 100% 100%;
+      }
+    }
+  
+    .setting-panel {
+      padding: 0;
+      .setting-slider {
+        height: 342px;
+        padding-top: 72px;
+        box-sizing: border-box;
+      }
+  
+      .submit-button {
+        text-align: center;
+        padding: 84px 0 72px;
+        border-top: 1px solid #D8D8D8;
+        color: #000000;
+      }
+      .lock {
+        color: #B7C5D2;
+      }
+    }
+  }
+}
+
+body.theme_dark {
+  .dimmer-switch-setting-view {
+    display: flex;
+    flex-direction: column;
+    padding: 57px 80px 142px;
+    min-height: 100vh;
+  
+    .lamp-type-select {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      .icon-lamp {
+        display: block;
+        width: 82px;
+        height: 144px;
+        background: url('../images/icon-lamp.svg') no-repeat center;
+        background-size: 100%;
+      }
+      .select-explain {
+        & > p {
+          color: #FFFFFF;
+          & + p {
+            margin-top: 28px;
+          }
+        }
+      }
+    }
+  
+    .explain-text {
+      text-align: center;
+      margin: 131px 54px 330px;
+      & > h5 {
+        margin: 0;
+        padding: 0;
+        margin-bottom: 46px;
+      }
+    }
+  
+    .control-status {
+      color: #B7C5D2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: auto;
+      margin-bottom: 40px;
+      .icon-lock {
+        width: 77px;
+        height: 76px;
+        margin-bottom: 38px;
+        background: url('../images/unlock-blue.svg');
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: 100% 100%;
+      }
+      .lock {
+        width: 60px;
+        height: 76px;
+        background: url('../images/lock-grey.svg');
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: 100% 100%;
+      }
+    }
+  
+    .setting-panel {
+      padding: 0;
+      .setting-slider {
+        height: 342px;
+        padding-top: 72px;
+        box-sizing: border-box;
+      }
+  
+      .submit-button {
+        text-align: center;
+        padding: 84px 0 72px;
+        border-top: 3px solid #344050;
+        color: #FFFFFF;
+      }
+      .lock {
+        color: #B7C5D2;
+      }
+    }
+  }
+}
+
+body.theme_colorful {
+  background-color: #F4F8FB;
+  .dimmer-switch-setting-view {
+    display: flex;
+    flex-direction: column;
+    padding: 57px 80px 142px;
+    min-height: 100vh;
+  
+    .lamp-type-select {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      .icon-lamp {
+        display: block;
+        width: 82px;
+        height: 144px;
+        background: url('../images/icon-lamp.svg') no-repeat center;
+        background-size: 100%;
+      }
+      .select-explain {
+        & > p {
+          & + p {
+            margin-top: 28px;
+          }
+        }
+      }
+    }
+  
+    .explain-text {
+      text-align: center;
+      margin: 131px 54px 330px;
+      & > h5 {
+        margin: 0;
+        padding: 0;
+        margin-bottom: 46px;
+      }
+    }
+  
+    .control-status {
+      color: #B7C5D2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: auto;
+      margin-bottom: 40px;
+      .icon-lock {
+        width: 77px;
+        height: 76px;
+        margin-bottom: 38px;
+        background: url('../images/unlock-red.svg');
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: 100% 100%;
+      }
+      .lock {
+        width: 60px;
+        height: 76px;
+        background: url('../images/lock-grey.svg');
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: 100% 100%;
+      }
+    }
+  
+    .setting-panel {
+      padding: 0;
+      .setting-slider {
+        height: 342px;
+        padding-top: 72px;
+        box-sizing: border-box;
+      }
+  
+      .submit-button {
+        text-align: center;
+        padding: 84px 0 72px;
+        border-top: 1px solid #D8D8D8;
+        color: #F23830;
+      }
+      .lock {
+        color: #B7C5D2;
+      }
+    }
+  }
+}
+
+body.theme_morandi {
+  background-color: #F4F8FB;
+  .dimmer-switch-setting-view {
+    display: flex;
+    flex-direction: column;
+    padding: 57px 80px 142px;
+    min-height: 100vh;
+  
+    .lamp-type-select {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      .icon-lamp {
+        display: block;
+        width: 82px;
+        height: 144px;
+        background: url('../images/icon-lamp.svg') no-repeat center;
+        background-size: 100%;
+      }
+      .select-explain {
+        & > p {
+          & + p {
+            margin-top: 28px;
+          }
+        }
+      }
+    }
+  
+    .explain-text {
+      text-align: center;
+      margin: 131px 54px 330px;
+      & > h5 {
+        margin: 0;
+        padding: 0;
+        margin-bottom: 46px;
+      }
+    }
+  
+    .control-status {
+      color: #B7C5D2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: auto;
+      margin-bottom: 40px;
+      .icon-lock {
+        width: 77px;
+        height: 76px;
+        margin-bottom: 38px;
+        background: url('../images/unlock-black.svg');
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: 100% 100%;
+      }
+      .lock {
+        width: 60px;
+        height: 76px;
+        background: url('../images/lock-grey.svg');
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: 100% 100%;
+      }
+    }
+  
+    .setting-panel {
+      padding: 0;
+      .setting-slider {
+        height: 342px;
+        padding-top: 72px;
+        box-sizing: border-box;
+      }
+  
+      .submit-button {
+        text-align: center;
+        padding: 84px 0 72px;
+        border-top: 1px solid #D8D8D8;
+        color: #000000;
+      }
+      .lock {
+        color: #B7C5D2;
+      }
+    }
+  }
+}

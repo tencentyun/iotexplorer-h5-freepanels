@@ -1,0 +1,83 @@
+.dark_bormal_foot{
+    height: 1440px;
+    // margin-top: 93px;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    align-items: center;
+    // margin-bottom: 93px;
+
+
+    .foot_botton{
+        width: 967px;
+        height: 200px;
+        background-image: linear-gradient(139deg, #333E4D 0%, #202C3A 100%);
+        border: 3px solid rgba(62,68,84,0.20);
+        box-shadow: 0 6px 100px 0 #242735;
+        border-radius: 60px;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        margin: 0 auto;
+        margin-top: 50px;
+        margin-bottom: 93px;
+
+      .switch-inner{
+        width: 100px;
+        height: 30px;
+        &::before{
+          left: 0;
+          top: -10px;
+          width: 30px;
+          height: 30px;
+          border: 10px solid #B5C4D1;
+        }
+        &.is_checked {
+          &::before {
+            border: 10px solid #00F0FF;
+            left: 50px;
+          }
+        }
+      }
+        .temperature_icon{
+
+            // margin-left: -175px;
+        }
+        .water_icon{
+            // margin-left: -150px;
+        }
+
+
+    }
+
+    .foot_card{
+        width: 967px;
+        height: 1048px;
+        background-image: linear-gradient(139deg, #333E4D 0%, #202C3A 100%);
+        border: 3px solid rgba(62,68,84,0.20);
+        box-shadow: 0 6px 100px 0 #242735;
+        border-radius: 60px;
+        // margin: 0 auto;
+
+        display: flex;
+        // justify-content: center;
+        flex-direction: column;
+        align-items: center;
+
+        font-family: PingFangSC-Medium;
+        font-weight: Medium;
+        font-size: 55px;
+        color: #FEFEFE;
+        text-align: center;
+        margin-top: 50px;
+
+        // .ul_sty2{
+        //     font-family: PingFangSC-Regular;
+        //     font-weight: Regular;
+        //     font-size: 36px;
+        //     color: #B5C4D1;
+        //     text-align: center;
+        // }
+
+    }
+}

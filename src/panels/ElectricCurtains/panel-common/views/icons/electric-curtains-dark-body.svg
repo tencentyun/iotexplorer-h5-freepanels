@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1125px" height="966px" viewBox="0 0 1125 966" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>electric-curtains-dark-body</title>
+    <defs>
+        <linearGradient x1="9.23611111%" y1="14.0988441%" x2="90.7415254%" y2="84.1523576%" id="linearGradient-1">
+            <stop stop-color="#333E4D" offset="0%"></stop>
+            <stop stop-color="#202C3A" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="electric-curtains-dark-body">
+            <g id="path-2-link" fill="#000000" fill-rule="nonzero">
+                <path d="M774.48,0 C733,0 697.09,25.669 685.23,62.574 C685.06,63.11303 684.89,63.60559 684.71,64.07027 C665.946833,111.99141 616.839045,143.81196 561.968344,143.60363 C507.097643,143.3953 458.271244,111.20292 439.93,63.14091 C439.76,62.68552 439.59,62.21154 439.42,61.67251 C427.94,24.88834 391.09,0 349.9,0 L0,0 L0,966 L1125,966 L1125,0 L774.48,0 Z" id="path-2"></path>
+            </g>
+            <path d="M1.5,1.5 L1.5,964.5 L1123.5,964.5 L1123.5,1.5 L774.48,1.5 C733.891139,1.5 698.388616,26.53075 686.660542,63.02516 C686.476943,63.60731 686.296758,64.12667 686.106751,64.61716 C667.112818,113.12767 617.440147,145.31425 561.962649,145.10362 C506.484673,144.89298 457.095731,112.3297 438.524726,63.66551 C438.313672,63.10014 438.149711,62.6318 437.988113,62.11939 C426.780081,26.20665 390.710891,1.5 349.9,1.5 L1.5,1.5 Z" id="路径" stroke-opacity="0.2" stroke="#3E4454" stroke-width="3" fill="url(#linearGradient-1)"></path>
+        </g>
+    </g>
+</svg>

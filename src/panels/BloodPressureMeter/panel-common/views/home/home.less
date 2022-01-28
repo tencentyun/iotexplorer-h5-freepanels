@@ -1,0 +1,152 @@
+.home {
+  padding-bottom: 50px;
+  .dashboard {
+    width: 1000px;
+    height: 1500px;
+    margin: 0 auto;
+    padding-top: 50px;
+
+    .dashboard-info{
+      width: 100%;
+      box-shadow: 0 6px 15px 0 rgba(32,33,33,0.05);
+      border-radius: 60px;
+
+      .dev-info{
+        display: flex;
+        justify-content: space-between;
+        padding: 50px;
+
+        .setting{
+          display: flex;
+          align-items: center;
+          img{
+            height: 55px;
+          }
+        }
+      }
+      .my-head{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 50px;
+        img{
+          width: 160px;
+          margin-bottom: 50px;
+        }
+      }
+      .my-info{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        margin-bottom: 80px;
+
+        .title{
+          width: 170px;
+          height: 640px;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-around;
+          align-items: center;
+          .unit{
+            font-size: 24px;
+            text-align: right;
+          }
+        }
+        .num{
+          width: 170px;
+          height: 400px;
+          overflow: hidden;
+          margin-top: 130px;
+          .num-wrap{
+            width: 170px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            align-items: baseline;
+            margin-top: -200px;
+            transition: margin-top 1s;
+            .num-tick-wrap{
+              margin-left:30px;
+              height: 42px;
+              line-height: 42px;
+              // display: flex ;
+              // align-items: center;
+              float: left;
+              .num-tick1{
+                line-height: 42px;
+                background-color: #0f0f0f;
+                width: 30px;
+                height: 4px;
+                float: left;
+              }
+              .num-tick2{
+                line-height: 42px;
+                background-color: #0f0f0f;
+                width: 50px;
+                height: 4px;
+                float: left;
+              }
+              p{
+                line-height: 42px;
+                font-size: 36px;
+                margin-left: 16px;
+                float: left;
+                margin-top:-22px;
+                color: #B5C4D1;
+              }
+            }
+          }
+        }
+        .values{
+          width: 440px;
+          height: 640px;
+          border-radius: 60px;
+          font-size: 120px;
+          display: flex;
+          flex-direction: row;
+          justify-content: space-around;
+          align-items: center;
+
+          .pre-img{
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            align-items: center;
+            img{
+              display: inline-block;
+              height: 40px;
+            }
+          }
+          .pre-value{
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            align-items: flex-end;
+          }
+        }
+        .unit{
+          font-size: 36px;
+        }
+      }
+      .dev-btn{
+        height: 200px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+        border-top: 3px solid #EDEEF2;
+      }
+    }
+  }
+  .measure-btn{
+    width: 800px;
+    height: 150px;
+    border-radius: 115.5px;
+    margin: 80px auto 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}

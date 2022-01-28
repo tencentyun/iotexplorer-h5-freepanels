@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="114px" height="41px" viewBox="0 0 114 41" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 59.1 (86144) - https://sketch.com -->
+    <title>高压</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M258.472136,145.944272 L270.381966,169.763932 C271.616912,172.233825 270.615791,175.23719 268.145898,176.472136 C267.451621,176.819275 266.686056,177 265.90983,177 L242.09017,177 C239.328746,177 237.09017,174.761424 237.09017,172 C237.09017,171.223775 237.270895,170.458209 237.618034,169.763932 L249.527864,145.944272 C250.76281,143.474379 253.766175,142.473258 256.236068,143.708204 C257.203705,144.192022 257.988317,144.976635 258.472136,145.944272 Z" id="path-1"></path>
+        <filter x="-374.8%" y="-352.1%" width="849.6%" height="849.6%" filterUnits="objectBoundingBox" id="filter-2">
+            <feOffset dx="0" dy="6" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="50" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0.125490196   0 0 0 0 0.127812629   0 0 0 0 0.129411765  0 0 0 0.1 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="切图" transform="translate(-227.000000, -1659.000000)">
+            <g id="莫兰迪" transform="translate(30.000000, 1523.000000)">
+                <g id="高压" transform="translate(254.000000, 157.000000) scale(1, -1) rotate(-270.000000) translate(-254.000000, -157.000000) ">
+                    <use fill="black" fill-opacity="1" filter="url(#filter-2)" xlink:href="#path-1"></use>
+                    <use fill="#B5ABA1" fill-rule="evenodd" xlink:href="#path-1"></use>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

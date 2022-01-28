@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="103px" height="11px" viewBox="0 0 103 11" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 59.1 (86144) - https://sketch.com -->
+    <title>显示数字</title>
+    <desc>Created with Sketch.</desc>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="2" transform="translate(-802.000000, -915.000000)">
+            <g id="脂肪量" transform="translate(144.000000, 882.000000)">
+                <g id="显示数字" transform="translate(661.000000, 36.000000)">
+                    <line x1="0.407563025" y1="0.4" x2="29.7521008" y2="0.4" id="直线-2" stroke="#B5C4D1" stroke-width="5" stroke-linecap="round"></line>
+                    <ellipse id="椭圆形" fill="#B5C4D1" cx="48.092437" cy="4.8" rx="3.2605042" ry="3.2"></ellipse>
+                    <line x1="67.2478992" y1="0.4" x2="96.592437" y2="0.4" id="直线-2备份" stroke="#B5C4D1" stroke-width="5" stroke-linecap="round"></line>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

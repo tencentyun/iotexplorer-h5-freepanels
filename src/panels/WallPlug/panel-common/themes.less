@@ -1,0 +1,299 @@
+/*蓝白主题*/
+.color_primary() {
+  color: var(--global-color-white);
+}
+
+.theme_blue_white {
+  height: 100%;
+  position: relative;
+  background-image: var(--global-background-color-gradient);
+
+  .home {
+
+    &.power-off {
+      #power {}
+    }
+
+    .plugs{
+      .plug_info{
+        background-color: rgba(254,254,254,0.20);
+        .description{
+          .name{
+            color: #FFFFFF;
+          }
+          .state{
+            color: #FFFFFF;
+          }
+        }
+      }
+    }
+
+    .power-tools-bar {
+      position: absolute;
+      padding: 66px 5% 108px;
+      width: 90%;
+      bottom: 50px;
+      #power {
+        background: none;
+        img {
+          width: 180px;
+          height: 180px;
+        }
+      }
+    }
+  }
+
+  .setting-view{
+    .setting-footer{
+      ._component_base_cell_{
+        background-color: rgba(254,254,254,0.20);
+        color: #FFFFFF;
+      }
+    }
+  }
+}
+
+/*暗色主题*/
+.theme_dark {
+  height: 100%;
+  position: relative;
+
+  .home {
+
+    &.power-off {
+      #power {}
+
+    }
+
+    .plugs{
+      margin-top: 50px;
+      .plug_info{
+        background-image: linear-gradient(180deg, #333E4D 0%, #202C3A 100%);
+        .description{
+          .name{
+            color: #FFFFFF;
+          }
+          .state{
+            color: #FFFFFF;
+          }
+        }
+      }
+    }
+
+    .power-tools-bar {
+      position: absolute;
+      padding: 66px 5% 108px;
+      width: 90%;
+      bottom: 300px;
+      #power {
+        background: none;
+        img {
+          width: 180px;
+          height: 180px;
+        }
+      }
+    }
+  }
+  .setting-view{
+    .setting-footer{
+      margin-top: 50px;
+      background-image: none !important;
+      ._component_base_cell_{
+        background-image: linear-gradient(180deg, #333E4D 0%, #202C3A 100%);
+        color: #FFFFFF;
+      }
+    }
+  }
+}
+
+/*多彩主题*/
+.theme_colorful {
+  height: 100%;
+  position: relative;
+
+  .home {
+    .color_primary;
+    background-color: #f4f8fb;
+
+    &.power-off {
+      #power {}
+    }
+
+    .plugs{
+      width: 85%;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      .plug_info{
+        background-color: #FFFFFF;
+        width: 46%;
+        height: 320px;
+        display: inline-block;
+        margin: 0;
+        .plug_img{
+          width: 150px;
+          height: 150px;
+          margin-top: 30px;
+          margin-left: 60px;
+          img{
+            width: 150px;
+            height: 150px;
+          }
+        }
+        .description{
+          width: 200px;
+          .name{
+            color: #0f0f0f;
+          }
+        }
+        .plug_clock, .plug_count_down{
+          margin-left: 100px;
+        }
+      }
+    }
+
+    .power-tools-bar {
+      position: absolute;
+      padding: 66px 5% 108px;
+      width: 90%;
+      bottom: 50px;
+      #power {
+        background: none;
+        img {
+          width: 180px;
+          height: 180px;
+        }
+      }
+    }
+  }
+  .setting-view{
+    .setting-footer{
+      background-image: none !important;
+      ._component_base_cell_{
+        color: #0f0f0f;
+      }
+    }
+  }
+}
+
+/*莫兰迪主题*/
+.theme_morandi {
+  height: 100%;
+  position: relative;
+
+  .home {
+
+    &.power-off {
+      #power {}
+
+      #plugs{
+        color: #B6C4D2 !important;
+      }
+    }
+
+    .plugs{
+      width: 85%;
+      margin: 50px auto;
+      display: flex;
+      justify-content: space-between;
+      .plug_info{
+        width: 46%;
+        height: 320px;
+        display: inline-block;
+        margin: 0;
+        background-color: #FFFFFF;
+        .plug_img{
+          width: 150px;
+          height: 150px;
+          margin-top: 30px;
+          margin-left: 60px;
+          img{
+            width: 150px;
+            height: 150px;
+          }
+        }
+        .description{
+          width: 200px;
+          .name{
+            color: #535E6F;
+          }
+          .state{
+            color: #B5C4D1;
+          }
+        }
+        .plug_clock, .plug_count_down{
+          margin-left: 100px;
+        }
+      }
+    }
+
+    .power-tools-bar {
+      position: absolute;
+      padding: 66px 5% 108px;
+      width: 90%;
+      bottom: 300px;
+      #power {
+        background: none;
+        img {
+          width: 180px;
+          height: 180px;
+        }
+      }
+    }
+  }
+  .setting-view{
+    .setting-footer{
+      margin-top: 50px;
+      background-image: none !important;
+      ._component_base_cell_{
+        color: #545F70;
+      }
+    }
+  }
+}
+
+/*黑白主题*/
+.theme_normal {
+  height: 100%;
+  position: relative;
+
+  #app{
+    background-color: #f4f8fb;
+    min-height: 100vh;
+  }
+  .home {
+    &.power-off {
+      #power {}
+      #plugs{
+        .plug_info{
+          .description{
+            .name{
+              color: #B6C4D2 !important;
+            }
+          }
+        }
+      }
+    }
+
+    .plugs{
+      .plug_info{
+        background-color: #FFFFFF;
+      }
+    }
+
+    .power-tools-bar {
+      position: absolute;
+      padding: 66px 5% 108px;
+      width: 90%;
+      bottom: 50px;
+      #power {
+        background: none;
+        img {
+          width: 180px;
+          height: 180px;
+        }
+      }
+    }
+  }
+}
+

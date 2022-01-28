@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="76px" height="76px" viewBox="0 0 76 76" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 59.1 (86144) - https://sketch.com -->
+    <title>更多记录</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="33.4001051%" y1="4.18229167%" x2="73.7678217%" y2="105.080729%" id="linearGradient-1">
+            <stop stop-color="#00F0FF" offset="0%"></stop>
+            <stop stop-color="#704DF0" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="暗色" transform="translate(-554.000000, -468.000000)">
+            <g transform="translate(91.000000, 418.000000)" id="更多记录">
+                <g transform="translate(463.000000, 50.000000)">
+                    <circle id="椭圆形" fill="url(#linearGradient-1)" cx="38" cy="38" r="38"></circle>
+                    <line x1="51.375" y1="47.375" x2="37.625" y2="38.625" id="直线-2备份" stroke="#222532" stroke-width="5" stroke-linecap="round"></line>
+                    <line x1="37.5" y1="16.3888889" x2="37.5" y2="38.6111111" id="直线-2" stroke="#222532" stroke-width="5" stroke-linecap="round"></line>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="80px" height="80px" viewBox="0 0 80 80" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 59.1 (86144) - https://sketch.com -->
+    <title>CO报警器</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="linearGradient-1">
+            <stop stop-color="#57C6D6" offset="0%"></stop>
+            <stop stop-color="#60A1DF" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="切图多彩" transform="translate(-615.000000, -640.000000)">
+            <g id="编组-2" transform="translate(52.000000, 121.000000)">
+                <g id="编组" transform="translate(0.000000, 520.000000)"></g>
+                <g id="CO报警器" transform="translate(563.000000, 519.000000)">
+                    <circle id="椭圆形" fill="url(#linearGradient-1)" cx="40" cy="40" r="40"></circle>
+                    <text id="CO" font-family="PingFangSC-Medium, PingFang SC" font-size="30" font-weight="400" fill="#FFFFFF">
+                        <tspan x="17" y="52">CO</tspan>
+                    </text>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

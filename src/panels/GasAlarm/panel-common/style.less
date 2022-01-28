@@ -1,0 +1,460 @@
+html, body {
+  min-height: 100vh;
+  user-select: none;
+}
+p {
+  padding: 0;
+  margin: 0;
+}
+
+.gas-alarm {
+  padding: 60px 69px 120px 78px;
+  min-height: calc(~"100vh - 180px");
+  
+  .alarm-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 211px;
+    .battery-percent {
+      margin-left: 18px;
+      font-size: 48px;
+      color: #B5C4D1;
+    }
+    .label {
+      font-family: PingFangSC-Medium;
+      line-height: 50px;
+      font-size: 36px;
+      color: #B5C4D1;
+    }
+    .active {
+      color: #0F0F0F;
+      background: none;
+    }
+  }
+    
+  .tips {
+    display: flex;
+    justify-content: center;
+    margin: 280px 0 112px;
+    min-height: 62px;
+    span {
+      position: relative;
+      display: inline-block;
+      line-height: 50px;
+      font-size: 36px;
+      color: #B5C4D1;
+      text-align: center;
+      &::before {
+        position: absolute;
+        left: -24px;
+        top: 18px;
+        content: '';
+        display: inline-block;
+        width: 14px;
+        height: 14px;
+        border-radius: 50%;
+        background: #B5C4D1;
+      }
+    }
+    
+  }
+  .footer-button {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0 91px 0 82px;
+    color: #B5C4D1;
+    & > .button-block {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 295px;
+      height: 300px;
+      padding: 55px 72px;
+      .button-icon {
+        display: block;
+        margin-bottom: 40px;
+      }
+      .icon-record {
+        width: 76px;
+        height: 76px;
+      }
+      .icon-setting {
+        width: 75px;
+        height: 75px;
+      }
+      .button-name {
+        line-height: 50px;
+        font-family: PingFangSC-Medium;
+        font-size: 36px;
+      }
+    }
+  }
+}
+
+.alarm-setting {
+  padding: 108px 84px 0 76px;
+  min-height: calc(~"100vh - 108px");
+  .setting-block {
+    padding: 31px 49px 30px 66px;
+    ._cell_size_medium_ {
+      padding: 49px 24px 53px 0px;
+      border-bottom: 3px solid rgba(181, 196, 209, 0.50);
+      &:last-child {
+        border-bottom: 0;
+      }
+    }
+    .cell_content_style_gray {
+      font-family: PingFangSC-Regular;
+    }
+  }
+  
+}
+
+.gas-alarm-record {
+  min-height: 100vh;
+  padding: 0 80px 0 78px;
+  .no-record-tips {
+    padding-top: 867px;
+    font-family: PingFangSC-Medium;
+    font-size: 48px;
+    color: #B5C4D1;
+    text-align: center;
+  }
+  .adm-steps-vertical {
+    padding: 57px 0 0;
+    .adm-step {
+      margin-bottom: 50px;
+      &:first-child {
+        .adm-step-indicator {
+          &::before {
+            content: '';
+            position: absolute;
+            display: inline-block;
+            left: 50%;
+            top: -60%;
+            width: 3px;
+            height: 340px;
+            background-color: #B5C4D1;
+            transform: translateX(-50%);
+            z-index: 0;
+          }
+        }
+      }
+      .adm-step-indicator {
+        margin-right: 93px;
+        &::after {
+          top: 50%;
+          width: 3px;
+          height: 340px;
+          background-color: #B5C4D1;
+        }
+        .adm-step-icon-container {
+          top: 50%;
+          border-radius: 50%;
+        }
+      }
+    }
+  }
+  
+  .adm-step-icon-dot {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: #000000;
+  }
+  .adm-step-content {
+    
+    width: 822px;
+    height: 290px;
+    background: #FFFFFF;
+    box-shadow: 0 6px 50px 0 rgba(32,33,33,0.10);
+    border-radius: 60px;
+  }
+
+  .item {
+    display: flex;
+    justify-content: space-between;
+    padding: 34px 65px 62px 66px;
+    color: #0F0F0F;
+    .item-left {
+      .detail {
+        margin-bottom: 40px;
+        .time {
+          display: inline-block;
+          min-width: 265px;
+          line-height: 109px;
+          font-family: PingFangSC-Medium;
+          font-size: 92px;
+          text-align: left;
+        }
+        .week {
+          margin-left: 12px;
+          font-family: PingFangSC-Medium;
+          font-size: 36px;
+          color: #B5C4D1;
+        }
+      }
+      .date {
+        line-height: 45px;
+        font-family: PingFangSC-Regular;
+        font-size: 36px;
+      }
+    }
+    .item-right {
+      .status {
+        margin-top: 38px;
+        line-height: 109px;
+        font-family: PingFangSC-Medium;
+        font-size: 48px;
+        text-align: right;
+      }
+      .label {
+        line-height: 45px;
+        font-family: PingFangSC-Regular;
+        font-size: 36px;
+        text-align: right;
+      }
+    }
+  }
+  .footer {
+    position: fixed;
+    bottom: 150px;
+    font-size: 48px;
+    color: #000000;
+    text-align: center;
+    z-index: 10;
+    .footer-button {
+      width: 965px;
+      height: 200px;
+      line-height: 200px;
+      font-family: PingFangSC-Medium;
+      background: #FFFFFF;
+      box-shadow: 0 6px 50px 0 rgba(32,33,33,0.10);
+      border-radius: 60px;
+    }
+  }
+}
+
+.bottom-fill {
+  padding-bottom: 400px;
+}
+
+body.theme_blue_white {
+  .gas-alarm {
+    background-image: linear-gradient(180deg, #45A3FF 6%, #005BFF 100%);
+  }
+  .alarm-header {
+    .battery-percent {
+      color: #FFFFFF;
+    }
+    .label {
+      color: #FFFFFF;
+    }
+    .active {
+      color: #FFFFFF;
+    }
+  }
+  .tips {
+    span {
+      color: #FFFFFF;
+      &::before {
+        background: #FFFFFF;
+      }
+    }
+  }
+  .footer-button {
+    color: #323232;
+  } 
+
+  .gas-alarm-record {
+    .adm-step-icon-dot {
+      background: #2885FE;
+    }
+  }
+
+  .alarm-setting {
+    background: #F4F8FB;
+  }
+  .gas-alarm-record {
+    background: #F4F8FB;
+  }
+}
+
+body.theme_dark {
+  .alarm-header {
+    .battery-percent {
+      color: #FFFFFF;
+    }
+    .label {
+      color: #FFFFFF;
+    }
+    .active {
+      color: #FFFFFF;
+    }
+  }
+  .tips {
+    span {
+      color: #FFFFFF;
+      &::before {
+        background: #FFFFFF;
+      }
+    }
+  }
+  .footer-button {
+    color: #FFFFFF;
+  } 
+  .alarm-setting {
+    .setting-block {
+      ._cell_size_medium_ {
+        border-bottom: 3px solid #3C4858;
+        &:last-child {
+          border-bottom: 0;
+        }
+        .cell-title {
+          color: #FFFFFF;
+        }
+      }
+    }
+  }
+
+  .gas-alarm-record {
+    .adm-steps-vertical {
+      .adm-step {
+        &:first-child {
+          .adm-step-indicator {
+            &::before {
+              background-color: #3C4858;
+            }
+          }
+        }
+        .adm-step-indicator {
+          &::after {
+            background-color: #3C4858;
+          }
+        }
+      }
+    }
+    
+    .adm-step-icon-dot {
+      background-image: linear-gradient(136deg, #0BE1FE 2%, #4A85F5 100%);
+    }
+    .adm-step-content {
+      background-image: linear-gradient(180deg, #333E4D 0%, #202C3A 100%);
+      border: 3px solid rgba(62,68,84,0.20);
+      box-shadow: 0 6px 100px 0 #242735;
+    }
+  
+    .item {
+      color: #FFFFFF;
+    }
+    .footer {
+      color: #FFFFFF;
+      .footer-button {
+        border: 1px solid #222532;
+        background-image: linear-gradient(137deg, #333E4D 0%, #222D3B 100%);
+      }
+    }
+  }
+}
+
+body.theme_colorful {
+  .alarm-header {
+    .battery-percent {
+      color: #656565;
+    }
+    .label {
+      color: #656565;
+    }
+    .active {
+      color: #656565;
+    }
+  }
+  .tips {
+    span {
+      color: #656565;
+      &::before {
+        background: #346AF8;
+      }
+    }
+  }
+  .footer-button {
+    color: #323232;
+  }
+  .gas-alarm-record {
+    .adm-step-icon-dot {
+      background: #ED2F26;
+    }
+  }
+}
+
+body.theme_morandi {
+  .gas-alarm {
+    padding: 0 0 60px;
+    .alarm-header-morandi{
+      padding: 60px 79px 106px 78px;
+      background-image: linear-gradient(180deg, #576273 0%, #414B5B 86%);
+      box-shadow: 0 6px 100px 0 rgba(32,33,33,0.10);
+      .battery-percent {
+        color: #FFFFFF;
+      }
+      .label {
+        color: #FFFFFF;
+      }
+      .active {
+        color: #FFFFFF;
+      }
+    }
+    .tips {
+      margin: 174px 0 112px;
+      span {
+        color: #656565;
+        &::before {
+          background: #656565;
+        }
+      }
+    }
+    .footer-button {
+      padding: 0 79px 0 78px;
+      color: #323232;
+    }
+  }
+  .gas-alarm-record {
+    .adm-step-icon-dot {
+      background: #424C5C;
+    }
+    .item {
+      color: #424C5C;
+      .item-left {
+        .detail {
+          .week {
+            color: #424C5C;
+          }
+        }
+      }
+      .item-right {
+        .status {
+          color: #B5ABA1;
+        }
+        .label {
+          color: #B5ABA1;
+        }
+      }
+    }
+    .footer-button {
+      color: #424C5C;
+    } 
+  }
+
+  .alarm-setting {
+    .setting-block {
+      ._cell_size_medium_ {
+        .cell-title {
+          color: #424C5C;
+        }
+      }
+    }
+  }
+}

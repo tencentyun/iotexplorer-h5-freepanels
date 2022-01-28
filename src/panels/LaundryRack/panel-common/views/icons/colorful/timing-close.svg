@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="130px" height="130px" viewBox="0 0 130 130" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 59.1 (86144) - https://sketch.com -->
+    <title>定时置灰</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="linearGradient-1">
+            <stop stop-color="#F773B2" offset="0%"></stop>
+            <stop stop-color="#9879F1" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="linearGradient-2">
+            <stop stop-color="#F773B2" offset="0%"></stop>
+            <stop stop-color="#9879F1" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="linearGradient-3">
+            <stop stop-color="#F773B2" offset="0%"></stop>
+            <stop stop-color="#9879F1" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" opacity="0.4">
+        <g id="切图" transform="translate(-796.000000, -3758.000000)">
+            <g id="多彩" transform="translate(54.000000, 3533.000000)">
+                <g id="功能选择" transform="translate(16.000000, 225.000000)">
+                    <g id="定时置灰" transform="translate(726.000000, 0.000000)">
+                        <circle id="椭圆形备份-4" fill="url(#linearGradient-1)" cx="65" cy="65" r="65"></circle>
+                        <g id="云端定时" transform="translate(32.000000, 32.000000)">
+                            <circle id="椭圆形" fill="#FFFFFF" cx="33" cy="33" r="33"></circle>
+                            <rect id="矩形" fill="url(#linearGradient-2)" x="29.0424935" y="14" width="5" height="22" rx="2.5"></rect>
+                            <rect id="矩形" fill="url(#linearGradient-3)" transform="translate(38.328968, 38.118322) rotate(123.000000) translate(-38.328968, -38.118322) " x="35.828968" y="28.6183221" width="5" height="19" rx="2.5"></rect>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

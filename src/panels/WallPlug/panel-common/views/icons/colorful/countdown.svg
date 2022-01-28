@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="48px" height="65px" viewBox="0 0 48 65" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 59.1 (86144) - https://sketch.com -->
+    <title>倒计时选中</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="19.4151626%" y1="4.96382508%" x2="85.1421257%" y2="94.6223958%" id="linearGradient-1">
+            <stop stop-color="#527DF4" offset="0.00791807432%"></stop>
+            <stop stop-color="#044DFF" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="13.6015158%" y1="35.7502728%" x2="91.8220339%" y2="64.1188049%" id="linearGradient-2">
+            <stop stop-color="#527DF4" offset="0.00791807432%"></stop>
+            <stop stop-color="#044DFF" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="1备份" transform="translate(-962.000000, -2987.000000)">
+            <g id="编组-3" transform="translate(100.000000, 2984.000000)">
+                <g id="多彩" transform="translate(688.000000, 0.000000)">
+                    <g id="倒计时选中" transform="translate(174.000000, 3.000000)">
+                        <path d="M18.7216581,42.0093491 C18.418409,42.0099389 18.1183723,42.0721922 17.8393832,42.1924085 C14.0826844,43.8011858 11.2435684,47.0377827 10.1115599,51.0021397 C9.85534857,51.7966916 10.0477727,52.6693309 10.6135045,53.2784478 C11.1792363,53.8875648 12.0282767,54.1362583 12.8282542,53.9271731 C13.6282317,53.7180879 14.2518823,53.0844861 14.4550672,52.2744021 C15.2253904,49.637556 17.1156319,47.4840798 19.612982,46.398197 C20.6114245,45.9743466 21.1729316,44.8942918 20.9523082,43.8220131 C20.7316847,42.7497344 19.790803,41.985945 18.7080846,42.0001961 L18.7216581,42.0093491 Z" id="路径" fill="url(#linearGradient-1)"></path>
+                        <path d="M45,62 L3.00594173,62 L3.00594173,55.1229539 C2.73278382,43.7286911 11.9120354,34.2742364 23.5083742,34.0058382 C35.104713,33.73744 44.7268415,42.7567352 45,54.1509981 L45,62 L45,62 Z" id="路径" stroke="#2B65FA" stroke-width="5" fill-rule="nonzero"></path>
+                        <path d="M24,27 C10.7512582,26.9876 0.0146963324,17.9286259 0,6.74999997 L0,0 L48,0 L48,6.74999997 C47.9853037,17.9286259 37.2487418,26.9876 24,27 Z" id="路径" fill="url(#linearGradient-2)"></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

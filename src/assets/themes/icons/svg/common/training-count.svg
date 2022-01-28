@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="75px" height="75px" viewBox="0 0 75 75" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 59.1 (86144) - https://sketch.com -->
+    <title>记时训练</title>
+    <desc>Created with Sketch.</desc>
+    <g id="页面-1" stroke="none" stroke-width="1" fill-rule="evenodd">
+        <g id="1" transform="translate(-866.000000, -2083.000000)">
+            <g id="记时训练" transform="translate(755.000000, 1998.000000)">
+                <g transform="translate(111.000000, 85.000000)">
+                    <circle id="椭圆形" cx="37.5" cy="37.5" r="37.5"></circle>
+                    <text id="123" font-family="PingFangSC-Semibold, PingFang SC" font-size="30" font-weight="500" fill="#FFFFFF">
+                        <tspan x="13.2418919" y="50">123</tspan>
+                    </text>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

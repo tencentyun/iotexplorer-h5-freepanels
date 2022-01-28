@@ -1,0 +1,59 @@
+._component_base_switch_ {
+  --active-color: linear-gradient(#0f0f0f, #0f0f0f);
+  --inactive-color: linear-gradient(#B5C4D1, #B5C4D1);
+
+  .switch-inner {
+    position: relative;
+    width: 150px;
+    height: 66px;
+    border-radius: 50px;
+    background-image: var(--inactive-color);
+    transition: .3s background-image ease-out;
+
+    &::before {
+      position: absolute;
+      left: 10px;
+      top: (66px - 48px) / 2;
+      content: '';
+      display: block;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background-color: #fff;
+      transition: .2s left ease-out;
+    }
+
+    &.is_checked {
+      background-image: var(--active-color);
+      &::before {
+        left: 92px;
+      }
+    }
+
+    &.is_disabled {
+      opacity: 0.3;
+    }
+  }
+
+  &.theme_blue_white {
+    --active-color: linear-gradient(90deg, #559DFC 3%, #3171FA 98%);
+  }
+
+  &.theme_colorful {
+    --active-color: linear-gradient(138deg, #527DF4 0%, #044DFF 100%);
+  }
+
+  &.theme_dark {
+    .switch-inner {
+      background-image: none;
+      background-color: #222532;
+      &.is_checked {
+        background-image: linear-gradient(137deg, #00F0FF 0%, #704DF0 100%);
+      }
+    }
+  }
+
+  &.theme_morandi {
+    --active-color: linear-gradient(#B5ABA1, #B5ABA1);
+  }
+}

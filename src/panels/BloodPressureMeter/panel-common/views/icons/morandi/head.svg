@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="143px" height="152px" viewBox="0 0 143 152" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 59.1 (86144) - https://sketch.com -->
+    <title>编辑昵称</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M912.494597,0 C934.333928,0 952,17.2468003 952,38.5 C952,59.7531997 934.312304,77 912.494597,77 C890.687701,77 873,59.7531997 873,38.5 C872.989193,17.2468003 890.687701,0 912.494597,0 Z M897.659191,87 L930.340809,87 C958.321426,87 981,109.206044 981,136.60561 L981,139.790115 C981,150.593922 958.321426,151 930.340809,151 L897.659191,151 C869.689307,151 847,150.978628 847,139.790115 L847,136.60561 C847,109.206044 869.667841,87 897.659191,87 Z" id="path-1"></path>
+        <filter x="-114.2%" y="-97.4%" width="328.4%" height="302.6%" filterUnits="objectBoundingBox" id="filter-2">
+            <feOffset dx="0" dy="6" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="50" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0.125490196   0 0 0 0 0.127812629   0 0 0 0 0.129411765  0 0 0 0.1 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="切图" transform="translate(-872.000000, -1522.000000)">
+            <g id="莫兰迪" transform="translate(30.000000, 1523.000000)">
+                <g id="编辑昵称">
+                    <use fill="black" fill-opacity="1" filter="url(#filter-2)" xlink:href="#path-1"></use>
+                    <use fill="#4F5A69" fill-rule="evenodd" xlink:href="#path-1"></use>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

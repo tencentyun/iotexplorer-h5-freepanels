@@ -1,0 +1,95 @@
+.home-container {
+  position: relative;
+  // padding-top: 80px;
+}
+
+.mode-item {
+  font-size: 36px;
+  line-height: 50px;
+  .item-inner {
+    width: 295px;
+    height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    color: #B5C4D1;
+  }
+
+  .item-icon {
+    width: 75px;
+    height: 75px;
+    margin-bottom: 36px;
+  }
+}
+
+.dialog {
+  padding: 90px 120px;
+  border-radius: 120px;
+  background: #FFFFFF;
+  box-shadow: 0 6px 100px 0 rgba(32,33,33,0.10);
+  .items {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    &:first-child {
+      border-bottom: 3px solid #EDEEF2;
+    }
+    .itme {
+      flex: 1;
+    }
+    .label {
+      margin-bottom: 15px;
+      padding-top: 90px;
+      line-height: 67px;
+      font-size: 48px;
+      letter-spacing: 0.53px;
+      color: #B5C4D1;
+    }
+    .content {
+      margin-bottom: 90px;
+      font-size: 48px;
+      color: #0F0F0F;
+      text-align: center;
+    }
+  }
+}
+
+body.theme_blue_white {
+  .home-container {
+    min-height: 100vh;
+    padding-bottom: 80px;
+    background-image: linear-gradient(180deg, #45A3FF 6%, #005BFF 100%);
+  }
+}
+
+body.theme_dark {}
+
+body.theme_colorful {
+}
+
+body.theme_morandi {
+  .home-container {
+    position: relative;
+    .morandi-header {
+      margin-bottom: 467px;
+      height: 1270px;
+      background-image: linear-gradient(180deg, #576273 0%, #414B5B 86%);
+      box-shadow: 0 6px 100px 0 rgba(32,33,33,0.10);
+    }
+    .morandi-middle {
+      position: absolute;
+      top: 212px;
+      left: 50%;
+      margin-left: -486px;
+      width: 972px;
+      background: #FFFFFF;
+      box-shadow: 0 6px 50px 0 rgba(32,33,33,0.10);
+      border-radius: 60px;
+      .dashboard-wrap {
+        padding-top: 58px;
+      }
+    }
+  }
+  
+}

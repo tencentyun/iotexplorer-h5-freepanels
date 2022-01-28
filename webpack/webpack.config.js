@@ -1,5 +1,5 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 const path = require('path');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const webpack = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const panelConfig = require('./panel-conf');
@@ -7,6 +7,10 @@ const TerserPlugin = require('terser-webpack-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const autoPreFixer = require('autoprefixer');
 const postcss = require('postcss-pxtorem');
+const viewportConfig = require('./pxToViewport.config');
+const argv = require('minimist')(process.argv.slice(2));
+const category = argv.category || process.env.npm_config_category || '';
+
 class ModifiedMiniCssExtractPlugin extends MiniCssExtractPlugin {
   getCssChunkObject(mainChunk) {
     return {};
@@ -18,14 +22,26 @@ module.exports = (env, argv) => {
   const isDevMode = mode === 'development';
   const rootPath = path.join(__dirname, '../');
   const srcPath = path.join(rootPath, 'src');
-  const outputPath = path.join(rootPath, 'dist', isDevMode ? 'debug' : 'release');
+  const outputPath = path.join(
+    rootPath,
+    'dist',
+    isDevMode ? 'debug' : 'release',
+  );
 
   const entry = {};
 
   Object.keys(panelConfig).forEach((categoryKey) => {
-    const { enable, panels } = panelConfig[categoryKey];
-
-    if (enable && panels && panels.length) {
+    const { enable, panels, viewportWidth } = panelConfig[categoryKey];
+    // console.log('build is DevEnv: ', isDevMode, ', build length:', panels.length);
+    if (
+      enable
+      && panels
+      && panels.length
+      && ((category && categoryKey === category) || (!category && !isDevMode)) //
+    ) {
+      if (viewportWidth) {
+        viewportConfig.viewportWidth = viewportWidth;
+      }
       panels.forEach((panelInfo) => {
         let panelName;
         const options = { enable: true, entry: 'app.tsx' };
@@ -34,18 +50,22 @@ module.exports = (env, argv) => {
           panelName = panelInfo;
         } else if (panelInfo.splice) {
           const [_name, _options] = panelInfo;
-
           panelName = _name;
           Object.assign(options, _options);
         }
-
+        // console.log('build panelInfo -->', panelName);
         if (options.enable) {
-          entry[`${categoryKey}_${panelName}`] = path.join(srcPath, 'panels', `${categoryKey}/${panelName}`, options.entry);
+          entry[`${categoryKey}_${panelName}`] = path.join(
+            srcPath,
+            'panels',
+            `${categoryKey}/${panelName}`,
+            options.entry,
+          );
         }
       });
     }
   });
-
+  console.log('entry list --->', Object.keys(entry).length, entry);
   return {
     name: 'iotexplorer-h5-freepanels',
     mode,
@@ -54,6 +74,8 @@ module.exports = (env, argv) => {
       path: outputPath,
       filename: isDevMode ? '[name].js' : '[name].[contenthash:10].js',
       libraryTarget: 'umd',
+      asyncChunks: true,
+      clean: true,
     },
     externals: {
       react: 'React',
@@ -61,12 +83,16 @@ module.exports = (env, argv) => {
       'qcloud-iotexplorer-h5-panel-sdk': 'h5PanelSdk',
     },
     devServer: {
-      contentBase: outputPath,
+      // contentBase: outputPath,
       compress: true,
       port: 9000,
-      disableHostCheck: true, //  新增该配置项
+      // disableHostCheck: true, //  新增该配置项
       // hot: true,
       https: true,
+      static: {
+        directory: path.join(__dirname, outputPath),
+      },
+      open: true,
     },
     module: {
       // 现在的 babel 配置已经很简单了，我们只需要加入默认的配置即可
@@ -78,7 +104,11 @@ module.exports = (env, argv) => {
             loader: 'babel-loader',
             options: {
               sourceType: 'unambiguous',
-              presets: ['@babel/preset-env', '@babel/preset-react'],
+              presets: [
+                '@babel/preset-env',
+                '@babel/preset-react',
+                '@babel/preset-typescript',
+              ],
               plugins: [
                 '@babel/plugin-proposal-class-properties',
                 [
@@ -89,6 +119,16 @@ module.exports = (env, argv) => {
                     helpers: true,
                     regenerator: false,
                     useESModules: false,
+                  },
+                ],
+                ['babel-plugin-styled-components-px2vw', viewportConfig],
+                // antd 按需引入
+                [
+                  'import',
+                  {
+                    libraryName: 'antd-mobile',
+                    libraryDirectory: 'es/components',
+                    style: false,
                   },
                 ],
               ],
@@ -118,11 +158,8 @@ module.exports = (env, argv) => {
               options: {
                 ident: 'postcss',
                 plugins: [
+                  require('postcss-px-to-viewport')(viewportConfig),
                   autoPreFixer(),
-                  postcss({
-                    rootValue: 46.875,
-                    propList: ['*'],
-                  }),
                 ],
               },
             },
@@ -133,6 +170,7 @@ module.exports = (env, argv) => {
         },
         {
           test: /\.svg$/,
+          exclude: [path.resolve(__dirname, '../src/assets/themes')],
           use: [
             'url-loader',
             'svg-transform-loader',
@@ -140,6 +178,18 @@ module.exports = (env, argv) => {
               loader: 'svgo-loader',
               options: {
                 plugins: [{ removeTitle: true }, { convertStyleToAttrs: true }],
+              },
+            },
+          ],
+        },
+        {
+          test: /\.svg$/,
+          include: [path.resolve(__dirname, '../src/assets/themes')],
+          use: [
+            {
+              loader: 'svg-sprite-loader',
+              options: {
+                symbolId: 'icon-[name]',
               },
             },
           ],
@@ -157,28 +207,32 @@ module.exports = (env, argv) => {
         '@libs': path.resolve(__dirname, '../src/libs'),
         '@constants': path.resolve(__dirname, '../src/constants/index.ts'),
         '@icons': path.resolve(__dirname, '../src/assets'),
-        '@underscore': path.resolve(__dirname, '../src/vendor/underscore/index'),
+        '@underscore': path.resolve(
+          __dirname,
+          '../src/vendor/underscore/index'
+        ),
         '@wxlib': path.resolve(__dirname, '../src/libs/wxlib/index.js'),
       },
     },
     devtool: isDevMode ? 'eval-source-map' : false,
-    optimization: !isDevMode ? {
-      chunkIds: 'named',
-      minimize: !isDevMode,
-      minimizer: [
-        new TerserPlugin({
-          extractComments: false,
-        }),
-        new CssMinimizerPlugin(),
-      ],
-    } : {},
+    optimization: !isDevMode
+      ? {
+        chunkIds: 'named',
+        minimize: !isDevMode,
+        minimizer: [
+          new TerserPlugin({
+            extractComments: false,
+          }),
+          new CssMinimizerPlugin(),
+        ],
+      }
+      : {},
     plugins: [
       new webpack.ids.HashedModuleIdsPlugin(),
       new webpack.ProgressPlugin(),
-      new CleanWebpackPlugin(),
       isDevMode && new webpack.HotModuleReplacementPlugin(),
       new webpack.DefinePlugin({
-        'process.env.NODE_ENV': JSON.stringify(mode),
+        'process.env.NODE_ENV': JSON.stringify(mode)
       }),
       new ModifiedMiniCssExtractPlugin({
         filename: isDevMode ? '[name].css' : '[name].[contenthash:10].css',

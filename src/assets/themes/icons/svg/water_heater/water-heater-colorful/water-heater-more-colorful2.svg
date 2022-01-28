@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="74px" height="74px" viewBox="0 0 74 74" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>更多</title>
+    <defs>
+        <linearGradient x1="42.0394992%" y1="-13.25%" x2="56.7789208%" y2="100%" id="linearGradient-1">
+            <stop stop-color="#FFDB01" offset="0%"></stop>
+            <stop stop-color="#FFC105" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="2" transform="translate(-863.000000, -2046.000000)" fill="url(#linearGradient-1)">
+            <g id="编组-4" transform="translate(78.000000, 1962.000000)">
+                <g id="定时开关" transform="translate(674.000000, 0.000000)">
+                    <g id="更多" transform="translate(111.000000, 84.000000)">
+                        <rect id="矩形" x="0" y="0" width="34" height="34" rx="8"></rect>
+                        <rect id="矩形备份-3" x="40" y="0" width="34" height="34" rx="8"></rect>
+                        <rect id="矩形备份-4" x="40" y="40" width="34" height="34" rx="8"></rect>
+                        <rect id="矩形备份-5" x="0" y="40" width="34" height="34" rx="8"></rect>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

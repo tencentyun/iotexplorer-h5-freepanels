@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="70px" height="70px" viewBox="0 0 70 70" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 59.1 (86144) - https://sketch.com -->
+    <title>选中勾</title>
+    <desc>Created with Sketch.</desc>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="8" transform="translate(-928.000000, -426.000000)">
+            <g id="总开关备份" transform="translate(80.000000, 367.000000)">
+                <g id="选中勾" transform="translate(847.820513, 58.804878)">
+                    <circle id="椭圆形" fill="#027CFE" cx="35.1794872" cy="35.195122" r="35"></circle>
+                    <g id="箭头" transform="translate(13.000000, 26.000000)" stroke="#FFFFFF" stroke-linecap="round" stroke-width="6">
+                        <line x1="18.4843652" y1="24.8746091" x2="42.8746091" y2="0.515634772" id="直线"></line>
+                        <line x1="1.17948718" y1="12.195122" x2="17.8746091" y2="24.8746091" id="直线备份"></line>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

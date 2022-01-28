@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="235px" height="234px" viewBox="0 0 235 234" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 59.1 (86144) - https://sketch.com -->
+    <title>关闭中</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="11.8644068%" y1="4.57139995%" x2="104.602754%" y2="104.612954%" id="linearGradient-1">
+            <stop stop-color="#FF3A5F" offset="0%"></stop>
+            <stop stop-color="#EA0D40" offset="100%"></stop>
+        </linearGradient>
+        <ellipse id="path-2" cx="117.5" cy="117" rx="117.5" ry="117"></ellipse>
+        <filter x="-65.1%" y="-62.8%" width="230.2%" height="230.8%" filterUnits="objectBoundingBox" id="filter-3">
+            <feOffset dx="0" dy="6" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="50" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0.125490196   0 0 0 0 0.127812629   0 0 0 0 0.129411765  0 0 0 0.1 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="1备份" transform="translate(-408.000000, -509.000000)">
+            <g id="编组" transform="translate(33.000000, 83.000000)">
+                <g id="关闭中" transform="translate(375.000000, 426.000000)">
+                    <g id="椭圆形">
+                        <use fill="black" fill-opacity="1" filter="url(#filter-3)" xlink:href="#path-2"></use>
+                        <use fill="url(#linearGradient-1)" fill-rule="evenodd" xlink:href="#path-2"></use>
+                    </g>
+                    <path d="M137.327981,91.9247702 L167.481257,140.170012 C170.701071,145.321714 169.134966,152.108168 163.983264,155.327981 C162.235017,156.420636 160.214893,157 158.153276,157 L97.8467241,157 C91.7715918,157 86.8467241,152.075132 86.8467241,146 C86.8467241,143.938383 87.426088,141.918259 88.5187427,140.170012 L118.672019,91.9247702 C121.891832,86.7730683 128.678286,85.2069635 133.829988,88.4267771 C135.246449,89.3120649 136.442694,90.5083097 137.327981,91.9247702 Z" id="三角形" fill="#FFFFFF" transform="translate(128.000000, 117.000000) scale(1, -1) rotate(-270.000000) translate(-128.000000, -117.000000) "></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

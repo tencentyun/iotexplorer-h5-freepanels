@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="63px" height="63px" viewBox="0 0 63 63" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 59.1 (86144) - https://sketch.com -->
+    <title>测量蓝白</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="8.45868644%" y1="0%" x2="111.848517%" y2="112.510417%" id="linearGradient-1">
+            <stop stop-color="#00F0FF" offset="0%"></stop>
+            <stop stop-color="#704DF0" offset="100%"></stop>
+        </linearGradient>
+        <path d="M52,0 C58.0751322,-1.11598369e-15 63,4.92486775 63,11 L63,52 C63,58.0751322 58.0751322,63 52,63 L11,63 C4.92486775,63 7.43989126e-16,58.0751322 0,52 L0,11 C-7.43989126e-16,4.92486775 4.92486775,1.11598369e-15 11,0 L52,0 Z M46.5,45 L13.5,45 C12.1192881,45 11,46.1192881 11,47.5 C11,48.8807119 12.1192881,50 13.5,50 L13.5,50 L46.5,50 C47.8807119,50 49,48.8807119 49,47.5 C49,46.1192881 47.8807119,45 46.5,45 L46.5,45 Z M46.5,29 L13.5,29 C12.1192881,29 11,30.1192881 11,31.5 C11,32.8807119 12.1192881,34 13.5,34 L13.5,34 L46.5,34 C47.8807119,34 49,32.8807119 49,31.5 C49,30.1192881 47.8807119,29 46.5,29 L46.5,29 Z M36.5,13 L13.5,13 C12.1192881,13 11,14.1192881 11,15.5 C11,16.8807119 12.1192881,18 13.5,18 L13.5,18 L36.5,18 C37.8807119,18 39,16.8807119 39,15.5 C39,14.1192881 37.8807119,13 36.5,13 L36.5,13 Z" id="path-2"></path>
+        <filter x="-242.9%" y="-233.3%" width="585.7%" height="585.7%" filterUnits="objectBoundingBox" id="filter-3">
+            <feOffset dx="0" dy="6" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="50" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0.125490196   0 0 0 0 0.127812629   0 0 0 0 0.129411765  0 0 0 0.1 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="1备份" transform="translate(-242.000000, -671.000000)">
+            <g id="暗色" transform="translate(242.000000, 671.000000)">
+                <g id="蓝白备份">
+                    <g id="测量蓝白">
+                        <use fill="black" fill-opacity="1" filter="url(#filter-3)" xlink:href="#path-2"></use>
+                        <use fill="url(#linearGradient-1)" fill-rule="evenodd" xlink:href="#path-2"></use>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

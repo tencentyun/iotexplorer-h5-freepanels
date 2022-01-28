@@ -1,0 +1,83 @@
+.component_business_setting-panel {
+  
+  .panel-top {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    & > img {
+      width: 134px;
+      display: block;
+    }
+    .panel-nickname-edit-area {
+      display: flex;
+      align-items: flex-start;
+      margin-top: 44px;
+      margin-bottom: 30px;
+      & > p {
+        font-family: PingFangSC-Medium;
+        font-size: 48px;
+        color: var(--global-text-color);
+        text-align: center;
+        line-height: 67px;
+        margin-right: 36px;
+      }
+    }
+  }
+
+  .setting-block {
+    padding: 63px 0 49px;
+    ._cell_size_normal_ {
+      .cell-title {
+        line-height: 50px;
+        font-family: PingFangSC-Medium;
+        font-weight: Medium;
+        font-size: 36px;
+      }
+    }
+  }
+}
+
+body.theme_blue_white {}
+
+body.theme_dark {
+  .panel-top {
+    .panel-nickname-edit-area {
+      & > p {
+        color: #FDFDFD;
+      }
+    }
+  }
+  .setting-block {
+    ._cell_size_normal_ {
+      .cell-title {
+        color: #FDFDFD;
+      }
+      .cell_content_style_normal {
+        font-family: PingFangSC-Regular;
+        color: #FDFDFD;
+      }
+    }
+  }
+}
+
+body.theme_morandi {
+  .panel-top {
+    .panel-nickname-edit-area {
+      & > p {
+        color: #B5ABA1;
+      }
+    }
+  }
+  .setting-block {
+    ._cell_size_normal_ {
+      .cell-title {
+        color: #566172;
+      }
+      .cell_content_style_normal {
+        font-family: PingFangSC-Regular;
+        color: #566172;
+      }
+    }
+  }
+}

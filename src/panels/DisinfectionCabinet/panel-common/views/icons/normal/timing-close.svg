@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="74px" height="74px" viewBox="0 0 74 74" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>定时</title>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="1" transform="translate(-135.000000, -2186.000000)" stroke="#B5C4D1" stroke-width="8">
+            <g id="云端定时" transform="translate(135.000000, 2186.000000)">
+                <g id="编组-7">
+                    <g id="定时">
+                        <circle id="椭圆形" cx="37" cy="37" r="33"></circle>
+                        <line x1="46" y1="44" x2="35.25" y2="36.375" id="直线-2备份" stroke-linecap="round"></line>
+                        <line x1="35" y1="19" x2="35" y2="35.7222222" id="直线-2" stroke-linecap="round"></line>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

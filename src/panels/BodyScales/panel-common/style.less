@@ -1,0 +1,65 @@
+* {
+  margin: 0;
+  padding: 0;
+  line-height: 1.38;
+}
+html, body {
+  font-size: 48px;
+}
+.active {
+  color: var(--global-color-compared);
+}
+.disabled {
+  color: var(--global-color-lighter);
+}
+strong {
+  font-weight: 500;
+}
+
+li {
+  list-style: none;
+}
+h1 {
+  font-size: 48px;
+  line-height: 67px;
+}
+button {
+  border: none;
+  outline: none;
+}
+
+.box-shadow {
+  box-shadow: 0 6px 50px 0 rgba(32,33,33,0.10);
+}
+.text-align-center {
+  text-align: center;
+}
+.text-align-right {
+  text-align: right;
+}
+
+.border-bottom {
+  border-bottom: 3px solid var(--global-color-border);
+}
+
+button:active {
+  opacity: .7;
+}
+.modal-body {
+  padding: 0 53px 0 90px;
+}
+._component_base_button_ {
+  .button-inner {
+    background-color: var(--global-color-lighter) !important;
+  }
+  &.active {
+    .button-inner {
+      background-color: var(--global-color-primary) !important;
+    }
+  }
+}
+/*全局图标-normal主题*/
+.svg-icon {
+  color: var(--global-color-primary) !important;
+  fill: var(--global-color-primary) !important;
+}

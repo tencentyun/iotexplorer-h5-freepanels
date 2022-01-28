@@ -1,0 +1,188 @@
+/*蓝白主题*/
+.theme_blue_white {
+
+  height: 100%;
+  #app{
+    min-height: 100vh;
+    background-image: var(--global-background-color-gradient);
+
+  }
+  .home {
+
+    &.power-off {}
+
+    .dashboard {
+      .dashboard-info{
+        box-shadow: none;
+        .dev-info, .my-head, .dev-btn {
+          color: #FFFFFF;
+        }
+        .my-info{
+          .title, .values{
+            color: #FFFFFF;
+          }
+          .num{
+            .num-tick1, .num-tick2{
+              background-color: #FFFFFF !important;
+            }
+            p{
+              color: #FFFFFF !important;
+            }
+          }
+        }
+        .dev-btn{
+          border-top: 0;
+        }
+      }
+    }
+    .measure-btn{
+      background: #FFFFFF;
+      color: #000000;
+    }
+  }
+}
+
+/*暗色主题*/
+.theme_dark {
+  height: 100%;
+
+  .home {
+    &.power-off {}
+
+    .dashboard {
+      .dashboard-info{
+        background-image: var(--global-background-color-gradient);
+        .dev-info{
+          color: #B5C4D1;
+        }
+        .my-head, .dev-btn {
+          color: #FFFFFF;
+        }
+        .my-info{
+          .title{
+            color: #FFFFFF;
+          }
+          .values{
+            background-image: var(--global-color-gradient);
+            color: #FFFFFF;
+          }
+          .num{
+            .num-tick1, .num-tick2{
+              background-color: #FFFFFF !important;
+            }
+          }
+        }
+        .dev-btn{
+          border-top: 0;
+        }
+      }
+    }
+    .measure-btn{
+      background-image: var(--global-color-gradient);
+      color: #FFFFFF;
+    }
+  }
+}
+
+/*多彩主题*/
+.theme_colorful {
+  height: 100%;
+
+  .home {
+    background-color: #f4f8fb;
+
+    &.power-off {}
+
+    .dashboard {
+      .dashboard-info{
+        background: #FFFFFF;
+        .dev-info{
+          color: #B5C4D1;
+        }
+        .my-info{
+          .values{
+            background-image: linear-gradient(137deg, #FF3A5F 0%, #EA0D40 100%);
+            color: #FFFFFF;
+          }
+          p{
+            color: #000000 !important;
+          }
+        }
+      }
+    }
+    .measure-btn{
+      background: #245CF6;
+      color: #FFFFFF;
+    }
+  }
+}
+
+/*莫兰迪主题*/
+.theme_morandi {
+  height: 100%;
+
+  .home {
+    background-image: var(--global-background-color-gradient);
+    height: 1000px;
+    &.power-off {}
+    .dashboard {
+      .dashboard-info{
+        background: #FFFFFF;
+        .dev-info{
+          color: #B5C4D1;
+        }
+        .my-head, .dev-btn {
+          color: #4F5A69;
+        }
+        .my-info{
+          .title{
+            color: #4F5A69;
+          }
+          .values{
+            background-image: linear-gradient(137deg, #8798B1 0%, #414B5B 100%);
+            color: #FFFFFF;
+          }
+          .num{
+            .num-tick1, .num-tick2{
+              background-color: #4F5A69 !important;
+            }
+            p{
+              color: #4F5A69 !important;
+            }
+          }
+        }
+      }
+    }
+    .measure-btn{
+      background: #566071;
+      color: #FFFFFF;
+    }
+  }
+}
+
+/*黑白主题*/
+.theme_normal {
+  height: 100%;
+
+  .home {
+    background-color: #f4f8fb;
+    min-height: 98vh;
+    &.power-off {}
+
+    .dashboard {
+      .dashboard-info{
+        background: #FFFFFF;
+        .my-info{
+          .values{
+            background: #000000;
+            color: #FFFFFF;
+          }
+        }
+      }
+    }
+    .measure-btn{
+      background: #000000;
+      color: #FFFFFF;
+    }
+  }
+}

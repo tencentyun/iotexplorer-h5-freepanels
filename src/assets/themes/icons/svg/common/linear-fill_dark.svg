@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="56px" height="62px" viewBox="0 0 56 62" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <defs>
+      <linearGradient x1="8.45868644%" y1="0%" x2="111.848517%" y2="112.510417%" id="color">
+          <stop stop-color="#00F0FF" offset="0%"></stop>
+          <stop stop-color="#704DF0" offset="100%"></stop>
+      </linearGradient>
+  </defs>
+</svg>

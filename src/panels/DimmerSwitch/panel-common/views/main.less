@@ -1,0 +1,178 @@
+.dimmer-switch-main-view {
+  width: 100vw;
+  min-height: 100vh;
+  border-top: 1px solid transparent;
+  box-sizing: border-box;
+  background-color: #2D3134;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .router-view {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .control-buttons {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 145px;
+    padding: 0 80px 120px;
+    box-sizing: border-box;
+
+    & > ._component_layout_block_ {
+      width: 295px;
+      height: 300px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 80px 72px 54px;
+
+      & > p {
+        margin-top: 34px;
+        line-height: 50px;
+        font-size: 36px;
+      }
+    }
+    .icon-clock {
+      width: 78px;
+      height: 77px;
+    }
+    .icon-light {
+      width: 71px;
+      height: 79px;
+    }
+    .icon-setting {
+      width: 75px;
+      height: 75px;
+    }
+  }
+
+  &.dark {
+    background-color: #2D3134;
+    .switch-button {
+      color: #FEFEFE;
+    }
+  }
+  &.bright {
+    background-color: #F4F8FB;
+    .switch-button {
+      color: #000000;
+    }
+  }
+}
+
+body.theme_blue_white {
+  .dimmer-switch-main-view {
+    background-color: #134179;
+    .control-buttons {
+  
+      & > ._component_layout_block_ {
+  
+        & > p {
+          color: #A4ADC0;
+        }
+      }
+    }
+  
+    .active {
+      ._component_layout_block_ {
+        & > p {
+          color: #2D3134;
+        }
+      }
+    }
+    &.dark {
+      background-color: #134179;
+    }
+    &.bright {
+      background-image: linear-gradient(180deg, #45A3FF 6%, #005BFF 100%);
+    }
+  }
+}
+
+body.theme_dark {
+  .dimmer-switch-main-view {
+    background-color: #222532;
+    .control-buttons {
+  
+      & > ._component_layout_block_ {
+  
+        & > p {
+          color: #A4ADC0;
+        }
+      }
+    }
+  
+    .active {
+      ._component_layout_block_ {
+        & > p {
+          color: #FFFFFF;
+        }
+      }
+    }
+  }
+  .bright {
+    background-color: #222532;
+  }
+}
+
+body.theme_colorful {
+  .dimmer-switch-main-view {
+    background-color: #2D3134;
+    .control-buttons {
+  
+      & > ._component_layout_block_ {
+  
+        & > p {
+          color: #2D3134;
+        }
+      }
+    }
+  
+    .active {
+      ._component_layout_block_ {
+        & > p {
+          color: #2D3134;
+        }
+      }
+    }
+  }
+  .bright {
+    background-color: #F4F8FB;
+    .switch-button, .return-button {
+      color: #2D3134;
+    }
+  }
+}
+
+body.theme_morandi {
+  .dimmer-switch-main-view {
+    background-image: linear-gradient(180deg, #576273 0%, #414B5B 86%);
+    .control-buttons {
+  
+      & > ._component_layout_block_ {
+  
+        & > p {
+          color: #A4ADC0;
+        }
+      }
+    }
+  
+    .active {
+      ._component_layout_block_ {
+        & > p {
+          color: #BCB5B7;
+        }
+      }
+    }
+  }
+  .bright {
+    background-image: linear-gradient(180deg, #576273 0%, #414B5B 86%);
+  }
+}

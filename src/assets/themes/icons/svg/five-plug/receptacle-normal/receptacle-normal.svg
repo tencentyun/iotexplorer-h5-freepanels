@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="267px" height="215px" viewBox="0 0 267 215" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>插座</title>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="1" transform="translate(-429.000000, -983.000000)" fill="#0F0F0F">
+            <g id="插座" transform="translate(429.000000, 983.000000)">
+                <path d="M227,9 L227,15 L241.5,15 C255.583261,15 267,26.4167389 267,40.5 L267,47.5 C267,61.5832611 255.583261,73 241.5,73 L227,73 L227,79 L209,79 L209,9 L227,9 Z" id="形状结合"></path>
+                <path d="M18,9 L18,15 L32.5,15 C46.5832611,15 58,26.4167389 58,40.5 L58,47.5 C58,61.5832611 46.5832611,73 32.5,73 L18,73 L18,79 L0,79 L0,9 L18,9 Z" id="形状结合备份" transform="translate(29.000000, 44.000000) scale(-1, 1) translate(-29.000000, -44.000000) "></path>
+                <rect id="矩形" x="120" y="0" width="27" height="87"></rect>
+                <rect id="矩形备份-6" transform="translate(52.095703, 170.064453) rotate(-30.000000) translate(-52.095703, -170.064453) " x="38.5957031" y="126.564453" width="27" height="87"></rect>
+                <rect id="矩形备份-7" transform="translate(215.500000, 170.064453) scale(-1, 1) rotate(-30.000000) translate(-215.500000, -170.064453) " x="202" y="126.564453" width="27" height="87"></rect>
+            </g>
+        </g>
+    </g>
+</svg>

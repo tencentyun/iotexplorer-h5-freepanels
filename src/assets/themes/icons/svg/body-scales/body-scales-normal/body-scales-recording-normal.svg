@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="64px" height="64px" viewBox="0 0 64 64" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 59.1 (86144) - https://sketch.com -->
+    <title>记录</title>
+    <desc>Created with Sketch.</desc>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="1" transform="translate(-496.000000, -432.000000)">
+            <g id="记录" transform="translate(496.000000, 432.000000)">
+                <g>
+                    <circle id="椭圆形" fill="#000000" cx="32" cy="32" r="32"></circle>
+                    <line x1="43" y1="40" x2="32" y2="32.125" id="直线-2备份" stroke="#FFFFFF" stroke-width="5" stroke-linecap="round"></line>
+                    <line x1="31" y1="14.1111111" x2="31" y2="31.8888889" id="直线-2" stroke="#FFFFFF" stroke-width="5" stroke-linecap="round"></line>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

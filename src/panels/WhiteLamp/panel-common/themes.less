@@ -1,0 +1,431 @@
+/*蓝白主题*/
+.color_primary() {
+  color: var(--global-color-white);
+}
+.theme_blue_white {
+
+  .white_title{
+    .white_font{
+      color: #B5C4D1;
+      &.select{
+        color: #0063FF;
+      }
+    }
+  }
+  .home {
+
+    .position_card{
+      padding-top: 80px;
+    }
+    .lightbright-slider{
+      background: #58a3ff;
+
+      .lightbright-progress{
+        background: #FFFFFF;
+      }
+      .lightbright-progress-dot{
+        background: #006FFF;
+      }
+    }
+    .power{
+      background: #FFFFFF;
+    }
+    .clock{
+      background: #FFFFFF;
+    }
+    .position-wrap{
+      // padding-top: 140px;
+    }
+    .position-mask{
+      background-color: #006fff;
+      // margin-top: 140px;
+    }
+    .position-trangle{
+      border-bottom-color: #006fff;
+    }
+    .border-bottom {
+      border: 0;
+    }
+    // .white_font{
+    //   color: #B5C4D1;
+    //   // color:#006fff;
+    // }
+    .color_primary;
+    // background-image: var(--global-background-color-gradient);
+    background-color: #006fff;
+    min-height: 100vh;
+
+    .detail{
+      padding-bottom: 80px;
+    }
+    &.power-off {
+      .white_font{
+        color: #B5C4D1;
+        &.select{
+          color: #0063FF;
+        }
+      }
+      #power {
+        background: #B5C4D1 !important;
+        svg {
+          fill: #FFFFFF !important;
+        }
+      }
+      #hand{
+        color: #B5C4D1 !important;
+      }
+      #automatic{
+        color: #B5C4D1 !important;
+      }
+      #comfort{
+        color: #B5C4D1 !important;
+      }
+      #sleep{
+        color: #B5C4D1 !important;
+      }
+    }
+  }
+}
+/*暗色主题*/
+.theme_dark {
+  position: relative;
+  .white_title{
+    .white_font{
+      color: #FFFFFF;
+      &.select{
+        // color: #1859FC;
+      }
+    }
+  }
+  .home {
+    padding-top: 100px;
+    .lightbright-slider{
+      background: #2A3644;
+
+      .lightbright-progress{
+        background-image: linear-gradient(137deg, #00F0FF 0%, #704DF0 100%);
+
+      }
+      .lightbright-progress-dot{
+      background: #FDFDFD;
+
+      }
+    }
+
+    .border-bottom {
+      border: 0;
+    }
+    .power{
+      background-image: linear-gradient(139deg, #333E4D 0%, #202C3A 100%);
+    }
+    .clock{
+      background-image: linear-gradient(139deg, #333E4D 0%, #202C3A 100%);
+    }
+    .position-wrap{
+      // padding-top: 140px;
+    }
+    .position-mask{
+      background-color: #222532;
+      // margin-top: 140px;
+    }
+    .position-trangle{
+      border-bottom-color: #222532;
+    }
+    .white_title{
+      background-image: linear-gradient(139deg, #333E4D 0%, #202C3A 100%);
+      border: 3px solid rgba(62,68,84,0.20);
+      box-shadow: 0 6px 100px 0 #242735;
+    }
+    .border-bottom {
+      border: 0;
+    }
+    // .white_font{
+    //   color: #B5C4D1;
+    //   // color:#006fff;
+    // }
+    .color_primary;
+    // background-image: var(--global-background-color-gradient);
+    background-color: #222532;
+    .detail{
+      padding-bottom: 80px;
+    }
+
+
+      .white_font{
+        color: #FFFFFF;
+        &.power-off {
+          // color: #1859FC;
+
+          #power {
+            background: #B5C4D1 !important;
+            svg {
+              fill: #FFFFFF !important;
+            }
+          }
+        }
+      }
+
+  }
+}
+/*多彩主题*/
+.theme_colorful {
+  // padding-top: 140px;
+  position: relative;
+
+
+    //进度条加减
+    .lightbright-mark{
+      margin-bottom: 30px;
+    }
+    .lightbright-mark-op-btn{
+      width: 78px;
+      height: 78px;
+      border-radius: 100%;
+      background-color: #ffffff;
+      // padding: 0;
+      padding:0px 5px 10px 5px !important;
+      text-align: center;
+      line-height: 78px;
+
+    }
+  .home {
+    .white_title{
+      .white_font{
+        color: #B5C4D1;
+        &.select{
+          color: #1859FC ;
+        }
+      }
+    }
+    .lightbright-slider{
+      background: #b5c4d1;
+
+      .lightbright-progress{
+        background: #006FFF;
+      }
+      .lightbright-progress-dot{
+        background: #FFFFFF;
+      }
+    }
+    .white_font{
+      color: #B5C4D1;
+    }
+    .power{
+      background: #FFFFFF;
+    }
+    .clock{
+      background: #FFFFFF;
+    }
+    .position-wrap{
+      // padding-top: 140px;
+    }
+    .position-mask{
+      // background-color: #006fff;
+      // margin-top: 140px;
+    }
+    .position-trangle{
+      // border-bottom-color: #006fff;
+    }
+    .border-bottom {
+      border: 0;
+    }
+    .border-bottom {
+      border: 0;
+    }
+    &.power-off {
+      #power {
+        background: #B5C4D1 !important;
+        svg {
+          fill: #FFFFFF !important;
+        }
+      }
+      #position-wrap{
+        ul{
+          li{
+            color: #B5C4D1 !important;
+            strong{
+              color: #B5C4D1 !important;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+/*莫兰迪主题*/
+.theme_morandi {
+  // padding-top: 140px;
+  position: relative;
+
+  .white_title{
+    .white_font{
+      color: #B5C4D1;
+      &.select{
+        color: #4A5465;
+      }
+    }
+  }
+
+  // background-color: #444e5e;
+  .home {
+    // background-color: #444e5e;
+
+    .lightbright_card{
+      background-color: #444e5e;
+    }
+    .lightbright-slider{
+      background: #B5C4D1;
+
+      .lightbright-progress{
+        background: #B5ABA1;
+      }
+      .lightbright-progress-dot{
+      background: #FEFEFE;
+
+      }
+    }
+
+    .border-bottom {
+      border: 0;
+    }
+    .power{
+      background: #FFFFFF;
+    }
+    .clock{
+      background: #FFFFFF;
+    }
+    .position_card{
+      height: 960px;
+      width: 1125px;
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+      background-color: #444e5e;
+
+    }
+    .power{
+      background: #FFFFFF;
+    }
+    .clock{
+      background: #FFFFFF;
+    }
+    .position-wrap{
+      margin:0;
+    }
+    .lightbright_card{
+      background-color: #444e5e;
+      width: 1125px;
+      height: 300px;
+    }
+    .detail{
+      padding-top:0px;
+      padding-bottom: 80px;
+      .lightbright-value-text{
+        color: #B5ABA1;
+      }
+    }
+    .environment-wrap{
+      // margin: 0;
+      padding: 0;
+    }
+    .position-wrap{
+      // padding-top: 140px;
+
+      background-color: #444e5e;
+    }
+    .position-mask{
+      background-color: #444e5e;
+
+      // margin-top: 140px;
+    }
+    .position-trangle{
+      border-bottom-color: #444e5e;
+    }
+    .border-bottom {
+      border: 0;
+    }
+
+    &.power-off {
+      #ticker{
+        .white_font{
+          color: #B5C4D1 !important;
+        }
+      }
+      #power {
+        background: var(--global-color-text-regular) !important;
+        svg {
+          fill: #000000 !important;
+        }
+      }
+      #hand{
+        color: #B5C4D1 !important;
+      }
+      #automatic{
+        color: #B5C4D1 !important;
+      }
+      #comfort{
+        color: #B5C4D1 !important;
+      }
+      #sleep{
+        color: #B5C4D1 !important;
+      }
+    }
+  }
+}
+/*正常主题*/
+.theme_normal {
+  height: 100%;
+  position: relative;
+
+  .white_title{
+    .white_font{
+      color: #B5C4D1;
+      &.select{
+        color: #000000;
+      }
+    }
+  }
+  .home {
+    min-height: 100vh;
+    background: #F4F8FB;
+
+    .lightbright-slider{
+      background: #B5C4D1;
+
+      .lightbright-progress{
+        background: #0F0F0F;
+      }
+      .lightbright-progress-dot{
+        background: #FBFBFF;
+      }
+    }
+
+    &.power-off {
+      #power {
+        background: var(--global-color-text-regular) !important;
+        svg {
+          fill: #887979 !important;
+        }
+      }
+
+      #ticker{
+        section{
+          color: #B5C4D1 !important;
+        }
+      }
+      #hand{
+        color: #B5C4D1 !important;
+      }
+      #automatic{
+        color: #B5C4D1 !important;
+      }
+      #comfort{
+        color: #B5C4D1 !important;
+      }
+      #sleep{
+        color: #B5C4D1 !important;
+      }
+    }
+  }
+}
+
