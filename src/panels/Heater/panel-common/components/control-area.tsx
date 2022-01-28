@@ -27,7 +27,10 @@ export function ControlArea(props: IFunExampleProps) {
                 deviceData.unit_convert === 0
                   ? 'current_c_temp'
                   : 'current_f_temp';
-              const value = deviceData[key] ? deviceData[key] - 1 : 0;
+              let value = deviceData[key] ? deviceData[key] - 1 : 0;
+              if (value <= 0) {
+                value = 0;
+              }
               onControlDevice(key, value);
             }}
           >
@@ -59,7 +62,10 @@ export function ControlArea(props: IFunExampleProps) {
                 deviceData.unit_convert === 0
                   ? 'current_c_temp'
                   : 'current_f_temp';
-              const value = deviceData[key] ? deviceData[key] + 1 : 1;
+              let value = deviceData[key] ? deviceData[key] + 1 : 1;
+              if (value >= 100) {
+                value = 100;
+              }
               onControlDevice(key, value);
             }}
           >

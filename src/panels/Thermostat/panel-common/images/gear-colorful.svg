@@ -3,15 +3,39 @@
     <!-- Generator: Sketch 59.1 (86144) - https://sketch.com -->
     <title>档位</title>
     <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="49.4467485%" y1="4.96382508%" x2="50.6356886%" y2="94.6223958%" id="linearGradient-1">
+            <stop stop-color="#527DF4" offset="0.00791807432%"></stop>
+            <stop stop-color="#044DFF" offset="100%"></stop>
+        </linearGradient>
+        <rect id="path-2" x="7.5" y="9.09494702e-13" width="9" height="73" rx="4.5"></rect>
+        <filter x="-1700.0%" y="-201.4%" width="3500.0%" height="519.2%" filterUnits="objectBoundingBox" id="filter-3">
+            <feOffset dx="0" dy="6" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="50" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0.48627451   0 0 0 0 0.474509804   0 0 0 0 0.960784314  0 0 0 0.3 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+        <rect id="path-4" x="53" y="2.95585778e-12" width="9" height="73" rx="4.5"></rect>
+        <filter x="-1700.0%" y="-201.4%" width="3500.0%" height="519.2%" filterUnits="objectBoundingBox" id="filter-5">
+            <feOffset dx="0" dy="6" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="50" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0.48627451   0 0 0 0 0.474509804   0 0 0 0 0.960784314  0 0 0 0.3 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+    </defs>
     <g id="页面-1" stroke="none" stroke-width="1" fill-rule="evenodd">
         <g id="2" transform="translate(-526.000000, -1362.000000)">
             <g id="编组-4" transform="translate(78.000000, 1277.000000)">
                 <g id="档位开关" transform="translate(337.000000, 0.000000)">
                     <g id="档位" transform="translate(148.000000, 118.500000) rotate(-270.000000) translate(-148.000000, -118.500000) translate(114.000000, 82.000000)">
-                        <rect id="矩形" fill="#0F0F0F" x="7.5" y="9.09494702e-13" width="9" height="73" rx="4.5"></rect>
-                        <rect id="矩形备份-6" fill="#0F0F0F" x="53" y="2.95585778e-12" width="9" height="73" rx="4.5"></rect>
-                        <circle id="椭圆形" stroke="#0F0F0F" stroke-width="6" fill="#FFFFFF" cx="11.5" cy="48" r="8"></circle>
-                        <circle id="椭圆形备份-3" stroke="#0F0F0F" stroke-width="6" fill="#FFFFFF" cx="57" cy="23" r="8"></circle>
+                        <g id="矩形">
+                            <use fill="black" fill-opacity="1" filter="url(#filter-3)" xlink:href="#path-2"></use>
+                            <use fill="url(#linearGradient-1)" fill-rule="evenodd" xlink:href="#path-2"></use>
+                        </g>
+                        <g id="矩形备份-6">
+                            <use fill="black" fill-opacity="1" filter="url(#filter-5)" xlink:href="#path-4"></use>
+                            <use fill="url(#linearGradient-1)" fill-rule="evenodd" xlink:href="#path-4"></use>
+                        </g>
+                        <circle id="椭圆形" stroke="#0C52FD" stroke-width="6" fill="#FEFEFF" cx="11.5" cy="48" r="8"></circle>
+                        <circle id="椭圆形备份-3" stroke="#0C52FD" stroke-width="6" fill="#FEFEFF" cx="57" cy="23" r="8"></circle>
                     </g>
                 </g>
             </g>

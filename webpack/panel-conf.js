@@ -1,5 +1,5 @@
 module.exports = {
-  ElectricCar: {
+  Thermostat: {
     enable: true,
     viewportWidth: 1125,
     panels: [

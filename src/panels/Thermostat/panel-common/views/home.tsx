@@ -40,9 +40,9 @@ export function Home() {
 
   useEffect(() => {
     if (!deviceMaps['temp_unit_convert']) {
-      setTempValue(deviceMaps['set_fahrenheit'].start||0);
+      // setTempValue(deviceMaps['set_fahrenheit'].start||0);
     } else {
-      setTempValue(deviceMaps['set_temp'].start ||0);
+      setTempValue(1);
     }
   }, []);
   // 工作模式选项
@@ -144,7 +144,7 @@ export function Home() {
   };
 
   const currentStatus = (powerStatus: number, name: string) => {
-    if (powerStatus === 0) {
+    if (!powerStatus) {
       return CurrentSkinProps['shutdown'][name];
     } else {
       return CurrentSkinProps['initiate'][name];
@@ -157,7 +157,6 @@ export function Home() {
   };
 
   const iconColor = (powerStatus: number) => {
-    console.log(powerStatus);
     if (themeType === 'colorful') {
       if (powerStatus === 1) {
         return '#667994';
@@ -217,7 +216,7 @@ export function Home() {
 
   const renderContentArea = (mode: string, level: string, status: number) => {
     return (
-      <ul className={classNames('content-area', {'content-area-active': status} )}>
+      <ul className={classNames('content-area', { 'content-area-active': status })}>
         <li className="content-item">
           <p className="word">{mode ? enumWorkMode[mode] : '暂无数据'}</p>
           <p className="label">工作模式</p>
@@ -230,6 +229,30 @@ export function Home() {
       </ul>
     );
   };
+
+  const minusHandle  = (powerStatus: number, unit: (string | number)) => {
+    if (!powerStatus) return
+    let value = tempValue;
+    value -= 1
+    if (value <= 0) {
+      setTempValue(0);
+    } else {
+      setTempValue(value);
+    }
+    unit == 0 ? onControlDevice('current_temp', value) : onControlDevice('current_fahrenheit', value)
+  }
+
+  const addHandle = (powerStatus: number, unit: (string | number)) => {
+    if (!powerStatus) return
+    let value = tempValue;
+    value += 1
+    if (value >= 100) {
+      setTempValue(100);
+    } else {
+      setTempValue(value);
+    }
+    unit == 0 ? onControlDevice('current_temp', value) : onControlDevice('current_fahrenheit', value)
+  }
 
   return (
     <DeviceContext.Consumer>
@@ -248,8 +271,8 @@ export function Home() {
                       ? deviceData.current_temp
                       : 0
                     : deviceData.current_fahrenheit
-                    ? deviceData.current_fahrenheit
-                    : 0
+                      ? deviceData.current_fahrenheit
+                      : 0
                 }
                 dashboardStatus={
                   deviceData.power_switch == 1 ? 'initiate' : 'shutdown'
@@ -269,10 +292,7 @@ export function Home() {
               <div
                 className={classNames('setting-button')}
                 onClick={() => {
-                  if (deviceData.power_switch == 0) return
-                  let value = deviceData[deviceData.temp_unit_convert == 0 ? 'set_temp' : 'set_fahrenheit'] ? deviceData[deviceData.temp_unit_convert === 0 ? 'set_temp' : 'set_fahrenheit'] - 1 : 1;
-                  let key = deviceData.temp_unit_convert == 0 ? 'set_temp' : 'set_fahrenheit';
-                  onControlDevice(key, value);
+                  minusHandle(deviceData.power_switch, deviceData.temp_unit_convert)
                 }}>
                 <SvgIcon className="control-icon" name="icon-ther-minus" color={iconColor(deviceData.power_switch)} />
               </div>
@@ -296,10 +316,7 @@ export function Home() {
               <div
                 className={classNames('setting-button')}
                 onClick={() => {
-                  if (deviceData.power_switch == 0) return
-                  let value = deviceData[deviceData.temp_unit_convert == 0 ? 'set_temp' : 'set_fahrenheit'] ? deviceData[deviceData.temp_unit_convert === 0 ? 'set_temp' : 'set_fahrenheit'] + 1 : 1;
-                  let key = deviceData.temp_unit_convert === 0 ? 'set_temp' : 'set_fahrenheit';
-                  onControlDevice(key, value);
+                  addHandle(deviceData.power_switch, deviceData.temp_unit_convert)
                 }}>
                 <SvgIcon className="control-icon icon-ther-add" name="icon-ther-add" color={iconColor(deviceData.power_switch)} />
               </div>
@@ -346,8 +363,8 @@ export function Home() {
               }}
             >
               <div className={classNames(
-                'button-icon', 
-                !deviceData.power_switch? 'icon-gear-default': 'icon-gear-active'
+                'button-icon',
+                !deviceData.power_switch ? 'icon-gear-default' : 'icon-gear-active'
               )}></div>
               <p className="button-name">档位</p>
               <ListPicker
@@ -381,9 +398,7 @@ export function Home() {
                 <div
                   className={classNames('setting-button')}
                   onClick={() => {
-                    if (deviceData.power_switch == 0) return;
-                      setTempValue(tempValue - 1);
-                      deviceData.temp_unit_convert == 0 ? onControlDevice('current_temp', tempValue) : onControlDevice('current_fahrenheit', tempValue)
+                    minusHandle(deviceData.power_switch, deviceData.temp_unit_convert)
                   }}
                 >
                   <SvgIcon
@@ -413,9 +428,7 @@ export function Home() {
                 <div
                   className={classNames('setting-button')}
                   onClick={() => {
-                    if (deviceData.power_switch == 0) return;
-                      setTempValue(tempValue + 1);
-                      deviceData.temp_unit_convert == 0 ? onControlDevice('current_temp', tempValue) : onControlDevice('current_fahrenheit', tempValue)
+                    addHandle(deviceData.power_switch, deviceData.temp_unit_convert)
                   }}
                 >
                   <SvgIcon

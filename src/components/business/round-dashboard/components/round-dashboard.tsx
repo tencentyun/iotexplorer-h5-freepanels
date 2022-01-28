@@ -150,20 +150,22 @@ export function RoundDashboard(props: DashboardProps) {
     const tickAnimation = () => {
       let interval: any;
       let i = 0;
-      const activeLineList = document.getElementsByClassName('activeLine');
+      let activeLineList = document.getElementsByClassName('line');
       interval = setInterval(() => {
-        activeLineList[i].setAttribute(
-          'style',
-          'stroke: ' + scaleLine.activeColor + ';stroke-width: 5'
-        );
+        let list = activeLineList[i].classList;
+        if (list.contains('activeLine')) {
+          activeLineList[i].setAttribute('style', 'stroke: ' + scaleLine.activeColor + ';stroke-width: 5');
+        } else {
+          activeLineList[i].setAttribute('style', 'stroke: ' + scaleLine.defaultColor + ';stroke-width: 5');
+        }
         i++;
         if (i === activeLineList.length) {
           clearInterval(interval);
         }
       }, scaleLine.animaTime);
-    };
+    }
     tickAnimation();
-  });
+  }, [value])
 
   useEffect(() => {
     setLocusValue(locus());
@@ -210,7 +212,7 @@ export function RoundDashboard(props: DashboardProps) {
 
       lines.push({
         angle: i,
-        className: i <= currentAngle ? 'activeLine' : 'defaultLine',
+        className: i <= currentAngle ? 'line activeLine' : 'line defaultLine',
         x1: x,
         y1: y,
         x2: x2,
