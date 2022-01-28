@@ -1,35 +1,35 @@
 const SkinProps = {
   normal: {
     battery: {
-      color: ''
+      color: '',
     },
     triangle: {
-      color: '#B5C4D1'
+      color: '#B5C4D1',
     },
     record: {
-      color: '#000000'
+      color: '#000000',
     },
     settings: {
-      color: '#000000'
-    }
+      color: '#000000',
+    },
   },
   blueWhite: {
     battery: {
-      color: 'white'
+      color: 'white',
     },
     triangle: {
-      color: '#B5C4D1'
+      color: '#B5C4D1',
     },
     record: {
-      color: '#2885FE'
+      color: '#2885FE',
     },
     settings: {
-      color: '#2885FE'
-    }
+      color: '#2885FE',
+    },
   },
   dark: {
     battery: {
-      color: 'white'
+      color: 'white',
     },
     triangle: {
       gradientId: 'triangle',
@@ -38,7 +38,7 @@ const SkinProps = {
       x1: '18.8378836%',
       y1: '13.9723887%',
       x2: '100%',
-      y2: '100%'
+      y2: '100%',
     },
     record: {
       gradientId: 'record',
@@ -47,7 +47,7 @@ const SkinProps = {
       x1: '18.8378836%',
       y1: '13.9723887%',
       x2: '100%',
-      y2: '100%'
+      y2: '100%',
     },
     settings: {
       gradientId: 'setting',
@@ -56,15 +56,15 @@ const SkinProps = {
       x1: '18.8378836%',
       y1: '13.9723887%',
       x2: '100%',
-      y2: '100%'
-    }
+      y2: '100%',
+    },
   },
   colorful: {
     battery: {
-      color: ''
+      color: '',
     },
     triangle: {
-      color: '#B5C4D1'
+      color: '#B5C4D1',
     },
     record: {
       gradientId: 'record',
@@ -73,7 +73,7 @@ const SkinProps = {
       x1: '19.9901284%',
       y1: '0%',
       x2: '79.7644953%',
-      y2: '100%'
+      y2: '100%',
     },
     settings: {
       gradientId: 'setting',
@@ -82,23 +82,23 @@ const SkinProps = {
       x1: '19.9901284%',
       y1: '0%',
       x2: '79.7644953%',
-      y2: '100%'
-    }
+      y2: '100%',
+    },
   },
   morandi: {
     battery: {
-      color: 'white'
+      color: 'white',
     },
     triangle: {
-      color: '#B5C4D1'
+      color: '#B5C4D1',
     },
     record: {
-      color: '#4F596A'
+      color: '#4F596A',
     },
     settings: {
-      color: '#4F596A'
-    }
-  }
+      color: '#4F596A',
+    },
+  },
 };
 
 export { SkinProps };

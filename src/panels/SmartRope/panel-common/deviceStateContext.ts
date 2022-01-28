@@ -21,7 +21,7 @@ export const DeviceSateContext = createContext({
     battery_state: 0,
     weight: 0,
     gender: 0,
-    mode: ''
+    mode: '',
   },
   userInfo: {
     Avatar: '',
@@ -31,7 +31,7 @@ export const DeviceSateContext = createContext({
     HasWxOpenID: 1,
     NickName: '',
     PhoneNumber: '',
-    UserID: ''
+    UserID: '',
   },
-  togglePower: noop
+  togglePower: noop,
 });

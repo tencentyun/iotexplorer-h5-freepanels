@@ -2,37 +2,37 @@ const SkinProps = {
   normal: {
     more: {
       active: '#0F0F0F',
-      default: '#C9D4DD'
+      default: '#C9D4DD',
     },
     warmth: {
-      color: '#000000'
+      color: '#000000',
     },
     edit: {
-      color: '#000000'
+      color: '#000000',
     },
     unit: {
-      color: '#000000'
-    }
+      color: '#000000',
+    },
   },
   blueWhite: {
     more: {
       active: '#FFFFFF',
-      default: '#FFFFFF'
+      default: '#FFFFFF',
     },
     warmth: {
-      color: '#006FFF'
+      color: '#006FFF',
     },
     edit: {
-      color: '#000000'
+      color: '#000000',
     },
     unit: {
-      color: '#006FFF'
-    }
+      color: '#006FFF',
+    },
   },
   dark: {
     more: {
       active: '#FEFEFE',
-      default: '#FEFEFE'
+      default: '#FEFEFE',
     },
     warmth: {
       gradientId: 'warmth',
@@ -41,10 +41,10 @@ const SkinProps = {
       x1: '11.8644068%',
       y1: '18.182147%',
       x2: '104.602754%',
-      y2: '88.2505064%'
+      y2: '88.2505064%',
     },
     edit: {
-      color: '#F9FAFA'
+      color: '#F9FAFA',
     },
     unit: {
       gradientId: 'unit',
@@ -53,39 +53,39 @@ const SkinProps = {
       x1: '11.8644068%',
       y1: '18.182147%',
       x2: '104.602754%',
-      y2: '88.2505064%'
-    }
+      y2: '88.2505064%',
+    },
   },
   colorful: {
     more: {
       active: '#2762FA',
-      default: '#B4C3D0'
+      default: '#B4C3D0',
     },
     warmth: {
-      color: '#FFD102'
+      color: '#FFD102',
     },
     edit: {
-      color: '#000000'
+      color: '#000000',
     },
     unit: {
-      color: '#006FFF'
-    }
+      color: '#006FFF',
+    },
   },
   morandi: {
     more: {
       active: '#FDFBFC',
-      default: '#FDFBFC'
+      default: '#FDFBFC',
     },
     warmth: {
-      color: '#FFFFFF'
+      color: '#FFFFFF',
     },
     edit: {
-      color: '#FFFFFF'
+      color: '#FFFFFF',
     },
     unit: {
-      color: '#576273'
-    }
-  }
+      color: '#576273',
+    },
+  },
 };
 
 export { SkinProps };

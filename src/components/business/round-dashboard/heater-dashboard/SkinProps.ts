@@ -10,18 +10,18 @@ const SkinProps = {
         circleX: 380,
         circleY: 374,
         circleR: 300,
-        color: '#FFFFFF'
+        color: '#FFFFFF',
       },
       // 刻度线
       scaleLine: {
         defaultColor: 'rgba(156, 170, 181, 0.3)',
         activeColor: '#C9D4DD',
-        animaTime: 60
+        animaTime: 60,
       },
       // 指针
       indicatorStyle: {
-        color: '#9CAAB5'
-      }
+        color: '#9CAAB5',
+      },
     },
     initiate: {
       // 工作中
@@ -33,19 +33,19 @@ const SkinProps = {
         circleX: 380,
         circleY: 374,
         circleR: 300,
-        color: '#FFFFFF'
+        color: '#FFFFFF',
       },
       // 刻度线
       scaleLine: {
         defaultColor: 'rgba(14, 14, 14, 0.3)',
         activeColor: '#0E0E0E',
-        animaTime: 60
+        animaTime: 60,
       },
       // 指针
       indicatorStyle: {
-        color: '#0F0F0F'
-      }
-    }
+        color: '#0F0F0F',
+      },
+    },
   },
   blueWhite: {
     shutdown: {
@@ -59,18 +59,18 @@ const SkinProps = {
         circleX: 357,
         circleY: 357,
         circleR: 285,
-        color: '#FFFFFF'
+        color: '#FFFFFF',
       },
       outerCicle: {
         circleR: 357,
-        color: 'rgba(254,254,254,0.20)' // 颜色
+        color: 'rgba(254,254,254,0.20)', // 颜色
       },
       // 刻度线
       scaleLine: {
         defaultColor: 'rgba(254, 254, 254, 0.3)',
         activeColor: '#FEFEFE',
-        animaTime: 60
-      }
+        animaTime: 60,
+      },
     },
     initiate: {
       warmth: {
@@ -83,19 +83,19 @@ const SkinProps = {
         circleX: 357,
         circleY: 357,
         circleR: 285,
-        color: '#FFFFFF'
+        color: '#FFFFFF',
       },
       outerCicle: {
         circleR: 357,
-        color: 'rgba(254,254,254,0.20)' // 颜色
+        color: 'rgba(254,254,254,0.20)', // 颜色
       },
       // 刻度线
       scaleLine: {
         defaultColor: 'rgba(254, 254, 254, 0.3)',
         activeColor: '#FEFEFE',
-        animaTime: 60
-      }
-    }
+        animaTime: 60,
+      },
+    },
   },
   dark: {
     shutdown: {
@@ -115,7 +115,7 @@ const SkinProps = {
         endColor: '#202C3A', // 渐变
         strokeColor: 'rgba(62,68,84,0.20)', // 描边
         strokeWidth: 3,
-        shade: 'url(#dropshadow)'
+        shade: 'url(#dropshadow)',
       },
       outerCicle: {
         circleR: 357,
@@ -124,14 +124,14 @@ const SkinProps = {
         endColor: '#202C3A', // 渐变
         strokeColor: 'rgba(62,68,84,0.20)', // 描边
         strokeWidth: 3,
-        shade: 'url(#dropshadow)'
+        shade: 'url(#dropshadow)',
       },
       // 刻度线
       scaleLine: {
         defaultColor: 'rgba(254, 254, 254, 0.3)',
         activeColor: '#26B9FA',
-        animaTime: 60
-      }
+        animaTime: 60,
+      },
     },
     initiate: {
       warmth: {
@@ -149,7 +149,7 @@ const SkinProps = {
         endColor: '#202C3A', // 渐变
         strokeColor: 'rgba(62,68,84,0.20)', // 描边
         strokeWidth: 3,
-        shade: 'url(#dropshadow)'
+        shade: 'url(#dropshadow)',
       },
       outerCicle: {
         circleR: 357,
@@ -158,15 +158,15 @@ const SkinProps = {
         endColor: '#202C3A', // 渐变
         strokeColor: 'rgba(62,68,84,0.20)', // 描边
         strokeWidth: 3,
-        shade: 'url(#dropshadow)'
+        shade: 'url(#dropshadow)',
       },
       // 刻度线
       scaleLine: {
         defaultColor: 'rgba(254, 254, 254, 0.3)',
         activeColor: '#26B9FA',
-        animaTime: 60
-      }
-    }
+        animaTime: 60,
+      },
+    },
   },
   colorful: {
     shutdown: {
@@ -179,18 +179,18 @@ const SkinProps = {
         circleX: 380,
         circleY: 374,
         circleR: 300,
-        color: '#B4C3D0'
+        color: '#B4C3D0',
       },
       // 刻度线
       scaleLine: {
         defaultColor: '#667994',
         activeColor: '#667994',
-        animaTime: 60
+        animaTime: 60,
       },
       // 指针
       indicatorStyle: {
-        color: '#FEFEFE'
-      }
+        color: '#FEFEFE',
+      },
     },
     initiate: {
       warmth: {
@@ -204,19 +204,19 @@ const SkinProps = {
         circleR: 300,
         color: 'url(#gradient)',
         startColor: '#527DF4',
-        endColor: '#044DFF'
+        endColor: '#044DFF',
       },
       // 刻度线
       scaleLine: {
         defaultColor: '#667994',
         activeColor: '#FFD102',
-        animaTime: 60
+        animaTime: 60,
       },
       // 指针
       indicatorStyle: {
-        color: '#FFD102'
-      }
-    }
+        color: '#FFD102',
+      },
+    },
   },
   morandi: {
     shutdown: {
@@ -231,18 +231,18 @@ const SkinProps = {
         circleR: 259,
         color: 'url(#gradient)',
         startColor: '#576273',
-        endColor: '#414B5B'
+        endColor: '#414B5B',
       },
       // 刻度线
       scaleLine: {
         defaultColor: '#667994',
         activeColor: '#B5ABA1',
-        animaTime: 60
+        animaTime: 60,
       },
       // 指针
       indicatorStyle: {
-        color: '#909CAB'
-      }
+        color: '#909CAB',
+      },
     },
     initiate: {
       warmth: {
@@ -256,20 +256,20 @@ const SkinProps = {
         circleR: 259,
         color: 'url(#gradient)',
         startColor: '#576273',
-        endColor: '#414B5B'
+        endColor: '#414B5B',
       },
       // 刻度线
       scaleLine: {
         defaultColor: '#667994',
         activeColor: '#B5ABA1',
-        animaTime: 60
+        animaTime: 60,
       },
       // 指针
       indicatorStyle: {
-        color: '#B6ACA3'
-      }
-    }
-  }
+        color: '#B6ACA3',
+      },
+    },
+  },
 };
 
 export { SkinProps };

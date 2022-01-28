@@ -38,6 +38,6 @@ export const DeviceContext: React.Context<{
     alarm_time: 0,
     alarm_vol: 'low',
     battery_state: 'low',
-    muffling: 0
-  }
+    muffling: 0,
+  },
 });

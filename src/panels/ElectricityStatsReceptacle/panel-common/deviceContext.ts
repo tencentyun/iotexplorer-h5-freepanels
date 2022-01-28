@@ -16,6 +16,6 @@ export const DeviceContext: React.Context<{
     count_down: 1, // 倒计时
     current: 0, // 电流
     power: 0, // 功率
-    voltage: 0 // 电压
-  }
+    voltage: 0, // 电压
+  },
 });

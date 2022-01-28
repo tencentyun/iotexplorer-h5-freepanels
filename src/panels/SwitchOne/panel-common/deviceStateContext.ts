@@ -5,7 +5,7 @@ export const DeviceSateContext = createContext({
   deviceStatus: 0,
   deviceData: {
     power_switch: 0,
-    count_down: 0
+    count_down: 0,
   },
   userInfo: {
     Avatar: '',
@@ -15,7 +15,7 @@ export const DeviceSateContext = createContext({
     HasWxOpenID: 1,
     NickName: '',
     PhoneNumber: '',
-    UserID: ''
+    UserID: '',
   },
-  togglePower: noop
+  togglePower: noop,
 });

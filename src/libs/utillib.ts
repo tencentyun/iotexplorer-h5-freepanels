@@ -3,19 +3,21 @@ import { RefAttributes, ForwardRefExoticComponent } from 'react';
 import urlParse from 'url-parse';
 import querystring from 'query-string';
 import { rgb } from 'd3';
+import viewportConfig from '../../webpack/pxToViewport.config';
+import { EventEmitter } from 'events';
 
-export const delay = timeout => new Promise(resolve => setTimeout(() => resolve(), timeout));
+export const delay = timeout => new Promise(resolve => setTimeout(() => resolve(timeout), timeout));
 
 export const genReqId = () => `${Date.now().toString()}-${Math.floor(Math.random() * 10000)}`;
 
-export const getStrLen = (str) => {
-  if (!str) str = '';
+export const getStrLen = (string) => {
+  const str = string || '';
 
   let len = 0;
   for (let i = 0; i < str.length; i++) {
     const c = str.charCodeAt(i); // 单字节加1
     if ((c >= 0x0001 && c <= 0x007e) || (c >= 0xff60 && c <= 0xff9f)) {
-      len++;
+      len += 1;
     } else {
       len += 2;
     }
@@ -107,10 +109,8 @@ export function getStandardDate(dateStr) {
   let date = new Date(dateStr);
 
   // 先尝试直接new，如果不合法再继续走
-  // @ts-ignore
-  // eslint-disable-next-line no-restricted-globals
-  if (!isNaN(date)) {
-    return date;
+  if (typeof date !== 'object') { //  && !isNaN(date)
+    return ;
   }
 
   try {
@@ -165,25 +165,25 @@ export function transBytes(bytes, base, preferFormat, isTraffic = false) {
   let value;
   let format;
 
-  const _oneKb = isTraffic ? 1000 : oneKb;
-  const _oneMb = isTraffic ? (_oneKb * 1000) : oneMb;
-  const _oneGb = isTraffic ? (_oneMb * 1000) : oneGb;
-  const _oneTb = isTraffic ? (_oneGb * 1000) : oneTb;
+  const theOneKb = isTraffic ? 1000 : oneKb;
+  const theOneMb = isTraffic ? (theOneKb * 1000) : oneMb;
+  const theOneGb = isTraffic ? (theOneMb * 1000) : oneGb;
+  const theOneTb = isTraffic ? (theOneGb * 1000) : oneTb;
 
-  if (bytes >= _oneTb || preferFormat === 'TB') {
-    value = (bytes / _oneTb).toFixed(2);
+  if (bytes >= theOneTb || preferFormat === 'TB') {
+    value = (bytes / theOneTb).toFixed(2);
     base = base ? `Tb${base}` : 'TB';
     format = 'TB';
-  } else if (bytes >= _oneGb || preferFormat === 'GB') {
-    value = (bytes / _oneGb).toFixed(2);
+  } else if (bytes >= theOneGb || preferFormat === 'GB') {
+    value = (bytes / theOneGb).toFixed(2);
     base = base ? `Gb${base}` : 'GB';
     format = 'GB';
-  } else if (bytes >= _oneMb || preferFormat === 'MB') {
-    value = (bytes / _oneMb).toFixed(2);
+  } else if (bytes >= theOneMb || preferFormat === 'MB') {
+    value = (bytes / theOneMb).toFixed(2);
     base = base ? `Mb${base}` : 'MB';
     format = 'MB';
-  } else if (bytes >= _oneKb || preferFormat === 'KB') {
-    value = (bytes / _oneKb).toFixed(2);
+  } else if (bytes >= theOneKb || preferFormat === 'KB') {
+    value = (bytes / theOneKb).toFixed(2);
     base = base ? `Kb${base}` : 'KB';
     format = 'KB';
   } else {
@@ -226,8 +226,8 @@ export function flattenArray(input, prefix = '') {
   return output;
 }
 
-// @ts-ignore
 export const noop = (a?: any): void => {
+  console.log('noop');
 };
 
 export function defineMap2SelectorList(defineMap: { [propName: string]: string }): SelectorOption[] {
@@ -248,7 +248,7 @@ export function getSecondsFromHourMinute(time) {
 
 export function getHourMinuteFromTime(seconds) {
   const hour = Math.floor(seconds / 3600);
-  const minute = Math.floor(seconds % 3600 / 60);
+  const minute = Math.floor((seconds % 3600) / 60);
   const second = seconds % 3600 % 60;
 
   return { hour, minute, second };
@@ -278,7 +278,9 @@ export function getPrecision(value) {
   return 0;
 }
 
-export async function fetchAllList<T>(fetchFn: (props: { offset: number; limit: number }) => Promise<ListResponse<T>>): Promise<T[]> {
+export async function fetchAllList<T>(fetchFn: (
+    props: { offset: number; limit: number }
+  ) => Promise<ListResponse<T>>): Promise<T[]> {
   const limit = 100;
   let offset = 0;
   let total = 100;
@@ -444,7 +446,7 @@ export function mergeConnectDeviceConfig(defaultConfig, config) {
       if (config[section][key] !== '' && config[section][key] !== undefined) {
         mergedConfig[section][key] = config[section][key];
       }
-    })
+    });
   });
   return mergedConfig;
 }
@@ -471,14 +473,14 @@ export function subscribeStore({
   onInitOrChange,
 }: {
   store: {
-    getState: Function;
-    subscribe: Function;
+    getState: () => void;
+    subscribe: (callback) => void;
   };
-  selector: Function;
-  equalComparator?: Function;
-  onInit?: Function;
-  onChange?: Function;
-  onInitOrChange?: Function;
+  selector: (str) => number;
+  equalComparator?: (pre, next) => boolean;
+  onInit?: (...obj) => void;
+  onChange?: (cur, pre) => void;
+  onInitOrChange?: (cur, pre) => void;
 }) {
   onInit = onInit || onInitOrChange;
   onChange = onChange || onInitOrChange;
@@ -501,15 +503,15 @@ export function subscribeStore({
 }
 
 export function isH5PanelAvailable(productConfig) {
-  return productConfig &&
-    productConfig.Panel &&
-    productConfig.Panel.h5 && (
-      productConfig.Panel.h5.url || (
-        productConfig.Panel.h5.release &&
-        productConfig.Panel.h5.release.scripts &&
-        productConfig.Panel.h5.release.scripts.length
-      )
-    );
+  return productConfig
+    && productConfig.Panel
+    && productConfig.Panel.h5 && (
+    productConfig.Panel.h5.url || (
+      productConfig.Panel.h5.release
+        && productConfig.Panel.h5.release.scripts
+        && productConfig.Panel.h5.release.scripts.length
+    )
+  );
 }
 
 export function isFullScreen() {
@@ -545,13 +547,11 @@ export const rpx2px = (rpx: number): number => {
   return (rpx / 2) * (Math.min(640, clientWidth) / 375);
 };
 
-export const px2rem = (px, withUnit?: any) => {
-  return rpx2rem(px2rpx(px), withUnit);
-}
+export const px2rem = (px, withUnit?: any) => rpx2rem(px2rpx(px), withUnit);
 
 export function rpx2rem(rpx, withUnit?: true): string;
 export function rpx2rem(rpx, withUnit?: false): number;
-export function rpx2rem(rpx, withUnit: boolean = true) {
+export function rpx2rem(rpx, withUnit = true) {
   const rem = rpx / 46.875;
 
   if (withUnit) {
@@ -603,7 +603,7 @@ export function parseUrl(url) {
 export function numberToArray(number: number, desc?: string): string[] {
   const result: string[] = [];
   for (let i = 0; i < number; i++) {
-    let value = i + 1 + '';
+    let value = `${i + 1}`;
 
     if (desc) {
       value += desc;
@@ -612,15 +612,14 @@ export function numberToArray(number: number, desc?: string): string[] {
   }
   return result;
 }
-import viewportConfig from '../../webpack/pxToViewport.config';
 export const px2vw = (px: number): string | number => {
-  const viewportWidth = viewportConfig.viewportWidth;
+  const { viewportWidth } = viewportConfig;
   const vw = px * (100 / viewportWidth);
 
   if (px === 0) {
     return px;
   }
-  return vw.toFixed(viewportConfig.unitPrecision || 3) + 'vw';
+  return `${vw.toFixed(viewportConfig.unitPrecision || 3)}vw`;
 };
 
 export function toUnderscores(str: string): string {
@@ -637,12 +636,9 @@ export const formatPxUnit = (unit: string | number): string | number => {
     return px2vw(unit);
   }
 
-  const reg = /\d+px/gi;
-  return unit.replace(reg, function (t) {
-    const val = parseInt(t);
-
-    return px2vw(val);
-  });
+  const reg = /(\d+)px/gi;
+  const res = reg.exec(unit);
+  return res?.length ? parseInt(res[1], 10) : 0;
 };
 export function mapsToOptions(name: string, maps: any): string[] {
   if (!maps[name]) return ['1', '2', '3'];
@@ -658,13 +654,11 @@ export function mapsToOptions(name: string, maps: any): string[] {
  * 把1或0的枚举转换为boolean
  * @param value
  */
-export const toggleBooleanByNumber = (value: number) => {
-  return value !== 0;
-};
+export const toggleBooleanByNumber = (value: number) => value !== 0;
 /**
  * 补零函数
  */
- export function zeroize(arg: number): string {
+export function zeroize(arg: number): string {
   if (arg < 10) {
     return `0${arg}`;
   }
@@ -674,7 +668,7 @@ export const toggleBooleanByNumber = (value: number) => {
  * 根据设备状态，设置dom元素样式是否可用（高亮）
  * @param deviceStatus
  */
- export const setDomClassActive = (deviceStatus: number) => {
+export const setDomClassActive = (deviceStatus: number) => {
   if (deviceStatus === 1) {
     return 'disabled';
   }
@@ -684,7 +678,7 @@ export const toggleBooleanByNumber = (value: number) => {
  * 枚举转数组
  * @param enumCNObj
  */
-export const enumToArray = (enumCNObj: {}): {
+export const enumToArray = (enumCNObj: any): {
   label: string;
   value: number;
 }[] => {
@@ -694,26 +688,25 @@ export const enumToArray = (enumCNObj: {}): {
     if (isNaN(+key)) {
       result.push({
         label: key,
-        value: enumCNObj[key]
+        value: enumCNObj[key],
       });
     }
   }
   // return [{ value: 1, label: '智能' }];
   return result;
 };
-import { EventEmitter } from 'events';
 export default new EventEmitter();
 
 export function hsv2rgb(arr) {
-  let h = arr[0];
+  const h = arr[0];
   let s = arr[1];
   let  v = arr[2];
   s = s / 100;
   v = v / 100;
-  let r = 0,
-    g = 0,
-    b = 0;
-  const i = parseInt((h / 60) % 6);
+  let r = 0;
+  let g = 0;
+  let b = 0;
+  const i = ((h / 60) % 6);
   const f = h / 60 - i;
   const p = v * (1 - s);
   const q = v * (1 - f * s);
@@ -752,22 +745,20 @@ export function hsv2rgb(arr) {
     default:
       break;
   }
-  r = parseInt(r * 255.0);
-  g = parseInt(g * 255.0);
-  b = parseInt(b * 255.0);
+  r = (r * 255.0);
+  g = (g * 255.0);
+  b = (b * 255.0);
   return rgb(r, g, b);
 }
 
 export function rgb2hsv(arr) {
-  let h = 0,
-    s = 0,
-    v = 0;
-  const r = arr[0],
-    g = arr[1],
-    b = arr[2];
-  arr.sort(function (a, b) {
-    return a - b;
-  });
+  let h = 0;
+  let s = 0;
+  let v = 0;
+  const r = arr[0];
+  const g = arr[1];
+  const b = arr[2];
+  arr.sort((a, b) => a - b);
   const max = arr[2];
   const min = arr[0];
   v = max / 255;
@@ -787,8 +778,8 @@ export function rgb2hsv(arr) {
   } else if (max === b) {
     h = 60 * ((r - g) / (max - min)) + 240;
   }
-  h = parseInt(h);
-  s = parseInt(s * 100);
-  v = parseInt(v * 100);
+  // h = (h);
+  s = (s * 100);
+  v = (v * 100);
   return [h, s, v];
 }

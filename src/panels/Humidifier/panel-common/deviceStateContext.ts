@@ -75,7 +75,7 @@ export const DeviceSateContext: React.Context<{
     filterlife: 100, // 滤网寿命 数值范围：0-100 初始值：0 步长：1
     plasma: 0, // 等离子 开关 - -O 1
     temp_unit_convert: 0, // 枚举值： 0-摄氏度 1 -华氏度
-    spray_gears: 'level_1' // 档位
+    spray_gears: 'level_1', // 档位
   },
   userInfo: {
     Avatar: '',
@@ -85,7 +85,7 @@ export const DeviceSateContext: React.Context<{
     HasWxOpenID: 1,
     NickName: '',
     PhoneNumber: '',
-    UserID: ''
+    UserID: '',
   },
-  togglePower: noop
+  togglePower: noop,
 });

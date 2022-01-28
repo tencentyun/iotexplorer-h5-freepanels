@@ -33,7 +33,7 @@ export const DeviceContext: React.Context<{
     drying_left: 0,
     manual_feed: 0,
     meet_plan: {
-      portion: 0
-    }
-  }
+      portion: 0,
+    },
+  },
 });
