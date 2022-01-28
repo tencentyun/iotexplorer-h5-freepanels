@@ -1,0 +1,98 @@
+{
+  "version": "1.0",
+  "properties": [
+    {
+      "id": "doorsensor_state",
+      "name": "门磁",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "bool",
+        "mapping": {
+          "0": "关",
+          "1": "开"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "fault_event",
+      "name": "门磁故障",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "stringenum",
+        "mapping": {
+          "fault_1": "fault_1",
+          "fault_2": "fault_2",
+          "fault_3": "fault_3"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "pir_state",
+      "name": "人体感应状态",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "stringenum",
+        "mapping": {
+          "0": "有人",
+          "1": "无人"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "battery_state",
+      "name": "电池电量状态",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "stringenum",
+        "mapping": {
+          "low": "low",
+          "middle": "middle",
+          "high": "high"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "tamper_event",
+      "name": "防拆告警",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "stringenum",
+        "mapping": {
+          "0": "未拆卸",
+          "1": "拆卸告警"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "battery_percentage",
+      "name": "电池电量",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "int",
+        "min": "0",
+        "max": "100",
+        "start": "0",
+        "step": "1",
+        "unit": "%"
+      },
+      "required": false
+    }
+  ],
+  "events": [],
+  "actions": [],
+  "profile": {
+    "ProductId": "P9FCB4V9V1",
+    "CategoryId": "1"
+  }
+}

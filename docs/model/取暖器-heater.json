@@ -1,0 +1,203 @@
+{
+  "version": "1.0",
+  "properties": [
+    {
+      "id": "power_switch",
+      "name": "电源开关",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "bool",
+        "mapping": {
+          "0": "关",
+          "1": "开"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "child_lock",
+      "name": "童锁",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "bool",
+        "mapping": {
+          "0": "关",
+          "1": "开"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "swing",
+      "name": "摇头",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "bool",
+        "mapping": {
+          "0": "关",
+          "1": "开"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "anion",
+      "name": "负离子",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "bool",
+        "mapping": {
+          "0": "关",
+          "1": "开"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "light",
+      "name": "灯光",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "bool",
+        "mapping": {
+          "0": "关",
+          "1": "开"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "heat_level",
+      "name": "加热档位",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "stringenum",
+        "mapping": {
+          "0" : "自动",
+          "1" : "低档",
+          "2" : "中档",
+          "3" : "高档"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "work_state",
+      "name": "加热状态",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "stringenum",
+        "mapping": {
+          "0" : "待机",
+          "1" : "加热中"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "work_mode",
+      "name": "工作模式",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "stringenum",
+        "mapping": {
+          "0" : "智能模式",
+          "1" : "自动模式",
+          "2" : "ECO模式",
+          "3" : "舒适模式",
+          "4" : "防霜冻模式",
+          "5" : "手动模式"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "unit_convert",
+      "name": "温标切换",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "stringenum",
+        "mapping": {
+          "0" : "摄氏度",
+          "1" : "华氏度"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "current_c_temp",
+      "name": "当前温度",
+      "desc": "",
+      "mode": "r",
+      "define": {
+        "type": "int",
+        "min": "-20",
+        "max": "50",
+        "start": "1",
+        "step": "1",
+        "unit": "°C"
+      },
+      "required": false
+    },
+    {
+      "id": "current_f_temp",
+      "name": "当前温度",
+      "desc": "",
+      "mode": "r",
+      "define": {
+        "type": "int",
+        "min": "-4",
+        "max": "122",
+        "start": "1",
+        "step": "1",
+        "unit": "°F"
+      },
+      "required": false
+    },
+    {
+      "id": "target_c_temp",
+      "name": "温度调节",
+      "desc": "",
+      "mode": "r",
+      "define": {
+        "type": "int",
+        "min": "0",
+        "max": "40",
+        "start": "1",
+        "step": "1",
+        "unit": "°C"
+      },
+      "required": false
+    },
+    {
+      "id": "target_f_temp",
+      "name": "温度调节",
+      "desc": "",
+      "mode": "r",
+      "define": {
+        "type": "int",
+        "min": "32",
+        "max": "104",
+        "start": "1",
+        "step": "1",
+        "unit": "°F"
+      },
+      "required": false
+    },
+  ],
+  "events": [],
+  "actions": [],
+  "profile": {
+    "ProductId": "P9FCB4V9V1",
+    "CategoryId": "1"
+  }
+}

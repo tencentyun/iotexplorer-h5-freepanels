@@ -1,0 +1,433 @@
+{
+  "version": "1.0",
+  "properties": [
+    {
+      "id": "power_switch",
+      "name": "电源开关",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "bool",
+        "mapping": {
+          "0": "关",
+          "1": "开"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "child_lock",
+      "name": "童锁",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "bool",
+        "mapping": {
+          "0": "关",
+          "1": "开"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "disinfection",
+      "name": "消毒",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "bool",
+        "mapping": {
+          "0": "关",
+          "1": "开"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "instant_heating",
+      "name": "即时加热",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "bool",
+        "mapping": {
+          "0": "关",
+          "1": "开"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "night_power",
+      "name": "夜电",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "bool",
+        "mapping": {
+          "0": "关",
+          "1": "开"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "work_life_reset_1",
+      "name": "镁棒寿命重置",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "bool",
+        "mapping": {
+          "0": "关",
+          "1": "开"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "work_life_reset_2",
+      "name": "内胆寿命重置",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "bool",
+        "mapping": {
+          "0": "关",
+          "1": "开"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "capacity_expansion",
+      "name": "增容",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "bool",
+        "mapping": {
+          "0": "关",
+          "1": "开"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "heating_3d",
+      "name": "3D速热",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "bool",
+        "mapping": {
+          "0": "关",
+          "1": "开"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "microwave_switch",
+      "name": "微波开关",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "bool",
+        "mapping": {
+          "0": "关",
+          "1": "开"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "outage",
+      "name": "出水断电",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "bool",
+        "mapping": {
+          "0": "关",
+          "1": "开"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "work_state",
+      "name": "工作状态",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "stringenum",
+        "mapping": {
+          "standby" : "待机",
+          "heating" : "加热",
+          "warm" : "取暖"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "water_quality",
+      "name": "水质",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "stringenum",
+        "mapping": {
+          "good" : "优",
+          "middle" : "中",
+          "bad" : "差"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "heat_mode",
+      "name": "制热模式",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "stringenum",
+        "mapping": {
+          "half_tank_heating" : "半胆模式",
+          "whole_tank_heating" : "整胆模式"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "capacity_set",
+      "name": "功率设置",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "stringenum",
+        "mapping": {
+          "2000" : "2000W",
+          "3000" : "3000W",
+          "4000" : "4000W"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "unit_convert",
+      "name": "温标切换",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "stringenum",
+        "mapping": {
+          "0" : "摄氏度",
+          "1" : "华氏度"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "temp_current",
+      "name": "当前温度",
+      "desc": "",
+      "mode": "r",
+      "define": {
+        "type": "int",
+        "min": "-20",
+        "max": "50",
+        "start": "0",
+        "step": "1",
+        "unit": "°C"
+      },
+      "required": false
+    },
+    {
+      "id": "temp_set",
+      "name": "温度设置",
+      "desc": "",
+      "mode": "r",
+      "define": {
+        "type": "int",
+        "min": "0",
+        "max": "50",
+        "start": "0",
+        "step": "1",
+        "unit": "°C"
+      },
+      "required": false
+    },
+    {
+      "id": "mode",
+      "name": "模式",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "stringenum",
+        "mapping": {
+          "manual": "手动模式",
+          "smart": "智能模式",
+          "comfortable": "舒适模式",
+          "auto": "自动模式",
+          "eco": "ECO模式",
+          "low": "低档模式",
+          "high": "高档模式",
+          "middle": "中档模式",
+          "antifreeze": "防冻模式"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "power_consumption",
+      "name": "耗电量",
+      "desc": "",
+      "mode": "r",
+      "define": {
+        "type": "int",
+        "min": "0",
+        "max": "999999",
+        "start": "0",
+        "step": "1",
+        "unit": "kW-h"
+      },
+      "required": false
+    },
+    {
+      "id": "gas_consumption",
+      "name": "耗气量",
+      "desc": "",
+      "mode": "r",
+      "define": {
+        "type": "int",
+        "min": "0",
+        "max": "100",
+        "start": "0",
+        "step": "1"
+      },
+      "required": false
+    },
+    {
+      "id": "water_left",
+      "name": "剩余水量",
+      "desc": "",
+      "mode": "r",
+      "define": {
+        "type": "int",
+        "min": "0",
+        "max": "100",
+        "start": "0",
+        "step": "1",
+        "unit": "L"
+      },
+      "required": false
+    },
+    {
+      "id": "water_set",
+      "name": "水位设置",
+      "desc": "",
+      "mode": "r",
+      "define": {
+        "type": "int",
+        "min": "20",
+        "max": "100",
+        "start": "0",
+        "step": "5",
+        "unit": "L"
+      },
+      "required": false
+    },
+    {
+      "id": "runtime_total",
+      "name": "累计工作时间",
+      "desc": "",
+      "mode": "r",
+      "define": {
+        "type": "int",
+        "min": "0",
+        "max": "100",
+        "start": "0",
+        "step": "1"
+      },
+      "required": false
+    },
+    {
+      "id": "water_flow",
+      "name": "水流量",
+      "desc": "",
+      "mode": "r",
+      "define": {
+        "type": "int",
+        "min": "0",
+        "max": "100",
+        "start": "0",
+        "step": "1"
+      },
+      "required": false
+    },
+    {
+      "id": "cur_voltage",
+      "name": "当前电压",
+      "desc": "",
+      "mode": "r",
+      "define": {
+        "type": "int",
+        "min": "0",
+        "max": "300",
+        "start": "0",
+        "step": "1",
+        "unit": "V"
+      },
+      "required": false
+    },
+    {
+      "id": "work_life_1",
+      "name": "镁棒寿命",
+      "desc": "",
+      "mode": "r",
+      "define": {
+        "type": "int",
+        "min": "0",
+        "max": "100",
+        "start": "0",
+        "step": "1"
+      },
+      "required": false
+    },
+    {
+      "id": "work_life_2",
+      "name": "内胆寿命",
+      "desc": "",
+      "mode": "r",
+      "define": {
+        "type": "int",
+        "min": "0",
+        "max": "100",
+        "start": "0",
+        "step": "1"
+      },
+      "required": false
+    },
+    {
+      "id": "fault",
+      "name": "故障警告",
+      "desc": "",
+      "mode": "r",
+      "define": {
+        "type": "stringenum",
+        "mapping": {
+          "normal" : "正常",
+          "fault" : "故障"
+        }
+      },
+      "required": false
+    }
+  ],
+  "events": [],
+  "actions": [],
+  "profile": {
+    "ProductId": "P9FCB4V9V1",
+    "CategoryId": "1"
+  }
+}

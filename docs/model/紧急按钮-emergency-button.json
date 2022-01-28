@@ -1,0 +1,121 @@
+{
+  "version": "1.0",
+  "properties": [
+    {
+      "id": "sos_state",
+      "name": "紧急报警",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "bool",
+        "mapping": {
+          "0": "关",
+          "1": "开"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "tamper_alarm",
+      "name": "防拆报警",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "bool",
+        "mapping": {
+          "0": "关",
+          "1": "开"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "disarmed",
+      "name": "撤防",
+      "desc": "枚举值: disarmed",
+      "mode": "rw",
+      "define": {
+        "type": "stringenum",
+        "mapping": {
+          "disarmed": "disarmed"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "arm",
+      "name": "外出布防",
+      "desc": "枚举值: arm",
+      "mode": "rw",
+      "define": {
+        "type": "stringenum",
+        "mapping": {
+          "arm": "arm"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "home",
+      "name": "在家布防",
+      "desc": "枚举值: home",
+      "mode": "rw",
+      "define": {
+        "type": "stringenum",
+        "mapping": {
+          "home": "home"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "battery_state",
+      "name": "电池电量状态",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "stringenum",
+        "mapping": {
+          "low": "low",
+          "middle": "middle",
+          "high": "high"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "sos",
+      "name": "SOS紧急",
+      "desc": "枚举值: sos",
+      "mode": "rw",
+      "define": {
+        "type": "stringenum",
+        "mapping": {
+          "sos": "sos"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "battery_percentage",
+      "name": "电池电量",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "int",
+        "min": "0",
+        "max": "100",
+        "start": "0",
+        "step": "1",
+        "unit": "%"
+      },
+      "required": false
+    }
+  ],
+  "events": [],
+  "actions": [],
+  "profile": {
+    "ProductId": "P9FCB4V9V1",
+    "CategoryId": "1"
+  }
+}

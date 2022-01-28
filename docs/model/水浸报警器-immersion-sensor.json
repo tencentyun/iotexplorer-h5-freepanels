@@ -1,0 +1,130 @@
+{
+  "version": "1.0",
+  "properties": [
+    {
+      "id": "alarm_switch",
+      "name": "报警开关",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "bool",
+        "mapping": {
+          "0": "关",
+          "1": "开"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "muffling",
+      "name": "消音",
+      "desc": "0：不消音； 1：消音",
+      "mode": "rw",
+      "define": {
+        "type": "bool",
+        "mapping": {
+          "0": "不消音",
+          "1": "消音"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "sensor_probe",
+      "name": "传感器探头状态",
+      "desc": "枚举值: normal, fault",
+      "mode": "rw",
+      "define": {
+        "type": "stringenum",
+        "mapping": {
+          "normal": "正常",
+          "fault": "错误"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "tamper_alarm",
+      "name": "防拆报警",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "bool",
+        "mapping": {
+          "0": "关",
+          "1": "开"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "alarm_vol",
+      "name": "报警音量",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "stringenum",
+        "mapping": {
+          "low": "low",
+          "middle": "middle",
+          "high": "high",
+          "mute" : "mute"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "alarm_ringtone",
+      "name": "报警铃声",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "stringenum",
+        "mapping": {
+          "ringtone_1": "ringtone_1",
+          "ringtone_2": "ringtone_2",
+          "ringtone_3": "ringtone_3",
+          "ringtone_4": "ringtone_4",
+          "ringtone_5": "ringtone_5"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "battery_state",
+      "name": "电池电量状态",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "stringenum",
+        "mapping": {
+          "low": "low",
+          "middle": "middle",
+          "high": "high"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "battery_percentage",
+      "name": "电池电量",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "int",
+        "min": "0",
+        "max": "100",
+        "start": "0",
+        "step": "1",
+        "unit": "%"
+      },
+      "required": false
+    }
+  ],
+  "events": [],
+  "actions": [],
+  "profile": {
+    "ProductId": "P9FCB4V9V1",
+    "CategoryId": "1"
+  }
+}

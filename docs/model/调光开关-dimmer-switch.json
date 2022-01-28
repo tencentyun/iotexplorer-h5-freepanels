@@ -1,0 +1,83 @@
+{
+  "version": "1.0",
+  "properties": [
+    {
+      "id": "power_switch",
+      "name": "电源开关",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "bool",
+        "mapping": {
+          "0": "关",
+          "1": "开"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "bright_value",
+      "name": "亮度值",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "int",
+        "min": "1",
+        "max": "100",
+        "start": "1",
+        "step": "1",
+        "unit": "%"
+      },
+      "required": false
+    },
+    {
+      "id": "brightness_min",
+      "name": "最小亮度",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "int",
+        "min": "1",
+        "max": "100",
+        "start": "1",
+        "step": "1",
+        "unit": "%"
+      },
+      "required": false
+    },
+    {
+      "id": "light_type",
+      "name": "光源类型",
+      "desc": "枚举值：LED, incandescent, halogen",
+      "mode": "rw",
+      "define": {
+        "type": "stringenum",
+        "mapping": {
+          "LED": "LED",
+          "incandescent": "incandescent",
+          "halogen": "halogen"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "work_mode",
+      "name": "光源类型",
+      "desc": "枚举值：white",
+      "mode": "rw",
+      "define": {
+        "type": "stringenum",
+        "mapping": {
+          "white": "white"
+        }
+      },
+      "required": false
+    }
+  ],
+  "events": [],
+  "actions": [],
+  "profile": {
+    "ProductId": "P9FCB4V9V1",
+    "CategoryId": "1"
+  }
+}

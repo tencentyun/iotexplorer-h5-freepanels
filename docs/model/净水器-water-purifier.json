@@ -1,0 +1,323 @@
+{
+  "version": "1.0",
+  "properties": [
+    {
+      "id": "switch",
+      "name": "电源开关",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "bool",
+        "mapping": {
+          "0": "关",
+          "1": "开"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "switch_flow",
+      "name": "取水开关",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "bool",
+        "mapping": {
+          "0": "关",
+          "1": "开"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "auto_clean",
+      "name": "自动清洗",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "bool",
+        "mapping": {
+          "0": "关",
+          "1": "开"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "uv",
+      "name": "UV",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "bool",
+        "mapping": {
+          "0": "关",
+          "1": "开"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "child_lock",
+      "name": "童锁",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "bool",
+        "mapping": {
+          "0": "关",
+          "1": "开"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "hotwater_lock",
+      "name": "热水解锁",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "bool",
+        "mapping": {
+          "0": "关",
+          "1": "开"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "temp_set_mode",
+      "name": "加热档位",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "stringenum",
+        "mapping": {
+          "coffee" : "咖啡",
+          "milk" : "牛奶",
+          "boiled_water" : "热水",
+          "water" : "温水"
+        }
+      },
+      "required": false
+    },
+
+    {
+      "id": "status",
+      "name": "工作状态",
+      "desc": "",
+      "mode": "r",
+      "define": {
+        "type": "stringenum",
+        "mapping": {
+          "purified" : "净水中",
+          "heating" : "加热中",
+          "water_intake" : "取水中",
+          "standby" : "待机中",
+          "washing" : "冲洗中",
+          "sterilization" : "杀菌中"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "flow",
+      "name": "取水杯量",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "stringenum",
+        "mapping": {
+          "continue" : "持续出水",
+          "100ml" : "100ML",
+          "200ml" : "200ML",
+          "300ml" : "300ML"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "tds_in",
+      "name": "原水TDS",
+      "desc": "",
+      "mode": "r",
+      "define": {
+        "type": "int",
+        "min": "0",
+        "max": "999",
+        "start": "0",
+        "step": "1",
+      },
+      "required": false
+    },
+    {
+      "id": "tds_out",
+      "name": "净水TDS",
+      "desc": "",
+      "mode": "r",
+      "define": {
+        "type": "int",
+        "min": "0",
+        "max": "999",
+        "start": "0",
+        "step": "1",
+      },
+      "required": false
+    },
+    {
+      "id": "temp_current",
+      "name": "当前温度",
+      "desc": "",
+      "mode": "r",
+      "define": {
+        "type": "int",
+        "min": "0",
+        "max": "100",
+        "start": "0",
+        "step": "1",
+        "unit": "°C"
+      },
+      "required": false
+    },
+    {
+      "id": "temp_set",
+      "name": "温度设置",
+      "desc": "",
+      "mode": "r",
+      "define": {
+        "type": "int",
+        "min": "0",
+        "max": "100",
+        "start": "0",
+        "step": "1",
+        "unit": "°C"
+      },
+      "required": false
+    },
+    {
+      "id": "flow_set",
+      "name": "设置杯量",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "int",
+        "min": "100",
+        "max": "1000",
+        "start": "100",
+        "step": "1",
+        "unit": "ml"
+      },
+      "required": false
+    },
+    {
+      "id": "water_total",
+      "name": "耗水总量",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "int",
+        "min": "0",
+        "max": "100000",
+        "start": "0",
+        "step": "1",
+        "unit": "L"
+      },
+      "required": false
+    },
+    {
+      "id": "desalting_rate",
+      "name": "脱盐率",
+      "desc": "",
+      "mode": "r",
+      "define": {
+        "type": "int",
+        "min": "0",
+        "max": "100",
+        "start": "0",
+        "step": "1",
+        "unit": "%"
+      },
+      "required": false
+    },
+    {
+      "id": "pp_filtertime",
+      "name": "PP寿命",
+      "desc": "",
+      "mode": "r",
+      "define": {
+        "type": "int",
+        "min": "0",
+        "max": "100",
+        "start": "0",
+        "step": "1",
+        "unit": "%"
+      },
+      "required": false
+    },
+    {
+      "id": "cot_filtertime",
+      "name": "COT寿命",
+      "desc": "",
+      "mode": "r",
+      "define": {
+        "type": "int",
+        "min": "0",
+        "max": "100",
+        "start": "0",
+        "step": "1",
+        "unit": "%"
+      },
+      "required": false
+    },
+    {
+      "id": "ro_filtertime",
+      "name": "RO寿命",
+      "desc": "",
+      "mode": "r",
+      "define": {
+        "type": "int",
+        "min": "0",
+        "max": "100",
+        "start": "0",
+        "step": "1",
+        "unit": "%"
+      },
+      "required": false
+    },
+    {
+      "id": "CBPA_filtertime",
+      "name": "CBPA寿命",
+      "desc": "",
+      "mode": "r",
+      "define": {
+        "type": "int",
+        "min": "0",
+        "max": "100",
+        "start": "0",
+        "step": "1",
+        "unit": "%"
+      },
+      "required": false
+    },
+    {
+      "id": "fault",
+      "name": "故障警告",
+      "desc": "",
+      "mode": "r",
+      "define": {
+        "type": "stringenum",
+        "mapping": {
+          "normal" : "正常",
+          "fault" : "故障"
+        }
+      },
+      "required": false
+    }
+  ],
+  "events": [],
+  "actions": [],
+  "profile": {
+    "ProductId": "P9FCB4V9V1",
+    "CategoryId": "1"
+  }
+}
