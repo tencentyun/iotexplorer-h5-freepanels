@@ -1,7 +1,4 @@
-import { getThemeType } from '@libs/theme';
-const themeType = getThemeType();
-
-const skinProps = {
+const SkinProps = {
   normal: {
     more: {
       active: '#0F0F0F',
@@ -91,4 +88,4 @@ const skinProps = {
   },
 };
 
-export const CurrentSkinProps: any = skinProps[themeType];
+export { SkinProps };

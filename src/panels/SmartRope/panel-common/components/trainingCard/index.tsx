@@ -98,23 +98,23 @@ export function TrainingCard(props: TraningCardProps) {
       <ul className="card-data">
         <li>
           <p className="value">
-            {deviceData.total_trip_on_time || '-'}
+            {deviceData.total_trip_on_time || '0'}
           </p>
           <p className="key">绊绳次数</p>
         </li>
         <li>
           <p className="value">
-            {deviceData.current_speed || '-'}
+            {deviceData.current_speed || '0'}
           </p>
           <p className="key">平均速度</p>
         </li>
         <li>
-          <p className="value">{deviceData.speed_max || '-'}</p>
+          <p className="value">{deviceData.speed_max || '0'}</p>
           <p className="key">最快速度</p>
         </li>
         <li>
           <p className="value">
-            {deviceData.keep_jump_max || '-'}
+            {deviceData.keep_jump_max || '0'}
           </p>
           <p className="key">最大连跳</p>
         </li>

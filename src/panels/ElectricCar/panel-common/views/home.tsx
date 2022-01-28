@@ -38,10 +38,16 @@ export function Home() {
       ) : (
         <>
           <SettingBlock></SettingBlock>
-
-          <footer className="footer-block">
-            <Cell title="无感解锁" size="medium" onClick={handleUnlock}></Cell>
-          </footer>
+          {themeType === 'blueWhite'&& 
+            <footer className="footer-block-blueWhite">
+              <Cell title="无感解锁" size="medium" onClick={handleUnlock}></Cell>
+            </footer>
+          }
+          {themeType !== 'blueWhite'&& 
+            <footer className="footer-block">
+              <Cell title="无感解锁" size="medium" onClick={handleUnlock}></Cell>
+            </footer>
+          }
         </>
       )}
     </main>

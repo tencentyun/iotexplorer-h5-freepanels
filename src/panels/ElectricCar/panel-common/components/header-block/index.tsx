@@ -7,11 +7,6 @@ import { Block } from '@components/layout';
 import { Battery } from '@components/business';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 import CarImage from '../../images/car.svg';
-import SoundImage from '../../images/sound.svg';
-import SoundImageBlueWhite from '../../images/sound-blueWhite.svg';
-import SoundImageDark from '../../images/sound-dark.svg';
-import SoundImageColorful from '../../images/sound-colorful.svg';
-import SoundImageMorandi from '../../images/sound-morandi.svg';
 import { getThemeType } from '@libs/theme';
 import { SkinProps } from '../skinProps';
 import './index.less';
@@ -23,19 +18,18 @@ export function HeaderBlock() {
   const soundImageSrc = () => {
     switch (themeType) {
       case 'normal':
-        return SoundImage;
+        return 'https://tencent-1305105198.cos.ap-guangzhou.myqcloud.com/electric-car/sound.svg';
       case 'blueWhite':
-        return SoundImageBlueWhite;
+        return 'https://tencent-1305105198.cos.ap-guangzhou.myqcloud.com/electric-car/sound-blueWhite.svg';
       case 'dark':
-        return SoundImageDark;
+        return 'https://tencent-1305105198.cos.ap-guangzhou.myqcloud.com/electric-car/sound-dark.svg';
       case 'colorful':
-        return SoundImageColorful;
+        return 'https://tencent-1305105198.cos.ap-guangzhou.myqcloud.com/electric-car/sound-colorful.svg';
       case 'morandi':
-        return SoundImageMorandi;
+        return 'https://tencent-1305105198.cos.ap-guangzhou.myqcloud.com/electric-car/sound-morandi.svg';
       default:
-        return SoundImage;
+        return 'https://tencent-1305105198.cos.ap-guangzhou.myqcloud.com/electric-car/sound.svg';
     }
-    return '';
   };
 
   // 设备详情页

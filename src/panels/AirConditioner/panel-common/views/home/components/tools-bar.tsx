@@ -124,7 +124,7 @@ export function ToolsBar() {
     ];
   };
 
-  const iconColor = (powerStatus: number, key?: string) => {
+  const iconColor = (powerStatus: number, key?: string, value?: (string | undefined)) => {
     if (themeType === 'colorful') {
       if (powerStatus === 1) {
         if (key === 'ultrasonic') {
@@ -191,9 +191,15 @@ export function ToolsBar() {
       }
     } else if (themeType === 'morandi') {
       if (powerStatus === 1) {
-        return {
-          color: '#B5ABA1'
-        };
+        if (value) {
+          return {
+            color: '#B5ABA1'
+          };
+        } else {
+          return {
+            color: '#515B6C'
+          };
+        }
       } else {
         return {
           color: '#909CAB'
@@ -243,15 +249,22 @@ export function ToolsBar() {
           sdk.deviceData.power_switch ? 'active' : ''
         )}
         onClick={() => {
+          if (!sdk.deviceData.power_switch) return;
           setModeVisible(true);
         }}
       >
         <SvgIcon
           className="icon-mode"
-          name="icon-work_mode"
-          {...iconColor(sdk.deviceData.power_switch, 'ultrasonic')}
+          name="icon-work-mode"
+          {...iconColor(sdk.deviceData.power_switch, 'ultrasonic', sdk.deviceData.mode)}
         ></SvgIcon>
-        <div className="label">{sdk.deviceData.mode ? enumWorkMode[sdk.deviceData.mode] : '自动模式'}</div>
+        <div className={classNames(
+            'label',
+            {'active-label': sdk.deviceData.power_switch && sdk.deviceData.mode },
+            {'default-label': sdk.deviceData.power_switch && !sdk.deviceData.mode }
+          )}>
+            {sdk.deviceData.mode ? enumWorkMode[sdk.deviceData.mode] : '自动模式'}
+          </div>
       </div>
       <div
         className={classNames(
@@ -259,15 +272,22 @@ export function ToolsBar() {
           sdk.deviceData.power_switch ? 'active' : ''
         )}
         onClick={() => {
+          if (!sdk.deviceData.power_switch) return;
           setGearVisible(true);
         }}
       >
         <SvgIcon
           className="icon-gear"
           name="icon-gear"
-          {...iconColor(sdk.deviceData.power_switch, 'gear')}
+          {...iconColor(sdk.deviceData.power_switch, 'gear', sdk.deviceData.fan_speed_enum)}
         ></SvgIcon>
-        <div className="label">{sdk.deviceData.fan_speed_enum ? enumGear[sdk.deviceData.fan_speed_enum] : '风速'}</div>
+        <div
+          className={classNames(
+            'label',
+            {'active-label': sdk.deviceData.power_switch && sdk.deviceData.fan_speed_enum },
+            {'default-label': sdk.deviceData.power_switch && !sdk.deviceData.fan_speed_enum }
+          )}>
+            {sdk.deviceData.fan_speed_enum ? enumGear[sdk.deviceData.fan_speed_enum] : '风速'}</div>
       </div>
       <div
         className={classNames(
@@ -281,7 +301,7 @@ export function ToolsBar() {
         <SvgIcon
           className="icon-time"
           name="icon-humidifier-more"
-          {...iconColor(sdk.deviceData.power_switch, 'more')}
+          {...iconColor(sdk.deviceData.power_switch, 'more', '1')}
         ></SvgIcon>
         <div className="label">更多</div>
       </div>

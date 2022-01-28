@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="74px" height="68px" viewBox="0 0 74 68" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 59.1 (86144) - https://sketch.com -->
+    <title>档位</title>
+    <desc>Created with Sketch.</desc>
+    <g id="页面-1" stroke="none" stroke-width="1" fill-rule="evenodd">
+        <g id="2" transform="translate(-526.000000, -1362.000000)">
+            <g id="编组-4" transform="translate(78.000000, 1277.000000)">
+                <g id="档位开关" transform="translate(337.000000, 0.000000)">
+                    <g id="档位" transform="translate(148.000000, 118.500000) rotate(-270.000000) translate(-148.000000, -118.500000) translate(114.000000, 82.000000)">
+                        <rect id="矩形" fill="#006FFF" x="7.5" y="9.09494702e-13" width="9" height="73" rx="4.5"></rect>
+                        <rect id="矩形备份-6" fill="#006FFF" x="53" y="2.95585778e-12" width="9" height="73" rx="4.5"></rect>
+                        <circle id="椭圆形" stroke="#006FFF" stroke-width="6" fill="#FFFFFF" cx="11.5" cy="48" r="8"></circle>
+                        <circle id="椭圆形备份-3" stroke="#006FFF" stroke-width="6" fill="#FFFFFF" cx="57" cy="23" r="8"></circle>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

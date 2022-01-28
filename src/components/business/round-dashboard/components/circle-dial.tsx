@@ -124,17 +124,17 @@ export function CircleDial(props: DashboardProps) {
     const tickAnimation = () => {
       let interval: any;
       let i = 0;
-      const activeLineList = document.getElementsByClassName('activeLine');
-      const opacityValue = Number((1 / activeLineList.length).toFixed(2));
+      const activeLineList = document.getElementsByClassName('line');
+      const lineList = document.getElementsByClassName('activeLine');
+      const opacityValue = Number((1 / lineList.length).toFixed(2));
       interval = setInterval(() => {
-        const opacity = opacityValue * i > 0.15 ? opacityValue * i : 0.15;
-        activeLineList[i].setAttribute(
-          'style',
-          'stroke: ' +
-            scaleLine.activeColor +
-            ';stroke-width: 5;opacity: ' +
-            opacity
-        );
+        let opacity = opacityValue * i > 0.3 ? opacityValue * i : 0.3;
+        let list = activeLineList[i].classList;
+        if (list.contains('activeLine')) {
+          activeLineList[i].setAttribute('style', 'stroke: ' + scaleLine.activeColor + ';stroke-width: 5;opacity: ' + opacity);
+        } else {
+          activeLineList[i].setAttribute('style', 'stroke: ' + 'none' + ';stroke-width: 5;');
+        }
         i++;
         if (i === activeLineList.length) {
           clearInterval(interval);
@@ -162,7 +162,7 @@ export function CircleDial(props: DashboardProps) {
   // 当前透明度
   const currentOpacity: number = (() => {
     return Number(
-      ((1 - 0.15) / ((currentAngle - startAngle) / step)).toFixed(2)
+      ((1 - 0.3) / ((currentAngle - startAngle) / step)).toFixed(2)
     );
   })();
 
@@ -185,13 +185,13 @@ export function CircleDial(props: DashboardProps) {
 
       lines.push({
         angle: i,
-        className: i <= currentAngle ? 'activeLine' : 'defaultLine',
+        className: i <= currentAngle ? 'line activeLine' : 'line defaultLine',
         x1: x,
         y1: y,
         x2: x2,
         y2: y2,
         color: 'none',
-        opacity: scaleIsGradient ? 0.15 + currentOpacity * n : 1
+        opacity: scaleIsGradient ? 0.3 + currentOpacity * n : 1
       });
     }
 

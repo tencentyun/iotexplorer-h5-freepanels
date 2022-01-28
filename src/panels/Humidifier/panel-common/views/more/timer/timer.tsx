@@ -5,7 +5,6 @@
  * @LastEditors:
  * @LastEditTime:
  */
-
 import React, { useState } from 'react';
 import TimerCloud, {
   ITimerDataBind,
@@ -13,9 +12,9 @@ import TimerCloud, {
 } from '@components/business/timerCloud/timer-cloud';
 import { List, Radio } from 'antd-mobile';
 import { DeviceSateContext } from '../../../deviceStateContext';
-// import WorkMode, {
-//   enumWorkMode
-// } from '../../../tools-bar/work-mode/work-mode';
+import WorkMode, {
+  enumWorkMode
+} from '../../home/components/tools-bar/work-mode/work-mode';
 import { Modal } from '@components/base';
 import IconChecked from '@components/base/icon-checked/icon-checked';
 import './timer.less';
@@ -60,7 +59,7 @@ const Timer = () => {
               />
               <List.Item
                 prefix={'工作模式'}
-                // extra={enumWorkMode[data['work_mode']]}
+                extra={enumWorkMode[data['work_mode']]}
                 onClick={() => {
                   setIsShowWorkMode(true);
                 }}
@@ -114,11 +113,11 @@ const Timer = () => {
                 setData(Object.assign(data, { work_mode: tempWorkMode }));
               }}
             >
-              {/* <WorkMode
+              <WorkMode
                 onChange={(val: any) => {
                   setTempWorkMode(val);
                 }}
-              /> */}
+              />
             </Modal>
           </TimerCloud>
         </>

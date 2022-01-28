@@ -17,6 +17,7 @@
 
   .block-wrap {
     display: flex;
+    justify-content: space-between;
     flex-flow: row wrap;
     padding: 48px 80px 10px;
 
@@ -25,7 +26,6 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      margin-right: 38px;
       margin-bottom: 38px;
       // padding: 73px 0 48px;
       width: 295px;
@@ -34,9 +34,41 @@
       background: rgba(218,225,232,0.50);
       cursor: pointer;
 
-      &:nth-child(3n) {
-        margin-right: 0;
+      .item-label {
+        line-height: 67px;
+        font-size: 48px;
+        color: #0F0F0F;
       }
+      .item-icon-selected {
+        margin-top: 40px;
+        width: 69px;
+        height: 69px;
+      }
+      .item-icon-unselected {
+        margin-top: 60px;
+        width: 46px;
+        height: 50px;
+      }
+    }
+  }
+
+  .block-wrap-middle {
+    display: flex;
+    justify-content: space-between;
+    flex-flow: row wrap;
+    padding: 48px 245px 10px;
+
+    .item-block {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 38px;
+      width: 295px;
+      height: 300px;
+      border-radius: 60px;
+      background: rgba(218,225,232,0.50);
+      cursor: pointer;
 
       .item-label {
         line-height: 67px;
@@ -45,8 +77,8 @@
       }
       .item-icon-selected {
         margin-top: 40px;
-        width: 70px;
-        height: 70px;
+        width: 69px;
+        height: 69px;
       }
       .item-icon-unselected {
         margin-top: 60px;
@@ -97,13 +129,24 @@ body.theme_dark {
         }
       }
     }
+    .block-wrap-middle {
+  
+      .item-block {
+        background-image: linear-gradient(123deg,#333E4D 0%, #202C3A 100%);
+        border: 3px solid rgba(62,68,84,0.20);
+  
+        .item-label {
+          color: #FEFEFE;
+        }
+      }
+    }
   
     footer {
       border-top: 3px solid rgba(62,68,84,0.20);
-      color: #FFFFFF;
+      color: #A6AFC2;
   
       .confirmBtn {
-        color: #A6AFC2;
+        color: #FFFFFF;
       }
     }
   }
@@ -121,6 +164,16 @@ body.theme_morandi {
     }
   
     .block-wrap {
+      .item-block {
+        background-color: #B5ABA1;
+        border: 3px solid #8490A0;
+  
+        .item-label {
+          color: #FFFFFF;
+        }
+      }
+    }
+    .block-wrap-middle {
   
       .item-block {
         background-color: #B5ABA1;

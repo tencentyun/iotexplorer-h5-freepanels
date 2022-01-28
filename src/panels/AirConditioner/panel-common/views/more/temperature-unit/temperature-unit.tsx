@@ -18,9 +18,9 @@ import { toggleBooleanByNumber } from '@libs/utillib';
 import SetTemp from '../../more/temperature-unit/set-temp/set-temp';
 import { getThemeType } from '@libs/theme';
 
-const themeType = getThemeType();
-
 const TemperatureUnit = () => {
+  const themeType = getThemeType();
+
   const handleControlByAction = (key: string, value: any) => {
     apiControlDeviceData({
       [key]: value
@@ -83,7 +83,7 @@ const TemperatureUnit = () => {
             <div className="title-wrap">
               <SvgIcon
                 className="unit-convert"
-                name="icon-heart-unit-convert"
+                name="icon-temp-unit"
                 {...iconColor()}
               />
               <span className="title">温标切换</span>

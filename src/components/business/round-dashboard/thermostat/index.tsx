@@ -1,6 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
-import { RingDashboard } from '../components/ring-dashboard';
+// import { RingDashboard } from '../components/ring-dashboard';
+import { RingDashboard } from './ring-dashboard';
 import { RoundDashboard } from '../components/round-dashboard';
 import { CircleDial } from '../components/circle-dial';
 import { getThemeType } from '@libs/theme';
@@ -48,14 +49,15 @@ const ThermostatDashboard: React.FC<dashboardProps> = props => {
     <div className={classNames('thermostat-dashboard-wrap', themeType)}>
       {themeType === 'normal' ? (
         <RingDashboard
-          width={714}
-          height={714}
-          step={2}
+          width={760}
+          height={760}
+          step={3}
           isOuterCicle={true}
           scaleIsGradient={false}
           businessType="thermostat"
           {...skinProps}
           {...props}
+          currentColor={dashboardStatus === 'shutdown' ? '#C9D4DD' : '#0F0F0F'}
         />
       ) : null}
       {themeType === 'blueWhite' || themeType === 'dark' ? (

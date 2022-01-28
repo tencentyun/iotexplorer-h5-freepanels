@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="74px" height="68px" viewBox="0 0 74 68" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 59.1 (86144) - https://sketch.com -->
+    <title>档位</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="49.3685783%" y1="0%" x2="50.9335699%" y2="136.505127%" id="linearGradient-1">
+            <stop stop-color="#00F0FF" offset="0%"></stop>
+            <stop stop-color="#704DF0" offset="100%"></stop>
+        </linearGradient>
+        <rect id="path-2" x="7.5" y="9.09494702e-13" width="9" height="73" rx="4.5"></rect>
+        <filter x="-1700.0%" y="-201.4%" width="3500.0%" height="519.2%" filterUnits="objectBoundingBox" id="filter-3">
+            <feOffset dx="0" dy="6" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="50" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0.125490196   0 0 0 0 0.127812629   0 0 0 0 0.129411765  0 0 0 0.1 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+        <rect id="path-4" x="53" y="2.95585778e-12" width="9" height="73" rx="4.5"></rect>
+        <filter x="-1700.0%" y="-201.4%" width="3500.0%" height="519.2%" filterUnits="objectBoundingBox" id="filter-5">
+            <feOffset dx="0" dy="6" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="50" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0.125490196   0 0 0 0 0.127812629   0 0 0 0 0.129411765  0 0 0 0.1 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+        <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="linearGradient-6">
+            <stop stop-color="#05E5FC" offset="0%"></stop>
+            <stop stop-color="#4389F4" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="页面-1" stroke="none" stroke-width="1" fill-rule="evenodd">
+        <g id="2" transform="translate(-526.000000, -1362.000000)">
+            <g id="编组-4" transform="translate(78.000000, 1277.000000)">
+                <g id="档位开关" transform="translate(337.000000, 0.000000)">
+                    <g id="档位" transform="translate(148.000000, 118.500000) rotate(-270.000000) translate(-148.000000, -118.500000) translate(114.000000, 82.000000)">
+                        <g id="矩形">
+                            <use fill="black" fill-opacity="1" filter="url(#filter-3)" xlink:href="#path-2"></use>
+                            <use fill="url(#linearGradient-1)" fill-rule="evenodd" xlink:href="#path-2"></use>
+                        </g>
+                        <g id="矩形备份-6">
+                            <use fill="black" fill-opacity="1" filter="url(#filter-5)" xlink:href="#path-4"></use>
+                            <use fill="url(#linearGradient-1)" fill-rule="evenodd" xlink:href="#path-4"></use>
+                        </g>
+                        <circle id="椭圆形" stroke="url(#linearGradient-6)" stroke-width="6" fill="#2A3544" cx="11.5" cy="48" r="8"></circle>
+                        <circle id="椭圆形备份-3" stroke="url(#linearGradient-6)" stroke-width="6" fill="#2A3544" cx="57" cy="23" r="8"></circle>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

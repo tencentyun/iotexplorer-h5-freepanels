@@ -27,17 +27,68 @@ li {
 
     ._cell_size_medium_ {
       padding: 0;
+      .cell-prefix-icon {
+        display: flex;
+        align-items: center;
+        height: 76px;
+        overflow: visible;
+        .svg-icon-anion {
+          width: 60px;
+          height: 76px;
+        }
+        .svg-icon-lamplight {
+          width: 60px;
+          height: 72px;
+        }
+        .svg-icon-eco {
+          width: 60px;
+          height: 60px;
+        }
+        .svg-icon-sleep-fun {
+          width: 66px;
+          height: 62px;
+        }
+        .svg-icon-value-ins {
+          width: 60px;
+          height: 60px;
+        }
+      }
     }
   }
 
   .icon-child-lock {
     display: inline-block;
     width: 60px;
-    height: 60px;
+    height: 76px;
     background-image: url('images/lock-normal.svg');
     background-position: center;
     background-repeat: no-repeat;
     background-size: contain;
+  }
+
+  .icon-sound {
+    display: inline-block;
+    width: 72px;
+    height: 57px;
+    background-image: url('images/sound-normal.svg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+  }
+
+  .icon-window {
+    display: inline-block;
+    width: 60px;
+    height: 60px;
+    background-image: url('images/window-normal.svg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+  }
+
+  .temp-title-wrap {
+    display: flex;
+    align-items: center;
   }
 
   .unit-convert-label {
@@ -93,6 +144,14 @@ body.theme_blue_white {
       background-image: url('images/lock-blue-white.svg');
     }
 
+    .icon-sound {
+      background-image: url('images/sound-blue-white.svg');
+    }
+  
+    .icon-window {
+      background-image: url('images/window-blue-white.svg');
+    }
+
     .unit-convert-label {
       display: inline-block;
       margin-left: 53px;
@@ -146,6 +205,14 @@ body.theme_dark {
       background-image: url('images/lock-dark.svg');
     }
 
+    .icon-sound {
+      background-image: url('images/sound-dark.svg');
+    }
+  
+    .icon-window {
+      background-image: url('images/window-dark.svg');
+    }
+
     .unit-convert-label {
       display: inline-block;
       margin-left: 53px;
@@ -197,6 +264,14 @@ body.theme_colorful {
 
     .icon-child-lock {
       background-image: url('images/lock-colorful.svg');
+    }
+
+    .icon-sound {
+      background-image: url('images/sound-colorful.svg');
+    }
+  
+    .icon-window {
+      background-image: url('images/window-colorful.svg');
     }
 
     .unit-convert-label {
@@ -256,6 +331,14 @@ body.theme_morandi {
       background-position: center;
       background-repeat: no-repeat;
       background-size: contain;
+    }
+
+    .icon-sound {
+      background-image: url('images/sound-morandi.svg');
+    }
+  
+    .icon-window {
+      background-image: url('images/window-morandi.svg');
     }
 
     .unit-convert-label {

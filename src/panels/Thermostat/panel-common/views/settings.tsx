@@ -27,7 +27,6 @@ export function Settings() {
               title="童锁"
               prefixIcon={
                 <span className="icon-child-lock"></span>
-                // <SvgIcon className="svg-icon" name="icon-child-lock" {...CurrentSkinProps.lock}/>
               }
               size="medium"
               isLink={false}
@@ -95,11 +94,7 @@ export function Settings() {
             <Cell
               title="声音"
               prefixIcon={
-                <SvgIcon
-                  className="svg-icon"
-                  name="icon-sound"
-                  {...CurrentSkinProps.sound}
-                />
+                <span className="icon-sound"></span>
               }
               size="medium"
               isLink={false}
@@ -143,11 +138,7 @@ export function Settings() {
             <Cell
               title="开窗检测"
               prefixIcon={
-                <SvgIcon
-                  className="svg-icon"
-                  name="icon-window-ins"
-                  {...CurrentSkinProps.window}
-                />
+                <span className="icon-window"></span>
               }
               size="medium"
               isLink={false}
@@ -236,10 +227,10 @@ export function Settings() {
             ></Cell>
           </Block>
           <Block className="setting-block">
-            <div>
+            <div className="temp-title-wrap">
               <SvgIcon
                 className="svg-icon"
-                name="icon-heart-unit-convert"
+                name="icon-temp-unit"
                 {...CurrentSkinProps.unit}
               />
               <span className="unit-convert-label">温标切换</span>

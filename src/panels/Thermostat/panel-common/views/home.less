@@ -8,12 +8,13 @@
   }
 
   .settings-area {
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: space-between;
     margin: 0 81px 66px 78px;
     color: #B5C4D1;
-
+    z-index: 1;
     &>.button-block {
       display: flex;
       flex-direction: column;
@@ -34,6 +35,22 @@
         line-height: 50px;
         font-family: PingFangSC-Medium;
         font-size: 36px;
+      }
+      .icon-gear-active {
+        width: 73px;
+        height: 68px;
+        background-image: url('../images/gear-normal.svg');
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: 100% 100%;
+      }
+      .icon-gear-default {
+        width: 73px;
+        height: 68px;
+        background-image: url('../images/gear-blue-white-grey.svg');
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: 100% 100%;
       }
     }
   }
@@ -100,12 +117,15 @@
         width: 229px;
         height: 230px;
         border-radius: 50%;
-        background-color: #909CAB;
+        background-color: #C9D4DD;
         box-shadow: 0 6px 100px 0 rgba(32,33,33,0.10);
         text-align: center;
         .icon-power {
           width: 95px;
           height: 95px;
+        }
+        .svg-icon-power {
+          fill: #ffffff;
         }
       }
   
@@ -127,7 +147,7 @@
           margin-bottom: 24px;
           line-height: 67px;
           font-size: 48px;
-          color: #0F0F0F;
+          color: #B5C4D1;
           letter-spacing: 0.1px;
         }
 
@@ -143,6 +163,14 @@
         width: 3px;
         height: 80px;
         background-color: #B5C4D1;
+      }
+    }
+    .content-area-active {
+      .content-item {
+
+        .word {
+          color: #0F0F0F;
+        }
       }
     }
   }
@@ -208,21 +236,27 @@ body.theme_blue_white {
         display: flex;
         align-items: center;
         justify-content: center;
-        width: 201px;
-        height: 201px;
+        width: 228px;
+        height: 228px;
         border-radius: 50%;
-        background-color: #909CAB;
+        background-color: #FFFFFF;
         box-shadow: 0 6px 100px 0 rgba(32,33,33,0.10);
         text-align: center;
         .icon-power {
           width: 95px;
           height: 95px;
         }
+        .svg-icon-power {
+          fill: #A6AFC2;
+        }
       }
   
       .power-open {
         background-color: #FFFFFF;
         background-image: none;
+        .svg-icon-power {
+          fill: #2885FE;
+        }
       }
     }
   
@@ -252,6 +286,22 @@ body.theme_blue_white {
           line-height: 50px;
           font-family: PingFangSC-Medium;
           font-size: 36px;
+        }
+        .icon-gear-active {
+          width: 73px;
+          height: 68px;
+          background-image: url('../images/gear-blue-white.svg');
+          background-repeat: no-repeat;
+          background-position: center;
+          background-size: 100% 100%;
+        }
+        .icon-gear-default {
+          width: 73px;
+          height: 68px;
+          background-image: url('../images/gear-blue-white-grey.svg');
+          background-repeat: no-repeat;
+          background-position: center;
+          background-size: 100% 100%;
         }
       }
     }
@@ -350,7 +400,7 @@ body.theme_dark {
         width: 201px;
         height: 201px;
         border-radius: 50%;
-        background-color: #909CAB;
+        background-image: linear-gradient(137deg, #FAFAFA 0%, #E8E8E8 100%);
         box-shadow: 0 6px 100px 0 rgba(32,33,33,0.10);
         text-align: center;
         .icon-power {
@@ -361,6 +411,9 @@ body.theme_dark {
   
       .power-open {
         background-image: linear-gradient(137deg, #FF3A5F 0%, #EA0D40 100%);
+        .svg-icon-power {
+          fill: #FEFEFE;
+        }
       }
     }
   
@@ -390,6 +443,22 @@ body.theme_dark {
           line-height: 50px;
           font-family: PingFangSC-Medium;
           font-size: 36px;
+        }
+        .icon-gear-active {
+          width: 73px;
+          height: 68px;
+          background-image: url('../images/gear-dark.svg');
+          background-repeat: no-repeat;
+          background-position: center;
+          background-size: 100% 100%;
+        }
+        .icon-gear-default {
+          width: 73px;
+          height: 68px;
+          background-image: url('../images/gear-dark-grey.svg');
+          background-repeat: no-repeat;
+          background-position: center;
+          background-size: 100% 100%;
         }
       }
     }
@@ -493,12 +562,15 @@ body.theme_colorful {
         width: 201px;
         height: 201px;
         border-radius: 50%;
-        background-color: #909CAB;
+        background-color: #B4C3D0;
         box-shadow: 0 6px 100px 0 rgba(32,33,33,0.10);
         text-align: center;
         .icon-power {
           width: 95px;
           height: 95px;
+        }
+        .svg-icon-power {
+          fill: #FFFFFF;
         }
       }
   
@@ -534,6 +606,9 @@ body.theme_colorful {
           font-family: PingFangSC-Medium;
           font-size: 36px;
         }
+        .icon-gear-active {
+          background-image: url('../images/gear-colorful.svg');
+        }
       }
     }
   
@@ -548,7 +623,7 @@ body.theme_colorful {
           margin-bottom: 5px;
           line-height: 91px;
           font-size: 48px;
-          color: #0F0F0F;
+          color: #B5C4D1;
           letter-spacing: 0.1px;
         }
         .label {
@@ -559,6 +634,14 @@ body.theme_colorful {
       }
       .split {
         display: none;
+      }
+    }
+    .content-area-active {
+      .content-item {
+
+        .word {
+          color: #0F0F0F;
+        }
       }
     }
   }
@@ -667,6 +750,9 @@ body.theme_morandi {
           width: 95px;
           height: 95px;
         }
+        .svg-icon-power {
+          fill: #ffffff;
+        }
       }
   
       .power-open {
@@ -700,6 +786,22 @@ body.theme_morandi {
           line-height: 50px;
           font-family: PingFangSC-Medium;
           font-size: 36px;
+        }
+        .icon-gear-active {
+          width: 73px;
+          height: 68px;
+          background-image: url('../images/gear-morandi-active.svg');
+          background-repeat: no-repeat;
+          background-position: center;
+          background-size: 100% 100%;
+        }
+        .icon-gear-default {
+          width: 73px;
+          height: 68px;
+          background-image: url('../images/gear-morandi-grey.svg');
+          background-repeat: no-repeat;
+          background-position: center;
+          background-size: 100% 100%;
         }
       }
     }

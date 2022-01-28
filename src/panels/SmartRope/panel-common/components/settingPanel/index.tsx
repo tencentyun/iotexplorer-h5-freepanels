@@ -59,8 +59,11 @@ export const SettingPannel = (props: SettingPannelProps) => {
   // 获取性别描述文字
   const getGenderDesc = (type: string): string => {
     const { gender } = state.templateMap;
-
-    return gender.define.mapping[type];
+    if (gender) {
+      return gender.define.mapping[type] || '';
+    } else {
+      return '';
+    }
   };
   // 获取度量字段
   const getUnitData = (name: string): string => {
@@ -71,6 +74,17 @@ export const SettingPannel = (props: SettingPannelProps) => {
       return deviceData[name] + unit;
     }
     return '';
+  };
+
+  const getGenderDes = () => {
+    if (deviceMaps['gender']) {
+      return deviceMaps['gender'].map((t: any) => ({
+        label: t.desc,
+        value: t.name
+      }))
+    } else {
+      return []
+    }
   };
 
   // 昵称编辑框
@@ -119,10 +133,7 @@ export const SettingPannel = (props: SettingPannelProps) => {
               visible={genderVisible}
               title="性别"
               defaultValue={[deviceData['gender']]}
-              options={deviceMaps['gender'].map((t: any) => ({
-                label: t.desc,
-                value: t.name
-              }))}
+              options={getGenderDes()}
               onCancel={() => onToggleGender(false)}
               onConfirm={value => {
                 onControlDevice('gender', value[0]);

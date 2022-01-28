@@ -74,7 +74,7 @@
       #power {
         background-color: #ffffff;
         svg {
-          fill: var(--global-color-primary);
+          fill: #2885FE;
         }
       }
     }
@@ -97,6 +97,14 @@
   .more-wrap {
     .text-regular {
       color: #B5C4D1;
+    }
+    .electricity-wrap {
+      .text-primary {
+        color: #0F0F0F;
+      }
+    }
+    .adm-list-item-content .adm-list-item-content-prefix {
+      color: #000000;
     }
   }
   ._component_base_switch_ .switch-inner.is_checked {
@@ -187,6 +195,10 @@
         background: linear-gradient(151deg, #00F0FF 0%, #704DF0 100%) !important;
       }
     }
+    .adm-list-body {
+      border-top: 0;
+      background-color: transparent;
+    }
     /*温标切换*/
     .active .button-inner {
       background: linear-gradient(151deg, #00F0FF 0%, #704DF0 100%);
@@ -233,10 +245,10 @@
     position: relative;
     .device-wrap {
       height: 1151px;
-      .icon-theme-air_conditioner {
+      .icon-theme-air-conditioner {
         transform: translateY(270px);
       }
-      .icon-theme-air_cloud {
+      .svg-icon-air-cloud {
         top: 20px;
       }
       .content {
@@ -265,6 +277,12 @@
         svg {
           fill: #ffffff;
         }
+      }
+      .svg-icon-reduce {
+        fill: #667994;
+      }
+      .svg-icon-add {
+        fill: #667994;
       }
     }
     &.power-off {
@@ -322,7 +340,7 @@
 .theme_morandi {
   .home {
     position: relative;
-    .icon-theme-air_cloud {
+    .svg-icon-air-cloud {
       fill: #E2EEFF;
     }
     .content, .text-primary {
@@ -369,6 +387,12 @@
         svg {
           fill: #ffffff;
         }
+      }
+      .svg-icon-reduce {
+        fill: #B5ABA1;
+      }
+      .svg-icon-add {
+        fill: #B5ABA1;
       }
     }
     &.power-off {

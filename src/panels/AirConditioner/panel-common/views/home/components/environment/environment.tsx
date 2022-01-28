@@ -33,14 +33,14 @@ const Environment = () => {
               <strong className={classNames('text-primary')}>
                 {enumGear[deviceData.fan_speed_enum] || '暂无'}
               </strong>
-              <div>风速</div>
+              <div className="label">风速</div>
             </div>
             <span className="line" />
             <div className={classNames('humidity')}>
               <strong className={classNames('text-primary')}>
                 {(enumStatus as any)[deviceData.status] || '暂无'}
               </strong>
-              <div>状态</div>
+              <div className="label">状态</div>
             </div>
           </div>
         </article>
