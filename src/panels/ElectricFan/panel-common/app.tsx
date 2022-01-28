@@ -17,7 +17,7 @@ export const App = QuicknessMode(function App() {
   const isBluetoothDevice = true;
   // eslint-disable-next-line no-undef
   const isDev = process.env.NODE_ENV !== 'production';
-  //新旧链接的兼容
+  // 新旧链接的兼容
   const hasScf = /\/scf\//.test(location.href);
 
   let basename = isDev

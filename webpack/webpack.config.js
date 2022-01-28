@@ -65,7 +65,7 @@ module.exports = (env, argv) => {
       });
     }
   });
-  console.log('entry list --->', Object.keys(entry).length, entry);
+  console.log('entry list length --->', Object.keys(entry).length);
   return {
     name: 'iotexplorer-h5-freepanels',
     mode,
