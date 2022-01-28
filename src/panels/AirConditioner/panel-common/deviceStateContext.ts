@@ -46,7 +46,7 @@ export const DeviceSateContext = createContext({
     angle_horizontal: 0,
     display: false,
     uv: false,
-    fresh_air_valve: false
+    fresh_air_valve: false,
   },
   userInfo: {
     Avatar: '',
@@ -56,7 +56,7 @@ export const DeviceSateContext = createContext({
     HasWxOpenID: 1,
     NickName: '',
     PhoneNumber: '',
-    UserID: ''
+    UserID: '',
   },
-  togglePower: noop
+  togglePower: noop,
 });

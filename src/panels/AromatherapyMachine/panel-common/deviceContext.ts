@@ -28,6 +28,6 @@ export const DeviceContext: React.Context<{
     count_down: 0,
     count_left: 0,
     bright_value: 0,
-    color_value: 0
-  }
+    color_value: 0,
+  },
 });

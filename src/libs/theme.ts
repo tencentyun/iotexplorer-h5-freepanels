@@ -4,7 +4,7 @@ import { toUnderscores } from './utillib';
 export function withTheme(WrappedComponent: React.ReactNode, theme: string) {
   setThemeType(theme);
   // 给 body 增加主题标识的 className
-  const body = document.body;
+  const { body } = document;
   console.log('get bodyed....');
   body.classList.add(`theme_${toUnderscores(theme)}`);
 
@@ -19,7 +19,7 @@ export declare type ThemeType =
   | 'morandi';
 
 
-const THEME_INFO = {theme_type: 'normal'};
+const THEME_INFO = { theme_type: 'normal' };
 export function getThemeType(): string {
   // webpack 环境变量
   const { theme_type } = THEME_INFO || {};

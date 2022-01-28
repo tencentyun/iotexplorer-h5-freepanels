@@ -1,35 +1,35 @@
 const SkinProps = {
   battery: {
-    color: ''
+    color: '',
   },
   mileage: {
-    color: '#000000'
+    color: '#000000',
   },
   more: {
-    color: '#000000'
+    color: '#000000',
   },
   bluetooth: {
     default: {
-      color: '#000000'
+      color: '#000000',
     },
     active: {
-      color: '#FFFFFF'
-    }
+      color: '#FFFFFF',
+    },
   },
   alarm: {
     default: {
-      color: '#000000'
+      color: '#000000',
     },
     active: {
-      color: '#FFFFFF'
-    }
+      color: '#FFFFFF',
+    },
   },
   mute: {
-    color: '#000000'
+    color: '#000000',
   },
   whistle: {
-    color: '#FFFFFF'
-  }
+    color: '#FFFFFF',
+  },
 };
 
 export { SkinProps };

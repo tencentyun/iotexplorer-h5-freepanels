@@ -1,23 +1,23 @@
 const SkinProps = {
   normal: {
     more: {
-      color: '#0F0F0F'
+      color: '#0F0F0F',
     },
     switch: {
-      color: '#FFFFFF'
+      color: '#FFFFFF',
     },
     icon: {
-      color: '#0F0F0F'
-    }
+      color: '#0F0F0F',
+    },
   },
   blueWhite: {
     more: {
       gradientId: 'more',
       startColor: '#559DFC',
-      endColor: '#3171FA'
+      endColor: '#3171FA',
     },
     switch: {
-      color: '#FFFFFF'
+      color: '#FFFFFF',
     },
     icon: {
       gradientId: 'icon',
@@ -26,17 +26,17 @@ const SkinProps = {
       x1: '50%',
       y1: '0%',
       x2: '50%',
-      y2: '100%'
-    }
+      y2: '100%',
+    },
   },
   dark: {
     more: {
       gradientId: 'more',
       startColor: '#559DFC',
-      endColor: '#3171FA'
+      endColor: '#3171FA',
     },
     switch: {
-      color: '#FFFFFF'
+      color: '#FFFFFF',
     },
     icon: {
       gradientId: 'icon',
@@ -45,15 +45,15 @@ const SkinProps = {
       x1: '61.5645064%',
       y1: '-28.7259615%',
       x2: '61.5645064%',
-      y2: '100%'
-    }
+      y2: '100%',
+    },
   },
   colorful: {
     more: {
-      color: '#B4C3D0'
+      color: '#B4C3D0',
     },
     switch: {
-      color: '#FFFFFF'
+      color: '#FFFFFF',
     },
     spray: {
       gradientId: 'spray',
@@ -62,7 +62,7 @@ const SkinProps = {
       x1: '61.5645064%',
       y1: '-28.7259615%',
       x2: '61.5645064%',
-      y2: '100%'
+      y2: '100%',
     },
     light: {
       gradientId: 'light',
@@ -71,7 +71,7 @@ const SkinProps = {
       x1: '61.5645064%',
       y1: '-28.7259615%',
       x2: '61.5645064%',
-      y2: '100%'
+      y2: '100%',
     },
     icon: {
       gradientId: 'icon',
@@ -80,20 +80,20 @@ const SkinProps = {
       x1: '61.5645064%',
       y1: '-28.7259615%',
       x2: '61.5645064%',
-      y2: '100%'
-    }
+      y2: '100%',
+    },
   },
   morandi: {
     more: {
-      color: '#000000'
+      color: '#000000',
     },
     switch: {
-      color: '#FFFFFF'
+      color: '#FFFFFF',
     },
     icon: {
-      color: '#FFFFFF'
-    }
-  }
+      color: '#FFFFFF',
+    },
+  },
 };
 
 export { SkinProps };

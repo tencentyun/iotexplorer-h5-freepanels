@@ -1,35 +1,35 @@
 const SkinProps = {
   normal: {
     battery: {
-      color: ''
+      color: '',
     },
     record: {
-      color: '#000000'
+      color: '#000000',
     },
     feedingRecords: {
-      color: '#000000'
+      color: '#000000',
     },
     settings: {
-      color: '#000000'
-    }
+      color: '#000000',
+    },
   },
   blueWhite: {
     battery: {
-      color: 'white'
+      color: 'white',
     },
     record: {
-      color: '#2885FE'
+      color: '#2885FE',
     },
     feedingRecords: {
-      color: '#2885FE'
+      color: '#2885FE',
     },
     settings: {
-      color: '#2885FE'
-    }
+      color: '#2885FE',
+    },
   },
   dark: {
     battery: {
-      color: 'white'
+      color: 'white',
     },
     record: {
       gradientId: 'record',
@@ -38,7 +38,7 @@ const SkinProps = {
       x1: '18.8378836%',
       y1: '13.9723887%',
       x2: '100%',
-      y2: '100%'
+      y2: '100%',
     },
     feedingRecords: {
       gradientId: 'feedingRecords',
@@ -47,7 +47,7 @@ const SkinProps = {
       x1: '18.8378836%',
       y1: '13.9723887%',
       x2: '100%',
-      y2: '100%'
+      y2: '100%',
     },
     settings: {
       gradientId: 'setting',
@@ -56,12 +56,12 @@ const SkinProps = {
       x1: '18.8378836%',
       y1: '13.9723887%',
       x2: '100%',
-      y2: '100%'
-    }
+      y2: '100%',
+    },
   },
   colorful: {
     battery: {
-      color: 'colorful'
+      color: 'colorful',
     },
     record: {
       gradientId: 'record',
@@ -70,7 +70,7 @@ const SkinProps = {
       x1: '50%',
       y1: '0%',
       x2: '50%',
-      y2: '100%'
+      y2: '100%',
     },
     feedingRecords: {
       gradientId: 'feedingRecords',
@@ -79,7 +79,7 @@ const SkinProps = {
       x1: '50%',
       y1: '0%',
       x2: '50%',
-      y2: '100%'
+      y2: '100%',
     },
     settings: {
       gradientId: 'setting',
@@ -88,23 +88,23 @@ const SkinProps = {
       x1: '50%',
       y1: '0%',
       x2: '50%',
-      y2: '100%'
-    }
+      y2: '100%',
+    },
   },
   morandi: {
     battery: {
-      color: 'white'
+      color: 'white',
     },
     record: {
-      color: '#4F596A'
+      color: '#4F596A',
     },
     feedingRecords: {
-      color: '#4F596A'
+      color: '#4F596A',
     },
     settings: {
-      color: '#4F596A'
-    }
-  }
+      color: '#4F596A',
+    },
+  },
 };
 
 export { SkinProps };

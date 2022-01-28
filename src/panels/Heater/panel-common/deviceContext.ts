@@ -32,6 +32,6 @@ export const DeviceContext: React.Context<{
     current_c_temp: 0,
     current_f_temp: 0,
     target_c_temp: 0,
-    target_f_temp: 0
-  }
+    target_f_temp: 0,
+  },
 });

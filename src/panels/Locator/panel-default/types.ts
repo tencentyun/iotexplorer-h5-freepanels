@@ -27,7 +27,7 @@ export interface GeoJSONFeature {
 export interface GeoJSON {
   type: string;
   features: GeoJSONFeature[];
-  crs?: object;
+  crs?: { [key in string]: number | string | any[] };
 }
 
 export interface LatLng {

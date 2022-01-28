@@ -1,46 +1,48 @@
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 
-export const describeCloudStorageEvents = async (
-  {
-    StartTime = 0,
-    EndTime = 0,
-    EventId = '',
-    Context = '',
-    Size = 10,
-  }: {
+export const describeCloudStorageEvents = async ({
+  StartTime = 0,
+  EndTime = 0,
+  EventId = '',
+  Context = '',
+  Size = 10,
+}: {
     StartTime: number;
     EndTime: number;
     EventId: string;
     Context: string;
     Size: number;
-  }
-) => {
-  const DeviceName = sdk.deviceName
-  const ProductId = sdk.productId
-  const params = {
+  }) => {
+  const DeviceName = sdk.deviceName;
+  const ProductId = sdk.productId;
+  const params: any = {
     ProductId,
-    DeviceName
-  }
+    DeviceName,
+  };
   if (StartTime) {
-    params['StartTime'] = StartTime
+    params.StartTime = StartTime;
   }
   if (EndTime) {
-    params['EndTime'] = EndTime
+    params.EndTime = EndTime;
   }
   if (EventId) {
-    params['EventId'] = EventId
+    params.EventId = EventId;
   }
   if (Context) {
-    params['Context'] = Context
+    params.Context = Context;
   }
   if (Size) {
-    params['Size'] = Size
+    params.Size = Size;
   }
   const { Events, Total, Context: NewContext, Listover } = await sdk.requestTokenApi('IotVideoDescribeCloudStorageEvents', params);
   if (Events) {
     for (let i = 0; i < Events.length; i++) {
       if (Events[i].Thumbnail) {
-        Events[i]['ThumbnailURL'] = await describeCloudStorageThumbnail({ Thumbnail: Events[i].Thumbnail, ProductId, DeviceName })
+        Events[i].ThumbnailURL = await describeCloudStorageThumbnail({
+          Thumbnail: Events[i].Thumbnail,
+          ProductId,
+          DeviceName,
+        });
       }
     }
   }
@@ -53,5 +55,5 @@ export const describeCloudStorageThumbnail = async ({ Thumbnail = '', ProductId,
     DeviceName,
     Thumbnail,
   });
-  return ThumbnailURL
-}
+  return ThumbnailURL;
+};
