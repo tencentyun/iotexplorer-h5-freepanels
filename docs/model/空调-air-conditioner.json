@@ -1,0 +1,544 @@
+{
+  "version": "1.0",
+  "properties": [
+    {
+      "id": "power_switch",
+      "name": "电源开关",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "bool",
+        "mapping": {
+          "0": "关",
+          "1": "开"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "child_lock",
+      "name": "童锁",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "bool",
+        "mapping": {
+          "0": "关",
+          "1": "开"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "auto",
+      "name": "自动",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "bool",
+        "mapping": {
+          "0": "关",
+          "1": "开"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "eco",
+      "name": "ECO模式",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "bool",
+        "mapping": {
+          "0": "关",
+          "1": "开"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "drying",
+      "name": "烘干",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "bool",
+        "mapping": {
+          "0": "关",
+          "1": "开"
+        }
+      }
+    },
+    {
+      "id": "ventilation",
+      "name": "换气",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "bool",
+        "mapping": {
+          "0": "关",
+          "1": "开"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "heat",
+      "name": "加热",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "bool",
+        "mapping": {
+          "0": "关",
+          "1": "开"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "anion",
+      "name": "负离子",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "bool",
+        "mapping": {
+          "0": "关",
+          "1": "开"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "sleep",
+      "name": "睡眠",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "bool",
+        "mapping": {
+          "0": "关",
+          "1": "开"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "beep",
+      "name": "蜂鸣",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "bool",
+        "mapping": {
+          "0": "关",
+          "1": "开"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "light",
+      "name": "灯光",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "bool",
+        "mapping": {
+          "0": "关",
+          "1": "开"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "cleaning",
+      "name": "清洁",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "bool",
+        "mapping": {
+          "0": "关",
+          "1": "开"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "switch_vertical",
+      "name": "上下摆风",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "bool",
+        "mapping": {
+          "0": "关",
+          "1": "开"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "switch_horizontal",
+      "name": "左右摆风",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "bool",
+        "mapping": {
+          "0": "关",
+          "1": "开"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "display",
+      "name": "屏显",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "bool",
+        "mapping": {
+          "0": "关",
+          "1": "开"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "health",
+      "name": "健康",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "bool",
+        "mapping": {
+          "0": "关",
+          "1": "开"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "fresh_air_valve",
+      "name": "新风阀",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "bool",
+        "mapping": {
+          "0": "关",
+          "1": "开"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "uv",
+      "name": "UV",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "bool",
+        "mapping": {
+          "0": "关",
+          "1": "开"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "swing_3d",
+      "name": "3D扫风",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "bool",
+        "mapping": {
+          "0": "关",
+          "1": "开"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "temp_unit_convert",
+      "name": "温标切换",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "stringenum",
+        "mapping": {
+          "celsius": "摄氏度",
+          "fahrenheit": "华氏度"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "temp_current",
+      "name": "当前温度",
+      "desc": "",
+      "mode": "r",
+      "define": {
+        "type": "int",
+        "min": "-20",
+        "max": "50",
+        "start": "0",
+        "step": "1",
+        "unit": "°C"
+      },
+      "required": false
+    },
+    {
+      "id": "temp_current_f",
+      "name": "当前温度",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "int",
+        "min": "-40",
+        "max": "200",
+        "start": "0",
+        "step": "1",
+        "unit": "°F"
+      },
+      "required": false
+    },
+    {
+      "id": "temp_set",
+      "name": "温度设置",
+      "desc": "",
+      "mode": "r",
+      "define": {
+        "type": "int",
+        "min": "0",
+        "max": "50",
+        "start": "0",
+        "step": "1",
+        "unit": "°C"
+      },
+      "required": false
+    },
+    {
+      "id": "temp_set_f",
+      "name": "温度设置",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "int",
+        "min": "0",
+        "max": "100",
+        "start": "0",
+        "step": "1",
+        "unit": "°F"
+      },
+      "required": false
+    },
+    {
+      "id": "power_consumption",
+      "name": "耗电量",
+      "desc": "",
+      "mode": "r",
+      "define": {
+        "type": "int",
+        "min": "0",
+        "max": "999999",
+        "start": "0",
+        "step": "1",
+        "unit": "kW-h"
+      },
+      "required": false
+    },
+    {
+      "id": "humidity_current",
+      "name": "当前湿度",
+      "desc": "",
+      "mode": "r",
+      "define": {
+        "type": "int",
+        "min": "0",
+        "max": "100",
+        "start": "0",
+        "step": "1",
+        "unit": "%"
+      },
+      "required": false
+    },
+    {
+      "id": "humidity_set",
+      "name": "湿度设置",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "int",
+        "min": "0",
+        "max": "100",
+        "start": "0",
+        "step": "1",
+        "unit": "%"
+      },
+      "required": false
+    },
+    {
+      "id": "angle_vertical",
+      "name": "上下摆风角度",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "int",
+        "min": "0",
+        "max": "180",
+        "start": "0",
+        "step": "1"
+      },
+      "required": false
+    },
+    {
+      "id": "angle_horizontal",
+      "name": "左右摆风角度",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "int",
+        "min": "0",
+        "max": "180",
+        "start": "0",
+        "step": "1"
+      },
+      "required": false
+    },
+    {
+      "id": "wind_shake",
+      "name": "风摆",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "stringenum",
+        "mapping": {
+          "horizontal": "水平",
+          "vertical": "垂直"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "status",
+      "name": "状态",
+      "desc": "",
+      "mode": "r",
+      "define": {
+        "type": "stringenum",
+        "mapping": {
+          "heating": "加热中",
+          "cooling": "制冷中",
+          "ventilation": "换气中",
+          "off": "关闭",
+          "auto": "自动清洁",
+          "arefaction": "除湿中",
+          "wind": "送风中",
+          "eco": "ECO"
+
+
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "fault",
+      "name": "故障告警",
+      "desc": "",
+      "mode": "r",
+      "define": {
+        "type": "stringenum",
+        "mapping": {
+          "normal": "正常",
+          "fault": "故障"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "gear_vertical",
+      "name": "上下摆风档位",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "stringenum",
+        "mapping": {
+          "off" : "关闭",
+          "opposite": "相向摆风",
+          "same": "同向摆风"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "gear_horizontal",
+      "name": "左右摆风档位",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "stringenum",
+        "mapping": {
+          "off" : "关闭",
+          "opposite": "相向摆风",
+          "same": "同向摆风"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "mode",
+      "name": "模式",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "stringenum",
+        "mapping": {
+          "cold": "制冷",
+          "hot": "制热",
+          "wind": "送风",
+          "auto": "自动",
+          "eco": "ECO",
+          "arefaction": "除湿",
+          "floor_heat": "地暖",
+          "floor_heat_and_heat": "辅热"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "fan_speed_enum",
+      "name": "风速",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "stringenum",
+        "mapping": {
+          "mute": "静音",
+          "natural": "自然",
+          "strong": "强力",
+          "auto": "自动",
+          "sleep": "睡眠",
+          "health": "健康",
+          "low": "低风",
+          "middle": "中风",
+          "high": "高风"
+        }
+      },
+      "required": false
+    }
+  ],
+  "events": [],
+  "actions": [],
+  "profile": {
+    "ProductId": "P9FCB4V9V1",
+    "CategoryId": "1"
+  }
+}
