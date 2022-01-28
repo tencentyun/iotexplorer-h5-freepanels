@@ -12,7 +12,7 @@ import { Slider } from 'antd-mobile';
 import classNames from 'classnames';
 import { noop } from '@libs/utillib';
 import { SvgIcon } from '@components/common';
-// import IconTheme from '@components/common/icon/icon-theme';
+
 export interface IUINumberSlider {
   min?: number | 0;
   max?: number | 100;
@@ -68,9 +68,13 @@ const UINumberSlider = (props: IUINumberSlider) => {
   return (
     <>
       <div className={classNames('flex', 'space-between', 'slider-tools-bar')}>
-        {/* <IconTheme kind={'reduce'} size={40} onClick={handleReduce} /> */}
+        <div onClick={handleReduce}>
+          <SvgIcon name="icon-reduce"/>
+        </div>
         <span>{value}</span>
-        {/* <IconTheme kind={'add'} size={40} onClick={handleAdd} /> */}
+        <div onClick={handleAdd} >
+          <SvgIcon name="icon-add"/>
+        </div>
       </div>
 
       <div className={classNames('slider-wrap')}>

@@ -38,7 +38,7 @@ export const App = QuicknessMode(function App() {
   // 获取设备模型数据
   const getDeviceData = deviceId => {
     sdk.getDeviceData({ deviceId });
-    //console.log('==getDeviceData===', deviceId, state);
+    // console.log('==getDeviceData===', deviceId, state);
   };
   getDeviceData(sdk.deviceId);
 

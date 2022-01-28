@@ -1,0 +1,84 @@
+{
+  "version": "1.0",
+  "properties": [
+    {
+      "id": "pir_sensitivity",
+      "name": "PIR 灵敏度",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "stringenum",
+        "mapping": {
+          "0": "低",
+          "1": "中",
+          "2": "高"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "pir_state",
+      "name": "人体感应状态",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "stringenum",
+        "mapping": {
+          "0": "有人",
+          "1": "无人"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "pir_time",
+      "name": "电池电量状态",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "stringenum",
+        "mapping": {
+          "0": "30s",
+          "1": "60s",
+          "2": "120s"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "tamper_event",
+      "name": "防拆告警",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "stringenum",
+        "mapping": {
+          "0": "未拆卸",
+          "1": "拆卸告警"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "battery_percentage",
+      "name": "电池电量",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "int",
+        "min": "0",
+        "max": "100",
+        "start": "0",
+        "step": "1",
+        "unit": "%"
+      },
+      "required": false
+    }
+  ],
+  "events": [],
+  "actions": [],
+  "profile": {
+    "ProductId": "P9FCB4V9V1",
+    "CategoryId": "1"
+  }
+}

@@ -1,0 +1,169 @@
+{
+  "version": "1.0",
+  "properties": [
+    {
+      "id": "quick_feed",
+      "name": "快速喂食",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "bool",
+        "mapping": {
+          "0": "关",
+          "1": "开"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "slow_feed",
+      "name": "慢放喂食",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "bool",
+        "mapping": {
+          "0": "关",
+          "1": "开"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "export_calibrate",
+      "name": "出粮校准",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "bool",
+        "mapping": {
+          "0": "关",
+          "1": "开"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "weight_calibrate",
+      "name": "余粮校准",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "bool",
+        "mapping": {
+          "0": "关",
+          "1": "开"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "reset_factory",
+      "name": "恢复出厂",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "bool",
+        "mapping": {
+          "0": "关",
+          "1": "开"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "export_state",
+      "name": "出粮校准状态",
+      "desc": "枚举值：true，false",
+      "mode": "rw",
+      "define": {
+        "type": "stringenum",
+        "mapping": {
+          "true": "成功",
+          "false": "失败"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "unit_switch",
+      "name": "单位转换",
+      "desc": "枚举值：cup、oz、grid",
+      "mode": "rw",
+      "define": {
+        "type": "stringenum",
+        "mapping": {
+          "cup": "杯子",
+          "oz": "碗",
+          "grid": "碟"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "feed_state",
+      "name": "喂食状态",
+      "desc": "枚举值：standby，feeding，done",
+      "mode": "r",
+      "define": {
+        "type": "stringenum",
+        "mapping": {
+          "standby": "准备中",
+          "feeding": "喂食中",
+          "done": "结束"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "drying_left",
+      "name": "烘干剩余时间",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "int",
+        "min": "0",
+        "max": "86400",
+        "start": "0",
+        "step": "1",
+        "unit": ""
+      },
+      "required": false
+    },
+    {
+      "id": "manual_feed",
+      "name": "手动喂食",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "int",
+        "min": "1",
+        "max": "12",
+        "start": "0",
+        "step": "1"
+      },
+      "required": false
+    },
+    {
+      "id": "battery_percentage",
+      "name": "电池电量",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "int",
+        "min": "0",
+        "max": "100",
+        "start": "0",
+        "step": "1",
+        "unit": "%"
+      },
+      "required": false
+    }
+  ],
+  "events": [],
+  "actions": [],
+  "profile": {
+    "ProductId": "P9FCB4V9V1",
+    "CategoryId": "1"
+  }
+}

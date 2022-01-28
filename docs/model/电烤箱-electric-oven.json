@@ -1,0 +1,209 @@
+{
+  "version": "1.0",
+  "properties": [
+    {
+      "id": "power_switch",
+      "name": "电源开关",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "bool",
+        "mapping": {
+          "0": "关",
+          "1": "开"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "child_lock",
+      "name": "童锁",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "bool",
+        "mapping": {
+          "0": "关",
+          "1": "开"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "work_state",
+      "name": "工作状态",
+      "desc": "\"0 - 待机中\n1 - 工作中（烹饪中）\n2 - 预约中\n3 - 保温中\n4 - 预热中\n5 - 暂停中\n6 - 完成\n7 - 结束\"",
+      "mode": "rw",
+      "define": {
+        "type": "stringenum",
+        "mapping": {
+          "0": "待机中",
+          "1": "工作中",
+          "2": "预约中",
+          "3": "保温中",
+          "4": "预热中",
+          "5": "暂停中",
+          "6": "完成",
+          "7": "结束"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "operation_control",
+      "name": "运行控制",
+      "desc": "\"0 - 启动\n1 - 暂停\n2 - 取消（结束）\"",
+      "mode": "rw",
+      "define": {
+        "type": "stringenum",
+        "mapping": {
+          "0": "启动",
+          "1": "暂停",
+          "2": "取消（结束）"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "heat_mode",
+      "name": "加热模式控制",
+      "desc": "\"枚举值: \n0 - 上管加热\n1 - 下管加热\n2 - 上下管加热\"",
+      "mode": "rw",
+      "define": {
+        "type": "stringenum",
+        "mapping": {
+          "0": "上管加热",
+          "1": "下管加热",
+          "2": "上下管加热"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "heat_type",
+      "name": "加热类型控制",
+      "desc": "\"枚举值: \n0 - 热风\n1 - 冷风\"",
+      "mode": "rw",
+      "define": {
+        "type": "stringenum",
+        "mapping": {
+          "0": "热风",
+          "1": "冷风"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "mode",
+      "name": "模式控制",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "stringenum",
+        "mapping": {
+          "0": "烹饪",
+          "1": "预热",
+          "2": "保温"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "temperature",
+      "name": "当前温度（炉温）",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "int",
+        "min": "0",
+        "max": "230",
+        "start": "0",
+        "step": "1",
+        "unit": "°C"
+      },
+      "required": false
+    },
+    {
+      "id": "temperature_set_up",
+      "name": "上管温度设置",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "int",
+        "min": "35",
+        "max": "230",
+        "start": "35",
+        "step": "1",
+        "unit": "°C"
+      },
+      "required": false
+    },
+    {
+      "id": "temperature_set_down",
+      "name": "下管温度设置",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "int",
+        "min": "35",
+        "max": "230",
+        "start": "35",
+        "step": "1",
+        "unit": "°C"
+      },
+      "required": false
+    },
+    {
+      "id": "work_time",
+      "name": "工作时间",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "int",
+        "min": "1",
+        "max": "240",
+        "start": "1",
+        "step": "1",
+        "unit": "min"
+      },
+      "required": false
+    },
+    {
+      "id": "remaining_time",
+      "name": "剩余工作时间",
+      "desc": "",
+      "mode": "r",
+      "define": {
+        "type": "int",
+        "min": "1",
+        "max": "240",
+        "start": "1",
+        "step": "1",
+        "unit": "min"
+      },
+      "required": false
+    },
+    {
+      "id": "TimeOfAppointment",
+      "name": "预约时间",
+      "desc": "",
+      "mode": "r",
+      "define": {
+        "type": "int",
+        "min": "0",
+        "max": "360",
+        "start": "0",
+        "step": "1",
+        "unit": "min"
+      },
+      "required": false
+    }
+
+  ],
+  "events": [],
+  "actions": [],
+  "profile": {
+    "ProductId": "P9FCB4V9V1",
+    "CategoryId": "1"
+  }
+}

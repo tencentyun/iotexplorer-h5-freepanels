@@ -8,9 +8,8 @@ import { DeviceContext } from '../deviceContext';
 import { getThemeType } from '@libs/theme';
 import './home.less';
 
-const themeType = getThemeType();
-
 export function Home() {
+  const themeType = getThemeType();
 
   return (
     <DeviceContext.Consumer>
@@ -18,7 +17,7 @@ export function Home() {
         <main className="home-container">
           {/* 童锁 */}
           <div className="morandi-header">
-            <TopNav status={deviceData.child_lock || 0} />
+            <TopNav status={deviceData.child_lock || 0} powerStatus={deviceData.power_switch || 0}/>
           </div>
           {themeType === 'normal' ? (
             <>

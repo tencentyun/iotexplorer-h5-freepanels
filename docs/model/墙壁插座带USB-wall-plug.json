@@ -1,0 +1,127 @@
+{
+  "version": "1.0",
+  "properties": [
+    {
+      "id": "power_switch",
+      "name": "电源开关",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "bool",
+        "mapping": {
+          "0": "关",
+          "1": "开"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "switch_1",
+      "name": "按键1_开关",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "bool",
+        "mapping": {
+          "0": "关",
+          "1": "开"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "switch_2",
+      "name": "按键2_开关",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "bool",
+        "mapping": {
+          "0": "关",
+          "1": "开"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "switch_3",
+      "name": "按键3_开关",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "bool",
+        "mapping": {
+          "0": "关",
+          "1": "开"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "count_down_1",
+      "name": "插座1_倒计时",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "int",
+        "min": "0",
+        "max": "86400",
+        "start": "0",
+        "step": "1",
+        "unit": "s"
+      },
+      "required": false
+    },
+    {
+      "id": "count_down_2",
+      "name": "插座2_倒计时",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "int",
+        "min": "0",
+        "max": "86400",
+        "start": "0",
+        "step": "1",
+        "unit": "s"
+      },
+      "required": false
+    },
+    {
+      "id": "count_down_3",
+      "name": "插座3_倒计时",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "int",
+        "min": "0",
+        "max": "86400",
+        "start": "0",
+        "step": "1",
+        "unit": "s"
+      },
+      "required": false
+    },
+    {
+      "id": "relay_status",
+      "name": "设备重启状态设置",
+      "desc": "枚举值：off, on. memory",
+      "mode": "rw",
+      "define": {
+        "type": "stringenum",
+        "mapping": {
+          "off": "关",
+          "on": "开",
+          "memory": "memory"
+        }
+      },
+      "required": false
+    }
+  ],
+  "events": [],
+  "actions": [],
+  "profile": {
+    "ProductId": "P9FCB4V9V1",
+    "CategoryId": "1"
+  }
+}

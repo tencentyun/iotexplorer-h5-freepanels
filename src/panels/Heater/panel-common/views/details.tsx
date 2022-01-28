@@ -4,7 +4,6 @@ import classNames from 'classnames';
 import { Block } from '@components/layout';
 import { Cell, Switch } from '@components/base';
 import { toggleBooleanByNumber } from '@libs/utillib';
-// @ts-ignore
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 // 模版数据
 import { DeviceContext } from '../deviceContext';
@@ -12,12 +11,12 @@ import { DeviceContext } from '../deviceContext';
 import { getThemeType } from '@libs/theme';
 import { onControlDevice } from '@hooks/useDeviceData';
 import { SvgIcon } from '@components/common';
-import { CurrentSkinProps } from '../skinProps';
+import { SkinProps } from '../skinProps';
 import './details.less';
 
-const themeType = getThemeType();
-
 export function Details() {
+  const themeType = getThemeType();
+  const CurrentSkinProps: any = SkinProps[themeType];
   const history = useHistory();
   // 删除设备
   const deleteDevice = () => {

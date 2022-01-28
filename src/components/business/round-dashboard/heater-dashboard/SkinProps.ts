@@ -2,9 +2,7 @@ const SkinProps = {
   normal: {
     shutdown: {
       warmth: {
-        width: 48,
-        height: 53,
-        color: '#9CAAB5',
+        color: '#9CAAB5'
       },
       // 关机
       // 中心圆
@@ -28,9 +26,7 @@ const SkinProps = {
     initiate: {
       // 工作中
       warmth: {
-        width: 48,
-        height: 53,
-        color: '#0F0F0F',
+        color: '#0F0F0F'
       },
       // 中心圆
       centerCicle: {
@@ -54,9 +50,7 @@ const SkinProps = {
   blueWhite: {
     shutdown: {
       warmth: {
-        width: 75,
-        height: 84,
-        color: '#A4ADC0',
+        color: '#A4ADC0'
       },
       // 关机
       scaleIsGradient: true,
@@ -80,9 +74,7 @@ const SkinProps = {
     },
     initiate: {
       warmth: {
-        width: 75,
-        height: 84,
-        color: '#2885FE',
+        color: '#2885FE'
       },
       // 工作中
       scaleIsGradient: true,
@@ -108,9 +100,7 @@ const SkinProps = {
   dark: {
     shutdown: {
       warmth: {
-        width: 75,
-        height: 84,
-        color: '#FEFEFE',
+        color: '#FEFEFE'
       },
       // 关机
       scaleIsGradient: true,
@@ -145,9 +135,7 @@ const SkinProps = {
     },
     initiate: {
       warmth: {
-        width: 75,
-        height: 84,
-        color: '#FEFEFE',
+        color: '#FEFEFE'
       },
       // 关机
       scaleIsGradient: true,
@@ -183,9 +171,7 @@ const SkinProps = {
   colorful: {
     shutdown: {
       warmth: {
-        width: 73,
-        height: 83,
-        color: '#FEFEFE',
+        color: '#FEFEFE'
       },
       // 关机
       // 中心圆
@@ -208,9 +194,7 @@ const SkinProps = {
     },
     initiate: {
       warmth: {
-        width: 73,
-        height: 83,
-        color: '#FFD102',
+        color: '#FFD102'
       },
       // 工作中
       // 中心圆
@@ -237,9 +221,7 @@ const SkinProps = {
   morandi: {
     shutdown: {
       warmth: {
-        width: 68,
-        height: 77,
-        color: '#FEFEFE',
+        color: '#FEFEFE'
       },
       // 关机
       // 中心圆
@@ -264,9 +246,7 @@ const SkinProps = {
     },
     initiate: {
       warmth: {
-        width: 68,
-        height: 77,
-        color: '#FEFEFE',
+        color: '#FEFEFE'
       },
       // 工作中
       // 中心圆

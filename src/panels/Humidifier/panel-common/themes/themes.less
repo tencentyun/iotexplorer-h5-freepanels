@@ -1,22 +1,5 @@
 body.theme_normal {
   .home.power-off {
-    button {
-      &#power {
-        background: #C9D4DD;
-
-        svg {
-          fill: #FCFCFC;
-        }
-      }
-
-      &.add,
-      &.reduce {
-        svg {
-          fill: #C9D4DD;
-        }
-      }
-    }
-
     .environment-wrap {
       .environment-value {
         color: #B5C4D1;
@@ -67,21 +50,21 @@ body.theme_blue_white {
       button:first-child,
       button:last-child {
         background: rgba(254, 254, 254, 0.20);
-
-        svg {
-          color: var(--global-color-white);
-          fill: var(--global-color-white);
-        }
       }
 
       #power {
         width: 227px;
         height: 227px;
         background-color: #FFFFFF;
-
         svg {
-          fill: var(--global-color-primary);
+          fill: #2885FE;
         }
+      }
+      .svg-icon-reduce {
+        fill: #FFFFFF;
+      }
+      .svg-icon-add {
+        fill: #FFFFFF;
       }
     }
     .border-bottom {
@@ -173,24 +156,11 @@ body.theme_blue_white {
     }
 
     &.power-off {
-      button {
-        &#power {
-          svg {
-            fill: #A6AFC2;
-          }
-        }
+      #power {
+        background: #FFFFFF !important;
 
-        &.add,
-        &.reduce {
-          svg {
-            fill: #FFFFFF;
-          }
-        }
-      }
-
-      .environment-wrap {
-        .environment-value {
-          color: #FDFBFC;
+        svg {
+          fill: #A6AFC2 !important;
         }
       }
     }
@@ -249,6 +219,15 @@ body.theme_dark {
           z-index: 4;
           border: 30px solid var(--global-background-color);
           background-image: linear-gradient(137deg, #FF3A5F 0%, #EA0D40 100%);
+          svg {
+            fill: #FEFEFE;
+          }
+        }
+        .svg-icon-reduce {
+          fill: #B5C4D1;
+        }
+        .svg-icon-add {
+          fill: #B5C4D1;
         }
       }
 
@@ -482,8 +461,8 @@ body.theme_colorful {
           }
         }
 
-        .add,
-        .reduce {
+        &.add,
+        &.reduce {
           svg {
             fill: #667994;
           }
@@ -685,7 +664,7 @@ body.theme_morandi {
         top: 2006px;
         width: 830px;
         padding-top: 0;
-        z-index: 9;
+        z-index: 3;
         color: var(--global-color-text-primary);
 
         .temp-label {

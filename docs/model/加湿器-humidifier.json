@@ -1,0 +1,396 @@
+{
+  "version": "1.0",
+  "properties": [
+    {
+      "id": "power_switch",
+      "name": "电源开关",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "bool",
+        "mapping": {
+          "0": "关",
+          "1": "开"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "child_lock",
+      "name": "童锁",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "bool",
+        "mapping": {
+          "0": "关",
+          "1": "开"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "filter_reset",
+      "name": "滤芯复位",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "bool",
+        "mapping": {
+          "0": "关",
+          "1": "开"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "sterilization",
+      "name": "除菌",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "bool",
+        "mapping": {
+          "0": "关",
+          "1": "开"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "heat",
+      "name": "加热",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "bool",
+        "mapping": {
+          "0": "关",
+          "1": "开"
+        }
+      }
+    },
+    {
+      "id": "fragrance",
+      "name": "香薰",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "bool",
+        "mapping": {
+          "0": "关",
+          "1": "开"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "plasma",
+      "name": "等离子",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "bool",
+        "mapping": {
+          "0": "关",
+          "1": "开"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "anion",
+      "name": "负离子",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "bool",
+        "mapping": {
+          "0": "关",
+          "1": "开"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "sleep",
+      "name": "睡眠",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "bool",
+        "mapping": {
+          "0": "关",
+          "1": "开"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "temp_unit_convert",
+      "name": "温标切换",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "stringenum",
+        "mapping": {
+          "0": "摄氏度",
+          "1": "华氏度"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "eco2",
+      "name": "ECO2",
+      "desc": "",
+      "mode": "r",
+      "define": {
+        "type": "int",
+        "min": "350",
+        "max": "2000",
+        "start": "1",
+        "step": "1",
+        "unit": "ppm"
+      },
+      "required": false
+    },
+    {
+      "id": "tvoc",
+      "name": "TVOC",
+      "desc": "",
+      "mode": "r",
+      "define": {
+        "type": "int",
+        "min": "0",
+        "max": "2000",
+        "start": "1",
+        "step": "1"
+      },
+      "required": false
+    },
+    {
+      "id": "pm25",
+      "name": "PM2.5",
+      "desc": "",
+      "mode": "r",
+      "define": {
+        "type": "int",
+        "min": "0",
+        "max": "1000",
+        "start": "1",
+        "step": "1"
+      },
+      "required": false
+    },
+    {
+      "id": "filter_life",
+      "name": "滤网寿命",
+      "desc": "",
+      "mode": "r",
+      "define": {
+        "type": "int",
+        "min": "0",
+        "max": "100",
+        "start": "0",
+        "step": "1"
+      },
+      "required": false
+    },
+    {
+      "id": "current_temp",
+      "name": "当前温度",
+      "desc": "",
+      "mode": "r",
+      "define": {
+        "type": "int",
+        "min": "0",
+        "max": "50",
+        "start": "1",
+        "step": "1",
+        "unit": "°C"
+      },
+      "required": false
+    },
+    {
+      "id": "current_fahrenheit",
+      "name": "当前温度",
+      "desc": "",
+      "mode": "r",
+      "define": {
+        "type": "int",
+        "min": "32",
+        "max": "104",
+        "start": "1",
+        "step": "1",
+        "unit": "°F"
+      },
+      "required": false
+    },
+    {
+      "id": "set_temp",
+      "name": "温度设置",
+      "desc": "",
+      "mode": "r",
+      "define": {
+        "type": "int",
+        "min": "0",
+        "max": "50",
+        "start": "1",
+        "step": "1",
+        "unit": "°C"
+      },
+      "required": false
+    },
+    {
+      "id": "set_fahrenheit",
+      "name": "温度设置",
+      "desc": "",
+      "mode": "r",
+      "define": {
+        "type": "int",
+        "min": "32",
+        "max": "104",
+        "start": "1",
+        "step": "1",
+        "unit": "°F"
+      },
+      "required": false
+    },
+    {
+      "id": "current_humidity",
+      "name": "当前湿度",
+      "desc": "",
+      "mode": "r",
+      "define": {
+        "type": "int",
+        "min": "0",
+        "max": "100",
+        "start": "1",
+        "step": "1"
+      },
+      "required": false
+    },
+    {
+      "id": "current_level",
+      "name": "当前水位",
+      "desc": "",
+      "mode": "r",
+      "define": {
+        "type": "int",
+        "min": "0",
+        "max": "5",
+        "start": "0",
+        "step": "1",
+        "unit" : "level"
+      },
+      "required": false
+    },
+    {
+      "id": "set_humidity",
+      "name": "湿度设置",
+      "desc": "",
+      "mode": "r",
+      "define": {
+        "type": "int",
+        "min": "0",
+        "max": "100",
+        "start": "1",
+        "step": "1",
+        "unit": "°C"
+      },
+      "required": false
+    },
+    {
+      "id": "spray_volume",
+      "name": "喷雾量",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "stringenum",
+        "mapping": {
+          "large": "多",
+          "middle": "中",
+          "small": "少"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "spray_mode",
+      "name": "喷雾模式",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "stringenum",
+        "mapping": {
+          "humidity": "潮湿",
+          "manual": "手动",
+          "auto": "自动",
+          "work": "工作",
+          "health": "健康",
+          "baby": "宝宝",
+          "sleep": "睡眠"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "work_mode",
+      "name": "工作模式",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "stringenum",
+        "mapping": {
+          "natural_evaporation": "自然蒸发",
+          "heating_evaporation": "加热蒸发",
+          "ultrasonic_evaporation": "超声波蒸发"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "fault_warning",
+      "name": "故障告警",
+      "desc": "",
+      "mode": "r",
+      "define": {
+        "type": "stringenum",
+        "mapping": {
+          "normal": "正常",
+          "fault": "故障"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "spary_gears",
+      "name": "喷雾档位",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "stringenum",
+        "mapping": {
+          "level_1": "1档",
+          "level_2": "2档",
+          "level_3": "3档",
+          "level_4": "4档",
+          "level_5": "5档",
+          "level_6": "6档",
+          "level_7": "7档",
+          "level_8": "8档",
+          "level_9": "9档",
+          "level_10": "10档"
+        }
+      },
+      "required": false
+    }
+  ],
+  "events": [],
+  "actions": [],
+  "profile": {
+    "ProductId": "P9FCB4V9V1",
+    "CategoryId": "1"
+  }
+}

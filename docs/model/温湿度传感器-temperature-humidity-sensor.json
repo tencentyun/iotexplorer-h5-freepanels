@@ -1,0 +1,140 @@
+{
+  "version": "1.0",
+  "properties": [
+    {
+      "id": "power_switch",
+      "name": "电源开关",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "bool",
+        "mapping": {
+          "0": "关",
+          "1": "开"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "current_temp",
+      "name": "当前温度",
+      "desc": "",
+      "mode": "r",
+      "define": {
+        "type": "int",
+        "min": "-200",
+        "max": "600",
+        "start": "0",
+        "step": "1",
+        "unit": "°C"
+      },
+      "required": false
+    },
+    {
+      "id": "current_humidity",
+      "name": "当前湿度",
+      "desc": "",
+      "mode": "r",
+      "define": {
+        "type": "int",
+        "min": "0",
+        "max": "100",
+        "start": "1",
+        "step": "1"
+      },
+      "required": false
+    },
+    {
+      "id": "temp_sampling",
+      "name": "温度采样频率",
+      "desc": "",
+      "mode": "r",
+      "define": {
+        "type": "int",
+        "min": "0",
+        "max": "3600",
+        "start": "0",
+        "step": "s"
+      },
+      "required": false
+    },
+    {
+      "id": "humidity_sampling",
+      "name": "湿度采样频率",
+      "desc": "",
+      "mode": "r",
+      "define": {
+        "type": "int",
+        "min": "0",
+        "max": "3600",
+        "start": "0",
+        "step": "s"
+      },
+      "required": false
+    },
+    {
+      "id": "temp_unit",
+      "name": "温标",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "stringenum",
+        "mapping": {
+          "0": "摄氏度",
+          "1": "华氏度"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "battery_state",
+      "name": "电池电量状态",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "stringenum",
+        "mapping": {
+          "low": "低",
+          "middle": "中",
+          "high": "高"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "tamper_event",
+      "name": "防拆告警",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "stringenum",
+        "mapping": {
+          "0": "未拆卸",
+          "1": "拆卸告警"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "battery_percentage",
+      "name": "电池电量",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "int",
+        "min": "0",
+        "max": "100",
+        "start": "0",
+        "step": "1",
+        "unit": "%"
+      },
+      "required": false
+    }
+  ],
+  "events": [],
+  "actions": [],
+  "profile": {
+    "ProductId": "P9FCB4V9V1",
+    "CategoryId": "1"
+  }
+}

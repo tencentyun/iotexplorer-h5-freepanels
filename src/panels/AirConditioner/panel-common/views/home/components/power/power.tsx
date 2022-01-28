@@ -9,9 +9,10 @@ import React from 'react';
 import { DeviceSateContext } from '../../../../deviceStateContext';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 import classNames from 'classnames';
-import './power.less';
 import { apiControlDeviceData } from '@hooks/useDeviceData';
-// import IconTheme from '@components/common/icon/icon-theme';
+import { onControlDevice } from '@hooks/useDeviceData';
+import { SvgIcon } from '@components/common/icon';
+import './power.less';
 
 export enum enumTempKey {
   celsius = 'temp_set',
@@ -39,22 +40,19 @@ export function Power() {
       }
     }
   };
-  const handlePowerSwitch = () => {
-    apiControlDeviceData({
-      power_switch: sdk.deviceData.power_switch === 0 ? 1 : 0
-    });
-  };
+
   return (
     <DeviceSateContext.Consumer>
-      {deviceData => (
+      {({ deviceData }) => (
         <article className={classNames('power-tools-bar', 'border-bottom')}>
           <button
             className={classNames('button-circle', 'box-shadow', 'reduce')}
             onClick={() => {
+              if (!deviceData.power_switch) return
               handleToggle(false);
             }}
           >
-            {/* <IconTheme kind={'reduce'} size={82} /> */}
+            <SvgIcon name="icon-reduce"></SvgIcon>
           </button>
           <button
             id={'power'}
@@ -64,18 +62,20 @@ export function Power() {
               'btn-power-switch',
               sdk.deviceData.power_switch === 1 ? 'switch-open' : 'switch-close'
             )}
-            onClick={handlePowerSwitch}
+            onClick={() => {
+              onControlDevice('power_switch', Number(!deviceData.power_switch));
+            }}
           >
-            {/* <IconTheme kind={'power'} size={95} /> */}
+            <SvgIcon name="icon-power"></SvgIcon>
           </button>
           <button
             className={classNames('button-circle', 'box-shadow', 'add')}
             onClick={() => {
+              if (!deviceData.power_switch) return
               handleToggle(true);
             }}
           >
-            {/* <SvgIcon className="icon-power" name="icon-power" /> */}
-            {/* <IconTheme kind={'add'} size={82} /> */}
+            <SvgIcon name="icon-add"></SvgIcon>
           </button>
         </article>
       )}

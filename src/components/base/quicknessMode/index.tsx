@@ -8,4 +8,4 @@ export const QuicknessMode = (App) => {
     }, []);
     return sdkReady ? <App /> : <div>loading...</div>;
   };
-}
+};

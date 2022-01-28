@@ -1,0 +1,417 @@
+{
+  "version": "1.0",
+  "properties": [
+    {
+      "id": "alert_state",
+      "name": "布防",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "bool",
+        "mapping": {
+          "0": "撤防",
+          "1": "布防"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "woke_mode",
+      "name": "报警主机模式",
+      "desc": "\"disarmed撤防\narm布防 \nhome在家 \nsos紧急\nwork工作（用户自定义） play休闲（用户自定义）\"",
+      "mode": "rw",
+      "define": {
+        "type": "bool",
+        "mapping": {
+          "disarmed": "撤防",
+          "arm": "布防",
+          "home": "在家",
+          "sos": "紧急",
+          "work": "工作",
+          "play": "休闲"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "switch_alarm_light",
+      "name": "报警灯开关",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "bool",
+        "mapping": {
+          "0": "关",
+          "1": "开"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "alarm_vol",
+      "name": "报警音量",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "stringenum",
+        "mapping": {
+          "low": "low",
+          "middle": "middle",
+          "high": "high",
+          "mute" : "mute"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "alarm_ringtone",
+      "name": "报警铃声",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "stringenum",
+        "mapping": {
+          "ringtone_1": "ringtone_1",
+          "ringtone_2": "ringtone_2",
+          "ringtone_3": "ringtone_3",
+          "ringtone_4": "ringtone_4",
+          "ringtone_5": "ringtone_5"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "telnet_state",
+      "name": "电话网络状态",
+      "desc": "枚举值: normal, network_no, phone_no, sim_card_no, network_search, signal_level_1, signal_level_2, signal_level_3, signal_level_4, signal_level_5",
+      "mode": "rw",
+      "define": {
+        "type": "stringenum",
+        "mapping": {
+          "normal": "normal",
+          "network_no": "network_no",
+          "phone_no": "phone_no",
+          "sim_card_no": "sim_card_no",
+          "network_search": "network_search",
+          "signal_level_1": "signal_level_1",
+          "signal_level_2": "signal_level_2",
+          "signal_level_3": "signal_level_3",
+          "signal_level_4": "signal_level_4",
+          "signal_level_5": "signal_level_5"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "battery_state",
+      "name": "电池电量状态",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "stringenum",
+        "mapping": {
+          "low": "低",
+          "middle": "中",
+          "high": "高"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "alarm_time",
+      "name": "报警时长",
+      "desc": "这个值的转换需要确定",
+      "mode": "rw",
+      "define": {
+        "type": "int",
+        "min": "1",
+        "max": "60",
+        "start": "0",
+        "step": "1"
+      },
+      "required": false
+    },
+    {
+      "id": "delay_set",
+      "name": "延时设置",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "int",
+        "min": "0",
+        "max": "300",
+        "start": "0",
+        "step": "1",
+        "unit": "s"
+      },
+      "required": false
+    },
+    {
+      "id": "alarm_bright",
+      "name": "报警灯亮度",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "int",
+        "min": "0",
+        "max": "100",
+        "start": "0",
+        "step": "1"
+      },
+      "required": false
+    },
+    {
+      "id": "call_looptimes",
+      "name": "未接听重复拨打次数",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "int",
+        "min": "1",
+        "max": "10",
+        "start": "1",
+        "step": "1"
+      },
+      "required": false
+    },
+    {
+      "id": "password",
+      "name": "设置密码",
+      "desc": "设置主机的访问密码",
+      "mode": "rw",
+      "define": {
+        "type": "string",
+        "min": "0",
+        "max": "2048"
+      },
+      "required": false
+    },
+    {
+      "id": "alarm_call_number",
+      "name": "报警电话接收号码",
+      "desc": "存10个电话号码；每个电话号码11位",
+      "mode": "rw",
+      "define": {
+        "type": "string",
+        "min": "0",
+        "max": "2048"
+      },
+      "required": false
+    },
+    {
+      "id": "alarm_sms_number",
+      "name": "报警短信接收号码",
+      "desc": "存10个电话号码；每个电话号码11位",
+      "mode": "rw",
+      "define": {
+        "type": "string",
+        "min": "0",
+        "max": "2048"
+      },
+      "required": false
+    },
+    {
+      "id": "tamper_alarm",
+      "name": "防拆报警",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "bool",
+        "mapping": {
+          "0": "关",
+          "1": "开"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "switch_alarm_sound",
+      "name": "报警声开关",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "bool",
+        "mapping": {
+          "0": "关",
+          "1": "开"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "switch_mode_sound",
+      "name": "工作模式提示音",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "bool",
+        "mapping": {
+          "0": "关",
+          "1": "开"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "switch_kb_sound",
+      "name": "键盘按键音",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "bool",
+        "mapping": {
+          "0": "关",
+          "1": "开"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "switch_mode_light",
+      "name": "工作模式指示灯",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "bool",
+        "mapping": {
+          "0": "关",
+          "1": "开"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "switch_kb_light",
+      "name": "键盘背景灯",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "bool",
+        "mapping": {
+          "0": "关",
+          "1": "开"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "charge_state",
+      "name": "充电状态",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "bool",
+        "mapping": {
+          "0": "关",
+          "1": "开"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "switch_low_battery",
+      "name": "低电量报警",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "bool",
+        "mapping": {
+          "0": "关",
+          "1": "开"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "enable_alarm_call",
+      "name": "开启报警电话",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "bool",
+        "mapping": {
+          "0": "关",
+          "1": "开"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "enable_alarm_sms",
+      "name": "开启报警短信",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "bool",
+        "mapping": {
+          "0": "关",
+          "1": "开"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "muffling",
+      "name": "消音",
+      "desc": "0：不消音； 1：消音",
+      "mode": "rw",
+      "define": {
+        "type": "bool",
+        "mapping": {
+          "0": "不消音",
+          "1": "消音"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "tamper_event",
+      "name": "防拆告警",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "stringenum",
+        "mapping": {
+          "0": "未拆卸",
+          "1": "拆卸告警"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "sensor_probe",
+      "name": "传感器探头状态",
+      "desc": "枚举值: normal, fault",
+      "mode": "rw",
+      "define": {
+        "type": "stringenum",
+        "mapping": {
+          "normal": "normal",
+          "fault": "fault"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "battery_percentage",
+      "name": "电池电量",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "int",
+        "min": "0",
+        "max": "100",
+        "start": "0",
+        "step": "1",
+        "unit": "%"
+      },
+      "required": false
+    }
+  ],
+  "events": [],
+  "actions": [],
+  "profile": {
+    "ProductId": "P9FCB4V9V1",
+    "CategoryId": "1"
+  }
+}

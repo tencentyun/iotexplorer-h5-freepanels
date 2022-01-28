@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import classNames from 'classnames';
 import { RoundDashboard } from '../components/round-dashboard';
-import { RingDashboard } from '../components/ring-dashboard';
+import { RingDashboard } from './ring-dashboard';
 import { ScaleDial } from '../components/scale-dial';
 import { CircleDial } from '../components/circle-dial';
 import { SvgIcon } from '@components/common/icon';
@@ -21,12 +21,6 @@ const HeaterDashboard: React.FC<dashboardProps> = props => {
 
   const skinProps = (CurrentSkinProps as any)[dashboardStatus];
 
-  const [number, setNumber] = useState(value);
-
-  const handleClick = () => {
-    setNumber(number + 1);
-  };
-
   // 描述信息 关机/开机
   const renderDesWord = (dashboardStatus: string) => {
     return (
@@ -37,7 +31,7 @@ const HeaterDashboard: React.FC<dashboardProps> = props => {
           {...skinProps.warmth}
         />
         <div className="number">
-          <strong>{number}</strong>
+          <strong>{value}</strong>
           <span>°C</span>
         </div>
         <div className="title">当前温度</div>
@@ -49,14 +43,15 @@ const HeaterDashboard: React.FC<dashboardProps> = props => {
     <div className={classNames('heater-dashboard-wrap', themeType)}>
       {themeType === 'normal' ? (
         <RingDashboard
-          width={714}
-          height={714}
-          step={2}
+          width={760}
+          height={760}
+          step={3}
           isOuterCicle={true}
           scaleIsGradient={false}
           businessType="Heater"
           {...skinProps}
           {...props}
+          currentColor={dashboardStatus === 'shutdown' ? '#C9D4DD' : '#0F0F0F'}
         />
       ) : null}
       {themeType === 'blueWhite' || themeType === 'dark' ? (

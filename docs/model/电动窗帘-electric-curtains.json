@@ -1,0 +1,140 @@
+{
+  "version": "1.0",
+  "properties": [
+    {
+      "id": "auto_power",
+      "name": "自启动开关",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "bool",
+        "mapping": {
+          "0": "关",
+          "1": "开"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "control",
+      "name": "控制",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "stringenum",
+        "mapping": {
+          "open" : "开启",
+          "close" : "关闭",
+          "pause" : "暂停"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "mode",
+      "name": "工作模式",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "stringenum",
+        "mapping": {
+          "morning" : "早安模式",
+          "night" : "晚安模式"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "situation_set",
+      "name": "百分比含义",
+      "desc": "",
+      "mode": "r",
+      "define": {
+        "type": "stringenum",
+        "mapping": {
+          "fully_open" : "全开",
+          "fully_close" : "全关"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "fault",
+      "name": "故障警告",
+      "desc": "",
+      "mode": "r",
+      "define": {
+        "type": "stringenum",
+        "mapping": {
+          "normal" : "正常",
+          "fault" : "故障"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "control_back",
+      "name": "电机反向",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "stringenum",
+        "mapping": {
+          "forward" : "正向",
+          "back" : "反向"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "work_state",
+      "name": "温标切换",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "stringenum",
+        "mapping": {
+          "opening" : "开启",
+          "closing" : "关闭"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "percent_control",
+      "name": "百分比控制",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "int",
+        "min": "0",
+        "max": "100",
+        "start": "0",
+        "step": "1",
+        "unit": "%"
+      },
+      "required": false
+    },
+    {
+      "id": "percent_state",
+      "name": "百分比状态",
+      "desc": "",
+      "mode": "r",
+      "define": {
+        "type": "int",
+        "min": "0",
+        "max": "100",
+        "start": "0",
+        "step": "1",
+        "unit": "%"
+      },
+      "required": false
+    }
+  ],
+  "events": [],
+  "actions": [],
+  "profile": {
+    "ProductId": "P9FCB4V9V1",
+    "CategoryId": "1"
+  }
+}

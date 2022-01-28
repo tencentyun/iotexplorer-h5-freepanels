@@ -75,15 +75,17 @@ export function Training() {
   // 开始训练倒计时
   const [countdown, setCountdown] = useState(-1);
   const [countdownVisible, showCountdown] = useState(false);
+
   // 是否正在训练
-  const isStarting = state.deviceData.start === 1;
+  // const isStarting = state.deviceData.start === 1;
+  const [isStarting, setIsStarting] = useState(false);
   // 模式选择器
   const modeColumns = (value: PickerValue[]): PickerColumn[] => {
     // 左侧列表
-    const left = deviceMaps['mode'].map((item: any) => ({
+    const left = deviceMaps['mode'] ? deviceMaps['mode'].map((item: any) => ({
       label: modeDesc(item.name),
       value: item.name
-    }));
+    })) : [];
     // 右侧列表
     let right = [];
     if (value[0] === TRAINING_MODE.TIME) {
@@ -139,6 +141,7 @@ export function Training() {
       // 暂停
       onControlDevice('pause', 1);
       onControlDevice('start', 0);
+      setIsStarting(false);
       return;
     }
 
@@ -149,6 +152,7 @@ export function Training() {
     showCountdown(true);
     // 开始计时
     handleCountdown(true);
+    setIsStarting(true);
   };
 
   const handleCountdown = (val = true) => {
@@ -164,12 +168,10 @@ export function Training() {
     <div className={classNames('training-container-' + theme)}>
       {/* 头部状态栏 */}
       {theme !== 'dark' &&
-        <Block className="training-head" padding="70px 57px 68px 89px">
+        <Block className="training-head">
           <div className="device-connect-status">
             <SvgIcon
               name="icon-avatar"
-              width={56}
-              height={62}
               {...CurrentSkinProps.avatar}
             />
             <p className="avatar-name">{userInfo.nickName || '昵称'}</p>
@@ -184,7 +186,7 @@ export function Training() {
         </Block>
       }
 
-      <Block className="training-card" padding="54px 49px 52px 87px">
+      <Block className="training-card">
         <TrainingCard mode={currentMode} />
       </Block>
 
@@ -197,7 +199,11 @@ export function Training() {
           onClick={onStop}
         >
           <div className="item-inner">
-            <SvgIcon className="control-icon" name="icon-training-stop" color="#B8C6D3"/>
+            <SvgIcon
+              className="control-icon"
+              name="icon-training-stop"
+              color={isStarting ? '0F0F0F' : '#B8C6D3'}
+            />
           </div>
         </ControlItem>
         <ControlItem className="control-item control-start" onClick={onStart}>

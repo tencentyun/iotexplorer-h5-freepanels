@@ -8,9 +8,8 @@ import { getThemeType } from '@libs/theme';
 import { onControlDevice } from '@hooks/useDeviceData';
 import './setting.less';
 
-const themeType = getThemeType();
-
 export function Setting() {
+  const themeType = getThemeType();
   // 单位选择器
   const [unitVisible, onToggleUnit] = useState(false);
 

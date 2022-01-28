@@ -1,0 +1,213 @@
+{
+  "version": "1.0",
+  "properties": [
+    {
+      "id": "power_switch",
+      "name": "电源开关",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "bool",
+        "mapping": {
+          "0": "关",
+          "1": "开"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "cleaning",
+      "name": "保洁",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "bool",
+        "mapping": {
+          "0": "关",
+          "1": "开"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "sterile",
+      "name": "无菌",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "bool",
+        "mapping": {
+          "0": "关",
+          "1": "开"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "drying",
+      "name": "烘干",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "bool",
+        "mapping": {
+          "0": "关",
+          "1": "开"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "disinfection",
+      "name": "消毒",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "bool",
+        "mapping": {
+          "0": "关",
+          "1": "开"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "down_door_state",
+      "name": "下层门状态",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "bool",
+        "mapping": {
+          "0": "关",
+          "1": "开"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "up_door_state",
+      "name": "上层门状态",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "bool",
+        "mapping": {
+          "0": "关",
+          "1": "开"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "child_lock",
+      "name": "童锁开关",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "bool",
+        "mapping": {
+          "0": "关",
+          "1": "开"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "work_state",
+      "name": "工作状态",
+      "desc": "\"枚举值: \n0 - 待机\n1 - 工作中\n2 - 预约中\"",
+      "mode": "rw",
+      "define": {
+        "type": "enum",
+        "mapping": {
+          "0": "待机",
+          "1": "工作中",
+          "2": "预约中"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "child_lock",
+      "name": "童锁开关",
+      "desc": "\"枚举值: \n0 - 关闭\n1 - 烘干\n2 - 消毒\"",
+      "mode": "rw",
+      "define": {
+        "type": "enum",
+        "mapping": {
+          "0": "关闭",
+          "1": "烘干",
+          "2": "消毒"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "up_mode",
+      "name": "上层模式",
+      "desc": "\"枚举值: \n0 - 关闭\n1 - 保洁\n2 - 无菌\"",
+      "mode": "rw",
+      "define": {
+        "type": "enum",
+        "mapping": {
+          "0": "关闭",
+          "1": "保洁",
+          "2": "无菌"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "up_countdown_left",
+      "name": "上层剩余时间",
+      "desc": "数值范围: 0-1440, 间距: 1, 倍数: 0, 单位: min",
+      "mode": "rw",
+      "define": {
+        "type": "int",
+        "min": "0",
+        "max": "1440",
+        "start": "0",
+        "step": "1",
+        "unit": "min"
+      },
+      "required": false
+    },
+    {
+      "id": "down_temperature",
+      "name": "下层温度",
+      "desc": "数值范围: 0-150, 间距: 1, 倍数: 0, 单位: °C",
+      "mode": "rw",
+      "define": {
+        "type": "int",
+        "min": "0",
+        "max": "150",
+        "start": "0",
+        "step": "1",
+        "unit": "°C"
+      },
+      "required": false
+    },
+    {
+      "id": "count_down",
+      "name": "倒计时",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "int",
+        "min": "0",
+        "max": "86400",
+        "start": "0",
+        "step": "1",
+        "unit": ""
+      },
+      "required": false
+    }
+  ],
+  "events": [],
+  "actions": [],
+  "profile": {
+    "ProductId": "P9FCB4V9V1",
+    "CategoryId": "1"
+  }
+}

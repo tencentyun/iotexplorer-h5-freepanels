@@ -25,12 +25,6 @@ export const App = QuicknessMode(function App() {
   };
   getDeviceData(sdk.deviceId);
 
-  useEffect(() => {
-    sdk.setShareConfig({
-      title: sdk.displayName
-    });
-  }, []);
-
   // WebSocket 监听
   useEffect(() => {
     // H5 页面切前台时，刷新页面标题的设备名称
@@ -72,20 +66,6 @@ export const App = QuicknessMode(function App() {
         .off('wsReport', handleWsReport)
         .off('wsStatusChange', handleWsStatusChange);
     };
-  }, []);
-
-  useEffect(() => {
-    // 检查固件更新，若有可升级固件，且设备在线，则弹出提示
-    const doCheckFirmwareUpgrade = async () => {
-      try {
-        await sdk.checkFirmwareUpgrade({
-          silent: false // 设置为 true 则只检查，不弹出提示
-        });
-      } catch (err) {
-        //
-      }
-    };
-    doCheckFirmwareUpgrade();
   }, []);
 
   // 指定要展示大按钮的属性标识符，为 null 则取第一个属性

@@ -34,7 +34,7 @@ export default class SwipeUnlock extends React.Component<
     borderRadius: 42,
     tips: '滑动开锁',
     barBackground: `url()`,
-    movedColor: '#4090FF',
+    movedColor: 'transform',
     successTips: '已开锁'
   };
   public px2vw (px: number) {
@@ -58,7 +58,7 @@ export default class SwipeUnlock extends React.Component<
   /** 是否已经成功 */
   private isSuccess = false;
   /** 最大滑动距离 */
-  private max = this.props.width - 308 * 2;
+  private max = (this.props.width - 308 * 2) * 0.67;
   /** 盒子样式 */
   private style = {
     width: this.px2vw(this.props.width),
@@ -150,7 +150,8 @@ export default class SwipeUnlock extends React.Component<
     if (diff < 0) {
       diff = 0;
     }
-
+    console.log(diff);
+    console.log(this.max);
     if (diff >= this.max) {
       diff = this.max;
       this.isSuccess = true;

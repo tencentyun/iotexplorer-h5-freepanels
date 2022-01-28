@@ -42,7 +42,7 @@ export function Home() {
         <article
           className={classNames(
             'home',
-            deviceData.power_switch === 0 && 'power-off'
+            deviceData.power_switch !== 1 && 'power-off'
           )}
         >
           <Device />
