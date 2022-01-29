@@ -52,7 +52,7 @@ export function ValuePicker(props: ValueSelectProps) {
       )}
       visible={props.visible}
       position="bottom"
-      bodyStyle={{ minHeight: formatPxUnit('450px') }}
+      // bodyStyle={{ minHeight: formatPxUnit('450px') }}
       maskStyle={{ background: 'rgba(45, 48, 54, 0.74)' }}
     >
       {props.title ? <div className="picker-title">{props.title}</div> : null}
