@@ -16,6 +16,8 @@ export interface TabsProps extends StyledProps {
   activeKey?: number | string;
   activeColor?: string;
   inActiveColor?: string;
+  // top，bottom
+  position?: string;
   onChange?: any;
 }
 
@@ -59,11 +61,20 @@ export function Tabs(props: TabsProps) {
   const pane = tabs.filter((t: any) => t.key === activeKey);
 
   return (
-    <div className={classNames('_component_business_tabs_', props.className)}>
-      <Block className="tabs" padding={'70px 66px'}>
-        {tabItem()}
-      </Block>
+    <div className={classNames('component_business_tabs', props.className)}>
+      {props.position === 'top' &&
+        <Block className="tabs" padding={'70px 66px'}>
+          {tabItem()}
+        </Block>
+      }
+      
       <div className="tabs-content">{pane[0]}</div>
+
+      {props.position === 'bottom' &&
+        <Block className="tabs bottom-tabs" padding={'70px 66px'}>
+          {tabItem()}
+        </Block>
+      }
     </div>
   );
 }

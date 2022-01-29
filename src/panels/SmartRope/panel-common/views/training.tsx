@@ -28,6 +28,8 @@ const TRAINING_MODE = {
   TIME: 'countdown_time'
 };
 const COUNTDOWN_START = 5;
+let countdownTimer: any = null;
+let timer: any = null;
 
 interface ControlItemProps extends StyledProps {
   children: React.ReactNode;
@@ -62,7 +64,7 @@ function modeDesc(type: string) {
 export function Training() {
   const theme: ThemeType = getThemeType();
   const CurrentSkinProps: any = SkinProps[theme];
-  let startTimer: any = null;
+  
   // 接收跳转的训练类型
   const history = useHistory();
   const [userInfo, { onUpdateUserInfo }] = useUserInfo();
@@ -73,9 +75,12 @@ export function Training() {
   const [modeChangeVisible, onToggleModeChange] = useState(false);
   const [currentMode, switchMode] = useState(mode);
   // 开始训练倒计时
-  const [countdown, setCountdown] = useState(-1);
+  const [countdown, setCountdown] = useState(COUNTDOWN_START);
   const [countdownVisible, showCountdown] = useState(false);
-
+  // 当次计时
+  const [currentTime, setCurrentTime] = useState(0);
+  // 总计时
+  const [totalTime, setTotalTime] = useState(0);
   // 是否正在训练
   // const isStarting = state.deviceData.start === 1;
   const [isStarting, setIsStarting] = useState(false);
@@ -100,69 +105,77 @@ export function Training() {
   };
 
   useEffect(() => {
-    onToggleModeChange(false);
+    onToggleModeChange(true);
   }, [mode]);
 
-  useEffect(() => {
-    switchMode(state.deviceData.mode);
-  }, [state.deviceData.mode]);
+  // useEffect(() => {
+  //   switchMode(state.deviceData.mode);
+  // }, [state.deviceData.mode]);
 
   useEffect(() => {
-    if (countdown < 0) {
-      clearTimeout(startTimer);
+    if (countdown <= 0) {
+      clearInterval(countdownTimer);
+      // 关闭倒计时显示
       showCountdown(false);
-
-      // 向sdk提交数据
-      onControlDevice('pause', 0);
-      onControlDevice('start', 1);
-      return;
+      // 正计时开始
+      setIsStarting(true);
+      // 计时处理
+      timeStartHandle();
     }
-
-    clearTimeout(startTimer);
-    startTimer = setTimeout(() => {
-      setCountdown((val: number) => val - 1);
-    }, 1000);
-
-    return () => {
-      clearTimeout(startTimer);
-    };
   }, [countdown]);
 
-  // 停止训练
-  const onStop = () => {
-    if (!isStarting) return;
-
-    onControlDevice('pause', 1);
-    onControlDevice('start', 0);
-  };
-  // 开始训练
-  const onStart = () => {
-    if (isStarting) {
-      // 暂停
-      onControlDevice('pause', 1);
-      onControlDevice('start', 0);
+  useEffect(() => {
+    if (deviceMaps['target_time']) {
+      if (currentTime === deviceMaps['target_time'] * 60) {
+        console.log(currentTime, '=====currentTime');
+        clearInterval(timer);
+        // 关闭倒计时显示
+        setIsStarting(false);
+        onControlDevice('pause', 0);
+      }
+    }
+  }, [currentTime]);
+  
+  // 准备～倒计时
+  const handleCountdown = () => {
+    // 开始、暂停、继续
+    if (!isStarting) {
+      if (!timer) {
+        setCountdown(COUNTDOWN_START);
+        showCountdown(true);
+        countdownTimer = setInterval(() => {
+          setCountdown((val: number) => val - 1);
+        }, 1000);
+        onControlDevice('start', 1);
+      } else {
+        setIsStarting(true);
+        timeStartHandle();
+      }
+    } else {
+      // 停止
+      clearInterval(timer);
       setIsStarting(false);
-      return;
+      onControlDevice('pause', 0);
     }
-
-    handleStart();
   };
-
-  const handleStart = () => {
-    showCountdown(true);
+  // 正计时开始处理
+  const timeStartHandle = () => {
     // 开始计时
-    handleCountdown(true);
-    setIsStarting(true);
+    timer = setInterval(() => {
+      setCurrentTime((val: number) => val + 1);
+      setTotalTime((val: number) => val + 1);
+    }, 1000);
   };
-
-  const handleCountdown = (val = true) => {
-    if (!val) {
-      clearTimeout(startTimer);
-      return;
+  // 停止，清零，重置
+  const timeStoptHandle = () => {
+    if (currentTime > 0) {
+      setIsStarting(false);
+      clearInterval(timer);
+      timer = null;
+      setCountdown(COUNTDOWN_START);
+      setCurrentTime(0);
     }
-
-    setCountdown(COUNTDOWN_START);
-  };
+  }
 
   return (
     <div className={classNames('training-container-' + theme)}>
@@ -187,7 +200,7 @@ export function Training() {
       }
 
       <Block className="training-card">
-        <TrainingCard mode={currentMode} />
+        <TrainingCard mode={currentMode} time={currentTime}/>
       </Block>
 
       {/* 控制区域 */}
@@ -196,22 +209,23 @@ export function Training() {
           className={classNames('control-item control-stop', {
             is_disabled: !isStarting
           })}
-          onClick={onStop}
+          onClick={timeStoptHandle}
         >
           <div className="item-inner">
             <SvgIcon
               className="control-icon"
               name="icon-training-stop"
-              color={isStarting ? '0F0F0F' : '#B8C6D3'}
+              {...CurrentSkinProps[currentTime > 0 ? 'stopActive' : 'stop']}
             />
           </div>
         </ControlItem>
-        <ControlItem className="control-item control-start" onClick={onStart}>
+        <ControlItem className="control-item control-start" onClick={handleCountdown}>
           <div className="item-inner">
             <SvgIcon
               className="control-icon"
               name={`icon-training-${isStarting ? 'pause' : 'start'}`}
               color="#0F0F0F"
+              {...CurrentSkinProps[isStarting ? 'pause' : 'start']}
             />
           </div>
         </ControlItem>
@@ -222,7 +236,7 @@ export function Training() {
           }}
         >
           <div className="item-inner">
-            <div className="item-title font_line_3 color_1">
+            <div className="item-title">
               {modeDesc(currentMode)}
             </div>
             <div className="font_line_1">类型选择</div>
@@ -233,7 +247,7 @@ export function Training() {
       <TrainingData
         title="今日数据"
         totalCount={0}
-        titalTime={0}
+        titalTime={totalTime}
         totalCalories={0}/>
 
       {theme === 'dark' &&

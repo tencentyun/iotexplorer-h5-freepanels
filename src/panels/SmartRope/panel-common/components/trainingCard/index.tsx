@@ -16,6 +16,7 @@ import './style.less';
 export interface TraningCardProps extends StyledProps {
   // 训练模式
   mode?: string;
+  time?: number
 }
 
 export function TrainingCard(props: TraningCardProps) {
@@ -81,7 +82,8 @@ export function TrainingCard(props: TraningCardProps) {
           <Row className="owner-item">
             <p className="key">用时</p>
             <p className="value">
-              {formatTime(currentTime() || 0)}
+              {/* {formatTime(currentTime() || 0)} */}
+              {formatTime(props.time || 0)}
             </p>
           </Row>
           <Row className="owner-item">

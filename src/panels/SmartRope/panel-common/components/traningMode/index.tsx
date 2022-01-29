@@ -49,7 +49,10 @@ export function TrainingMode({ layoutMode = 'grid' }: TraningModeProps) {
 
   const onClickItem = function (meta: ModeProps) {
     onControlDevice('mode', meta.name);
-    history.push('/training', { mode: meta.name });
+    history.push({
+      pathname: '/training', 
+      state: { mode: meta.name }
+    });
   };
 
   const itemIcon = (name: string) => {
