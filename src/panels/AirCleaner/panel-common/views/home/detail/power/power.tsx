@@ -7,9 +7,11 @@ import { SvgIcon } from '@components/common/icon';
 
 export function Power() {
   const handlePowerSwitch = () => {
-    apiControlDeviceData({
-      power_switch: sdk.deviceData.power_switch === 1 ? 0 : 1
-    });
+    if (sdk.deviceData.child_lock !== 1) {
+      apiControlDeviceData({
+        power_switch: sdk.deviceData.power_switch === 1 ? 0 : 1
+      });
+    }
   };
   return (
     <article className={classNames('power-tools-bar', 'border-bottom')}>
