@@ -128,7 +128,3 @@ _
         |-- underscore # underscore 提供的基础方法
         |--
 ```
-
-
-
-## 已支持设备
