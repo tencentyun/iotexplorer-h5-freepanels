@@ -1,0 +1,65 @@
+{
+  "version": "1.0",
+  "properties": [
+    {
+      "id": "lock_switch",
+      "name": "车锁开关",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "bool",
+        "mapping": {
+          "0": "关",
+          "1": "开"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "alert_status",
+      "name": "警报状态",
+      "desc": "0:报警已关，1:报警已开",
+      "mode": "rw",
+      "define": {
+        "type": "bool",
+        "mapping": {
+          "0": "报警已关",
+          "1": "报警已开"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "battery_value",
+      "name": "剩余电量",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "int",
+        "min": "0",
+        "max": "100",
+        "start": "0",
+        "step": "1"
+      },
+      "required": false
+    },
+    {
+      "id": "search",
+      "name": "鸣笛寻车",
+      "desc": "鸣笛指令：sound",
+      "mode": "rw",
+      "define": {
+        "type": "string",
+        "min": "0",
+        "max": "2048"
+      },
+      "required": false
+    }
+  ],
+  "events": [],
+  "actions": [],
+  "profile": {
+    "ProductId": "P9FCB4V9V1",
+    "CategoryId": "1"
+  }
+}

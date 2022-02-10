@@ -1,0 +1,85 @@
+{
+  "version": "1.0",
+  "properties": [
+    {
+      "id": "power_switch",
+      "name": "电源开关",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "bool",
+        "mapping": {
+          "0": "关",
+          "1": "开"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "count_down",
+      "name": "倒计时",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "int",
+        "min": "0",
+        "max": "86400",
+        "start": "0",
+        "step": "1",
+        "unit": ""
+      },
+      "required": false
+    },
+    {
+      "id": "current",
+      "name": "电流",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "float",
+        "min": "0",
+        "max": "30000",
+        "start": "0",
+        "step": "1",
+        "unit": "mA"
+      },
+      "required": false
+    },
+    {
+      "id": "power",
+      "name": "功率",
+      "desc": "W",
+      "mode": "r",
+      "define": {
+        "type": "float",
+        "min": "0",
+        "max": "50000",
+        "start": "0",
+        "step": "1",
+        "unit": ""
+      },
+      "required": false
+    },
+    {
+      "id": "voltage",
+      "name": "电压",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "float",
+        "min": "0",
+        "max": "5000",
+        "start": "0",
+        "step": "1",
+        "unit": "V"
+      },
+      "required": false
+    }
+  ],
+  "events": [],
+  "actions": [],
+  "profile": {
+    "ProductId": "P9FCB4V9V1",
+    "CategoryId": "1"
+  }
+}
