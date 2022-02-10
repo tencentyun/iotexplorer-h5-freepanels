@@ -2,14 +2,14 @@
 
 | 一级分类         | 二级产品品类      | 现名称       | 文件夹名称                    | 是否提供物模型                                                             | 模版 | 上线状态                               |
 | ---------------- | ----------------- | ------------ | ----------------------------- | -------------------------------------------------------------------------- | ---- | -------------------------------------- |
-| 电工-插座类      | 五孔单插          | 五孔单插     | five-plug                     | [五孔单插.json](./model/五孔单插-five-plug.json)                           | 默认色 / 蓝白色 / 黑色 / 彩色 / 莫兰迪色     |
-|                  | 三孔单插          | 三孔单插     | three-plug                    | [三孔单插.json](./model/三孔单插-three-plug.json)                          |      |                                        |
-|                  | 电量统计插座      | 电量统计插座 | electricity-stats-receptacle  | 电量统计插座.json                                                          |      |                                        |
-|                  | 墙壁插座带 USB    | 墙壁插头     | wall-plug                     | [墙壁插座带 USB.json](./model/墙壁插座带USB-wall-plug.json)                |      |                                        |
-| 电工类-开关类    | 场景开关          | 一路开关     | switch-one                    | [一路开关.json](./model/一路开关-switch-one.json)                          |  默认色 / 蓝白色 / 黑色 / 彩色 / 莫兰迪色  | [预览](./img/switch-one-default.png)   |
-|                  | 多路开关          | 二路开关     | two-switch                    | [二路开关.json](./model/二路开关-two-switch.json)                          |  默认色 / 蓝白色 / 黑色 / 彩色 / 莫兰迪色  | [预览](./img/switch-two-default.png)   |
-|                  |                   | 三路开关     | three-switch                  | [三路开关.json](./model/三路开关-three-switch.json)                        |  默认色 / 蓝白色 / 黑色 / 彩色 / 莫兰迪色  | [预览](./img/switch-three-default.png) |
-|                  |                   | 四路开关     | four-switch                   | [四路开关.json](./model/四路开关-four-switch.json)                         |  默认色 / 蓝白色 / 黑色 / 彩色 / 莫兰迪色  | [预览](./img/switch-four-default.png)  |
+| 电工-插座类      | 五孔单插          | 五孔单插     | five-plug                     | [五孔单插.json](./model/五孔单插-five-plug.json)                           | [黑白色](./img/five-plug-normal.jpg) / [蓝白色](./img/five-plug-bluewhite.jpg) / [暗黑色](./img/five-plug-dark.jpg) / [明彩色](./img/five-plug-color.jpg) / [莫兰迪色](./img/five-plug-morandi.jpg)     | 测试中 |
+|                  | 三孔单插          | 三孔单插     | three-plug                    | [三孔单插.json](./model/三孔单插-three-plug.json)                          | [蓝白色](./img/three-plug-blue-white.jpg) / 暗黑色 / 明彩色 / 莫兰迪色 | 待测试 |
+|                  | 电量统计插座      | 电量统计插座 | electricity-stats-receptacle  | 电量统计插座.json                                                          |  蓝白色 / 暗黑色 / 明彩色 / 莫兰迪色  |  待测试  |
+|                  | 墙壁插座带 USB    | 墙壁插头     | wall-plug                     | [墙壁插座带 USB.json](./model/墙壁插座带USB-wall-plug.json)                | 默认色 / 蓝白色 / 暗黑色 / 明彩色 / 莫兰迪色   |                                        |
+| 电工类-开关类    | 场景开关          | 一路开关     | switch-one                    | [一路开关.json](./model/一路开关-switch-one.json)                          |  [蓝色](./img/switch-one-default.png) / 蓝白色 / 暗黑色 / 明彩色 / 莫兰迪色  | 部分上线   |
+|                  | 多路开关          | 二路开关     | two-switch                    | [二路开关.json](./model/二路开关-two-switch.json)                          |  [蓝色](./img/switch-two-default.png) / 蓝白色 / 暗黑色 / 明彩色 / 莫兰迪色  | 部分上线   |
+|                  |                   | 三路开关     | three-switch                  | [三路开关.json](./model/三路开关-three-switch.json)                        |  [蓝色](./img/switch-three-default.png) / 蓝白色 / 暗黑色 / 明彩色 / 莫兰迪色  | 部分上线 |
+|                  |                   | 四路开关     | four-switch                   | [四路开关.json](./model/四路开关-four-switch.json)                         |  [蓝色](./img/switch-four-default.png) / 蓝白色 / 暗黑色 / 明彩色 / 莫兰迪色  | 部分上线  |
 |                  |                   | 五路开关     | five-switch                   | [五路开关.json]                                                            |      | [预览](./img/switch-five-default.png)  |
 |                  | 调光开关          | 调光开关     | dimmer-switch                 | [调光开关.json](./model/调光开关-dimmer-switch.json)                       |      |                                        |
 |                  | 冷暖白光灯        | 冷暖白光灯   | white-lamp                    | [双色冷暖灯.json](./model/双色冷暖灯-white-lamp.json)                      |      |                                        |
@@ -32,7 +32,7 @@
 |                  | 温控器            | 温控器       | thermostat                    | [温控器.json](./model/温控器-thermostat.json)                              |      |                                        |
 |                  | 电动窗帘          | 电动窗帘     | electric-curtains             | [电动窗帘.json](./model/电动窗帘-electric-curtains.json)                   |      |                                        |
 |                  | 空气净化器        | 空气净化器   | air-purifier                  | [空气净化器.json](./model/空气净化器-air-cleaner.json)                     |      |                                        |
-|                  |                   |              | air-cleaner                   |                                                                            |      |                                        |
+|                  |                   |             | air-cleaner                   |                                                                            |      |                                        |
 |                  | 净水机            | 净水机       | water-purifier                | [净水机.json](./model/净水器-water-purifier.json)                          |      |                                        |
 |                  | 电扇              | 风扇         | fan 或 electric-fan           | [风扇.json](./model/风扇-fan.json)                                         |      |                                        |
 |                  | 香薰机            | 香薰机       | aromatherapy-machine          | 香薰机.json                                                                |      |                                        |
