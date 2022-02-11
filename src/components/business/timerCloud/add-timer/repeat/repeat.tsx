@@ -1,5 +1,5 @@
 
-import React, { FC, useState } from 'react';
+import React, { FC, useEffect, useState } from "react";
 import { Modal } from '@components/base';
 import { Checkbox, List } from 'antd-mobile';
 import IconChecked from '@components/base/icon-checked/icon-checked';
@@ -16,8 +16,9 @@ const Repeat: FC<{
   const [arrWeekVal, setWeekVal] = useState(defaultArrWeekVal || ARR_WEEK_VAL);
 
   const handleChecked = (index: number, val: number) => {
-    arrWeekVal.splice(index, 1, val);
-    setWeekVal([...arrWeekVal]);
+    const checked = arrWeekVal.slice();
+    checked.splice(index, 1, val);
+    setWeekVal(checked);
   };
 
   const handleConfirm = () => {
@@ -29,6 +30,10 @@ const Repeat: FC<{
     setIsShow(false);
     setWeekVal(defaultArrWeekVal || ARR_WEEK_VAL);
   };
+
+  useEffect(() => {
+    setWeekVal(defaultArrWeekVal || ARR_WEEK_VAL);
+  }, defaultArrWeekVal);
 
   const computeWeekVal = () => {
     const result: string[] = [];
