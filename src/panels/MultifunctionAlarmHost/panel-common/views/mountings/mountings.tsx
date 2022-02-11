@@ -1,5 +1,6 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import classNames from 'classnames';
+import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 import { Cell } from '@components/base';
 import { getThemeType } from '@libs/theme';
 import {useHistory} from "react-router";
@@ -134,27 +135,61 @@ export function Mountings() {
         return GasAlarmImage;
     }
   };
+  const [gatewayList, setGatewayList] = useState([]);
+  useEffect(() => {
+    // 获取网关子设备
+    const getDeviceDataGateway = async () => {
+      try {
+        const recordListInfo = await sdk.requestTokenApi('AppGetGatewayBindDeviceList', {
+          Action: 'AppGetGatewayBindDeviceList',
+          AccessToken: 'AccessToken',
+          RequestId: sdk.requestId,
+          GatewayProductId: sdk.gatewayProductId,
+          GatewayDeviceName: sdk.GatewayDeviceName,
+          ProductId: sdk.productId,
+          DeviceName: sdk.deviceName,
+          Offset: 0,
+          Limit: 10
+        });
+        console.log('get info', recordListInfo);
+        setGatewayList(recordListInfo.DeviceList);
+      } catch (err) {
+        console.error('get info fail', err);
+      }
+    };
+    getDeviceDataGateway();
+  }, []);
   const history = useHistory();
   const handleAdd = () => {
     return history.push('/addDevExplanatory');
+  };
+  const handleGetGateway = () => {
+    return history.push('/getGateway');
   };
   const cellIcon = (url: string) => (
     <img className="details-icon" src={url}></img>
   );
   return (
     <article className={classNames('dev-list')}>
+      {gatewayList.length > 0 ? (
       <ul>
-        <li className="list-item" id={'light-sensor'}>
-          <Cell
-            size="medium"
-            title="亮度传感器"
-            prefixIcon={cellIcon(lightSensorImageSrc())}
-            value=""
-            valueStyle="gray"
-            onClick={() => {}}
-          />
-        </li>
-        <li className="list-item" id={'exigency-btn'}>
+        {gatewayList.map((value, index) => (
+          value.BindStatus == 1 ? (
+            <li className="list-item" id={'light-sensor'}>
+              <Cell
+                size="medium"
+                title={value.DeviceName}
+                prefixIcon={cellIcon(value.IconUrl)}
+                value={value.DeviceId}
+                valueStyle="gray"
+                onClick={() => {}}
+              />
+            </li>
+          ) : (
+            ''
+          )
+        ))}
+        {/*<li className="list-item" id={'exigency-btn'}>
           <Cell
             size="medium"
             title="紧急按钮"
@@ -203,13 +238,18 @@ export function Mountings() {
             valueStyle="gray"
             onClick={() => {}}
           />
-        </li>
+        </li>*/}
       </ul>
+      ) : (
+        <ul>
+          <li className="dev-empty">暂未绑定电子设备</li>
+        </ul>
+      )}
       <div className="dev-operate">
         <div className="addDev" onClick={handleAdd}>
           如何添加设备
         </div>
-        <div className="fastAdd">快速添加</div>
+        <div className="fastAdd" onClick={handleGetGateway}>快速添加</div>
       </div>
     </article>
   );

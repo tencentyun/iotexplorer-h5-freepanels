@@ -13,12 +13,14 @@ import { Setting } from './views/setting/setting';
 import { PhoneList } from './views/phoneList/phoneList';
 import { Mountings } from './views/mountings/mountings';
 import { AddDevExplanatory } from './views/addDevExplanatory/addDevExplanatory';
+import { GetGateway } from "./views/getGateway/getGateway";
 import Timer from './views/timer/timer';
 import 'antd-mobile/es/global';
 import '@icons/themes/global.less';
 import '@icons/themes/icons/svg/common';
 import './style.less';
-import './themes.less';// 5套皮肤 构建前要修改var.less变量文件
+import './themes.less';
+// 5套皮肤 构建前要修改var.less变量文件
 
 export const App = QuicknessMode(function App() {
   const isBluetoothDevice = true;
@@ -142,6 +144,10 @@ export const App = QuicknessMode(function App() {
           <Switch>
             <Route path="/timer">
               <Timer />
+            </Route>
+            {/*添加子设备页*/}
+            <Route path="/getGateway">
+              <GetGateway />
             </Route>
             {/*配件*/}
             <Route path="/mountings">
