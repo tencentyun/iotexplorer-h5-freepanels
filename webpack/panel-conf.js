@@ -1,47 +1,47 @@
 module.exports = {
   AirPurifier: {
     enable: true,
-    panels: [['panel-default', { enable: true }]],
+    panels: [['panel-default', { enable: true, entry: 'app.tsx' }]],
   },
   FiveRoadHub: {
     enable: true,
-    panels: [['panel-default', { enable: true }]],
+    panels: [['panel-default', { enable: true, entry: 'app.tsx' }]],
   },
   FiveRoadLight: {
     enable: true,
-    panels: [['panel-default', { enable: true }]],
+    panels: [['panel-default', { enable: true, entry: 'app.tsx' }]],
   },
   Locator: {
     enable: true,
-    panels: [['panel-default', { enable: true }]],
+    panels: [['panel-default', { enable: true, entry: 'app.tsx' }]],
   },
   Socket: {
     enable: true,
-    panels: [['panel-default', { enable: true }]],
+    panels: [['panel-default', { enable: true, entry: 'app.tsx' }]],
   },
   MultiSwitch: {
     enable: true,
-    panels: [['panel-default', { enable: true }]],
+    panels: [['panel-default', { enable: true, entry: 'app.tsx' }]],
   },
   VideoCamera: {
     enable: true,
-    panels: [['panel-default', { enable: true }]],
+    panels: [['panel-default', { enable: true, entry: 'app.tsx' }]],
   },
   Fan: {
     enable: true,
-    panels: [['panel-default', { enable: true }]],
+    panels: [['panel-default', { enable: true, entry: 'app.tsx' }]],
   },
   RuyingMultiSwitch: {
     enable: true,
-    panels: [['panel-default', { enable: true }]],
+    panels: [['panel-default', { enable: true, entry: 'app.tsx' }]],
   },
   WisdomControl: {
     enable: true,
-    panels: [['panel-default', { enable: true }]],
+    panels: [['panel-default', { enable: true, entry: 'app.tsx' }]],
   },
   KugouMusic: {
     enable: true,
-    panels: [['panel-default', { enable: true }]],
+    panels: [['panel-default', { enable: true, entry: 'app.tsx' }]],
   },
   ElectricFan: {
     enable: true,

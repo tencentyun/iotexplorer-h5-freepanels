@@ -8,6 +8,7 @@ import { useDeviceData } from '@hooks/useDeviceData';
 import {QuicknessMode} from '@components/base';
 import { DeviceSateContext } from './deviceStateContext';
 import { Home } from './views/home/home';
+import {GetGateway} from "./views/getGateway/getGateway";
 import '@icons/themes/global.less';
 import './style.less';
 import './themes.less'; // 4套皮肤 构建前要修改var.less变量文件
@@ -145,6 +146,10 @@ export const App = QuicknessMode(function App() {
       <DeviceSateContext.Provider value={state}>
         <Router basename={basename}>
           <Switch>
+            {/*添加子设备页*/}
+            <Route path="/getGateway">
+              <GetGateway />
+            </Route>
             {/*首页*/}
             <Route path="/">
               <Home />

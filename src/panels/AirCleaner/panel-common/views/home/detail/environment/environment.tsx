@@ -102,7 +102,9 @@ const Environment = () => {
   };
 
   const handleMode = (type: string) => {
-    onControlDevice('mode', type);
+    if (sdk.deviceData.child_lock !== 1) {
+      onControlDevice('mode', type);
+    }
   };
   return (
     <article className={classNames('environment')}>

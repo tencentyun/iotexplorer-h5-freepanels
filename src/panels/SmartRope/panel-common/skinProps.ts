@@ -62,6 +62,18 @@ const SkinProps = {
     medal: {
       color: '#000000',
     },
+    stop: {
+      color: '#B8C6D3',
+    },
+    stopActive: {
+      color: '#000000',
+    },
+    start: {
+      color: '#000000',
+    },
+    pause: {
+      color: '#000000',
+    },
   },
   blueWhite: {
     homeBattery: {
@@ -143,6 +155,30 @@ const SkinProps = {
       y1: '15.3840922%',
       x2: '91.8220339%',
       y2: '84.297867%',
+    },
+    stop: {
+      color: '#B8C6D3',
+    },
+    stopActive: {
+      color: '#FF5447',
+    },
+    start: {
+      gradientId: 'start',
+      startColor: '#0081FF',
+      endColor: '#005BFF',
+      x1: '0%',
+      y1: '22.1501102%',
+      x2: '97.2025913%',
+      y2: '80.9923782%',
+    },
+    pause: {
+      gradientId: 'pause',
+      startColor: '#0081FF',
+      endColor: '#005BFF',
+      x1: '48%',
+      y1: '6.80044777%',
+      x2: '51.8881037%',
+      y2: '98.0740451%',
     },
   },
   dark: {
@@ -256,6 +292,30 @@ const SkinProps = {
       x2: '91.8220339%',
       y2: '84.297867%',
     },
+    stop: {
+      color: '#B8C6D3',
+    },
+    stopActive: {
+      color: '#FF5447',
+    },
+    start: {
+      gradientId: 'start',
+      startColor: '#00F0FF',
+      endColor: '#704DF0',
+      x1: '8.45868644%',
+      y1: '17.7659971%',
+      x2: '111.848517%',
+      y2: '90.299219%',
+    },
+    pause: {
+      gradientId: 'pause',
+      startColor: '#00F0FF',
+      endColor: '#704DF0',
+      x1: '48.3383475%',
+      y1: '0%',
+      x2: '52.4739407%',
+      y2: '112.510417%',
+    },
   },
   colorful: {
     homeBattery: {
@@ -343,7 +403,7 @@ const SkinProps = {
       y2: '84.297867%',
     },
     battery: {
-      color: 'blue',
+      color: 'royalBlueGradient',
     },
     lineChart: {
       lineColor: '#FFFFFF',
@@ -373,6 +433,30 @@ const SkinProps = {
     },
     medal: {
       color: '#FFFFFF',
+    },
+    stop: {
+      color: '#B8C6D3',
+    },
+    stopActive: {
+      color: '#F23830',
+    },
+    start: {
+      gradientId: 'start',
+      startColor: '#527DF4',
+      endColor: '#044DFF',
+      x1: '13.6139024%',
+      y1: '20.9752293%',
+      x2: '91.8220339%',
+      y2: '78.7671687%',
+    },
+    pause: {
+      gradientId: 'pause',
+      startColor: '#527DF4',
+      endColor: '#044DFF',
+      x1: '48.5445561%',
+      y1: '4.97802298%',
+      x2: '51.6728814%',
+      y2: '94.6223958%',
     },
   },
   morandi: {
@@ -419,7 +503,7 @@ const SkinProps = {
       color: '#4E5869',
     },
     battery: {
-      color: 'brown',
+      color: 'morandi',
     },
     lineChart: {
       lineColor: '#B6ACA3',
@@ -437,6 +521,24 @@ const SkinProps = {
     },
     medal: {
       color: '#FFFFFF',
+    },
+    stop: {
+      color: '#B8C6D3',
+    },
+    stopActive: {
+      color: '#B5ABA1',
+    },
+    start: {
+      color: '#4E5869',
+    },
+    pause: {
+      gradientId: 'pause',
+      startColor: '#576273',
+      endColor: '#414B5B',
+      x1: '50%',
+      y1: '0%',
+      x2: '50%',
+      y2: '86.165508%',
     },
   },
 };
