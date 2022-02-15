@@ -78,11 +78,11 @@ export function Position() {
     let wrap = document.getElementById('position-wrap');
     let point = document.getElementById('position-point');
     let wrap_y = document.getElementById("position-wrap").getBoundingClientRect().y;
-    let x = e.clientX - wrap.offsetLeft - point.clientWidth / 2;
-    let y = e.clientY - wrap_y - document.body.offsetTop - point.clientHeight / 2;
+    let x = e.changedTouches[0].clientX - wrap.offsetLeft - point.clientWidth / 2;
+    let y = e.changedTouches[0].clientY - wrap_y - document.body.offsetTop - point.clientHeight / 2;
     if (x < 0) x = 0;
     if (y < 0) y = 0;
-    let x_ratio = (e.clientX - wrap.offsetLeft) / wrap?.clientWidth;
+    let x_ratio = (e.changedTouches[0].clientX - wrap.offsetLeft) / wrap?.clientWidth;
     let color = getColorValue(x_ratio);
     // console.log(color);
     // let hsv = rgb2hsv(color);
@@ -175,7 +175,7 @@ export function Position() {
         id={'position-wrap'}
         className={classNames('position-wrap', sdk.deviceData.work_mode == 1 && 'white-light-mode')}
         style={{backgroundImage: getBackGroundImage()}}
-        onClick={handleSelectColor}
+        onTouchMove={handleSelectColor}
       >
         <div></div>
         <div
