@@ -7,24 +7,34 @@ import LockImageBlack from '../../../icons/normal/lock-open.svg';
 import LockImageWhite from '../../../icons/blue-white/lock-close.svg';
 import LockImageWhiteOpen from '../../../icons/blue-white/lock-open.svg';
 import LockImageBlue from '../../../icons/colorful/lock-open.svg';
+import {apiControlDeviceData} from "@hooks/useDeviceData";
 
 export function Lock() {
   const themeType = getThemeType();
+  const handleChildLock = () => {
+    apiControlDeviceData({
+      child_lock: sdk.deviceData.child_lock === 1 ? 0 : 1
+    });
+  };
   const lockImageSrc = () => {
     switch (themeType) {
       case 'normal':
-        return sdk.deviceData.power_switch === 1
-          ? LockImageBlack
-          : LockImageGray;
+        return sdk.deviceData.child_lock === 1
+          ? LockImageGray
+          : LockImageBlack;
       case 'colorful':
-        return sdk.deviceData.power_switch === 1
-          ? LockImageBlue
-          : LockImageGray;
+        return sdk.deviceData.child_lock === 1
+          ? LockImageGray
+          : LockImageBlue;
       default:
-        return sdk.deviceData.power_switch === 1
-          ? LockImageWhiteOpen
-          : LockImageWhite;
+        return sdk.deviceData.child_lock === 1
+          ? LockImageWhite
+          : LockImageWhiteOpen;
     }
   };
-  return <img className="lock-img" src={lockImageSrc()} alt="" />;
+  return (
+    <div onClick={handleChildLock} >
+      <img className="lock-img" src={lockImageSrc()} alt="" />
+    </div>
+  );
 }

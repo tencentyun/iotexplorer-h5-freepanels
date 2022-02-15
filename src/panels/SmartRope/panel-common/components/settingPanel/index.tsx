@@ -117,7 +117,7 @@ export const SettingPannel = (props: SettingPannelProps) => {
             }}
           >
             <p>{userInfo.nickName || '编辑昵称'}</p>
-            <SvgIcon name="icon-edit" width={52} height={52} {...CurrentSkinProps.settingEdit} />
+            <SvgIcon className='edit' name="icon-edit" {...CurrentSkinProps.settingEdit} />
           </div>
         </div>
 
