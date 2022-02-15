@@ -10,6 +10,8 @@ import {QuicknessMode} from '@components/base';
 import { Home } from './views/home/home';
 import { Record } from './views/record/record';
 import { MyInfo } from './views/myInfo/myInfo';
+import { StandardBleConnector } from "@components/base";
+
 import 'antd-mobile/es/global';
 import '@icons/themes/global.less';
 import '@icons/themes/icons/svg/common';
@@ -17,6 +19,7 @@ import './style.less';
 import './themes.less'; // 4套皮肤 构建前要修改var.less变量文件
 
 export const App = QuicknessMode(function App() {
+  const isStandardBleDevice = sdk.isStandardBleDevice;
   const isBluetoothDevice = true;
   // eslint-disable-next-line no-undef
   const isDev = process.env.NODE_ENV !== 'production';
@@ -36,6 +39,8 @@ export const App = QuicknessMode(function App() {
   const [state, { onDeviceDataChange, onDeviceStatusChange }] =
     useDeviceData(sdk);
   console.log(state, 'state===============');
+
+  console.log(sdk.blueToothAdapter, 'sdk.blueToothAdapter===============');
 
   // WebSocket 监听
   useEffect(() => {
@@ -76,6 +81,7 @@ export const App = QuicknessMode(function App() {
     };
 
     const handleWsReport = ({ deviceId, deviceData }) => {
+      console.log('device', deviceId, 'report_property', deviceData);
       if (deviceId === sdk.deviceId) {
         onDeviceDataChange(deviceData);
       }
@@ -88,16 +94,34 @@ export const App = QuicknessMode(function App() {
       }
     };
 
+    const handleWsEventReport = ({ deviceId, Payload }) => {
+      console.log('========device', deviceId, 'report_event', Payload);
+    };
+
+    const handleBlueToothReport = ({ deviceId, deviceData }) => {
+      console.log('++++++++++++++++');
+      console.log('====device', deviceId, '====report_property', deviceData);
+      if (deviceId === sdk.deviceId) {
+        onDeviceDataChange(deviceData);
+      }
+    };
+
     sdk
       .on('wsControl', handleWsControl)
       .on('wsReport', handleWsReport)
-      .on('wsStatusChange', handleWsStatusChange);
+      .on('wsStatusChange', handleWsStatusChange)
+      .on('wsEventReport', handleWsEventReport);
+    
+    sdk.blueToothAdapter.on('wsReport', handleBlueToothReport);
 
     return () => {
       sdk
         .off('wsControl', handleWsControl)
         .off('wsReport', handleWsReport)
-        .off('wsStatusChange', handleWsStatusChange);
+        .off('wsStatusChange', handleWsStatusChange)
+        .off('wsEventReport', handleWsEventReport);
+
+      sdk.blueToothAdapter.off('wsReport', handleBlueToothReport);
     };
   }, []);
 
@@ -134,6 +158,9 @@ export const App = QuicknessMode(function App() {
 
   return (
     <article>
+      {isStandardBleDevice && (
+        <StandardBleConnector familyId={sdk.familyId} deviceId={sdk.deviceId} />
+      )}
       <DeviceSateContext.Provider value={state}>
         <Router basename={basename}>
           <Switch>
