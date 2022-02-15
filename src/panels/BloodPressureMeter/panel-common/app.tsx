@@ -1,11 +1,11 @@
 /**
  * 血压计
  */
-import React, { useEffect } from 'react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
-import { DeviceSateContext } from './deviceStateContext';
-import { useDeviceData } from '@hooks/useDeviceData';
+import React, {useEffect} from 'react';
+import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
+import sdk, {StandardDeviceAdapter} from 'qcloud-iotexplorer-h5-panel-sdk';
+import {DeviceSateContext} from './deviceStateContext';
+import {useDeviceData} from '@hooks/useDeviceData';
 import {QuicknessMode} from '@components/base';
 import { Home } from './views/home/home';
 import { Record } from './views/record/record';
@@ -20,6 +20,39 @@ import './themes.less'; // 4套皮肤 构建前要修改var.less变量文件
 
 export const App = QuicknessMode(function App() {
   const isStandardBleDevice = sdk.isStandardBleDevice;
+  useEffect(() => {
+    // 获取蓝牙
+    const getDeviceDataBlueTooth = async () => {
+      try {
+        await sdk.blueToothAdapter.init();
+        // 搜索设备
+        const deviceInfo = await sdk.blueToothAdapter.searchDevice({
+          deviceName: sdk.deviceName,
+          serviceId: StandardDeviceAdapter.serviceId,
+          productId: sdk.productId,
+          disableCache: true,
+        });
+        if (!deviceInfo) {
+          throw new Error('未搜索到设备');
+        }
+        // 连接设备
+        const deviceAdapter = await sdk.blueToothAdapter.connectDevice({
+          deviceInfo,
+          productId: sdk.productId,
+        });
+        // 连接鉴权
+        if (!deviceAdapter.authorized) {
+          await deviceAdapter.authenticateConnection({
+            deviceName: sdk.deviceName,
+          });
+        }
+      } catch (err) {
+        console.error('get info fail', err);
+      }
+    };
+    getDeviceDataBlueTooth();
+  }, []);
+
   const isBluetoothDevice = true;
   // eslint-disable-next-line no-undef
   const isDev = process.env.NODE_ENV !== 'production';
@@ -36,7 +69,7 @@ export const App = QuicknessMode(function App() {
     basename += '/live';
   }
 
-  const [state, { onDeviceDataChange, onDeviceStatusChange }] =
+  const [state, {onDeviceDataChange, onDeviceStatusChange}] =
     useDeviceData(sdk);
   console.log(state, 'state===============');
 
@@ -74,7 +107,7 @@ export const App = QuicknessMode(function App() {
       window.document.title = deviceDisplayName;
     });
 
-    const handleWsControl = ({ deviceId, deviceData }) => {
+    const handleWsControl = ({deviceId, deviceData}) => {
       if (deviceId === sdk.deviceId) {
         onDeviceDataChange(deviceData);
       }
@@ -87,7 +120,7 @@ export const App = QuicknessMode(function App() {
       }
     };
 
-    const handleWsStatusChange = ({ deviceId, deviceStatus }) => {
+    const handleWsStatusChange = ({deviceId, deviceStatus}) => {
       console.log('handleWsStatusChange>>>>', deviceStatus);
       if (deviceId === sdk.deviceId) {
         onDeviceStatusChange(deviceStatus);
@@ -139,6 +172,7 @@ export const App = QuicknessMode(function App() {
     };
     doCheckFirmwareUpgrade();
   }, []);
+
   //
   // const onControlDeviceData = (id, value) =>
   //   sdk.controlDeviceData({ [id]: value });
@@ -166,15 +200,15 @@ export const App = QuicknessMode(function App() {
           <Switch>
             {/*历史记录*/}
             <Route path="/record">
-              <Record />
+              <Record/>
             </Route>
             {/*设置页*/}
             <Route path="/myInfo">
-              <MyInfo />
+              <MyInfo/>
             </Route>
             {/*首页*/}
             <Route path="/">
-              <Home />
+              <Home/>
             </Route>
           </Switch>
         </Router>
@@ -182,3 +216,33 @@ export const App = QuicknessMode(function App() {
     </article>
   );
 });
+
+class DemoDeviceAdapter extends DeviceAdapter {
+  static serviceId = '0000FFF0-0000-1000-8000-00805F9B34CC';
+
+  static deviceFilter(deviceInfo) {
+    if (deviceInfo.advertisServiceUUIDs) {
+      const matchedServiceId = deviceInfo.advertisServiceUUIDs.find(id => id === DemoDeviceAdapter.serviceId);
+      if (matchedServiceId && deviceInfo.advertisData) {
+        try {
+          const macArr = deviceInfo.advertisData.slice(2);
+          const mac = macArr.join(':');
+          return {
+            ...deviceInfo,
+            deviceName: mac,
+            serviceId: matchedServiceId,
+          };
+        } catch (err) {
+          console.error('parse mac error', err);
+        }
+      }
+    }
+  }
+
+  handleBLEMessage(hex) {
+    return {
+      type: 'unknown',
+      data: hex,
+    };
+  }
+}
