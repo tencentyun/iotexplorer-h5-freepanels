@@ -57,8 +57,8 @@ export function Position(props: LightColorProps) {
     let wrap = wrapper.current;
     let point = circle.current;
     let wrap_y = wrap.getBoundingClientRect().y;
-    let x = e.clientX - wrap.offsetLeft;
-    let y = e.clientY - wrap_y - document.body.offsetTop;
+    let x = e.changedTouches[0].clientX - wrap.offsetLeft;
+    let y = e.changedTouches[0].clientY - wrap_y - document.body.offsetTop;
     y -= wrap.clientHeight - point.clientHeight;
     let centerX = wrap.clientWidth / 2 - document.body.clientWidth / 1125.0 * 10;
     let centerY = -wrap.clientHeight / 2 + point?.clientHeight * 0.9;
@@ -93,7 +93,7 @@ export function Position(props: LightColorProps) {
       <div
         ref={wrapper}
         className={classNames('position-wrap', sdk.deviceData.color_mode === 1 && 'scene-bar')}
-        onClick={handleSelectColor}
+        onTouchMove={handleSelectColor}
         style={{opacity: brightness / 100}}
       >
         <div id={'position-mask'} className={classNames('position-mask')}></div>
