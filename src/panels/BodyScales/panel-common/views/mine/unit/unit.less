@@ -1,0 +1,85 @@
+  .unit_info{
+    width: 800px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+
+    .height_unit{
+      width: 780px;
+      height: 507px;
+      background: #FFFFFF;
+      box-shadow: 0 6px 50px 0 rgba(32,33,33,0.10);
+      border-radius: 60px;
+      margin-top: 56px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+
+      .height_span{
+        width: 780px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      ._component_base_cell_{
+        .cell-wrapper{
+          height: 80px;
+          .img_select{
+            width: 70px;
+          }
+          .img_default{
+            width: 40px;
+            margin: 15px 15px 0 0;
+          }
+        }
+      }
+    }
+    .weight_unit{
+      width: 780px;
+      height: 657px;
+      background: #FFFFFF;
+      box-shadow: 0 6px 50px 0 rgba(32,33,33,0.10);
+      border-radius: 60px;
+      margin-top: 50px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+
+      .weight_span{
+        width: 780px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      ._component_base_cell_{
+        .cell-wrapper{
+          height: 80px;
+          .img_select{
+            width: 70px;
+          }
+          .img_default{
+            width: 40px;
+            margin: 15px 15px 0 0;
+          }
+        }
+      }
+    }
+    .card_font{
+      width: 201px;
+      height: 67px;
+      font-family: PingFangSC-Medium;
+      font-weight: Medium;
+      font-size: 48px;
+      text-align: center;
+    }
+  }
+body.theme_dark {
+    .unit_info{
+      .height_unit, .weight_unit{
+        color: #FFFFFF;
+        background-image: linear-gradient(180deg, #333E4D 6%, #202C3A 100%) !important;
+      }
+    }
+}
+

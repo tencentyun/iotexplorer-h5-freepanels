@@ -92,8 +92,10 @@ export function MyInfo() {
           </div>
           <NickName
             isShow={editNickname}
-            onClose={() => {
-              console.log(userInfo)
+            onClose={(value) => {
+              if(value != ''){
+                onUpdateUserInfo({ nickName: value })
+              }
               onEditNickname(false);
             }}
           />

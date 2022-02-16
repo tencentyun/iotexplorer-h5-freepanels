@@ -8,14 +8,16 @@ const NickName = ({ isShow, onClose }) => {
   const [dataUser, setDataUser] = useState(userInfo.nickName);
   const handleCommit = () => {
     onUpdateUserInfo({ nickName: dataUser })
-    onClose();
+    onClose(dataUser);
   };
-
+  const handleClose = () => {
+    onClose('');
+  };
   return (
     <Modal
       title={'编辑昵称'}
       visible={isShow}
-      onClose={onClose}
+      onClose={handleClose}
       onConfirm={handleCommit}
     >
       <Input
