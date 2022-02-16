@@ -1,11 +1,12 @@
 import React, {useState} from 'react';
+import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 import classNames from 'classnames';
 import {Modal} from '@components/base';
 import {apiControlDeviceData} from '@hooks/useDeviceData';
 import './percentage.less';
 
 const Percentage = ({isShow, onClose}) => {
-  const [percent, setPercent] = useState(60);
+  const [percent, setPercent] = useState(sdk.deviceData.percent_control1?sdk.deviceData.percent_control1:0);
 
   const max_value = 100;
   const min_value = 0;
@@ -18,7 +19,7 @@ const Percentage = ({isShow, onClose}) => {
     }
     setPercent(val);
     apiControlDeviceData({
-      percent_control: val
+      percent_control1: val
     });
   }
 

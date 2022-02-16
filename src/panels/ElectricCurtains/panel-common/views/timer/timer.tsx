@@ -3,13 +3,14 @@ import TimerCloud, {
   ITimerDataBind,
   ITimerOptions
 } from '@components/business/timerCloud/timer-cloud';
+import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 import { List, Radio } from 'antd-mobile';
 import { Modal } from '@components/base';
 import IconChecked from '@components/base/icon-checked/icon-checked';
 import Percentage from '../home/home-normal/percentage/percentage';
 
 const Timer = () => {
-  const [data, setData] = useState({ power_switch: 0,percent_control: 0 } as ITimerDataBind);
+  const [data, setData] = useState({ power_switch: 0,percent_control: 0} as ITimerDataBind);
   const [isShowPowerSwitch, setIsShowPowerSwitch] = useState(false);
   const [selectThePercentage, thePercentage] = useState(false);
 
@@ -31,7 +32,7 @@ const Timer = () => {
         />
         <List.Item
           prefix={'百分比控制'}
-          extra={optionsTimer.power_switch.value_enum[data['percent_control']]}
+          extra={data['percent_control']}
           onClick={() => {
             thePercentage(true);
           }}
@@ -75,6 +76,7 @@ const Timer = () => {
       <Percentage
         isShow={selectThePercentage}
         onClose={() => {
+          setData(Object.assign(data, { percent_control: sdk.deviceData.percent_control1 }));
           thePercentage(false);
         }}
       />
