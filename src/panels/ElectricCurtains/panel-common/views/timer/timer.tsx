@@ -20,6 +20,11 @@ const Timer = () => {
       value_enum: ['关', '开']
     }
   };
+
+  const beginControlPercent = () => {
+    console.log(data)
+    thePercentage(true);
+  }
   return (
     <TimerCloud dataBind={data} options={optionsTimer}>
       <List>
@@ -33,9 +38,7 @@ const Timer = () => {
         <List.Item
           prefix={'百分比控制'}
           extra={data['percent_control']}
-          onClick={() => {
-            thePercentage(true);
-          }}
+          onClick={beginControlPercent}
         />
       </List>
       {/*开关弹窗*/}
@@ -74,9 +77,13 @@ const Timer = () => {
         </Radio.Group>
       </Modal>
       <Percentage
+        cur_percent={data.percent_control}
         isShow={selectThePercentage}
         onClose={() => {
-          setData(Object.assign(data, { percent_control: sdk.deviceData.percent_control1 }));
+          thePercentage(false);
+        }}
+        onCommit = {(val) => {
+          setData(Object.assign(data, { percent_control: val }));
           thePercentage(false);
         }}
       />
