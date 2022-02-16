@@ -93,6 +93,7 @@ export function MyInfo() {
           <NickName
             isShow={editNickname}
             onClose={() => {
+              console.log(userInfo)
               onEditNickname(false);
             }}
           />

@@ -4,6 +4,7 @@ import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 import {getThemeType} from '@libs/theme';
 import { onControlDevice } from '@hooks/useDeviceData';
 import { Battery, Bluetooth } from '@components/business';
+import { useUserInfo } from '@hooks/useUserInfo';
 import { useHistory } from 'react-router';
 import PirVisible from './measureResult/measureResult';
 import './home.less';
@@ -73,6 +74,8 @@ export function Home() {
     }
   };
   const [isShowMeasureResult, setIsShowMeasureResult] = useState(false);
+  // 从 sdk 读取到的物模型 maps
+  const [userInfo] = useUserInfo();
   const history = useHistory();
   const handleMyInfo = () => {
     // 个人信息
@@ -159,7 +162,7 @@ export function Home() {
           </div>
           <div className="my-head" onClick={handleMyInfo}>
             <img src={headImageSrc()} alt="昵称" />
-            编辑昵称
+            {userInfo.nickName || '编辑昵称'}
           </div>
           <div className="my-info">
             <div className="title">
