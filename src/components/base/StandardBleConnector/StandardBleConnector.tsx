@@ -1,4 +1,4 @@
-import React, { useEffect, forwardRef, useImperativeHandle } from "react";
+import React, { forwardRef, useImperativeHandle } from "react";
 import classNames from "classnames";
 import {
 	StandardBleConnectStatus,

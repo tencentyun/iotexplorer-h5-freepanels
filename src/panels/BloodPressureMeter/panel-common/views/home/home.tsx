@@ -141,7 +141,7 @@ export function Home() {
         <div className={classNames('dashboard-info')}>
           <div className="dev-info">
             {/* 蓝牙模块 */}
-            <Bluetooth />
+            <Bluetooth familyId={sdk.familyId} deviceId={sdk.deviceId}/>
             {/* 电源模块 */}
             <Battery
               isShowPercent={false}

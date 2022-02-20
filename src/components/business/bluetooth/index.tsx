@@ -5,14 +5,25 @@
  */
 import React from 'react';
 import classNames from 'classnames';
+import {
+  StandardBleConnectStatusStr,
+	useStandardBleConnector,
+} from "@hooks/useStandardBleConnector";
 import './style.less';
 
 export interface BluetoothProps {
   isShowState?: boolean;
+  deviceId?: number;
+  familyId?: string;
 }
 
 export function Bluetooth(props: BluetoothProps) {
   const { isShowState = true } = props;
+
+  const [ connectStatusInfo ] = useStandardBleConnector({
+    deviceId: props.deviceId,
+    familyId: props.familyId
+  });
 
   return (
     <div className="_component_business_bluetooth_">
@@ -22,7 +33,7 @@ export function Bluetooth(props: BluetoothProps) {
           is_hidden: !isShowState
         })}
       >
-        未连接
+        {StandardBleConnectStatusStr[connectStatusInfo.status]}
       </i>
     </div>
   );

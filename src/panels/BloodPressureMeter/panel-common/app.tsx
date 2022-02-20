@@ -3,7 +3,7 @@
  */
 import React, {useEffect} from 'react';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
-import sdk, {StandardDeviceAdapter} from 'qcloud-iotexplorer-h5-panel-sdk';
+import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 import {DeviceSateContext} from './deviceStateContext';
 import {useDeviceData} from '@hooks/useDeviceData';
 import {QuicknessMode} from '@components/base';
@@ -20,39 +20,6 @@ import './themes.less'; // 4套皮肤 构建前要修改var.less变量文件
 
 export const App = QuicknessMode(function App() {
   const isStandardBleDevice = sdk.isStandardBleDevice;
-  useEffect(() => {
-    // 获取蓝牙
-    const getDeviceDataBlueTooth = async () => {
-      try {
-        await sdk.blueToothAdapter.init();
-        // 搜索设备
-        const deviceInfo = await sdk.blueToothAdapter.searchDevice({
-          deviceName: sdk.deviceName,
-          serviceId: StandardDeviceAdapter.serviceId,
-          productId: sdk.productId,
-          disableCache: true,
-        });
-        if (!deviceInfo) {
-          throw new Error('未搜索到设备');
-        }
-        // 连接设备
-        const deviceAdapter = await sdk.blueToothAdapter.connectDevice({
-          deviceInfo,
-          productId: sdk.productId,
-        });
-        // 连接鉴权
-        if (!deviceAdapter.authorized) {
-          await deviceAdapter.authenticateConnection({
-            deviceName: sdk.deviceName,
-          });
-        }
-      } catch (err) {
-        console.error('get info fail', err);
-      }
-    };
-    getDeviceDataBlueTooth();
-  }, []);
-
   const isBluetoothDevice = true;
   // eslint-disable-next-line no-undef
   const isDev = process.env.NODE_ENV !== 'production';
@@ -72,8 +39,6 @@ export const App = QuicknessMode(function App() {
   const [state, {onDeviceDataChange, onDeviceStatusChange}] =
     useDeviceData(sdk);
   console.log(state, 'state===============');
-
-  console.log(sdk.blueToothAdapter, 'sdk.blueToothAdapter===============');
 
   // WebSocket 监听
   useEffect(() => {
@@ -108,12 +73,14 @@ export const App = QuicknessMode(function App() {
     });
 
     const handleWsControl = ({deviceId, deviceData}) => {
+      console.log('111++++++++++++++++');
       if (deviceId === sdk.deviceId) {
         onDeviceDataChange(deviceData);
       }
     };
 
     const handleWsReport = ({ deviceId, deviceData }) => {
+      console.log('222++++++++++++++++');
       console.log('device', deviceId, 'report_property', deviceData);
       if (deviceId === sdk.deviceId) {
         onDeviceDataChange(deviceData);
@@ -131,30 +98,18 @@ export const App = QuicknessMode(function App() {
       console.log('========device', deviceId, 'report_event', Payload);
     };
 
-    const handleBlueToothReport = ({ deviceId, deviceData }) => {
-      console.log('++++++++++++++++');
-      console.log('====device', deviceId, '====report_property', deviceData);
-      if (deviceId === sdk.deviceId) {
-        onDeviceDataChange(deviceData);
-      }
-    };
-
     sdk
       .on('wsControl', handleWsControl)
       .on('wsReport', handleWsReport)
       .on('wsStatusChange', handleWsStatusChange)
       .on('wsEventReport', handleWsEventReport);
     
-    sdk.blueToothAdapter.on('wsReport', handleBlueToothReport);
-
     return () => {
       sdk
         .off('wsControl', handleWsControl)
         .off('wsReport', handleWsReport)
         .off('wsStatusChange', handleWsStatusChange)
         .off('wsEventReport', handleWsEventReport);
-
-      sdk.blueToothAdapter.off('wsReport', handleBlueToothReport);
     };
   }, []);
 
@@ -192,9 +147,9 @@ export const App = QuicknessMode(function App() {
 
   return (
     <article>
-      {isStandardBleDevice && (
+      {/* {isStandardBleDevice && ( */}
         <StandardBleConnector familyId={sdk.familyId} deviceId={sdk.deviceId} />
-      )}
+      {/* )} */}
       <DeviceSateContext.Provider value={state}>
         <Router basename={basename}>
           <Switch>
@@ -216,33 +171,3 @@ export const App = QuicknessMode(function App() {
     </article>
   );
 });
-
-class DemoDeviceAdapter extends DeviceAdapter {
-  static serviceId = '0000FFF0-0000-1000-8000-00805F9B34CC';
-
-  static deviceFilter(deviceInfo) {
-    if (deviceInfo.advertisServiceUUIDs) {
-      const matchedServiceId = deviceInfo.advertisServiceUUIDs.find(id => id === DemoDeviceAdapter.serviceId);
-      if (matchedServiceId && deviceInfo.advertisData) {
-        try {
-          const macArr = deviceInfo.advertisData.slice(2);
-          const mac = macArr.join(':');
-          return {
-            ...deviceInfo,
-            deviceName: mac,
-            serviceId: matchedServiceId,
-          };
-        } catch (err) {
-          console.error('parse mac error', err);
-        }
-      }
-    }
-  }
-
-  handleBLEMessage(hex) {
-    return {
-      type: 'unknown',
-      data: hex,
-    };
-  }
-}
