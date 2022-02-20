@@ -11,7 +11,7 @@ import './container.less';
 const { TabPane } = Tabs;
 export function Container() {
   const themeType = getThemeType();
-  const [activeKey, setActiveKey] = useState('measure');
+  const [activeKey, setActiveKey] = useState('mine');
   const measureImageSrc = () => {
     switch (themeType) {
       case 'normal':

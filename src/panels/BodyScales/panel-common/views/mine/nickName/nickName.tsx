@@ -5,17 +5,19 @@ import {useUserInfo} from "@hooks/useUserInfo";
 
 const NickName = ({ isShow, onClose }) => {
   const [userInfo, { onUpdateUserInfo }] = useUserInfo();
-  const [dataUser, setDataUser] = useState();
+  const [dataUser, setDataUser] = useState(userInfo.nickName);
   const handleCommit = () => {
     onUpdateUserInfo({ nickName: dataUser })
-    onClose();
+    onClose(dataUser);
   };
-
+  const handleClose = () => {
+    onClose('');
+  };
   return (
     <Modal
       title={'编辑昵称'}
       visible={isShow}
-      onClose={onClose}
+      onClose={handleClose}
       onConfirm={handleCommit}
     >
       <Input
