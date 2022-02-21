@@ -5,6 +5,7 @@ import { SvgIcon } from '@components/common';
 import { White } from './view-white';
 import { Scene } from './view-scene';
 import {getThemeType} from '@libs/theme';
+import './main.less'
 const { TabPane } = Tabs;
 
 export function Main() {
@@ -101,6 +102,7 @@ export function Main() {
     <Tabs
       className="top-nav"
       activeKey={activeKey}
+      position="top"
       onChange={(key: string) => {
         if (sdk.deviceData.power_switch === 1) {
           setActiveKey(key);

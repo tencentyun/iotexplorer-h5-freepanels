@@ -11,7 +11,6 @@ import { Home } from './views/home/home';
 import { Record } from './views/record/record';
 import { MyInfo } from './views/myInfo/myInfo';
 import { StandardBleConnector } from "@components/base";
-
 import 'antd-mobile/es/global';
 import '@icons/themes/global.less';
 import '@icons/themes/icons/svg/common';
@@ -19,7 +18,6 @@ import './style.less';
 import './themes.less'; // 4套皮肤 构建前要修改var.less变量文件
 
 export const App = QuicknessMode(function App() {
-  const isStandardBleDevice = sdk.isStandardBleDevice;
   const isBluetoothDevice = true;
   // eslint-disable-next-line no-undef
   const isDev = process.env.NODE_ENV !== 'production';
@@ -73,14 +71,12 @@ export const App = QuicknessMode(function App() {
     });
 
     const handleWsControl = ({deviceId, deviceData}) => {
-      console.log('111++++++++++++++++');
       if (deviceId === sdk.deviceId) {
         onDeviceDataChange(deviceData);
       }
     };
 
     const handleWsReport = ({ deviceId, deviceData }) => {
-      console.log('222++++++++++++++++');
       console.log('device', deviceId, 'report_property', deviceData);
       if (deviceId === sdk.deviceId) {
         onDeviceDataChange(deviceData);
@@ -103,7 +99,7 @@ export const App = QuicknessMode(function App() {
       .on('wsReport', handleWsReport)
       .on('wsStatusChange', handleWsStatusChange)
       .on('wsEventReport', handleWsEventReport);
-    
+
     return () => {
       sdk
         .off('wsControl', handleWsControl)

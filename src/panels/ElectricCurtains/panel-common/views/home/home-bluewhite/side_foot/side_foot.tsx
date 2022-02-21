@@ -104,7 +104,7 @@ export function Side_Foot() {
         <div className="side_span1" id='power' onClick={onSwitch}>
           <SvgIcon
             name={!sdk.deviceData.control || sdk.deviceData.control === 'pause' ? 'icon-curtains-total-unlock-blueWhite' : 'icon-curtains-total-paused-blueWhite'}
-            color="#000000" width={350} height={350}/>
+            color="#000000" width={250} height={250}/>
         </div>
 
         <div className={classNames("side_span", sdk.deviceData.control === 'close' && "button_select")}

@@ -1,21 +1,27 @@
 import React, { useState } from 'react';
+import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 import classNames from 'classnames';
 import { Tabs } from '@components/business';
 import { SvgIcon } from '@components/common';
 import { Setting } from '../setting/setting';
 import { Home } from '../home/home';
 import './container.less';
+import {onControlDevice} from "@hooks/useDeviceData";
 const { TabPane } = Tabs;
 
 export function Container() {
-  const [activeKey, setActiveKey] = useState('training');
+  const [activeKey, setActiveKey] = useState(sdk.deviceData.activeKey ? sdk.deviceData.activeKey : 'training');
 
   return (
     <div className={classNames('app-container')}>
       <Tabs
         className="top-nav"
         activeKey={activeKey}
-        onChange={(key: string) => setActiveKey(key)}
+        position="top"
+        onChange={(key: string) => {
+          setActiveKey(key);
+          onControlDevice('activeKey', key);
+        }}
       >
         <TabPane
           title="首页"
