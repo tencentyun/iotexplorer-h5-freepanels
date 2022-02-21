@@ -25,8 +25,9 @@ export const enumWorkMode: stringKey = {
   floor_eat_and_heat: '地暖及制热'
 };
 // eslint-disable-next-line no-unused-vars
-const WorkMode: FC<{ onChange?: (val: boolean) => void; cRef?: any }> = ({
+const WorkMode: FC<{ onChange?: (val: boolean) => void; cRef?: any; defaultValue?: string | number }> = ({
   cRef,
+  defaultValue,
   onChange
 }: any) => {
   const [workModeUser, setValue] = useState(sdk.deviceData.mode);
@@ -57,6 +58,7 @@ const WorkMode: FC<{ onChange?: (val: boolean) => void; cRef?: any }> = ({
         <article>
           {
             <Radio.Group
+              defaultValue={defaultValue}
               value={workModeUser}
               onChange={(val: any) => {
                 setValue(val);

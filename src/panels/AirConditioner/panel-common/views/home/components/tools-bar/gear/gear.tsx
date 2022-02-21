@@ -25,8 +25,9 @@ export const enumGear: any = {
 };
 
 // eslint-disable-next-line no-unused-vars
-const Gear: FC<{ cRef?: string; onChange?: (val: any) => void }> = ({
+const Gear: FC<{ cRef?: string; defaultValue?: string | number; onChange?: (val: any) => void }> = ({
   cRef,
+  defaultValue,
   onChange
 }: any) => {
   const [gearUser, setValue] = useState(sdk.deviceData.fan_speed_enum);
@@ -55,6 +56,7 @@ const Gear: FC<{ cRef?: string; onChange?: (val: any) => void }> = ({
     <article>
       {
         <Radio.Group
+          defaultValue={defaultValue}
           value={gearUser}
           onChange={(val: any) => {
             onChange && onChange(val);

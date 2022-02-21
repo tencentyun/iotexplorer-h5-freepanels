@@ -26,10 +26,10 @@ import './timer.less';
 
 const Timer = () => {
   const [data, setData] = useState({
-    work_mode: '',
+    work_mode: 'auto',
     power_switch: 0,
     temp_set: 0,
-    fan_speed_enum: ''
+    fan_speed_enum: 'sleep'
   } as ITimerDataBind);
   const [isShowWorkMode, setIsShowWorkMode] = useState(false);
   const [tempWorkMode, setTempWorkMode] = useState('');
@@ -129,6 +129,7 @@ const Timer = () => {
               }}
             >
               <Radio.Group
+                defaultValue={data.power_switch}
                 onChange={(val: any) => {
                   setData(Object.assign(data, { power_switch: val }));
                 }}
@@ -168,6 +169,7 @@ const Timer = () => {
               }}
             >
               <WorkMode
+                defaultValue={data.work_mode}
                 onChange={(val: any) => {
                   setTempWorkMode(val);
                 }}
@@ -183,6 +185,7 @@ const Timer = () => {
               <List>
                 <List.Item className={'timer-temp-set-slider'}>
                   <UINumberSlider
+                    defaultValue={data.temp_set}
                     onAfterChange={(val: any) => {
                       console.log(val);
                       if (deviceData.temp_unit_convert === 'fahrenheit') {
@@ -207,12 +210,12 @@ const Timer = () => {
               }}
             >
               <Gear
+                defaultValue={data.fan_speed_enum}
                 onChange={val => {
                   setData(Object.assign(data, { fan_speed_enum: val }));
                 }}
               />
             </Modal>
-            {/*<button onClick={handleChange}>change11</button>*/}
           </TimerCloud>
         </>
       )}
