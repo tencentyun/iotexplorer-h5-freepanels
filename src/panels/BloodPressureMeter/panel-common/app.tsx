@@ -147,9 +147,9 @@ export const App = QuicknessMode(function App() {
 
   return (
     <article>
-      {/* {isStandardBleDevice && ( */}
+      {isStandardBleDevice && (
         <StandardBleConnector familyId={sdk.familyId} deviceId={sdk.deviceId} />
-      {/* )} */}
+      )}
       <DeviceSateContext.Provider value={state}>
         <Router basename={basename}>
           <Switch>
