@@ -49,7 +49,8 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      background: url('./icon-bar-normal.svg') no-repeat center;
+      // background: url('./icon-bar-normal.svg') no-repeat center;
+      background-image: linear-gradient(180deg, #FFFFFF 0%, #EFEFF2 90%);
       background-size: 100%;
       &::before {
         display: block;
@@ -57,7 +58,7 @@
         width: 65px;
         height: 65px;
         border-radius: 100%;
-        background-color: #000000;
+        background-color: #EBEBF3;
         border: 5px solid #EBEBF3;
       }
     }
@@ -82,6 +83,9 @@
     .switch-wrapper {
       .switch-bar{
         top: 32px;
+        &::before {
+          background-color: #000000;
+        }
       }
       .switch-status-desc{
         top: 680px;
@@ -96,12 +100,13 @@
     .switch-wrapper {
       background-color: #F4F8FB;
       .switch-panel {
-        background-image: linear-gradient(3deg, #D7D9DD 0%, #EFEFF2 90%);
+        background-image: linear-gradient(0deg, #D7D9DD 0%, #EFEFF2 59%);
       }
       .switch-bar {
-        background: url('./icon-bar-blue_white.svg') no-repeat center;
+        background-image: linear-gradient(180deg, #FFFFFF 0%, #EFEFF2 90%);
+        box-shadow: 0 5px 20px 0 #CCCFD4;
         &::before {
-          background-color: #2885FE;
+          background-color: #EBEBF3;
         }
       }
     }
@@ -110,6 +115,13 @@
     &.is_on {
       .switch-name {
         color: #fff;
+      }
+      .switch-wrapper {
+        .switch-bar {
+          &::before {
+            background-color: #2885FE;
+          }
+        }
       }
     }
   }
@@ -128,8 +140,9 @@
       .switch-bar {
         box-shadow: none;
         background-image: linear-gradient(139deg, #333E4D 0%, #202C3A 100%);
-        border: 3px solid rgba(62, 68, 84, 1);
+        border: 3px solid rgba(62,68,84,0.20);
         box-sizing: border-box;
+        box-shadow: 0 5px 20px 0 #222532;
         &::before {
           background-color: #FF3C5E;
           border: none;
@@ -140,12 +153,15 @@
 
     &.is_on {
       .switch-name {
-        color: #fff;
+        color: #FFFFFF;
       }
       .switch-wrapper {
         .switch-panel {
           background-image: linear-gradient(137deg, #00F0FF 0%, #704DF0 100%);
           box-shadow: 0 6px 100px 0 rgba(32,33,33,0.10);
+        }
+        .switch-status-desc{
+          color: #FFFFFF;
         }
       }
     }
@@ -161,7 +177,9 @@
         background-image: linear-gradient(3deg, #D7D9DD 0%, #EFEFF2 90%);
       }
       .switch-bar {
-        background: url('./icon-bar-colorful.svg') no-repeat center;
+        // background: url('./icon-bar-colorful.svg') no-repeat center;
+        background-image: linear-gradient(180deg, #FFFFFF 0%, #EFEFF2 90%);
+        box-shadow: 0 5px 20px 0 #CCCFD4;
         &::before {
           background: #EFEFF2;
           border: 5px solid #EBEBF3;
@@ -179,11 +197,15 @@
           background-image: linear-gradient(138deg, #527DF4 0%, #044DFF 100%);
         }
         .switch-bar {
+          background-image: linear-gradient(0deg, #D9DBDF 0%, #EFEFF2 90%);
           box-shadow: none;
           &::before {
             background: #000000;
             border: 5px solid #EBEBF3;
           }
+        }
+        .switch-status-desc{
+          color: #FFFFFF;
         }
       }
     }
@@ -196,13 +218,14 @@
     .switch-wrapper {
       background: #F4F8FB;
       .switch-panel {
-        background-image: linear-gradient(3deg, #D7D9DD 0%, #EFEFF2 90%);
+        background-image: linear-gradient(0deg, #D7D9DD 0%, #EFEFF2 59%);
       }
       .switch-bar {
-        background-image: linear-gradient(0deg, #D9DBDF 0%, #EFEFF2 90%);
+        background-image: linear-gradient(180deg, #FFFFFF 0%, #EFEFF2 90%);
+        box-shadow: 0 5px 20px 0 #CCCFD4;
         &::before {
-          background: #576273;
-          border: none;
+          background: #EBEBF3;
+          border: 5px solid #EBEBF3;
         }
       }
     }
@@ -213,14 +236,11 @@
         color: #fff;
       }
       .switch-wrapper {
-        .switch-panel {
-          background-image: linear-gradient(138deg, #527DF4 0%, #044DFF 100%);
-        }
         .switch-bar {
-          box-shadow: none;
           &::before {
-            background: #000000;
-            border: 5px solid #EBEBF3;
+            background-image: linear-gradient(180deg, #576273 0%, #414B5B 86%);
+            border: none;
+            box-shadow: 0 6px 100px 0 rgba(32,33,33,0.10)
           }
         }
       }
