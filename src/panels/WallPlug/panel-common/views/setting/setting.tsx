@@ -13,6 +13,7 @@ export function Setting() {
   const history = useHistory();
   const [isShowElectrifyVisible, setIsShowElectrify] = useState(false);
   const onClick = (path: string) => {
+    onControlDevice('activeKey', 'setting');
     history.push(path);
   };
   const electrify = (val: String) => {

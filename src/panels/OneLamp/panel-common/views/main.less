@@ -1,6 +1,6 @@
 .component_business_tabs .tabs{
   width: 85%;
-  margin: 30px auto 60px;
+  margin: 45px auto;
   padding: 65px;
   justify-content: space-around;
   border-radius: 60px;
@@ -9,8 +9,10 @@
 body.theme_blue_white {
   .component_business_tabs .tabs{
     .is_active{
-      .tabs-title{
-        color: #006AFE;
+      .tabs-icon{
+        svg{
+          fill: #006AFE !important;
+        }
       }
     }
   }
@@ -19,7 +21,7 @@ body.theme_dark {
   .component_business_tabs .tabs{
     .is_active{
       .tabs-title{
-        color: #FFFFFF;
+        color: #ffffff;
       }
     }
   }
@@ -27,8 +29,13 @@ body.theme_dark {
 body.theme_colorful {
   .component_business_tabs .tabs{
     .is_active{
+      .tabs-icon{
+        svg{
+          fill: #006AFE !important;
+        }
+      }
       .tabs-title{
-        color: #1C5CFC;
+        color: #000000;
       }
     }
   }
@@ -36,13 +43,23 @@ body.theme_colorful {
 body.theme_morandi {
   .component_business_tabs .tabs{
     .tabs-item{
+      .tabs-icon{
+        svg{
+          fill: #B5C4D1;
+        }
+      }
       .tabs-title{
-        color: #566172;
+        color: #B5C4D1;
       }
     }
     .is_active{
+      .tabs-icon{
+        svg{
+          fill: #525C6D !important;
+        }
+      }
       .tabs-title{
-        color: #B5ABA1 !important;
+        color: #525C6D !important;
       }
     }
   }

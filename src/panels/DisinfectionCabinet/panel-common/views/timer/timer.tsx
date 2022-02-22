@@ -37,6 +37,7 @@ const Timer = () => {
         }}
       >
         <Radio.Group
+          defaultValue={data.power_switch}
           onChange={(val: any) => {
             setData(Object.assign(data, { power_switch: val }));
           }}

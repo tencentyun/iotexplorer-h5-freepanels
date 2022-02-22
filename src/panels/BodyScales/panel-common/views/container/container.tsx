@@ -11,7 +11,7 @@ import './container.less';
 const { TabPane } = Tabs;
 export function Container() {
   const themeType = getThemeType();
-  const [activeKey, setActiveKey] = useState('mine');
+  const [activeKey, setActiveKey] = useState('measure');
   const measureImageSrc = () => {
     switch (themeType) {
       case 'normal':
@@ -178,6 +178,7 @@ export function Container() {
       <Tabs
         className="top-nav"
         activeKey={activeKey}
+        position="top"
         onChange={(key: string) => setActiveKey(key)}
       >
         <TabPane

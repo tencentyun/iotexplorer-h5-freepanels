@@ -602,8 +602,8 @@ export function parseUrl(url) {
 }
 export function numberToArray(number: number, desc?: string): string[] {
   const result: string[] = [];
-  for (let i = 0; i < number; i++) {
-    let value = `${i + 1}`;
+  for (let i = 0; i <= number; i++) {
+    let value = `${i}`;
 
     if (desc) {
       value += desc;

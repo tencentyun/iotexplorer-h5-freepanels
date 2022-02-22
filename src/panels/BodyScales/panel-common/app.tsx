@@ -8,6 +8,7 @@ import { useDeviceData } from '@hooks/useDeviceData';
 import {QuicknessMode} from '@components/base';
 import { Container } from './views/container/container';
 import UnitSetting from './views/unitSetting/unitSetting';
+import { StandardBleConnector } from "@components/base";
 import 'antd-mobile/es/global';
 import '@icons/themes/global.less';
 import '@icons/themes/icons/svg/body-scales';
@@ -69,15 +70,18 @@ export const App = QuicknessMode(function App() {
   }, []);
 
   return (
-    <Router basename={basename}>
-      <Switch>
-        <Route path="/unitSetting">
-          <UnitSetting />
-        </Route>
-        <Route path="/">
-          <Container />
-        </Route>
-      </Switch>
-    </Router>
+    <article>
+      <StandardBleConnector familyId={sdk.familyId} deviceId={sdk.deviceId} />
+      <Router basename={basename}>
+        <Switch>
+          <Route path="/unitSetting">
+            <UnitSetting />
+          </Route>
+          <Route path="/">
+            <Container />
+          </Route>
+        </Switch>
+      </Router>
+    </article>
   );
 });
