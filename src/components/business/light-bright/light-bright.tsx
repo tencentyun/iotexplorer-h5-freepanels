@@ -46,23 +46,36 @@ export function LightBright(props: LightBrightProps) {
     updateBrightVal(dataInfo.dataUser+1, true);
   }
 
-  const handleSelectBrightness = (e: React.MouseEvent) => {
-    let val = (e.clientX - slider.current.offsetLeft) / slider.current.clientWidth;
-    let tmp = parseInt(val * (max_value-min_value))+min_value;
-    updateBrightVal(tmp, true);
-  };
+  // const handleSelectBrightness = (e: React.MouseEvent) => {
+  //   let val = (e.clientX - slider.current.offsetLeft) / slider.current.clientWidth;
+  //   let tmp = parseInt(val * (max_value-min_value))+min_value;
+  //   updateBrightVal(tmp, true);
+  // };
 
-  const handleMoveBrightness = (e: React.MouseEvent) => {
-    let val = (e.changedTouches[0].clientX - slider.current.offsetLeft) / slider.current.clientWidth;
+  const handleMoveBrightness = (e: TouchEvent) => {
+    // let val = (e.changedTouches[0].clientX - slider.current.offsetLeft) / slider.current.clientWidth;
+    let val = (e.touches[0].clientX - slider.current.offsetLeft) / slider.current.clientWidth;
     let tmp = parseInt(val * (max_value-min_value))+min_value;
     updateBrightVal(tmp, false);
   };
 
-  const handleEndMoveBrightness = (e: React.MouseEvent) => {
+  const handleEndMoveBrightness = (e: TouchEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    document.removeEventListener('touchmove', handleMoveBrightness);
+    document.removeEventListener('touchend', handleEndMoveBrightness);
+
     let val = (e.changedTouches[0].clientX - slider.current.offsetLeft) / slider.current.clientWidth;
+    // let val = (e.touches[0].clientX - slider.current.offsetLeft) / slider.current.clientWidth;
     let tmp = parseInt(val * (max_value-min_value))+min_value;
     updateBrightVal(tmp, true);
   };
+
+  const handleStartMoveBrightness = (e: TouchEvent) => {
+    document.addEventListener('touchmove', handleMoveBrightness);
+    document.addEventListener('touchend', handleEndMoveBrightness);
+  };
+
   return (
           <div className={'lightbright-container'}>
             <div className={classNames('lightbright-mark')}>
@@ -73,12 +86,18 @@ export function LightBright(props: LightBrightProps) {
               </div>
               <div className={classNames('lightbright-mark-op-btn')} onClick={toggleAdd}>+</div>
             </div>
-            <div ref={slider} className={classNames('lightbright-slider')} onClick={handleSelectBrightness} onTouchMove={handleMoveBrightness} onTouchEnd={handleEndMoveBrightness}>
-              <div className={classNames('lightbright-progress')} style={{width:currentWidth}}>
-                <div className={classNames('lightbright-progress-dot')}>
+            {/* <div ref={slider} className={classNames('lightbright-slider')} onClick={handleSelectBrightness} onTouchMove={handleMoveBrightness} onTouchEnd={handleEndMoveBrightness}> */}
+
+            <div className={classNames('lightbright_border')} onTouchStart={handleStartMoveBrightness}>
+              <div ref={slider} className={classNames('lightbright-slider')}>
+                <div className={classNames('lightbright-progress')} style={{width:currentWidth}}>
+                  <div className={classNames('lightbright-progress-dot')}>
+                  </div>
                 </div>
               </div>
             </div>
+
           </div>
+  
   );
 };

@@ -3,13 +3,14 @@ import TimerCloud, {
   ITimerDataBind,
   ITimerOptions
 } from '@components/business/timerCloud/timer-cloud';
+import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 import { List, Radio } from 'antd-mobile';
 import { Modal } from '@components/base';
 import IconChecked from '@components/base/icon-checked/icon-checked';
 import Percentage from '../home/home-normal/percentage/percentage';
 
 const Timer = () => {
-  const [data, setData] = useState({ power_switch: 0,percent_control: 0 } as ITimerDataBind);
+  const [data, setData] = useState({ power_switch: 0,percent_control: 0} as ITimerDataBind);
   const [isShowPowerSwitch, setIsShowPowerSwitch] = useState(false);
   const [selectThePercentage, thePercentage] = useState(false);
 
@@ -19,6 +20,11 @@ const Timer = () => {
       value_enum: ['关', '开']
     }
   };
+
+  const beginControlPercent = () => {
+    console.log(data)
+    thePercentage(true);
+  }
   return (
     <TimerCloud dataBind={data} options={optionsTimer}>
       <List>
@@ -31,10 +37,8 @@ const Timer = () => {
         />
         <List.Item
           prefix={'百分比控制'}
-          extra={optionsTimer.power_switch.value_enum[data['percent_control']]}
-          onClick={() => {
-            thePercentage(true);
-          }}
+          extra={data['percent_control']}
+          onClick={beginControlPercent}
         />
       </List>
       {/*开关弹窗*/}
@@ -46,6 +50,7 @@ const Timer = () => {
         }}
       >
         <Radio.Group
+          defaultValue={data.power_switch}
           onChange={(val: any) => {
             setData(Object.assign(data, { power_switch: val }));
           }}
@@ -73,8 +78,13 @@ const Timer = () => {
         </Radio.Group>
       </Modal>
       <Percentage
+        cur_percent={data.percent_control}
         isShow={selectThePercentage}
         onClose={() => {
+          thePercentage(false);
+        }}
+        onCommit = {(val) => {
+          setData(Object.assign(data, { percent_control: val }));
           thePercentage(false);
         }}
       />

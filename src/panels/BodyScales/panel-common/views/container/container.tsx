@@ -178,6 +178,7 @@ export function Container() {
       <Tabs
         className="top-nav"
         activeKey={activeKey}
+        position="top"
         onChange={(key: string) => setActiveKey(key)}
       >
         <TabPane

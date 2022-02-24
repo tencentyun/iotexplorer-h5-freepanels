@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import classNames from 'classnames';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
+import {StandardBleConnectStatusStr, useStandardBleConnector} from "@hooks/useStandardBleConnector";
 import { getThemeType } from '@libs/theme';
 import { Collapse } from 'antd-mobile';
 import { Slider } from './slider';
@@ -126,7 +127,10 @@ export function Home() {
       // getWeight();
     }
   }, [sdk.deviceData.weight]);
-
+  const [ connectStatusInfo ] = useStandardBleConnector({
+    deviceId: sdk.deviceId,
+    familyId: sdk.familyId
+  });
   const circleImageSrc = () => {
     switch (themeType) {
       case 'dark':
@@ -579,7 +583,7 @@ export function Home() {
                   <img src={circleImageSrc()} alt="" />
                 </div>
               </div>
-              <div className="card_font">蓝牙未开启，点击开启</div>
+              <div className="card_font">{StandardBleConnectStatusStr[connectStatusInfo.status]}</div>
             </div>
           ) : (
             <div className="card_top">

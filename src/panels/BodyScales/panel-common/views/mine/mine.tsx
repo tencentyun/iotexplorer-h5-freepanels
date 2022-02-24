@@ -10,6 +10,7 @@ import { apiControlDeviceData, onControlDevice, useDeviceData} from '@hooks/useD
 import { useUserInfo } from '@hooks/useUserInfo';
 import { numberToArray, toggleBooleanByNumber} from '@libs/utillib';
 import NickName from './nickName/nickName';
+import Unit from './unit/unit';
 import dayjs from 'dayjs';
 import './mine.less';
 
@@ -62,6 +63,8 @@ export function Mine() {
   const [heightVisible, onToggleHeight] = useState(false);
   // 体重选择器
   const [weightVisible, onToggleWeight] = useState(false);
+  // 昵称
+  const [unit, onUnit] = useState(false);
   const history = useHistory();
   const handleUnit = () => {
     // 单位跳转
@@ -105,7 +108,10 @@ export function Mine() {
             </div>
             <NickName
               isShow={editNickname}
-              onClose={() => {
+              onClose={(value) => {
+                if(value != ''){
+                  onUpdateUserInfo({ nickName: value })
+                }
                 onEditNickname(false);
               }}
             />
@@ -114,7 +120,7 @@ export function Mine() {
             <Cell
               className="setting_title"
               title="性别"
-              value={deviceData['gender'] == '0' ? '男' : '女'}
+              value={deviceData['gender'] ? (deviceData['gender'] == '0' ? '男' : '女' ) : '-'}
               valueStyle="gray"
               size="medium"
               onClick={() => {
@@ -226,7 +232,7 @@ export function Mine() {
               valueStyle="gray"
               size="medium"
               onClick={() => {
-                handleUnit();
+                onUnit(true);
               }}
             />
             <Cell
@@ -248,12 +254,17 @@ export function Mine() {
               valueStyle="gray"
               size="medium"
             />
+            <Unit
+              isShow={unit}
+              onClose={() => {
+                onUnit(false);
+              }}
+            />
           </div>
         </div>
       </div>
       <div id={'sacles_foot'} className={classNames('sacles_foot')}>
         <div className="sacles_foot_card">
-          <div className="card_btn">确定</div>
           <div className="card_remark">
             <div>本产品的体脂计算以成年人为标准,当用户未满18岁时,</div>
             <div>在计算体脂数据时可能存在较大误差</div>

@@ -51,6 +51,12 @@
       }
     }
   }
+  // 选中勾颜色
+  .icon-check-bg{
+    svg{
+      fill: none;
+    }
+  }
 }
 
 /*暗色主题*/
@@ -104,6 +110,12 @@
       }
     }
   }
+  // 选中勾颜色
+  .icon-check-bg{
+    svg{
+      fill: none;
+    }
+  }
 }
 
 /*多彩主题*/
@@ -111,12 +123,21 @@
   height: 100%;
   position: relative;
 
+  .tabs{
+    .tabs-item .tabs-icon svg{
+      fill: #B5C4D1;
+    }
+  }
   .home {
     .color_primary;
     background-color: #f4f8fb;
 
     &.power-off {
-      #power {}
+      #plugs{
+        .name{
+          color: #B5C4D1 !important;
+        }
+      }
     }
 
     .plugs{
@@ -174,6 +195,12 @@
       }
     }
   }
+  // 选中勾颜色
+  .icon-check-bg{
+    svg{
+      fill: none;
+    }
+  }
 }
 
 /*莫兰迪主题*/
@@ -187,7 +214,9 @@
       #power {}
 
       #plugs{
-        color: #B6C4D2 !important;
+        .name{
+          color: #B5C4D1 !important;
+        }
       }
     }
 
@@ -250,6 +279,12 @@
       }
     }
   }
+  // 选中勾颜色
+  .icon-check-bg{
+    svg{
+      fill: none;
+    }
+  }
 }
 
 /*黑白主题*/
@@ -293,6 +328,12 @@
           height: 180px;
         }
       }
+    }
+  }
+  // 选中勾颜色
+  .icon-check-bg{
+    svg{
+      fill: none;
     }
   }
 }

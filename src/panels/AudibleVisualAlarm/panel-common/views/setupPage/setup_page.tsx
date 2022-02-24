@@ -12,7 +12,6 @@ import './setup_page.less';
 
 export function SetupPage() {
   const themeType = getThemeType();
-  const [batteryStateVisible, onToggleBatteryState] = useState(false);
   const [tamperEventVisible, onToggleTamperEvent] = useState(false);
   const [masterModeVisible, onToggleMasterMode] = useState(false);
   const batteryStateSrc = (battery: String) => {
@@ -90,38 +89,7 @@ export function SetupPage() {
           value={sdk.deviceData.battery_state ? batteryStateSrc(sdk.deviceData.battery_state) : ''}
           valueStyle="gray"
           size="medium"
-          onClick={() => {
-            onToggleBatteryState(true);
-          }}
-        >
-          <ListPicker
-            visible={batteryStateVisible}
-            title="电池电量状态"
-            
-            defaultValue={[
-              sdk.deviceData.battery_state ? sdk.deviceData.battery_state : ''
-            ]}
-            options={[
-              {
-                label: '低',
-                value: 'low'
-              },
-              {
-                label: '中',
-                value: 'middle'
-              },
-              {
-                label: '高',
-                value: 'high'
-              }
-            ]}
-            onCancel={() => onToggleBatteryState(false)}
-            onConfirm={value => {
-              onControlDevice('battery_state', value[0]);
-              onToggleBatteryState(false);
-            }}
-          />
-        </Cell>
+        />
         <div className="setup_hr">
           <hr className="page_hr"/>
         </div>
@@ -142,7 +110,6 @@ export function SetupPage() {
         <Cell
           className="_color_white_"
           title="防拆报警"
-          isLink={false}
           value={sdk.deviceData.tamper_event ? tamperEventSrc(sdk.deviceData.tamper_event) : ''}
           valueStyle="gray"
           size="medium"

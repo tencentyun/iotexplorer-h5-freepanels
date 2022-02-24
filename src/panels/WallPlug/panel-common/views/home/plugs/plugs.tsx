@@ -206,7 +206,7 @@ const plugs = () => {
         <div className="plug_img">
           <img src={plugImageSrc(sdk.deviceData.switch_2)} alt="" onClick={handlePlug2} />
         </div>
-        <div className="description">
+        <div id={'description'} className="description">
           <div className="name">开关</div>
           <div className="state">
             {sdk.deviceData.switch_2 === 0 ? '已关闭' : '已开启'}

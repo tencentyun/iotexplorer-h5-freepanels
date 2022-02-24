@@ -1,12 +1,30 @@
-._component_business_tabs_ .tabs{
+.component_business_tabs .tabs{
   width: 85%;
-  margin: 30px auto 60px;
+  margin: 45px auto;
+  padding: 65px;
   justify-content: space-around;
   border-radius: 60px;
 }
-
+body.theme_normal {
+  .component_business_tabs .tabs{
+    .is_active{
+      .tabs-icon{
+        svg{
+          fill: #000000 !important;
+        }
+      }
+    }
+    .tabs-item{
+      .tabs-icon{
+        svg{
+          fill: #B5C4D1;
+        }
+      }
+    }
+  }
+}
 body.theme_blue_white {
-  ._component_business_tabs_ .tabs{
+  .component_business_tabs .tabs{
     .is_active{
       .tabs-icon{
         svg{
@@ -14,10 +32,17 @@ body.theme_blue_white {
         }
       }
     }
+    .tabs-item{
+      .tabs-icon{
+        svg{
+          fill: #B5C4D1;
+        }
+      }
+    }
   }
 }
 body.theme_dark {
-  ._component_business_tabs_ .tabs{
+  .component_business_tabs .tabs{
     position: absolute;
     width: 86%;
     left: 7%;
@@ -25,17 +50,22 @@ body.theme_dark {
     .is_active{
       .tabs-icon{
         svg{
-          fill: #00F0FF !important;
+          fill: #3E96F8 !important;
         }
       }
       .tabs-title{
         color: #4C82F5;
       }
     }
+    .tabs-item{
+      svg{
+        fill: #A6AFC2;
+      }
+    }
   }
 }
 body.theme_colorful {
-  ._component_business_tabs_ .tabs{
+  .component_business_tabs .tabs{
     .is_active{
       .tabs-icon{
         svg{
@@ -49,7 +79,7 @@ body.theme_colorful {
   }
 }
 body.theme_morandi {
-  ._component_business_tabs_ .tabs{
+  .component_business_tabs .tabs{
     position: absolute;
     width: 86%;
     left: 7%;

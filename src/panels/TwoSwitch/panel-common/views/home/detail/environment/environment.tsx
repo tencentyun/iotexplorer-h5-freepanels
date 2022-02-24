@@ -102,20 +102,36 @@ const Environment = () => {
   };
   // 倒计时
   const [countDownVisible, onToggleCountDown] = useState(false);
-  const [countdownTime] = useState([]);
   const countDownColumns = () => {
-    const hourCols = numberToArray(12, '时');
-    const minuteCols = numberToArray(60, '分');
+    const hourCols = numberToArray(23, '时');
+    const minuteCols = numberToArray(59, '分');
 
     return [hourCols, minuteCols];
   };
-
+  const handleCountdownDefault = (value: number) => {
+    const hours: number = (value - value % (60 * 60)) / (60 * 60);
+    const minutes: number = (value % (60 * 60)) / (60);
+    const countdownTime: any = [hours+'时', minutes+'分'];
+    return countdownTime;
+  };
+  const handleCountdownVal = () => {
+    let switchOpen = 0;
+    if (sdk.deviceData.switch_2 === 1) {
+      switchOpen = sdk.deviceData.count_down_2;
+    }
+    if (sdk.deviceData.switch_1 === 1) {
+      switchOpen = sdk.deviceData.count_down_1;
+    }
+    return handleCountdownDefault(switchOpen);
+  };
   const handleOn = () => {
     apiControlDeviceData({ switch_1: 1, switch_2: 1 });
+    sdk.tips.show('已全开');
   };
 
   const handleOff = () => {
     apiControlDeviceData({ switch_1: 0, switch_2: 0 });
+    sdk.tips.show('已全关');
   };
   const history = useHistory();
   const handleToggle = () => {
@@ -131,8 +147,8 @@ const Environment = () => {
     <article className={classNames('environment')}>
       <div className={'environment-wrap'}>
         <div className={classNames('all-open')} onClick={handleOn}>
-          <img src={sdk.deviceData.switch_1 === 1 && sdk.deviceData.switch_2 === 1 ? onImageSrc() : OnImageClose} alt="" />
-          <div className={sdk.deviceData.switch_1 === 1 && sdk.deviceData.switch_2 === 1 ? 'check' : ''}>全开</div>
+          <img src={onImageSrc()} alt="" />
+          <div className={'check'}>全开</div>
         </div>
         <div className={classNames('timing')} onClick={handleToggle}>
           <img src={timingImageSrc()} alt="" />
@@ -141,8 +157,8 @@ const Environment = () => {
       </div>
       <div className={'environment-wrap'}>
         <div className={classNames('all-close')} onClick={handleOff}>
-          <img src={sdk.deviceData.switch_1 === 0 && sdk.deviceData.switch_2 === 0 ? offImageSrc() : OffImageClose} alt="" />
-          <div className={sdk.deviceData.switch_1 === 0 && sdk.deviceData.switch_2 === 0 ? 'check' : ''}>全关</div>
+          <img src={offImageSrc()} alt="" />
+          <div className={'check'}>全关</div>
         </div>
         <div className={classNames('countdown')} onClick={handleCountdown}>
           <img src={countdownImageSrc()} alt="" />
@@ -151,7 +167,7 @@ const Environment = () => {
         <ValuePicker
           title="倒计时关闭"
           visible={countDownVisible}
-          value={countdownTime}
+          value={handleCountdownVal()}
           columns={countDownColumns()}
           onCancel={() => {
             onToggleCountDown(false);
@@ -171,9 +187,6 @@ const Environment = () => {
             }
             if (sdk.deviceData.switch_2 === 1) {
               onControlDevice('count_down_2', countDown);
-            }
-            if (sdk.deviceData.switch_3 === 1) {
-              onControlDevice('count_down_3', countDown);
             }
             onToggleCountDown(false);
           }}

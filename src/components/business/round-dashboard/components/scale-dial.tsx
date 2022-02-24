@@ -118,8 +118,6 @@ export function ScaleDial(props: DashboardProps) {
     }
   } = props;
 
-  console.log(props);
-
   useEffect(() => {
     const tickAnimation = () => {
       let interval: any;
@@ -263,7 +261,7 @@ export function ScaleDial(props: DashboardProps) {
     // 指示器的x,y坐标 根据圆上的点的坐标公式
     // 124指示球距离圆形边的距离
     const pathBorder = 10; // 指针轨迹border值
-    const distance = indicator.distance ? indicator.distance : 124;
+    const distance = indicator.distance ? indicator.distance : 45;
     const r = radius - distance - pathBorder / 2;
     const angle = 180; // 起点角度
     const startX =
@@ -272,38 +270,34 @@ export function ScaleDial(props: DashboardProps) {
       pathBorder / 2 + (1 + Math.cos((angle / 360) * Math.PI)) * r + distance;
     let endX, endY, dpath;
     // 起点确定，终点坐标轴四象限决定终点计算
-    let angleDiff = value * (720 / 50);
+    let angleDiff = value * (180 / 50);
     if (value <= 50) { // 小于等于50%
       let newAngle = 180 + angleDiff;
       endX = pathBorder / 2 + (1 - Math.sin(newAngle / 360 * Math.PI)) * r + distance;
       endY = pathBorder / 2 + (1 + Math.cos(newAngle / 360 * Math.PI)) * r + distance;
       dpath = ellipse2path(r, startX, startY, endX, endY, newAngle, 0);
     } else { // 大于50%
-      let newAngle = 900 - angleDiff;
+      let newAngle = 540 - angleDiff;
       endX = pathBorder / 2 + (1 + Math.sin(newAngle / 360 * Math.PI)) * r + distance;
       endY = pathBorder / 2 + (1 + Math.cos(newAngle / 360 * Math.PI)) * r + distance;
-      dpath = ellipse2path(r, startX, startY, endX, endY, newAngle, 1);
+      dpath = ellipse2path(r, startX, startY, endX, endY, newAngle, 0);
     }
 
-    const number = (currentAngle - startAngle) / step;
+    const rotate = value * (180 / 100);
     return (
       <>
         <path d={dpath}
-          stroke="red" strokeWidth="10px"
+          stroke="none"
+          strokeWidth="10px"
           fill="none"
           id="myPath"
         />
-        <g transform={'translate(' + startX + ', ' + startY + '）rotate(-60.000000) translate(' + endX + ',' + endY +')'}>
-          <polygon
-            points="159.675895 173.511121 176.619407 207.397401 142.736694 207.395246"
-            fill={indicatorStyle.color}
-          >
-          </polygon>
-        </g>
-        <polygon
-          points="159.675895 173.511121 176.619407 207.397401 142.736694 207.395246"
-          fill={indicatorStyle.color}
-          transform={'translate(' + startX + ', ' + startY + ') rotate(-60)'}
+        <circle
+          cx={endX}
+          cy={endY}
+          r={18}
+          fill="url(#indicator)"
+          transform={'rotate('+ rotate + ',' + endX + ',' + endY + ')'}
         >
           {/* <animateMotion
             begin="0s"
@@ -313,20 +307,7 @@ export function ScaleDial(props: DashboardProps) {
           > */}
             <mpath xlinkHref="#myPath" />
           {/* </animateMotion> */}
-        </polygon>
-        {/* <circle
-          r={indicator.radius}
-          fill={indicatorStyle.color}
-        >
-          <animateMotion
-            begin="0s"
-            dur={(scaleLine.animaTime * number) / 1000 + 's'}
-            fill="freeze"
-            repeatCount="1"
-          >
-            <mpath xlinkHref="#myPath" />
-          </animateMotion>
-        </circle> */}
+        </circle>
       </>
     );
   };
@@ -376,10 +357,13 @@ export function ScaleDial(props: DashboardProps) {
             <feMergeNode in="SourceGraphic" />
           </feMerge>
         </filter>
+        <pattern id="indicator" width="100%" height="100%" patternContentUnits="objectBoundingBox">
+          <image width="1" height="1" xlinkHref={'https://tencent-1305105198.cos.ap-guangzhou.myqcloud.com/ElectricCarV2/sound.png'}/>
+        </pattern>
       </defs>
 
       {renderCenterCicle()}
-      {/* {renderIndicator()} */}
+      {renderIndicator()}
 
       <g id="lineList">{lineArray().map(renderLine)}</g>
     </svg>

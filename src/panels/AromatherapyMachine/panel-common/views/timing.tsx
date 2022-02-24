@@ -79,6 +79,7 @@ export function Timing() {
             }}
           >
             <Radio.Group
+              defaultValue={data.power_switch}
               onChange={(val: any) => {
                 setData(Object.assign(data, { power_switch: val }));
               }}
@@ -114,6 +115,7 @@ export function Timing() {
             }}
           >
             <Radio.Group
+              defaultValue={data.spray_switch}
               onChange={(val: any) => {
                 setData(Object.assign(data, { spray_switch: val }));
               }}
@@ -149,6 +151,7 @@ export function Timing() {
             }}
           >
             <Radio.Group
+              defaultValue={data.work_mode}
               onChange={(val: any) => {
                 setData(Object.assign(data, { work_mode: val }));
               }}
