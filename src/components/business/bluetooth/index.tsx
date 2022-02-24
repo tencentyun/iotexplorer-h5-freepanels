@@ -26,7 +26,7 @@ export function Bluetooth(props: BluetoothProps) {
   });
 
   return (
-    <div className="_component_business_bluetooth_">
+    <div className="component_business_bluetooth">
       <span className="bluetooth-icon is_error"></span>
       <i
         className={classNames('connect-state font_2 color_3', {

@@ -9,7 +9,6 @@ import { apiControlDeviceData, onControlDevice} from '@hooks/useDeviceData';
 import './environment.less';
 
 import OnImage from "../../../icons/normal/on.svg";
-import OnImageClose from "../../../icons/normal/on-close.svg";
 import OnImageBlueWhite from "../../../icons/blue-white/on.svg";
 import OnImageDark from "../../../icons/dark/on.svg";
 import OnImageColorful from "../../../icons/colorful/on.svg";
@@ -22,7 +21,6 @@ import TimingImageColorful from "../../../icons/colorful/timing.svg";
 import TimingImageMorandi from "../../../icons/morandi/timing.svg";
 
 import OffImage from "../../../icons/normal/off.svg";
-import OffImageClose from "../../../icons/normal/off-close.svg";
 import OffImageBlueWhite from "../../../icons/blue-white/off.svg";
 import OffImageDark from "../../../icons/dark/off.svg";
 import OffImageColorful from "../../../icons/colorful/off.svg";
@@ -116,6 +114,12 @@ const Environment = () => {
   };
   const handleCountdownVal = () => {
     let switchOpen = 0;
+    if (sdk.deviceData.switch_4 === 1) {
+      switchOpen = sdk.deviceData.count_down_4;
+    }
+    if (sdk.deviceData.switch_3 === 1) {
+      switchOpen = sdk.deviceData.count_down_3;
+    }
     if (sdk.deviceData.switch_2 === 1) {
       switchOpen = sdk.deviceData.count_down_2;
     }
@@ -125,12 +129,12 @@ const Environment = () => {
     return handleCountdownDefault(switchOpen);
   };
   const handleOn = () => {
-    apiControlDeviceData({ switch_1: 1, switch_2: 1 });
+    apiControlDeviceData({ switch_1: 1, switch_2: 1, switch_3: 1, switch_4: 1, switch_5: 1 });
     sdk.tips.show('已全开');
   };
 
   const handleOff = () => {
-    apiControlDeviceData({ switch_1: 0, switch_2: 0 });
+    apiControlDeviceData({ switch_1: 0, switch_2: 0, switch_3: 0, switch_4: 0, switch_5: 0 });
     sdk.tips.show('已全关');
   };
   const history = useHistory();
@@ -187,6 +191,15 @@ const Environment = () => {
             }
             if (sdk.deviceData.switch_2 === 1) {
               onControlDevice('count_down_2', countDown);
+            }
+            if (sdk.deviceData.switch_3 === 1) {
+              onControlDevice('count_down_3', countDown);
+            }
+            if (sdk.deviceData.switch_4 === 1) {
+              onControlDevice('count_down_4', countDown);
+            }
+            if (sdk.deviceData.switch_5 === 1) {
+              onControlDevice('count_down_5', countDown);
             }
             onToggleCountDown(false);
           }}

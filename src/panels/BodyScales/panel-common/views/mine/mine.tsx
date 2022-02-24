@@ -120,7 +120,7 @@ export function Mine() {
             <Cell
               className="setting_title"
               title="性别"
-              value={deviceData['gender'] == '0' ? '男' : '女'}
+              value={deviceData['gender'] ? (deviceData['gender'] == '0' ? '男' : '女' ) : '-'}
               valueStyle="gray"
               size="medium"
               onClick={() => {

@@ -11,6 +11,7 @@ export function Home() {
   const [enterFlagTwo, setEnterFlagTwo] = useState(false);
   const [enterFlagThree, setEnterFlagThree] = useState(false);
   const [enterFlagFour, setEnterFlagFour] = useState(false);
+  const [enterFlagFive, setEnterFlagFive] = useState(false);
   return (
     <article className={classNames('home')}>
       {/*开关*/}
@@ -55,6 +56,16 @@ export function Home() {
             onChange={value => {
               if (enterFlagFour) {
                 onControlDevice('switch_4', value ? 1 : 0);
+              }
+            }}
+          />
+          <BizSwitch
+            name="开关5"
+            value={sdk.deviceData.switch_5 === 1 ? true : false}
+            onInitChange={value => {setEnterFlagFive(value)}}
+            onChange={value => {
+              if (enterFlagFive) {
+                onControlDevice('switch_5', value ? 1 : 0);
               }
             }}
           />
