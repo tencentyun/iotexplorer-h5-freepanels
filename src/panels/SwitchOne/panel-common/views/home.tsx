@@ -8,6 +8,7 @@ import { useHistory } from 'react-router-dom';
 import { Block } from '@components/layout';
 import { BizSwitch } from '@components/business';
 import { ValuePicker } from '@components/business';
+import { TimePicker } from '@components/business';
 import { numberToArray } from '@libs/utillib';
 import { getThemeType } from '@libs/theme';
 import { onControlDevice } from '@hooks/useDeviceData';
@@ -18,7 +19,7 @@ export function Home() {
   const history = useHistory();
 
   // 倒计时
-  const [countDownVisible, onToggleCountDown] = useState(false);
+  const [countDownVisible, onToggleCountDown] = useState(true);
   const [countdownTime, setCountdown] = useState([]);
   const [enterFlag, setEnterFlag] = useState(false);
   const countDownColumns = () => {
@@ -77,7 +78,7 @@ export function Home() {
         </Block>
       </div>
 
-      <ValuePicker
+      {/* <ValuePicker
         title="倒计时关闭"
         visible={countDownVisible}
         value={handleCountdownDefault(sdk.deviceData.count_down)}
@@ -89,6 +90,23 @@ export function Home() {
           const num = hour * 3600 + mins * 60;
           onControlDevice('count_down', num);
         }}
+      /> */}
+      <TimePicker
+        showSemicolon={false}
+        value={handleCountdownDefault(sdk.deviceData.count_down)}
+        showUnit={true}
+        showTime={false}
+        showTwoDigit={false}
+        theme={themeType}
+        title="倒计时关闭"
+        onCancel={onToggleCountDown.bind(null, false)}
+        onConfirm={(value: any) => {
+          const hour: number = Number(value[0].split('时')[0]);
+          const mins: number = Number(value[1].split('分')[0]);
+          const num = hour * 3600 + mins * 60;
+          onControlDevice('count_down', num);
+        }}
+        visible={countDownVisible}
       />
     </div>
   );
