@@ -8,7 +8,16 @@ import { Modal } from '@components/base';
 import IconChecked from '@components/base/icon-checked/icon-checked';
 
 const Timer = () => {
-  const [data, setData] = useState({ power_switch: 0 } as ITimerDataBind);
+  const getSwitchNumData = (powerSwitch, num) => {
+    const value = 1 * powerSwitch;
+    const changeData = { power_switch : value };
+    for (let i = 0; i<num; i++) {
+      changeData[`switch_${i + 1}`] = value;
+    }
+    return changeData;
+  };
+
+  const [data, setData] = useState(getSwitchNumData(0,5) as ITimerDataBind);
   const [isShowPowerSwitch, setIsShowPowerSwitch] = useState(false);
 
   const optionsTimer: ITimerOptions = {
@@ -39,7 +48,7 @@ const Timer = () => {
         <Radio.Group
           defaultValue={data.power_switch}
           onChange={(val: any) => {
-            setData(Object.assign(data, { power_switch: val }));
+            setData(Object.assign(data, getSwitchNumData(val,5)));
           }}
         >
           <List>
