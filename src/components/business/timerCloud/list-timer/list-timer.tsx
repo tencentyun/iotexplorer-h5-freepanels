@@ -75,10 +75,12 @@ const ListTimer: FC<{
     try {
       const dataObj = JSON.parse(data) as any;
       Object.keys(dataObj).forEach(k => {
-        const value = options[k].value_enum
-          ? options[k].value_enum[dataObj[k]]
-          : dataObj[k];
-        if (value) result += `${options[k].label}: ${value} `;
+        if(options[k]){
+          const value = options[k].value_enum
+            ? options[k].value_enum[dataObj[k]]
+            : dataObj[k];
+          if (value) result += `${options[k].label}: ${value} `;
+        }
       });
     } catch (e) {
       console.error(e);

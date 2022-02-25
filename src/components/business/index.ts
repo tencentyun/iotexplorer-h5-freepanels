@@ -12,3 +12,4 @@ export * from './switch-button';
 export * from './light-switch';
 export * from './routeList';
 export * from './numberSlider';
+export * from './TimePicker';
