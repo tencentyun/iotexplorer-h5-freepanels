@@ -52,7 +52,7 @@
 |          | 香薰机       | 香薰机    | aromatherapy-machine         |
 |          | 晾衣架       | 晾衣架    | laundry-rack                 |
 |          | 宠物喂养机     | 宠物喂养机  | pet-feeding-device           |
-| 运动健康（蓝牙） | 体脂称       | 体脂秤    | body-scales                  |
+| 运动健康（蓝牙） | 体脂秤       | 体脂秤    | body-scales                  |
 |          | 血压计       | 血压计    | blood-pressure-meter         |
 |          | 智能跳绳      | 智能跳绳   | smart-rope                   |
 | 大家电      | 新风机       | 新风机    | new-fan                      |
