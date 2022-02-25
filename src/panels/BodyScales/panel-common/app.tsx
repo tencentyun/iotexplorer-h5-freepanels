@@ -1,5 +1,5 @@
 /**
- * 体脂称
+ * 体脂秤
  */
 import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
