@@ -18,7 +18,7 @@
   .rmc-picker {
     display: block;
     position: relative;
-    overflow: hidden;
+    // overflow: hidden;
     width: 100%;
     flex: 1;
     text-align: center;
@@ -26,28 +26,36 @@
       .rmc-picker-content {
         .rmc-picker-item {
           text-align: right;
-          padding-right: 57px;
+          padding-right: 72px;
         }
       }
 
       .rmc-picker-indicator {
-        &::after {
-          left: 100px;
-        }
         &::before {
           position: absolute;
           display: inline-block;
-          top: calc(50% - 16px);
-          left: 41px;
+          top: calc(50% - 20px);
+          left: 57px;
           width: 0;
           height: 0px;
-          border-style: solid;
-          border-width: 16px;
-          border-color: rgba(255, 255, 255, 0.4) rgba(255, 255, 255, 0.4) transparent transparent;
-          transform: rotate(45deg);
+          border-top: 20px solid transparent;
+          border-left: 40px solid rgba(255, 255, 255, 0.4);
+          border-bottom: 20px solid transparent;
           z-index: 2;
-          box-shadow: 3px -3px 2px rgba(255, 255, 255, 0.4);
           content: '';
+        }
+        &::after {
+          content: '';
+          position: absolute;
+          display: inline-block;
+          top: 50%;
+          right: -3px;
+          transform: translateY(-50%);
+          width: 6px;
+          height: 86px;
+          border-radius: 3px;
+          background-color: #FFFFFF;
+          z-index: 2;
         }
       }
     }
@@ -101,7 +109,7 @@
         font-weight: 500;
         font-size: 60px;
         text-align: left;
-        padding-left: 57px;
+        padding-left: 72px;
         font-family: PingFangSC-Medium;
         color: rgba(255, 255, 255, 0.4);
       }

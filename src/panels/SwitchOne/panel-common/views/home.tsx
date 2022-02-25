@@ -7,9 +7,9 @@ import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { Block } from '@components/layout';
 import { BizSwitch } from '@components/business';
-import { ValuePicker } from '@components/business';
+// import { ValuePicker } from '@components/business';
 import { TimePicker } from '@components/business';
-import { numberToArray } from '@libs/utillib';
+// import { numberToArray } from '@libs/utillib';
 import { getThemeType } from '@libs/theme';
 import { onControlDevice } from '@hooks/useDeviceData';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
@@ -19,20 +19,21 @@ export function Home() {
   const history = useHistory();
 
   // 倒计时
-  const [countDownVisible, onToggleCountDown] = useState(true);
-  const [countdownTime, setCountdown] = useState([]);
+  const [countDownVisible, onToggleCountDown] = useState(false);
+  // const [countdownTime, setCountdown] = useState([]);
   const [enterFlag, setEnterFlag] = useState(false);
-  const countDownColumns = () => {
-    const hourCols = numberToArray(12, '时');
-    const minuteCols = numberToArray(60, '分');
+  // const countDownColumns = () => {
+  //   const hourCols = numberToArray(12, '时');
+  //   const minuteCols = numberToArray(60, '分');
 
-    return [hourCols, minuteCols];
-  };
+  //   return [hourCols, minuteCols];
+  // };
 
   const handleCountdownDefault = (value: number) => {
-    const hours: number = (value % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60);
-    const minutes: number = (value % (1000 * 60 * 60)) / (1000 * 60);
-    const countdownTime: any = [hours, minutes];
+    // (value - value % (60 * 60)) / (60 * 60)
+    const hours: number = (value - value % (60 * 60)) / (60 * 60);
+    const minutes: number = (value % (60 * 60)) / (60);
+    const countdownTime: any = [hours.toString(), minutes.toString()];
     return countdownTime;
   };
 
