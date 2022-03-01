@@ -26,6 +26,7 @@ export function LightSwitch(props: LightSwitchProps) {
 
   useMemo(() => {
     setValue(props.defaultValue as number);
+    setReturnValue(props.defaultValue as number);
   }, []);
 
   useEffect(() => {
