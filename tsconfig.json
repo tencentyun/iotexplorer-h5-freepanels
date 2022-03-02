@@ -55,6 +55,18 @@
       ],
       "@underscore": [
         "./src/vendor/underscore/index"
+      ],
+      "@svg": [
+        "./src/assets/svg/ElectricOven/default/index"
+      ],
+      "@custom/*": [
+        "./src/components/custom/*"
+      ],
+      "@utils": [
+        "./src/libs/utils"
+      ],
+      "@router": [
+        "./src/components/custom/Router"
       ]
     }
   },

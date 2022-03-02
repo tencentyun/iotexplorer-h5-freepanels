@@ -1,0 +1,62 @@
+.repeat-modal {
+  width: 965px;
+  border-radius: 60px;
+  .modal-title {
+    font-size: 48px !important; // TODO 二期调整组件的样式 内置组件和页面样式的 加载顺序
+  }
+  .modal-body {
+    .repeat-list {
+      padding: 0 90px;
+      .adm-list-inner {
+        border-bottom: 3px solid rgba(181, 196, 209, 0.5);
+        border-top: 3px solid rgba(181, 196, 209, 0.5);
+      }
+      .adm-list-item {
+        border-bottom: none;
+        padding: 47px 32px;
+      }
+      .adm-checkbox-icon {
+        display: none;
+      }
+      .adm-checkbox-content {
+        .icon {
+          width: 90px;
+          height: 90px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          border-radius: 50%;
+        }
+        .icon-select {
+          background: #000000;
+        }
+      }
+    }
+    .week-repeat-desc {
+      font-size: 48px;
+      margin-top: 12px;
+      margin-bottom: 8px;
+      color: rgba(181, 196, 209, 0.9);
+    }
+  }
+  .modal-footer {
+    padding: 48px 0;
+    border-top: 3px solid rgba(181, 196, 209, 0.5);
+    .btn-text {
+      font-size: 48px;
+      color: #000000;
+    }
+  }
+}
+.week-repeat {
+  border-bottom: none !important;
+  // .adm-list-item-content-extra {
+  //   font-size: 36px;
+  // }
+}
+
+.week-small {
+  .adm-list-item-content-extra {
+    font-size: 36px;
+  }
+}

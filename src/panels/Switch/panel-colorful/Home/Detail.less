@@ -1,0 +1,105 @@
+.detail {
+  margin-top: 75px;
+  margin-bottom: 100px;
+  width: 967px;
+  height: 772px;
+  background: #ffffff;
+  box-shadow: 0 10px 100px 0 rgba(32, 33, 33, 0.1);
+  border-radius: 70px;
+  .environment {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+    background: #2C2C2C;
+    color: #FFFFFF;
+    box-shadow: 0 6px 100px 0 rgba(32,33,33,0.10);
+    border-radius: 60px;
+    .action-item {
+      width: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 50%;
+      flex-direction: column;
+      .action-ele {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        > div:last-child {
+          margin-top: 15px;
+        }
+      }
+      // 居中偏移微调
+      .action-ele-0 {
+        margin-left: -48px;
+        margin-top: -48px;
+      }
+      .action-ele-1 {
+        margin-right: -48px;
+        margin-top: -48px;
+      }
+      .action-ele-2 {
+        margin-left: -48px;
+        margin-bottom: -48px;
+      }
+      .action-ele-3 {
+        margin-right: -48px;
+        margin-bottom: -48px;
+      }
+    }
+
+    .line-v {
+      width: 779px;
+      height: 0px;
+      border: 1px solid #454545;
+      top: 50%;
+      position: absolute;
+      background: #454545;
+    }
+    .line-h {
+      width: 0px;
+      height: 442px;
+      border: 1px solid #454545;
+      position: absolute;
+      left: 50%;
+      top: 98px;
+      background: #454545;
+    }
+  }
+  &.action {
+    height: 616px;
+  }
+}
+
+
+
+.action-1 {
+  box-shadow: none;
+  background: transparent;
+  height: inherit !important;
+  margin-top: 185px;
+  .action-item {
+    width: 295px !important;
+    height: 300px !important;
+    background: #2D2D2D;
+    border-radius: 147.5px;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    .action-ele {
+      margin: inherit !important;
+    }
+  }
+  .environment {
+    justify-content: space-around;
+    background: transparent;
+    #current-time {
+      display: none;
+    }
+  }
+}
