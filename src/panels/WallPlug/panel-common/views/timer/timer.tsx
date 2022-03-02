@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 import TimerCloud, {
   ITimerDataBind,
   ITimerOptions
@@ -8,7 +9,20 @@ import { Modal } from '@components/base';
 import IconChecked from '@components/base/icon-checked/icon-checked';
 
 const Timer = () => {
-  const [data, setData] = useState({ power_switch: 0 } as ITimerDataBind);
+  const getSwitchNumData = (powerSwitch ) => {
+    const value = 1 * powerSwitch;
+    const changeData = { power_switch : value };
+    if (sdk.deviceData.timer_dev == 'switch_1'){
+      console.log("timer_dev"+sdk.deviceData.timer_dev);
+      changeData['switch_1'] = value;
+    }else if(sdk.deviceData.timer_dev == 'switch_2'){
+      changeData['switch_2'] = value;
+      console.log("timer_dev"+sdk.deviceData.timer_dev);
+    }
+
+    return changeData;
+  };
+  const [data, setData] = useState(getSwitchNumData(0) as ITimerDataBind);
   const [isShowPowerSwitch, setIsShowPowerSwitch] = useState(false);
 
   const optionsTimer: ITimerOptions = {
@@ -39,7 +53,7 @@ const Timer = () => {
         <Radio.Group
           defaultValue={data.power_switch}
           onChange={(val: any) => {
-            setData(Object.assign(data, { power_switch: val }));
+            setData(Object.assign(data, getSwitchNumData(val)));
           }}
         >
           <List>
