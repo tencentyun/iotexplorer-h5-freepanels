@@ -1,5 +1,5 @@
-import ReactDOM from 'react-dom';
-import { App } from '../panel-common/app';
-import { withTheme } from '@libs/theme';
-
-ReactDOM.render(withTheme(<App />, 'colorful'), document.getElementById('app'));
+import render from '@custom/Render';
+import App from '../Common/Common';
+import '@theme/panel-colorful';
+import './app.less';
+render(App);
