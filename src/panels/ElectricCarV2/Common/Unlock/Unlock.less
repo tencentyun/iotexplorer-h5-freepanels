@@ -1,0 +1,63 @@
+.senseless-unlock {
+  min-height: calc(~"100vh - 170px");
+  padding: 85px 80px;
+  text-align: center;
+  .header-block {
+    position: relative;
+    padding: 182px 86px 56px 111px;
+    background: #FFFFFF;
+    box-shadow: 0 6px 15px 0 rgba(32,33,33,0.05);
+    border-radius: 20px;
+    margin-bottom: 75px;
+
+    .car-unlock-image {
+      margin: 0 auto 159px;
+      width: 770px;
+      height: 390px;
+      background-image: url('https://tencent-1305105198.cos.ap-guangzhou.myqcloud.com/electric-car/19331640748320_.pic_hd.jpg');
+      background-repeat: no-repeat;
+      background-size: contain;
+    }
+
+    .tips {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      .tips-name {
+        margin-left: 24px;
+        line-height: 67px;
+        font-size: 48px;
+        color: #333333;
+      }
+    }
+  }
+
+  .unlock-setting {
+    position: relative;
+    padding: 0 74px 73px 80px;
+    border-radius: 20px;
+    background: #FFFFFF;
+    box-shadow: 0 6px 15px 0 rgba(32,33,33,0.05);
+    .cell {
+      border-bottom: 3px solid #EDEEF2;
+      &:last-child {
+        border-bottom: 0;
+      }
+      .adm-switch.adm-switch-checked .adm-switch-checkbox {
+        background-image: linear-gradient(137deg, #7FC96C 0%, #C2EB6A 100%) !important;
+      }
+      .cell-content-style-normal {
+        color: #FF9269;
+      }
+    }
+    .tips {
+      position: absolute;
+      bottom: 46px;
+      margin-top: 42px;
+      font-weight: 500;
+      font-size: 32px;
+      color: #333333;
+      text-align: left;
+    }
+  }
+}
