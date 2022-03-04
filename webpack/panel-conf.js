@@ -175,17 +175,6 @@ module.exports = {
       ['panel-morandi', { enable: true, entry: 'app.tsx' }],
     ],
   },
-  Switch: {
-    enable: true,
-    viewportWidth: 1125,
-    panels: [
-      ['panel-normal', { enable: true, entry: 'app.tsx' }],
-      ['panel-dark', { enable: true, entry: 'app.tsx' }],
-      ['panel-colorful', { enable: true, entry: 'app.tsx' }],
-      ['panel-blueWhite', { enable: true, entry: 'app.tsx' }],
-      ['panel-morandi', { enable: true, entry: 'app.tsx' }],
-    ],
-  },
   FourSwitch: {
     enable: true,
     viewportWidth: 1125,
@@ -570,5 +559,16 @@ module.exports = {
       ['panel-blueWhite', { enable: true, entry: 'app.tsx' }],
       ['panel-morandi', { enable: true, entry: 'app.tsx' }],
     ],
-  }
+  },
+  Switch: {
+    enable: true,
+    viewportWidth: 1125,
+    panels: [
+      ['panel-normal', { enable: true, entry: 'app.tsx' }],
+      ['panel-dark', { enable: true, entry: 'app.tsx' }],
+      ['panel-colorful', { enable: true, entry: 'app.tsx' }],
+      ['panel-blueWhite', { enable: true, entry: 'app.tsx' }],
+      ['panel-morandi', { enable: true, entry: 'app.tsx' }],
+    ],
+  },
 };
