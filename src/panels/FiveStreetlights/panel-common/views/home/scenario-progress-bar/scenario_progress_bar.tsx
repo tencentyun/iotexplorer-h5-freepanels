@@ -5,8 +5,14 @@ import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 import {onControlDevice} from '@hooks/useDeviceData';
 
 export function Scenario_progress_bar() {
+  const onSetScene = () =>{
+    const defaultScene = 3;
+    onControlDevice('scene', defaultScene);
+    return defaultScene;
+  }
+
   const [styleFlag, onToggleStyleFlag] = useState(
-    sdk.deviceData.scene ? sdk.deviceData.scene : 3
+    sdk.deviceData.scene ? sdk.deviceData.scene : onSetScene()
   );
 
   const lineArray = () => {

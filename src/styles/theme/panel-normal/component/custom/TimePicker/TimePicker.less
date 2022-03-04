@@ -1,0 +1,76 @@
+@column_height: 143px;
+@column_max_count: 3;
+.cus-time-picker {
+  .picker-header {
+    font-size: 48px;
+    line-height: 67px;
+    color: #0f0f0f;
+    text-align: center;
+    padding: 71px 0 20px;
+  }
+  .picker-show-time {
+    text-align: center;
+    font-weight: 500;
+    padding: 60px 0 30px 0;
+    font-size: 92px;
+    color: #263d4d;
+    font-family: PingFangSC-Medium;
+  }
+  .picker-body {
+    .rmc-multi-picker {
+      margin: 30px 128px;
+      border-radius: 60px;
+      overflow: hidden;
+      width: auto;
+      background-image: linear-gradient(137deg, #7fc96c 0%, #c2eb6a 100%);
+    }
+    .rmc-picker-item-selected {
+      font-family: PingFangSC-Medium;
+      font-weight: 500;
+      font-size: 82px;
+      color: #ffffff;
+    }
+    .rmc-picker-item {
+      font-weight: 400;
+      font-size: 60px;
+      color: rgba(255, 255, 255, 0.4);
+    }
+  }
+  .picker-action {
+    font-size: 48px;
+    line-height: 67px;
+    color: #000000;
+    padding: 32px 108px 14px 113px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .picker-footer {
+    font-size: 48px;
+    line-height: 67px;
+    color: #000000;
+    padding: 60px 101px 125px 101px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    button {
+      background-color: transparent;
+      border: none;
+      outline: none;
+      width: 402px;
+      height: 130px;
+      background: #f3f3f3;
+      border-radius: 30px;
+    }
+  }
+  &.un-pop {
+    background: white;
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+    border-top-right-radius: 120px;
+    border-top-left-radius: 120px;
+  }
+}

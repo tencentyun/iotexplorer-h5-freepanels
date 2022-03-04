@@ -1,0 +1,93 @@
+.biz-switch {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #AAB7CE;;
+  .switch-name {
+    font-size: 36px;
+    padding: 5px;
+    margin: 0;
+  }
+  .switch-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: 228.07px;
+    height: 535px;
+    background-color: #f4f8fb;
+    border-radius: 200px;
+
+    .switch-panel {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+      width: 202.32px;
+      height: 505.58px;
+      background-image: linear-gradient(0deg, #D9E4FF 0%, #E1EBFF 100%);
+      border-radius: 200px;
+    }
+
+    .switch-bar {
+      position: absolute;
+      left: 50%;
+      bottom: 32px;
+      transform: translateX(-50%);
+      width: 163.47px;
+      height: 163.4px;
+      border-radius: 100%;
+      box-shadow: 0 5px 20px #cccfd4;
+      transition: 0.3s top ease-out;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-image: linear-gradient(0deg, #d9dbdf 0%, #efeff2 90%);
+      background-size: 100%;
+      &::before {
+        display: block;
+        content: '';
+        border-radius: 100%;
+        width: 36.79px;
+        height: 36.77px;
+        background: #efeff2;
+        border: 5px solid #ebebf3;
+      }
+    }
+
+    .switch-status-desc {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: PingFangSC-Medium;
+      text-align: center;
+      transition: 0.3s top ease-out;
+      z-index: 1;
+      top: 66.58px;
+      color: #c3c5ca;
+    }
+  }
+
+  &.is-checked {
+    .switch-name {
+      color:  #FFFFFF;
+    }
+    .switch-wrapper {
+      .switch-bar {
+        top: 32px;
+      }
+      .switch-panel {
+        background-image: linear-gradient(0deg, #D9E4FF 0%, #E1EBFF 100%);
+        .switch-bar::before {
+          background-image: linear-gradient(137deg, #C6F5B3 0%, #1E99F5 100%);
+        }
+        .switch-status-desc {
+          bottom: 66.58px;
+          top: auto;
+        }
+      }
+    }
+  }
+}

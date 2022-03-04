@@ -7,6 +7,7 @@ const TerserPlugin = require('terser-webpack-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const autoPreFixer = require('autoprefixer');
 const postcss = require('postcss-pxtorem');
+const plugin = require('./plugin');
 const viewportConfig = require('./pxToViewport.config');
 const argv = require('minimist')(process.argv.slice(2));
 const category = argv.category || process.env.npm_config_category || '';
@@ -20,6 +21,7 @@ class ModifiedMiniCssExtractPlugin extends MiniCssExtractPlugin {
 module.exports = (env, argv) => {
   const { mode } = argv;
   const isDevMode = mode === 'development';
+  const { isPreview } = plugin.env;
   const rootPath = path.join(__dirname, '../');
   const srcPath = path.join(rootPath, 'src');
   const outputPath = path.join(
@@ -72,7 +74,7 @@ module.exports = (env, argv) => {
     entry,
     output: {
       path: outputPath,
-      filename: isDevMode ? '[name].js' : '[name].[contenthash:10].js',
+      filename: (isDevMode || isPreview) ? '[name].js' : '[name].[contenthash:10].js',
       libraryTarget: 'umd',
       asyncChunks: true,
       clean: true,
@@ -128,7 +130,7 @@ module.exports = (env, argv) => {
                   {
                     libraryName: 'antd-mobile',
                     libraryDirectory: 'es/components',
-                    style: false,
+                    style: 'false',
                   },
                 ],
               ],
@@ -163,6 +165,16 @@ module.exports = (env, argv) => {
                 ],
               },
             },
+            // {
+            //   loader: 'postcss-loader',
+            //   options: {
+            //     ident: 'postcss',
+            //     plugins: isDevMode ? [] : [
+            //       autoPreFixer(plugin.autoPreFixer),
+            //       postcss(plugin.postcss)
+            //     ],
+            //   },
+            // },
             {
               loader: 'less-loader',
             },
@@ -212,30 +224,34 @@ module.exports = (env, argv) => {
           '../src/vendor/underscore/index'
         ),
         '@wxlib': path.resolve(__dirname, '../src/libs/wxlib/index.js'),
+        '@custom': path.resolve(__dirname, '../src/components/custom'),
+        '@router': path.resolve(__dirname, '../src/components/custom/Router'),
+        '@utils': path.resolve(__dirname, '../src/libs/utils.ts'),
+        '@theme': path.resolve(__dirname, '../src/styles/theme'),
+        '@svg': path.resolve(__dirname, plugin.svg),
       },
     },
-    devtool: isDevMode ? 'eval-source-map' : false,
-    optimization: !isDevMode
-      ? {
-        chunkIds: 'named',
-        minimize: !isDevMode,
-        minimizer: [
-          new TerserPlugin({
-            extractComments: false,
-          }),
-          new CssMinimizerPlugin(),
-        ],
-      }
-      : {},
+    devtool: isDevMode || isPreview ? 'eval-source-map' : false,
+    optimization: isPreview || !isDevMode ? {
+      chunkIds: 'named',
+      minimize: !isDevMode,
+      minimizer: [
+        new TerserPlugin({
+          extractComments: false,
+        }),
+        new CssMinimizerPlugin(),
+      ],
+    } : {},
     plugins: [
       new webpack.ids.HashedModuleIdsPlugin(),
       new webpack.ProgressPlugin(),
-      isDevMode && new webpack.HotModuleReplacementPlugin(),
+      (isDevMode || isPreview) && new webpack.HotModuleReplacementPlugin(),
+      new webpack.DefinePlugin({ _env_: JSON.stringify(plugin.env) }),
       new webpack.DefinePlugin({
         'process.env.NODE_ENV': JSON.stringify(mode)
       }),
       new ModifiedMiniCssExtractPlugin({
-        filename: isDevMode ? '[name].css' : '[name].[contenthash:10].css',
+        filename: (isDevMode || isPreview) ? '[name].css' : '[name].[contenthash:10].css',
       }),
     ].filter(Boolean),
     // stats: { children: false },

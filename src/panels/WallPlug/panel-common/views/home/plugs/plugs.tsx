@@ -156,6 +156,9 @@ const plugs = () => {
 
   const handleToggle1 = () => {
     if (sdk.deviceData.switch_1 === 1) {
+      apiControlDeviceData({
+        timer_dev: 'switch_1'
+      });
       return history.push('/timing');
     } else {
       return '';
@@ -163,6 +166,9 @@ const plugs = () => {
   };
   const handleToggle2 = () => {
     if (sdk.deviceData.switch_2 === 1) {
+      apiControlDeviceData({
+        timer_dev: 'switch_2'
+      });
       return history.push('/timing');
     } else {
       return '';
@@ -183,6 +189,8 @@ const plugs = () => {
       });
     }
   };
+
+  console.log(sdk.deviceData)
   return (
     <article className={classNames('plugs')} id={'plugs'}>
       <div className="plug_info">

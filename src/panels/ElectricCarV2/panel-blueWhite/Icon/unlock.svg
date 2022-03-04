@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="96px" height="94px" viewBox="0 0 96 94" version="1.1">
+  <title>锁备份</title>
+  <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+    <g id="3-2" transform="translate(-515.000000, -1369.000000)">
+      <g id="关锁-2" transform="translate(361.000000, 1219.000000)">
+        <g id="关锁" transform="translate(95.000000, 90.000000)">
+          <g id="锁备份" transform="translate(63.000000, 64.000000)">
+            <path d="M47,0 L47,10.9253731 C47,24.7737072 36.4786916,36 23.5,36 C10.5213084,36 0,24.7737072 0,10.9253731 L0,0" id="矩形" stroke="#FFFFFF" stroke-width="7" transform="translate(23.500000, 18.000000) scale(1, -1) translate(-23.500000, -18.000000) "></path>
+            <rect id="矩形" fill="#FFFFFF" x="21" y="31" width="71" height="59" rx="13"></rect>
+            <circle id="椭圆形" fill="#FFA802" cx="56.5" cy="60.5" r="8.5"></circle>
+          </g>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>
