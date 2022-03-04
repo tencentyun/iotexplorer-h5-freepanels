@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="77px" height="115px" viewBox="0 0 77 115" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 59.1 (86144) - https://sketch.com -->
+    <title>sound-blueWhite</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="33.2720373%" y1="5.07753516%" x2="74.4793747%" y2="105.080729%" id="linearGradient-1">
+            <stop stop-color="#C8F664" offset="0%"></stop>
+            <stop stop-color="#79FD8D" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="12.6872481%" y1="15.1262006%" x2="104.602754%" y2="92.7597708%" id="linearGradient-2">
+            <stop stop-color="#C8F664" offset="0%"></stop>
+            <stop stop-color="#79FD8D" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="12.6872481%" y1="33.8279127%" x2="104.602754%" y2="69.8290625%" id="linearGradient-3">
+            <stop stop-color="#C8F664" offset="0%"></stop>
+            <stop stop-color="#79FD8D" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="12.6872481%" y1="44.4544218%" x2="104.602754%" y2="56.7995933%" id="linearGradient-4">
+            <stop stop-color="#C8F664" offset="0%"></stop>
+            <stop stop-color="#79FD8D" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="4-3" transform="translate(-280.000000, -654.000000)">
+            <g id="sound-blueWhite-2" transform="translate(280.000000, 654.000000)">
+                <g id="sound-blueWhite">
+                    <polygon id="路径-2" fill="url(#linearGradient-2)" points="10 15 37 25.7731406 28.2159796 45.6657688 76.7304905 58.7952391 45.5287773 34.9583309 55.8595143 19 23.1013079 0"></polygon>
+                    <polygon id="路径-3" fill="url(#linearGradient-3)" points="18.5 96.3061889 18.5 108.068524 41.9088226 115 45.148719 103 61 100 41.9088226 89.5 37 103"></polygon>
+                    <polygon id="路径-4" fill="url(#linearGradient-4)" points="0 56 0 69 37 67.1853957"></polygon>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
