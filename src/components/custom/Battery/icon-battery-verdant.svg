@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="95px" height="55px" viewBox="0 0 95 55" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>1-1-电量</title>
+    <defs>
+        <linearGradient x1="14.0176603%" y1="33.7639701%" x2="104.602754%" y2="70.5702723%" id="linearGradient-1">
+            <stop stop-color="#7FC96C" offset="0%"></stop>
+            <stop stop-color="#C2EB6A" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="47.9601848%" y1="6.52501091%" x2="53.0953942%" y2="105.080729%" id="linearGradient-2">
+            <stop stop-color="#7FC96C" offset="0%"></stop>
+            <stop stop-color="#C2EB6A" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="切图" transform="translate(-63.000000, -107.000000)">
+            <g id="编组" transform="translate(41.000000, 103.000000)">
+                <g id="电量" transform="translate(22.000000, 4.000000)">
+                    <rect id="矩形" stroke="url(#linearGradient-1)" stroke-width="5" x="2.5" y="2.5" width="85" height="50" rx="15"></rect>
+                    <rect id="矩形" fill="url(#linearGradient-2)" x="90" y="17" width="5" height="21" rx="2.5"></rect>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

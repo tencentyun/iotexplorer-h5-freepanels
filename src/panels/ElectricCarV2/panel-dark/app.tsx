@@ -1,6 +1,16 @@
-import ReactDOM from 'react-dom';
-import { App } from '../panel-common/app';
-import { withTheme } from '@libs/theme';
+import React from 'react';
+import { Router } from '@router';
+import render from '@custom/Render';
+import { Home } from './Home';
+import { Unlock } from '../Common/Unlock';
+import '@theme/panel-dark';
+import './app.less';
 
-// eslint-disable-next-line react/react-in-jsx-scope
-ReactDOM.render(withTheme(<App />, 'dark'), document.getElementById('app'));
+const App = () => {
+  const route = [
+    { path: '/home', Component: Home },
+    { path: '/unlock', Component: Unlock }
+  ];
+  return <Router route={route} />;
+};
+render(App);

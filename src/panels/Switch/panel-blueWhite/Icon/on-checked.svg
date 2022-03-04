@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="82px" height="82px" viewBox="0 0 84 84" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 59.1 (86144) - https://sketch.com -->
+    <title>全开黑白</title>
+    <desc>Created with Sketch.</desc>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="#9B62FE" fill-rule="evenodd">
+        <g id="1备份" transform="translate(-72.000000, -236.000000)">
+            <g id="选中黑白" transform="translate(72.000000, 236.000000)">
+                <g id="全开黑白">
+                    <circle id="椭圆形" fill="#9B62FE" cx="41" cy="41" r="41"></circle>
+                    <text id="NO" font-family="PingFangSC-Medium, PingFang SC" font-size="36" font-weight="400" fill="#1F2036">
+                        <tspan x="14.464" y="54">NO</tspan>
+                    </text>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

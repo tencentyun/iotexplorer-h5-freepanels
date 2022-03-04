@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="82px" height="80px" viewBox="0 0 82 80" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>2-1-开锁锁</title>
+    <defs>
+        <linearGradient x1="14.0176603%" y1="25.5453186%" x2="104.602754%" y2="80.9829102%" id="linearGradient-1">
+            <stop stop-color="#C6F5B3" offset="0%"></stop>
+            <stop stop-color="#1E99F5" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="14.0176603%" y1="19.8090354%" x2="104.602754%" y2="88.2505064%" id="linearGradient-2">
+            <stop stop-color="#C6F5B3" offset="0%"></stop>
+            <stop stop-color="#1E99F5" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="切图" transform="translate(-305.000000, -419.000000)">
+            <g id="编组" transform="translate(41.000000, 103.000000)">
+                <g id="2-1-开锁锁" transform="translate(268.000000, 320.000000)">
+                    <path d="M40,0 L40,9.10447761 C40,20.644756 31.045695,30 20,30 C8.954305,30 0,20.644756 0,9.10447761 L0,0" id="矩形" stroke="url(#linearGradient-1)" stroke-width="7" transform="translate(20.000000, 15.000000) scale(1, -1) translate(-20.000000, -15.000000) "></path>
+                    <rect id="矩形" stroke="url(#linearGradient-2)" stroke-width="7" fill="url(#linearGradient-2)" x="21.5" y="29.5" width="53" height="43" rx="13"></rect>
+                    <circle id="椭圆形" fill="#FEFEFE" cx="48" cy="51" r="7"></circle>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

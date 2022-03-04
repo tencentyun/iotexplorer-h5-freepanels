@@ -1,0 +1,71 @@
+.cus-add-timer {
+  width: 100%;
+  height: 100%;
+  border-radius: 0;
+  .adm-list-item {
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+  .time-picker-body {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    padding: 57px 80px 0;
+    background: #000000;
+    box-sizing: border-box;
+    .pick-time-view {
+      .timer-cloud-picker {
+        height: 380px;
+        margin-bottom: 53px;
+        border-radius: 0 0 60px 60px;
+        background: #0f0f0f;
+
+        .adm-picker-view-column:first-of-type {
+          left: 60px;
+        }
+
+        .adm-picker-view-column:nth-of-type(2) {
+          left: -60px;
+        }
+
+        .adm-picker-view-column-item {
+          font-size: 60px;
+          color: #ffffff;
+          height: 120px;
+        }
+        .adm-picker-view-column-item {
+          margin-top: -35px;
+        }
+        .adm-picker-view-mask {
+          &.adm-picker-view-mask-top {
+            background: linear-gradient(rgba(68, 78, 94), rgba(68, 78, 94, 0.7));
+            top: -35px;
+          }
+          &.adm-picker-view-mask-bottom {
+            background: linear-gradient(rgba(68, 78, 94, 0.7), rgba(68, 78, 94));
+            bottom: -35px;
+          }
+        }
+      }
+      .timer-cloud-picker-header {
+        height: 150px;
+        border-bottom: 1px solid #697584;
+        border-radius: 60px 60px 0 0;
+        background: rgba(68, 78, 94);
+        font-size: 88px;
+        color: #ffffff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    }
+  }
+  .week-small {
+    .adm-list-item-content-extra {
+      font-size: 36px;
+    }
+  }
+}

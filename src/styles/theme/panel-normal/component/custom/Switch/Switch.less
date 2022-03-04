@@ -1,0 +1,29 @@
+.adm-switch {
+  // TODO 后续样式直接提取到内部组件化 去掉important
+  --checked-color: #0f0f0f !important;
+  .adm-switch-checkbox {
+    min-width: 150px !important;
+    height: 66px !important;
+    background: #B5C4D1 !important;
+    .adm-switch-handle {
+      top: 9px !important;
+      width: 48px !important;
+      height: 48px !important;
+      left:14px !important;
+      border-radius: 48px !important;
+    }
+    &::before{
+      background: #B5C4D1 !important;
+      height: 56px;
+    }
+  }
+  &.adm-switch-checked {
+    .adm-switch-checkbox {
+      background-image: linear-gradient(137deg, #7FC96C 0%, #C2EB6A 100%) !important;
+    }
+    .adm-switch-handle{
+      left: calc(100% - (66px - 2px)) !important;
+    }
+  }
+
+}
