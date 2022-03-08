@@ -1,0 +1,39 @@
+.home {
+  .action {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    height: 300px;
+    margin-top: 100px;
+    .action-item {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 50%;
+      flex-direction: column;
+      color: rgba(255, 255, 255, 0.6);
+      width: 295px;
+      height: 300px;
+      background: #202137;
+      box-shadow: 0 6px 100px 0 rgba(32, 33, 33, 0.1);
+      border-radius: 30px;
+      .action-ele {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        font-size: 36px;
+        margin: inherit;
+        > div:last-child {
+          margin-top: 15px;
+        }
+      }
+      &.checked {
+        color: #ffffff;
+      }
+    }
+  }
+}
