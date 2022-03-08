@@ -18,6 +18,7 @@ export interface Option {
 }
 
 export interface ListPopupProps extends StyledProps {
+  name?: string;
   title?: string;
   visible?: boolean;
   value?: string[];
@@ -90,7 +91,7 @@ export function ListPopup(props: ListPopupProps) {
     },
     dark: {
       selected: {
-        gradientId: 'icon',
+        gradientId: props.name + '-icon',
         startColor: '#00F0FF',
         endColor: '#704DF0',
         x1: '11.8644068%',
