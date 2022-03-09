@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import classNames from 'classnames';
 import { Block } from '@components/layout';
 import { Cell, Switch } from '@components/base';
 import { toggleBooleanByNumber } from '@libs/utillib';
+import { Dialog, Input } from 'antd-mobile';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 // 模版数据
 import { DeviceContext } from '../deviceContext';
@@ -18,10 +19,39 @@ export function Details() {
   const themeType = getThemeType();
   const CurrentSkinProps: any = SkinProps[themeType];
   const history = useHistory();
+  const { ProductId, DeviceId, FamilyId, DeviceName } = sdk.deviceInfo;
+  const [aliasName, setAliasName] = useState('');
+  useEffect(() => {
+    // 获取设备别名
+    const getAliasName = async () => {
+      try {
+        const info = await sdk.requestTokenApi('AppGetDeviceInFamily', {
+          Action: 'AppGetDeviceInFamily',
+          ProductId: ProductId,
+          DeviceName: DeviceName,
+          FamilyId: FamilyId
+        });
+        setAliasName(info.Data.AliasName);
+      } catch (err) {
+        console.error('get info fail', err);
+      }
+    };
+    getAliasName();
+  }, []);
   // 删除设备
   const deleteDevice = () => {
-    sdk.deleteDevice({ deviceId: 0 });
+    sdk.deleteDevice({ deviceId: DeviceId });
   };
+  let deviceName = '';
+  const nameEditor = (
+    <Input
+      defaultValue={aliasName}
+      placeholder="请填写名称"
+      onChange={val => {
+        deviceName = val;
+      }}
+    />
+  );
   return (
     <DeviceContext.Consumer>
       {({ deviceData }) => (
@@ -35,9 +65,28 @@ export function Details() {
                   name="icon-heater-warmth"
                   {...CurrentSkinProps.warmth}
                 ></SvgIcon>
-                <p>取暖器</p>
+                <p>{aliasName || '取暖器'}</p>
               </div>
-              <div className="right">
+              <div
+                className="right"
+                onClick={() => {
+                  Dialog.confirm({
+                    title: '编辑名称',
+                    content: nameEditor,
+                    cancelText: '取消',
+                    confirmText: '完成',
+                    onConfirm: () => {
+                      setAliasName(deviceName);
+                      sdk.requestTokenApi('AppUpdateDeviceInFamily', {
+                        Action: 'AppUpdateDeviceInFamily',
+                        ProductId: ProductId,
+                        DeviceName: DeviceName,
+                        AliasName: deviceName
+                      });
+                    }
+                  });
+                }}
+              >
                 <SvgIcon
                   className="edit"
                   name="icon-edit"
@@ -50,27 +99,28 @@ export function Details() {
               valueStyle={'gray'}
               size="medium"
               isLink={true}
+              onClick={() => {sdk.showDeviceDetail()}}
             ></Cell>
             <Cell
               title="房间信息"
               valueStyle={'gray'}
               size="medium"
               isLink={true}
-              onClick={() => {}}
+              onClick={() => {sdk.showDeviceDetail()}}
             ></Cell>
             <Cell
               title="设备分享"
               valueStyle={'gray'}
               size="medium"
               isLink={true}
-              onClick={() => {}}
+              onClick={() => {sdk.showDeviceDetail()}}
             ></Cell>
             <Cell
               title="固件升级"
               valueStyle={'gray'}
               size="medium"
               isLink={true}
-              onClick={() => {}}
+              onClick={() => {sdk.showDeviceDetail()}}
             ></Cell>
           </Block>
           {/* 云端定时 */}

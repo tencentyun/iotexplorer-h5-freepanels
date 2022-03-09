@@ -128,6 +128,7 @@ export function CircleDial(props: DashboardProps) {
       const lineList = document.getElementsByClassName('activeLine');
       const opacityValue = Number((1 / lineList.length).toFixed(2));
       interval = setInterval(() => {
+        if (!activeLineList[i]) return;
         let opacity = opacityValue * i > 0.3 ? opacityValue * i : 0.3;
         let list = activeLineList[i].classList;
         if (list.contains('activeLine')) {
