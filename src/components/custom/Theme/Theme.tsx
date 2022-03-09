@@ -2,7 +2,7 @@ import { getEnv } from '@utils';
 const { isDev, isPreview } = getEnv();
 // 预览模式 或者发布模式
 if (isPreview || !isDev) {
-  require('amfe-flexible');
+  // require('amfe-flexible');
 } else {
   // 不同设计稿的不同尺寸在开发模式下便捷开发适配
   // 开发模式下使用

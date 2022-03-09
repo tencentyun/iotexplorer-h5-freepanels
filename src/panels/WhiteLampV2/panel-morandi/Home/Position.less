@@ -1,0 +1,77 @@
+@bg-position-color: #ffffff; // 圆环与背景颜色保持一致
+
+.position-wrap {
+  display: flow-root;
+  width: 865px;
+  height: 865px;
+  border-radius: 100px;
+  border-width: 100px;
+  background-image: linear-gradient(90deg, #fcf28d 0%, #90dbfe 100%);
+  border-color: blue;
+  border-radius: 50%;
+  margin: 0 auto;
+
+  .position-mask {
+    border-radius: 50%;
+    background-image: linear-gradient(180deg, #4537FA 0%, #6059e7 66%);
+    margin-top: 200px;
+    margin-left: 200px;
+    width: 465px;
+    height: 465px;
+  }
+
+  .position-trangle {
+    margin-top: -650px;
+    width: 0px;
+    height: 0px;
+    border: 440px solid  #6059e7;
+    border-top-color: transparent;
+    border-bottom-color:#6059e7 ;
+    border-left-color: transparent;
+    border-right-color: transparent;
+  }
+  .position-circle-left {
+    margin-left: 144.75px;
+    margin-top: -229px;
+    width: 200.24px;
+    height: 100px;
+    background-image: linear-gradient(-45deg, #ecef9e 0%, #dbebaf 100%);
+    border-top-right-radius: 100px;
+    border-top-left-radius: 100px;
+    transform: rotate(135deg);
+    z-index: 100;
+  }
+
+  .position-circle-right {
+    margin-left: 529.75px;
+    margin-top: -110.29px;
+    width: 200.24px;
+    height: 100px;
+    background-image: linear-gradient(-45deg, rgb(159, 222, 239) 0%, rgb(174, 225, 222) 100%);
+    border-top-right-radius: 100px;
+    border-top-left-radius: 100px;
+    transform: rotate(225deg);
+    z-index: 100;
+  }
+
+  .position-point {
+    margin-left: 150px;
+    margin-top: -145px;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border: 10px solid #fff;
+    z-index: 101;
+    transform: rotate(0deg);
+  }
+
+  &.scene-bar {
+    background-image: linear-gradient(90deg, #0073ed 0%, #ff0178 100%);
+    .position-circle-left {
+      background-image: linear-gradient(-45deg, rgb(42, 96, 217) 0%, rgb(80, 79, 200) 100%);
+    }
+    .position-circle-right {
+      background-image: linear-gradient(-45deg, rgb(180, 34, 154) 0%, rgb(218, 18, 137) 100%);
+    }
+  }
+}
