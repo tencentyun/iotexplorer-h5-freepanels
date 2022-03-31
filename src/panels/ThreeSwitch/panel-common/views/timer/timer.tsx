@@ -18,6 +18,7 @@ const Timer = () => {
   };
   const [data, setData] = useState(getSwitchNumData(0,3) as ITimerDataBind);
   const [isShowPowerSwitch, setIsShowPowerSwitch] = useState(false);
+  const [powerSwitchValue, setPowerSwitchValue] = useState(0);
 
   const optionsTimer: ITimerOptions = {
     power_switch: {
@@ -43,11 +44,14 @@ const Timer = () => {
         onClose={() => {
           setIsShowPowerSwitch(false);
         }}
+        onConfirm={() => {
+          setData(Object.assign(data, getSwitchNumData(powerSwitchValue,3)));
+        }}
       >
         <Radio.Group
           defaultValue={data.power_switch}
           onChange={(val: any) => {
-            setData(Object.assign(data, getSwitchNumData(val,3)));
+            setPowerSwitchValue(val);
           }}
         >
           <List>
