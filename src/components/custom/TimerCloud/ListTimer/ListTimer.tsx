@@ -3,7 +3,7 @@ import { Switch } from '@custom/Switch';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 import { arrWeek } from '../AddTimer/Repeat';
 import { SwipeAction } from '@custom/SwipeAction';
-
+import { useTitle } from '@hooks/useTitle';
 const ListTimer = ({
   labelEnum,
   renderLabel,
@@ -12,8 +12,9 @@ const ListTimer = ({
   context: { contextDefaultValue = {} },
   setContext,
   timer: { timers, TIMER_API, doTimer },
-  history: { PATH, push }
+  history: { PATH, push, query }
 }) => {
+  useTitle('添加定时');
   const changeStatus = async (TimerId: string, Status: number) => {
     await doTimer(TIMER_API.UPDATE, { Status, TimerId });
   };
@@ -97,8 +98,8 @@ const ListTimer = ({
         className="add-timer-btn"
         onClick={() => {
           setContext(getDefaultValue());
-          console.log('默认值------------:', getDefaultValue());
-          push(PATH.TIMER_ADD);
+
+          push(PATH.TIMER_ADD, query);
         }}
       >
         添加定时
