@@ -31,7 +31,7 @@ module.exports = (env, argv) => {
   );
 
   const entry = {};
-
+  const viewport = {};
   Object.keys(panelConfig).forEach((categoryKey) => {
     const { enable, panels, viewportWidth } = panelConfig[categoryKey];
     // console.log('build is DevEnv: ', isDevMode, ', build length:', panels.length);
@@ -57,12 +57,14 @@ module.exports = (env, argv) => {
         }
         // console.log('build panelInfo -->', panelName);
         if (options.enable) {
-          entry[`${categoryKey}_${panelName}`] = path.join(
+          const entryPath = path.join(
             srcPath,
             'panels',
             `${categoryKey}/${panelName}`,
             options.entry,
           );
+          entry[`${categoryKey}_${panelName}`] = entryPath;
+          viewport[entryPath.replace(/\\/g, '/')] = viewportWidth;
         }
       });
     }
@@ -155,26 +157,39 @@ module.exports = (env, argv) => {
                 url: true,
               },
             },
-            {
-              loader: 'postcss-loader',
-              options: {
-                ident: 'postcss',
-                plugins: [
-                  require('postcss-px-to-viewport')(viewportConfig),
-                  autoPreFixer(),
-                ],
-              },
-            },
             // {
             //   loader: 'postcss-loader',
             //   options: {
             //     ident: 'postcss',
-            //     plugins: isDevMode ? [] : [
-            //       autoPreFixer(plugin.autoPreFixer),
-            //       postcss(plugin.postcss)
-            //     ],
+            //     plugins: (buildEnv) => {
+            //       const isRem = plugin.isRem(buildEnv, viewport);
+            //       return isRem ?isDevMode ? []: [
+            //         autoPreFixer(plugin.autoPreFixer),
+            //         postcss(plugin.postcss)
+            //       ] : [
+            //         require('postcss-px-to-viewport')(viewportConfig),
+            //         autoPreFixer(),
+            //       ];
+            //     }
             //   },
             // },
+            {
+              loader: 'postcss-loader',
+              options: {
+                ident: 'postcss',
+                plugins: (buildEnv) => {
+                  const isRem = plugin.isRem(buildEnv, viewport);
+                  return isRem ? [
+                    autoPreFixer(plugin.autoPreFixer),
+                    postcss(plugin.postcss)
+                  ] : [
+                    require('postcss-px-to-viewport')(viewportConfig),
+                    autoPreFixer(),
+                  ];
+                }
+              },
+            },
+
             {
               loader: 'less-loader',
             },
