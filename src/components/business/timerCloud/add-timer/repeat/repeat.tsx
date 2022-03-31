@@ -1,10 +1,9 @@
-
 import React, { FC, useEffect, useState } from "react";
-import { Modal } from '@components/base';
-import { Checkbox, List } from 'antd-mobile';
-import IconChecked from '@components/base/icon-checked/icon-checked';
+import { Modal } from "@components/base";
+import { Checkbox, List } from "antd-mobile";
+import IconChecked from "@components/base/icon-checked/icon-checked";
 
-export const arrWeek = ['周日', '周一', '周二', '周三', '周四', '周五', '周六'];
+export const arrWeek = ["周日", "周一", "周二", "周三", "周四", "周五", "周六"];
 
 const Repeat: FC<{
   // eslint-disable-next-line no-unused-vars
@@ -44,7 +43,7 @@ const Repeat: FC<{
       }
     });
 
-    return result.length ? result.join(' ') : '仅限一次';
+    return result.length ? result.join(" ") : "仅限一次";
 
     // const weekCheckedCN = arrWeekVal.map((item, index) => {
     //   if (item === 1) {
@@ -61,8 +60,8 @@ const Repeat: FC<{
   return (
     <>
       <List.Item
-        className={'week-repeat'}
-        prefix={'重复'}
+        className={"week-repeat"}
+        prefix={"重复"}
         extra={arrWeekCheckedCN}
         onClick={() => {
           setIsShow(true);
@@ -70,7 +69,7 @@ const Repeat: FC<{
       />
       <Modal
         visible={isShow}
-        title={'重复'}
+        title={"重复"}
         onConfirm={handleConfirm}
         onClose={handleCancel}
       >
@@ -82,9 +81,9 @@ const Repeat: FC<{
                 prefix={day}
                 extra={
                   <Checkbox
-                    value={index}
-                    defaultChecked={arrWeekVal[index] === 1}
-                    onChange={val => {
+                    checked={!!arrWeekVal[index]}
+                    // defaultChecked={arrWeekVal[index] === 1}
+                    onChange={(val) => {
                       handleChecked(index, val ? 1 : 0);
                     }}
                   >
@@ -108,7 +107,7 @@ const Repeat: FC<{
             ))}
           </Checkbox.Group>
         </List>
-        <p className={'week-repeat-desc'}>不勾选将默认只执行一次</p>
+        <p className={"week-repeat-desc"}>不勾选将默认只执行一次</p>
       </Modal>
     </>
   );
