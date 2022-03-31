@@ -3,10 +3,10 @@
  */
 import React, { useEffect, useState } from 'react';
 import { Icon } from '@custom/Icon';
-import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 export interface DiskProps {
   deviceData: any;
   doControlDeviceData: any;
+  tips: any;
 }
 
 var flag: any = 0;
@@ -14,7 +14,8 @@ let i = 0;
 
 export function Disk({
   deviceData,
-  doControlDeviceData
+  doControlDeviceData,
+  tips
 }: DiskProps) {
 
   const lockStatus = {
@@ -122,7 +123,7 @@ export function Disk({
     // e.preventDefault();
     // 如果离线之后的操作不执行
     if (deviceData.lock_motor_state == 2) {
-      sdk.tips.showInfo('设备已离线');
+      tips.showInfo('设备已离线');
       return;
     }
 
@@ -148,7 +149,7 @@ export function Disk({
     }
     // 如果离线之后的操作不执行
     if (deviceData.lock_motor_state == 2) {
-      sdk.tips.showInfo('设备已离线');
+      tips.showInfo('设备已离线');
       return;
     }
   }
@@ -174,7 +175,7 @@ export function Disk({
     console.log('onClick');
     e.preventDefault();
     e.stopPropagation();
-    sdk.tips.showInfo(deviceData.lock_motor_state == 1 ? '长按关锁' : '长按开锁');
+    tips.showInfo(deviceData.lock_motor_state == 1 ? '长按关锁' : '长按开锁');
     if (i > 0 && i < 100) {
       clearInterval(forwardInterval);
       clearInterval(fallbackInterval);

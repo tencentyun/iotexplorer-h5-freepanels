@@ -11,7 +11,8 @@ export function Home({
   deviceData,
   productInfo,
   doControlDeviceData,
-  history: { PATH, push }
+  history: { PATH, push },
+  tips
 }) {
   useTitle(productInfo.Name ? productInfo.Name :'首页');
 
@@ -55,6 +56,7 @@ export function Home({
       <Disk
         deviceData={deviceData}
         doControlDeviceData={doControlDeviceData}
+        tips={tips}
       ></Disk>
 
       <div className="middle-wrap">
