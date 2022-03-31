@@ -582,4 +582,15 @@ module.exports = {
       ['panel-morandi', { enable: true, entry: 'app.tsx' }],
     ],
   },
+  SmartLocksTwo: {
+    enable: true,
+    viewportWidth: 375,
+    panels: [
+      ['panel-cold', { enable: true }],
+      // ['panel-card', { enable: true }],
+      // ['panel-brunet', { enable: true }],
+      // ['panel-fresh', { enable: true }],
+      // ['panel-house', { enable: true }]
+    ]
+  }
 };

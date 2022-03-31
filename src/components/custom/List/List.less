@@ -1,0 +1,44 @@
+.cus-swipe-list {
+  width: 100%;
+  margin-top: 0;
+  padding: 57px 80px 400px;
+  font-size: 36px;
+  .list-card {
+    background: #ffffff;
+    box-shadow: 0 6px 50px 0 rgba(32, 33, 33, 0.1);
+    border-radius: 60px;
+    margin-bottom: 50px;
+    color: #b4c3d0;
+    transform: rotate(0deg);
+    .adm-swipe-action {
+      display: flow-root;
+      border-radius: 60px;
+      width: 100%;
+      transform: rotate(0deg);
+      .adm-swipe-action-track {
+        padding: 34px 66px;
+      }
+      .adm-swipe-action-action-button {
+        width: 200px;
+        font-weight: 500;
+        font-size: 48px;
+        border-top-right-radius: 60px;
+        border-bottom-right-radius: 60px;
+      }
+      .adm-swipe-action-actions-right {
+        margin-left: 1px;
+        background: #ff3141;
+      }
+    }
+
+    &.open-status {
+      color: #000000;
+    }
+    .list-body {
+      display: flex;
+      height: 109px;
+      align-items: baseline;
+      margin-bottom: 46px;
+    }
+  }
+}
