@@ -2,25 +2,32 @@ import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import classNames from 'classnames';
 import { ListPopup } from './list-popup';
-
 import { onControlDevice } from '@hooks/useDeviceData';
 import { DeviceContext } from '../deviceContext';
 import './tools-bar.less';
 
-interface IFunExampleProps {
-  status: number;
-}
-
-// console.log(sdk.deviceId);
 export function ToolsBar() {
   const history = useHistory();
-  const [color, setColor] = useState('blue');
   // 工作模式弹窗
   const [modeVisible, setModeVisible] = useState(false);
-  const [modeValue, setModeValue] = useState(0);
   // 档位弹窗
   const [gearVisible, setGearVisible] = useState(false);
-  const [gearValue, setGearValue] = useState(0);
+
+  const enumWorkMode: any = {
+    0: '智能模式',
+    1: '自动模式',
+    2: 'ECO模式',
+    3: '舒适模式',
+    4: '防霜冻模式',
+    5: '手动模式'
+  };
+
+  const enumGear: any = {
+    0: '自动',
+    1: '低档',
+    2: '中档',
+    3: '高档'
+  };
 
   return (
     <DeviceContext.Consumer>
@@ -36,13 +43,8 @@ export function ToolsBar() {
               setModeVisible(true);
             }}
           >
-            <div
-              className="item-icon icon-mode"
-              onClick={() => {
-                setModeVisible(true);
-              }}
-            ></div>
-            <div className="label">模式</div>
+            <div className="item-icon icon-mode"></div>
+            <div className="label">{deviceData.work_mode ? enumWorkMode[deviceData.work_mode] : '模式'}</div>
           </div>
           <div
             className={classNames(
@@ -55,7 +57,7 @@ export function ToolsBar() {
             }}
           >
             <div className="item-icon icon-gear"></div>
-            <div className="label">档位</div>
+            <div className="label">{deviceData.heat_level ? enumGear[deviceData.heat_level] : '档位'}</div>
           </div>
           <div
             className={classNames(
@@ -70,9 +72,10 @@ export function ToolsBar() {
             <div className="label">定时</div>
           </div>
           <ListPopup
+            name={'mode-popup'}
             visible={modeVisible}
             title="工作模式"
-            value={['cup']}
+            value={[deviceData.work_mode]}
             options={[
               {
                 label: '智能模式',
@@ -108,8 +111,10 @@ export function ToolsBar() {
             }}
           ></ListPopup>
           <ListPopup
+            name={'gear-popup'}
             visible={gearVisible}
             title="档位"
+            value={[deviceData.heat_level]}
             options={[
               {
                 label: '自动',

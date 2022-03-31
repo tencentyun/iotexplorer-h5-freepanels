@@ -1,6 +1,7 @@
 import { getEnv } from '@utils';
 const { isDev, isPreview } = getEnv();
 // 预览模式 或者发布模式
+require('amfe-flexible');
 if (isPreview || !isDev) {
   // require('amfe-flexible');
 } else {

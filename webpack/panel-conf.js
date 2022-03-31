@@ -582,4 +582,82 @@ module.exports = {
       ['panel-morandi', { enable: true, entry: 'app.tsx' }],
     ],
   },
+  // --------------------two-----product-------------------------------
+  GasAlarmTwo: {
+    enable: true,
+    viewportWidth: 375,
+    panels: [
+      ['panel-cold', { enable: true }],
+      ['panel-card', { enable: true }],
+      ['panel-brunet', { enable: true }],
+      ['panel-fresh', { enable: true }],
+      ['panel-house', { enable: true }]
+    ]
+  },
+   MagneticDoorTwo: {
+    enable: true,
+    viewportWidth: 375,
+    panels: [
+      ['panel-cold', { enable: true }],
+      ['panel-card', { enable: true }],
+      ['panel-brunet', { enable: true }],
+      ['panel-fresh', { enable: true }],
+      ['panel-house', { enable: true }]
+    ]
+  },
+  BodySensorsTwo: {
+    enable: true,
+    viewportWidth: 375,
+    panels: [
+      ['panel-cold', { enable: true }],
+      ['panel-card', { enable: true }],
+      ['panel-brunet', { enable: true }],
+      ['panel-fresh', { enable: true }],
+      ['panel-house', { enable: true }]
+    ]
+  },
+  SmokeAlarmTwo: {
+    enable: true,
+    viewportWidth: 375,
+    panels: [
+      ['panel-cold', { enable: true }],
+      ['panel-card', { enable: true }],
+      ['panel-brunet', { enable: true }],
+      ['panel-fresh', { enable: true }],
+      ['panel-house', { enable: true }]
+    ]
+  },
+ SwitchTwo: {
+    enable: true,
+    viewportWidth: 375,
+    panels: [
+      ['panel-cold', { enable: true, entry: 'app.tsx' }],
+      ['panel-card', { enable: true, entry: 'app.tsx' }],
+      ['panel-brunet', { enable: true, entry: 'app.tsx' }],
+      ['panel-fresh', { enable: true, entry: 'app.tsx' }],
+      ['panel-house', { enable: true, entry: 'app.tsx' }],
+    ],
+  },
+  HeaterTwo: {
+    enable: true,
+    viewportWidth: 375,
+    panels: [
+      ['panel-cold', { enable: true }],
+      // ['panel-card', { enable: true }],
+      // ['panel-brunet', { enable: true }],
+      // ['panel-fresh', { enable: true }],
+      // ['panel-house', { enable: true }]
+    ]
+  },
+  SmartLocksTwo: {
+    enable: true,
+    viewportWidth: 375,
+    panels: [
+      ['panel-cold', { enable: true }],
+      // ['panel-card', { enable: true }],
+      // ['panel-brunet', { enable: true }],
+      // ['panel-fresh', { enable: true }],
+      // ['panel-house', { enable: true }]
+    ]
+  }
 };

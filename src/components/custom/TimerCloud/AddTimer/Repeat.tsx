@@ -1,5 +1,5 @@
 import React, { FC, useEffect, useState } from 'react';
-import { Modal } from '@components/Modal';
+import { Modal } from '@custom/Modal';
 import { Checkbox, List } from 'antd-mobile';
 import { Icon } from '@custom/Icon';
 

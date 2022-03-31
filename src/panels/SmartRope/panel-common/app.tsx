@@ -6,6 +6,7 @@ import { useDeviceData } from '@hooks/useDeviceData';
 import { DeviceSateContext } from './deviceStateContext';
 import { Container } from './components/container';
 import { Training } from './views/training';
+import { StandardBleConnector } from "@components/base";
 
 import 'antd-mobile/es/global';
 import '@icons/themes/global.less';
@@ -31,6 +32,7 @@ export const App = QuicknessMode(function App() {
 
   const [state, { onDeviceDataChange, onDeviceStatusChange }] =
     useDeviceData(sdk);
+  const isStandardBleDevice = sdk.isStandardBleDevice;
   console.log(state, 'state===============');
 
   // webSecket 监听
@@ -67,25 +69,30 @@ export const App = QuicknessMode(function App() {
   }, []);
 
   return (
-    <DeviceSateContext.Provider value={state}>
-      <HashRouter basename={basename}>
-        <Redirect exact from="/" to="/home"></Redirect>
-        <Switch>
-          {/* 训练页 */}
-          <Route path="/training">
-            <Training />
-          </Route>
+    <article>
+      {isStandardBleDevice && (
+        <StandardBleConnector familyId={sdk.familyId} deviceId={sdk.deviceId} />
+      )}
+      <DeviceSateContext.Provider value={state}>
+        <HashRouter basename={basename}>
+          <Redirect exact from="/" to="/home"></Redirect>
+          <Switch>
+            {/* 训练页 */}
+            <Route path="/training">
+              <Training />
+            </Route>
 
-          {/* 首页 */}
-          <Route
-            path="/"
-          >
-            {/* <Data></Data> */}
-            {/* <Setting></Setting> */}
-            <Container />
-          </Route>
-        </Switch>
-      </HashRouter>
-    </DeviceSateContext.Provider>
+            {/* 首页 */}
+            <Route
+              path="/"
+            >
+              {/* <Data></Data> */}
+              {/* <Setting></Setting> */}
+              <Container />
+            </Route>
+          </Switch>
+        </HashRouter>
+      </DeviceSateContext.Provider>
+    </article>
   );
 });

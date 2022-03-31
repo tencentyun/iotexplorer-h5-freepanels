@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
 import classNames from 'classnames';
-import { Popup } from 'antd-mobile';
+import { Popup } from '@custom/Popop';
 import { Switch } from '@custom/Switch';
 import { TimePickerView } from '@custom/Picker';
 export interface TimePickerProps extends StyledProps {
@@ -10,6 +10,7 @@ export interface TimePickerProps extends StyledProps {
   unit?: string;
   showUnit?: boolean;
   showTime?: boolean;
+  isTimeRange?: boolean;
   isShowUnit?: boolean;
   cancelText?: string;
   showSemicolon?: boolean;
@@ -24,6 +25,8 @@ export interface TimePickerProps extends StyledProps {
   isShowSwitch?: boolean;
   switchIsOpen?: boolean;
   onSwitchChange?: (value: boolean) => void;
+  itemHeight?: number;
+  height?: number;
 }
 
 const Container = ({ children, className, ...props }) => (
@@ -45,12 +48,15 @@ export function TimePicker(props: TimePickerProps) {
     value,
     mask = true,
     showTwoDigit = true,
+    itemHeight = 115,
+    height = 345,
     onChange,
     onCancel = () => ({}),
     onConfirm = () => ({}),
     isPopUp = true,
     isShowSwitch = false,
     switchIsOpen,
+    isTimeRange,
     onSwitchChange
   } = props;
   const getDefaultValue = (value) => (value.length ? value : defaultValue);
@@ -88,20 +94,21 @@ export function TimePicker(props: TimePickerProps) {
   return (
     <div ref={ref} id="current-time">
       <Com
-        className={classNames('cus-time-picker', className)}
+        className={classNames('cus-time-picker', className, isTimeRange ? 'cus-time-picker-range' : '')}
         visible={visible}
         position="bottom"
         mask={mask}
         destroyOnClose={true}
         maskClassName="time-picker-popup-mask"
       >
-        {title ? <div className="picker-header">{title}</div> : null}
+        {title ? <div className="picker-header center">{title}</div> : null}
         {showTime ? <div className="picker-show-time">{formatValue.join(':')}</div> : null}
         <div className="picker-body">
           <TimePickerView
             value={formatValue}
-            itemHeight={115}
-            height={345}
+            itemHeight={itemHeight}
+            height={height}
+            isTimeRange={isTimeRange}
             showTwoDigit={showTwoDigit}
             showUnit={showUnit}
             showSemicolon={showSemicolon}
