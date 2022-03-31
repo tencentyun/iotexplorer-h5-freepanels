@@ -1,0 +1,96 @@
+.disk {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  height: 260px;
+  width: 260px;
+  border-radius: 50%;
+  border: 1px solid #EFF3F5;
+  background-color: #FBFBFC;
+  .content-wrap {
+    height: 234px;
+    width: 234px;
+    border-radius: 50%;
+    border: 1px solid #FFFFFF;
+    background: linear-gradient(0deg, #F6F8FA, #F6F8FA), radial-gradient(50% 50% at 50% 50%, #F4F7F9 0%, #F1F6F6 100%);
+    box-shadow: 0px 0px 10px 2px #EAEDF1;
+    .content {
+      display: flex;
+      justify-content: center;
+      margin-top: 49px;
+      margin-bottom: 24px;
+      
+      .left-block {
+        position: relative;
+        margin-right: 4px;
+        width: 72px;
+        height: 111px;
+        border: 1px solid #EEEEEE;
+        border-radius: 14px;
+        background: #1D2C3E;
+        transition: .3s all linear;
+        &::after {
+          content: '';
+          position: absolute;
+          left: 50%;
+          bottom: 11px;
+          margin-left: -13px;
+          display: inline-block;
+          width: 26px;
+          height: 6px;
+          border-radius: 3px;
+          background: #00A884;
+        }
+      }
+      .right-block {
+        width: 26px;
+        height: 111px;
+        border: 1px solid #EEEEEE;
+        border-radius: 14px;
+        background: #1D2C3E;
+      }
+    }
+
+    
+    .status-desc {
+      position: relative;
+      margin: 0 auto;
+      padding-left: 10px;
+      width: 28px;
+      height: 20px;
+      line-height: 20px;
+      font-size: 14px;
+      font-weight: 600;
+      color: #1D2C3E;
+      &::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: -4px;
+        margin-top: -3px;
+        display: inline-block;
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: #00D2B5;
+      }
+    }
+  }
+  .is-open {
+    .content {
+      .left-block {
+        margin-right: 16px;
+        &::after {
+          content: '';
+          background: #FF4D54;
+        }
+      }
+    }
+    .status-desc {
+      &::before {
+        background: #FF4D54;
+      }
+    }
+  }
+}
