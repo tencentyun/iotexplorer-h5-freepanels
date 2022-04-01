@@ -1,9 +1,8 @@
 import log from '@libs/logger';
-import React, { useState } from 'react';
+import React, {useState } from 'react';
 import { toLineObj, getEnv } from '@utils';
 import { useTimer } from '@src/hooks/useDevice';
-import { StatusTip } from '@custom/StatusTip';
-import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
+import { StatusTip } from '@components/StatusTip';
 import { useDeviceInfo } from '@hooks/useDeviceInfo';
 import { HashRouter, Switch, Route, Redirect, useHistory } from 'react-router-dom';
 
@@ -53,11 +52,7 @@ const PageComponent = ({ Component, PATH, className, ...props }) => {
     query: parse(reactDomHistory.location.search, { code: 'need' }),
     PATH
   };
-  // tips功能
-  const { tips } = sdk;
-
-  const allProps = { history, ...props, timer: { ...timerState, ...TimerAction }, tips };
-
+  const allProps = { history, ...props, timer: { ...timerState, ...TimerAction } };
   log.mi('', allProps);
   return (
     <div className={`route-root route-${getPathName(className, '-', false)}`}>

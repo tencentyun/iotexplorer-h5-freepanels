@@ -39,7 +39,7 @@ const getFirstKey = (obj = {}): string => {
   }
   return '';
 };
-// 更新数据
+
 function reducer(state: UseDeviceInfoState, action: ReducerAction<UseDeviceInfoAction>): UseDeviceInfoState {
   const { type, payload } = action;
 
@@ -70,13 +70,11 @@ function reducer(state: UseDeviceInfoState, action: ReducerAction<UseDeviceInfoA
         };
       }
       case UseDeviceInfoAction.UpdateDeviceStatus:
-        const { deviceStatus } = payload;
-
         return {
           ...state,
           deviceInfo: {
             ...state.deviceInfo,
-            Status: deviceStatus,
+            Status: payload.deviceStatus,
           },
         };
     }
@@ -89,7 +87,6 @@ function reducer(state: UseDeviceInfoState, action: ReducerAction<UseDeviceInfoA
   return nextState;
 }
 
-// 初始化sdk状态
 function initState(sdk): UseDeviceInfoState {
   const { deviceInfo, productInfo, dataTemplate, deviceData, deviceStatus } = sdk;
 
@@ -98,7 +95,7 @@ function initState(sdk): UseDeviceInfoState {
     productInfo,
     templateMap: {},
     deviceData,
-    statusTip: null
+    statusTip: null,
   };
 
   ['events', 'actions', 'properties'].forEach((key) => {
@@ -159,12 +156,13 @@ export const useDeviceInfo = (): UseDeviceInfoResult => {
 
   useEffect(() => {
     const handleWsReport = ({ deviceId, deviceData }) => {
-      console.log('handleWsStatusChange==========', deviceData);
       if (deviceId === sdk.deviceId) {
         const data = {};
+
         for (const key in deviceData) {
           data[key] = deviceData[key].Value;
         }
+
         dispatch({
           type: UseDeviceInfoAction.UpdateDeviceData,
           payload: { deviceData: data },
@@ -173,7 +171,6 @@ export const useDeviceInfo = (): UseDeviceInfoResult => {
     };
 
     const handleWsStatusChange = ({ deviceId, deviceStatus }) => {
-      console.log('handleWsStatusChange==========', deviceData);
       if (deviceId === sdk.deviceId) {
         dispatch({
           type: UseDeviceInfoAction.UpdateDeviceStatus,
@@ -181,29 +178,10 @@ export const useDeviceInfo = (): UseDeviceInfoResult => {
         });
       }
     };
-    const handleWsControl = ({ deviceId, deviceData }) => {
-      console.log('wsControl==========', deviceData);
-      if (deviceId === sdk.deviceId) {
-        const data = {};
-        for (const key in deviceData) {
-          data[key] = deviceData[key].Value;
-        }
-        dispatch({
-          type: UseDeviceInfoAction.UpdateDeviceData,
-          payload: { deviceData: data },
-        });
-      }
-    };
 
     sdk
-      .on('wsControl', handleWsControl)
       .on('wsReport', handleWsReport)
       .on('wsStatusChange', handleWsStatusChange);
-
-    // TODO 后续明确具体线上与测试的差异后 进行去掉wsControl处理
-    // sdk
-    //   .on('wsReport', handleWsReport)
-    //   .on('wsStatusChange', handleWsStatusChange);
 
     sdk.sdkReady().then(() => {
       dispatch({
@@ -214,20 +192,14 @@ export const useDeviceInfo = (): UseDeviceInfoResult => {
 
     return () => {
       sdk
-        .off('wsControl', handleWsReport)
         .off('wsReport', handleWsReport)
         .off('wsStatusChange', handleWsStatusChange);
     };
   }, []);
 
   const { deviceInfo, deviceData } = state;
-  // const offline = !deviceInfo.isVirtualDevice && deviceInfo.Status === 0;
 
-  let offline = !deviceInfo.isVirtualDevice && deviceInfo.Status === 0;
-  // 开发模式设备一致在线状态
-  if (_env_.isDev) {
-    offline = false;
-  }
+  const offline = !deviceInfo.isVirtualDevice && deviceInfo.Status === 0;
   const powerOff = offline || !deviceData.power_switch;
 
   return [{
