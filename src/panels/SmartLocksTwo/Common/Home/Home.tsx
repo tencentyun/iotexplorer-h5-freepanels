@@ -22,6 +22,10 @@ export function Home({
     2: '已离线',
   };
 
+  const goVideoPanel = () => {
+    sdk.goDevicePanelPage('II0Q47L8B9/e_69518626_1');
+  };
+
   return (
     <main className="home">
       {/* 顶部 */}
@@ -69,7 +73,7 @@ export function Home({
         </div>
         <div className={classNames(
           'status-tip',
-          deviceData.lock_motor_state == 1 ? 'locked' : 'unlocked',
+          deviceData.lock_motor_state === 1 ? 'locked' : 'unlocked',
         )}>{lockStatusWord[deviceData.lock_motor_state || 0]}</div>
         <div className="config" onClick={() => {
           push(PATH.SETTINGS_INDEX);
@@ -104,7 +108,7 @@ export function Home({
           prefixIcon={<Icon name="monitor"/>}
           size="medium"
           onClick={() => {
-            push(PATH.VIDEO_MONITOR);
+            goVideoPanel();
           }}
         ></Cell>
       </div>
