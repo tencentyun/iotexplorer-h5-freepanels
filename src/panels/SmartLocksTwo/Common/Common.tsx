@@ -4,7 +4,6 @@ import { Home } from './Home';
 import { Log } from './Log';
 import { Settings, CameraConfig, VideoConfig } from './Settings';
 import { Users, UserEdit, PasswordAdd, PasswordResult } from './Users';
-import { VideoMonitor } from './VideoMonitor';
 import { VideoHistory } from './VideoHistory';
 import { EventPreview } from './EventPreview';
 import { TempPassword, AddTempPassword } from './TempPassword';
@@ -21,7 +20,6 @@ const App = () => {
     { path: '/users/psdresult', Component: PasswordResult },
     { path: '/temp/password/index', Component: TempPassword },
     { path: '/temp/password/add', Component: AddTempPassword },
-    { path: '/video/monitor', Component: VideoMonitor },
     { path: '/video/history', Component: VideoHistory },
     { path: '/event/preview', Component: EventPreview },
   ];
