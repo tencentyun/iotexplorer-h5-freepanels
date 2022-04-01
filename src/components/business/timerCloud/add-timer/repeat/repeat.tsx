@@ -1,4 +1,3 @@
-
 import React, { FC, useEffect, useState } from 'react';
 import { Modal } from '@components/base';
 import { Checkbox, List } from 'antd-mobile';
@@ -82,8 +81,8 @@ const Repeat: FC<{
                 prefix={day}
                 extra={
                   <Checkbox
-                    value={index}
-                    defaultChecked={arrWeekVal[index] === 1}
+                    checked={!!arrWeekVal[index]}
+                    // defaultChecked={arrWeekVal[index] === 1}
                     onChange={(val) => {
                       handleChecked(index, val ? 1 : 0);
                     }}
