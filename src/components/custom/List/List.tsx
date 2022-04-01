@@ -14,7 +14,7 @@ export interface ListProps {
 export function List({ data = [], render, onDelete, getAction, className }: ListProps) {
   const ref = useRef(null);
 
-  const defaultGetAction = (item) => [
+  const defaultGetAction = item => [
     {
       key: 'delete',
       text: <span>删除</span>,
@@ -23,11 +23,11 @@ export function List({ data = [], render, onDelete, getAction, className }: List
         const isDelete = await sdk.tips.confirm('确认删除');
         if (isDelete && onDelete) onDelete(item);
         ref.current?.close?.();
-      }
-    }
+      },
+    },
   ];
 
-  const defaultRender = (item) => <div>{item}</div>;
+  const defaultRender = item => <div>{item}</div>;
 
   const getRightActions = getAction || defaultGetAction;
   const renderNode = render || defaultRender;

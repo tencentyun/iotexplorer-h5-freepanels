@@ -8,8 +8,8 @@ import { apiControlDeviceData } from '@hooks/useDeviceData';
 import IconChecked from '@components/base/icon-checked/icon-checked';
 
 export const enumSprayMode: stringKey = {
-    // humidity: '正向',
-    // manual: '反向',
+  // humidity: '正向',
+  // manual: '反向',
 };
 
 const TubeTemperature = ({ isShow, onClose }) => {

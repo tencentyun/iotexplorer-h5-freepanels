@@ -16,10 +16,10 @@ import { SenselessUnlock } from './views/senseless-unlock';
 import { Settings } from './views/settings';
 import { QuicknessMode } from '@components/base/quicknessMode';
 
-export const App = QuicknessMode(function App() {
+export const App = QuicknessMode(() => {
   const isBluetoothDevice = true;
   const isDev = process.env.NODE_ENV !== 'production';
-  //新旧链接的兼容
+  // 新旧链接的兼容
   const hasScf = /\/scf\//.test(location.href);
 
   let basename = isDev
@@ -31,8 +31,7 @@ export const App = QuicknessMode(function App() {
     basename += '/live';
   }
 
-  const [state, { onDeviceDataChange, onDeviceStatusChange }] =
-    useDeviceData(sdk);
+  const [state, { onDeviceDataChange, onDeviceStatusChange }] =    useDeviceData(sdk);
   console.log(state, 'state===============');
 
   // webSecket 监听
@@ -88,4 +87,4 @@ export const App = QuicknessMode(function App() {
       </Switch>
     </HashRouter>
   );
-})
+});

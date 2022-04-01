@@ -4,17 +4,17 @@ const useLongPress = (
   onLongPress: (arg0: any) => void,
   onClick: () => any,
   stopLongPress: () => any,
-  { shouldPreventDefault = true, delay = 300 } = {}
+  { shouldPreventDefault = true, delay = 300 } = {},
 ) => {
   const [longPressTriggered, setLongPressTriggered] = useState(false);
   const timeout: any = useRef();
   const target: any = useRef();
 
   const start = useCallback(
-    event => {
+    (event) => {
       if (shouldPreventDefault && event.target) {
         event.target.addEventListener('touchend', preventDefault, {
-          passive: false
+          passive: false,
         });
         target.current = event.target;
       }
@@ -23,7 +23,7 @@ const useLongPress = (
         setLongPressTriggered(true);
       }, delay);
     },
-    [onLongPress, delay, shouldPreventDefault]
+    [onLongPress, delay, shouldPreventDefault],
   );
 
   const clear = useCallback(
@@ -31,7 +31,7 @@ const useLongPress = (
       timeout.current && clearTimeout(timeout.current);
       shouldTriggerClick && !longPressTriggered && onClick();
       if (longPressTriggered) {
-        stopLongPress()
+        stopLongPress();
       }
       setLongPressTriggered(false);
 
@@ -39,18 +39,16 @@ const useLongPress = (
         target.current.removeEventListener('touchend', preventDefault);
       }
     },
-    [shouldPreventDefault, onClick, longPressTriggered, stopLongPress]
+    [shouldPreventDefault, onClick, longPressTriggered, stopLongPress],
   );
 
   return {
     onTouchStart: (e: any) => start(e),
-    onTouchEnd: (e: any) => clear(e)
+    onTouchEnd: (e: any) => clear(e),
   };
 };
 
-const isTouchEvent = (event: any) => {
-  return 'touches' in event;
-};
+const isTouchEvent = (event: any) => 'touches' in event;
 
 const preventDefault = (event: { touches: string | any[]; preventDefault: () => void; }) => {
   if (!isTouchEvent(event)) return;

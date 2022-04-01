@@ -3,7 +3,7 @@ import { Icon } from '@custom/Icon';
 
 const CONFIG = [
   ['白光', 0, 'white'],
-  ['情景', 1, 'scene']
+  ['情景', 1, 'scene'],
 ];
 
 const Ticker = ({ deviceData: { color_mode = 0, power_switch }, doControlDeviceData }) => {

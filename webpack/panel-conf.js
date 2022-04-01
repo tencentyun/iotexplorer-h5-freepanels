@@ -571,7 +571,7 @@ module.exports = {
       ['panel-morandi', { enable: true, entry: 'app.tsx' }],
     ],
   },
-   WhiteLampV2: {
+  WhiteLampV2: {
     enable: true,
     viewportWidth: 1125,
     panels: [
@@ -591,10 +591,10 @@ module.exports = {
       ['panel-card', { enable: true }],
       ['panel-brunet', { enable: true }],
       ['panel-fresh', { enable: true }],
-      ['panel-house', { enable: true }]
-    ]
+      ['panel-house', { enable: true }],
+    ],
   },
-   MagneticDoorTwo: {
+  MagneticDoorTwo: {
     enable: true,
     viewportWidth: 375,
     panels: [
@@ -602,8 +602,8 @@ module.exports = {
       ['panel-card', { enable: true }],
       ['panel-brunet', { enable: true }],
       ['panel-fresh', { enable: true }],
-      ['panel-house', { enable: true }]
-    ]
+      ['panel-house', { enable: true }],
+    ],
   },
   BodySensorsTwo: {
     enable: true,
@@ -613,8 +613,8 @@ module.exports = {
       ['panel-card', { enable: true }],
       ['panel-brunet', { enable: true }],
       ['panel-fresh', { enable: true }],
-      ['panel-house', { enable: true }]
-    ]
+      ['panel-house', { enable: true }],
+    ],
   },
   SmokeAlarmTwo: {
     enable: true,
@@ -624,10 +624,10 @@ module.exports = {
       ['panel-card', { enable: true }],
       ['panel-brunet', { enable: true }],
       ['panel-fresh', { enable: true }],
-      ['panel-house', { enable: true }]
-    ]
+      ['panel-house', { enable: true }],
+    ],
   },
- SwitchTwo: {
+  SwitchTwo: {
     enable: true,
     viewportWidth: 375,
     panels: [
@@ -647,7 +647,7 @@ module.exports = {
       // ['panel-brunet', { enable: true }],
       // ['panel-fresh', { enable: true }],
       // ['panel-house', { enable: true }]
-    ]
+    ],
   },
   SmartLocksTwo: {
     enable: true,
@@ -658,6 +658,6 @@ module.exports = {
       // ['panel-brunet', { enable: true }],
       // ['panel-fresh', { enable: true }],
       // ['panel-house', { enable: true }]
-    ]
-  }
+    ],
+  },
 };

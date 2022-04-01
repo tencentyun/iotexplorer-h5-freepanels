@@ -25,7 +25,7 @@ export interface ListPopupProps extends StyledProps {
   type?: SelectType['Radio'] | SelectType['Multiple'];
   options: Option[];
   theme?: ThemeType;
-  layoutType?: string; //'middle'
+  layoutType?: string; // 'middle'
   onCancel?: () => void;
   onConfirm?: (checked: string[]) => void;
 }
@@ -73,52 +73,52 @@ export function ListPopup(props: ListPopupProps) {
   };
 
   const themeColor: any = {
-    normal: { 
+    normal: {
       selected: {
-        color: '#000000'
+        color: '#000000',
       },
       unselected: {
-        color: '#9CAAB5'
-      }
+        color: '#9CAAB5',
+      },
     },
     blueWhite: {
       selected: {
-        color: '#2885FE'
+        color: '#2885FE',
       },
       unselected: {
-        color: '#9CAAB5'
-      }
+        color: '#9CAAB5',
+      },
     },
     dark: {
       selected: {
-        gradientId: props.name + '-icon',
+        gradientId: `${props.name}-icon`,
         startColor: '#00F0FF',
         endColor: '#704DF0',
         x1: '11.8644068%',
         y1: '18.182147%',
         x2: '104.602754%',
-        y2: '88.2505064%'
+        y2: '88.2505064%',
       },
       unselected: {
-        color: '#9CAAB5'
-      }
+        color: '#9CAAB5',
+      },
     },
     colorful: {
       selected: {
-        color: '#ED2F26'
+        color: '#ED2F26',
       },
       unselected: {
-        color: '#9CAAB5'
-      }
+        color: '#9CAAB5',
+      },
     },
     morandi: {
       selected: {
-        color: '#FFFFFF'
+        color: '#FFFFFF',
       },
       unselected: {
-        color: 'rgba(255, 255, 255, 0.5)'
-      }
-    }
+        color: 'rgba(255, 255, 255, 0.5)',
+      },
+    },
   };
 
   const selectItem = (item: Option) => {
@@ -128,7 +128,7 @@ export function ListPopup(props: ListPopupProps) {
       <div
         className={classNames('item-block', {
           isDisabled: item.disabled,
-          isSelected: isSelected
+          isSelected,
         })}
         key={item.value}
         onClick={() => handleSelect(item)}

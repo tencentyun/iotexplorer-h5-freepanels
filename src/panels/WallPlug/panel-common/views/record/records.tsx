@@ -13,7 +13,7 @@ const DAY_DESC: string[] = [
   '周三',
   '周四',
   '周五',
-  '周六'
+  '周六',
 ];
 
 interface HistoryResultProps {
@@ -36,7 +36,7 @@ export function Records() {
           FieldName: 'power_switch',
           MaxTime: currentTime,
           MinTime: lastYearTime,
-          Limit: 10
+          Limit: 10,
         });
         console.log('get info', recordListInfo);
         setRecordList(recordListInfo.Results);
@@ -53,7 +53,7 @@ export function Records() {
     home: '在家',
     sos: '紧急',
     work: '工作',
-    play: '休闲'
+    play: '休闲',
   };
   // 记录里面的内容
   const recordItem = (result: HistoryResultProps) => {
@@ -75,7 +75,7 @@ export function Records() {
         </div>
       </div>
     );
-  }
+  };
   return (
     <div className="records-view">
       {recordList.length > 0 ? (

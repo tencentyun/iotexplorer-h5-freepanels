@@ -17,7 +17,7 @@ import { Details } from './views/details';
 import { Timing } from './views/timing';
 import { QuicknessMode } from '@components/base/quicknessMode';
 
-export const App = QuicknessMode(function App() {
+export const App = QuicknessMode(() => {
   const isBluetoothDevice = true;
   // eslint-disable-next-line no-undef
   const isDev = process.env.NODE_ENV !== 'production';
@@ -33,8 +33,7 @@ export const App = QuicknessMode(function App() {
     basename += '/live';
   }
 
-  const [state, { onDeviceDataChange, onDeviceStatusChange }] =
-    useDeviceData(sdk);
+  const [state, { onDeviceDataChange, onDeviceStatusChange }] =    useDeviceData(sdk);
 
   // webSecket 监听
   useEffect(() => {

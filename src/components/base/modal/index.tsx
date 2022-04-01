@@ -29,35 +29,34 @@ export interface ModalProps extends StyledProps {
   children?: React.ReactNode;
 }
 
-export const Modal = withMask(
-  ({
-    visible,
-    title,
-    content,
-    cancelText,
-    confirmText,
-    className,
-    zIndex,
-    children,
-    onClose = noop,
-    onConfirm = noop,
-    onToggleMask = noop
-  }: ModalProps) => {
-    const onOk = function () {
-      onConfirm();
-      onCancel();
-    };
+export const Modal = withMask(({
+  visible,
+  title,
+  content,
+  cancelText,
+  confirmText,
+  className,
+  zIndex,
+  children,
+  onClose = noop,
+  onConfirm = noop,
+  onToggleMask = noop,
+}: ModalProps) => {
+  const onOk = function () {
+    onConfirm();
+    onCancel();
+  };
 
-    // 关闭弹窗
-    const onCancel = function () {
-      onClose();
-      onToggleMask(false);
-    };
+  // 关闭弹窗
+  const onCancel = function () {
+    onClose();
+    onToggleMask(false);
+  };
 
-    if (!visible) {
-      return null;
-    }
-    return (
+  if (!visible) {
+    return null;
+  }
+  return (
       <Main
         className={['_component_base_modal_', className].join(' ')}
         zIndex={zIndex}
@@ -80,6 +79,5 @@ export const Modal = withMask(
           </div>
         </div>
       </Main>
-    );
-  }
-);
+  );
+});

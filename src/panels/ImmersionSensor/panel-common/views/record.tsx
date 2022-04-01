@@ -17,7 +17,7 @@ const DAY_DESC: string[] = [
   '周三',
   '周四',
   '周五',
-  '周六'
+  '周六',
 ];
 
 interface HistoryResultProps {
@@ -41,7 +41,7 @@ export function Record() {
           FieldName: 'water_sensor_state',
           MaxTime: currentTime,
           MinTime: lastYearTime,
-          Limit: 10
+          Limit: 10,
         });
         console.log('get info', recordListInfo);
         setRecordList(recordListInfo.Results);
@@ -62,7 +62,7 @@ export function Record() {
       sdk.requestTokenApi('AppDeleteDeviceDataHistory', {
         Action: 'AppDeleteDeviceDataHistory',
         DeviceName: sdk.deviceName,
-        ProductId: sdk.productId
+        ProductId: sdk.productId,
       });
       setRecordList([]);
       sdk.tips.show('记录已清除');
@@ -75,7 +75,7 @@ export function Record() {
     1: '有积水',
     2: '正常',
     3: '检测中',
-    4: '未知'
+    4: '未知',
   };
   // 记录里面的内容
   const recordItem = (result: HistoryResultProps) => {
@@ -100,7 +100,7 @@ export function Record() {
   };
 
   return (
-    <main className={classNames('immersion-sensor-record', {'bottom-fill': recordList.length > 0 })}>
+    <main className={classNames('immersion-sensor-record', { 'bottom-fill': recordList.length > 0 })}>
       {recordList.length > 0 ? (
         <Steps direction="vertical">
           {recordList.map((value, index) => (

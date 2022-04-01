@@ -79,13 +79,13 @@ export function WhiteLightTab({
     if (angle === 0 || angle === 180) {
       setColor('#fff');
       return;
-    } else if (angle === 90) {
+    } if (angle === 90) {
       setColor('#5FBCFD');
       return;
-    } else if (angle === 270) {
+    } if (angle === 270) {
       setColor('#EAB250');
       return;
-    } else if (angle > 0 && angle < 90) {
+    } if (angle > 0 && angle < 90) {
       hsl.h = hsls.cold.h;
       hsl.s = hsls.cold.s;
       hsl.l = hsls.normal.l + (angle / 90) * (hsls.cold.l - hsls.normal.l);
@@ -112,7 +112,7 @@ export function WhiteLightTab({
 
     if (angle >= 0 && angle < 180) {
       return Math.floor(180 - angle) === localAngle ? localAngle : angle;
-    } else if (angle >= 180 && angle < 360) {
+    } if (angle >= 180 && angle < 360) {
       return Math.floor(360 - angle + 180) === localAngle ? localAngle : angle;
     }
 

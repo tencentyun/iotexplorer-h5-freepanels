@@ -37,7 +37,7 @@ export function Home() {
           FieldName: 'water_sensor_state',
           MaxTime: currentTime,
           MinTime: lastYearTime,
-          Limit: 1
+          Limit: 1,
         });
         console.log('get info', recordListInfo.Results);
         setRecordTime(recordListInfo.Results[0]?.Time || '');
@@ -56,7 +56,7 @@ export function Home() {
     1: '有积水',
     2: '正常',
     3: '检测中',
-    4: '未知'
+    4: '未知',
   };
 
   // 设置
@@ -86,7 +86,7 @@ export function Home() {
                 <div
                   className={classNames(
                     'label',
-                    deviceData.watersensor_state === 'Alarm' ? 'active' : ''
+                    deviceData.watersensor_state === 'Alarm' ? 'active' : '',
                   )}
                 >
                   {deviceData.watersensor_state === 'Alarm'
@@ -110,7 +110,7 @@ export function Home() {
                 <div
                   className={classNames(
                     'label',
-                    deviceData.watersensor_state === 'Alarm' ? 'active' : ''
+                    deviceData.watersensor_state === 'Alarm' ? 'active' : '',
                   )}
                 >
                   {deviceData.watersensor_state === 'Alarm'

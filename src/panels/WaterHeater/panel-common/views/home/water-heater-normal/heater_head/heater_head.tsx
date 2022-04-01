@@ -20,7 +20,7 @@ export function Normal_head() {
       </div>
     </article>
   );
-};
+}
 
 export default Normal_head;
 

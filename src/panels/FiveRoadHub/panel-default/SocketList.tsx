@@ -1,5 +1,5 @@
 import React from 'react';
-import { SectionList } from "@components/SectionList";
+import { SectionList } from '@components/SectionList';
 import './SocketList.less';
 
 export interface SocketListItem {
@@ -21,7 +21,7 @@ export function SocketList({
   return (
     <div className="socket-list-page clearfix">
       <SectionList>
-        {socketList.map((item) => (
+        {socketList.map(item => (
           <SectionList.Item
             key={item.id}
             label={item.label}
@@ -34,7 +34,7 @@ export function SocketList({
         ))}
       </SectionList>
     </div>
-  )
+  );
 }
 
 

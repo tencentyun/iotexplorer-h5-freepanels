@@ -1,1 +1,1 @@
-export { Tabs as Tabs} from 'antd-mobile';
+export { Tabs as Tabs } from 'antd-mobile';

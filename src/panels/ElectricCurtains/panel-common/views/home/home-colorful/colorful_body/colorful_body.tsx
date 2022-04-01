@@ -1,28 +1,28 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import './colorful_body.less';
 import classNames from 'classnames';
 import Options_Work from '../../home-normal/work_model/work_model';
 import Options_Motor from '../../home-normal/motor/motor';
-import {SvgIcon} from '@components/common/icon';
-import {useHistory} from 'react-router-dom';
+import { SvgIcon } from '@components/common/icon';
+import { useHistory } from 'react-router-dom';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
-import {onControlDevice} from '@hooks/useDeviceData';
+import { onControlDevice } from '@hooks/useDeviceData';
 
 export function Colorful_body() {
   const history = useHistory();
 
   const onCurtainWork = () => {
-    history.push('/curtain_more')
-  }
+    history.push('/curtain_more');
+  };
   const [selectTheCurtain, theCurtain_options] = useState(false);
   const [selectTheWork, theCurtain_Work] = useState(false);
 
   const onCurtain = () => {
     theCurtain_options(true);
-  }
+  };
   const onWork = () => {
     theCurtain_Work(true);
-  }
+  };
 
   const [openRatio, onToggleOpenRatio] = useState(55);
   const openLeave = (openRatio) => {
@@ -43,10 +43,10 @@ export function Colorful_body() {
     } else {
       onControlDevice('control', 'close');
     }
-  }
+  };
   const onSwitch = () => {
     onControlDevice('control', 'pause');
-  }
+  };
   return (
     <article id={'colorful_body'} className={classNames('colorful_body')}>
       <div className="colorful_body_card">
@@ -87,12 +87,12 @@ export function Colorful_body() {
                         </div>
                     </div> */}
 
-          <div className={classNames("card_botton", sdk.deviceData.control === 'open' && "button_select1")}
+          <div className={classNames('card_botton', sdk.deviceData.control === 'open' && 'button_select1')}
                onClick={() => openLeave(0)}>
             <SvgIcon
               name={sdk.deviceData.control === 'open' && 'icon-curtains-open-unlock-colorful' || 'icon-curtains-open-colorful'}
               color="#FFFFF" width={60} height={20}/>
-            <div className={classNames("card_font1", sdk.deviceData.control === 'open' && "font_select")}>
+            <div className={classNames('card_font1', sdk.deviceData.control === 'open' && 'font_select')}>
               开启
             </div>
           </div>
@@ -100,10 +100,10 @@ export function Colorful_body() {
 
           <div className="card_botton1" id='power' onClick={onSwitch}>
             {
-              !sdk.deviceData.control || sdk.deviceData.control === 'pause' ?
-                (<SvgIcon name={'icon-curtains-total-unlock-colorful'} color="#FFFFF" width={120} height={120}/>) : (<SvgIcon name={'icon-curtains-total-paused-colorful'} color="#FFFFF" width={120} height={120}/>)
-                /*<img className='open_img' src={require('../../img_icon/curtains-total-paused-colorful.png')}/>*/
-            }                
+              !sdk.deviceData.control || sdk.deviceData.control === 'pause'
+                ? (<SvgIcon name={'icon-curtains-total-unlock-colorful'} color="#FFFFF" width={120} height={120}/>) : (<SvgIcon name={'icon-curtains-total-paused-colorful'} color="#FFFFF" width={120} height={120}/>)
+                /* <img className='open_img' src={require('../../img_icon/curtains-total-paused-colorful.png')}/>*/
+            }
             {/* <SvgIcon name={sdk.deviceData.control === 'pause'&&'icon-curtains-total-paused-colorful'||'icon-curtains-total-unlock-colorful'} color="#000000" width={120} height={120}/>    */}
           </div>
 
@@ -111,14 +111,14 @@ export function Colorful_body() {
                         <SvgIcon className="botton_icon" name={'icon-curtains-close-colorful'} color="#FFFFF" width={240} height={200}/>
                         <div className="card_font2">
                             关闭
-                        </div>  
+                        </div>
                     </div> */}
-          <div className={classNames("card_botton", sdk.deviceData.control === 'close' && "button_select2")}
+          <div className={classNames('card_botton', sdk.deviceData.control === 'close' && 'button_select2')}
                onClick={() => openLeave(100)}>
             <SvgIcon
               name={sdk.deviceData.control === 'close' && 'icon-curtains-close-unlock-colorful' || 'icon-curtains-close-colorful'}
               color="#FFFFF" width={60} height={20}/>
-            <div className={classNames("card_font2", sdk.deviceData.control === 'close' && "font_select")}>
+            <div className={classNames('card_font2', sdk.deviceData.control === 'close' && 'font_select')}>
               关闭
             </div>
           </div>
@@ -140,6 +140,6 @@ export function Colorful_body() {
       />
     </article>
   );
-};
+}
 
 export default Colorful_body;

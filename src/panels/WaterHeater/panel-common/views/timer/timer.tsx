@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import TimerCloud, {
   ITimerDataBind,
-  ITimerOptions
+  ITimerOptions,
 } from '@components/business/timerCloud/timer-cloud';
 import { List, Radio } from 'antd-mobile';
 import { Modal } from '@components/base';
@@ -16,7 +16,7 @@ const Timer = () => {
   const optionsTimer: ITimerOptions = {
     power_switch: {
       label: '开关',
-      value_enum: ['关', '开']
+      value_enum: ['关', '开'],
     },
     mode: {
       label: '模式',
@@ -29,28 +29,28 @@ const Timer = () => {
         low: '低档模式',
         high: '高档模式',
         middle: '中档模式',
-        antifreeze: '防冻模式'
-      }
-    }
+        antifreeze: '防冻模式',
+      },
+    },
   };
   return (
     <TimerCloud dataBind={data} options={optionsTimer}>
       <List>
         <List.Item
           prefix={'开关'}
-          extra={optionsTimer.power_switch.value_enum[data['power_switch']]}
+          extra={optionsTimer.power_switch.value_enum[data.power_switch]}
           onClick={() => {
             setIsShowPowerSwitch(true);
           }}
         />
         <List.Item
           prefix={'模式'}
-          extra={optionsTimer.mode.value_enum[data['mode']]}
+          extra={optionsTimer.mode.value_enum[data.mode]}
           onClick={() => {
             setIsShowMode(true);
           }}
         />
-        {/*<List.Item
+        {/* <List.Item
           prefix={'温度设置'}
           extra={optionsTimer.mode.value_enum[data['temp_set']]}
           onClick={() => {
@@ -58,7 +58,7 @@ const Timer = () => {
           }}
         />*/}
       </List>
-      {/*开关弹窗*/}
+      {/* 开关弹窗*/}
       <Modal
         title={'开关'}
         visible={isShowPowerSwitch}
@@ -191,13 +191,13 @@ const Timer = () => {
           </List>
         </Radio.Group>
       </Modal>
-      {/*<Temperature
+      {/* <Temperature
         isShow={selectTheTemperature}
         onClose={() => {
           theTemperature(false);
         }}
       />*/}
-      {/*<button onClick={handleChange}>change11</button>*/}
+      {/* <button onClick={handleChange}>change11</button>*/}
     </TimerCloud>
   );
 };

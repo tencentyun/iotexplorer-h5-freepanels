@@ -5,7 +5,7 @@ import { Unlock } from './Unlock';
 const App = () => {
   const route = [
     { path: '/home', Component: Home },
-    { path: '/unlock', Component: Unlock }
+    { path: '/unlock', Component: Unlock },
   ];
   return <Router route={route} />;
 };

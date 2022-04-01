@@ -1,28 +1,28 @@
 import React from 'react';
 import './detail.less';
 import classNames from 'classnames';
-import {SvgIcon} from '@components/common/icon';
-import {getThemeType} from '@libs/theme';
-import { apiControlDeviceData, onControlDevice} from '@hooks/useDeviceData';
+import { SvgIcon } from '@components/common/icon';
+import { getThemeType } from '@libs/theme';
+import { apiControlDeviceData, onControlDevice } from '@hooks/useDeviceData';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
-import {ProgressBar} from '../progess-bar/progess-bar';
+import { ProgressBar } from '../progess-bar/progess-bar';
 
-const Detail = ({onClose, food_name}) => {
+const Detail = ({ onClose, food_name }) => {
   const themeType = getThemeType();
 
   const toggleDoCooking = () => {
-    if(sdk.deviceData.work_state != '1'){
+    if (sdk.deviceData.work_state != '1') {
       apiControlDeviceData({ work_state: '1', operation_control: '0' });
       onClose();
     } else {
       sdk.tips.showError('当前设备状态无法进行该操作！');
     }
   };
-  const onHeatMode = (mode: String) => {
+  const onHeatMode = (mode: string) => {
     onControlDevice('heat_mode', mode);
     onControlDevice('temperature_set_down', 200);
   };
-  const onHeatType = (type: String) => {
+  const onHeatType = (type: string) => {
     onControlDevice('heat_type', type);
   };
   return (
@@ -38,7 +38,7 @@ const Detail = ({onClose, food_name}) => {
           <div className="heating_span" onClick={() => onHeatMode('2')}>
             <div>
               <SvgIcon
-                name={sdk.deviceData.heat_mode === '2' && 'icon-electric-oven-arrow-tube-' + themeType || 'icon-electric-oven-arrow-tube-ash-' + themeType}
+                name={sdk.deviceData.heat_mode === '2' && `icon-electric-oven-arrow-tube-${themeType}` || `icon-electric-oven-arrow-tube-ash-${themeType}`}
                 color="#0F0F0F" width={100} height={100}/>
             </div>
             <div className={sdk.deviceData.heat_mode === '2' ? 'heating_font1' : 'heating_font'}>上下管</div>
@@ -47,7 +47,7 @@ const Detail = ({onClose, food_name}) => {
           <div className="heating_span" onClick={() => onHeatMode('0')}>
             <div>
               <SvgIcon
-                name={sdk.deviceData.heat_mode === '0' && 'icon-electric-oven-up-tube-' + themeType || 'icon-electric-oven-up-tube-ash-' + themeType}
+                name={sdk.deviceData.heat_mode === '0' && `icon-electric-oven-up-tube-${themeType}` || `icon-electric-oven-up-tube-ash-${themeType}`}
                 color="#0F0F0F" width={100} height={100}/>
             </div>
             <div className={sdk.deviceData.heat_mode === '0' ? 'heating_font1' : 'heating_font'}>上管</div>
@@ -56,7 +56,7 @@ const Detail = ({onClose, food_name}) => {
           <div className="heating_span" onClick={() => onHeatMode('1')}>
             <div>
               <SvgIcon
-                name={sdk.deviceData.heat_mode === '1' && 'icon-electric-oven-under-tube-' + themeType || 'icon-electric-oven-under-tube-ash-' + themeType}
+                name={sdk.deviceData.heat_mode === '1' && `icon-electric-oven-under-tube-${themeType}` || `icon-electric-oven-under-tube-ash-${themeType}`}
                 color="#0F0F0F" width={100} height={100}/>
             </div>
             <div className={sdk.deviceData.heat_mode === '1' ? 'heating_font1' : 'heating_font'}>下管</div>
@@ -65,7 +65,7 @@ const Detail = ({onClose, food_name}) => {
           <div className="heating_span" onClick={() => onHeatType('1')}>
             <div>
               <SvgIcon
-                name={sdk.deviceData.heat_type === '1' && 'icon-electric-oven-cold-' + themeType || 'icon-electric-oven-cold-ash-' + themeType}
+                name={sdk.deviceData.heat_type === '1' && `icon-electric-oven-cold-${themeType}` || `icon-electric-oven-cold-ash-${themeType}`}
                 color="#0F0F0F" width={100} height={100}/>
             </div>
             <div className={sdk.deviceData.heat_type === '1' ? 'heating_font1' : 'heating_font'}>冷风</div>
@@ -74,7 +74,7 @@ const Detail = ({onClose, food_name}) => {
           <div className="heating_span" onClick={() => onHeatType('0')}>
             <div>
               <SvgIcon
-                name={sdk.deviceData.heat_type === '0' && 'icon-electric-oven-hot-' + themeType || 'icon-electric-oven-hot-ash-' + themeType}
+                name={sdk.deviceData.heat_type === '0' && `icon-electric-oven-hot-${themeType}` || `icon-electric-oven-hot-ash-${themeType}`}
                 color="#0F0F0F" width={100} height={100}/>
             </div>
             <div className={sdk.deviceData.heat_type === '0' ? 'heating_font1' : 'heating_font'}>热风</div>
@@ -103,7 +103,7 @@ const Detail = ({onClose, food_name}) => {
             maxValue={225}
             unit="℃"
             onChange={(value: any, touchEnd: boolean) => {
-              if(touchEnd){
+              if (touchEnd) {
                 onControlDevice('temperature_set_up', value);
               }
             }}
@@ -127,7 +127,7 @@ const Detail = ({onClose, food_name}) => {
             maxValue={225}
             unit="℃"
             onChange={(value: any, touchEnd:boolean) => {
-              if(touchEnd){
+              if (touchEnd) {
                 onControlDevice('temperature_set_down', value);
               }
             }}
@@ -150,7 +150,7 @@ const Detail = ({onClose, food_name}) => {
             maxValue={240}
             unit=""
             onChange={(value: any, touchEnd: boolean) => {
-              if(touchEnd){
+              if (touchEnd) {
                 onControlDevice('remaining_time', value);
                 onControlDevice('TimeOfAppointment', value);
               }

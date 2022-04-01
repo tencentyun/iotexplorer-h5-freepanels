@@ -48,9 +48,9 @@ export function TimePicker(props: TimePickerProps) {
     showTwoDigit = true,
     onCancel = () => ({}),
     onConfirm = () => ({}),
-    isPopUp = true
+    isPopUp = true,
   } = props;
-  const getDefaultValue = (value) => (value.length ? value : defaultValue);
+  const getDefaultValue = value => (value.length ? value : defaultValue);
   const [pickerValue, setPickerValue] = useState(getDefaultValue(value));
 
   const handleConfirm = () => {
@@ -81,7 +81,7 @@ export function TimePicker(props: TimePickerProps) {
         className={classNames(
           'cus-time-picker',
           className,
-          'time-picker-' + props.theme
+          `time-picker-${props.theme}`,
         )}
         visible={visible}
         position="bottom"

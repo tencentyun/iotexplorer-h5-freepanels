@@ -5,7 +5,7 @@
 import React, { useState } from 'react';
 import TimerCloud, {
   ITimerDataBind,
-  ITimerOptions
+  ITimerOptions,
 } from '@components/business/timerCloud/timer-cloud';
 import { DeviceContext } from '../deviceContext';
 import { Modal } from '@components/base';
@@ -15,7 +15,7 @@ import './timing.less';
 
 export function Timing() {
   const [data, setData] = useState({
-    power_switch: 0
+    power_switch: 0,
   } as ITimerDataBind);
 
   const [isShowPowerSwitch, setIsShowPowerSwitch] = useState(false);
@@ -23,8 +23,8 @@ export function Timing() {
   const optionsTimer: ITimerOptions = {
     power_switch: {
       label: '总开关',
-      value_enum: ['关', '开']
-    }
+      value_enum: ['关', '开'],
+    },
   };
   return (
     <DeviceContext.Consumer>
@@ -33,14 +33,14 @@ export function Timing() {
           <List>
             <List.Item
               prefix={'开关'}
-              extra={optionsTimer.power_switch.value_enum[data['power_switch']]}
+              extra={optionsTimer.power_switch.value_enum[data.power_switch]}
               onClick={() => {
                 setIsShowPowerSwitch(true);
               }}
             />
           </List>
 
-          {/*开关弹窗*/}
+          {/* 开关弹窗*/}
           <Modal
             title={'开关'}
             visible={isShowPowerSwitch}

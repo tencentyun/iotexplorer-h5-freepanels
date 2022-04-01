@@ -5,7 +5,7 @@ import { themeColorMap } from '@constants';
 import { ConfirmBtnGroup, ConfirmBtnGroupProps } from '@components/Btn';
 import { iconArrowBack } from '@icons/common';
 import './Modal.less';
-import { useIpx } from "@hooks/useIpx";
+import { useIpx } from '@hooks/useIpx';
 
 export interface ModalProps extends StyledProps {
 	visible: boolean;
@@ -19,37 +19,37 @@ export interface ModalProps extends StyledProps {
 }
 
 export function Modal({
-	visible,
-	title,
-	onClose = noop,
-	maskClosable = true,
-	fixedBottom = false,
-	children,
-	className,
-	containerClassName,
-	style,
-	showBackBtn = false,
+  visible,
+  title,
+  onClose = noop,
+  maskClosable = true,
+  fixedBottom = false,
+  children,
+  className,
+  containerClassName,
+  style,
+  showBackBtn = false,
 }: ModalProps) {
-	const ipx = useIpx();
+  const ipx = useIpx();
 
-	return (
+  return (
 		<div
 			className={classNames(
-				'modal-container',
-				containerClassName,
-				{
-					'modal-active': visible,
-					'modal-fixed-bottom': fixedBottom,
-				},
+			  'modal-container',
+			  containerClassName,
+			  {
+			    'modal-active': visible,
+			    'modal-fixed-bottom': fixedBottom,
+			  },
 			)}
 			onTouchMove={e => e.stopPropagation()}
 		>
 			<div
 				className='modal-mask'
 				onClick={() => {
-					if (maskClosable) {
-						onClose && onClose();
-					}
+				  if (maskClosable) {
+				    onClose && onClose();
+				  }
 				}}
 			/>
 			<div
@@ -75,7 +75,7 @@ export function Modal({
 				{children}
 			</div>
 		</div>
-	);
+  );
 }
 
 Modal.Body = ({ children }) => (
@@ -85,8 +85,8 @@ Modal.Body = ({ children }) => (
 );
 
 Modal.Footer = ({
-	children,
-	showDivider,
+  children,
+  showDivider,
 }: {
 	showDivider?: boolean;
 	children?: React.ReactNode;
@@ -113,40 +113,40 @@ Modal.Divider = () => (
 );
 
 Modal.FooterConfirmBtnGroup = ({
-	onCancel,
-	onConfirm,
-	confirmText,
-	confirmColor = themeColorMap.primary,
-	confirmBtnType,
-	confirmBtnDisabled,
-	cancelText,
-	cancelBtnDisabled,
-	cancelColor = themeColorMap.weak,
-	cancelBtnType,
-	isInFixedBottomModal,
-	noBorder,
-	btnSize = 32,
-	btnFootClass,
+  onCancel,
+  onConfirm,
+  confirmText,
+  confirmColor = themeColorMap.primary,
+  confirmBtnType,
+  confirmBtnDisabled,
+  cancelText,
+  cancelBtnDisabled,
+  cancelColor = themeColorMap.weak,
+  cancelBtnType,
+  isInFixedBottomModal,
+  noBorder,
+  btnSize = 32,
+  btnFootClass,
 }: FooterConfirmBtnGroup) => {
-	const renderContent = () => {
-		if (isInFixedBottomModal) {
-			return (
+  const renderContent = () => {
+    if (isInFixedBottomModal) {
+      return (
 				<ConfirmBtnGroup
 					{...{
-						onCancel,
-						onConfirm,
-						confirmText,
-						confirmBtnType,
-						confirmBtnDisabled,
-						cancelText,
-						cancelBtnType,
-						cancelBtnDisabled,
+					  onCancel,
+					  onConfirm,
+					  confirmText,
+					  confirmBtnType,
+					  confirmBtnDisabled,
+					  cancelText,
+					  cancelBtnType,
+					  cancelBtnDisabled,
 					}}
 				/>
-			);
-		}
+      );
+    }
 
-		return (
+    return (
 			<div className='footer-confirm-btn-group'>
 				{!!cancelText && (
 					<Modal.FooterBtn
@@ -154,8 +154,8 @@ Modal.FooterConfirmBtnGroup = ({
 						onClick={onCancel}
 						className = {btnFootClass}
 						style={{
-							color: cancelColor,
-							fontSize: `${btnSize}rpx`,
+						  color: cancelColor,
+						  fontSize: `${btnSize}rpx`,
 						}}
 					>
 						{cancelText}
@@ -167,19 +167,19 @@ Modal.FooterConfirmBtnGroup = ({
 						onClick={onConfirm}
 						className={btnFootClass}
 						style={{
-							color: confirmColor,
-							fontSize: `${btnSize}rpx`,
-							outline: 'none'
+						  color: confirmColor,
+						  fontSize: `${btnSize}rpx`,
+						  outline: 'none',
 						}}
 					>
 						{confirmText}
 					</Modal.FooterBtn>
 				)}
 			</div>
-		);
-	};
+    );
+  };
 
-	return renderContent();
+  return renderContent();
 };
 
 export interface FooterBtnProps extends StyledProps {
@@ -189,15 +189,15 @@ export interface FooterBtnProps extends StyledProps {
 }
 
 Modal.FooterBtn = ({
-	children,
-	onClick,
-	style,
-	className,
-	noBorder,
+  children,
+  onClick,
+  style,
+  className,
+  noBorder,
 }: FooterBtnProps) => (
 	<button
 		className={classNames('modal-footer-btn need-hover', className, {
-			'no-border': noBorder,
+		  'no-border': noBorder,
 		})}
 		onClick={onClick}
 		style={style}

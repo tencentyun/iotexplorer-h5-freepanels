@@ -11,18 +11,18 @@ export function PasswordResult({
   deviceData,
   templateMap,
   doControlDeviceData,
-  history: { push, PATH, query }
+  history: { push, PATH, query },
 }) {
   useTitle('用户编辑');
-  const [userList, setUserList] = useState([{name: '我', type: '指纹1 密码1'},{name: '妈妈', type: '指纹2'},{name: '我', type: '指纹1 密码1'}]);
+  const [userList, setUserList] = useState([{ name: '我', type: '指纹1 密码1' }, { name: '妈妈', type: '指纹2' }, { name: '我', type: '指纹1 密码1' }]);
   const [status, setStatus] = useState(true);
 
   const synch_method = {
     fingerprint: 'fingerprint',
     password: 'password',
     card: 'card',
-    face: 'face'
-  }
+    face: 'face',
+  };
 
   return (
     <main className={classNames('user-password')}>
@@ -48,13 +48,13 @@ export function PasswordResult({
 
       <footer className={classNames('footer', status ? '' : 'retry')}>
         {status ? (
-          <div className="footer-button" onClick={()=>{
+          <div className="footer-button" onClick={() => {
             push(PATH.USERS_EDIT);
           }}>确认</div>
         ) : (
           <>
-            <div className="cancel-button" onClick={()=>{}}>取消</div>
-            <div className="footer-button" onClick={()=>{}}>重试</div>
+            <div className="cancel-button" onClick={() => {}}>取消</div>
+            <div className="footer-button" onClick={() => {}}>重试</div>
           </>
         )}
       </footer>

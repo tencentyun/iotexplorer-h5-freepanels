@@ -44,7 +44,7 @@ export function Unlock(props) {
           title="无感距离"
           size="medium"
           value={distanceValue}
-          onClick={()=>{
+          onClick={() => {
             if (enter) {
               onToggleAuthorization(true);
             } else {
@@ -62,18 +62,18 @@ export function Unlock(props) {
         options={[{
           label: '近',
           value: '近',
-        },{
+        }, {
           label: '中（推荐）',
           value: '中（推荐）',
-        },{
+        }, {
           label: '远',
           value: '远',
         }]}
         onCancel={() => onToggleDistance(false)}
-        onConfirm={value => {
+        onConfirm={(value) => {
           if (value && value.length > 0) {
             setDistanceValue(value[0] || '');
-          } 
+          }
           onToggleDistance(false);
         }}
       ></ListPopup>

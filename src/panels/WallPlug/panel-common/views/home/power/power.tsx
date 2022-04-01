@@ -5,11 +5,11 @@ import { getThemeType } from '@libs/theme';
 import { apiControlDeviceData } from '@hooks/useDeviceData';
 import './power.less';
 
-import switchImage from "../../icons/normal/switch.svg";
-import switchImageBlueWhite from "../../icons/blue-white/switch.svg";
-import switchImageDark from "../../icons/dark/switch.svg";
-import switchImageMorandi from "../../icons/morandi/switch.svg";
-import switchImageDefault from "../../icons/normal/switch-close.svg";
+import switchImage from '../../icons/normal/switch.svg';
+import switchImageBlueWhite from '../../icons/blue-white/switch.svg';
+import switchImageDark from '../../icons/dark/switch.svg';
+import switchImageMorandi from '../../icons/morandi/switch.svg';
+import switchImageDefault from '../../icons/normal/switch-close.svg';
 
 export function Power() {
   const themeType = getThemeType();
@@ -33,7 +33,7 @@ export function Power() {
     apiControlDeviceData({
       power_switch: sdk.deviceData.power_switch === 1 ? 0 : 1,
       switch_1: sdk.deviceData.power_switch === 1 ? 0 : 1,
-      switch_2: sdk.deviceData.power_switch === 1 ? 0 : 1
+      switch_2: sdk.deviceData.power_switch === 1 ? 0 : 1,
     });
   };
   return (
@@ -42,7 +42,7 @@ export function Power() {
         id={'power'}
         className={classNames(
           'button-circle',
-          'btn-power-switch'
+          'btn-power-switch',
         )}
         onClick={handlePowerSwitch}
       >

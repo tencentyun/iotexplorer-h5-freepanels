@@ -19,9 +19,8 @@ import { More } from './views/more';
 import { Timing } from './views/timing';
 import { QuicknessMode } from '@components/base/quicknessMode';
 
-export const App = QuicknessMode(function App() {
-  const [state, { onDeviceDataChange, onDeviceStatusChange }] =
-    useDeviceData(sdk);
+export const App = QuicknessMode(() => {
+  const [state, { onDeviceDataChange, onDeviceStatusChange }] =    useDeviceData(sdk);
 
   // webSecket 监听
   useEffect(() => {

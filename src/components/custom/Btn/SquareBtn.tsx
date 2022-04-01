@@ -25,7 +25,7 @@ export function SquareBtn({
   style,
   iconStyle,
   // message,
-  children
+  children,
 }: IconBtnOptions) {
   const btnSize = size ? { width: size, height: size } : {};
 
@@ -33,7 +33,7 @@ export function SquareBtn({
     <div
       className={classNames('square-btn-container', className)}
       style={{
-        ...style
+        ...style,
       }}
     >
       {title && <div className="square-btn-title text-overflow">{title}</div>}
@@ -44,7 +44,7 @@ export function SquareBtn({
           onClick={onClick}
           style={{
             background: iconBackground,
-            ...btnSize
+            ...btnSize,
           }}
         >
           <img className="btn-icon" src={icon as string} style={{ ...iconStyle }} />

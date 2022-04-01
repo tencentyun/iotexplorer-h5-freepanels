@@ -28,7 +28,7 @@ export function Modal({
   className,
   containerClassName,
   style,
-  showBackBtn = false
+  showBackBtn = false,
 }: ModalProps) {
   const ipx = useIpx();
 
@@ -36,9 +36,9 @@ export function Modal({
     <div
       className={classNames('modal-container', containerClassName, {
         'modal-active': visible,
-        'modal-fixed-bottom': fixedBottom
+        'modal-fixed-bottom': fixedBottom,
       })}
-      onTouchMove={(e) => e.stopPropagation()}
+      onTouchMove={e => e.stopPropagation()}
     >
       <div
         className="modal-mask"
@@ -99,7 +99,7 @@ Modal.FooterConfirmBtnGroup = ({
   isInFixedBottomModal,
   noBorder,
   btnSize = 32,
-  btnFootClass
+  btnFootClass,
 }: FooterConfirmBtnGroup) => {
   const renderContent = () => {
     if (isInFixedBottomModal) {
@@ -113,7 +113,7 @@ Modal.FooterConfirmBtnGroup = ({
             confirmBtnDisabled,
             cancelText,
             cancelBtnType,
-            cancelBtnDisabled
+            cancelBtnDisabled,
           }}
         />
       );
@@ -128,7 +128,7 @@ Modal.FooterConfirmBtnGroup = ({
             className={btnFootClass}
             style={{
               color: cancelColor,
-              fontSize: `${btnSize}rpx`
+              fontSize: `${btnSize}rpx`,
             }}
           >
             {cancelText}
@@ -142,7 +142,7 @@ Modal.FooterConfirmBtnGroup = ({
             style={{
               color: confirmColor,
               fontSize: `${btnSize}rpx`,
-              outline: 'none'
+              outline: 'none',
             }}
           >
             {confirmText}
@@ -164,7 +164,7 @@ export interface FooterBtnProps extends StyledProps {
 Modal.FooterBtn = ({ children, onClick, style, className, noBorder }: FooterBtnProps) => (
   <button
     className={classNames('modal-footer-btn need-hover', className, {
-      'no-border': noBorder
+      'no-border': noBorder,
     })}
     onClick={onClick}
     style={style}

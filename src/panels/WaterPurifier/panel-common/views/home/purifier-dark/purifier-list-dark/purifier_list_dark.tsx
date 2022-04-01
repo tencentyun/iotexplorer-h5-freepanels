@@ -1,9 +1,9 @@
 import React from 'react';
 import classNames from 'classnames';
-import {Cell} from '@components/base';
+import { Cell } from '@components/base';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 import './purifier_list_dark.less';
-import {onControlDevice} from '@hooks/useDeviceData';
+import { onControlDevice } from '@hooks/useDeviceData';
 
 export function PurifierListDark() {
   // const [isListVisible, toggleVisible] = useState(false);
@@ -18,7 +18,7 @@ export function PurifierListDark() {
       day: 'PP剩余天数',
       day_num: sdk.deviceData.pp_day ? sdk.deviceData.pp_day : 0,
       class_name: 'botton_sty1',
-      name: 'pp_switch'
+      name: 'pp_switch',
     },
     {
       id: 1,
@@ -27,7 +27,7 @@ export function PurifierListDark() {
       day: 'CTO剩余天数',
       day_num: sdk.deviceData.cot_day ? sdk.deviceData.cot_day : 0,
       class_name: 'botton_sty2',
-      name: 'cot_switch'
+      name: 'cot_switch',
     },
     {
       id: 2,
@@ -36,7 +36,7 @@ export function PurifierListDark() {
       day: 'RO剩余天数',
       day_num: sdk.deviceData.ro_day ? sdk.deviceData.ro_day : 0,
       class_name: 'botton_sty3',
-      name: 'ro_switch'
+      name: 'ro_switch',
     },
     {
       id: 3,
@@ -45,7 +45,7 @@ export function PurifierListDark() {
       day: 'CBPA剩余天数',
       day_num: sdk.deviceData.CBPA_day ? sdk.deviceData.CBPA_day : 0,
       class_name: 'botton_sty4',
-      name: 'CBPA_switch'
+      name: 'CBPA_switch',
     },
   ];
 
@@ -79,7 +79,7 @@ export function PurifierListDark() {
                   className={classNames(
                     'sty_bottom',
                     t.class_name,
-                    sdk.deviceData.switch != 1 && 'power-off'
+                    sdk.deviceData.switch != 1 && 'power-off',
                   )}
                   onClick={() => {
                     if (sdk.deviceData.switch == 1) {
@@ -97,6 +97,6 @@ export function PurifierListDark() {
       </div>
     </article>
   );
-};
+}
 
 export default PurifierListDark;

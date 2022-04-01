@@ -10,14 +10,14 @@ import IconChecked from '@components/base/icon-checked/icon-checked';
 export const enumSprayMode: stringKey = {
   low: '低灵敏度',
   middle: '中灵敏度',
-  high: '高灵敏度'
+  high: '高灵敏度',
 };
 
 const PirVisible = ({ isShow, onClose }) => {
   const [dataUser, setDataUser] = useState();
   const handleCommit = () => {
     apiControlDeviceData({
-      pir_sensitivity: dataUser
+      pir_sensitivity: dataUser,
     });
     onClose();
   };

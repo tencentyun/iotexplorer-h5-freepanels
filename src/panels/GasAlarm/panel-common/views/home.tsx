@@ -34,7 +34,7 @@ export function Home() {
           FieldName: 'gas_sensor_state',
           MaxTime: currentTime,
           MinTime: lastYearTime,
-          Limit: 1
+          Limit: 1,
         });
         console.log('get info', recordListInfo.Results);
         setRecordTime(recordListInfo.Results[0]?.Time || '');
@@ -53,7 +53,7 @@ export function Home() {
     1: '燃气报警',
     2: '正常',
     3: '检测中',
-    4: '未知'
+    4: '未知',
   };
 
   // 设置
@@ -83,7 +83,7 @@ export function Home() {
                 <div
                   className={classNames(
                     'label',
-                    deviceData.gas_sensor_state === 'alarm' ? 'active' : ''
+                    deviceData.gas_sensor_state === 'alarm' ? 'active' : '',
                   )}
                 >
                   {deviceData.gas_sensor_state === 'alarm'
@@ -111,7 +111,7 @@ export function Home() {
                 <div
                   className={classNames(
                     'label',
-                    deviceData.gas_sensor_state === 'alarm' ? 'active' : ''
+                    deviceData.gas_sensor_state === 'alarm' ? 'active' : '',
                   )}
                 >
                   {deviceData.gas_sensor_state === 'alarm'

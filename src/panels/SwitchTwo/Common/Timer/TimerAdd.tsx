@@ -6,14 +6,14 @@ import { OptionDialog } from '@custom/OptionDialog';
 const labelEnum = {
   power_switch: {
     label: '总开关',
-    value: ['关闭', '开启']
-  }
+    value: ['关闭', '开启'],
+  },
 };
 
 export const TimerAdd = (props) => {
   const {
     context: { power_switch = 0, switchNum = 4 },
-    setContext
+    setContext,
     // history: { PATH, push }
   } = props;
   const [visible, setVisible] = useState(false);
@@ -53,7 +53,7 @@ export const TimerAdd = (props) => {
         }}
         options={[
           { label: '开启', value: 1 },
-          { label: '关闭', value: 0 }
+          { label: '关闭', value: 0 },
         ]}
       ></OptionDialog>
     </>

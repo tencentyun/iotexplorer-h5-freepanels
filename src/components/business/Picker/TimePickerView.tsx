@@ -3,10 +3,8 @@ import { PickerViewGroup, PickerViewGroupProps } from '@components/business/Pick
 // import { rpx2rem } from '@utillib';
 
 const genArr = (count, start = 0) => Array(...new Array(count)).map((a, index) => index + start);
-const getHour = (showTwoDigit = false) =>
-  genArr(24).map((h) => (h < 10 ? `${showTwoDigit ? '0' : ''}${h}` : String(h)));
-const getMinute = (showTwoDigit = false) =>
-  genArr(60).map((m) => (m < 10 ? `${showTwoDigit ? '0' : ''}${m}` : String(m)));
+const getHour = (showTwoDigit = false) => genArr(24).map(h => (h < 10 ? `${showTwoDigit ? '0' : ''}${h}` : String(h)));
+const getMinute = (showTwoDigit = false) => genArr(60).map(m => (m < 10 ? `${showTwoDigit ? '0' : ''}${m}` : String(m)));
 
 const px2vw = (px: number): string | number => {
   const vw = px * (100 / 1125);
@@ -56,13 +54,13 @@ export function TimePickerView({
     const hours = getHour(showTwoDigit);
     const minutes = getMinute(showTwoDigit);
 
-    const hourOptions = hours.map((h) => ({
+    const hourOptions = hours.map(h => ({
       text: `${h}${showUnit ? hourUnit || '时' : ''}`,
-      value: h
+      value: h,
     }));
-    const minuteOptions = minutes.map((m) => ({
+    const minuteOptions = minutes.map(m => ({
       text: `${m}${showUnit ? minuteUnit || '分' : ''}`,
-      value: m
+      value: m,
     }));
 
     let options = [hourOptions, minuteOptions];

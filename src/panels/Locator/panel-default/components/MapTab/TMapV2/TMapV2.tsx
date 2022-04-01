@@ -25,13 +25,13 @@ export function TMapV2({
       window[InitCallbackFuncName] = () => {
         delete window[InitCallbackFuncName];
 
-        const qqMaps = window['qq'] && window['qq']['maps'];
+        const qqMaps = window.qq && window.qq.maps;
         if (qqMaps) {
           const initOptions = getInitOptions ? getInitOptions(qqMaps) : {};
           const map = new qqMaps.Map(mapContainer, initOptions);
 
           mapInstanceRef.current = map;
-  
+
           if (onInited) {
             onInited({ map, qqMaps });
           }

@@ -9,7 +9,7 @@ const App = () => {
     { path: '/timer/list', Component: TimerList },
     { path: '/timer/add', Component: TimerAdd },
     { path: '/timer/action/switch', Component: MainSwitch },
-    { path: '/timer/action/repeat', Component: Repeat }
+    { path: '/timer/action/repeat', Component: Repeat },
   ];
   return <Router route={route} />;
 };

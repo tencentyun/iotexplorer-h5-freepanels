@@ -1,10 +1,10 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import classNames from 'classnames';
 import './addDevExplanatory.less';
 
-import stepImage1 from "../icons/normal/step1.svg";
-import stepImage2 from "../icons/normal/step2.svg";
-import stepImage3 from "../icons/normal/step3.svg";
+import stepImage1 from '../icons/normal/step1.svg';
+import stepImage2 from '../icons/normal/step2.svg';
+import stepImage3 from '../icons/normal/step3.svg';
 
 export function AddDevExplanatory() {
   return (

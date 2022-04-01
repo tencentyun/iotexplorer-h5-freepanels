@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 import classNames from 'classnames';
-import {getThemeType} from '@libs/theme';
-import { apiControlDeviceData, onControlDevice} from '@hooks/useDeviceData';
+import { getThemeType } from '@libs/theme';
+import { apiControlDeviceData, onControlDevice } from '@hooks/useDeviceData';
 import { ValuePicker } from '@components/business';
 import { numberToArray } from '@libs/utillib';
 import './power.less';
@@ -95,7 +95,7 @@ export function Power() {
   };
   const handlePowerSwitch = () => {
     apiControlDeviceData({
-      power_switch: sdk.deviceData.power_switch === 1 ? 0 : 1
+      power_switch: sdk.deviceData.power_switch === 1 ? 0 : 1,
     });
   };
   return (
@@ -105,7 +105,7 @@ export function Power() {
         className={classNames(
           'button-fillet',
           'btn-power-switch',
-          sdk.deviceData.swing === 1 ? 'active' : ''
+          sdk.deviceData.swing === 1 ? 'active' : '',
         )}
         onClick={handlePivoting}
       >
@@ -116,7 +116,7 @@ export function Power() {
         id={'power'}
         className={classNames(
           'btn-power-switch',
-          sdk.deviceData.power_switch === 0 ? 'power-on' : ''
+          sdk.deviceData.power_switch === 0 ? 'power-on' : '',
         )}
         onClick={handlePowerSwitch}
       >
@@ -126,7 +126,7 @@ export function Power() {
         id={'timing'}
         className={classNames(
           'button-fillet',
-          'btn-power-switch'
+          'btn-power-switch',
         )}
         onClick={handleTiming}
       >
@@ -141,7 +141,7 @@ export function Power() {
         onCancel={() => {
           onToggleTiming(false);
         }}
-        onConfirm={value => {
+        onConfirm={(value) => {
           let hour = value[0];
           let minute = value[1];
           if (hour != null) {

@@ -54,8 +54,8 @@ export function NumberSlider(props: NumberSliderProps) {
       className={classNames(
         'component_business_number-slider',
         props.disabled ? 'active' : 'default',
-        'theme-' + props.theme,
-        className
+        `theme-${props.theme}`,
+        className,
       )}
     >
       <div className="slider-wrap">
@@ -74,7 +74,7 @@ export function NumberSlider(props: NumberSliderProps) {
           centeredSlides={true}
           controller={{ control: swiperInstance }}
           onSwiper={setSwiperInstance}
-          onSlideChange={swiper => {
+          onSlideChange={(swiper) => {
             setActiveIndex(swiper.realIndex + 1);
           }}
           loop

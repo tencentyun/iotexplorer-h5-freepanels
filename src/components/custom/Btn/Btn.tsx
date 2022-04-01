@@ -28,7 +28,7 @@ export function Btn({
   btnText,
   standalone,
   children,
-  size
+  size,
 }: BtnOptions) {
   const renderContent = () => (
     <>
@@ -53,7 +53,7 @@ export function Btn({
         standalone,
         disabled,
         transparent,
-        reverse
+        reverse,
       })}
       style={style}
       onClick={(e) => {
@@ -84,7 +84,7 @@ export function RawBtn({ className, style, onClick, children }: RawBtnProps) {
       className={classNames('need-hover', className)}
       style={{
         overflow: 'hidden',
-        ...style
+        ...style,
       }}
       onClick={onClick}
     >

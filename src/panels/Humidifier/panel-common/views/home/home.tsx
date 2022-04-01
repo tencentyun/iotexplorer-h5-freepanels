@@ -10,7 +10,7 @@ export function Home() {
   const enumWorkMode: any = {
     natural_evaporation: '自然蒸发',
     heating_evaporation: '加热蒸发',
-    ultrasonic: '超声波蒸发'
+    ultrasonic: '超声波蒸发',
   };
 
   return (
@@ -19,16 +19,16 @@ export function Home() {
         <article
           className={classNames(
             'home',
-            deviceData.power_switch !== 1 && 'power-off'
+            deviceData.power_switch !== 1 && 'power-off',
           )}
         >
-          {/*工作模式*/}
+          {/* 工作模式*/}
           <h3 className={classNames('title', 'text-align-center')}>
             <strong className={classNames('font_48')}>
               {enumWorkMode[deviceData.work_mode]}
             </strong>
           </h3>
-          {/*仪表盘*/}
+          {/* 仪表盘*/}
           <section className={classNames('dashboard')}>
             <HumidifierDashboard
               width={760}
@@ -41,9 +41,9 @@ export function Home() {
               }
             />
           </section>
-          {/*工具栏*/}
+          {/* 工具栏*/}
           <ToolsBar />
-          {/*详情区域*/}
+          {/* 详情区域*/}
           <Detail />
         </article>
       )}

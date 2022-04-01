@@ -29,8 +29,8 @@ export function Settings() {
                   name="mode"
                   theme={themeType}
                   checked={
-                    deviceData['muffling']
-                      ? Boolean(deviceData['muffling'])
+                    deviceData.muffling
+                      ? Boolean(deviceData.muffling)
                       : false
                   }
                   onChange={(val: boolean) => {

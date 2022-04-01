@@ -50,10 +50,12 @@ export function Home() {
       <BizSwitch
         className="biz-switch"
         name="开关1"
-        value={sdk.deviceData.power_switch === 1 ? true : false }
+        value={sdk.deviceData.power_switch === 1 }
         theme={themeType}
-        onInitChange={value => {setEnterFlag(value)}}
-        onChange={value => {
+        onInitChange={(value) => {
+          setEnterFlag(value);
+        }}
+        onChange={(value) => {
           if (enterFlag) {
             onControlDevice('power_switch', value ? 1 : 0);
           }
@@ -102,8 +104,8 @@ export function Home() {
         title="倒计时关闭"
         onCancel={onToggleCountDown.bind(null, false)}
         onConfirm={(value: any) => {
-          const hour: number = Number(value[0].split('时')[0]);
-          const mins: number = Number(value[1].split('分')[0]);
+          const hour = Number(value[0].split('时')[0]);
+          const mins = Number(value[1].split('分')[0]);
           const num = hour * 3600 + mins * 60;
           onControlDevice('count_down', num);
         }}

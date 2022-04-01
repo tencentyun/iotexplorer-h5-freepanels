@@ -31,7 +31,7 @@ export function Home() {
               {...CurrentSkinProps.homeBattery}
             />
           </header>
-        )
+        );
       case 'blueWhite':
         return (
           <header>
@@ -45,7 +45,7 @@ export function Home() {
               {...CurrentSkinProps.homeBattery}
             />
           </header>
-        )
+        );
       case 'dark':
         return (
           <header>
@@ -59,7 +59,7 @@ export function Home() {
             {/* 蓝牙模块 */}
             <Bluetooth />
           </header>
-        )
+        );
       case 'colorful':
         return (
           <header>
@@ -73,7 +73,7 @@ export function Home() {
               {...CurrentSkinProps.homeBattery}
             />
           </header>
-        )
+        );
       case 'morandi':
         return (
           <header>
@@ -87,16 +87,16 @@ export function Home() {
               {...CurrentSkinProps.homeBattery}
             />
           </header>
-        )
+        );
     }
   };
 
 
   return (
     <main className="home-container">
-      {(theme === 'blueWhite' || theme === 'dark' || theme === 'colorful') &&
+      {(theme === 'blueWhite' || theme === 'dark' || theme === 'colorful')
 
-        <div className="home-middle">
+        && <div className="home-middle">
           {/* 蓝牙、电池电量 */}
           {renderHeader()}
 
@@ -115,8 +115,8 @@ export function Home() {
         </div>
       }
 
-      {(theme === 'normal' || theme === 'morandi') &&
-        <>
+      {(theme === 'normal' || theme === 'morandi')
+        && <>
           {/* 蓝牙、电池电量 */}
           {renderHeader()}
 
@@ -149,15 +149,15 @@ export function Home() {
       }
 
       {/* 文字说明 */}
-      {theme !== 'normal' &&
-        <div className="tips">
+      {theme !== 'normal'
+        && <div className="tips">
           <p>暂无数据</p>
           <p>现在开始运动吧</p>
         </div>
       }
 
-      {(theme === 'blueWhite' || theme === 'dark' || theme === 'colorful') &&
-        <div className="footer">
+      {(theme === 'blueWhite' || theme === 'dark' || theme === 'colorful')
+        && <div className="footer">
           <TrainingMode layoutMode={CurrentSkinProps.layoutMode} />
         </div>
       }

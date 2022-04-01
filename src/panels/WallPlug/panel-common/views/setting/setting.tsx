@@ -4,8 +4,8 @@ import { Block } from '@components/layout';
 import { Cell } from '@components/base';
 import './setting.less';
 import { useHistory } from 'react-router-dom';
-import {onControlDevice, useDeviceData} from '@hooks/useDeviceData';
-import {ListPicker} from "@components/business";
+import { onControlDevice, useDeviceData } from '@hooks/useDeviceData';
+import { ListPicker } from '@components/business';
 
 export function Setting() {
   const [state] = useDeviceData(sdk);
@@ -16,7 +16,7 @@ export function Setting() {
     onControlDevice('activeKey', 'setting');
     history.push(path);
   };
-  const electrify = (val: String) => {
+  const electrify = (val: string) => {
     switch (val) {
       case 'off':
         return '断电';
@@ -48,23 +48,23 @@ export function Setting() {
           <ListPicker
             visible={isShowElectrifyVisible}
             title="上电状态"
-            defaultValue={[deviceData['relay_status']]}
+            defaultValue={[deviceData.relay_status]}
             options={[
               {
                 label: '断电',
-                value: 'off'
+                value: 'off',
               },
               {
                 label: '通电',
-                value: 'on'
+                value: 'on',
               },
               {
                 label: '保持断电前状态',
-                value: 'memory'
-              }
+                value: 'memory',
+              },
             ]}
             onCancel={() => setIsShowElectrify(false)}
-            onConfirm={value => {
+            onConfirm={(value) => {
               onControlDevice('relay_status', value[0]);
               setIsShowElectrify(false);
             }}

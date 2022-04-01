@@ -78,11 +78,7 @@ export function CircleSlider({
       top: pageY - containerRect.top - (containerSize / 2),
     };
 
-    stateRef.current.angleCurrent = Math.round(sanitizeAngle(
-      toDegrees(
-        Math.atan2(thumbPositionNew.left, -thumbPositionNew.top)
-      )
-    ) * 100) / 100;
+    stateRef.current.angleCurrent = Math.round(sanitizeAngle(toDegrees(Math.atan2(thumbPositionNew.left, -thumbPositionNew.top))) * 100) / 100;
 
     return false;
   };

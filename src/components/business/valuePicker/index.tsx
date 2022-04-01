@@ -31,7 +31,7 @@ export function ValuePicker(props: ValueSelectProps) {
     cancelText = '取消',
     confirmText = '保存',
     onCancel = noop,
-    onConfirm = noop
+    onConfirm = noop,
   } = props;
   const [value, setPickerValue] = useState(props.value);
 
@@ -48,7 +48,7 @@ export function ValuePicker(props: ValueSelectProps) {
     <Popup
       className={classNames(
         '_component_business_value_picker_',
-        props.className
+        props.className,
       )}
       visible={props.visible}
       position="bottom"

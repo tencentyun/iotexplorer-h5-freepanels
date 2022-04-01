@@ -57,9 +57,9 @@ export function TimePicker(props: TimePickerProps) {
     isShowSwitch = false,
     switchIsOpen,
     isTimeRange,
-    onSwitchChange
+    onSwitchChange,
   } = props;
-  const getDefaultValue = (value) => (value.length ? value : defaultValue);
+  const getDefaultValue = value => (value.length ? value : defaultValue);
   const [pickerValue, setPickerValue] = useState(getDefaultValue(value));
   const [isChecked, setChecked] = useState(switchIsOpen);
   const handleConfirm = () => {

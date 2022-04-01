@@ -11,14 +11,14 @@ export const enumSprayMode: stringKey = {
   coffee: '咖啡',
   milk: '牛奶',
   boiled_water: '热水',
-  water: '温水'
+  water: '温水',
 };
 
 const Temperature = ({ isShow, onClose }) => {
   const [dataUser, setDataUser] = useState();
   const handleCommit = () => {
     apiControlDeviceData({
-      temp_set_mode: dataUser
+      temp_set_mode: dataUser,
     });
     onClose();
   };

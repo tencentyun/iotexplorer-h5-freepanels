@@ -8,9 +8,9 @@ import { Cell } from '@components/base';
 import { ListPicker, ValuePicker } from '@components/business';
 // 模版数据
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
-import { useDeviceData } from '@hooks/useDeviceData';
+import { useDeviceData, formatDeviceData, onControlDevice } from '@hooks/useDeviceData';
 import { DeviceContext } from '../deviceContext';
-import { formatDeviceData, onControlDevice } from '@hooks/useDeviceData';
+
 import { mapsToOptions } from '@libs/utillib';
 
 interface DeviceMaps {
@@ -32,8 +32,8 @@ export function Settings() {
   const getDes: any = {
     low: '低',
     middle: '中',
-    high: '高'
-  }
+    high: '高',
+  };
 
   return (
     <DeviceContext.Consumer>
@@ -49,7 +49,7 @@ export function Settings() {
             ></Cell>
             <Cell
               title="电池电量"
-              value={(deviceData.battery_percentage || 0) + '%'}
+              value={`${deviceData.battery_percentage || 0}%`}
               valueStyle={'gray'}
               size="medium"
               isLink={false}
@@ -63,7 +63,7 @@ export function Settings() {
             ></Cell>
             <Cell
               title="温度采样"
-              value={(deviceData.temp_sampling || 0) + 's'}
+              value={`${deviceData.temp_sampling || 0}s`}
               valueStyle={'gray'}
               size="medium"
               onClick={() => {
@@ -73,21 +73,21 @@ export function Settings() {
             <ValuePicker
               visible={tempSamplingVisible}
               value={[
-                deviceData['temp_sampling']
-                  ? deviceData['temp_sampling'].toString()
-                  : ''
+                deviceData.temp_sampling
+                  ? deviceData.temp_sampling.toString()
+                  : '',
               ]}
               title="温度采样"
               columns={[mapsToOptions('temp_sampling', deviceMaps)]}
               onCancel={() => onToggleTempSampling(false)}
-              onConfirm={value => {
+              onConfirm={(value) => {
                 onControlDevice('temp_sampling', +(value[0] || '0'));
                 onToggleTempSampling(false);
               }}
             />
             <Cell
               title="湿度采样"
-              value={(deviceData.humidity_sampling || 0) + 's'}
+              value={`${deviceData.humidity_sampling || 0}s`}
               valueStyle={'gray'}
               size="medium"
               onClick={() => {
@@ -97,14 +97,14 @@ export function Settings() {
             <ValuePicker
               visible={humiditySamplingVisible}
               value={[
-                deviceData['humidity_sampling']
-                  ? deviceData['humidity_sampling'].toString()
-                  : ''
+                deviceData.humidity_sampling
+                  ? deviceData.humidity_sampling.toString()
+                  : '',
               ]}
               title="湿度采样"
               columns={[mapsToOptions('humidity_sampling', deviceMaps)]}
               onCancel={() => onToggleHumiditySampling(false)}
-              onConfirm={value => {
+              onConfirm={(value) => {
                 onControlDevice('humidity_sampling', +(value[0] || '0'));
                 onToggleHumiditySampling(false);
               }}
@@ -128,16 +128,16 @@ export function Settings() {
                 visible={tempUnitVisible}
                 title="温标"
                 defaultValue={[
-                  deviceData['temp_unit']
-                    ? deviceData['temp_unit'].toString()
-                    : ''
+                  deviceData.temp_unit
+                    ? deviceData.temp_unit.toString()
+                    : '',
                 ]}
                 options={[
                   { value: '0', label: '摄氏度' },
-                  { value: '1', label: '华氏度' }
+                  { value: '1', label: '华氏度' },
                 ]}
                 onCancel={() => onToggleTempUnit(false)}
-                onConfirm={value => {
+                onConfirm={(value) => {
                   onControlDevice('temp_unit', Number(value[0]));
                   onToggleTempUnit(false);
                 }}

@@ -7,9 +7,9 @@ import './detail.less';
 export function Detail() {
   return (
     <article className={classNames('detail')}>
-      {/*电源操作栏*/}
+      {/* 电源操作栏*/}
       <Power />
-      {/*断电延时和卡状态*/}
+      {/* 断电延时和卡状态*/}
       <Environment />
     </article>
   );

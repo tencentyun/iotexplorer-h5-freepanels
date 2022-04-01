@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import TimerCloud, {
   ITimerDataBind,
-  ITimerOptions
+  ITimerOptions,
 } from '@components/business/timerCloud/timer-cloud';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 import { List, Radio } from 'antd-mobile';
@@ -10,38 +10,38 @@ import IconChecked from '@components/base/icon-checked/icon-checked';
 import Percentage from '../home/home-normal/percentage/percentage';
 
 const Timer = () => {
-  const [data, setData] = useState({ power_switch: 0,percent_control: 0} as ITimerDataBind);
+  const [data, setData] = useState({ power_switch: 0, percent_control: 0 } as ITimerDataBind);
   const [isShowPowerSwitch, setIsShowPowerSwitch] = useState(false);
   const [selectThePercentage, thePercentage] = useState(false);
 
   const optionsTimer: ITimerOptions = {
     power_switch: {
       label: '开关',
-      value_enum: ['关', '开']
-    }
+      value_enum: ['关', '开'],
+    },
   };
 
   const beginControlPercent = () => {
-    console.log(data)
+    console.log(data);
     thePercentage(true);
-  }
+  };
   return (
     <TimerCloud dataBind={data} options={optionsTimer}>
       <List>
         <List.Item
           prefix={'开关'}
-          extra={optionsTimer.power_switch.value_enum[data['power_switch']]}
+          extra={optionsTimer.power_switch.value_enum[data.power_switch]}
           onClick={() => {
             setIsShowPowerSwitch(true);
           }}
         />
         <List.Item
           prefix={'百分比控制'}
-          extra={data['percent_control']}
+          extra={data.percent_control}
           onClick={beginControlPercent}
         />
       </List>
-      {/*开关弹窗*/}
+      {/* 开关弹窗*/}
       <Modal
         title={'开关'}
         visible={isShowPowerSwitch}
@@ -88,7 +88,7 @@ const Timer = () => {
           thePercentage(false);
         }}
       />
-      {/*<button onClick={handleChange}>change11</button>*/}
+      {/* <button onClick={handleChange}>change11</button>*/}
     </TimerCloud>
   );
 };

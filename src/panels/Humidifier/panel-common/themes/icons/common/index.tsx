@@ -9,7 +9,7 @@ const iconList = [
   'power',
   'reduce',
   'temp_unit_convert',
-  'ultrasound'
+  'ultrasound',
 ];
 
 export interface IconProps {
@@ -28,7 +28,7 @@ export default class IconCommon extends React.Component<IconProps, {}> {
   static defaultProps = {
     className: '',
     color: 'currentColor',
-    size: 32
+    size: 32,
   };
 
   render() {
@@ -58,8 +58,7 @@ export default class IconCommon extends React.Component<IconProps, {}> {
   }
 
   getIcon(kind: string) {
-    const { color, height, onClick, size, style, width, className } =
-      this.props;
+    const { color, height, onClick, size, style, width, className } =      this.props;
 
     switch (kind) {
       case 'add':

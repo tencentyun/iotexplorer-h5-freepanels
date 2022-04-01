@@ -101,7 +101,7 @@ export function CircleDial(props: DashboardProps) {
       strokeWidth: 0,
       shade: 'true', // 阴影
       startColor: '#527DF4',
-      endColor: '#044DFF'
+      endColor: '#044DFF',
     },
     outerCicle = {
       circleR: 380,
@@ -110,14 +110,14 @@ export function CircleDial(props: DashboardProps) {
       strokeWidth: 0,
       shade: 'true', // 阴影
       startColor: '#527DF4',
-      endColor: '#044DFF'
+      endColor: '#044DFF',
     },
     // 刻度线
     scaleLine = {
       defaultColor: 'rgba(156, 170, 181, 0.3)',
       activeColor: '#9CAAB5',
-      animaTime: 60
-    }
+      animaTime: 60,
+    },
   } = props;
 
   useEffect(() => {
@@ -129,10 +129,10 @@ export function CircleDial(props: DashboardProps) {
       const opacityValue = Number((1 / lineList.length).toFixed(2));
       interval = setInterval(() => {
         if (!activeLineList[i]) return;
-        let opacity = opacityValue * i > 0.3 ? opacityValue * i : 0.3;
-        let list = activeLineList[i].classList;
+        const opacity = opacityValue * i > 0.3 ? opacityValue * i : 0.3;
+        const list = activeLineList[i].classList;
         if (list.contains('activeLine')) {
-          activeLineList[i].setAttribute('style', 'stroke: ' + scaleLine.activeColor + ';stroke-width: 5;opacity: ' + opacity);
+          activeLineList[i].setAttribute('style', `stroke: ${scaleLine.activeColor};stroke-width: 5;opacity: ${opacity}`);
         } else {
           activeLineList[i].setAttribute('style', 'stroke: ' + 'none' + ';stroke-width: 5;');
         }
@@ -147,7 +147,7 @@ export function CircleDial(props: DashboardProps) {
 
   // 当前角度
   const currentAngle = (() => {
-    //进度
+    // 进度
     const progress = value / (maxValue - minValue);
     const range = endAngle - startAngle;
     let angle = range * progress + startAngle;
@@ -161,11 +161,7 @@ export function CircleDial(props: DashboardProps) {
   })();
 
   // 当前透明度
-  const currentOpacity: number = (() => {
-    return Number(
-      ((1 - 0.3) / ((currentAngle - startAngle) / step)).toFixed(2)
-    );
-  })();
+  const currentOpacity: number = (() => Number(((1 - 0.3) / ((currentAngle - startAngle) / step)).toFixed(2)))();
 
   const lineArray = () => {
     // 半径
@@ -173,7 +169,7 @@ export function CircleDial(props: DashboardProps) {
     // 半径2
     const r2 = r1 - 30;
 
-    //遍历角度，算出每条刻度线的起始坐标和终止坐标。
+    // 遍历角度，算出每条刻度线的起始坐标和终止坐标。
     for (let i = startAngle; i <= endAngle; i += step) {
       const color = scaleLine.defaultColor;
       const n = (i - startAngle) / step;
@@ -189,10 +185,10 @@ export function CircleDial(props: DashboardProps) {
         className: i <= currentAngle ? 'line activeLine' : 'line defaultLine',
         x1: x,
         y1: y,
-        x2: x2,
-        y2: y2,
+        x2,
+        y2,
         color: 'none',
-        opacity: scaleIsGradient ? 0.3 + currentOpacity * n : 1
+        opacity: scaleIsGradient ? 0.3 + currentOpacity * n : 1,
       });
     }
 
@@ -205,7 +201,7 @@ export function CircleDial(props: DashboardProps) {
       fill: centerCicle.color,
       filter: centerCicle.shade ? centerCicle.shade : '',
       stroke: centerCicle.strokeColor,
-      strokeWidth: centerCicle.strokeWidth + 'px'
+      strokeWidth: `${centerCicle.strokeWidth}px`,
     };
 
     return (
@@ -224,7 +220,7 @@ export function CircleDial(props: DashboardProps) {
     const outerCicleStyle = {
       fill: outerCicle.color,
       stroke: outerCicle.strokeColor,
-      strokeWidth: outerCicle.strokeWidth + 'px'
+      strokeWidth: `${outerCicle.strokeWidth}px`,
     };
 
     return (
@@ -239,8 +235,7 @@ export function CircleDial(props: DashboardProps) {
   };
 
   // 绘制刻度线
-  const renderLine = (item: LineProps, index: number) => {
-    return (
+  const renderLine = (item: LineProps, index: number) => (
       <line
         key={item.angle}
         className={item.className}
@@ -251,16 +246,13 @@ export function CircleDial(props: DashboardProps) {
         style={{ stroke: item.color, opacity: item.opacity, strokeWidth: 5 }}
         strokeLinecap="round"
       ></line>
-    );
-  };
+  );
 
-  const getViewbox = () => {
-    return [0, 0, width, height].join(' ');
-  };
+  const getViewbox = () => [0, 0, width, height].join(' ');
 
   return (
     <svg
-      className={businessType + '-round-dashboard'}
+      className={`${businessType}-round-dashboard`}
       xmlns="http://www.w3.org/2000/svg"
       viewBox={getViewbox()}
     >
@@ -316,8 +308,8 @@ export function CircleDial(props: DashboardProps) {
             in="shadowBlurOuter1"
             type="matrix"
             values="0 0 0 0   0
-                    0 0 0 0   0 
-                    0 0 0 0   0 
+                    0 0 0 0   0
+                    0 0 0 0   0
                     0 0 0 .5 0"
           />
         </filter>

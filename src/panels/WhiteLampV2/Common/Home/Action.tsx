@@ -5,7 +5,7 @@ const Action = ({
   deviceData: { power_switch },
   history: { PATH, push },
   timer: { isExistTimer },
-  doControlDeviceData
+  doControlDeviceData,
 }) => {
   const onSwitchChange = () => {
     doControlDeviceData({ power_switch: power_switch ? 0 : 1 });
@@ -13,7 +13,7 @@ const Action = ({
 
   const actions = [
     ['开关', power_switch ? 'switch-checked' : 'switch', onSwitchChange, !!power_switch],
-    ['定时', isExistTimer ? 'timing-checked' : 'timing', push.bind(null, PATH.TIMER_LIST), isExistTimer]
+    ['定时', isExistTimer ? 'timing-checked' : 'timing', push.bind(null, PATH.TIMER_LIST), isExistTimer],
   ];
   return (
     <div className="action">

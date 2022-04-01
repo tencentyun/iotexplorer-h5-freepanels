@@ -20,7 +20,7 @@ export function Password(props) {
       )}
 
       <footer className="footer">
-        <div className="footer-button" onClick={()=>{}}>
+        <div className="footer-button" onClick={() => {}}>
           添加用户
         </div>
       </footer>

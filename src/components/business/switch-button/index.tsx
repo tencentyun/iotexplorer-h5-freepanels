@@ -3,7 +3,7 @@
  * @Date: 2021-10-16 14:54:48
  * @Description: 通用业务开关组件
  */
-import React, {useEffect, useMemo, useState} from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import classNames from 'classnames';
 import { StyledProps, ThemeType } from '@libs/global';
 import './style.less';
@@ -22,8 +22,7 @@ export function BizSwitch(props: BizSwitchProps) {
   // 开关状态
   const [status, onToggleStatus] = useState(false);
   useEffect(() => {
-    const value =
-      props.value !== undefined ? props.value : props.defaultValue || false;
+    const value =      props.value !== undefined ? props.value : props.defaultValue || false;
 
     onToggleStatus(value);
   }, [props.value]);
@@ -42,7 +41,7 @@ export function BizSwitch(props: BizSwitchProps) {
         '_component_business_switch_',
         { is_on: status },
         `theme_type_${props.theme || 'normal'}`,
-        props.className
+        props.className,
       )}
       onClick={handleClick}
     >

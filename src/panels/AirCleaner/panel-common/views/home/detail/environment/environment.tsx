@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import './environment.less';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 import { getThemeType } from '@libs/theme';
-import {onControlDevice} from '@hooks/useDeviceData';
+import { onControlDevice } from '@hooks/useDeviceData';
 import HandImage from '../../../icons/normal/hand-movement.svg';
 import HandImageClose from '../../../icons/normal/hand-movement-close.svg';
 import HandImageBlueWhite from '../../../icons/blue-white/hand-movement.svg';

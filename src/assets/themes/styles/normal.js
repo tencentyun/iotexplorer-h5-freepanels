@@ -12,5 +12,5 @@ module.exports = {
   '@color-secondary': '',
   // 危险警示色
   '@color-danger': '',
-  '@activeBackground': 'rgba(0, 0, 0, .1)'
+  '@activeBackground': 'rgba(0, 0, 0, .1)',
 };

@@ -44,7 +44,7 @@ export function  Cell({
   isLink = true,
   size = 'normal',
   onClick = noop,
-  children
+  children,
 }: CellProps) {
   const target = useRef<any>(null);
   const meta: CellProps = {
@@ -52,7 +52,7 @@ export function  Cell({
     subTitle,
     name,
     value,
-    desc
+    desc,
   };
   let clickTimer: any = null;
 
@@ -74,7 +74,7 @@ export function  Cell({
       className={[
         '_component_base_cell_',
         `${className || ''}`,
-        `_cell_size_${size}_`
+        `_cell_size_${size}_`,
       ].join(' ')}
       ref={target}
     >

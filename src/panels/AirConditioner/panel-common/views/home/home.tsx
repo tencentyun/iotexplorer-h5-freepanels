@@ -16,7 +16,7 @@ export function Home() {
         return [
           <ToolsBar key={'toolsBar'} />,
           <Power key={'power'} />,
-          <Environment key={'environment'} />
+          <Environment key={'environment'} />,
         ];
       case 'blueWhite':
       case 'dark':
@@ -25,13 +25,13 @@ export function Home() {
         return [
           <Power key={'power'} />,
           <Environment key={'environment'} />,
-          <ToolsBar key={'toolsBar'} />
+          <ToolsBar key={'toolsBar'} />,
         ];
       default:
         return [
           <ToolsBar key={'toolsBar'} />,
           <Power key={'power'} />,
-          <Environment key={'environment'} />
+          <Environment key={'environment'} />,
         ];
     }
   };
@@ -42,7 +42,7 @@ export function Home() {
         <article
           className={classNames(
             'home',
-            deviceData.power_switch !== 1 && 'power-off'
+            deviceData.power_switch !== 1 && 'power-off',
           )}
         >
           <Device />

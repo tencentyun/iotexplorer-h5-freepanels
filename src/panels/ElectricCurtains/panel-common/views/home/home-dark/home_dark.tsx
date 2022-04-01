@@ -9,9 +9,7 @@ import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 export function HomeDark() {
   return (
     <article
-      className={classNames(
-        sdk.deviceData.power_switch === 0 && 'power-off'
-      )}
+      className={classNames(sdk.deviceData.power_switch === 0 && 'power-off')}
     >
       <Dark_head/>
       <Dark_body/>

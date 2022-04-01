@@ -8,9 +8,9 @@ import { FreePanelLayout, getFooterHeight } from '@components/FreePanelLayout';
 import { PanelMoreBtn } from '@components/PanelMoreBtn';
 import lightLogo from './images/light.svg';
 import { CountDownId, WorkModeId } from './constants';
-import { getCountdownStr } from "@components/FuncFooter";
-import { PanelComponentProps } from "@src/entryWrap";
-import { px2rem, rpx2px, rpx2rem } from "@utillib";
+import { getCountdownStr } from '@components/FuncFooter';
+import { PanelComponentProps } from '@src/entryWrap';
+import { px2rem, rpx2px, rpx2rem } from '@utillib';
 import { ColorLightTab, SceneTab, WhiteLightTab } from './Tabs';
 import './Panel.less';
 

@@ -26,7 +26,7 @@ const AddTimer: FC<{
     const arr: string[] = [];
     for (let i = 0; i < num; i++) {
       const iStr = i.toString();
-      arr.push(iStr.length > 1 ? iStr : '0' + iStr);
+      arr.push(iStr.length > 1 ? iStr : `0${iStr}`);
     }
     return arr;
   };
@@ -43,7 +43,7 @@ const AddTimer: FC<{
       Days: weekNew.join(''),
       TimePoint: timer.join(':'),
       TimerName: Date.now().toString(),
-      Repeat: +weekStr ? 1 : 0 //是否需要循环  0:不需要 1 需要
+      Repeat: +weekStr ? 1 : 0, // 是否需要循环  0:不需要 1 需要
     };
     await requestTokenApi('AppCreateTimer', Timer);
     sdk.tips.showSuccess('定时添加成功');
@@ -65,15 +65,15 @@ const AddTimer: FC<{
       />
       <List>
         {children}
-        {/*重复*/}
+        {/* 重复*/}
         <Repeat
           defaultArrWeekVal={value}
-          onConfirm={arrWeekVal => {
+          onConfirm={(arrWeekVal) => {
             setValue(arrWeekVal);
           }}
         />
-        {/*/!*备注*!/*/}
-        {/*<Desc />*/}
+        {/* /!*备注*!/*/}
+        {/* <Desc />*/}
       </List>
       <br />
       <div className="timer-cloud-footer-bar">

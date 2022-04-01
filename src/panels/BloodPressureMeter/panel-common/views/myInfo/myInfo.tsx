@@ -93,8 +93,8 @@ export function MyInfo() {
           <NickName
             isShow={editNickname}
             onClose={(value) => {
-              if(value != ''){
-                onUpdateUserInfo({ nickName: value })
+              if (value != '') {
+                onUpdateUserInfo({ nickName: value });
               }
               onEditNickname(false);
             }}
@@ -102,7 +102,7 @@ export function MyInfo() {
           <Cell
             size="medium"
             title="性别"
-            value={deviceData['gender'] == '1' ? '女' : '男'}
+            value={deviceData.gender == '1' ? '女' : '男'}
             valueStyle="gray"
             onClick={() => {
               onToggleGender(true);
@@ -111,19 +111,19 @@ export function MyInfo() {
             <ListPicker
               visible={genderVisible}
               title="性别"
-              defaultValue={[deviceData['gender']]}
+              defaultValue={[deviceData.gender]}
               options={[
                 {
                   label: '男',
-                  value: '0'
+                  value: '0',
                 },
                 {
                   label: '女',
-                  value: '1'
-                }
+                  value: '1',
+                },
               ]}
               onCancel={() => onToggleGender(false)}
-              onConfirm={value => {
+              onConfirm={(value) => {
                 onControlDevice('gender', value[0]);
                 onToggleGender(false);
               }}
@@ -145,7 +145,7 @@ export function MyInfo() {
             <DatePicker
               visible={birthVisible}
               onClose={() => onToggleBirth(false)}
-              onConfirm={value => {
+              onConfirm={(value) => {
                 onUpdateUserInfo({ birthday: dayjs(value).valueOf() });
               }}
             ></DatePicker>
@@ -154,7 +154,7 @@ export function MyInfo() {
             size="medium"
             title="身高"
             value={
-              sdk.deviceData.height ? sdk.deviceData.height + 'cm' : '-'
+              sdk.deviceData.height ? `${sdk.deviceData.height}cm` : '-'
             }
             valueStyle="gray"
             onClick={() => {
@@ -164,10 +164,10 @@ export function MyInfo() {
             <ValuePicker
               visible={heightVisible}
               title="身高"
-              value={[sdk.deviceData.height ? sdk.deviceData.height + 'cm' : '100cm']}
+              value={[sdk.deviceData.height ? `${sdk.deviceData.height}cm` : '100cm']}
               columns={heightColumns}
               onCancel={() => onToggleHeight(false)}
-              onConfirm={value => {
+              onConfirm={(value) => {
                 let height = value[0];
                 if (height != null) {
                   height = height.substr(0, height.length - 2);
@@ -181,7 +181,7 @@ export function MyInfo() {
             size="medium"
             title="体重"
             value={
-              sdk.deviceData.weight ? sdk.deviceData.weight + '千克' : '-'
+              sdk.deviceData.weight ? `${sdk.deviceData.weight}千克` : '-'
             }
             valueStyle="gray"
             onClick={() => {
@@ -190,11 +190,11 @@ export function MyInfo() {
           >
             <ValuePicker
               visible={weightVisible}
-              value={[sdk.deviceData.weight ? sdk.deviceData.weight + '千克' : '45千克']}
+              value={[sdk.deviceData.weight ? `${sdk.deviceData.weight}千克` : '45千克']}
               title="体重"
               columns={weightColumns}
               onCancel={() => onToggleWeight(false)}
-              onConfirm={value => {
+              onConfirm={(value) => {
                 let weight = value[0];
                 if (weight != null) {
                   weight = weight.substr(0, weight.length - 2);

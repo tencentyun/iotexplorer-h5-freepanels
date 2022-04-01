@@ -17,7 +17,7 @@ export function Home() {
           <img
             className={classNames(
               'lamp-icon',
-              deviceData.power_switch === 1 ? 'open' : 'close'
+              deviceData.power_switch === 1 ? 'open' : 'close',
             )}
             src="https://tencent-1305105198.cos.ap-guangzhou.myqcloud.com/light/light.png"
             onClick={() => {
@@ -27,7 +27,7 @@ export function Home() {
 
           <div className="switch-button font_line_3">
             {deviceData.power_switch === 1
-              ? '亮度: ' + parseInt(deviceData.bright_value ? deviceData.bright_value.toString() : '0') + '%'
+              ? `亮度: ${parseInt(deviceData.bright_value ? deviceData.bright_value.toString() : '0')}%`
               : '轻触开启'}
           </div>
         </div>

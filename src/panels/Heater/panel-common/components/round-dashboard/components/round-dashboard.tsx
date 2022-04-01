@@ -103,7 +103,7 @@ export function RoundDashboard(props: DashboardProps) {
       x: 0,
       y: 0,
       radius: 12,
-      color: '#0F0F0F'
+      color: '#0F0F0F',
     },
     businessType = '',
     centerCicle = {
@@ -115,7 +115,7 @@ export function RoundDashboard(props: DashboardProps) {
       strokeWidth: 0,
       shade: 'true', // 阴影
       startColor: '#527DF4',
-      endColor: '#044DFF'
+      endColor: '#044DFF',
     },
     outerCicle = {
       circleR: 380,
@@ -124,17 +124,17 @@ export function RoundDashboard(props: DashboardProps) {
       strokeWidth: 0,
       shade: 'true', // 阴影
       startColor: '#527DF4',
-      endColor: '#044DFF'
+      endColor: '#044DFF',
     },
     // 刻度线
     scaleLine = {
       defaultColor: 'rgba(156, 170, 181, 0.3)',
-      activeColor: '#9CAAB5'
+      activeColor: '#9CAAB5',
     },
     // 指针
     indicatorStyle = {
-      color: '#9CAAB5'
-    }
+      color: '#9CAAB5',
+    },
   } = props;
 
   console.log(props);
@@ -145,7 +145,7 @@ export function RoundDashboard(props: DashboardProps) {
 
   // 当前角度
   const currentAngle = (() => {
-    //进度
+    // 进度
     const progress = value / (maxValue - minValue);
     const range = endAngle - startAngle;
     let angle = range * progress + startAngle;
@@ -159,11 +159,7 @@ export function RoundDashboard(props: DashboardProps) {
   })();
 
   // 当前透明度
-  const currentOpacity: number = (() => {
-    return Number(
-      ((1 - 0.15) / ((currentAngle - startAngle) / step)).toFixed(2)
-    );
-  })();
+  const currentOpacity: number = (() => Number(((1 - 0.15) / ((currentAngle - startAngle) / step)).toFixed(2)))();
 
   const lineArray = () => {
     // 半径
@@ -171,7 +167,7 @@ export function RoundDashboard(props: DashboardProps) {
     // 半径2
     const r2 = r1 - 30;
 
-    //遍历角度，算出每条刻度线的起始坐标和终止坐标。
+    // 遍历角度，算出每条刻度线的起始坐标和终止坐标。
     for (let i = startAngle; i <= endAngle; i += step) {
       let color = scaleLine.defaultColor;
       const n = (i - startAngle) / step;
@@ -192,10 +188,10 @@ export function RoundDashboard(props: DashboardProps) {
         angle: i,
         x1: x,
         y1: y,
-        x2: x2,
-        y2: y2,
-        color: color,
-        opacity: scaleIsGradient ? 0.15 + currentOpacity * n : 1
+        x2,
+        y2,
+        color,
+        opacity: scaleIsGradient ? 0.15 + currentOpacity * n : 1,
       });
     }
 
@@ -208,7 +204,7 @@ export function RoundDashboard(props: DashboardProps) {
       fill: centerCicle.color,
       filter: 'url(#dropshadow)',
       stroke: centerCicle.strokeColor,
-      strokeWidth: centerCicle.strokeWidth + 'px'
+      strokeWidth: `${centerCicle.strokeWidth}px`,
     };
 
     return (
@@ -228,7 +224,7 @@ export function RoundDashboard(props: DashboardProps) {
       fill: outerCicle.color,
       filter: 'url(#dropshadow)',
       stroke: outerCicle.strokeColor,
-      strokeWidth: outerCicle.strokeWidth + 'px'
+      strokeWidth: `${outerCicle.strokeWidth}px`,
     };
 
     if (isOuterCicle) {
@@ -242,14 +238,12 @@ export function RoundDashboard(props: DashboardProps) {
           style={outerCicleStyle}
         ></circle>
       );
-    } else {
-      return null;
     }
+    return null;
   };
 
   // 绘制刻度线
-  const renderLine = (item: LineProps, index: number) => {
-    return (
+  const renderLine = (item: LineProps, index: number) => (
       <line
         className="line"
         key={index}
@@ -260,14 +254,13 @@ export function RoundDashboard(props: DashboardProps) {
         style={{ stroke: item.color, opacity: item.opacity, strokeWidth: 5 }}
         strokeLinecap="round"
       ></line>
-    );
-  };
+  );
 
   // 圆形刻度
   const renderRoundScale = () => {
-    //半径
+    // 半径
     const r1 = 380;
-    //半径2
+    // 半径2
     const r2 = r1 - 3;
     const arr = [];
     for (let i = startAngle; i <= endAngle; i += 14) {
@@ -285,15 +278,13 @@ export function RoundDashboard(props: DashboardProps) {
       const x2 = r1 + (r2 - 0) * Math.cos((i * Math.PI) / 180);
       const y2 = r1 + (r2 - 0) * Math.sin((i * Math.PI) / 180);
 
-      arr.push(
-        <circle
+      arr.push(<circle
           key={i}
           cx={x}
           cy={y}
           r="6"
           style={{ stroke: color, strokeWidth: 5 }}
-        />
-      );
+        />);
     }
 
     console.log(arr);
@@ -309,7 +300,7 @@ export function RoundDashboard(props: DashboardProps) {
     const x = radius + (radius - 104) * Math.cos((angle * Math.PI) / 180);
     const y = radius + (radius - 104) * Math.sin((angle * Math.PI) / 180);
 
-    //path 属性
+    // path 属性
     const descriptions = [
       'M',
       sx,
@@ -322,7 +313,7 @@ export function RoundDashboard(props: DashboardProps) {
       largeArcFlag,
       1,
       ex,
-      ey
+      ey,
       // 'a', r, r, 0, largeArcFlag, 1, ex, ey
     ].join(' ');
 
@@ -334,14 +325,10 @@ export function RoundDashboard(props: DashboardProps) {
     // 指示器的x,y坐标 根据圆上的点的坐标公式
     // x=centerX + radius*cos(angle) y =centerX + radius*sin(angle)
     // 124指示球距离圆形边的距离
-    const startX =
-      radius + (radius - 104) * Math.cos((startAngle * Math.PI) / 180);
-    const startY =
-      radius + (radius - 104) * Math.sin((startAngle * Math.PI) / 180);
-    indicator.x =
-      radius + (radius - 104) * Math.cos((currentAngle * Math.PI) / 180);
-    indicator.y =
-      radius + (radius - 104) * Math.sin((currentAngle * Math.PI) / 180);
+    const startX =      radius + (radius - 104) * Math.cos((startAngle * Math.PI) / 180);
+    const startY =      radius + (radius - 104) * Math.sin((startAngle * Math.PI) / 180);
+    indicator.x =      radius + (radius - 104) * Math.cos((currentAngle * Math.PI) / 180);
+    indicator.y =      radius + (radius - 104) * Math.sin((currentAngle * Math.PI) / 180);
 
     const dpath = ellipse2path(startX, startY, indicator.x, indicator.y);
     return (
@@ -361,14 +348,14 @@ export function RoundDashboard(props: DashboardProps) {
     );
   };
 
-  const getViewbox = () => {
+  const getViewbox = () =>
     // px2vw(props.width) as string
-    return [0, 0, width, height].join(' ');
-  };
+    [0, 0, width, height].join(' ')
+  ;
 
   return (
     <svg
-      className={businessType + '-round-dashboard'}
+      className={`${businessType}-round-dashboard`}
       xmlns="http://www.w3.org/2000/svg"
       viewBox={getViewbox()}
     >

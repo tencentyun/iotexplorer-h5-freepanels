@@ -20,22 +20,20 @@ const DAY_DESC: string[] = [
   '周三',
   '周四',
   '周五',
-  '周六'
+  '周六',
 ];
 
 export function Steps({
-  stepData
+  stepData,
 }: StepsProps) {
-
   const item = (value: stepProps, index: number) => {
-
     const date = dayjs(Number(value.Time));
 
     const statusLabel: any = {
       1: '有积水',
       2: '正常',
       3: '检测中',
-      4: '未知'
+      4: '未知',
     };
 
     return (

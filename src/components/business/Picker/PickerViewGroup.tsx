@@ -22,7 +22,7 @@ export function PickerViewGroup({
   height = '869px',
   showDivider,
   className,
-  onScrollChange
+  onScrollChange,
 }: PickerViewGroupProps) {
   return (
     <MultiPicker
@@ -37,12 +37,12 @@ export function PickerViewGroup({
           key={groupIndex}
           indicatorStyle={{
             height: itemHeight,
-            lineHeight: itemHeight
+            lineHeight: itemHeight,
           }}
           style={{ height }}
           itemStyle={{ height: itemHeight, lineHeight: itemHeight }}
         >
-          {itemGroup.map((item) => (
+          {itemGroup.map(item => (
             <Picker.Item key={item.value} value={item.value}>
               {item.text}
             </Picker.Item>

@@ -27,7 +27,7 @@ export function BtnGroup({
   buttons = [],
   standalone,
   fixedBottom,
-  background
+  background,
 }: BtnGroupProps) {
   const ipx = useMemo(() => isFullScreen(), []);
 
@@ -47,12 +47,12 @@ export function BtnGroup({
       className={classNames('btn-group', `btn-layout-${layout}`, className, {
         ipx,
         standalone,
-        'fixed-bottom': fixedBottom
+        'fixed-bottom': fixedBottom,
       })}
       style={{
         marginTop: `${marginTop}rpx`,
         background,
-        ...style
+        ...style,
       }}
     >
       {children ? children : buttons.map((btnConfig, index) => <Btn {...btnConfig} key={index} />)}
@@ -79,7 +79,7 @@ export function ConfirmBtnGroup({
   confirmBtnDisabled,
   cancelText,
   cancelBtnType = 'cancel',
-  cancelBtnDisabled
+  cancelBtnDisabled,
 }: ConfirmBtnGroupProps) {
   const handleOnConfirm = (callbackType, resp) => {
     if (callbackType === 'click') {
@@ -98,7 +98,7 @@ export function ConfirmBtnGroup({
           {cancelText}
         </Btn>
       )}
-      <Btn onClick={(resp) => handleOnConfirm('click', resp)} type={confirmBtnType} disabled={confirmBtnDisabled}>
+      <Btn onClick={resp => handleOnConfirm('click', resp)} type={confirmBtnType} disabled={confirmBtnDisabled}>
         {confirmText}
       </Btn>
     </BtnGroup>

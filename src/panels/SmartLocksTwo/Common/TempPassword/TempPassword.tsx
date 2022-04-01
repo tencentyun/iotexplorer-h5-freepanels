@@ -12,7 +12,7 @@ const mockData = [
     id: 1,
     type: 0,
     loseTime: 1648145585399, // 失效时间
-    isLose: true
+    isLose: true,
   },
   {
     id: 2,
@@ -20,13 +20,13 @@ const mockData = [
     startTime: 1648145585399, // 开始时间
     endTime: 1648643044260, // 结束时间
     week: '周一、周三',
-    isLose: false
+    isLose: false,
   },
   {
     id: 3,
     type: 0,
     loseTime: 1648145585399, // 失效时间
-    isLose: true
+    isLose: true,
   },
   {
     id: 4,
@@ -34,13 +34,13 @@ const mockData = [
     startTime: 1648145585399, // 开始时间
     endTime: 1648643044260, // 结束时间
     week: '周二、周三',
-    isLose: false
+    isLose: false,
   },
   {
     id: 5,
     type: 0,
     loseTime: 1648145585399, // 失效时间
-    isLose: true
+    isLose: true,
   },
 
 
@@ -89,14 +89,14 @@ export function TempPassword({ history: { push, PATH }, tips }) {
             <div key={index} className="item">
               <span>
                 <div>{PASSWORD_TYPE[type]}</div>
-                {type === 1 ? 
-                  <div>
-                    <div>{dayjs(startTime).format('YYYY/MM/DD HH:mm') + ' - ' + dayjs(endTime).format('YYYY/MM/DD HH:mm')}</div>
-                    <div>{week + ' ' + dayjs(loseTime).format('HH:mm')}</div>
-                  </div> :
-                  <div>将于{dayjs(loseTime).format('YYYY/MM/DD  HH:mm')}失效</div>
+                {type === 1
+                  ? <div>
+                    <div>{`${dayjs(startTime).format('YYYY/MM/DD HH:mm')} - ${dayjs(endTime).format('YYYY/MM/DD HH:mm')}`}</div>
+                    <div>{`${week} ${dayjs(loseTime).format('HH:mm')}`}</div>
+                  </div>
+                  : <div>将于{dayjs(loseTime).format('YYYY/MM/DD  HH:mm')}失效</div>
                 }
-                
+
               </span>
               <span className={isLose ? 'flag fail' : 'flag success'}>{isLose ? '已失效' : '生效中'}</span>
             </div>
