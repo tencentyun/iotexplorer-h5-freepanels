@@ -22,7 +22,8 @@ function App() {
         const item = { ...templateMap[key] };
         const reg = /switch(\d+)_on/;
         if (reg.test(item.id)) {
-          const id = reg.exec(item.id)[1];
+          const name = reg.exec(item.id);
+          const id = (name && name[1]) || '';
           item.switchName = `switch${id}_name`;
           switchList.push(item);
         }
@@ -41,6 +42,7 @@ function App() {
         offline={false}
         powerOff={false}
         doControlDeviceData={doControlDeviceData}
+        onGoDeviceDetail={console.log}
       />
   );
 }
