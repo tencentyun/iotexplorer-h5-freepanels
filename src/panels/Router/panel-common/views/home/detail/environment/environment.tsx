@@ -1,17 +1,15 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import classNames from 'classnames';
 import './environment.less';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
-import {getThemeType} from '@libs/theme';
-import {onControlDevice} from '@hooks/useDeviceData';
-import {Cell} from '@components/base';
+import { getThemeType } from '@libs/theme';
+import { onControlDevice } from '@hooks/useDeviceData';
+import { Cell } from '@components/base';
 
 import addIcon from '../../../icons/normal/add.svg';
 
-const lampIcon =
-  'https://tencent-1305105198.cos.ap-guangzhou.myqcloud.com/router/normal/lamp.svg';
-const emptyIcon =
-  'https://tencent-1305105198.cos.ap-guangzhou.myqcloud.com/router/dark/empty-dev.svg';
+const lampIcon =  'https://tencent-1305105198.cos.ap-guangzhou.myqcloud.com/router/normal/lamp.svg';
+const emptyIcon =  'https://tencent-1305105198.cos.ap-guangzhou.myqcloud.com/router/dark/empty-dev.svg';
 
 const Environment = () => {
   const themeType = getThemeType();
@@ -29,7 +27,7 @@ const Environment = () => {
           ProductId: sdk.productId,
           DeviceName: sdk.deviceName,
           Offset: 0,
-          Limit: 10
+          Limit: 10,
         });
         console.log('get info', recordListInfo);
         setGatewayList(recordListInfo.DeviceList);
@@ -65,8 +63,8 @@ const Environment = () => {
         {themeType === 'colorful' || themeType === 'blueWhite' ? (
             <div className="dev-list">
               {gatewayList.length > 0 ? (
-                  gatewayList.map((value, index) => (
-                      value.BindStatus == 1 ? (
+                gatewayList.map((value, index) => (
+                  value.BindStatus == 1 ? (
                         <Cell
                           size="normal"
                           title={value.DeviceName}
@@ -74,10 +72,10 @@ const Environment = () => {
                           value={value.DeviceId}
                           valueStyle="gray"
                         />
-                      ) : (
-                        ''
-                      )
-                  ))
+                  ) : (
+                    ''
+                  )
+                ))
               ) : (
                 <div className="dev-list">
                   <div className="dev-empty">
@@ -87,7 +85,7 @@ const Environment = () => {
                   </div>
                 </div>
               )}
-              {/*<Cell
+              {/* <Cell
                 size="normal"
                 title="智能电灯"
                 prefixIcon={cellIcon(lampSrc)}

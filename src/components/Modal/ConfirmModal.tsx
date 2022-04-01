@@ -55,7 +55,7 @@ export function ConfirmModal({
             confirmColor,
             cancelText,
             cancelColor,
-            btnFootClass
+            btnFootClass,
           }}
         />
       </Modal.Footer>

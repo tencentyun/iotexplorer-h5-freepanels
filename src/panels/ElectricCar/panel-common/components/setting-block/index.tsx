@@ -31,7 +31,7 @@ export function SettingBlock() {
       <Block
         className={classNames(
           'setting-button',
-          sdk.deviceData.bluetooth === 1 ? 'active' : ''
+          sdk.deviceData.bluetooth === 1 ? 'active' : '',
         )}
         onClick={() => {
           onControlDevice('bluetooth', Number(!sdk.deviceData.bluetooth));
@@ -42,7 +42,7 @@ export function SettingBlock() {
             name="icon-bluetooth"
               {...CurrentSkinProps.alarm.active}
             />
-          ) : (
+        ) : (
             <SvgIcon
             className="button-icon icon-bluetooth"
             name="icon-bluetooth"
@@ -54,7 +54,7 @@ export function SettingBlock() {
       <Block
         className={classNames(
           'setting-button',
-          sdk.deviceData.alert_status === 1 ? 'active' : ''
+          sdk.deviceData.alert_status === 1 ? 'active' : '',
         )}
         onClick={handleAlarm}
       >
@@ -78,7 +78,7 @@ export function SettingBlock() {
       <Block
         className={classNames(
           'setting-button',
-          sdk.deviceData.search === 'sound' ? 'active' : ''
+          sdk.deviceData.search === 'sound' ? 'active' : '',
         )}
         onClick={handleMute}
       >

@@ -33,7 +33,7 @@ export function ConfirmModal({
   style,
   btnFootClass,
   children,
-  onClose
+  onClose,
 }: ConfirmModalProps) {
   return (
     <Modal
@@ -54,7 +54,7 @@ export function ConfirmModal({
             confirmColor,
             cancelText,
             cancelColor,
-            btnFootClass
+            btnFootClass,
           }}
         />
       </Modal.Footer>

@@ -8,7 +8,7 @@ import { Cell } from '@components/base';
 import {
   HeaderBlock,
   SettingBlock,
-  StatusBlock
+  StatusBlock,
 } from '../components';
 
 export function Home() {
@@ -38,13 +38,13 @@ export function Home() {
       ) : (
         <>
           <SettingBlock></SettingBlock>
-          {themeType === 'blueWhite'&& 
-            <footer className="footer-block-blueWhite">
+          {themeType === 'blueWhite'
+            && <footer className="footer-block-blueWhite">
               <Cell title="无感解锁" size="medium" onClick={handleUnlock}></Cell>
             </footer>
           }
-          {themeType !== 'blueWhite'&& 
-            <footer className="footer-block">
+          {themeType !== 'blueWhite'
+            && <footer className="footer-block">
               <Cell title="无感解锁" size="medium" onClick={handleUnlock}></Cell>
             </footer>
           }

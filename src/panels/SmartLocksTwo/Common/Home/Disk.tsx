@@ -9,28 +9,26 @@ export interface DiskProps {
   tips: any;
 }
 
-var flag: any = 0;
+let flag: any = 0;
 let i = 0;
 
 export function Disk({
   deviceData,
   doControlDeviceData,
-  tips
+  tips,
 }: DiskProps) {
-
   const lockStatus = {
     0: 'unlocked',
     1: 'locked',
-    offline: 'offline'
+    offline: 'offline',
   };
 
   const currentColor = (): string => {
     if (deviceData.lock_motor_state == 1) {
       return '#00A884';
-    } else {
-      return '#DA695C';
     }
-  }
+    return '#DA695C';
+  };
 
   const radius = 120;
   // 周长
@@ -47,39 +45,38 @@ export function Disk({
     tickAnimation();
   }, []);
   const tickAnimation = () => {
-    let perimeter = 2 * Math.PI * radius;
-    let circle: any = document.getElementById("circle");
-    let indicator: any = document.getElementById("indicator");
-    let startIndex: number = 0;
+    const perimeter = 2 * Math.PI * radius;
+    const circle: any = document.getElementById('circle');
+    const indicator: any = document.getElementById('indicator');
+    let startIndex = 0;
     interval = setInterval(() => {
       startIndex += 5;
-      let percent = startIndex / 100;
-      circle.setAttribute('stroke-dasharray', perimeter * percent + ' ' + perimeter * (1 - percent));
-      let currentAngle = 360 * percent + 270;
-      let x = 120 + 120 * Math.cos((currentAngle * Math.PI) / 180);
-      let y = 120 + 120 * Math.sin((currentAngle * Math.PI) / 180);
+      const percent = startIndex / 100;
+      circle.setAttribute('stroke-dasharray', `${perimeter * percent} ${perimeter * (1 - percent)}`);
+      const currentAngle = 360 * percent + 270;
+      const x = 120 + 120 * Math.cos((currentAngle * Math.PI) / 180);
+      const y = 120 + 120 * Math.sin((currentAngle * Math.PI) / 180);
       indicator.setAttribute('cx', x);
       indicator.setAttribute('cy', y);
 
       if (startIndex >= 100) {
         clearInterval(interval);
       }
-
     }, 60);
-  }
+  };
 
   const forwardAnimation = () => {
-    let perimeter = 2 * Math.PI * radius;
-    let circle: any = document.getElementById("circle");
-    let indicator: any = document.getElementById("indicator");
+    const perimeter = 2 * Math.PI * radius;
+    const circle: any = document.getElementById('circle');
+    const indicator: any = document.getElementById('indicator');
     forwardInterval = setInterval(() => {
       i += 2;
-      let percent = i / 100;
-      circle.setAttribute('stroke-dasharray', perimeter * percent + ' ' + perimeter * (1 - percent));
+      const percent = i / 100;
+      circle.setAttribute('stroke-dasharray', `${perimeter * percent} ${perimeter * (1 - percent)}`);
       circle.setAttribute('stroke', deviceData.lock_motor_state == 1 ? '#DA695C' : '#00A884');
-      let currentAngle = 360 * percent + 270;
-      let x = 120 + 120 * Math.cos((currentAngle * Math.PI) / 180);
-      let y = 120 + 120 * Math.sin((currentAngle * Math.PI) / 180);
+      const currentAngle = 360 * percent + 270;
+      const x = 120 + 120 * Math.cos((currentAngle * Math.PI) / 180);
+      const y = 120 + 120 * Math.sin((currentAngle * Math.PI) / 180);
       indicator.setAttribute('cx', x);
       indicator.setAttribute('cy', y);
       indicator.setAttribute('fill', deviceData.lock_motor_state == 1 ? '#DA695C' : '#00A884');
@@ -88,35 +85,34 @@ export function Disk({
         clearInterval(forwardInterval);
         doControlDeviceData('lock_motor_state', Number(!deviceData.lock_motor_state));
         // 重置
-        i = 0
+        i = 0;
       }
-
     }, 100);
-  }
+  };
 
   const fallbackAnimation = () => {
-    let perimeter = 2 * Math.PI * radius;
-    let circle: any = document.getElementById("circle");
-    let indicator: any = document.getElementById("indicator");
+    const perimeter = 2 * Math.PI * radius;
+    const circle: any = document.getElementById('circle');
+    const indicator: any = document.getElementById('indicator');
     fallbackInterval = setInterval(() => {
       if (i <= 0) {
         clearInterval(fallbackInterval);
         indicator.setAttribute('fill', currentColor());
-        i = 0
+        i = 0;
         return;
       }
       i -= 2;
-      let percent = i / 100;
-      circle.setAttribute('stroke-dasharray', perimeter * percent + ' ' + perimeter * (1 - percent));
+      const percent = i / 100;
+      circle.setAttribute('stroke-dasharray', `${perimeter * percent} ${perimeter * (1 - percent)}`);
       circle.setAttribute('stroke', deviceData.lock_motor_state == 1 ? '#DA695C' : '#00A884');
-      let currentAngle = 360 * percent + 270;
-      let x = 120 + 120 * Math.cos((currentAngle * Math.PI) / 180);
-      let y = 120 + 120 * Math.sin((currentAngle * Math.PI) / 180);
+      const currentAngle = 360 * percent + 270;
+      const x = 120 + 120 * Math.cos((currentAngle * Math.PI) / 180);
+      const y = 120 + 120 * Math.sin((currentAngle * Math.PI) / 180);
       indicator.setAttribute('cx', x);
       indicator.setAttribute('cy', y);
       indicator.setAttribute('fill', deviceData.lock_motor_state == 1 ? '#DA695C' : '#00A884');
     }, 50);
-  }
+  };
 
   const handleTouchStart = (e) => {
     console.log('handleTouchStart');
@@ -132,17 +128,17 @@ export function Disk({
     // }
     // // 设置定时器
     // flag = setInterval(longPress, 0)
-    longPress()
-  }
+    longPress();
+  };
 
   const handleTouchMove = (e) => {
     console.log('handleTouchMove');
-  }
+  };
   const handleTouchEnd = (e) => {
     console.log('handleTouchEnd');
     e.preventDefault();
-    clearInterval(flag)
-    flag = 0
+    clearInterval(flag);
+    flag = 0;
     clearInterval(forwardInterval);
     if (i > 0 && i < 100) {
       fallbackAnimation();
@@ -152,7 +148,7 @@ export function Disk({
       tips.showInfo('设备已离线');
       return;
     }
-  }
+  };
 
   const longPress = () => {
     // clearInterval(flag)
@@ -169,7 +165,7 @@ export function Disk({
     //   clearInterval(fallbackInterval);
     //   forwardAnimation();
     // }
-  }
+  };
 
   const handleClick = (e) => {
     console.log('onClick');
@@ -181,15 +177,23 @@ export function Disk({
       clearInterval(fallbackInterval);
       fallbackAnimation();
     }
-  }
+  };
 
   return (
     <div
       className="disk"
-      onTouchStart={(e) => {handleTouchStart(e)}}
-      onTouchMove={e => {handleTouchMove(e)}}
-      onTouchEnd={(e) => {handleTouchEnd(e)}}
-      onTouchCancel={(e) => {console.log('onTouchCancel');handleTouchEnd(e)}}
+      onTouchStart={(e) => {
+        handleTouchStart(e);
+      }}
+      onTouchMove={(e) => {
+        handleTouchMove(e);
+      }}
+      onTouchEnd={(e) => {
+        handleTouchEnd(e);
+      }}
+      onTouchCancel={(e) => {
+        console.log('onTouchCancel');handleTouchEnd(e);
+      }}
       // onClick={(e) => {handleClick(e)}}
     >
       <div className="content-wrap">
@@ -204,8 +208,8 @@ export function Disk({
       >
         <defs>
           <linearGradient id="grad1" x1="1" y1="1" x2="0" y2="0">
-            <stop offset="0%" stop-color={currentColor()} stop-opacity="0" />
-            <stop offset="100%" stop-color={currentColor()} stop-opacity="1" />
+            <stop offset="0%" stopColor={currentColor()} stopOpacity="0" />
+            <stop offset="100%" stopColor={currentColor()} stopOpacity="1" />
           </linearGradient>
         </defs>
         <circle
@@ -213,23 +217,23 @@ export function Disk({
           cy={120}
           r={120}
           stroke="rgba(239, 243, 244, 0.75)"
-          stroke-width={2}
+          strokeWidth={2}
           fill="none"
-          stroke-linecap="round"
+          strokeLinecap="round"
         />
-        {deviceData.lock_motor_state != 2 ?
-          <>
+        {deviceData.lock_motor_state != 2
+          ? <>
             <circle
               id='circle'
               cx={120}
               cy={120}
               r={120}
               stroke={currentColor()}
-              stroke-width={5}
+              strokeWidth={5}
               fill="none"
-              stroke-dasharray={0 + ',' + getPerimeter}
-              stroke-dashoffset={getPerimeter}
-              stroke-linecap="round"
+              strokeDasharray={`${0},${getPerimeter}`}
+              strokeDashoffset={getPerimeter}
+              strokeLinecap="round"
               transform="matrix(0, -1, 1, 0, 0, 240)"
             >
             </circle>

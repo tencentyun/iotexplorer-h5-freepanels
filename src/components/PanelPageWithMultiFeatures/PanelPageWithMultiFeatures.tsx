@@ -4,10 +4,10 @@ import {
   HashRouter,
   Switch,
   Route,
-} from "react-router-dom";
+} from 'react-router-dom';
 import * as wxlib from '@wxlib';
-import { SectionListPageItemProps, SectionListPage } from "@components/SectionList";
-import { CountdownListPage, CountdownListPageItemProps } from "@components/CountdownListPage";
+import { SectionListPageItemProps, SectionListPage } from '@components/SectionList';
+import { CountdownListPage, CountdownListPageItemProps } from '@components/CountdownListPage';
 
 export function PanelPageWithMultiFeatures({
   timingProjectList,
@@ -15,7 +15,7 @@ export function PanelPageWithMultiFeatures({
   deviceData,
   doControlDeviceData,
   deviceInfo,
-  children
+  children,
 }: {
   timingProjectList: SectionListPageItemProps[];
   countdownList: CountdownListPageItemProps[];

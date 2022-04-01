@@ -1,48 +1,48 @@
 import React from 'react';
 import {
-	iconSocket,
+  iconSocket,
 } from '@icons/device/freePanel';
 import classNames from 'classnames';
 import { RawBtn } from '@components/Btn';
 import { FreePanelLayout } from '@components/FreePanelLayout';
 import { PanelMoreBtn } from '@components/PanelMoreBtn';
-import { getCountdownStr, getStatusStr } from "@components/FuncFooter";
+import { getCountdownStr, getStatusStr } from '@components/FuncFooter';
 import './SocketPanel.less';
-import { PanelComponentProps } from "@src/entryWrap";
+import { PanelComponentProps } from '@src/entryWrap';
 
 export function SocketPanel({
-	deviceInfo,
-	deviceData,
-	offline,
-	powerOff,
-	doControlDeviceData,
-	onGoTimingProject,
-	onGoDeviceDetail,
+  deviceInfo,
+  deviceData,
+  offline,
+  powerOff,
+  doControlDeviceData,
+  onGoTimingProject,
+  onGoDeviceDetail,
 }: PanelComponentProps) {
-	const renderPanelStatus = () => {
-		if (offline) {
-			return (
+  const renderPanelStatus = () => {
+    if (offline) {
+      return (
 				<div className='socket-msg'>
 					设备已离线
 				</div>
-			);
-		}
-		if (deviceData.count_down && deviceData.count_down > 0) {
-			return (
+      );
+    }
+    if (deviceData.count_down && deviceData.count_down > 0) {
+      return (
 				<div className='socket-msg'>
 					{getCountdownStr(deviceData.count_down, powerOff)}
 				</div>
-			);
-		}
-		return (
+      );
+    }
+    return (
 			<div className='socket-msg'>插座已{getStatusStr(powerOff)}</div>
-		);
-	};
+    );
+  };
 
-	return (
+  return (
 		<FreePanelLayout
 			className={classNames('free-socket-page', {
-				'power-off': powerOff,
+			  'power-off': powerOff,
 			})}
 			title={deviceInfo.displayName}
 			doControlDeviceData={doControlDeviceData}
@@ -68,5 +68,5 @@ export function SocketPanel({
 				{renderPanelStatus()}
 			</div>
 		</FreePanelLayout>
-	);
+  );
 }

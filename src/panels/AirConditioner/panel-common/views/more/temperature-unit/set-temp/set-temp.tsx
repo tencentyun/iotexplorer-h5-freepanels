@@ -18,7 +18,7 @@ const SetTemp = () => {
 
   const handleCommit = (key: string) => {
     apiControlDeviceData({
-      [key]: val
+      [key]: val,
     });
   };
 
@@ -32,7 +32,7 @@ const SetTemp = () => {
         <>
           <List.Item
             prefix={'湿度设置'}
-            extra={(deviceData.humidity_set || 0) + '%'}
+            extra={`${deviceData.humidity_set || 0}%`}
             onClick={() => {
               setIsShow(true);
             }}

@@ -12,26 +12,24 @@ export const arrWeek = ['周日', '周一', '周二', '周三', '周四', '周�
 
 const PASSWORD_TYPE = {
   SINGLE: 0, // 单次
-  CYCLE: 1 // 周期
+  CYCLE: 1, // 周期
 };
 
 const data = [
   {
     type: 0,
     loseTime: 1648145585399, // 失效时间
-    isLose: true
+    isLose: true,
   },
   {
     type: 1,
     loseTime: 1648145585399, // 失效时间
-    isLose: false
-  }
+    isLose: false,
+  },
 ];
 
 // 随机生成num为数字
-const randomCreatePassword = (num) => {
-  return Math.floor(Math.random() * Math.pow(10, num));
-};
+const randomCreatePassword = num => Math.floor(Math.random() * Math.pow(10, num));
 
 export function AddTempPassword({ history: { goBack } }) {
   useTitle('添加临时密码');
@@ -60,7 +58,7 @@ export function AddTempPassword({ history: { goBack } }) {
 
   // 点击随机生成
   const onRandomGenerator = () => {
-    let params = {}; // 从上面获取对应参数
+    const params = {}; // 从上面获取对应参数
     // TODO
     console.log('随机生成密码');
     setPassword({ password: randomCreatePassword(6) });
@@ -70,7 +68,7 @@ export function AddTempPassword({ history: { goBack } }) {
     // TODO
     setSinglePassword({
       password: '372940',
-      time: +new Date()
+      time: +new Date(),
     });
   };
 
@@ -93,7 +91,7 @@ export function AddTempPassword({ history: { goBack } }) {
   };
 
   const toggleWeek = (key) => {
-    setRepeat(repeat.includes(key) ? repeat.filter((index) => index !== key) : repeat.slice().concat(key));
+    setRepeat(repeat.includes(key) ? repeat.filter(index => index !== key) : repeat.slice().concat(key));
   };
 
   let btnText = singlePassword.password ? '完成' : '获取密码';

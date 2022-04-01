@@ -12,7 +12,7 @@ const ListTimer = ({
   context: { contextDefaultValue = {} },
   setContext,
   timer: { timers, TIMER_API, doTimer },
-  history: { PATH, push, query }
+  history: { PATH, push, query },
 }) => {
   useTitle('添加定时');
   const changeStatus = async (TimerId: string, Status: number) => {
@@ -46,7 +46,7 @@ const ListTimer = ({
       ...contextDefaultValue,
       ...defaultValue,
       Days: [0, 0, 0, 0, 0, 0, 0],
-      TimePoint: `${date.getHours()}:${date.getMinutes()}`
+      TimePoint: `${date.getHours()}:${date.getMinutes()}`,
     };
   };
 
@@ -71,13 +71,13 @@ const ListTimer = ({
                     const isDelete = await sdk.tips.confirm('要删除当前定时吗？');
                     if (isDelete) handleDeleteTimer(TimerId);
                     ref.current?.close();
-                  }
-                }
+                  },
+                },
               ]}
             >
               <div className="timer-list-body">
                 <span className="timer">{TimePoint}</span>
-                <span className={`repeat ${Days.split('').filter((v) => 1 * v).length > 5 ? 'week-small' : ''}`}>
+                <span className={`repeat ${Days.split('').filter(v => 1 * v).length > 5 ? 'week-small' : ''}`}>
                   {Days.split('').map((item, index) => (item === '1' ? `${arrWeek[index]} ` : ''))}
                 </span>
                 <span className="switch">

@@ -5,7 +5,7 @@ import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 import { useDeviceData } from '@hooks/useDeviceData';
-import {QuicknessMode} from '@components/base';
+import { QuicknessMode } from '@components/base';
 import { getThemeType } from '@libs/theme';
 import { Home } from './views/home/home';
 import { Home_morandi } from './views/home-morandi/home_morandi';
@@ -19,11 +19,11 @@ import '@icons/themes/global.less';
 import './style.less';
 import './themes.less'; // 4套皮肤 构建前要修改var.less变量文件
 
-export const App = QuicknessMode(function App() {
+export const App = QuicknessMode(() => {
   const isBluetoothDevice = true;
   // eslint-disable-next-line no-undef
   const isDev = process.env.NODE_ENV !== 'production';
-  //新旧链接的兼容
+  // 新旧链接的兼容
   const hasScf = /\/scf\//.test(location.href);
 
   let basename = isDev
@@ -36,12 +36,11 @@ export const App = QuicknessMode(function App() {
     basename += '/live';
   }
 
-  const [state, { onDeviceDataChange, onDeviceStatusChange }] =
-    useDeviceData(sdk);
+  const [state, { onDeviceDataChange, onDeviceStatusChange }] =    useDeviceData(sdk);
   console.log('state===============', state);
 
   // 获取设备模型数据
-  const getDeviceData = deviceId => {
+  const getDeviceData = (deviceId) => {
     sdk.getDeviceData({ deviceId });
     console.log('==getDeviceData===', deviceId, state);
   };
@@ -49,7 +48,7 @@ export const App = QuicknessMode(function App() {
 
   useEffect(() => {
     sdk.setShareConfig({
-      title: sdk.displayName
+      title: sdk.displayName,
     });
   }, []);
 
@@ -122,7 +121,7 @@ export const App = QuicknessMode(function App() {
     const doCheckFirmwareUpgrade = async () => {
       try {
         const upgradeInfo = await sdk.checkFirmwareUpgrade({
-          silent: false // 设置为 true 则只检查，不弹出提示
+          silent: false, // 设置为 true 则只检查，不弹出提示
         });
         console.log('firmware upgrade info', upgradeInfo);
       } catch (err) {
@@ -152,13 +151,13 @@ export const App = QuicknessMode(function App() {
   const getHomePage = () => {
     if (themeType == 'blueWhite') {
       return <Home_blueWhite />;
-    } else if (themeType == 'colorful') {
+    } if (themeType == 'colorful') {
       return <Home_colorful />;
-    } else if (themeType == 'dark') {
+    } if (themeType == 'dark') {
       return <Home_dark />;
-    } else if (themeType == 'morandi') {
+    } if (themeType == 'morandi') {
       return <Home_morandi />;
-    } else if (themeType == 'normal') {
+    } if (themeType == 'normal') {
       return <Home />;
     }
   };
@@ -168,7 +167,7 @@ export const App = QuicknessMode(function App() {
       <DeviceSateContext.Provider value={state}>
         <Router basename={basename}>
           <Switch>
-            {/*首页*/}
+            {/* 首页*/}
             <Route path="/">
               {getHomePage()}
             </Route>

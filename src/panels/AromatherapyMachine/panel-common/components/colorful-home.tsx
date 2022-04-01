@@ -15,36 +15,31 @@ export function ColorfulHome() {
   const history = useHistory();
   const [currentMode, setCurrentMode] = useState('middle');
 
-  const imageSrc = () => {
-    return 'https://tencent-1305105198.cos.ap-guangzhou.myqcloud.com/aromatherapy_machine/aromatherapy_machine.png';
-  };
+  const imageSrc = () => 'https://tencent-1305105198.cos.ap-guangzhou.myqcloud.com/aromatherapy_machine/aromatherapy_machine.png';
 
   const iconColor = (active: number, key: string) => {
     if (active === 1) {
       if (key === 'spray') {
         return CurrentSkinProps.spray;
-      } else {
-        return CurrentSkinProps.light;
       }
-    } else {
-      return { color: '#B5C4D1' };
+      return CurrentSkinProps.light;
     }
+    return { color: '#B5C4D1' };
   };
 
   const workModeLabel: any = {
     large: '大雾量',
     middle: '中雾量',
-    small: '小雾量'
+    small: '小雾量',
   };
 
   const workModeToValue = (label: string) => {
     if (label === 'large') {
       return 100;
-    } else if (label === 'small') {
+    } if (label === 'small') {
       return 0;
-    } else {
-      return 50;
     }
+    return 50;
   };
   // 更多
   const handleMore = () => {
@@ -57,7 +52,7 @@ export function ColorfulHome() {
         <div
           className={classNames(
             'app-container',
-            !deviceData.power_switch ? 'close' : ''
+            !deviceData.power_switch ? 'close' : '',
           )}
         >
           <div className="decoration-block">
@@ -67,16 +62,14 @@ export function ColorfulHome() {
                 onClick={() => {
                   onControlDevice(
                     'power_switch',
-                    Number(!deviceData.power_switch)
+                    Number(!deviceData.power_switch),
                   );
                 }}
               >
                 <div
-                  className={classNames(
-                    deviceData.power_switch === 1
-                      ? 'icon-power-active'
-                      : 'icon-power'
-                  )}
+                  className={classNames(deviceData.power_switch === 1
+                    ? 'icon-power-active'
+                    : 'icon-power')}
                 ></div>
               </li>
               <li
@@ -85,7 +78,7 @@ export function ColorfulHome() {
                   if (!deviceData.power_switch) return;
                   onControlDevice(
                     'spray_switch',
-                    Number(!deviceData.spray_switch)
+                    Number(!deviceData.spray_switch),
                   );
                 }}
               >
@@ -101,7 +94,7 @@ export function ColorfulHome() {
                   if (!deviceData.power_switch) return;
                   onControlDevice(
                     'light_switch',
-                    Number(!deviceData.light_switch)
+                    Number(!deviceData.light_switch),
                   );
                 }}
               >
@@ -136,13 +129,11 @@ export function ColorfulHome() {
               <ul
                 className={classNames(
                   'countdown-slider-tips',
-                  deviceData.power_switch === 0 ? 'default' : ''
+                  deviceData.power_switch === 0 ? 'default' : '',
                 )}
               >
                 <li
-                  className={classNames(
-                    currentMode === 'large' ? 'selected' : ''
-                  )}
+                  className={classNames(currentMode === 'large' ? 'selected' : '')}
                   onClick={() => {
                     if (deviceData.power_switch === 0) return;
                     setCurrentMode('large');
@@ -158,11 +149,9 @@ export function ColorfulHome() {
                   ) : null}
                 </li>
                 <li
-                  className={classNames(
-                    currentMode === 'middle' || currentMode === 'large'
-                      ? 'selected'
-                      : ''
-                  )}
+                  className={classNames(currentMode === 'middle' || currentMode === 'large'
+                    ? 'selected'
+                    : '')}
                   onClick={() => {
                     if (deviceData.power_switch === 0) return;
                     setCurrentMode('middle');
@@ -202,7 +191,7 @@ export function ColorfulHome() {
             <Block
               className={classNames(
                 'control-block',
-                deviceData.power_switch === 1 ? 'blue' : ''
+                deviceData.power_switch === 1 ? 'blue' : '',
               )}
             >
               <div className="top">
@@ -224,7 +213,7 @@ export function ColorfulHome() {
             <Block
               className={classNames(
                 'control-block',
-                deviceData.power_switch === 1 ? 'yellow' : ''
+                deviceData.power_switch === 1 ? 'yellow' : '',
               )}
             >
               <div className="top">

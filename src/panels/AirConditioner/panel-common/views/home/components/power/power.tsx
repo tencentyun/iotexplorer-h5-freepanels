@@ -9,8 +9,8 @@ import React from 'react';
 import { DeviceSateContext } from '../../../../deviceStateContext';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 import classNames from 'classnames';
-import { apiControlDeviceData } from '@hooks/useDeviceData';
-import { onControlDevice } from '@hooks/useDeviceData';
+import { apiControlDeviceData, onControlDevice } from '@hooks/useDeviceData';
+
 import { SvgIcon } from '@components/common/icon';
 import './power.less';
 
@@ -20,7 +20,7 @@ export enum enumTempKey {
 }
 
 export function Power() {
-  //根据当前温度单位，控制最大值
+  // 根据当前温度单位，控制最大值
   const handleToggle = (isAdd: boolean) => {
     const { temp_unit_convert } = sdk.deviceData;
     const action = (enumTempKey as any)[temp_unit_convert || 'celsius'];
@@ -29,13 +29,13 @@ export function Power() {
     if (isAdd) {
       if (oldVal < max) {
         apiControlDeviceData({
-          [action]: oldVal + 1
+          [action]: oldVal + 1,
         });
       }
     } else {
       if (oldVal > 0) {
         apiControlDeviceData({
-          [action]: oldVal - 1
+          [action]: oldVal - 1,
         });
       }
     }
@@ -48,7 +48,7 @@ export function Power() {
           <button
             className={classNames('button-circle', 'box-shadow', 'reduce')}
             onClick={() => {
-              if (!deviceData.power_switch) return
+              if (!deviceData.power_switch) return;
               handleToggle(false);
             }}
           >
@@ -60,7 +60,7 @@ export function Power() {
               'button-circle',
               'box-shadow',
               'btn-power-switch',
-              sdk.deviceData.power_switch === 1 ? 'switch-open' : 'switch-close'
+              sdk.deviceData.power_switch === 1 ? 'switch-open' : 'switch-close',
             )}
             onClick={() => {
               onControlDevice('power_switch', Number(!deviceData.power_switch));
@@ -71,7 +71,7 @@ export function Power() {
           <button
             className={classNames('button-circle', 'box-shadow', 'add')}
             onClick={() => {
-              if (!deviceData.power_switch) return
+              if (!deviceData.power_switch) return;
               handleToggle(true);
             }}
           >

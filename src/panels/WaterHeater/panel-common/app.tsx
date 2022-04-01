@@ -5,7 +5,7 @@ import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 import { useDeviceData } from '@hooks/useDeviceData';
-import {QuicknessMode} from '@components/base';
+import { QuicknessMode } from '@components/base';
 import { DeviceSateContext } from './deviceStateContext';
 import Timer from './views/timer/timer';
 import { Home_Set_Up } from './views/handoff/setup/setup';
@@ -16,10 +16,10 @@ import '@icons/themes/icons/svg/water_heater';
 import './style.less';
 import './themes.less'; // 4套皮肤 构建前要修改var.less变量文件
 
-export const App = QuicknessMode(function App() {
+export const App = QuicknessMode(() => {
   const isBluetoothDevice = true;
   const isDev = process.env.NODE_ENV !== 'production';
-  //新旧链接的兼容
+  // 新旧链接的兼容
   const hasScf = /\/scf\//.test(location.href);
 
   let basename = isDev
@@ -40,8 +40,7 @@ export const App = QuicknessMode(function App() {
   //     .on('pageShow', () => console.log('pageShow'))
   //     .on('pageHide', () => console.log('pageHide'));
   // }, []);
-  const [state, { onDeviceDataChange, onDeviceStatusChange }] =
-    useDeviceData(sdk);
+  const [state, { onDeviceDataChange, onDeviceStatusChange }] =    useDeviceData(sdk);
 
   // webSecket 监听
   useEffect(() => {
@@ -85,7 +84,7 @@ export const App = QuicknessMode(function App() {
             <Route path="/setup">
               <Home_Set_Up />
             </Route>
-            {/*定时器*/}
+            {/* 定时器*/}
             <Route path="/timer">
               <Timer />
             </Route>

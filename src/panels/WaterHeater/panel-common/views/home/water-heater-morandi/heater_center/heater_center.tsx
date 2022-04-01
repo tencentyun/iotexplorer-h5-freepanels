@@ -1,10 +1,10 @@
-import React, {useState} from 'react';
-import './heater_center.less'
+import React, { useState } from 'react';
+import './heater_center.less';
 import classNames from 'classnames';
 import Two_Thousand from '../../pop-up/two_thousand/two_thousand';
 import Automatic from '../../pop-up/automatic/automatic';
-import {SvgIcon} from '@components/common/icon';
-import {useHistory} from 'react-router-dom';
+import { SvgIcon } from '@components/common/icon';
+import { useHistory } from 'react-router-dom';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 
 export function Normal_Center() {
@@ -17,20 +17,20 @@ export function Normal_Center() {
     if (sdk.deviceData.power_switch === 1) {
       theTwo_Thousand(true);
     }
-  }
+  };
 
   const onAutomatic = () => {
     if (sdk.deviceData.power_switch === 1) {
       theAutomatic(true);
     }
-  }
+  };
   const onSetup = () => {
     if (sdk.deviceData.power_switch === 1) {
       return history.push('/setup');
     }
   };
 
-  const modeSrc = (mode: String) => {
+  const modeSrc = (mode: string) => {
     switch (mode) {
       case 'manual':
         return '手动模式';
@@ -54,7 +54,7 @@ export function Normal_Center() {
         return '-';
     }
   };
-  const capacitySrc = (capacity: String) => {
+  const capacitySrc = (capacity: string) => {
     switch (capacity) {
       case 'twoThousand':
         return '2000W';
@@ -118,6 +118,6 @@ export function Normal_Center() {
       />
     </article>
   );
-};
+}
 export default Normal_Center;
 

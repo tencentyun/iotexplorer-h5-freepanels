@@ -14,7 +14,7 @@ interface stringKey {
 export function Home({
   deviceData,
   doControlDeviceData,
-  history: { PATH, push }
+  history: { PATH, push },
 }) {
   const [sensitivityVisible, setSensitivityVisible] = useState(false);
   const [keepTimeVisible, setKeepTimeVisible] = useState(false);
@@ -22,13 +22,13 @@ export function Home({
   const enumSensitivity: stringKey = {
     low: '低灵敏度',
     middle: '中灵敏度',
-    high: '高灵敏度'
+    high: '高灵敏度',
   };
 
   const enumTime: stringKey = {
     thirtySecond: '有人30S',
     sixtySecond: '有人60S',
-    oneHundredAndTwentySecond: '有人120S'
+    oneHundredAndTwentySecond: '有人120S',
   };
 
   return (
@@ -68,7 +68,9 @@ export function Home({
         </div>
         <div
           className="setting-button"
-          onClick={()=>{setSensitivityVisible(true)}}
+          onClick={() => {
+            setSensitivityVisible(true);
+          }}
         >
           <Cell
             title="PIR灵敏度"
@@ -81,12 +83,14 @@ export function Home({
               title="PIR灵敏度"
               defaultValue={[deviceData.pir_sensitivity]}
               options={[
-                {value: 'low', label: '低灵敏度'},
-                {value: 'middle', label: '中灵敏度'},
-                {value: 'high', label: '高灵敏度'}
+                { value: 'low', label: '低灵敏度' },
+                { value: 'middle', label: '中灵敏度' },
+                { value: 'high', label: '高灵敏度' },
               ]}
-              onCancel={()=>{setSensitivityVisible(false)}}
-              onConfirm={(value)=>{
+              onCancel={() => {
+                setSensitivityVisible(false);
+              }}
+              onConfirm={(value) => {
                 console.log(value);
                 doControlDeviceData('pir_sensitivity', value[0]);
               }}
@@ -95,7 +99,9 @@ export function Home({
         </div>
         <div
           className="setting-button"
-          onClick={()=>{setKeepTimeVisible(true)}}
+          onClick={() => {
+            setKeepTimeVisible(true);
+          }}
         >
           <Cell
             title="有人保持时间"
@@ -108,12 +114,14 @@ export function Home({
               title="有人保持时间"
               defaultValue={[deviceData.keep_time]}
               options={[
-                {value: 'thirtySecond', label: '有人30S'},
-                {value: 'sixtySecond', label: '有人60S'},
-                {value: 'oneHundredAndTwentySecond', label: '有人120S'}
+                { value: 'thirtySecond', label: '有人30S' },
+                { value: 'sixtySecond', label: '有人60S' },
+                { value: 'oneHundredAndTwentySecond', label: '有人120S' },
               ]}
-              onCancel={()=>{setKeepTimeVisible(false)}}
-              onConfirm={(value)=>{
+              onCancel={() => {
+                setKeepTimeVisible(false);
+              }}
+              onConfirm={(value) => {
                 console.log(value);
                 doControlDeviceData('keep_time', value[0]);
               }}

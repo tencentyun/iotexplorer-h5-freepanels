@@ -24,7 +24,7 @@ export function Home() {
   const feedStateLabel: any = {
     standby: '准备中',
     feeding: '喂食中',
-    done: '结束'
+    done: '结束',
   };
 
   const formatTime = (time: string | number) => {
@@ -36,12 +36,10 @@ export function Home() {
     if (themeType === 'morandi') {
       if (status == 1) {
         return CurrentSkinProps[key];
-      } else {
-        return { color: '#B5C4D1' };
       }
-    } else {
-      return CurrentSkinProps[key];
+      return { color: '#B5C4D1' };
     }
+    return CurrentSkinProps[key];
   };
 
   return (
@@ -59,7 +57,7 @@ export function Home() {
                     onChange={() => {
                       onControlDevice(
                         'power_switch',
-                        Number(!deviceData.power_switch)
+                        Number(!deviceData.power_switch),
                       );
                     }}
                   />
@@ -261,7 +259,7 @@ export function Home() {
                 <div
                   className={classNames(
                     'submit-button',
-                    deviceData.power_switch === 1 ? 'submit-active' : ''
+                    deviceData.power_switch === 1 ? 'submit-active' : '',
                   )}
                   onClick={() => {
                     if (!deviceData.power_switch) return;
@@ -281,7 +279,7 @@ export function Home() {
                 onClick={() => {
                   onControlDevice(
                     'power_switch',
-                    Number(!deviceData.power_switch)
+                    Number(!deviceData.power_switch),
                   );
                 }}
               >

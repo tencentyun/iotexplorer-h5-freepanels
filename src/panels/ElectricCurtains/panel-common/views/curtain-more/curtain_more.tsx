@@ -3,20 +3,19 @@ import './curtain_more.less';
 import classNames from 'classnames';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 import { SvgIcon } from '@components/common/icon';
-import {Cell, Switch} from '@components/base';
+import { Cell, Switch } from '@components/base';
 import { useHistory } from 'react-router-dom';
-import {getThemeType} from '@libs/theme';
-import {toggleBooleanByNumber} from '@libs/utillib';
-import {apiControlDeviceData} from '@hooks/useDeviceData';
+import { getThemeType } from '@libs/theme';
+import { toggleBooleanByNumber } from '@libs/utillib';
+import { apiControlDeviceData } from '@hooks/useDeviceData';
 
-export function CurtainMore () {
-
+export function CurtainMore() {
   const history = useHistory();
 
   // 默认云端定时
-  const onCurtainTimer=()=>{
-    history.push('/timer')
-  }
+  const onCurtainTimer = () => {
+    history.push('/timer');
+  };
   const themeType = getThemeType();
 
   return (
@@ -29,7 +28,7 @@ export function CurtainMore () {
                 //   isLink={false}
                 //   value= "布防中"
                 valueStyle="gray"
-                prefixIcon={<SvgIcon name={'icon-curtains-cloud-timing-'+themeType} width={40} height={40}/>}
+                prefixIcon={<SvgIcon name={`icon-curtains-cloud-timing-${themeType}`} width={40} height={40}/>}
                 size="medium"
                 />
 
@@ -41,9 +40,7 @@ export function CurtainMore () {
                     <Switch
                         name={''}
                         theme={themeType}
-                        checked={toggleBooleanByNumber(
-                          sdk.deviceData.auto_power ? sdk.deviceData.auto_power : 0
-                        )}
+                        checked={toggleBooleanByNumber(sdk.deviceData.auto_power ? sdk.deviceData.auto_power : 0)}
                         onChange={(value: boolean) => {
                           apiControlDeviceData({ auto_power: value ? 1 : 0 });
                         }}
@@ -51,19 +48,19 @@ export function CurtainMore () {
                 }
                 valueStyle="gray"
                 prefixIcon={
-                  (themeType == 'dark')?
-                  (
-                    <SvgIcon name={'icon-curtains-self-start-switch-'+themeType} width={40} height={40}/>
-                    ):
-                    (<SvgIcon name={'icon-curtains-self-start-switch-'+themeType} width={40} height={40}/>
-                  )
+                  (themeType == 'dark')
+                    ? (
+                    <SvgIcon name={`icon-curtains-self-start-switch-${themeType}`} width={40} height={40}/>
+                    )
+                    : (<SvgIcon name={`icon-curtains-self-start-switch-${themeType}`} width={40} height={40}/>
+                    )
                 }
                 size="medium"
                 />
             </div>
         </article>
   );
-};
+}
 
 export default CurtainMore;
 

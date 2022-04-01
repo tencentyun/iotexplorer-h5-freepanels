@@ -85,11 +85,10 @@ export function RouteList(props: RouteListProps) {
       return formatDatas.map((row, index) => (
         <Row key={index}>{row.map(listItem)}</Row>
       ));
-    } else {
-      return options.map((row, index) => (
-        <Row key={index}>{listItem(row)}</Row>
-      ));
     }
+    return options.map((row, index) => (
+        <Row key={index}>{listItem(row)}</Row>
+    ));
   };
 
   return (
@@ -97,7 +96,7 @@ export function RouteList(props: RouteListProps) {
       className={classNames(
         '_component_business_route-list_',
         `layout_type_${layout}`,
-        props.className
+        props.className,
       )}
     >
       {renderRow(options, col)}

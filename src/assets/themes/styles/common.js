@@ -24,5 +24,5 @@ module.exports = {
   '@color_1': '#000000',
   '@color_2': '#0f0f0f',
   '@color_3': '#B5C4D1',
-  '@color_4': '#ffffff'
+  '@color_4': '#ffffff',
 };

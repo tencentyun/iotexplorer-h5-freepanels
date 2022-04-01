@@ -23,13 +23,13 @@ const TemperatureUnit = () => {
 
   const handleControlByAction = (key: string, value: any) => {
     apiControlDeviceData({
-      [key]: value
+      [key]: value,
     });
   };
 
   const handleCommit = (value: string) => {
     apiControlDeviceData({
-      temp_unit_convert: value
+      temp_unit_convert: value,
     });
   };
 
@@ -42,9 +42,9 @@ const TemperatureUnit = () => {
         x1: '11.8644068%',
         y1: '18.182147%',
         x2: '104.602754%',
-        y2: '88.2505064%'
+        y2: '88.2505064%',
       };
-    } else if (themeType === 'blueWhite') {
+    } if (themeType === 'blueWhite') {
       return {
         gradientId: 'unit',
         startColor: '#3374FA',
@@ -52,9 +52,9 @@ const TemperatureUnit = () => {
         x1: '50%',
         y1: '0%',
         x2: '50%',
-        y2: '100%'
+        y2: '100%',
       };
-    } else if (themeType === 'dark') {
+    } if (themeType === 'dark') {
       return {
         gradientId: 'unit',
         startColor: '#00F0FF',
@@ -62,17 +62,16 @@ const TemperatureUnit = () => {
         x1: '11.8644068%',
         y1: '18.182147%',
         x2: '104.602754%',
-        y2: '88.2505064%'
+        y2: '88.2505064%',
       };
-    } else if (themeType === 'morandi') {
+    } if (themeType === 'morandi') {
       return {
-        color: '#576273'
-      };
-    } else {
-      return {
-        color: '#000000'
+        color: '#576273',
       };
     }
+    return {
+      color: '#000000',
+    };
   };
 
   return (
@@ -90,9 +89,7 @@ const TemperatureUnit = () => {
             </div>
             <div className="btn-wrap">
               <Button
-                className={classNames(
-                  deviceData.temp_unit_convert === 'celsius' ? 'active' : null
-                )}
+                className={classNames(deviceData.temp_unit_convert === 'celsius' ? 'active' : null)}
                 onClick={() => {
                   handleCommit('celsius');
                 }}
@@ -100,11 +97,9 @@ const TemperatureUnit = () => {
                 &#176;C
               </Button>
               <Button
-                className={classNames(
-                  deviceData.temp_unit_convert === 'fahrenheit'
-                    ? 'active'
-                    : null
-                )}
+                className={classNames(deviceData.temp_unit_convert === 'fahrenheit'
+                  ? 'active'
+                  : null)}
                 onClick={() => {
                   handleCommit('fahrenheit');
                 }}
@@ -114,7 +109,7 @@ const TemperatureUnit = () => {
             </div>
           </div>
           <List>
-            {/*湿度设置*/}
+            {/* 湿度设置*/}
             <SetTemp />
             <List.Item
               prefix={'3D扫风'}

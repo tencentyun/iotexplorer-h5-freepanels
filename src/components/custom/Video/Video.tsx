@@ -11,7 +11,7 @@ export const ACTION = {
   VOLUME: 'volume', // 音量   // TODO 设计确认
   CAPTURE: 'capture', // 截屏
   RECORD: 'record', // 视频录制
-  FULL: 'full' // 全屏
+  FULL: 'full', // 全屏
 };
 
 export function Video({ actions = Object.entries(ACTION).map(([key, value]) => value), showDateTime = true }) {
@@ -26,7 +26,7 @@ export function Video({ actions = Object.entries(ACTION).map(([key, value]) => v
     <div className="cus-video">
       <div className="video">视频内容</div>
       <div className="action">
-        {actions.map((actionName) => (
+        {actions.map(actionName => (
           <div key={actionName} onClick={onActionClick.bind(null, actionName)}>
             <Icon name={`action-icon action-${actionName}`} />
           </div>

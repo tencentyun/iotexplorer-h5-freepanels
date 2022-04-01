@@ -16,7 +16,7 @@ export function Settings() {
     <Input
       placeholder="请填写设备名称"
       value={deviceName}
-      onChange={val => {
+      onChange={(val) => {
         onEditDeviceName(val);
       }}
     />
@@ -36,7 +36,7 @@ export function Settings() {
               content: deviceNameEditor,
               cancelText: '取消',
               confirmText: '完成',
-              onConfirm: () => {}
+              onConfirm: () => {},
             });
           }}
         ></Cell>

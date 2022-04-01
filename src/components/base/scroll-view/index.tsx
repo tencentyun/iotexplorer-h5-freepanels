@@ -11,10 +11,8 @@ const View = styled.div`
   width: ${(props: ScrollViewProps) => formatPxUnit(props.width || '100vw')};
   height: ${(props: ScrollViewProps) => formatPxUnit(props.height)};
   overflow: hidden;
-  overflow-x: ${(props: ScrollViewProps) =>
-    props.scrollX ? 'scroll' : 'scroll'};
-  overflow-y: ${(props: ScrollViewProps) =>
-    props.scrollY ? 'scroll' : 'scroll'};
+  overflow-x: ${(props: ScrollViewProps) => (props.scrollX ? 'scroll' : 'scroll')};
+  overflow-y: ${(props: ScrollViewProps) => (props.scrollY ? 'scroll' : 'scroll')};
 `;
 
 export interface ScrollViewProps extends StyledProps {

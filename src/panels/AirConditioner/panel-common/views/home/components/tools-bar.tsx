@@ -5,9 +5,9 @@ import { SvgIcon } from '@components/common/icon';
 import { ListPicker } from '@components/business';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 
-import { useDeviceData } from '@hooks/useDeviceData';
+import { useDeviceData, formatDeviceData, onControlDevice } from '@hooks/useDeviceData';
 import { getThemeType } from '@libs/theme';
-import { formatDeviceData, onControlDevice } from '@hooks/useDeviceData';
+
 import './tools-bar.less';
 
 interface DeviceMaps {
@@ -32,95 +32,95 @@ export function ToolsBar() {
 
   // 工作模式选项
   const modeOptions = () => {
-    if (deviceMaps['mode']) {
-      const options = deviceMaps['mode'].map((t: any) => ({
+    if (deviceMaps.mode) {
+      const options = deviceMaps.mode.map((t: any) => ({
         label: t.desc,
-        value: t.name
+        value: t.name,
       }));
       return options.length > 0 ? options : [];
     }
     return [
       {
         label: '自动',
-        value: 'auto'
+        value: 'auto',
       },
       {
         label: '制冷',
-        value: 'cold'
+        value: 'cold',
       },
       {
         label: '制热',
-        value: 'hot'
+        value: 'hot',
       },
       {
         label: '除湿',
-        value: 'arefaction'
+        value: 'arefaction',
       },
       {
         label: '送风',
-        value: 'wind'
+        value: 'wind',
       },
       {
         label: 'ECO',
-        value: 'eco'
+        value: 'eco',
       },
       {
         label: '地暖',
-        value: 'floor_heat'
+        value: 'floor_heat',
       },
       {
         label: '地暖及制热',
-        value: 'floor_eat_and_heat'
-      }
+        value: 'floor_eat_and_heat',
+      },
     ];
   };
 
   // 档位选项
   const gearOptions = () => {
-    if (deviceMaps['fan_speed_enum']) {
-      const options = deviceMaps['fan_speed_enum'].map((t: any) => ({
+    if (deviceMaps.fan_speed_enum) {
+      const options = deviceMaps.fan_speed_enum.map((t: any) => ({
         label: t.desc,
-        value: t.name
+        value: t.name,
       }));
       return options.length > 0 ? options : [];
     }
     return [
       {
         label: '睡眠',
-        value: 'sleep'
+        value: 'sleep',
       },
       {
         label: '健康',
-        value: 'health'
+        value: 'health',
       },
       {
         label: '自然',
-        value: 'natural'
+        value: 'natural',
       },
       {
         label: '强力',
-        value: 'strong'
+        value: 'strong',
       },
       {
         label: '自动',
-        value: 'auto'
+        value: 'auto',
       },
       {
         label: '低风',
-        value: 'low'
+        value: 'low',
       },
       {
         label: '中风',
-        value: 'middle'
+        value: 'middle',
       },
       {
         label: '高风',
-        value: 'high'
+        value: 'high',
       },
       {
         label: '静音',
-        value: 'mute'
-      }
+        value: 'mute',
+      },
     ];
   };
 
@@ -135,9 +135,9 @@ export function ToolsBar() {
             x1: '50%',
             y1: '0%',
             x2: '50%',
-            y2: '100%'
+            y2: '100%',
           };
-        } else if (key === 'gear') {
+        } if (key === 'gear') {
           return {
             gradientId: 'gear',
             startColor: '#527DF4',
@@ -145,35 +145,32 @@ export function ToolsBar() {
             x1: '11.8644068%',
             y1: '18.182147%',
             x2: '104.602754%',
-            y2: '88.2505064%'
-          };
-        } else {
-          return {
-            gradientId: 'more',
-            startColor: '#FFDB01',
-            endColor: '#FFC105',
-            x1: '11.8644068%',
-            y1: '18.182147%',
-            x2: '104.602754%',
-            y2: '88.2505064%'
+            y2: '88.2505064%',
           };
         }
-      } else {
         return {
-          color: '#B4C3D0'
+          gradientId: 'more',
+          startColor: '#FFDB01',
+          endColor: '#FFC105',
+          x1: '11.8644068%',
+          y1: '18.182147%',
+          x2: '104.602754%',
+          y2: '88.2505064%',
         };
       }
-    } else if (themeType === 'blueWhite') {
+      return {
+        color: '#B4C3D0',
+      };
+    } if (themeType === 'blueWhite') {
       if (powerStatus === 1) {
         return {
-          color: '#006FFF'
-        };
-      } else {
-        return {
-          color: '#A6AFC2'
+          color: '#006FFF',
         };
       }
-    } else if (themeType === 'dark') {
+      return {
+        color: '#A6AFC2',
+      };
+    } if (themeType === 'dark') {
       if (powerStatus === 1) {
         return {
           gradientId: 'icon',
@@ -182,40 +179,35 @@ export function ToolsBar() {
           x1: '11.8644068%',
           y1: '18.182147%',
           x2: '104.602754%',
-          y2: '88.2505064%'
-        };
-      } else {
-        return {
-          color: '#B5C4D1'
+          y2: '88.2505064%',
         };
       }
-    } else if (themeType === 'morandi') {
+      return {
+        color: '#B5C4D1',
+      };
+    } if (themeType === 'morandi') {
       if (powerStatus === 1) {
         if (value) {
           return {
-            color: '#B5ABA1'
-          };
-        } else {
-          return {
-            color: '#515B6C'
+            color: '#B5ABA1',
           };
         }
-      } else {
         return {
-          color: '#909CAB'
+          color: '#515B6C',
         };
       }
-    } else {
-      if (powerStatus === 1) {
-        return {
-          color: '#0F0F0F'
-        };
-      } else {
-        return {
-          color: '#C9D4DD'
-        };
-      }
+      return {
+        color: '#909CAB',
+      };
     }
+    if (powerStatus === 1) {
+      return {
+        color: '#0F0F0F',
+      };
+    }
+    return {
+      color: '#C9D4DD',
+    };
   };
 
   const enumWorkMode: any = {
@@ -226,7 +218,7 @@ export function ToolsBar() {
     wind: '送风',
     eco: 'ECO',
     floor_heat: '地暖',
-    floor_eat_and_heat: '地暖及制热'
+    floor_eat_and_heat: '地暖及制热',
   };
 
   const enumGear: any = {
@@ -238,7 +230,7 @@ export function ToolsBar() {
     low: '低风',
     middle: '中风',
     high: '高风',
-    mute: '静音'
+    mute: '静音',
   };
 
   return (
@@ -246,7 +238,7 @@ export function ToolsBar() {
       <div
         className={classNames(
           'item',
-          sdk.deviceData.power_switch ? 'active' : ''
+          sdk.deviceData.power_switch ? 'active' : '',
         )}
         onClick={() => {
           if (!sdk.deviceData.power_switch) return;
@@ -259,17 +251,17 @@ export function ToolsBar() {
           {...iconColor(sdk.deviceData.power_switch, 'ultrasonic', sdk.deviceData.mode)}
         ></SvgIcon>
         <div className={classNames(
-            'label',
-            {'active-label': sdk.deviceData.power_switch && sdk.deviceData.mode },
-            {'default-label': sdk.deviceData.power_switch && !sdk.deviceData.mode }
-          )}>
+          'label',
+          { 'active-label': sdk.deviceData.power_switch && sdk.deviceData.mode },
+          { 'default-label': sdk.deviceData.power_switch && !sdk.deviceData.mode },
+        )}>
             {sdk.deviceData.mode ? enumWorkMode[sdk.deviceData.mode] : '自动模式'}
           </div>
       </div>
       <div
         className={classNames(
           'item',
-          sdk.deviceData.power_switch ? 'active' : ''
+          sdk.deviceData.power_switch ? 'active' : '',
         )}
         onClick={() => {
           if (!sdk.deviceData.power_switch) return;
@@ -284,15 +276,15 @@ export function ToolsBar() {
         <div
           className={classNames(
             'label',
-            {'active-label': sdk.deviceData.power_switch && sdk.deviceData.fan_speed_enum },
-            {'default-label': sdk.deviceData.power_switch && !sdk.deviceData.fan_speed_enum }
+            { 'active-label': sdk.deviceData.power_switch && sdk.deviceData.fan_speed_enum },
+            { 'default-label': sdk.deviceData.power_switch && !sdk.deviceData.fan_speed_enum },
           )}>
             {sdk.deviceData.fan_speed_enum ? enumGear[sdk.deviceData.fan_speed_enum] : '风速'}</div>
       </div>
       <div
         className={classNames(
           'item',
-          sdk.deviceData.power_switch ? 'active' : ''
+          sdk.deviceData.power_switch ? 'active' : '',
         )}
         onClick={() => {
           history.push('/more');
@@ -314,7 +306,7 @@ export function ToolsBar() {
         options={modeOptions()}
         layoutType='spaceBetween'
         onCancel={() => setModeVisible(false)}
-        onConfirm={value => {
+        onConfirm={(value) => {
           onControlDevice('mode', value[0]);
           setModeVisible(false);
           setModeValue(value[0]);
@@ -329,7 +321,7 @@ export function ToolsBar() {
         options={gearOptions()}
         layoutType='spaceBetween'
         onCancel={() => setGearVisible(false)}
-        onConfirm={value => {
+        onConfirm={(value) => {
           onControlDevice('fan_speed_enum', value[0]);
           setGearVisible(false);
           setGearValue(value[0]);

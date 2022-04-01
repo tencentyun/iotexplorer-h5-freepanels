@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
-import {Cell, Modal} from '@components/base';
-import classNames from "classnames";
-import {onControlDevice} from "@hooks/useDeviceData";
+import { Cell, Modal } from '@components/base';
+import classNames from 'classnames';
+import { onControlDevice } from '@hooks/useDeviceData';
 import './unit.less';
 import hookImage from '../../icons/normal/selected-hook.svg';
 import hookImageBlueWhite from '../../icons/blue-white/selected-hook.svg';
@@ -10,7 +10,7 @@ import hookImageDark from '../../icons/dark/selected-hook.svg';
 import hookImageColorful from '../../icons/colorful/selected-hook.svg';
 import hookImageMorandi from '../../icons/morandi/selected-hook.svg';
 import hookImageDefault from '../../icons/normal/hook.svg';
-import {getThemeType} from "@libs/theme";
+import { getThemeType } from '@libs/theme';
 const Unit = ({ isShow, onClose }) => {
   const themeType = getThemeType();
   const hookImageSrc = () => {

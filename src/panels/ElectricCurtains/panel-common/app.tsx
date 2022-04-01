@@ -1,26 +1,26 @@
 /**
  * 电动窗帘
  */
-import React, {useEffect } from 'react';
-import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
-import {useDeviceData} from '@hooks/useDeviceData';
-import {QuicknessMode} from '@components/base';
+import { useDeviceData } from '@hooks/useDeviceData';
+import { QuicknessMode } from '@components/base';
 import Timer from './views/timer/timer';
 import CurtainMore from './views/curtain-more/curtain_more';
-import {Home} from './views/home/home';
-import {DeviceSateContext} from './deviceStateContext';
+import { Home } from './views/home/home';
+import { DeviceSateContext } from './deviceStateContext';
 import 'antd-mobile/es/global';
 import '@icons/themes/icons/svg/electric-curtains';
 import '@icons/themes/global.less';
 import './style.less';
 import './themes.less'; // 4套皮肤 构建前要修改var.less变量文件
 
-export const App = QuicknessMode(function App() {
+export const App = QuicknessMode(() => {
   const isBluetoothDevice = true;
   // eslint-disable-next-line no-undef
   const isDev = process.env.NODE_ENV !== 'production';
-  //新旧链接的兼容
+  // 新旧链接的兼容
   const hasScf = /\/scf\//.test(location.href);
 
   let basename = isDev
@@ -33,20 +33,19 @@ export const App = QuicknessMode(function App() {
     basename += '/live';
   }
 
-  const [state, {onDeviceDataChange, onDeviceStatusChange}] =
-    useDeviceData(sdk);
+  const [state, { onDeviceDataChange, onDeviceStatusChange }] =    useDeviceData(sdk);
   console.log('state===============', state);
 
   // 获取设备模型数据
-  const getDeviceData = deviceId => {
-    sdk.getDeviceData({deviceId});
+  const getDeviceData = (deviceId) => {
+    sdk.getDeviceData({ deviceId });
     console.log('==getDeviceData===', deviceId, state);
   };
   getDeviceData(sdk.deviceId);
 
   useEffect(() => {
     sdk.setShareConfig({
-      title: sdk.displayName
+      title: sdk.displayName,
     });
   }, []);
 
@@ -82,19 +81,19 @@ export const App = QuicknessMode(function App() {
       window.document.title = deviceDisplayName;
     });
 
-    const handleWsControl = ({deviceId, deviceData}) => {
+    const handleWsControl = ({ deviceId, deviceData }) => {
       if (deviceId === sdk.deviceId) {
         onDeviceDataChange(deviceData);
       }
     };
 
-    const handleWsReport = ({deviceId, deviceData}) => {
+    const handleWsReport = ({ deviceId, deviceData }) => {
       if (deviceId === sdk.deviceId) {
         onDeviceDataChange(deviceData);
       }
     };
 
-    const handleWsStatusChange = ({deviceId, deviceStatus}) => {
+    const handleWsStatusChange = ({ deviceId, deviceStatus }) => {
       console.log('handleWsStatusChange>>>>', deviceStatus);
       if (deviceId === sdk.deviceId) {
         onDeviceStatusChange(deviceStatus);
@@ -119,7 +118,7 @@ export const App = QuicknessMode(function App() {
     const doCheckFirmwareUpgrade = async () => {
       try {
         const upgradeInfo = await sdk.checkFirmwareUpgrade({
-          silent: false // 设置为 true 则只检查，不弹出提示
+          silent: false, // 设置为 true 则只检查，不弹出提示
         });
         console.log('firmware upgrade info', upgradeInfo);
       } catch (err) {
@@ -150,15 +149,15 @@ export const App = QuicknessMode(function App() {
       <DeviceSateContext.Provider value={state}>
         <Router basename={basename}>
           <Switch>
-            {/*定时*/}
+            {/* 定时*/}
             <Route path="/timer">
               <Timer/>
             </Route>
-            {/*更多*/}
+            {/* 更多*/}
             <Route path="/curtain_more">
               <CurtainMore/>
             </Route>
-            {/*首页*/}
+            {/* 首页*/}
             <Route path="/">
               {/* <BlueWhite_cloud /> */}
               <Home/>

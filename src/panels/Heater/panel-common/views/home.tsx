@@ -28,8 +28,8 @@ export function Home() {
                       ? deviceData.current_c_temp
                       : 0
                     : deviceData.current_f_temp
-                    ? deviceData.current_f_temp
-                    : 0
+                      ? deviceData.current_f_temp
+                      : 0
                 }
                 dashboardStatus={
                   deviceData.power_switch ? 'initiate' : 'shutdown'
@@ -52,8 +52,8 @@ export function Home() {
                       ? deviceData.current_c_temp
                       : 0
                     : deviceData.current_f_temp
-                    ? deviceData.current_f_temp
-                    : 0
+                      ? deviceData.current_f_temp
+                      : 0
                 }
                 dashboardStatus={
                   deviceData.power_switch ? 'initiate' : 'shutdown'
@@ -76,8 +76,8 @@ export function Home() {
                       ? deviceData.current_c_temp
                       : 0
                     : deviceData.current_f_temp
-                    ? deviceData.current_f_temp
-                    : 0
+                      ? deviceData.current_f_temp
+                      : 0
                 }
                 dashboardStatus={
                   deviceData.power_switch ? 'initiate' : 'shutdown'
@@ -100,8 +100,8 @@ export function Home() {
                       ? deviceData.current_c_temp
                       : 0
                     : deviceData.current_f_temp
-                    ? deviceData.current_f_temp
-                    : 0
+                      ? deviceData.current_f_temp
+                      : 0
                 }
                 dashboardStatus={
                   deviceData.power_switch ? 'initiate' : 'shutdown'
@@ -126,8 +126,8 @@ export function Home() {
                           ? deviceData.current_c_temp
                           : 0
                         : deviceData.current_f_temp
-                        ? deviceData.current_f_temp
-                        : 0
+                          ? deviceData.current_f_temp
+                          : 0
                     }
                     dashboardStatus={
                       deviceData.power_switch ? 'initiate' : 'shutdown'

@@ -4,14 +4,14 @@ import { List } from 'antd-mobile';
 const labelEnum = {
   power_switch: {
     label: '开关',
-    value: ['关闭', '开启']
-  }
+    value: ['关闭', '开启'],
+  },
 };
 
 export const TimerAdd = (props) => {
   const {
     context: { power_switch = 0 },
-    history: { PATH, push }
+    history: { PATH, push },
   } = props;
   return (
     <CloudTimerAdd labelEnum={labelEnum}  {...props}>

@@ -1,9 +1,9 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import classNames from 'classnames';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
-import {Battery} from '@components/business';
-import {getThemeType} from '@libs/theme';
-import {Cell} from '@components/base';
+import { Battery } from '@components/business';
+import { getThemeType } from '@libs/theme';
+import { Cell } from '@components/base';
 import PirVisible from './pirVisible/pirVisible';
 import KeepTime from './keepTime/keepTime';
 import './home.less';
@@ -99,7 +99,7 @@ export function Home() {
         return TimeImage;
     }
   };
-  const pirSensitivityVal = (val: String) => {
+  const pirSensitivityVal = (val: string) => {
     switch (val) {
       case 'low':
         return '低灵敏度';
@@ -111,7 +111,7 @@ export function Home() {
         return '';
     }
   };
-  const keepTimeVal = (val: String) => {
+  const keepTimeVal = (val: string) => {
     switch (val) {
       case 'thirtySecond':
         return '有人30S';
@@ -142,17 +142,17 @@ export function Home() {
     <article
       className={classNames(
         'home',
-        sdk.deviceData.power_switch === 0 && 'power-off'
+        sdk.deviceData.power_switch === 0 && 'power-off',
       )}
     >
-      {/*电量*/}
+      {/* 电量*/}
       <Battery
         isShowPercent={false}
         isShowTip={false}
         value={sdk.deviceData.battery_percentage}
         color={BatteryColor()}
       />
-      {/*仪表盘*/}
+      {/* 仪表盘*/}
       <section className={classNames('dashboard')}>
         <div className="ticker">
           <section>
@@ -201,7 +201,7 @@ export function Home() {
           prefixIcon={cellIcon(sensitivityImageSrc())}
           onClick={() => setIsShowPir(true)}
         >
-          {/*<ListPicker
+          {/* <ListPicker
                 visible={isShowPirVisible}
                 title="PIR灵敏度"
                 defaultValue={[deviceData['keep_time']]}

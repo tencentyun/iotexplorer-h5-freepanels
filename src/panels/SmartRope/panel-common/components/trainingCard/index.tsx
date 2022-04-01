@@ -24,7 +24,7 @@ export function TrainingCard(props: TraningCardProps) {
   // 训练模式
   const mode: string = props.mode || 'free_jump';
   const [state] = useDeviceData(sdk);
-  const deviceData: any = state.deviceData;
+  const { deviceData } = state;
 
   // 实时个数
   const currentTotal = (): number => {
@@ -72,7 +72,7 @@ export function TrainingCard(props: TraningCardProps) {
   };
 
   return (
-    <div className={classNames('training-card-' + theme)}>
+    <div className={classNames(`training-card-${theme}`)}>
       <div className="card-action">
         <div className="owner-data">
           <Row className="owner-item">

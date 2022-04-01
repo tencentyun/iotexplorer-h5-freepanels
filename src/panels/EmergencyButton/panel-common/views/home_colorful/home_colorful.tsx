@@ -1,12 +1,12 @@
 import React from 'react';
-import './home_colorful.less'
+import './home_colorful.less';
 import classNames from 'classnames';
-import {getThemeType} from '@libs/theme';
-import {apiControlDeviceData} from '@hooks/useDeviceData';
-import {toggleBooleanByNumber} from '@libs/utillib';
-import {SvgIcon} from '@components/common/icon';
-import {Cell, Switch} from '@components/base';
-import {Normal_progress_bar} from '../normal-progress-bar/normal_progress_bar';
+import { getThemeType } from '@libs/theme';
+import { apiControlDeviceData } from '@hooks/useDeviceData';
+import { toggleBooleanByNumber } from '@libs/utillib';
+import { SvgIcon } from '@components/common/icon';
+import { Cell, Switch } from '@components/base';
+import { Normal_progress_bar } from '../normal-progress-bar/normal_progress_bar';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 
 export function Home_colorful() {
@@ -40,7 +40,7 @@ export function Home_colorful() {
 
         <div className="icon_card">
           <div className="head-icon">
-            <SvgIcon name={'icon-emergency-button-' + themeType} width={160} height={160}/>
+            <SvgIcon name={`icon-emergency-button-${themeType}`} width={160} height={160}/>
           </div>
 
           <div id={'center_scale'}>
@@ -60,17 +60,15 @@ export function Home_colorful() {
             <Switch
               name={''}
               theme={themeType}
-              checked={toggleBooleanByNumber(
-                sdk.deviceData.disarmed ? sdk.deviceData.disarmed : 0
-              )}
+              checked={toggleBooleanByNumber(sdk.deviceData.disarmed ? sdk.deviceData.disarmed : 0)}
               onChange={(value: boolean) => {
-                apiControlDeviceData({disarmed: value ? 1 : 0});
+                apiControlDeviceData({ disarmed: value ? 1 : 0 });
               }}
             />
           }
           valueStyle="gray"
           size="medium"
-          prefixIcon={<SvgIcon name={'icon-emergency-disarm-' + themeType} width={40} height={40}/>}
+          prefixIcon={<SvgIcon name={`icon-emergency-disarm-${themeType}`} width={40} height={40}/>}
         />
 
         <Cell
@@ -82,17 +80,15 @@ export function Home_colorful() {
             <Switch
               name={''}
               theme={themeType}
-              checked={toggleBooleanByNumber(
-                sdk.deviceData.arm ? sdk.deviceData.arm : 0
-              )}
+              checked={toggleBooleanByNumber(sdk.deviceData.arm ? sdk.deviceData.arm : 0)}
               onChange={(value: boolean) => {
-                apiControlDeviceData({arm: value ? 1 : 0});
+                apiControlDeviceData({ arm: value ? 1 : 0 });
               }}
             />
           }
           valueStyle="gray"
           size="medium"
-          prefixIcon={<SvgIcon name={'icon-emergency-go-out-and-arm-' + themeType} width={40} height={40}/>}
+          prefixIcon={<SvgIcon name={`icon-emergency-go-out-and-arm-${themeType}`} width={40} height={40}/>}
         />
 
         <Cell
@@ -104,17 +100,15 @@ export function Home_colorful() {
             <Switch
               name={''}
               theme={themeType}
-              checked={toggleBooleanByNumber(
-                sdk.deviceData.home ? sdk.deviceData.home : 0
-              )}
+              checked={toggleBooleanByNumber(sdk.deviceData.home ? sdk.deviceData.home : 0)}
               onChange={(value: boolean) => {
-                apiControlDeviceData({home: value ? 1 : 0});
+                apiControlDeviceData({ home: value ? 1 : 0 });
               }}
             />
           }
           valueStyle="gray"
           size="medium"
-          prefixIcon={<SvgIcon name={'icon-emergency-arm-your-home-' + themeType} width={40} height={40}/>}
+          prefixIcon={<SvgIcon name={`icon-emergency-arm-your-home-${themeType}`} width={40} height={40}/>}
         />
 
         <Cell
@@ -126,21 +120,19 @@ export function Home_colorful() {
             <Switch
               name={''}
               theme={themeType}
-              checked={toggleBooleanByNumber(
-                sdk.deviceData.sos ? sdk.deviceData.sos : 0
-              )}
+              checked={toggleBooleanByNumber(sdk.deviceData.sos ? sdk.deviceData.sos : 0)}
               onChange={(value: boolean) => {
-                apiControlDeviceData({sos: value ? 1 : 0});
+                apiControlDeviceData({ sos: value ? 1 : 0 });
               }}
             />
           }
           valueStyle="gray"
           size="medium"
-          prefixIcon={<SvgIcon name={'icon-emergency-urgent-' + themeType} width={45} height={45}/>}
+          prefixIcon={<SvgIcon name={`icon-emergency-urgent-${themeType}`} width={45} height={45}/>}
         />
       </div>
     </article>
   );
-};
+}
 
 export default Home_colorful;

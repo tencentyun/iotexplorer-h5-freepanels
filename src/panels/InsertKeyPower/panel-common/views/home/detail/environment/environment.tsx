@@ -56,9 +56,9 @@ const Environment = () => {
   const recordList: Option[] = [];
   for (let i = 0; i < 180; i++) {
     recordList.push({
-      label: i + '秒',
+      label: `${i}秒`,
       value: i,
-      disabled: false
+      disabled: false,
     });
   }
   return (
@@ -74,7 +74,7 @@ const Environment = () => {
         >
           <img src={timeImageSrc()}></img>
           <div className="value">
-            {sdk.deviceData.timer_cut ? sdk.deviceData.timer_cut + 's' : '-'}
+            {sdk.deviceData.timer_cut ? `${sdk.deviceData.timer_cut}s` : '-'}
           </div>
           <div className="label">断电延时</div>
           <ListPicker
@@ -83,7 +83,7 @@ const Environment = () => {
             defaultValue={[sdk.deviceData.timer_cut ? sdk.deviceData.timer_cut : '']}
             options={recordList}
             onCancel={() => onToggleTimerCut(false)}
-            onConfirm={value => {
+            onConfirm={(value) => {
               onControlDevice('timer_cut', value[0]);
               onToggleTimerCut(false);
             }}

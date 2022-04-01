@@ -48,7 +48,7 @@ export function BtnWithCheckBox({
         <Btn
           {...{
             disabled: associate ? !localCheck : btnProps.disabled,
-            ...btnProps
+            ...btnProps,
           }}
         />
       </BtnGroup>

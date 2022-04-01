@@ -24,7 +24,7 @@ export function Setting() {
   const optionsLabel: any = {
     led: 'LED灯',
     incandescent: '白炽灯',
-    eco: '节能灯'
+    eco: '节能灯',
   };
 
   return (
@@ -85,7 +85,7 @@ export function Setting() {
               className={classNames(
                 'submit-button',
                 'font_line_3',
-                isUnlock ? '' : 'lock'
+                isUnlock ? '' : 'lock',
               )}
               onClick={() => {
                 if (!isUnlock) return;
@@ -101,16 +101,16 @@ export function Setting() {
             visible={typeVisible}
             title="灯泡类型"
             defaultValue={[
-              deviceData.light_type ? deviceData.light_type : 'led'
+              deviceData.light_type ? deviceData.light_type : 'led',
             ]}
             options={[
               { value: 'led', label: 'LED灯' },
               { value: 'incandescent', label: '白炽灯' },
-              { value: 'eco', label: '节能灯' }
+              { value: 'eco', label: '节能灯' },
             ]}
             layoutType="spaceBetween"
             onCancel={() => onToggleTypeSelect(false)}
-            onConfirm={value => {
+            onConfirm={(value) => {
               onToggleTypeSelect(false);
               onControlDevice('light_type', value);
             }}

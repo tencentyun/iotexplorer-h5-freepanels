@@ -8,11 +8,11 @@ import './detail.less';
 export function Detail() {
   return (
     <article className={classNames('detail')}>
-      {/*电源操作栏*/}
+      {/* 电源操作栏*/}
       <Power />
-      {/*风量调节*/}
+      {/* 风量调节*/}
       <AirFlow />
-      {/*温度和湿度*/}
+      {/* 温度和湿度*/}
       <Environment />
     </article>
   );

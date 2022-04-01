@@ -1,13 +1,12 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import './oven_foot.less';
 import classNames from 'classnames';
 import End_Prompt from '../../pop-up/end_prompt/end_prompt';
 import FinishPrompt from '../../pop-up/finish_prompt/finish_prompt';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
-import {apiControlDeviceData} from '@hooks/useDeviceData';
+import { apiControlDeviceData } from '@hooks/useDeviceData';
 
 export function Oven_foot() {
-
   const [selectFinishPrompt, theFinishPrompt] = useState(false);
   const [selectEnd_Prompt, theEnd_Prompt] = useState(false);
   const [cookingState, setCookingState] = useState();
@@ -24,7 +23,7 @@ export function Oven_foot() {
     apiControlDeviceData({
       power_switch: 1,
       work_state: '0',
-      operation_control: '0'
+      operation_control: '0',
     });
     setCookingState(0);
   };
@@ -50,9 +49,9 @@ export function Oven_foot() {
           </div>
         </div>
       );
-    } else {
-      if (sdk.deviceData.work_state === '1'){
-        return (
+    }
+    if (sdk.deviceData.work_state === '1') {
+      return (
           <div className="foot_card">
             <div className="card_font" onClick={onEnd_Prompt}>
               结束
@@ -61,9 +60,9 @@ export function Oven_foot() {
               暂停
             </div>
           </div>
-        );
-      } else if(sdk.deviceData.work_state === '5') {
-        return (
+      );
+    } if (sdk.deviceData.work_state === '5') {
+      return (
           <div className="foot_card">
             <div className="card_font" onClick={onEnd_Prompt}>
               结束
@@ -72,17 +71,15 @@ export function Oven_foot() {
               继续
             </div>
           </div>
-        );
-      } else {
-        return (
+      );
+    }
+    return (
           <div className="foot_card">
             <div className="card_font" onClick={onClose}>
               关机
             </div>
           </div>
-        );
-      }
-    }
+    );
   };
 
   return (
@@ -102,6 +99,6 @@ export function Oven_foot() {
       />
     </article>
   );
-};
+}
 
 export default Oven_foot;

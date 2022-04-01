@@ -20,7 +20,7 @@ export interface LightSwitchProps extends StyledProps {
 export function LightSwitch(props: LightSwitchProps) {
   const [value, setValue] = useState(0);
   const [returnValue, setReturnValue] = useState(0);
-  const currentHeight = (value * 100).toFixed(3) + '%';
+  const currentHeight = `${(value * 100).toFixed(3)}%`;
   const wrapper = useRef();
   const current = useRef();
 
@@ -45,7 +45,7 @@ export function LightSwitch(props: LightSwitchProps) {
         value = 1;
       }
       setValue(value);
-      if(endTouch){
+      if (endTouch) {
         setReturnValue(value);
       }
     }
@@ -64,8 +64,8 @@ export function LightSwitch(props: LightSwitchProps) {
     <div
       className={classNames(
         '_component_business_light-switch_',
-        'theme-' + props.theme,
-        props.className
+        `theme-${props.theme}`,
+        props.className,
       )}
     >
       <div
@@ -86,15 +86,15 @@ export function LightSwitch(props: LightSwitchProps) {
           ref={current}
           style={{ height: currentHeight }}
         >
-          {props.theme === 'blueWhite' && 
-            <>
+          {props.theme === 'blueWhite'
+            && <>
               <div className="line"></div>
               <div className="mask"></div>
             </>
           }
         </div>
         {props.theme === 'blueWhite' && <div className="line"></div>}
-        
+
         <div className="switch-slider">
           <span className="switch-bar"></span>
         </div>

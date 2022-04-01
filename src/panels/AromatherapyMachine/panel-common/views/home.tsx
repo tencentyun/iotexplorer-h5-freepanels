@@ -10,7 +10,7 @@ import {
   BlueHome,
   DarkHome,
   ColorfulHome,
-  MorandiHome
+  MorandiHome,
 } from '../components/index';
 import './home.less';
 

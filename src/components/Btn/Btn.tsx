@@ -80,7 +80,7 @@ export function Btn({
     >
       {renderContent()}
     </button>
-  )
+  );
 }
 
 export interface RawBtnProps extends StyledProps {

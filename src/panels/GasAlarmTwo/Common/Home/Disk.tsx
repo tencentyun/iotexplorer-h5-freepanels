@@ -10,9 +10,8 @@ export interface DiskProps {
 }
 
 export function Disk({
-  deviceData
+  deviceData,
 }: DiskProps) {
-
   return (
     <div className={classNames('disk', { 'is-alarm': deviceData.gas_sensor_state })}>
       <div className="content">

@@ -18,10 +18,10 @@ export function Slider(props: SliderProps) {
   useEffect(() => {
     progress.current.style.transition = null;
     progress.current.style.width = '0%';
-    setTimeout(()=>{
+    setTimeout(() => {
       progress.current.style.transition = 'width 2s';
-      progress.current.style.width = Math.floor(value * 100).toFixed(3) + '%';
-    },50)
+      progress.current.style.width = `${Math.floor(value * 100).toFixed(3)}%`;
+    }, 50);
     props.onChange && props.onChange(value);
   }, [value]);
   return (

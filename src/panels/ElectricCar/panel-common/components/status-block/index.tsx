@@ -24,14 +24,12 @@ export function StatusBlock() {
         <Block
           className={classNames(
             'status-block',
-            sdk.deviceData.lock_switch === 1 ? 'active' : ''
+            sdk.deviceData.lock_switch === 1 ? 'active' : '',
           )}
           onClick={handleLock}
         >
           <div
-            className={classNames(
-              sdk.deviceData.lock_switch === 1 ? 'icon-unlock' : 'icon-lock'
-            )}
+            className={classNames(sdk.deviceData.lock_switch === 1 ? 'icon-unlock' : 'icon-lock')}
           ></div>
           <p className="status-name">
             {sdk.deviceData.lock_switch === 1 ? '已开锁' : '已关锁'}
@@ -42,14 +40,12 @@ export function StatusBlock() {
         <Block
           className={classNames(
             'status-block',
-            sdk.deviceData.lock_switch === 1 ? 'active' : ''
+            sdk.deviceData.lock_switch === 1 ? 'active' : '',
           )}
           onClick={handleLock}
         >
           <div
-            className={classNames(
-              sdk.deviceData.lock_switch === 1 ? 'icon-unlock' : 'icon-lock'
-            )}
+            className={classNames(sdk.deviceData.lock_switch === 1 ? 'icon-unlock' : 'icon-lock')}
           ></div>
         </Block>
       )}

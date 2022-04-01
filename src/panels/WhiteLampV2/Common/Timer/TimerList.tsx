@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { ListTimer as CloudTimerList } from '@custom/TimerCloud';
 const labelEnum = {
   power_switch: {
     label: '开关',
-    value: ['关闭', '开启']
-  }
+    value: ['关闭', '开启'],
+  },
 };
 
 const getSwitchNumData = (powerSwitch, num) => {

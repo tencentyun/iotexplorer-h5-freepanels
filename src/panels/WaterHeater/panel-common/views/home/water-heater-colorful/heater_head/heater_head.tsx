@@ -1,5 +1,5 @@
 import React from 'react';
-import './heater_head.less'
+import './heater_head.less';
 import classNames from 'classnames';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 
@@ -22,7 +22,7 @@ export function Normal_head() {
       </div>
     </article>
   );
-};
+}
 
 export default Normal_head;
 

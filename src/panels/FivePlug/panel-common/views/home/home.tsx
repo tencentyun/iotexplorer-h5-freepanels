@@ -10,15 +10,15 @@ export function Home() {
     <article
       className={classNames(
         'home',
-        sdk.deviceData.power_switch === 1 ? '' : 'power-off'
+        sdk.deviceData.power_switch === 1 ? '' : 'power-off',
       )}
     >
-      {/*灯*/}
+      {/* 灯*/}
       {/* <section className={classNames('dashboard')}> */}
       <Dashboard />
       {/* </section> */}
       <Operate />
-      {/*详情区域*/}
+      {/* 详情区域*/}
       {/* <Detail /> */}
     </article>
   );

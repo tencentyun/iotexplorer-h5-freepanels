@@ -11,9 +11,8 @@ export interface HeaderBlockProps {
 }
 
 export function HeaderBlock({
-  deviceData = {}
+  deviceData = {},
 }: HeaderBlockProps) {
-
   // 设备详情页
   const handleMore = () => {
     // sdk.showDeviceDetail();

@@ -19,9 +19,7 @@ class IconChecked extends Component {
     return (
       <section className={classNames('icon-check-bg', isChecked && 'checked')}>
         <SvgIcon
-          className={classNames(
-            isChecked ? 'icon-selected' : 'icon-unselected'
-          )}
+          className={classNames(isChecked ? 'icon-selected' : 'icon-unselected')}
           name={isChecked ? 'icon-common-selected' : 'icon-common-unselected'}
         />
       </section>
@@ -30,7 +28,7 @@ class IconChecked extends Component {
 }
 
 IconChecked.propTypes = {
-  isChecked: PropTypes.bool
+  isChecked: PropTypes.bool,
 };
 
 export default IconChecked;

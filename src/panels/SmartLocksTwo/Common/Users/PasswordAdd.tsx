@@ -15,7 +15,7 @@ export function PasswordAdd({ deviceData, templateMap, doControlDeviceData, hist
   const [userList, setUserList] = useState([
     { name: '我', type: '指纹1 密码1' },
     { name: '妈妈', type: '指纹2' },
-    { name: '我', type: '指纹1 密码1' }
+    { name: '我', type: '指纹1 密码1' },
   ]);
   const [status, setStatus] = useState(true);
   const [week, setWeek] = useState(arrWeek.map((label, index) => index)); // 默认全选
@@ -28,11 +28,11 @@ export function PasswordAdd({ deviceData, templateMap, doControlDeviceData, hist
     fingerprint: 'fingerprint',
     password: 'password',
     card: 'card',
-    face: 'face'
+    face: 'face',
   };
 
   const toggleWeek = (key) => {
-    setWeek(week.includes(key) ? week.filter((index) => index !== key) : week.slice().concat(key));
+    setWeek(week.includes(key) ? week.filter(index => index !== key) : week.slice().concat(key));
   };
 
   return (

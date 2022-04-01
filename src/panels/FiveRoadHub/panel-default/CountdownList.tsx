@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { DoControlDeviceData } from '@hooks/useDeviceInfo';
 import { SocketList, SocketListItem } from './SocketList';
-import { CountdownSetting } from "@components/CountdownSetting";
+import { CountdownSetting } from '@components/CountdownSetting';
 
 export function CountdownList({
   socketList,

@@ -27,7 +27,7 @@ const pxToView = (px: number): string | number => {
   if (px === 0) {
     return px;
   }
-  const viewportWidth = viewportConfig.viewportWidth;
+  const { viewportWidth } = viewportConfig;
   const vw = px * (document.documentElement.clientWidth / viewportWidth);
   return vw.toFixed(viewportConfig.unitPrecision || 3);
 };
@@ -37,7 +37,7 @@ export function LineChart(props: lineChartProps) {
     top: pxToView(53) as number,
     right: pxToView(58) as number,
     bottom: pxToView(props.bottom) as number,
-    left: pxToView(58) as number
+    left: pxToView(58) as number,
   };
 
   const WIDTH = pxToView(750) as number;
@@ -46,14 +46,13 @@ export function LineChart(props: lineChartProps) {
   const chartWidth = WIDTH - margin.left - margin.right;
   const chartHeight = HEIGHT - margin.top - margin.bottom;
 
-  const data = props.data;
+  const { data } = props;
 
   const [value, setValue] = useState(() => {
     if (!data || data.length === 0) {
       return [];
-    } else {
-      return data.map(d => ({ ...d, y: 0 }));
     }
+    return data.map(d => ({ ...d, y: 0 }));
   });
   const svgRef = useRef(null);
 
@@ -61,7 +60,7 @@ export function LineChart(props: lineChartProps) {
     if (data.length === 0) return;
 
     const t = d3
-      .select('#' + props.id)
+      .select(`#${props.id}`)
       .transition()
       .duration(1000);
 
@@ -71,21 +70,18 @@ export function LineChart(props: lineChartProps) {
         return d3.interpolateNumber(start, d.y);
       });
       return (t: any) => {
-        const newData = data.map((d, i) => {
-          return { ...d, y: interpolates[i](t) };
-        });
+        const newData = data.map((d, i) => ({ ...d, y: interpolates[i](t) }));
         setValue(newData);
       };
     });
   }, props.data);
 
-  const xScale =
-    d3
-      .scalePoint()
-      .domain(data.map(d => d.x))
-      .range([0, chartWidth])
-      .padding(0)
-      .round(true) || 0;
+  const xScale =    d3
+    .scalePoint()
+    .domain(data.map(d => d.x))
+    .range([0, chartWidth])
+    .padding(0)
+    .round(true) || 0;
 
   const yScale = d3
     .scaleLinear()
@@ -105,17 +101,16 @@ export function LineChart(props: lineChartProps) {
     .y1((d: any) => yScale(d.y) || 0)
     .y0((d: any) => yScale(0) || 0);
 
-  const getViewbox = () => {
+  const getViewbox = () =>
     // px2vw(props.width) as string
-    return [0, 0, WIDTH, HEIGHT].join(' ');
-  };
+    [0, 0, WIDTH, HEIGHT].join(' ')
+  ;
 
   const dStyle = () => {
     if (props.type === 'line') {
       return line(value);
-    } else {
-      return area(value);
     }
+    return area(value);
   };
 
   return (

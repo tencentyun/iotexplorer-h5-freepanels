@@ -15,7 +15,7 @@ import IconChecked from '@components/base/icon-checked/icon-checked';
 export const enumUpDown: any = {
   off: '关闭',
   opposite: '相向摆风',
-  same: '同向摆风'
+  same: '同向摆风',
 };
 
 const UpDown = ({ cRef }: any) => {
@@ -23,9 +23,9 @@ const UpDown = ({ cRef }: any) => {
   useImperativeHandle(cRef, () => ({
     commit: () => {
       apiControlDeviceData({
-        gear_vertical: value
+        gear_vertical: value,
       });
-    }
+    },
   }));
 
   const domList = enumToArray(enumUpDown).map(({ label, value }) => (

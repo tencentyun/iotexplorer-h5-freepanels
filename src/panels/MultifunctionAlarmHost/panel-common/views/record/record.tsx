@@ -13,7 +13,7 @@ const DAY_DESC: string[] = [
   '周三',
   '周四',
   '周五',
-  '周六'
+  '周六',
 ];
 
 interface HistoryResultProps {
@@ -36,7 +36,7 @@ export function Record() {
           FieldName: 'woke_mode',
           MaxTime: currentTime,
           MinTime: lastYearTime,
-          Limit: 10
+          Limit: 10,
         });
         console.log('get info', recordListInfo);
         setRecordList(recordListInfo.Results);
@@ -58,7 +58,7 @@ export function Record() {
     home: '在家',
     sos: '紧急',
     work: '工作',
-    play: '休闲'
+    play: '休闲',
   };
   // 记录里面的内容
   const recordItem = (result: HistoryResultProps) => {
@@ -80,7 +80,7 @@ export function Record() {
         </div>
       </div>
     );
-  }
+  };
   return (
     <div className="records-view">
       {recordList.length > 0 ? (

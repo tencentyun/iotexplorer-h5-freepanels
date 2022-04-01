@@ -1,5 +1,5 @@
-import React from "react";
-import "./RuyingLayout.less";
+import React from 'react';
+import './RuyingLayout.less';
 
 export interface RuyingLayoutProps {
   beforeChildren?: React.ReactNode;
@@ -19,9 +19,7 @@ export function RuyingLayout({
       {beforeChildren}
       <div className="voice-command-example">
         <div className="words-title">你还可以对{displayName}说： 爱迪生</div>
-        {wordsList.map((item) => {
-          return <div className="words-item">"{item}"</div>;
-        })}
+        {wordsList.map(item => <div className="words-item">"{item}"</div>)}
       </div>
       {afterChildren}
     </div>

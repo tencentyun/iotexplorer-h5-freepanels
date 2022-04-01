@@ -26,10 +26,10 @@ export function Home() {
     <article
       className={classNames(
         'home',
-        sdk.deviceData.power_switch === 1 ? '' : 'power-off'
+        sdk.deviceData.power_switch === 1 ? '' : 'power-off',
       )}
     >
-      {/*仪表盘*/}
+      {/* 仪表盘*/}
       <section className={classNames('dashboard')}>
         <Ticker
           title={'PM2.5'}
@@ -44,7 +44,7 @@ export function Home() {
           status={sdk.deviceData.power_switch === 1 ? '1' : '0'}
         />
       </section>
-      {/*详情区域*/}
+      {/* 详情区域*/}
       <Detail />
     </article>
   );

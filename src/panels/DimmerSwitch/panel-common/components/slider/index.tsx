@@ -94,7 +94,7 @@ export function Slider(props: SliderProps) {
       className={classNames(
         'light-slider',
         `theme_type_${props.theme || 'normal'}`,
-        props.isAvailable ? '' : 'disable'
+        props.isAvailable ? '' : 'disable',
       )}
       onTouchStart={onTouchStart}
     >

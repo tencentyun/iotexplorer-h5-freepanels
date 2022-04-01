@@ -5,8 +5,7 @@ import './airFlow.less';
 import { Slider } from './slider';
 import { Block } from '@components/layout';
 
-const AirFlow = () => {
-  return (
+const AirFlow = () => (
     <article className={classNames('fan-adjust')}>
       <Block className="setting-panel">
         <div className="setting-slider">
@@ -14,7 +13,6 @@ const AirFlow = () => {
         </div>
       </Block>
     </article>
-  );
-};
+);
 
 export default AirFlow;

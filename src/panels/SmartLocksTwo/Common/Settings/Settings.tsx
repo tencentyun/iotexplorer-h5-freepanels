@@ -13,7 +13,7 @@ export function Settings({
   deviceData,
   templateMap,
   doControlDeviceData,
-  history: { PATH, push }
+  history: { PATH, push },
 }) {
   useTitle('设置');
   // 抓拍模式
@@ -47,9 +47,8 @@ export function Settings({
       const typeObj = templateMap[key];
 
       return typeObj.define.mapping[type];
-    } else {
-      return ''
     }
+    return '';
   };
 
   const getOptions = (key:string) => {
@@ -59,14 +58,14 @@ export function Settings({
         for (const [index, value] of Object.entries(templateMap[key].define.mapping)) {
           options.push({
             label: value,
-            value: index
+            value: index,
           });
         }
         return (options || []).length > 0 ? options : [];
       }
     }
     return [
-      {label: '没数据', value: '0'}
+      { label: '没数据', value: '0' },
     ];
   };
 
@@ -76,10 +75,12 @@ export function Settings({
         className="cell-settings mb"
         title="摄像头设置"
         isLink={true}
-        onClick={()=>{push(PATH.SETTINGS_CAMERA);}}
+        onClick={() => {
+          push(PATH.SETTINGS_CAMERA);
+        }}
       ></Cell>
       <Cell
-        className={classNames('cell-settings', {'no-border': deviceData.stay_alarm_mode == 1})}
+        className={classNames('cell-settings', { 'no-border': deviceData.stay_alarm_mode == 1 })}
         title="逗留侦测"
         isLink={false}
         value={
@@ -92,8 +93,8 @@ export function Settings({
         }
       >
       </Cell>
-      {deviceData.stay_alarm_mode == 1 ?
-        <div className="cell-settings-secondary-wrap mb">
+      {deviceData.stay_alarm_mode == 1
+        ? <div className="cell-settings-secondary-wrap mb">
           <Cell
             className="cell-settings-secondary"
             title="抓拍模式"
@@ -108,8 +109,10 @@ export function Settings({
               title="抓拍模式"
               defaultValue={[deviceData.stay_capture_mode ? deviceData.stay_capture_mode?.toString() : '2']}
               options={getOptions('stay_capture_mode')}
-              onCancel={()=>{onToggleStayCaptureMode(false)}}
-              onConfirm={(value)=>{
+              onCancel={() => {
+                onToggleStayCaptureMode(false);
+              }}
+              onConfirm={(value) => {
                 doControlDeviceData('stay_capture_mode', value[0]);
               }}
             ></OptionDialog>
@@ -128,8 +131,10 @@ export function Settings({
               title="逗留距离"
               defaultValue={[deviceData.stay_trigger_distance ? deviceData.stay_trigger_distance?.toString() : '2']}
               options={getOptions('stay_trigger_distance')}
-              onCancel={()=>{onToggleStayTriggerDistance(false)}}
-              onConfirm={(value)=>{
+              onCancel={() => {
+                onToggleStayTriggerDistance(false);
+              }}
+              onConfirm={(value) => {
                 doControlDeviceData('stay_trigger_distance', value[0]);
               }}
             ></OptionDialog>
@@ -137,7 +142,7 @@ export function Settings({
           <Cell
             className="cell-settings-secondary"
             title="逗留保持时间"
-            value={(deviceData.stay_hold_time || '10') + '秒'}
+            value={`${deviceData.stay_hold_time || '10'}秒`}
             valueStyle="set"
             onClick={() => {
               onToggleStayHoldTime(true);
@@ -147,9 +152,11 @@ export function Settings({
               visible={stayHoldTimeVisible}
               title="逗留保持时间"
               defaultValue={[deviceData.stay_hold_time ? deviceData.stay_hold_time : 10]}
-              options={[{label: '5秒', value: 5},{label: '10秒', value: 10},{label: '15秒', value: 15},{label: '20秒', value: 20}]}
-              onCancel={()=>{onToggleStayHoldTime(false)}}
-              onConfirm={(value)=>{
+              options={[{ label: '5秒', value: 5 }, { label: '10秒', value: 10 }, { label: '15秒', value: 15 }, { label: '20秒', value: 20 }]}
+              onCancel={() => {
+                onToggleStayHoldTime(false);
+              }}
+              onConfirm={(value) => {
                 doControlDeviceData('stay_hold_time', value[0]);
               }}
             ></OptionDialog>
@@ -187,10 +194,12 @@ export function Settings({
         className="cell-settings mb"
         title="录像设置"
         isLink={true}
-        onClick={()=>{push(PATH.SETTINGS_VIDEO);}}
+        onClick={() => {
+          push(PATH.SETTINGS_VIDEO);
+        }}
       ></Cell>
       <Cell
-        className={classNames('cell-settings-high', {'no-border': deviceData.dormant_switch == 1})}
+        className={classNames('cell-settings-high', { 'no-border': deviceData.dormant_switch == 1 })}
         title="休眠设置"
         subTitle={'开启后，门锁在休眠时间段内多数功能不可使用'}
         isLink={false}
@@ -276,8 +285,10 @@ export function Settings({
           title="多重验证"
           defaultValue={[deviceData.unlock_switch ? deviceData.unlock_switch?.toString() : '0']}
           options={getOptions('unlock_switch')}
-          onCancel={()=>{onToggleUnlockSwitch(false)}}
-          onConfirm={(value)=>{
+          onCancel={() => {
+            onToggleUnlockSwitch(false);
+          }}
+          onConfirm={(value) => {
             doControlDeviceData('unlock_switch', value[0]);
           }}
         ></OptionDialog>
@@ -310,8 +321,10 @@ export function Settings({
           title="门铃铃声"
           defaultValue={[deviceData.doorbell_song ? deviceData.doorbell_song?.toString() : '0']}
           options={getOptions('doorbell_song')}
-          onCancel={()=>{onToggleDoorbellSong(false)}}
-          onConfirm={(value)=>{
+          onCancel={() => {
+            onToggleDoorbellSong(false);
+          }}
+          onConfirm={(value) => {
             doControlDeviceData('doorbell_song', value[0]);
           }}
         ></OptionDialog>
@@ -330,14 +343,16 @@ export function Settings({
           title="导航音量"
           defaultValue={[deviceData.beep_volume ? deviceData.beep_volume?.toString() : '2']}
           options={getOptions('beep_volume')}
-          onCancel={()=>{onToggleBeepVolume(false)}}
-          onConfirm={(value)=>{
+          onCancel={() => {
+            onToggleBeepVolume(false);
+          }}
+          onConfirm={(value) => {
             doControlDeviceData('beep_volume', value[0]);
           }}
         ></OptionDialog>
       </Cell>
       <Cell
-        className={classNames('cell-settings-high', {'no-border': dormantTime})}
+        className={classNames('cell-settings-high', { 'no-border': dormantTime })}
         title="勿扰模式"
         subTitle={'开启后，可是门锁在特定时间内处理静音模式'}
         size="medium"
@@ -410,7 +425,7 @@ export function Settings({
           />
         </Cell>
       </div> : null }
-      
+
       <Cell
         className="cell-settings"
         title="门锁电池电量"

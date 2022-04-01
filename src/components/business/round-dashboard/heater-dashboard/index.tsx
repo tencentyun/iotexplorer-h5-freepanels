@@ -14,7 +14,7 @@ interface dashboardProps {
   dashboardStatus: string;
 }
 
-const HeaterDashboard: React.FC<dashboardProps> = props => {
+const HeaterDashboard: React.FC<dashboardProps> = (props) => {
   const themeType = getThemeType();
   const CurrentSkinProps: any = SkinProps[themeType];
   const { value, dashboardStatus } = props;
@@ -22,8 +22,7 @@ const HeaterDashboard: React.FC<dashboardProps> = props => {
   const skinProps = (CurrentSkinProps as any)[dashboardStatus];
 
   // 描述信息 关机/开机
-  const renderDesWord = (dashboardStatus: string) => {
-    return (
+  const renderDesWord = (dashboardStatus: string) => (
       <div className={classNames(dashboardStatus)}>
         <SvgIcon
           className="warmth"
@@ -36,8 +35,7 @@ const HeaterDashboard: React.FC<dashboardProps> = props => {
         </div>
         <div className="title">当前温度</div>
       </div>
-    );
-  };
+  );
 
   return (
     <div className={classNames('heater-dashboard-wrap', themeType)}>

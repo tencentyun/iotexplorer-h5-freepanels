@@ -10,7 +10,7 @@ export function HomeBlueWhite() {
     <article
       className={classNames(
         'sidehome',
-        sdk.deviceData.power_switch === 0 && 'power-off'
+        sdk.deviceData.power_switch === 0 && 'power-off',
       )}
     >
       <Side_Head/>

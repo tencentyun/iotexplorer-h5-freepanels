@@ -1,27 +1,21 @@
-import React, {useEffect} from 'react';
+import React, { useEffect } from 'react';
 import classNames from 'classnames';
-import sdk from "qcloud-iotexplorer-h5-panel-sdk";
+import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 import { getThemeType } from '@libs/theme';
-import {apiControlDeviceData} from '@hooks/useDeviceData';
+import { apiControlDeviceData } from '@hooks/useDeviceData';
 import { Detail } from './detail/detail';
 import './home.less';
-const KeyImage =
-  'https://tencent-1305105198.cos.ap-guangzhou.myqcloud.com/insert-key-power/normal/insert-key.svg';
-const KeyImageClose =
-  'https://tencent-1305105198.cos.ap-guangzhou.myqcloud.com/insert-key-power/normal/insert-key-close.svg';
-const KeyImageBlueWhite =
-  'https://tencent-1305105198.cos.ap-guangzhou.myqcloud.com/insert-key-power/blue-white/insert-key.svg';
-const KeyImageBlueWhiteClose =
-  'https://tencent-1305105198.cos.ap-guangzhou.myqcloud.com/insert-key-power/blue-white/insert-key-close.svg';
-const KeyImageMorandi =
-  'https://tencent-1305105198.cos.ap-guangzhou.myqcloud.com/insert-key-power/morandi/insert-key.svg';
-const KeyImageMorandiClose =
-  'https://tencent-1305105198.cos.ap-guangzhou.myqcloud.com/insert-key-power/morandi/insert-key-close.svg';
+const KeyImage =  'https://tencent-1305105198.cos.ap-guangzhou.myqcloud.com/insert-key-power/normal/insert-key.svg';
+const KeyImageClose =  'https://tencent-1305105198.cos.ap-guangzhou.myqcloud.com/insert-key-power/normal/insert-key-close.svg';
+const KeyImageBlueWhite =  'https://tencent-1305105198.cos.ap-guangzhou.myqcloud.com/insert-key-power/blue-white/insert-key.svg';
+const KeyImageBlueWhiteClose =  'https://tencent-1305105198.cos.ap-guangzhou.myqcloud.com/insert-key-power/blue-white/insert-key-close.svg';
+const KeyImageMorandi =  'https://tencent-1305105198.cos.ap-guangzhou.myqcloud.com/insert-key-power/morandi/insert-key.svg';
+const KeyImageMorandiClose =  'https://tencent-1305105198.cos.ap-guangzhou.myqcloud.com/insert-key-power/morandi/insert-key-close.svg';
 export function Home() {
   const themeType = getThemeType();
   useEffect(() => {
     apiControlDeviceData({
-      switch: sdk.deviceData.card_status_report === '1' ? 1 : 0
+      switch: sdk.deviceData.card_status_report === '1' ? 1 : 0,
     });
   }, []);
   const sleepImageSrc = () => {
@@ -44,14 +38,14 @@ export function Home() {
     <article
       className={classNames(
         'home',
-        sdk.deviceData.switch === 1 ? '' : 'power-off'
+        sdk.deviceData.switch === 1 ? '' : 'power-off',
       )}
     >
-      {/*仪表盘*/}
+      {/* 仪表盘*/}
       <section className={classNames('dashboard')}>
         <img src={sleepImageSrc()} alt="" />
       </section>
-      {/*详情区域*/}
+      {/* 详情区域*/}
       <Detail />
     </article>
   );

@@ -31,9 +31,9 @@ export function formatTime(time: number): string {
   const m: number = Math.floor(s / 60);
   s %= 60;
 
-  const res = zeroize(m) + ':' + zeroize(s);
+  const res = `${zeroize(m)}:${zeroize(s)}`;
   if (h > 0) {
-    return zeroize(h) + ':' + res;
+    return `${zeroize(h)}:${res}`;
   }
   return res;
 }
@@ -43,19 +43,19 @@ export function TrainingData({
   titleIcon,
   totalCount,
   titalTime,
-  totalCalories
+  totalCalories,
 }: TrainingDataProps) {
   const theme: ThemeType = getThemeType();
   const isEmpty = false;
   const [state] = useDeviceData(sdk);
-  const deviceData: any = state.deviceData;
+  const { deviceData } = state;
 
   return (
     <Block
       className={
         classNames(
-          'training-data-area-' + theme,
-          { is_empty: isEmpty }
+          `training-data-area-${theme}`,
+          { is_empty: isEmpty },
         )
       }
     >

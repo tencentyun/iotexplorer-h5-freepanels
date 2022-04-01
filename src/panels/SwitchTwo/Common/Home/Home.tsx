@@ -7,10 +7,10 @@ const allSwitch = [
   ['switch_2', '开关二'],
   ['switch_3', '开关三'],
   ['switch_4', '开关四'],
-  ['switch_5', '开关五']
+  ['switch_5', '开关五'],
 ];
 
-const getSwitchNum = (templateMap = {}) => Object.keys(templateMap).filter((v) => /^switch/.test(v)).length || 1;
+const getSwitchNum = (templateMap = {}) => Object.keys(templateMap).filter(v => /^switch/.test(v)).length || 1;
 
 export function Home(props) {
   const { doControlDeviceData, templateMap, setContext, deviceData = {} } = props;

@@ -1,103 +1,103 @@
 import React, { useEffect } from 'react';
 import classNames from 'classnames';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
-import {StandardBleConnectStatusStr, useStandardBleConnector} from "@hooks/useStandardBleConnector";
+import { StandardBleConnectStatusStr, useStandardBleConnector } from '@hooks/useStandardBleConnector';
 import { getThemeType } from '@libs/theme';
 import { Collapse } from 'antd-mobile';
 import { Slider } from './slider';
 import { LineChart } from '../components/line-chart';
 import './home.less';
 
-import BodyIndexImage from "../icons/normal/body-index.svg";
-import BodyIndexImageBlueWhite from "../icons/blue-white/body-index.svg";
-import BodyIndexImageDark from "../icons/dark/body-index.svg";
-import BodyIndexImageColorful from "../icons/colorful/body-index.svg";
-import BodyIndexImageMorandi from "../icons/morandi/body-index.svg";
+import BodyIndexImage from '../icons/normal/body-index.svg';
+import BodyIndexImageBlueWhite from '../icons/blue-white/body-index.svg';
+import BodyIndexImageDark from '../icons/dark/body-index.svg';
+import BodyIndexImageColorful from '../icons/colorful/body-index.svg';
+import BodyIndexImageMorandi from '../icons/morandi/body-index.svg';
 
-import FatImage from "../icons/normal/fat.svg";
-import FatImageBlueWhite from "../icons/blue-white/fat.svg";
-import FatImageDark from "../icons/dark/fat.svg";
-import FatImageColorful from "../icons/colorful/fat.svg";
-import FatImageMorandi from "../icons/morandi/fat.svg";
+import FatImage from '../icons/normal/fat.svg';
+import FatImageBlueWhite from '../icons/blue-white/fat.svg';
+import FatImageDark from '../icons/dark/fat.svg';
+import FatImageColorful from '../icons/colorful/fat.svg';
+import FatImageMorandi from '../icons/morandi/fat.svg';
 
-import BodyFatImage from "../icons/normal/body-fat.svg";
-import BodyFatImageBlueWhite from "../icons/blue-white/body-fat.svg";
-import BodyFatImageDark from "../icons/dark/body-fat.svg";
-import BodyFatImageColorful from "../icons/colorful/body-fat.svg";
-import BodyFatImageMorandi from "../icons/morandi/body-fat.svg";
+import BodyFatImage from '../icons/normal/body-fat.svg';
+import BodyFatImageBlueWhite from '../icons/blue-white/body-fat.svg';
+import BodyFatImageDark from '../icons/dark/body-fat.svg';
+import BodyFatImageColorful from '../icons/colorful/body-fat.svg';
+import BodyFatImageMorandi from '../icons/morandi/body-fat.svg';
 
-import FatLevelImage from "../icons/normal/fat-level.svg";
-import FatLevelImageBlueWhite from "../icons/blue-white/fat-level.svg";
-import FatLevelImageDark from "../icons/dark/fat-level.svg";
-import FatLevelImageColorful from "../icons/colorful/fat-level.svg";
-import FatLevelImageMorandi from "../icons/morandi/fat-level.svg";
+import FatLevelImage from '../icons/normal/fat-level.svg';
+import FatLevelImageBlueWhite from '../icons/blue-white/fat-level.svg';
+import FatLevelImageDark from '../icons/dark/fat-level.svg';
+import FatLevelImageColorful from '../icons/colorful/fat-level.svg';
+import FatLevelImageMorandi from '../icons/morandi/fat-level.svg';
 
-import WeightControlImage from "../icons/normal/weight-control.svg";
-import WeightControlImageBlueWhite from "../icons/blue-white/weight-control.svg";
-import WeightControlImageDark from "../icons/dark/weight-control.svg";
-import WeightControlImageColorful from "../icons/colorful/weight-control.svg";
-import WeightControlImageMorandi from "../icons/morandi/weight-control.svg";
+import WeightControlImage from '../icons/normal/weight-control.svg';
+import WeightControlImageBlueWhite from '../icons/blue-white/weight-control.svg';
+import WeightControlImageDark from '../icons/dark/weight-control.svg';
+import WeightControlImageColorful from '../icons/colorful/weight-control.svg';
+import WeightControlImageMorandi from '../icons/morandi/weight-control.svg';
 
-import VisceralFatImage from "../icons/normal/visceral-fat.svg";
-import VisceralFatImageBlueWhite from "../icons/blue-white/visceral-fat.svg";
-import VisceralFatImageDark from "../icons/dark/visceral-fat.svg";
-import VisceralFatImageColorful from "../icons/colorful/visceral-fat.svg";
-import VisceralFatImageMorandi from "../icons/morandi/visceral-fat.svg";
+import VisceralFatImage from '../icons/normal/visceral-fat.svg';
+import VisceralFatImageBlueWhite from '../icons/blue-white/visceral-fat.svg';
+import VisceralFatImageDark from '../icons/dark/visceral-fat.svg';
+import VisceralFatImageColorful from '../icons/colorful/visceral-fat.svg';
+import VisceralFatImageMorandi from '../icons/morandi/visceral-fat.svg';
 
-import WeightImage from "../icons/normal/weight.svg";
-import WeightImageBlueWhite from "../icons/blue-white/weight.svg";
-import WeightImageDark from "../icons/dark/weight.svg";
-import WeightImageColorful from "../icons/colorful/weight.svg";
-import WeightImageMorandi from "../icons/morandi/weight.svg";
+import WeightImage from '../icons/normal/weight.svg';
+import WeightImageBlueWhite from '../icons/blue-white/weight.svg';
+import WeightImageDark from '../icons/dark/weight.svg';
+import WeightImageColorful from '../icons/colorful/weight.svg';
+import WeightImageMorandi from '../icons/morandi/weight.svg';
 
-import WaterImage from "../icons/normal/water.svg";
-import WaterImageBlueWhite from "../icons/blue-white/water.svg";
-import WaterImageDark from "../icons/dark/water.svg";
-import WaterImageColorful from "../icons/colorful/water.svg";
-import WaterImageMorandi from "../icons/morandi/water.svg";
+import WaterImage from '../icons/normal/water.svg';
+import WaterImageBlueWhite from '../icons/blue-white/water.svg';
+import WaterImageDark from '../icons/dark/water.svg';
+import WaterImageColorful from '../icons/colorful/water.svg';
+import WaterImageMorandi from '../icons/morandi/water.svg';
 
-import BoneImage from "../icons/normal/bone.svg";
-import BoneImageBlueWhite from "../icons/blue-white/bone.svg";
-import BoneImageDark from "../icons/dark/bone.svg";
-import BoneImageColorful from "../icons/colorful/bone.svg";
-import BoneImageMorandi from "../icons/morandi/bone.svg";
+import BoneImage from '../icons/normal/bone.svg';
+import BoneImageBlueWhite from '../icons/blue-white/bone.svg';
+import BoneImageDark from '../icons/dark/bone.svg';
+import BoneImageColorful from '../icons/colorful/bone.svg';
+import BoneImageMorandi from '../icons/morandi/bone.svg';
 
-import ProteinImage from "../icons/normal/protein.svg";
-import ProteinImageBlueWhite from "../icons/blue-white/protein.svg";
-import ProteinImageDark from "../icons/dark/protein.svg";
-import ProteinImageColorful from "../icons/colorful/protein.svg";
-import ProteinImageMorandi from "../icons/morandi/protein.svg";
+import ProteinImage from '../icons/normal/protein.svg';
+import ProteinImageBlueWhite from '../icons/blue-white/protein.svg';
+import ProteinImageDark from '../icons/dark/protein.svg';
+import ProteinImageColorful from '../icons/colorful/protein.svg';
+import ProteinImageMorandi from '../icons/morandi/protein.svg';
 
-import MetabolismImage from "../icons/normal/metabolism.svg";
-import MetabolismImageBlueWhite from "../icons/blue-white/metabolism.svg";
-import MetabolismImageDark from "../icons/dark/metabolism.svg";
-import MetabolismImageColorful from "../icons/colorful/metabolism.svg";
-import MetabolismImageMorandi from "../icons/morandi/metabolism.svg";
+import MetabolismImage from '../icons/normal/metabolism.svg';
+import MetabolismImageBlueWhite from '../icons/blue-white/metabolism.svg';
+import MetabolismImageDark from '../icons/dark/metabolism.svg';
+import MetabolismImageColorful from '../icons/colorful/metabolism.svg';
+import MetabolismImageMorandi from '../icons/morandi/metabolism.svg';
 
-import AgeImage from "../icons/normal/age.svg";
-import AgeImageBlueWhite from "../icons/blue-white/age.svg";
-import AgeImageDark from "../icons/dark/age.svg";
-import AgeImageColorful from "../icons/colorful/age.svg";
-import AgeImageMorandi from "../icons/morandi/age.svg";
+import AgeImage from '../icons/normal/age.svg';
+import AgeImageBlueWhite from '../icons/blue-white/age.svg';
+import AgeImageDark from '../icons/dark/age.svg';
+import AgeImageColorful from '../icons/colorful/age.svg';
+import AgeImageMorandi from '../icons/morandi/age.svg';
 
-import BodyTypeImage from "../icons/normal/body-type.svg";
-import BodyTypeImageBlueWhite from "../icons/blue-white/body-type.svg";
-import BodyTypeImageDark from "../icons/dark/body-type.svg";
-import BodyTypeImageColorful from "../icons/colorful/body-type.svg";
-import BodyTypeImageMorandi from "../icons/morandi/body-type.svg";
+import BodyTypeImage from '../icons/normal/body-type.svg';
+import BodyTypeImageBlueWhite from '../icons/blue-white/body-type.svg';
+import BodyTypeImageDark from '../icons/dark/body-type.svg';
+import BodyTypeImageColorful from '../icons/colorful/body-type.svg';
+import BodyTypeImageMorandi from '../icons/morandi/body-type.svg';
 
-import ScoreImage from "../icons/normal/score.svg";
-import ScoreImageBlueWhite from "../icons/blue-white/score.svg";
-import ScoreImageDark from "../icons/dark/score.svg";
-import ScoreImageColorful from "../icons/colorful/score.svg";
-import ScoreImageMorandi from "../icons/morandi/score.svg";
+import ScoreImage from '../icons/normal/score.svg';
+import ScoreImageBlueWhite from '../icons/blue-white/score.svg';
+import ScoreImageDark from '../icons/dark/score.svg';
+import ScoreImageColorful from '../icons/colorful/score.svg';
+import ScoreImageMorandi from '../icons/morandi/score.svg';
 
-import numImage from "../icons/normal/no-num.svg";
-import rightImage from "../icons/normal/right.svg";
-import circleImage from "../icons/blue-white/circle.svg";
-import circleImageDark from "../icons/dark/circle.svg";
-import triangleImage from "../icons/blue-white/triangle.svg";
-import triangleImageDark from "../icons/dark/triangle.svg";
+import numImage from '../icons/normal/no-num.svg';
+import rightImage from '../icons/normal/right.svg';
+import circleImage from '../icons/blue-white/circle.svg';
+import circleImageDark from '../icons/dark/circle.svg';
+import triangleImage from '../icons/blue-white/triangle.svg';
+import triangleImageDark from '../icons/dark/triangle.svg';
 
 export function Home() {
   const themeType = getThemeType();
@@ -109,27 +109,27 @@ export function Home() {
   // };
   // setTimeout(testWeight, 3000);
   useEffect(() => {
-    if(themeType=='blueWhite'||themeType=="dark"){
+    if (themeType == 'blueWhite' || themeType == 'dark') {
       // 获取体重
       // const getWeight = async () => {
-        const el = document.getElementById('card_bg1');
-        el.style.transition = null;
-        el.style.transform = 'translate(-50%,0) rotate(0deg)';
+      const el = document.getElementById('card_bg1');
+      el.style.transition = null;
+      el.style.transform = 'translate(-50%,0) rotate(0deg)';
 
-        setTimeout(()=>{
-          const val = sdk.deviceData.weight ? sdk.deviceData.weight : 50;
-          const el = document.getElementById('card_bg1');
-          const degree = (val * 280) / 100.0;
-          el.style.transition = 'transform 2s';
-          el.style.transform = 'translate(-50%,0) rotate(' + degree + 'deg)';
-        },50)
+      setTimeout(() => {
+        const val = sdk.deviceData.weight ? sdk.deviceData.weight : 50;
+        const el = document.getElementById('card_bg1');
+        const degree = (val * 280) / 100.0;
+        el.style.transition = 'transform 2s';
+        el.style.transform = `translate(-50%,0) rotate(${degree}deg)`;
+      }, 50);
       // };
       // getWeight();
     }
   }, [sdk.deviceData.weight]);
-  const [ connectStatusInfo ] = useStandardBleConnector({
+  const [connectStatusInfo] = useStandardBleConnector({
     deviceId: sdk.deviceId,
-    familyId: sdk.familyId
+    familyId: sdk.familyId,
   });
   const circleImageSrc = () => {
     switch (themeType) {
@@ -375,7 +375,7 @@ export function Home() {
     <article
       className={classNames(
         'home',
-        sdk.deviceData.power_switch === 0 && 'power-off'
+        sdk.deviceData.power_switch === 0 && 'power-off',
       )}
     >
       <div id={'sacles_center'} className={classNames('sacles_center')}>
@@ -547,7 +547,7 @@ export function Home() {
                 <div className="weight_font3">从未称重</div>
               </div>
               <div className="right_span_foot">
-                {/*折线图*/}
+                {/* 折线图*/}
                 <LineChart size={''} width={680} height={130} />
               </div>
             </div>

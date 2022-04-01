@@ -1,7 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 import './home.less';
-import {getThemeType} from '@libs/theme';
+import { getThemeType } from '@libs/theme';
 import Heater_Normal from './water-heater-normal/water_heater_normal';
 import Heater_blueWhite from './water-heater-blueWhite/water_heater_blueWhite';
 import Heater_Dark from './water-heater-dark/water_heater_dark';
@@ -13,23 +13,23 @@ export function Home() {
   const themeType = getThemeType();
   const getHomePage = () => {
     if (themeType == 'blueWhite') {
-      return (<Heater_blueWhite/>)
-    } else if (themeType == 'colorful') {
-      return (<Heater_Colorful/>)
-    } else if (themeType == 'dark') {
-      return (<Heater_Dark/>)
-    } else if (themeType == 'morandi') {
-      return (<Heater_Morandi/>)
-    } else if (themeType == 'normal') {
-      return (<Heater_Normal/>)
+      return (<Heater_blueWhite/>);
+    } if (themeType == 'colorful') {
+      return (<Heater_Colorful/>);
+    } if (themeType == 'dark') {
+      return (<Heater_Dark/>);
+    } if (themeType == 'morandi') {
+      return (<Heater_Morandi/>);
+    } if (themeType == 'normal') {
+      return (<Heater_Normal/>);
     }
-  }
+  };
   return (
     <article
       id={'home'}
       className={classNames(
         'home',
-        sdk.deviceData.power_switch === 1 ? '' : 'power-off'
+        sdk.deviceData.power_switch === 1 ? '' : 'power-off',
       )}
     >
       {getHomePage()}

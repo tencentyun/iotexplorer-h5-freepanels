@@ -17,35 +17,30 @@ export function NormalHome() {
   const history = useHistory();
   const [currentMode, setCurrentMode] = useState('middle');
 
-  const imageSrc = () => {
-    return 'https://tencent-1305105198.cos.ap-guangzhou.myqcloud.com/aromatherapy_machine/aromatherapy_machine.png';
-  };
+  const imageSrc = () => 'https://tencent-1305105198.cos.ap-guangzhou.myqcloud.com/aromatherapy_machine/aromatherapy_machine.png';
   const iconColor = (powerStatus: number, active: number) => {
     if (powerStatus === 1) {
       if (active === 1) {
         return '#FFFFFF';
-      } else {
-        return '#0F0F0F';
       }
-    } else {
-      return '#B5C4D1';
+      return '#0F0F0F';
     }
+    return '#B5C4D1';
   };
 
   const workModeLabel: any = {
     large: '大雾量',
     middle: '中雾量',
-    small: '小雾量'
+    small: '小雾量',
   };
 
   const workModeToValue = (label: string) => {
     if (label === 'large') {
       return 100;
-    } else if (label === 'small') {
+    } if (label === 'small') {
       return 0;
-    } else {
-      return 50;
     }
+    return 50;
   };
   // 更多
   const handleMore = () => {
@@ -58,7 +53,7 @@ export function NormalHome() {
         <div
           className={classNames(
             'app-container',
-            deviceData.power_switch === 0 ? 'close' : ''
+            deviceData.power_switch === 0 ? 'close' : '',
           )}
         >
           <ScrollView height="100vh" scrollY>
@@ -84,13 +79,13 @@ export function NormalHome() {
                   <Block
                     className={classNames(
                       'setting-button',
-                      (deviceData.power_switch === 1 && deviceData.spray_switch === 1) ? 'selected' : 'unselected'
+                      (deviceData.power_switch === 1 && deviceData.spray_switch === 1) ? 'selected' : 'unselected',
                     )}
                     onClick={() => {
                       if (deviceData.power_switch === 0) return;
                       onControlDevice(
                         'spray_switch',
-                        Number(!deviceData.spray_switch)
+                        Number(!deviceData.spray_switch),
                       );
                     }}
                   >
@@ -99,7 +94,7 @@ export function NormalHome() {
                       name="icon-spray"
                       color={iconColor(
                         deviceData.power_switch,
-                        deviceData.spray_switch
+                        deviceData.spray_switch,
                       )}
                     />
                     <p className="control-label">喷雾开关</p>
@@ -107,12 +102,12 @@ export function NormalHome() {
                   <div
                     className={classNames(
                       'control-power',
-                      (deviceData.power_switch == 1 && deviceData.power_switch === 1) ? 'power-open' : ''
+                      (deviceData.power_switch == 1 && deviceData.power_switch === 1) ? 'power-open' : '',
                     )}
                     onClick={() => {
                       onControlDevice(
                         'power_switch',
-                        Number(!deviceData.power_switch)
+                        Number(!deviceData.power_switch),
                       );
                     }}
                   >
@@ -125,13 +120,13 @@ export function NormalHome() {
                   <Block
                     className={classNames(
                       'setting-button',
-                      (deviceData.power_switch === 1 && deviceData.light_switch === 1) ? 'selected' : 'unselected'
+                      (deviceData.power_switch === 1 && deviceData.light_switch === 1) ? 'selected' : 'unselected',
                     )}
                     onClick={() => {
                       if (deviceData.power_switch === 0) return;
                       onControlDevice(
                         'light_switch',
-                        Number(!deviceData.light_switch)
+                        Number(!deviceData.light_switch),
                       );
                     }}
                   >
@@ -140,7 +135,7 @@ export function NormalHome() {
                       name="icon-lamplight"
                       color={iconColor(
                         deviceData.power_switch,
-                        deviceData.light_switch
+                        deviceData.light_switch,
                       )}
                     />
                     <p className="control-label">灯光</p>
@@ -194,8 +189,8 @@ export function NormalHome() {
                   ticks
                   step={50}
                   defaultValue={workModeToValue(deviceData.work_mode)}
-                  disabled={deviceData.power_switch === 1 ? false : true}
-                  onChange={value => {
+                  disabled={deviceData.power_switch !== 1}
+                  onChange={(value) => {
                     let data = 'small';
                     if (value === 0) {
                       data = 'small';

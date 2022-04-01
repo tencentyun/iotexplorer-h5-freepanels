@@ -6,7 +6,7 @@ import { SvgIcon } from '@components/common';
 import { Setting } from '../setting/setting';
 import { Home } from '../home/home';
 import './container.less';
-import {onControlDevice} from "@hooks/useDeviceData";
+import { onControlDevice } from '@hooks/useDeviceData';
 const { TabPane } = Tabs;
 
 export function Container() {

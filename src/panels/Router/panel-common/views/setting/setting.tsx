@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 import classNames from 'classnames';
 import { Cell, Switch } from '@components/base';
@@ -32,9 +32,7 @@ export function Setting() {
               <Switch
                 name={''}
                 theme={themeType}
-                checked={toggleBooleanByNumber(
-                  sdk.deviceData.switch_24g ? sdk.deviceData.switch_24g : 0
-                )}
+                checked={toggleBooleanByNumber(sdk.deviceData.switch_24g ? sdk.deviceData.switch_24g : 0)}
                 onChange={(value: boolean) => {
                   apiControlDeviceData({ switch_24g: value ? 1 : 0 });
                 }}
@@ -71,9 +69,7 @@ export function Setting() {
               <Switch
                 name={''}
                 theme={themeType}
-                checked={toggleBooleanByNumber(
-                  sdk.deviceData.switch_5g ? sdk.deviceData.switch_5g : 0
-                )}
+                checked={toggleBooleanByNumber(sdk.deviceData.switch_5g ? sdk.deviceData.switch_5g : 0)}
                 onChange={(value: boolean) => {
                   apiControlDeviceData({ switch_5g: value ? 1 : 0 });
                 }}

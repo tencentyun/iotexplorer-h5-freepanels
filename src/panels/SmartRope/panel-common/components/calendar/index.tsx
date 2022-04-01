@@ -39,9 +39,7 @@ export function CalendarPopup(props: CalendarPopupProps) {
     props.onConfirm && props.onConfirm(time);
   };
 
-  const formatDate = (value: Date | undefined) => {
-    return dayjs(value).format('MM月DD日');
-  };
+  const formatDate = (value: Date | undefined) => dayjs(value).format('MM月DD日');
   return (
     <Popup
       className="calendar-popup-wrap"
@@ -72,7 +70,9 @@ export function CalendarPopup(props: CalendarPopupProps) {
               />
             </div>
           </div>
-          <div className="btn confirmBtn" onClick={() => { handleConfirm() }}>
+          <div className="btn confirmBtn" onClick={() => {
+            handleConfirm();
+          }}>
             确定
           </div>
         </header>
@@ -83,7 +83,7 @@ export function CalendarPopup(props: CalendarPopupProps) {
           showNeighboringMonth={false}
           showWeekNumbers={false}
           minDetail="month"
-          tileClassName={"calender-title"}
+          tileClassName={'calender-title'}
           locale="en"
           onChange={(value: any, event: any) => {
             console.log(value, '====asdf');

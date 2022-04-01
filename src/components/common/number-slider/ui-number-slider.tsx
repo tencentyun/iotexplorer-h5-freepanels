@@ -32,13 +32,13 @@ const UINumberSlider = (props: IUINumberSlider) => {
     step = 1,
     onChange = noop,
     onAfterChange = noop,
-    defaultValue = 0
+    defaultValue = 0,
   } = props;
   const [value, setValue] = useState(0);
 
   const getFillWidth = () => {
     if (value === 0) {
-      return `0`;
+      return '0';
     }
     return `calc(${(value / max) * 100}% + 13px)`;
   };

@@ -12,8 +12,7 @@ import classNames from 'classnames';
 import { SvgIcon } from '@components/common/icon';
 import { DeviceSateContext } from '../../../../deviceStateContext';
 const airDeviceImg = 'https://tencent-1305105198.cos.ap-guangzhou.myqcloud.com/air-conditioner/air_device.bd91b10a.png';
-const Device = () => {
-  return (
+const Device = () => (
     <DeviceSateContext.Consumer>
       {({ deviceData }) => (
         <article className="device-wrap">
@@ -45,8 +44,7 @@ const Device = () => {
         </article>
       )}
     </DeviceSateContext.Consumer>
-  );
-};
+);
 
 Device.propTypes = {};
 

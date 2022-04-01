@@ -1,11 +1,10 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import classNames from 'classnames';
 import { Dialog } from 'antd-mobile';
 import './getGateway.less';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 
-const lampIcon =
-  'https://tencent-1305105198.cos.ap-guangzhou.myqcloud.com/router/normal/lamp.svg';
+const lampIcon =  'https://tencent-1305105198.cos.ap-guangzhou.myqcloud.com/router/normal/lamp.svg';
 export function GetGateway() {
   const [gatewayList, setGatewayList] = useState([]);
   useEffect(() => {
@@ -21,7 +20,7 @@ export function GetGateway() {
           ProductId: sdk.productId,
           DeviceName: sdk.deviceName,
           Offset: 0,
-          Limit: 10
+          Limit: 10,
         });
         console.log('get info', recordListInfo);
         setGatewayList(recordListInfo.DeviceList);
@@ -32,7 +31,7 @@ export function GetGateway() {
     getDeviceDataGateway();
   }, []);
   // 添加网关子设备
-  const addDeviceDataGateway = async (productId: string,deviceName:string) => {
+  const addDeviceDataGateway = async (productId: string, deviceName:string) => {
     try {
       const recordListInfo = await sdk.requestTokenApi('AppBindSubDeviceInFamily', {
         Action: 'AppBindSubDeviceInFamily',
@@ -50,32 +49,32 @@ export function GetGateway() {
     }
   };
   const [lampSrc] = useState(lampIcon);
-  const handleMode = async (productId: string,deviceName:string) => {
+  const handleMode = async (productId: string, deviceName:string) => {
     const result = await Dialog.confirm({
-      content: '确定添加设备？'
+      content: '确定添加设备？',
     });
     if (result) {
-      addDeviceDataGateway(productId,deviceName);
+      addDeviceDataGateway(productId, deviceName);
     }
   };
   return (
     <article className={classNames('getGatewayList')}>
       <div className="dev-list">
-        {/*<div className="dev-info">
+        {/* <div className="dev-info">
           <img src={lampSrc} alt="" onClick={handleMode}/>
           智能电灯
         </div>*/}
         {gatewayList.length > 0 ? (
-            gatewayList.map((value, index) => (
-                value.BindStatus == 0 ? (
-                  <div className="dev-info" id={value.DeviceId} onClick={handleMode(value.ProductId,value.DeviceName)}>
+          gatewayList.map((value, index) => (
+            value.BindStatus == 0 ? (
+                  <div className="dev-info" id={value.DeviceId} onClick={handleMode(value.ProductId, value.DeviceName)}>
                     <img src={lampSrc} alt=""/>
                     {value.DeviceName}
                   </div>
-                ) : (
-                  ''
-                )
-            ))
+            ) : (
+              ''
+            )
+          ))
         ) : (
           <div className="dev-list">
             <div className="dev-empty">
@@ -86,4 +85,4 @@ export function GetGateway() {
       </div>
     </article>
   );
-};
+}

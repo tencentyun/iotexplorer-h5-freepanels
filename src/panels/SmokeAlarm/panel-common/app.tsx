@@ -17,21 +17,20 @@ import { Record } from './views/record';
 import { Settings } from './views/settings';
 import { QuicknessMode } from '@components/base/quicknessMode';
 
-export const App = QuicknessMode(function App () {
-
+export const App = QuicknessMode(() => {
   const [state, { onDeviceDataChange, onDeviceStatusChange }] = useDeviceData(sdk);
   // console.log(state, 'state===============')
 
   // webSecket 监听
   useEffect(() => {
     const handleWsControl = ({ deviceId, deviceData }) => {
-      console.log('wsControl==========', deviceData)
+      console.log('wsControl==========', deviceData);
       if (deviceId === sdk.deviceId) {
         onDeviceDataChange(deviceData);
       }
     };
     const handleWsReport = ({ deviceId, deviceData }) => {
-      console.log('wsReport==========', deviceData)
+      console.log('wsReport==========', deviceData);
       if (deviceId === sdk.deviceId) {
         onDeviceDataChange(deviceData);
       }
@@ -46,13 +45,13 @@ export const App = QuicknessMode(function App () {
       .on('wsControl', handleWsControl)
       .on('wsReport', handleWsReport)
       .on('wsStatusChange', handleWsStatusChange);
-    
+
     return () => {
       sdk
-        .off("wsControl", handleWsControl)
-        .off("wsReport", handleWsReport)
-        .off("wsStatusChange", handleWsStatusChange);
-    }
+        .off('wsControl', handleWsControl)
+        .off('wsReport', handleWsReport)
+        .off('wsStatusChange', handleWsStatusChange);
+    };
   }, []);
 
   return (

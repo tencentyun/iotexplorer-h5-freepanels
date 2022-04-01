@@ -7,8 +7,8 @@ import React from 'react';
 import classNames from 'classnames';
 import {
   StandardBleConnectStatusStr,
-	useStandardBleConnector,
-} from "@hooks/useStandardBleConnector";
+  useStandardBleConnector,
+} from '@hooks/useStandardBleConnector';
 import './style.less';
 
 export interface BluetoothProps {
@@ -20,9 +20,9 @@ export interface BluetoothProps {
 export function Bluetooth(props: BluetoothProps) {
   const { isShowState = true } = props;
 
-  const [ connectStatusInfo ] = useStandardBleConnector({
+  const [connectStatusInfo] = useStandardBleConnector({
     deviceId: props.deviceId,
-    familyId: props.familyId
+    familyId: props.familyId,
   });
 
   return (
@@ -30,7 +30,7 @@ export function Bluetooth(props: BluetoothProps) {
       <span className="bluetooth-icon is_error"></span>
       <i
         className={classNames('connect-state font_2 color_3', {
-          is_hidden: !isShowState
+          is_hidden: !isShowState,
         })}
       >
         {StandardBleConnectStatusStr[connectStatusInfo.status]}

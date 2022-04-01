@@ -7,7 +7,7 @@ import React from 'react';
 import { animated } from '@react-spring/web';
 import {
   PickerColumnItem,
-  PickerValue
+  PickerValue,
 } from 'antd-mobile/es/components/picker-view';
 
 interface Props {
@@ -21,10 +21,9 @@ export function Column(props: Props) {
 
   return React.createElement(
     'div',
-    Object.assign(
-      {
-        className: 'custom-picker-column'
-      }
+    Object.assign({
+      className: 'custom-picker-column',
+    },
       // bind()
     ),
     React.createElement(
@@ -32,11 +31,11 @@ export function Column(props: Props) {
       {
         style: {
           // y: y
-          y: 0
+          y: 0,
         },
-        className: 'custom-picker-column-wheel'
+        className: 'custom-picker-column-wheel',
       },
-      column.map(function (item, index) {
+      column.map((item, index) => {
         console.log(item, 'item ======');
         function handleClick() {
           // draggingRef.current = false;
@@ -48,17 +47,17 @@ export function Column(props: Props) {
           {
             key: item.value,
             className: 'custom-picker-column-item',
-            onClick: handleClick
+            onClick: handleClick,
           },
           React.createElement(
             'div',
             {
-              className: 'custom-picker-column-item-label'
+              className: 'custom-picker-column-item-label',
             },
-            item.label
-          )
+            item.label,
+          ),
         );
-      })
-    )
+      }),
+    ),
   );
 }

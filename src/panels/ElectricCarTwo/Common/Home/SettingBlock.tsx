@@ -10,11 +10,10 @@ export interface SettingBlockProps {
   doControlDeviceData: (id, value) => any;
 }
 
-export function SettingBlock ({
+export function SettingBlock({
   deviceData,
-  doControlDeviceData
+  doControlDeviceData,
 }: SettingBlockProps) {
-
   // 报警
   const handleAlarm = () => {
     doControlDeviceData('alert_status', Number(!deviceData.alert_status));
@@ -30,7 +29,7 @@ export function SettingBlock ({
       <div
         className={classNames(
           'setting-button',
-          deviceData.bluetooth === 1 ? 'active' : ''
+          deviceData.bluetooth === 1 ? 'active' : '',
         )}
         onClick={() => {
           doControlDeviceData('bluetooth', Number(!deviceData.bluetooth));
@@ -43,7 +42,7 @@ export function SettingBlock ({
       <div
         className={classNames(
           'setting-button',
-          deviceData.alert_status === 1 ? 'active' : ''
+          deviceData.alert_status === 1 ? 'active' : '',
         )}
         onClick={handleAlarm}
       >
@@ -57,7 +56,7 @@ export function SettingBlock ({
       <div
         className={classNames(
           'setting-button',
-          deviceData.search === 'sound' ? 'active' : ''
+          deviceData.search === 'sound' ? 'active' : '',
         )}
         onClick={handleMute}
       >

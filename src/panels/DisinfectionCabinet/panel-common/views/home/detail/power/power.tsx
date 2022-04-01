@@ -5,14 +5,14 @@ import { getThemeType } from '@libs/theme';
 import { apiControlDeviceData } from '@hooks/useDeviceData';
 import './power.less';
 
-import PowerImage from "../../../icons/normal/switch.svg";
-import PowerImageDown from "../../../icons/normal/switch-close.svg";
-import PowerImageBlueWhite from "../../../icons/blue-white/switch.svg";
-import PowerImageBlueWhiteDown from "../../../icons/blue-white/switch-close.svg";
-import PowerImageDark from "../../../icons/dark/switch.svg";
-import PowerImageDarkDown from "../../../icons/dark/switch-close.svg";
-import PowerImageMorandi from "../../../icons/morandi/switch.svg";
-import PowerImageMorandiDown from "../../../icons/morandi/switch-close.svg";
+import PowerImage from '../../../icons/normal/switch.svg';
+import PowerImageDown from '../../../icons/normal/switch-close.svg';
+import PowerImageBlueWhite from '../../../icons/blue-white/switch.svg';
+import PowerImageBlueWhiteDown from '../../../icons/blue-white/switch-close.svg';
+import PowerImageDark from '../../../icons/dark/switch.svg';
+import PowerImageDarkDown from '../../../icons/dark/switch-close.svg';
+import PowerImageMorandi from '../../../icons/morandi/switch.svg';
+import PowerImageMorandiDown from '../../../icons/morandi/switch-close.svg';
 
 export function Power() {
   const themeType = getThemeType();
@@ -55,7 +55,7 @@ export function Power() {
   const handlePowerSwitch = () => {
     if (sdk.deviceData.child_lock !== 1) {
       apiControlDeviceData({
-        power_switch: sdk.deviceData.power_switch === 1 ? 0 : 1
+        power_switch: sdk.deviceData.power_switch === 1 ? 0 : 1,
       });
     }
   };
@@ -63,7 +63,7 @@ export function Power() {
     <article className={classNames('power-tools-bar')}>
       <div id={'workState'} className="dev-info">
         <div className="title">工作状态</div>
-        <div className={classNames('label',sdk.deviceData.power_switch === 1 ? 'active' : '')}>
+        <div className={classNames('label', sdk.deviceData.power_switch === 1 ? 'active' : '')}>
           {sdk.deviceData.work_state
             ? handleState(sdk.deviceData.work_state)
             : '待机'}
@@ -78,7 +78,7 @@ export function Power() {
       </div>
       <div id={'downTemperature'} className="dev-info">
         <div className="title">下层温度</div>
-        <div className={classNames('label',sdk.deviceData.power_switch === 1 ? 'active' : '')}>
+        <div className={classNames('label', sdk.deviceData.power_switch === 1 ? 'active' : '')}>
           {sdk.deviceData.down_temperature
             ? sdk.deviceData.down_temperature
             : '10'}

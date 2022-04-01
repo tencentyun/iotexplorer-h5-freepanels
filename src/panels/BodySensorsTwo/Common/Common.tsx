@@ -3,7 +3,7 @@ import { Router } from '@router';
 import { Home } from './Home';
 const App = () => {
   const route = [
-    { path: '/home', Component: Home }
+    { path: '/home', Component: Home },
   ];
   return <Router route={route} />;
 };

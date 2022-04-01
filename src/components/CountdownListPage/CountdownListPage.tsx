@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { DoControlDeviceData } from '@hooks/useDeviceInfo';
 import { SectionListPageItemProps, SectionListPage } from '@components/SectionList';
-import { CountdownSetting } from "@components/CountdownSetting";
+import { CountdownSetting } from '@components/CountdownSetting';
 
 export interface CountdownListPageItemProps extends SectionListPageItemProps {
   countdownId?: string;

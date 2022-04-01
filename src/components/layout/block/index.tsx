@@ -12,17 +12,13 @@ import { StyledProps, ThemeType } from '@libs/global';
 import { getThemeType } from '@libs/theme';
 
 const BlockDom = styled.div`
-  width: ${(props: BlockDomProps) =>
-    props.width ? px2vw(props.width) : 'auto'};
-  height: ${(props: BlockDomProps) =>
-    props.height ? px2vw(props.height) : 'auto'};
-  background-color: ${(props: BlockDomProps) =>
-    props.isActive ? '#0F0F0F' : '#fff'};
+  width: ${(props: BlockDomProps) => (props.width ? px2vw(props.width) : 'auto')};
+  height: ${(props: BlockDomProps) => (props.height ? px2vw(props.height) : 'auto')};
+  background-color: ${(props: BlockDomProps) => (props.isActive ? '#0F0F0F' : '#fff')};
   border-radius: 60px;
   box-sizing: border-box;
   box-shadow: 0 10px 100px 0 rgba(32, 33, 33, 0.1);
-  padding: ${({ padding }: BlockDomProps) =>
-    formatPxUnit(isUndefined(padding) ? 60 : padding)};
+  padding: ${({ padding }: BlockDomProps) => formatPxUnit(isUndefined(padding) ? 60 : padding)};
   overflow: hidden;
 
   &.block_theme_dark {
@@ -60,7 +56,7 @@ export function Block({ className, children, ...props }: BlockProps) {
       className={classNames(
         '_component_layout_block_',
         `block_theme_${theme}`,
-        className
+        className,
       )}
       {...props}
     >

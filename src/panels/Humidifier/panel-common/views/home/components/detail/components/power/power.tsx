@@ -10,9 +10,9 @@ import { DeviceSateContext } from '../../../../../../deviceStateContext';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 import classNames from 'classnames';
 import './power.less';
-import { apiControlDeviceData } from '@hooks/useDeviceData';
+import { apiControlDeviceData, onControlDevice } from '@hooks/useDeviceData';
 import { SvgIcon } from '@components/common/icon';
-import { onControlDevice } from '@hooks/useDeviceData';
+
 
 export enum enumTempKey {
   set_temp,
@@ -20,22 +20,18 @@ export enum enumTempKey {
 }
 
 export function Power() {
-
-  /*按钮改为控制湿度*/
+  /* 按钮改为控制湿度*/
   const handleToggle = (isAdd: boolean) => {
     const oldVal = sdk.deviceData.set_humidity || 0;
     if (isAdd) {
-      if (oldVal < 100)
-        apiControlDeviceData({
-          set_humidity: oldVal + 1
-        });
+      if (oldVal < 100) apiControlDeviceData({
+        set_humidity: oldVal + 1,
+      });
     } else {
-      if (oldVal > 0)
-        apiControlDeviceData({
-          set_humidity: oldVal - 1
-        });
+      if (oldVal > 0) apiControlDeviceData({
+        set_humidity: oldVal - 1,
+      });
     }
-
   };
 
   return (
@@ -44,12 +40,12 @@ export function Power() {
         <article className={classNames(
           'power-tools-bar',
           'border-bottom',
-          deviceData.power_switch === 1 ? 'power-open' : 'power-close' 
-          )}>
+          deviceData.power_switch === 1 ? 'power-open' : 'power-close',
+        )}>
           <button
             className={classNames('button-circle', 'reduce')}
             onClick={() => {
-              if (!deviceData.power_switch) return
+              if (!deviceData.power_switch) return;
               handleToggle(false);
             }}
           >
@@ -59,9 +55,9 @@ export function Power() {
             id={'power'}
             className={classNames(
               'button-circle',
-              'btn-power-switch'
+              'btn-power-switch',
             )}
-            onClick={()=> {
+            onClick={() => {
               onControlDevice('power_switch', Number(!deviceData.power_switch));
             }}
           >
@@ -70,7 +66,7 @@ export function Power() {
           <button
             className={classNames('button-circle', 'add')}
             onClick={() => {
-              if (!deviceData.power_switch) return
+              if (!deviceData.power_switch) return;
               handleToggle(true);
             }}
           >

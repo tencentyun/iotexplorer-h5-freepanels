@@ -1,12 +1,12 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 import './heater_center.less';
 import classNames from 'classnames';
-import {toggleBooleanByNumber} from '@libs/utillib';
-import {apiControlDeviceData,onControlDevice} from '@hooks/useDeviceData';
-import Drawdown from '../../../home/pop-up/drawdown/drawdown'
-import {Cell, Switch} from '@components/base';
-import {useHistory} from 'react-router-dom';
+import { toggleBooleanByNumber } from '@libs/utillib';
+import { apiControlDeviceData, onControlDevice } from '@hooks/useDeviceData';
+import Drawdown from '../../../home/pop-up/drawdown/drawdown';
+import { Cell, Switch } from '@components/base';
+import { useHistory } from 'react-router-dom';
 import { getThemeType } from '@libs/theme';
 
 export function Normal_Center() {
@@ -17,24 +17,24 @@ export function Normal_Center() {
 
   const onDrawdown = () => {
     theDrawdown(true);
-  }
-  const onCloud = () => {
-    // 更多跳转
-    return history.push('/timer');
   };
+  const onCloud = () =>
+    // 更多跳转
+    history.push('/timer')
+  ;
 
-  const handleHeatMode = (mode: String) => {
+  const handleHeatMode = (mode: string) => {
     onControlDevice('heat_mode', mode);
   };
 
   const handleMagnesiumRod = () => {
     apiControlDeviceData({
-      work_life_reset_1: sdk.deviceData.work_life_reset_1 === 1 ? 0 : 1
+      work_life_reset_1: sdk.deviceData.work_life_reset_1 === 1 ? 0 : 1,
     });
   };
   const handleLiner = () => {
     apiControlDeviceData({
-      work_life_reset_2: sdk.deviceData.work_life_reset_2 === 1 ? 0 : 1
+      work_life_reset_2: sdk.deviceData.work_life_reset_2 === 1 ? 0 : 1,
     });
   };
   return (
@@ -62,7 +62,7 @@ export function Normal_Center() {
             onClick={onDrawdown}
             className="_color_white_"
             title="水位设置"
-            value={sdk.deviceData.water_set ? sdk.deviceData.water_set + '%' : '0%'}
+            value={sdk.deviceData.water_set ? `${sdk.deviceData.water_set}%` : '0%'}
             valueStyle="gray"
             size="medium"
           />
@@ -74,11 +74,9 @@ export function Normal_Center() {
               <Switch
                 name={''}
                 theme={themeType}
-                checked={toggleBooleanByNumber(
-                  sdk.deviceData.child_lock ? sdk.deviceData.child_lock : 0
-                )}
+                checked={toggleBooleanByNumber(sdk.deviceData.child_lock ? sdk.deviceData.child_lock : 0)}
                 onChange={(value: boolean) => {
-                  apiControlDeviceData({child_lock: value ? 1 : 0});
+                  apiControlDeviceData({ child_lock: value ? 1 : 0 });
                 }}
               />
             }
@@ -93,11 +91,9 @@ export function Normal_Center() {
               <Switch
                 name={''}
                 theme={themeType}
-                checked={toggleBooleanByNumber(
-                  sdk.deviceData.disinfection ? sdk.deviceData.disinfection : 0
-                )}
+                checked={toggleBooleanByNumber(sdk.deviceData.disinfection ? sdk.deviceData.disinfection : 0)}
                 onChange={(value: boolean) => {
-                  apiControlDeviceData({disinfection: value ? 1 : 0});
+                  apiControlDeviceData({ disinfection: value ? 1 : 0 });
                 }}
               />
             }
@@ -112,11 +108,9 @@ export function Normal_Center() {
               <Switch
                 name={''}
                 theme={themeType}
-                checked={toggleBooleanByNumber(
-                  sdk.deviceData.instant_heating ? sdk.deviceData.instant_heating : 0
-                )}
+                checked={toggleBooleanByNumber(sdk.deviceData.instant_heating ? sdk.deviceData.instant_heating : 0)}
                 onChange={(value: boolean) => {
-                  apiControlDeviceData({instant_heating: value ? 1 : 0});
+                  apiControlDeviceData({ instant_heating: value ? 1 : 0 });
                 }}
               />
             }
@@ -131,11 +125,9 @@ export function Normal_Center() {
               <Switch
                 name={''}
                 theme={themeType}
-                checked={toggleBooleanByNumber(
-                  sdk.deviceData.night_power ? sdk.deviceData.night_power : 0
-                )}
+                checked={toggleBooleanByNumber(sdk.deviceData.night_power ? sdk.deviceData.night_power : 0)}
                 onChange={(value: boolean) => {
-                  apiControlDeviceData({night_power: value ? 1 : 0});
+                  apiControlDeviceData({ night_power: value ? 1 : 0 });
                 }}
               />
             }
@@ -150,11 +142,9 @@ export function Normal_Center() {
               <Switch
                 name={''}
                 theme={themeType}
-                checked={toggleBooleanByNumber(
-                  sdk.deviceData.capacity_expansion ? sdk.deviceData.capacity_expansion : 0
-                )}
+                checked={toggleBooleanByNumber(sdk.deviceData.capacity_expansion ? sdk.deviceData.capacity_expansion : 0)}
                 onChange={(value: boolean) => {
-                  apiControlDeviceData({capacity_expansion: value ? 1 : 0});
+                  apiControlDeviceData({ capacity_expansion: value ? 1 : 0 });
                 }}
               />
             }
@@ -169,11 +159,9 @@ export function Normal_Center() {
               <Switch
                 name={''}
                 theme={themeType}
-                checked={toggleBooleanByNumber(
-                  sdk.deviceData.heating_3d ? sdk.deviceData.heating_3d : 0
-                )}
+                checked={toggleBooleanByNumber(sdk.deviceData.heating_3d ? sdk.deviceData.heating_3d : 0)}
                 onChange={(value: boolean) => {
-                  apiControlDeviceData({heating_3d: value ? 1 : 0});
+                  apiControlDeviceData({ heating_3d: value ? 1 : 0 });
                 }}
               />
             }
@@ -188,11 +176,9 @@ export function Normal_Center() {
               <Switch
                 name={''}
                 theme={themeType}
-                checked={toggleBooleanByNumber(
-                  sdk.deviceData.microwave_switch ? sdk.deviceData.microwave_switch : 0
-                )}
+                checked={toggleBooleanByNumber(sdk.deviceData.microwave_switch ? sdk.deviceData.microwave_switch : 0)}
                 onChange={(value: boolean) => {
-                  apiControlDeviceData({microwave_switch: value ? 1 : 0});
+                  apiControlDeviceData({ microwave_switch: value ? 1 : 0 });
                 }}
               />
             }
@@ -207,11 +193,9 @@ export function Normal_Center() {
               <Switch
                 name={''}
                 theme={themeType}
-                checked={toggleBooleanByNumber(
-                  sdk.deviceData.outage ? sdk.deviceData.outage : 0
-                )}
+                checked={toggleBooleanByNumber(sdk.deviceData.outage ? sdk.deviceData.outage : 0)}
                 onChange={(value: boolean) => {
-                  apiControlDeviceData({outage: value ? 1 : 0});
+                  apiControlDeviceData({ outage: value ? 1 : 0 });
                 }}
               />
             }
@@ -269,7 +253,7 @@ export function Normal_Center() {
 
     </article>
   );
-};
+}
 
 export default Normal_Center;
 

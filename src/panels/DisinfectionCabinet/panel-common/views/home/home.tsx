@@ -5,20 +5,19 @@ import { getThemeType } from '@libs/theme';
 import { Detail } from './detail/detail';
 import { apiControlDeviceData } from '@hooks/useDeviceData';
 import './home.less';
-import LockImageClose from "../icons/normal/lock.svg";
-import LockImage from "../icons/normal/lock-close.svg";
-import LockImageBlueWhiteClose from "../icons/blue-white/lock.svg";
-import LockImageBlueWhite from "../icons/blue-white/lock-close.svg";
-import LockImageColorfulClose from "../icons/colorful/lock.svg";
-import LockImageColorful from "../icons/colorful/lock-close.svg";
-import MoreImage from "../icons/normal/more.svg";
-import MoreImageClose from "../icons/normal/more-close.svg";
-import MoreImageBlueWhite from "../icons/blue-white/more.svg";
-import MoreImageColorful from "../icons/colorful/more.svg";
-import MoreImageColorfulClose from "../icons/colorful/more-close.svg";
-import MoreImageMorandi from "../icons/morandi/more.svg";
-const disinfectionImage =
-  'https://tencent-1305105198.cos.ap-guangzhou.myqcloud.com/disinfection-cabinet/normal/disinfection-cabinet.svg';
+import LockImageClose from '../icons/normal/lock.svg';
+import LockImage from '../icons/normal/lock-close.svg';
+import LockImageBlueWhiteClose from '../icons/blue-white/lock.svg';
+import LockImageBlueWhite from '../icons/blue-white/lock-close.svg';
+import LockImageColorfulClose from '../icons/colorful/lock.svg';
+import LockImageColorful from '../icons/colorful/lock-close.svg';
+import MoreImage from '../icons/normal/more.svg';
+import MoreImageClose from '../icons/normal/more-close.svg';
+import MoreImageBlueWhite from '../icons/blue-white/more.svg';
+import MoreImageColorful from '../icons/colorful/more.svg';
+import MoreImageColorfulClose from '../icons/colorful/more-close.svg';
+import MoreImageMorandi from '../icons/morandi/more.svg';
+const disinfectionImage =  'https://tencent-1305105198.cos.ap-guangzhou.myqcloud.com/disinfection-cabinet/normal/disinfection-cabinet.svg';
 
 export function Home() {
   const themeType = getThemeType();
@@ -53,7 +52,7 @@ export function Home() {
   };
   const handleLock = () => {
     apiControlDeviceData({
-      child_lock: sdk.deviceData.child_lock === 1 ? 0 : 1
+      child_lock: sdk.deviceData.child_lock === 1 ? 0 : 1,
     });
   };
   const handleSetting = () => {
@@ -63,10 +62,10 @@ export function Home() {
     <article
       className={classNames(
         'home',
-        sdk.deviceData.power_switch === 1 ? '' : 'power-off'
+        sdk.deviceData.power_switch === 1 ? '' : 'power-off',
       )}
     >
-      {/*仪表盘*/}
+      {/* 仪表盘*/}
       <section className={classNames('dashboard')}>
         <div className="dashboard-btn">
           <div className="lock">
@@ -87,7 +86,7 @@ export function Home() {
           </div>
         </div>
       </section>
-      {/*详情区域*/}
+      {/* 详情区域*/}
       <Detail />
     </article>
   );

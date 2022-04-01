@@ -47,7 +47,7 @@ export function DatePicker(props: DimePickerProps) {
     onChange,
     onCancel = () => ({}),
     onConfirm = () => ({}),
-    isPopUp = true
+    isPopUp = true,
   } = props;
 
   const [pickerValue, setPickerValue] = useState(value);

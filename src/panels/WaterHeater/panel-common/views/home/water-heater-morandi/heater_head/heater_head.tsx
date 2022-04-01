@@ -1,10 +1,10 @@
 import React from 'react';
-import './heater_head.less'
+import './heater_head.less';
 import classNames from 'classnames';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 
 export function Normal_head() {
-  const stateSrc = (state: String) => {
+  const stateSrc = (state: string) => {
     switch (state) {
       case 'standby':
         return '待机';
@@ -45,7 +45,7 @@ export function Normal_head() {
       </div>
     </article>
   );
-};
+}
 
 export default Normal_head;
 

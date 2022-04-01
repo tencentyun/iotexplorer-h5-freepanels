@@ -37,10 +37,10 @@ export function ScrollView({
     const inReachBottomRange = target.scrollHeight - target.scrollTop - lowerThreshold <= target.clientHeight;
 
     // const isToTop = target.scrollHeight - target.scrollTop - lowerThreshold
-    if(target.scrollTop <= upperThreshold) {
-      if(onReachTop){
+    if (target.scrollTop <= upperThreshold) {
+      if (onReachTop) {
         onReachTop();
-        target.scrollTop = scrollTop || 0
+        target.scrollTop = scrollTop || 0;
       }
     }
 

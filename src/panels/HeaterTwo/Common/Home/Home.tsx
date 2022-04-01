@@ -6,7 +6,7 @@ import { Disk } from './Disk';
 export function Home({
   deviceData,
   doControlDeviceData,
-  history: { PATH, push }
+  history: { PATH, push },
 }) {
   const [isOn, setPowerOn] = useState(false);
   const [recordTime, setRecordTime] = useState('');
@@ -31,21 +31,27 @@ export function Home({
         <div className="footer-top">
           <div
             className="block-button-word"
-            onClick={()=>{push(PATH.RECORD)}}
+            onClick={() => {
+              push(PATH.RECORD);
+            }}
           >
             <p className="button-value">智能模式</p>
             <p className="button-label">模式</p>
           </div>
           <div
             className="block-button-word"
-            onClick={()=>{push(PATH.SETTINGS)}}
+            onClick={() => {
+              push(PATH.SETTINGS);
+            }}
           >
             <p className="button-value">自动</p>
             <p className="button-label">档位</p>
           </div>
           <div
             className="block-button-word"
-            onClick={()=>{push(PATH.SETTINGS)}}
+            onClick={() => {
+              push(PATH.SETTINGS);
+            }}
           >
             <p className="button-value">未设置</p>
             <p className="button-label">定时</p>
@@ -54,14 +60,18 @@ export function Home({
         <div>
           <div
             className="setting-button"
-            onClick={()=>{push(PATH.RECORD)}}
+            onClick={() => {
+              push(PATH.RECORD);
+            }}
           >
             <Switch></Switch>
             <p className="button-name">儿童锁</p>
           </div>
           <div
             className="setting-button"
-            onClick={()=>{push(PATH.RECORD)}}
+            onClick={() => {
+              push(PATH.RECORD);
+            }}
           >
             <Icon name="record"/>
             <p className="button-name">开关</p>

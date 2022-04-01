@@ -1,9 +1,9 @@
 import React from 'react';
 import classNames from 'classnames';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
-import {getThemeType} from '@libs/theme';
-import {Position} from './position/position';
-import {Detail} from './detail/detail';
+import { getThemeType } from '@libs/theme';
+import { Position } from './position/position';
+import { Detail } from './detail/detail';
 import Ticker from './tiker/ticker';
 import './home.less';
 
@@ -17,7 +17,7 @@ export function Home() {
           id={'home'}
           className={classNames(
             'home',
-            sdk.deviceData.power_switch != 1 && 'power-off'
+            sdk.deviceData.power_switch != 1 && 'power-off',
           )}
         >
           <Ticker/>
@@ -25,13 +25,13 @@ export function Home() {
           <Detail/>
         </article>
       );
-    } else {
-      return (
+    }
+    return (
         <article
           id={'home'}
           className={classNames(
             'home',
-            sdk.deviceData.power_switch != 1 && 'power-off'
+            sdk.deviceData.power_switch != 1 && 'power-off',
           )}
         >
           <Position/>
@@ -39,9 +39,8 @@ export function Home() {
           <Ticker/>
 
         </article>
-      );
-    }
-  }
+    );
+  };
   return (
     getHomePage()
   );

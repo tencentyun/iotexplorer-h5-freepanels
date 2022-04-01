@@ -6,33 +6,33 @@ import { getThemeType } from '@libs/theme';
 const data = [
   {
     x: '11:00',
-    y: 60
+    y: 60,
   },
   {
     x: '12:00',
-    y: 55
+    y: 55,
   },
   {
     x: '13:00',
-    y: 64
+    y: 64,
   },
   {
     x: '14:00',
-    y: 45
+    y: 45,
   },
   {
     x: '15:00',
-    y: 40
+    y: 40,
   },
   {
     x: '16:00',
-    y: 40
-  }
+    y: 40,
+  },
 ];
 
 interface lineChartProps {
-  tpye?: String;
-  size: String;
+  tpye?: string;
+  size: string;
   width: number;
   height: number;
 }
@@ -42,7 +42,7 @@ const pxToView = (px: number): string | number => {
   if (px === 0) {
     return px;
   }
-  const viewportWidth = viewportConfig.viewportWidth;
+  const { viewportWidth } = viewportConfig;
   const vw = px * (document.documentElement.clientWidth / viewportWidth);
   return vw.toFixed(viewportConfig.unitPrecision || 3);
 };
@@ -51,7 +51,7 @@ const margin = {
   top: pxToView(20) as number,
   right: pxToView(13) as number,
   bottom: pxToView(50) as number,
-  left: pxToView(13) as number
+  left: pxToView(13) as number,
 };
 
 export function LineChart(props: lineChartProps) {
@@ -77,22 +77,19 @@ export function LineChart(props: lineChartProps) {
         return d3.interpolateNumber(start, d.y);
       });
       return (t: any) => {
-        const newData = data.map((d, i) => {
-          return { ...d, y: interpolates[i](t) };
-        });
+        const newData = data.map((d, i) => ({ ...d, y: interpolates[i](t) }));
 
         setValue(newData);
       };
     });
   }, []);
 
-  const xScale =
-    d3
-      .scalePoint()
-      .domain(data.map(d => d.x))
-      .range([0, chartWidth])
-      .padding(0)
-      .round(true) || 0;
+  const xScale =    d3
+    .scalePoint()
+    .domain(data.map(d => d.x))
+    .range([0, chartWidth])
+    .padding(0)
+    .round(true) || 0;
 
   const yScale = d3
     .scaleLinear()
@@ -112,21 +109,18 @@ export function LineChart(props: lineChartProps) {
     .y1((d: any) => yScale(d.y) || 0)
     .y0((d: any) => yScale(0) || 0);
 
-  const getViewbox = () => {
+  const getViewbox = () =>
     // px2vw(props.width) as string
-    return [0, 0, WIDTH, HEIGHT].join(' ');
-  };
+    [0, 0, WIDTH, HEIGHT].join(' ')
+  ;
 
-  const getYAxisWordStyle = () => {
-    return '';
-  };
+  const getYAxisWordStyle = () => '';
 
   const dStyle = () => {
     if (props.tpye === 'line') {
       return line(value);
-    } else {
-      return area(value);
     }
+    return area(value);
   };
 
   return (
@@ -175,12 +169,11 @@ export function LineChart(props: lineChartProps) {
               return (
                 <g key={i}>
                   {/* 轴标签文本 */}
-                  {themeType === 'dark' ?
-                    <text x={x} y={20} fontSize={12} textAnchor={'middle'} fill={'#ffffff'}>
+                  {themeType === 'dark'
+                    ? <text x={x} y={20} fontSize={12} textAnchor={'middle'} fill={'#ffffff'}>
                       {d.x}
                     </text>
-                    :
-                    <text x={x} y={20} fontSize={12} textAnchor={'middle'}>
+                    :                    <text x={x} y={20} fontSize={12} textAnchor={'middle'}>
                       {d.x}
                     </text>
                     }
@@ -194,7 +187,7 @@ export function LineChart(props: lineChartProps) {
       )}
 
       {/* y轴 */}
-      {/*<g
+      {/* <g
         className="y-axis"
         transform={`translate(${margin.left},${margin.top})`}
       >
@@ -238,10 +231,10 @@ export function LineChart(props: lineChartProps) {
           />
           {size === 'medium'
             ? value.map((d, i) => {
-                const x = xScale(d.x);
-                const y = yScale(d.y);
+              const x = xScale(d.x);
+              const y = yScale(d.y);
 
-                return (
+              return (
                   <g key={i}>
                     <circle
                       cx={x}
@@ -252,8 +245,8 @@ export function LineChart(props: lineChartProps) {
                       strokeWidth="5"
                     ></circle>
                   </g>
-                );
-              })
+              );
+            })
             : ''}
         </g>
       ) : themeType === 'blueWhite' ? (
@@ -271,10 +264,10 @@ export function LineChart(props: lineChartProps) {
           />
           {size === 'medium'
             ? value.map((d, i) => {
-                const x = xScale(d.x);
-                const y = yScale(d.y);
+              const x = xScale(d.x);
+              const y = yScale(d.y);
 
-                return (
+              return (
                   <g key={i}>
                     <circle
                       cx={x}
@@ -285,8 +278,8 @@ export function LineChart(props: lineChartProps) {
                       strokeWidth="5"
                     ></circle>
                   </g>
-                );
-              })
+              );
+            })
             : ''}
         </g>
       ) : themeType === 'dark' ? (
@@ -304,10 +297,10 @@ export function LineChart(props: lineChartProps) {
           />
           {size === 'medium'
             ? value.map((d, i) => {
-                const x = xScale(d.x);
-                const y = yScale(d.y);
+              const x = xScale(d.x);
+              const y = yScale(d.y);
 
-                return (
+              return (
                   <g key={i}>
                     <circle
                       cx={x}
@@ -318,8 +311,8 @@ export function LineChart(props: lineChartProps) {
                       strokeWidth="5"
                     ></circle>
                   </g>
-                );
-              })
+              );
+            })
             : ''}
         </g>
       ) : themeType === 'colorful' ? (
@@ -337,10 +330,10 @@ export function LineChart(props: lineChartProps) {
           />
           {size === 'medium'
             ? value.map((d, i) => {
-                const x = xScale(d.x);
-                const y = yScale(d.y);
+              const x = xScale(d.x);
+              const y = yScale(d.y);
 
-                return (
+              return (
                   <g key={i}>
                     <circle
                       cx={x}
@@ -351,8 +344,8 @@ export function LineChart(props: lineChartProps) {
                       strokeWidth="5"
                     ></circle>
                   </g>
-                );
-              })
+              );
+            })
             : ''}
         </g>
       ) : (
@@ -370,10 +363,10 @@ export function LineChart(props: lineChartProps) {
           />
           {size === 'medium'
             ? value.map((d, i) => {
-                const x = xScale(d.x);
-                const y = yScale(d.y);
+              const x = xScale(d.x);
+              const y = yScale(d.y);
 
-                return (
+              return (
                   <g key={i}>
                     <circle
                       cx={x}
@@ -384,8 +377,8 @@ export function LineChart(props: lineChartProps) {
                       strokeWidth="5"
                     ></circle>
                   </g>
-                );
-              })
+              );
+            })
             : ''}
         </g>
       )}

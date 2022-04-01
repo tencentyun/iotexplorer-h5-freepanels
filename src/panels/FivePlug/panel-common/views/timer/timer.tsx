@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import TimerCloud, {
   ITimerDataBind,
-  ITimerOptions
+  ITimerOptions,
 } from '@components/business/timerCloud/timer-cloud';
 import { List, Radio } from 'antd-mobile';
 import { Modal } from '@components/base';
@@ -14,21 +14,21 @@ const Timer = () => {
   const optionsTimer: ITimerOptions = {
     power_switch: {
       label: '开关',
-      value_enum: ['关', '开']
-    }
+      value_enum: ['关', '开'],
+    },
   };
   return (
     <TimerCloud dataBind={data} options={optionsTimer}>
       <List>
         <List.Item
           prefix={'开关'}
-          extra={optionsTimer.power_switch.value_enum[data['power_switch']]}
+          extra={optionsTimer.power_switch.value_enum[data.power_switch]}
           onClick={() => {
             setIsShowPowerSwitch(true);
           }}
         />
       </List>
-      {/*开关弹窗*/}
+      {/* 开关弹窗*/}
       <Modal
         title={'开关'}
         visible={isShowPowerSwitch}
@@ -64,7 +64,7 @@ const Timer = () => {
           </List>
         </Radio.Group>
       </Modal>
-      {/*<button onClick={handleChange}>change11</button>*/}
+      {/* <button onClick={handleChange}>change11</button>*/}
     </TimerCloud>
   );
 };

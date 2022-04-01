@@ -23,7 +23,7 @@ export function Row({
   justify,
   children,
   className,
-  style
+  style,
 }: RowProps) {
   let grid = { gap: 12 };
   let rowStyle = null;
@@ -32,7 +32,7 @@ export function Row({
     grid = { gap };
     rowStyle = {
       marginLeft: -gap / 2,
-      marginRight: -gap / 2
+      marginRight: -gap / 2,
     };
   }
 
@@ -40,11 +40,11 @@ export function Row({
     <div
       className={classNames('_component_layout_row_', className, {
         [`explorer-h5-vertical_${align}`]: align,
-        [`explorer-h5-justify_${justify}`]: justify
+        [`explorer-h5-justify_${justify}`]: justify,
       })}
       style={{
         ...(rowStyle || {}),
-        ...(style || {})
+        ...(style || {}),
       }}
     >
       <GridContext.Provider value={grid}>{children}</GridContext.Provider>
@@ -66,18 +66,18 @@ export function Col({ span, children, className, style, onClick }: ColProps) {
   if (grid) {
     colStyle = {
       paddingLeft: grid.gap / 2,
-      paddingRight: grid.gap / 2
+      paddingRight: grid.gap / 2,
     };
   }
 
   return (
     <div
       className={classNames('_component_layout_col_', className, {
-        [`col_span-${span}`]: span
+        [`col_span-${span}`]: span,
       })}
       style={{
         ...(colStyle || {}),
-        ...(style || {})
+        ...(style || {}),
       }}
       onClick={onClick}
     >

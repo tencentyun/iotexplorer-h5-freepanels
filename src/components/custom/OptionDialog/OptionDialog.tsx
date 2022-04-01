@@ -77,7 +77,7 @@ export function OptionDialog(props: OptionDialogProps) {
       <div
         className={classNames('item-block', {
           isDisabled: item.disabled,
-          isSelected: isSelected
+          isSelected,
         })}
         key={item.value}
         onClick={() => handleSelect(item)}

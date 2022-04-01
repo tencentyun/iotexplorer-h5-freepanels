@@ -2,10 +2,10 @@
  * 多路开关
  */
 import React, { useEffect } from 'react';
-import { Switch, Route, Redirect, HashRouter} from 'react-router-dom';
+import { Switch, Route, Redirect, HashRouter } from 'react-router-dom';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 import { useDeviceData } from '@hooks/useDeviceData';
-import {QuicknessMode} from '@components/base';
+import { QuicknessMode } from '@components/base';
 import { Home } from './views/home/home';
 import Timer from './views/timer/timer';
 import { DeviceSateContext } from './deviceStateContext';
@@ -14,9 +14,8 @@ import '@icons/themes/global.less';
 import './style.less';
 import './themes.less';
 
-export const App = QuicknessMode(function App() {
-  const [state, { onDeviceDataChange, onDeviceStatusChange }] =
-    useDeviceData(sdk);
+export const App = QuicknessMode(() => {
+  const [state, { onDeviceDataChange, onDeviceStatusChange }] =    useDeviceData(sdk);
   console.log('state===============', state);
 
   // WebSocket 监听

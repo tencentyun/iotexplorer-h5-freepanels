@@ -20,9 +20,8 @@ export function CameraConfig({ deviceData, templateMap, doControlDeviceData }) {
       const typeObj = templateMap[key];
 
       return typeObj.define.mapping[type];
-    } else {
-      return '暂无';
     }
+    return '暂无';
   };
 
   const getOptions = (key: string) => {
@@ -32,7 +31,7 @@ export function CameraConfig({ deviceData, templateMap, doControlDeviceData }) {
         for (const [index, value] of Object.entries(templateMap[key].define.mapping)) {
           options.push({
             label: value,
-            value: index
+            value: index,
           });
         }
         return (options || []).length > 0 ? options : [];
@@ -79,8 +78,8 @@ export function CameraConfig({ deviceData, templateMap, doControlDeviceData }) {
         }
       >
       </Cell>
-      {deviceData.stay_alarm_mode == 1 ?
-        <Cell
+      {deviceData.stay_alarm_mode == 1
+        ? <Cell
           className="cell-settings-secondary"
           title="灵敏度"
           value={getDesc('sensitivity', deviceData.sensitivity ? deviceData.sensitivity : 1)}

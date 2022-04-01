@@ -10,7 +10,7 @@ import { TimePicker } from '@custom/TimePicker';
 export function Settings({
   deviceData,
   templateMap,
-  doControlDeviceData
+  doControlDeviceData,
 }) {
   // 音量选择器
   const [alarmVolVisible, onToggleAlarmVol] = useState(false);
@@ -24,38 +24,37 @@ export function Settings({
       const typeObj = templateMap[key];
 
       return typeObj.define.mapping[type];
-    } else {
-      return ''
     }
+    return '';
   };
 
   const volOptions = () => {
-    if (templateMap['alarm_vol']) {
-      const options = templateMap['alarm_vol'].map((t: any) => ({
+    if (templateMap.alarm_vol) {
+      const options = templateMap.alarm_vol.map((t: any) => ({
         label: t.desc,
-        value: t.name
+        value: t.name,
       }));
       return options.length > 0 ? options : [];
     }
     return [
-      {label: "low", value: "0"},
-      {label: "middle", value: "1"},
-      {label: "high", value: "2"},
-      {label: "mute", value: "3"}
+      { label: 'low', value: '0' },
+      { label: 'middle', value: '1' },
+      { label: 'high', value: '2' },
+      { label: 'mute', value: '3' },
     ];
   };
 
   const ringtoneOptions = () => {
-    if (templateMap['alarm_ringtone']) {
-      const options = templateMap['alarm_ringtone'].map((t: any) => ({
+    if (templateMap.alarm_ringtone) {
+      const options = templateMap.alarm_ringtone.map((t: any) => ({
         label: t.desc,
-        value: t.name
+        value: t.name,
       }));
       return options.length > 0 ? options : [];
     }
     return [
-      {label: "ringtone1", value: "1"},
-      {label: "ringtone2", value: "2"}
+      { label: 'ringtone1', value: '1' },
+      { label: 'ringtone2', value: '2' },
     ];
   };
 
@@ -98,8 +97,10 @@ export function Settings({
           title="报警音量"
           defaultValue={[deviceData.alarm_vol]}
           options={volOptions()}
-          onCancel={()=>{onToggleAlarmVol(false)}}
-          onConfirm={(value)=>{
+          onCancel={() => {
+            onToggleAlarmVol(false);
+          }}
+          onConfirm={(value) => {
             doControlDeviceData('alarm_vol', value[0]);
           }}
         ></OptionDialog>
@@ -119,8 +120,10 @@ export function Settings({
           title="报警铃声"
           defaultValue={[deviceData.alarm_ringtone]}
           options={ringtoneOptions()}
-          onCancel={()=>{onToggleAlarmRingtone(false)}}
-          onConfirm={(value)=>{
+          onCancel={() => {
+            onToggleAlarmRingtone(false);
+          }}
+          onConfirm={(value) => {
             doControlDeviceData('alarm_ringtone', value[0]);
           }}
         ></OptionDialog>
@@ -128,7 +131,7 @@ export function Settings({
       <Cell
         className="cell-settings"
         title="报警时长"
-        value={(deviceData.alarm_time || '0') + 's'}
+        value={`${deviceData.alarm_time || '0'}s`}
         valueStyle="set"
         size="medium"
         onClick={() => {
@@ -145,7 +148,7 @@ export function Settings({
           mask={false}
           onCancel={()=>{onToggleAlarmTime(false)}}
           onConfirm={()=>{onToggleAlarmTime(false)}}
-          
+
         /> */}
       </Cell>
       <Cell

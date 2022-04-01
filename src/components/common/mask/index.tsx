@@ -25,13 +25,10 @@ export const MaskWrapper = styled.div`
 `;
 
 export const withMask = <P extends ModalProps>(
-  WrappedComponent: React.ComponentType<P>
-) => {
-  return function Mask(props: MaskProps) {
+  WrappedComponent: React.ComponentType<P>,
+) => function Mask(props: MaskProps) {
     const Z_INDEX = 999;
-    const [isVisible, onToggleVisible] = useState(
-      typeof props.visible === 'undefined' || props.visible
-    );
+    const [isVisible, onToggleVisible] = useState(typeof props.visible === 'undefined' || props.visible);
 
     useEffect(() => {
       if (typeof props.visible === 'undefined') return;
@@ -55,4 +52,3 @@ export const withMask = <P extends ModalProps>(
       </React.Fragment>
     );
   };
-};
