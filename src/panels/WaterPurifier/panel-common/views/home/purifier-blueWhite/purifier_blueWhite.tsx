@@ -8,9 +8,7 @@ import Bormal_head from './bormal_head/bormal_head';
 export function Purifier_BlueWhite() {
   return (
     <article
-      className={classNames(
-        'blueWhite_home'
-      )}
+      className={classNames('blueWhite_home')}
     >
       <Bormal_center/>
       <Bormal_head/>

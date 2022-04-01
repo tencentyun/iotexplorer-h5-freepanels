@@ -3,8 +3,7 @@ import dayjs from 'dayjs';
 import { Image } from '@custom/Image';
 import { Btn } from '@custom/Btn';
 
-const src =
-  'https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimg9.51tietu.net%2Fpic%2F2019-091216%2Ftn25ktz0usktn25ktz0usk.jpg&refer=http%3A%2F%2Fimg9.51tietu.net&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1650682187&t=9d3ef8eaf2f52353d3ef2dc6e40ca922';
+const src =  'https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimg9.51tietu.net%2Fpic%2F2019-091216%2Ftn25ktz0usktn25ktz0usk.jpg&refer=http%3A%2F%2Fimg9.51tietu.net&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1650682187&t=9d3ef8eaf2f52353d3ef2dc6e40ca922';
 export function Photos({ tips }) {
   const [select, setSelect] = useState([]); // 选中的照片
   const [checkable, setCheckable] = useState(true); // 是否可以选择
@@ -12,15 +11,15 @@ export function Photos({ tips }) {
     {
       dateTime: 1648089813698,
       total: 300,
-      data: [{ src, id: '1' }]
+      data: [{ src, id: '1' }],
     },
     {
       dateTime: 1648089813698,
       total: 300,
       data: [
         { src, id: '21' },
-        { src, id: '22' }
-      ]
+        { src, id: '22' },
+      ],
     },
     {
       dateTime: 1648089813698,
@@ -28,8 +27,8 @@ export function Photos({ tips }) {
       data: [
         { src, id: '31' },
         { src, id: '32' },
-        { src, id: '33' }
-      ]
+        { src, id: '33' },
+      ],
     },
     {
       dateTime: 1648089813698,
@@ -39,8 +38,8 @@ export function Photos({ tips }) {
         { src, id: '42' },
         { src, id: '43' },
         { src, id: '44' },
-        { src, id: '45' }
-      ]
+        { src, id: '45' },
+      ],
     },
     {
       dateTime: 1648089813698,
@@ -54,26 +53,26 @@ export function Photos({ tips }) {
         { src, id: '56' },
         { src, id: '57' },
         { src, id: '58' },
-        { src, id: '59' }
-      ]
+        { src, id: '59' },
+      ],
     },
     {
       dateTime: undefined,
       total: undefined,
-      data: []
+      data: [],
     },
     {
       dateTime: undefined,
       total: undefined,
-      data: [{ src, id: '71' }]
-    }
+      data: [{ src, id: '71' }],
+    },
   ];
 
   const onChange = (isChecked, id) => {
     if (isChecked) {
       setSelect(select.slice().concat(id));
     } else {
-      setSelect(select.slice().filter((existId) => existId !== id));
+      setSelect(select.slice().filter(existId => existId !== id));
     }
   };
   return (
@@ -93,7 +92,7 @@ export function Photos({ tips }) {
                   src={src}
                   checkable={checkable}
                   checked={select.includes(id)}
-                  onChange={(isChecked) => onChange(isChecked, id)}
+                  onChange={isChecked => onChange(isChecked, id)}
                 />
               ))}
             </div>

@@ -1,17 +1,17 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import classNames from 'classnames';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 import { getThemeType } from '@libs/theme';
-import {onControlDevice} from '@hooks/useDeviceData';
-import {ListPicker} from "@components/business";
+import { onControlDevice } from '@hooks/useDeviceData';
+import { ListPicker } from '@components/business';
 import './environment.less';
 
 import AutomaticImage from '../../../icons/normal/automatic.svg';
-import AutomaticImageClose from "../../../icons/normal/automatic-close.svg";
+import AutomaticImageClose from '../../../icons/normal/automatic-close.svg';
 import AutomaticImageBlueWhite from '../../../icons/blue-white/automatic.svg';
 import AutomaticImageDark from '../../../icons/dark/automatic.svg';
 import AutomaticImageColorful from '../../../icons/colorful/automatic.svg';
-import AutomaticImageMorandi from "../../../icons/morandi/automatic.svg";
+import AutomaticImageMorandi from '../../../icons/morandi/automatic.svg';
 import FanImage from '../../../icons/normal/fan.svg';
 import FanImageClose from '../../../icons/normal/fan-close.svg';
 import FanImageBlueWhite from '../../../icons/blue-white/fan.svg';
@@ -99,7 +99,7 @@ const Environment = () => {
   };
   const [rangeVisible, onToggleRange] = useState(false);
   const handleMode = (type: string) => {
-    if(sdk.deviceData.power_switch === 1){
+    if (sdk.deviceData.power_switch === 1) {
       onControlDevice('mode', type);
     }
   };
@@ -151,7 +151,7 @@ const Environment = () => {
             }
             alt=""
           />
-          <div className={sdk.deviceData.range ? 'check' : ''}>{sdk.deviceData.range ? sdk.deviceData.range + '挡' : '-'}</div>
+          <div className={sdk.deviceData.range ? 'check' : ''}>{sdk.deviceData.range ? `${sdk.deviceData.range}挡` : '-'}</div>
         </div>
         <ListPicker
           visible={rangeVisible}
@@ -160,19 +160,19 @@ const Environment = () => {
           options={[
             {
               label: '1档',
-              value: '1'
+              value: '1',
             },
             {
               label: '2档',
-              value: '2'
+              value: '2',
             },
             {
               label: '3档',
-              value: '3'
-            }
+              value: '3',
+            },
           ]}
           onCancel={() => onToggleRange(false)}
-          onConfirm={value => {
+          onConfirm={(value) => {
             onControlDevice('range', value[0]);
             onToggleRange(false);
           }}

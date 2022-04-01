@@ -22,11 +22,11 @@ export const MainSwitch = ({ context: { power_switch = 0, switchNum = 4 }, setCo
         <List>
           <List.Item
             prefix={'打开'}
-            extra={<Radio value={1} icon={(checked) => <Icon size="small" checked={checked} />} />}
+            extra={<Radio value={1} icon={checked => <Icon size="small" checked={checked} />} />}
           />
           <List.Item
             prefix={'关闭'}
-            extra={<Radio value={0} icon={(checked) => <Icon size="small" checked={checked} />} />}
+            extra={<Radio value={0} icon={checked => <Icon size="small" checked={checked} />} />}
           />
         </List>
       </Radio.Group>

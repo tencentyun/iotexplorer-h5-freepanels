@@ -1,26 +1,26 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
-import classNames from "classnames";
+import classNames from 'classnames';
 import { Block } from '@components/layout';
 import { LightSwitch } from '@components/business/light-switch';
 import { getThemeType } from '@libs/theme';
-import { apiControlDeviceData, onControlDevice} from '@hooks/useDeviceData';
+import { apiControlDeviceData, onControlDevice } from '@hooks/useDeviceData';
 import { ValuePicker } from '@components/business';
 import { numberToArray } from '@libs/utillib';
 
-import SwitchImageDefaule from "./icons/normal/switch-close.svg";
-import SwitchImage from "./icons/normal/switch.svg";
-import SwitchImageBlueWhite from "./icons/blue-white/switch.svg";
-import SwitchImageDark from "./icons/dark/switch.svg";
-import SwitchImageColorful from "./icons/colorful/switch.svg";
-import SwitchImageMorandi from "./icons/morandi/switch.svg";
+import SwitchImageDefaule from './icons/normal/switch-close.svg';
+import SwitchImage from './icons/normal/switch.svg';
+import SwitchImageBlueWhite from './icons/blue-white/switch.svg';
+import SwitchImageDark from './icons/dark/switch.svg';
+import SwitchImageColorful from './icons/colorful/switch.svg';
+import SwitchImageMorandi from './icons/morandi/switch.svg';
 
-import TimingImageDefaule from "./icons/normal/timing-close.svg";
-import TimingImage from "./icons/normal/timing.svg";
-import TimingImageBlueWhite from "./icons/blue-white/timing.svg";
-import TimingImageDark from "./icons/dark/timing.svg";
-const TimingImageColorful = "https://tencent-1305105198.cos.ap-guangzhou.myqcloud.com/lamp-one/colorful/timing.png";
-import TimingImageMorandi from "./icons/morandi/timing.svg";
+import TimingImageDefaule from './icons/normal/timing-close.svg';
+import TimingImage from './icons/normal/timing.svg';
+import TimingImageBlueWhite from './icons/blue-white/timing.svg';
+import TimingImageDark from './icons/dark/timing.svg';
+import TimingImageMorandi from './icons/morandi/timing.svg';
+const TimingImageColorful = 'https://tencent-1305105198.cos.ap-guangzhou.myqcloud.com/lamp-one/colorful/timing.png';
 
 export function White() {
   const themeType = getThemeType();
@@ -74,14 +74,14 @@ export function White() {
   };
   const handlePowerSwitch = () => {
     apiControlDeviceData({
-      power_switch: sdk.deviceData.power_switch === 1 ? 0 : 1
+      power_switch: sdk.deviceData.power_switch === 1 ? 0 : 1,
     });
   };
   return (
     <div
       className={classNames(
         'white-pane',
-        sdk.deviceData.power_switch === 1 ? '' : 'power-off'
+        sdk.deviceData.power_switch === 1 ? '' : 'power-off',
       )}
     >
       {/* 亮度 */}
@@ -90,7 +90,7 @@ export function White() {
           defaultValue={sdk.deviceData.brightness ? sdk.deviceData.brightness / 100 : 0.4}
           disable={sdk.deviceData.power_switch === 1 ? 1 : 0}
           onChange={(value: any) => {
-            if (sdk.deviceData.power_switch === 1){
+            if (sdk.deviceData.power_switch === 1) {
               onControlDevice('brightness', value.toFixed(2) * 100);
             }
           }}
@@ -124,7 +124,7 @@ export function White() {
           onCancel={() => {
             onToggleTiming(false);
           }}
-          onConfirm={value => {
+          onConfirm={(value) => {
             let hour = value[0];
             let minute = value[1];
             if (hour != null) {

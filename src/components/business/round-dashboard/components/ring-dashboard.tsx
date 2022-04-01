@@ -71,9 +71,9 @@ export function RingDashboard(props: DashboardProps) {
       x: 0,
       y: 0,
       radius: 36,
-      color: '#0F0F0F'
+      color: '#0F0F0F',
     },
-    businessType = ''
+    businessType = '',
   } = props;
 
   console.log(props);
@@ -84,7 +84,7 @@ export function RingDashboard(props: DashboardProps) {
 
   // 当前角度
   const currentAngle = (() => {
-    //进度
+    // 进度
     const progress = value / (maxValue - minValue);
     const range = endAngle - startAngle;
     let angle = range * progress + startAngle;
@@ -106,7 +106,7 @@ export function RingDashboard(props: DashboardProps) {
     circleColor: '#DDD',
     fillCircle: true,
     center: 0,
-    radius: 0
+    radius: 0,
   };
 
   // Reset stroke to 0 if drawing full sector
@@ -123,13 +123,11 @@ export function RingDashboard(props: DashboardProps) {
     const y = options.center + options.radius * Math.sin(radians(angle));
 
     return (
-      'A' + options.radius + ',' + options.radius + ' 1 0 1 ' + x + ',' + y
+      `A${options.radius},${options.radius} 1 0 1 ${x},${y}`
     );
   };
 
-  const radians = (degrees: number) => {
-    return (degrees / 180) * Math.PI;
-  };
+  const radians = (degrees: number) => (degrees / 180) * Math.PI;
 
   const getSector = (returnD = false) => {
     const noptions = options;
@@ -181,7 +179,7 @@ export function RingDashboard(props: DashboardProps) {
 
   // 圆形刻度
   const renderRoundScale = () => {
-    //半径
+    // 半径
     const r1 = width / 2;
 
     const scaleList = [];
@@ -197,9 +195,7 @@ export function RingDashboard(props: DashboardProps) {
       const x = r1 + (r1 - 83) * Math.cos((i * Math.PI) / 180);
       const y = r1 + (r1 - 83) * Math.sin((i * Math.PI) / 180);
 
-      scaleList.push(
-        <circle key={i} cx={x} cy={y} r="6" fill={color} strokeWidth="0" />
-      );
+      scaleList.push(<circle key={i} cx={x} cy={y} r="6" fill={color} strokeWidth="0" />);
     }
 
     return scaleList;
@@ -212,9 +208,9 @@ export function RingDashboard(props: DashboardProps) {
     ex: number,
     ey: number,
     angle: number,
-    largeArcFlag: number
+    largeArcFlag: number,
   ) => {
-    //path 属性
+    // path 属性
     const descriptions = [
       'M',
       sx,
@@ -226,7 +222,7 @@ export function RingDashboard(props: DashboardProps) {
       largeArcFlag,
       1,
       ex,
-      ey
+      ey,
     ].join(' ');
 
     return descriptions;
@@ -236,7 +232,7 @@ export function RingDashboard(props: DashboardProps) {
     const per = value / (maxValue - minValue);
     const r = radius - 109;
     console.log(per);
-    return Math.PI * r * ((360 - 90) / 180) * per + ',' + Math.PI * 2 * r;
+    return `${Math.PI * r * ((360 - 90) / 180) * per},${Math.PI * 2 * r}`;
   };
   const renderIndicator = () => {
     const pathBorder = 10; // 指针轨迹border值
@@ -244,7 +240,7 @@ export function RingDashboard(props: DashboardProps) {
     const angle = 90; // 起点角度
     const startX = (1 - Math.sin((angle / 360) * Math.PI)) * r + 40;
     const startY = (1 + Math.cos((angle / 360) * Math.PI)) * r + 40;
-    let endX, endY, dpath;
+    let endX; let endY; let dpath;
     // 起点确定，终点坐标轴四象限决定终点计算
     const angleDiff = value * (270 / 50);
     if (value <= 50) {
@@ -277,7 +273,7 @@ export function RingDashboard(props: DashboardProps) {
           strokeWidth="18px"
           fill={'#ffffff'}
         >
-          <animateMotion begin="0s" dur={1 + 's'} fill="freeze" repeatCount="1">
+          <animateMotion begin="0s" dur={`${1}s`} fill="freeze" repeatCount="1">
             <mpath xlinkHref="#myPath" />
           </animateMotion>
         </circle>
@@ -316,14 +312,14 @@ export function RingDashboard(props: DashboardProps) {
   //   )
   // }
 
-  const getViewbox = () => {
+  const getViewbox = () =>
     // px2vw(props.width) as string
-    return [0, 0, width, height].join(' ');
-  };
+    [0, 0, width, height].join(' ')
+  ;
 
   return (
     <svg
-      className={businessType + '-round-dashboard'}
+      className={`${businessType}-round-dashboard`}
       xmlns="http://www.w3.org/2000/svg"
       viewBox={getViewbox()}
     >

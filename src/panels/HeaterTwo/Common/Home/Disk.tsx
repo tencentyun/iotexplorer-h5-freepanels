@@ -93,7 +93,7 @@ export function Disk(props: DashboardProps) {
       x: 0,
       y: 0,
       radius: 12,
-      color: '#0F0F0F'
+      color: '#0F0F0F',
     },
     centerCicle = {
       circleX: 380,
@@ -104,44 +104,44 @@ export function Disk(props: DashboardProps) {
       strokeWidth: 0,
       shade: 'true', // 阴影
       startColor: '#527DF4',
-      endColor: '#044DFF'
+      endColor: '#044DFF',
     },
     // 刻度线
     scaleLine = {
       defaultColor: 'rgba(156, 170, 181, 0.3)',
       activeColor: '#9CAAB5',
-      animaTime: 60
+      animaTime: 60,
     },
     // 指针
     indicatorStyle = {
-      color: '#9CAAB5'
-    }
+      color: '#9CAAB5',
+    },
   } = props;
 
   useEffect(() => {
     const tickAnimation = () => {
       let interval: any;
       let i = 0;
-      let activeLineList = document.getElementsByClassName('line');
+      const activeLineList = document.getElementsByClassName('line');
       interval = setInterval(() => {
-        let list = activeLineList[i].classList;
+        const list = activeLineList[i].classList;
         if (list.contains('activeLine')) {
-          activeLineList[i].setAttribute('style', 'stroke: ' + scaleLine.activeColor + ';stroke-width: 2');
+          activeLineList[i].setAttribute('style', `stroke: ${scaleLine.activeColor};stroke-width: 2`);
         } else {
-          activeLineList[i].setAttribute('style', 'stroke: ' + scaleLine.defaultColor + ';stroke-width: 2');
+          activeLineList[i].setAttribute('style', `stroke: ${scaleLine.defaultColor};stroke-width: 2`);
         }
         i++;
         if (i === activeLineList.length) {
           clearInterval(interval);
         }
       }, scaleLine.animaTime);
-    }
+    };
     tickAnimation();
-  }, [value])
+  }, [value]);
 
   // 当前角度
   const currentAngle = (() => {
-    //进度
+    // 进度
     const progress = value / (maxValue - minValue);
     const range = endAngle - startAngle;
     let angle = range * progress + startAngle;
@@ -155,11 +155,7 @@ export function Disk(props: DashboardProps) {
   })();
 
   // 当前透明度
-  const currentOpacity: number = (() => {
-    return Number(
-      ((1 - 0.15) / ((currentAngle - startAngle) / step)).toFixed(2)
-    );
-  })();
+  const currentOpacity: number = (() => Number(((1 - 0.15) / ((currentAngle - startAngle) / step)).toFixed(2)))();
 
   const lineArray = () => {
     // 半径
@@ -167,7 +163,7 @@ export function Disk(props: DashboardProps) {
     // 半径2
     const r2 = r1 - 6;
 
-    //遍历角度，算出每条刻度线的起始坐标和终止坐标。
+    // 遍历角度，算出每条刻度线的起始坐标和终止坐标。
     for (let i = startAngle; i <= endAngle; i += step) {
       const color = scaleLine.defaultColor;
       const n = (i - startAngle) / step;
@@ -183,10 +179,10 @@ export function Disk(props: DashboardProps) {
         className: i <= currentAngle ? 'line activeLine' : 'line defaultLine',
         x1: x,
         y1: y,
-        x2: x2,
-        y2: y2,
-        color: color,
-        opacity: scaleIsGradient ? 0.15 + currentOpacity * n : 1
+        x2,
+        y2,
+        color,
+        opacity: scaleIsGradient ? 0.15 + currentOpacity * n : 1,
       });
     }
 
@@ -194,8 +190,7 @@ export function Disk(props: DashboardProps) {
   };
 
   // 绘制刻度线
-  const renderLine = (item: LineProps, index: number) => {
-    return (
+  const renderLine = (item: LineProps, index: number) => (
       <line
         key={item.angle}
         className={item.className}
@@ -206,8 +201,7 @@ export function Disk(props: DashboardProps) {
         style={{ stroke: item.color, strokeWidth: 5 }}
         strokeLinecap="round"
       ></line>
-    );
-  };
+  );
 
   const ellipse2path = (
     r: number,
@@ -216,9 +210,9 @@ export function Disk(props: DashboardProps) {
     ex: number,
     ey: number,
     angle: number,
-    largeArcFlag: number
+    largeArcFlag: number,
   ) => {
-    //path 属性
+    // path 属性
     const descriptions = [
       'M',
       sx,
@@ -230,7 +224,7 @@ export function Disk(props: DashboardProps) {
       largeArcFlag,
       1,
       ex,
-      ey
+      ey,
     ].join(' ');
 
     return descriptions;
@@ -238,7 +232,7 @@ export function Disk(props: DashboardProps) {
 
   // 绘制指示标
   const renderIndicator: any = () => {
-    //半径
+    // 半径
     const r1 = (width / 2) - borderWidth - 10;
 
     const scaleList: any[] = [];
@@ -246,34 +240,30 @@ export function Disk(props: DashboardProps) {
     const x = r1 + (r1 - borderWidth - 10) * Math.cos((currentAngle * Math.PI) / 180);
     const y = r1 + (r1 - borderWidth - 10) * Math.sin((currentAngle * Math.PI) / 180);
 
-    scaleList.push(
-      <circle
+    scaleList.push(<circle
         cx={x}
         cy={y}
         r={10}
         fill="#ffffff"
         stroke="#26313D"
         strokeWidth={6}
-      />
-    );
+      />);
     return scaleList;
   };
 
-  const getViewbox = () => {
-    return [0, 0, width, height].join(' ');
-  };
+  const getViewbox = () => [0, 0, width, height].join(' ');
 
   const radius1 = 120;
   // 周长
   const getPerimeter = 2 * Math.PI * radius1;
   // 缺角周长
   const getLength = 2 * Math.PI * radius1 * 0.75;
-  const length = getLength - getPerimeter
+  const length = getLength - getPerimeter;
   const [currentLength, setCurrentLength] = useState(0);
 
   useEffect(() => {
-    let percentage = value / (maxValue - minValue);
-    let perimeter = 2 * Math.PI * radius1 * 0.75;
+    const percentage = value / (maxValue - minValue);
+    const perimeter = 2 * Math.PI * radius1 * 0.75;
     setCurrentLength(perimeter * percentage);
   }, [value]);
   return (
@@ -282,7 +272,7 @@ export function Disk(props: DashboardProps) {
       xmlns="http://www.w3.org/2000/svg"
       viewBox={getViewbox()}
     >
-      <circle cx="130" cy="130" r="130" stroke="#EFF3F5" stroke-width="1" fill="#FBFBFC" />
+      <circle cx="130" cy="130" r="130" stroke="#EFF3F5" strokeWidth="1" fill="#FBFBFC" />
       <circle cx="130" cy="130" r="106" fill="#26313D" />
 
       <circle
@@ -290,22 +280,22 @@ export function Disk(props: DashboardProps) {
         cy={130}
         r={120}
         stroke="#EFF3F5"
-        stroke-width="6"
+        strokeWidth="6"
         fill="none"
-        stroke-dasharray={length}
-        stroke-dashoffset={length}
-        stroke-linecap="round"
+        strokeDasharray={length}
+        strokeDashoffset={length}
+        strokeLinecap="round"
       />
       <circle
         cx={130}
         cy={130}
         r={120}
         stroke="#26313D"
-        stroke-width="6"
+        strokeWidth="6"
         fill="none"
-        stroke-dasharray={currentLength + ' ' + getPerimeter}
-        stroke-dashoffset={length}
-        stroke-linecap="round"
+        strokeDasharray={`${currentLength} ${getPerimeter}`}
+        strokeDashoffset={length}
+        strokeLinecap="round"
       >
       </circle>
       {renderIndicator()}

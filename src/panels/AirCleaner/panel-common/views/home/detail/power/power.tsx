@@ -9,7 +9,7 @@ export function Power() {
   const handlePowerSwitch = () => {
     if (sdk.deviceData.child_lock !== 1) {
       apiControlDeviceData({
-        power_switch: sdk.deviceData.power_switch === 1 ? 0 : 1
+        power_switch: sdk.deviceData.power_switch === 1 ? 0 : 1,
       });
     }
   };
@@ -20,7 +20,7 @@ export function Power() {
         className={classNames(
           'button-circle',
           'box-shadow',
-          'btn-power-switch'
+          'btn-power-switch',
         )}
         onClick={handlePowerSwitch}
       >

@@ -19,5 +19,5 @@ function Dialog(props: DialogProps) {
 export default attachAntdProperties(Dialog, AntdDialog, [
   'show',
   'alert',
-  'confirm'
+  'confirm',
 ]);

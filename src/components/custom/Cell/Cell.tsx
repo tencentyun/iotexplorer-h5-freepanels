@@ -36,11 +36,11 @@ export interface CellProps {
 
 const supportEle = {
   switch: Switch,
-  checkbox: CheckBox
+  checkbox: CheckBox,
 };
 
 export function Cell({
-  className,// 支持边框 和下边框 border border-bottom
+  className, // 支持边框 和下边框 border border-bottom
   prefixIcon,
   title,
   subTitle,
@@ -54,7 +54,7 @@ export function Cell({
   children,
   ele = '', // 默认支持两种常见元素 switch / checkbox
   eleValue = false, // 元素值
-  onChange = () => ({})
+  onChange = () => ({}),
 }: CellProps) {
   const target = useRef<any>(null);
   const meta: CellProps = {
@@ -62,7 +62,7 @@ export function Cell({
     subTitle,
     name,
     value,
-    desc
+    desc,
   };
 
   const handleClick = (e: React.MouseEvent) => {

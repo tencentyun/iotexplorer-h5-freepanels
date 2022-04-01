@@ -3,16 +3,16 @@ import classNames from 'classnames';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 import { apiControlDeviceData } from '@hooks/useDeviceData';
 import { SvgIcon } from '@components/common/icon';
-import {getThemeType} from '@libs/theme';
+import { getThemeType } from '@libs/theme';
 import './power.less';
-import switchImage from "../../../icons/blue-white/switch.svg";
-import switchImageClose from "../../../icons/blue-white/switch-close.svg";
+import switchImage from '../../../icons/blue-white/switch.svg';
+import switchImageClose from '../../../icons/blue-white/switch-close.svg';
 
 export function Power() {
   const themeType = getThemeType();
   const handlePowerSwitch = () => {
     apiControlDeviceData({
-      power_switch: sdk.deviceData.power_switch === 1 ? 0 : 1
+      power_switch: sdk.deviceData.power_switch === 1 ? 0 : 1,
     });
   };
   return (
@@ -22,7 +22,7 @@ export function Power() {
         className={classNames(
           'button-circle',
           'box-shadow',
-          'btn-power-switch'
+          'btn-power-switch',
         )}
         onClick={handlePowerSwitch}
       >

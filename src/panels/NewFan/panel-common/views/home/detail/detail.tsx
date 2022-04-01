@@ -8,11 +8,11 @@ import { Power } from './power/power';
 export function Detail() {
   return (
     <article className={classNames('detail')}>
-      {/*电源操作栏*/}
+      {/* 电源操作栏*/}
       <Power />
-      {/*温度和湿度*/}
+      {/* 温度和湿度*/}
       <Position />
-      {/*控制栏*/}
+      {/* 控制栏*/}
       <Environment />
     </article>
   );

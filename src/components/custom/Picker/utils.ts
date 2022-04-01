@@ -12,8 +12,7 @@ const fillTwoDigit = (value, showTwoDigit) => {
   return value < 10 ? `0${value}` : value;
 };
 
-export const appendUnit = (data = [], showTwoDigit, unit = '') => data.map(value =>
-  ({ text: fillTwoDigit(value, showTwoDigit) + unit, value }));
+export const appendUnit = (data = [], showTwoDigit, unit = '') => data.map(value => ({ text: fillTwoDigit(value, showTwoDigit) + unit, value }));
 
 export const getYears = (begin, end, showUnit, showTwoDigit) => {
   let beginYear = dayjs(begin).$y;
@@ -36,7 +35,6 @@ function getMDays(date: Date) {
 
 export const getMouths = (showUnit, showTwoDigit) => appendUnit(generateIntArray(1, 12), showTwoDigit, showUnit);
 
-export const getDays = (showUnit, showTwoDigit, date) =>
-  appendUnit(generateIntArray(1, getMDays(date)), showTwoDigit, showUnit);
+export const getDays = (showUnit, showTwoDigit, date) => appendUnit(generateIntArray(1, getMDays(date)), showTwoDigit, showUnit);
 
 

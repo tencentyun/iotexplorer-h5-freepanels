@@ -6,7 +6,7 @@ import { useDeviceData } from '@hooks/useDeviceData';
 import { DeviceSateContext } from './deviceStateContext';
 import { Container } from './components/container';
 import { Training } from './views/training';
-import { StandardBleConnector } from "@components/base";
+import { StandardBleConnector } from '@components/base';
 
 import 'antd-mobile/es/global';
 import '@icons/themes/global.less';
@@ -14,10 +14,10 @@ import '@icons/themes/icons/svg/smart-rope';
 import './style.less';
 import { QuicknessMode } from '@components/base/quicknessMode';
 
-export const App = QuicknessMode(function App() {
+export const App = QuicknessMode(() => {
   const isBluetoothDevice = true;
   const isDev = process.env.NODE_ENV !== 'production';
-  //新旧链接的兼容
+  // 新旧链接的兼容
   const hasScf = /\/scf\//.test(location.href);
 
   let basename = isDev
@@ -30,9 +30,8 @@ export const App = QuicknessMode(function App() {
     basename += '/live';
   }
 
-  const [state, { onDeviceDataChange, onDeviceStatusChange }] =
-    useDeviceData(sdk);
-  const isStandardBleDevice = sdk.isStandardBleDevice;
+  const [state, { onDeviceDataChange, onDeviceStatusChange }] =    useDeviceData(sdk);
+  const { isStandardBleDevice } = sdk;
   console.log(state, 'state===============');
 
   // webSecket 监听

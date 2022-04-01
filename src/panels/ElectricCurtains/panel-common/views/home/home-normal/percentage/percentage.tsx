@@ -1,19 +1,19 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 import classNames from 'classnames';
-import {Modal} from '@components/base';
-import {apiControlDeviceData} from '@hooks/useDeviceData';
+import { Modal } from '@components/base';
+import { apiControlDeviceData } from '@hooks/useDeviceData';
 import './percentage.less';
 import { useDidMount } from 'beautiful-react-hooks';
 
-const Percentage = ({cur_percent, isShow, onClose, onCommit}) => {
+const Percentage = ({ cur_percent, isShow, onClose, onCommit }) => {
   // const [percent, setPercent] = useState(sdk.deviceData.percent_control1?sdk.deviceData.percent_control1:0);
   const [percent, setPercent] = useState(cur_percent);
-  const cur_info = {cur_percent:cur_percent}
+  const cur_info = { cur_percent };
 
   const max_value = 100;
   const min_value = 0;
-  const currentWidth = (5+(percent-min_value)*95/(max_value-min_value))+'%'; 
+  const currentWidth = `${5 + (percent - min_value) * 95 / (max_value - min_value)}%`;
 
   const updatePercentVal = (val, endTouch) => {
     if (val < min_value) {
@@ -27,17 +27,17 @@ const Percentage = ({cur_percent, isShow, onClose, onCommit}) => {
     //     percent_control1: val
     //   });
     // }
-  }
+  };
 
   const handleSelectBrightness = (e: React.MouseEvent) => {
     const slider = document.getElementById('lightbright-slider');
     const progress = document.getElementById('lightbright-progress');
     const dot = document.getElementById('lightbright-progress-dot');
 
-    let offsetModel = (document.body.clientWidth - document.getElementsByClassName('modal-body')[0].clientWidth) / 2;
+    const offsetModel = (document.body.clientWidth - document.getElementsByClassName('modal-body')[0].clientWidth) / 2;
 
-    let brightness = (e.clientX - slider.offsetLeft - offsetModel) / slider.clientWidth;
-    let brightness_val = parseInt(brightness * 100); // 亮度数值
+    const brightness = (e.clientX - slider.offsetLeft - offsetModel) / slider.clientWidth;
+    const brightness_val = parseInt(brightness * 100); // 亮度数值
     console.log(brightness_val);
     updatePercentVal(brightness_val, true);
 
@@ -54,9 +54,9 @@ const Percentage = ({cur_percent, isShow, onClose, onCommit}) => {
     const progress = document.getElementById('lightbright-progress');
     const dot = document.getElementById('lightbright-progress-dot');
 
-    let offsetModel = (document.body.clientWidth - document.getElementsByClassName('modal-body')[0].clientWidth) / 2;
-    let brightness = (e.changedTouches[0].clientX - slider.offsetLeft - offsetModel) / slider.clientWidth;
-    let brightness_val = parseInt(brightness * 100); // 亮度数值
+    const offsetModel = (document.body.clientWidth - document.getElementsByClassName('modal-body')[0].clientWidth) / 2;
+    const brightness = (e.changedTouches[0].clientX - slider.offsetLeft - offsetModel) / slider.clientWidth;
+    const brightness_val = parseInt(brightness * 100); // 亮度数值
     updatePercentVal(brightness_val, false);
 
     // let x = e.changedTouches[0].clientX - slider.offsetLeft - offsetModel - dot.clientWidth / 2;
@@ -70,9 +70,9 @@ const Percentage = ({cur_percent, isShow, onClose, onCommit}) => {
   const handleEndMoveBrightness = (e: React.MouseEvent) => {
     const slider = document.getElementById('lightbright-slider');
 
-    let offsetModel = (document.body.clientWidth - document.getElementsByClassName('modal-body')[0].clientWidth) / 2;
-    let brightness = (e.changedTouches[0].clientX - slider.offsetLeft - offsetModel) / slider.clientWidth;
-    let brightness_val = parseInt(brightness * 100); // 亮度数值
+    const offsetModel = (document.body.clientWidth - document.getElementsByClassName('modal-body')[0].clientWidth) / 2;
+    const brightness = (e.changedTouches[0].clientX - slider.offsetLeft - offsetModel) / slider.clientWidth;
+    const brightness_val = parseInt(brightness * 100); // 亮度数值
     console.log(brightness_val);
     // 修改设备亮度值
     updatePercentVal(brightness_val, true);
@@ -83,15 +83,15 @@ const Percentage = ({cur_percent, isShow, onClose, onCommit}) => {
     // console.log(cur_info.cur_percent)
     updatePercentVal(cur_info.cur_percent, true);
     onClose();
-  }
+  };
 
   const handleCommit = () => {
-     // console.log('handleCommit')
-      // apiControlDeviceData({
-      //   percent_control1: percent
-      // });
-      cur_info.cur_percent = percent;
-      onCommit(percent);
+    // console.log('handleCommit')
+    // apiControlDeviceData({
+    //   percent_control1: percent
+    // });
+    cur_info.cur_percent = percent;
+    onCommit(percent);
   };
 
   return (
@@ -114,7 +114,7 @@ const Percentage = ({cur_percent, isShow, onClose, onCommit}) => {
           </div>
           <div id={'lightbright-slider'} className={classNames('lightbright-slider')} onClick={handleSelectBrightness}
                onTouchMove={handleMoveBrightness} onTouchEnd={handleEndMoveBrightness}>
-            <div id={'lightbright-progress'} className={classNames('lightbright-progress')} style={{width:currentWidth}}>
+            <div id={'lightbright-progress'} className={classNames('lightbright-progress')} style={{ width: currentWidth }}>
               <div id={'lightbright-progress-dot'} className={classNames('lightbright-progress-dot')}>
               </div>
             </div>

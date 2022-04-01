@@ -1,7 +1,7 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import classNames from 'classnames';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
-import {getThemeType} from '@libs/theme';
+import { getThemeType } from '@libs/theme';
 import { onControlDevice } from '@hooks/useDeviceData';
 import { Battery, Bluetooth } from '@components/business';
 import { useUserInfo } from '@hooks/useUserInfo';
@@ -77,14 +77,14 @@ export function Home() {
   // 从 sdk 读取到的物模型 maps
   const [userInfo] = useUserInfo();
   const history = useHistory();
-  const handleMyInfo = () => {
+  const handleMyInfo = () =>
     // 个人信息
-    return history.push('/myInfo');
-  };
-  const handleRecord = () => {
+    history.push('/myInfo')
+  ;
+  const handleRecord = () =>
     // 个人信息
-    return history.push('/record');
-  };
+    history.push('/record')
+  ;
   useEffect(() => {
     const toggle_test_value = () => {
       const val = sdk.deviceData.systolic_pressure
@@ -94,26 +94,25 @@ export function Home() {
       const h = el?.clientHeight;
 
       const diff = ((MAX_TICK_VAL - val) * h) / (MAX_TICK_VAL - MIN_TICK_VAL + 10);
-      el.style.marginTop =
-        document.getElementById('num')?.clientHeight / 2 - diff + 'px';
-      //$("#num-wrap").animate({marginTop: (document.getElementById("num")?.clientHeight/2-diff)+"px"});
+      el.style.marginTop =        `${document.getElementById('num')?.clientHeight / 2 - diff}px`;
+      // $("#num-wrap").animate({marginTop: (document.getElementById("num")?.clientHeight/2-diff)+"px"});
     };
     toggle_test_value();
   }, []);
   const MIN_TICK_VAL = 5;
   const MAX_TICK_VAL = 205;
   const lineArray = () => {
-    let lines = [];
-    for(let i=MAX_TICK_VAL;i>=MIN_TICK_VAL;i-=10){
-      if(i==85||i==135){
-        lines.push({id:i,name:'num-tick2',val:i});
-      }else{
-        lines.push({id:i,name:'num-tick1',val:''});
+    const lines = [];
+    for (let i = MAX_TICK_VAL;i >= MIN_TICK_VAL;i -= 10) {
+      if (i == 85 || i == 135) {
+        lines.push({ id: i, name: 'num-tick2', val: i });
+      } else {
+        lines.push({ id: i, name: 'num-tick1', val: '' });
       }
     }
 
     return lines;
-  }
+  };
 
   const renderLine = (item: any) => {
     if (item.val == '') {
@@ -122,15 +121,14 @@ export function Home() {
           <div className={item.name}></div>
         </div>
       );
-    } else {
-      return (
+    }
+    return (
         <div className="num-tick-wrap">
           <div className={item.name}></div>
           <p>{item.val}</p>
         </div>
-      );
-    }
-  }
+    );
+  };
   const handleSwitch = () => {
     onControlDevice('power_switch', 1);
   };
@@ -139,7 +137,7 @@ export function Home() {
   };
   return (
     <article className={classNames('home')}>
-      {/*仪表盘*/}
+      {/* 仪表盘*/}
       <section className={classNames('dashboard')}>
         <div className={classNames('dashboard-info')}>
           <div className="dev-info">

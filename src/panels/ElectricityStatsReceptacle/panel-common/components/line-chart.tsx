@@ -19,7 +19,7 @@ const pxToView = (px: number): string | number => {
   if (px === 0) {
     return px;
   }
-  const viewportWidth = viewportConfig.viewportWidth;
+  const { viewportWidth } = viewportConfig;
   const vw = px * (document.documentElement.clientWidth / viewportWidth);
   return vw.toFixed(viewportConfig.unitPrecision || 3);
 };
@@ -28,7 +28,7 @@ const margin = {
   top: pxToView(50) as number,
   right: pxToView(13) as number,
   bottom: pxToView(90) as number,
-  left: pxToView(48) as number
+  left: pxToView(48) as number,
 };
 
 const WIDTH = pxToView(834) as number;
@@ -38,7 +38,7 @@ export function LineChart(props: lineChartProps) {
   const chartWidth = WIDTH - margin.left - margin.right;
   const chartHeight = HEIGHT - margin.top - margin.bottom;
 
-  const data = props.data;
+  const { data } = props;
 
   const [value, setValue] = useState(() => data.map(d => ({ ...d, y: 0 })));
   const svgRef = useRef(null);
@@ -52,22 +52,19 @@ export function LineChart(props: lineChartProps) {
         return d3.interpolateNumber(start, d.y);
       });
       return (t: any) => {
-        const newData = data.map((d, i) => {
-          return { ...d, y: interpolates[i](t) };
-        });
+        const newData = data.map((d, i) => ({ ...d, y: interpolates[i](t) }));
 
         setValue(newData);
       };
     });
   }, []);
 
-  const xScale =
-    d3
-      .scalePoint()
-      .domain(data.map(d => d.x))
-      .range([0, chartWidth])
-      .padding(0)
-      .round(true) || 0;
+  const xScale =    d3
+    .scalePoint()
+    .domain(data.map(d => d.x))
+    .range([0, chartWidth])
+    .padding(0)
+    .round(true) || 0;
 
   const yScale = d3
     .scaleLinear()
@@ -81,9 +78,7 @@ export function LineChart(props: lineChartProps) {
     .y((d: any) => yScale(d.y) || 0)
     .curve(d3.curveLinear);
 
-  const getViewbox = () => {
-    return [0, 0, WIDTH, HEIGHT].join(' ');
-  };
+  const getViewbox = () => [0, 0, WIDTH, HEIGHT].join(' ');
 
   return (
     <svg className={props.className} width={WIDTH} height={HEIGHT} ref={svgRef} viewBox={getViewbox()}>

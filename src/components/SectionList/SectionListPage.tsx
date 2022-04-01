@@ -1,5 +1,5 @@
 import React from 'react';
-import { SectionList } from "./SectionList";
+import { SectionList } from './SectionList';
 import './SectionList.less';
 
 export interface SectionListPageItemProps {
@@ -20,7 +20,7 @@ export function SectionListPage({
   return (
     <div className="section-list-page clearfix">
       <SectionList>
-        {list.map((item) => (
+        {list.map(item => (
           <SectionList.Item
             key={item.id}
             label={item.label}
@@ -33,7 +33,7 @@ export function SectionListPage({
         ))}
       </SectionList>
     </div>
-  )
+  );
 }
 
 

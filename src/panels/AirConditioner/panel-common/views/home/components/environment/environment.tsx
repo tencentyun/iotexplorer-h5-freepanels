@@ -23,8 +23,7 @@ export enum enumStatus {
   eco = 'ECO'
 }
 
-const Environment = () => {
-  return (
+const Environment = () => (
     <DeviceSateContext.Consumer>
       {({ deviceData }) => (
         <article className={classNames('environment')}>
@@ -46,7 +45,6 @@ const Environment = () => {
         </article>
       )}
     </DeviceSateContext.Consumer>
-  );
-};
+);
 
 export default Environment;

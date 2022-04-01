@@ -10,14 +10,14 @@ import IconChecked from '@components/base/icon-checked/icon-checked';
 export const enumSprayMode: stringKey = {
   thirtySecond: '有人30S',
   sixtySecond: '有人60S',
-  oneHundredAndTwentySecond: '有人120S'
+  oneHundredAndTwentySecond: '有人120S',
 };
 
 const KeepTime = ({ isShow, onClose }) => {
   const [dataUser, setDataUser] = useState();
   const handleCommit = () => {
     apiControlDeviceData({
-      keep_time: dataUser
+      keep_time: dataUser,
     });
     onClose();
   };

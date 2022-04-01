@@ -21,9 +21,8 @@ import { Records } from './views/records';
 import { Plan } from './views/plan';
 import { QuicknessMode } from '@components/base/quicknessMode';
 
-export const App = QuicknessMode(function App() {
-  const [state, { onDeviceDataChange, onDeviceStatusChange }] =
-    useDeviceData(sdk);
+export const App = QuicknessMode(() => {
+  const [state, { onDeviceDataChange, onDeviceStatusChange }] =    useDeviceData(sdk);
   console.log(state, 'state===============');
 
   // webSecket 监听

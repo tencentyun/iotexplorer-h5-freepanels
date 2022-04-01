@@ -21,8 +21,7 @@ export function AuthorizationDialog(props: AuthorizationDialogProps) {
   const [authorizationInfo, setAuthorizationInfo] = useState('');
 
   useMemo(() => {
-    const val =
-      value !== undefined ? value : defaultValue;
+    const val =      value !== undefined ? value : defaultValue;
 
     // setCheckList(val);
   }, [props.visible]);

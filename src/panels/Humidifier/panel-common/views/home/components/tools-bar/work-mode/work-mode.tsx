@@ -17,19 +17,19 @@ import IconChecked from '@components/base/icon-checked/icon-checked';
 export const enumWorkMode: stringKey = {
   natural_evaporation: '自然蒸发',
   heating_evaporation: '加热蒸发',
-  ultrasonic: '超声波蒸发'
+  ultrasonic: '超声波蒸发',
 };
 const WorkMode: FC<{ onChange?: (val: boolean) => void; cRef?: any }> = ({
   cRef,
-  onChange
+  onChange,
 }: any) => {
   const [workModeUser, setValue] = useState(sdk.deviceData.work_mode);
   useImperativeHandle(cRef, () => ({
     commit: () => {
       apiControlDeviceData({
-        work_mode: workModeUser
+        work_mode: workModeUser,
       });
-    }
+    },
   }));
 
   const domList = enumToArray(enumWorkMode).map(({ label, value }) => (

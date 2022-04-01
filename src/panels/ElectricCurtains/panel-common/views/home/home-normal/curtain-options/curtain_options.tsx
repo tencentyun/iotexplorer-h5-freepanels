@@ -1,17 +1,17 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import './curtain_options.less';
 import classNames from 'classnames';
-import {onControlDevice} from '@hooks/useDeviceData';
+import { onControlDevice } from '@hooks/useDeviceData';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
-import {SvgIcon} from '@components/common/icon';
+import { SvgIcon } from '@components/common/icon';
 import Options_Work from '../work_model/work_model';
 import Options_Motor from '../motor/motor';
-import {useHistory} from 'react-router-dom';
-import {useDidMount, useWillUnmount} from 'beautiful-react-hooks';
+import { useHistory } from 'react-router-dom';
+import { useDidMount, useWillUnmount } from 'beautiful-react-hooks';
 import Bus from '@libs/utillib';
 
 let timer = null;
-const info = {curRatio: sdk.deviceData.percent_control ? sdk.deviceData.percent_control : 30}
+const info = { curRatio: sdk.deviceData.percent_control ? sdk.deviceData.percent_control : 30 };
 
 export function Curtain_options() {
   // const [openRatio, onToggleOpenRatio] = useState(
@@ -19,14 +19,14 @@ export function Curtain_options() {
   // );
 
   useDidMount(() => {
-    timer = setInterval(changeRatio, 50)
+    timer = setInterval(changeRatio, 50);
     Bus.emit('percent_control', info.curRatio);
     moveProgress(info.curRatio);
   });
 
   useWillUnmount(() => {
     clearInterval(timer);
-  })
+  });
 
   const changeRatio = () => {
     if (sdk.deviceData.control == 'pause') {
@@ -38,33 +38,33 @@ export function Curtain_options() {
         info.curRatio--;
         // onToggleOpenRatio(curRatio);
         Bus.emit('percent_control', info.curRatio);
-        moveProgress(info.curRatio)
+        moveProgress(info.curRatio);
       }
     } else if (sdk.deviceData.control == 'close') {
       if (info.curRatio < 100) {
         info.curRatio++;
         // onToggleOpenRatio(curRatio);
         Bus.emit('percent_control', info.curRatio);
-        moveProgress(info.curRatio)
+        moveProgress(info.curRatio);
       }
     }
-  }
+  };
 
   const history = useHistory();
 
   const onCurtainWork = () => {
-    history.push('/curtain_more')
-  }
+    history.push('/curtain_more');
+  };
 
   const [selectTheCurtain, theCurtain_options] = useState(false);
   const [selectTheWork, theCurtain_Work] = useState(false);
 
   const onCurtain = () => {
     theCurtain_options(true);
-  }
+  };
   const onWork = () => {
     theCurtain_Work(true);
-  }
+  };
 
   const moveProgress = (ratio) => {
     ratio /= 100.0;
@@ -74,19 +74,18 @@ export function Curtain_options() {
 
     let x = control_bar_progress.clientWidth * ratio - control_bar_progress_btn.clientWidth / 2;
     if (x < 0) x = 0;
-    if (x > control_bar_progress?.clientWidth - control_bar_progress_btn.clientWidth)
-      x = control_bar_progress?.clientWidth - control_bar_progress_btn.clientWidth;
-    control_bar_progress_btn.style.marginLeft = x + 'px';
-    control_bar_progress_pass.style.width = (x + control_bar_progress_btn.clientWidth * 1) + 'px';
+    if (x > control_bar_progress?.clientWidth - control_bar_progress_btn.clientWidth) x = control_bar_progress?.clientWidth - control_bar_progress_btn.clientWidth;
+    control_bar_progress_btn.style.marginLeft = `${x}px`;
+    control_bar_progress_pass.style.width = `${x + control_bar_progress_btn.clientWidth * 1}px`;
     // control_bar_progress_pass.style.width = (ratio*100)+'%';
 
-    document.getElementById('control_bar_title').innerText = '开合度:' + parseInt(ratio * 100) + '%'
-  }
+    document.getElementById('control_bar_title').innerText = `开合度:${parseInt(ratio * 100)}%`;
+  };
 
   const openLeave = (openRatio) => {
     info.curRatio = openRatio;
     Bus.emit('percent_control', openRatio);
-  }
+  };
 
   const handleMoveOpenRatio = (e: React.MouseEvent) => {
     const control_bar_progress = document.getElementById('control_bar_progress');
@@ -94,7 +93,7 @@ export function Curtain_options() {
     let openRatio = (e.changedTouches[0].clientX - control_bar_progress.offsetLeft) / control_bar_progress.clientWidth;
     if (openRatio < 0) openRatio = 0;
     if (openRatio > 1) openRatio = 1;
-    let openRatio_val = parseInt(openRatio * 100); // 数值
+    const openRatio_val = parseInt(openRatio * 100); // 数值
 
     // onToggleOpenRatio(openRatio_val);
     info.curRatio = openRatio_val;
@@ -108,7 +107,7 @@ export function Curtain_options() {
     let openRatio = (e.changedTouches[0].clientX - control_bar_progress.offsetLeft) / control_bar_progress.clientWidth;
     if (openRatio < 0) openRatio = 0;
     if (openRatio > 1) openRatio = 1;
-    let openRatio_val = parseInt(openRatio * 100); // 数值
+    const openRatio_val = parseInt(openRatio * 100); // 数值
     // onToggleOpenRatio(openRatio_val);
     info.curRatio = openRatio_val;
     moveProgress(info.curRatio);
@@ -125,7 +124,7 @@ export function Curtain_options() {
     let openRatio = (e.changedTouches[0].clientX - control_bar_progress.offsetLeft) / control_bar_progress.clientWidth;
     if (openRatio < 0) openRatio = 0;
     if (openRatio > 1) openRatio = 1;
-    let openRatio_val = parseInt(openRatio * 100); // 数值
+    const openRatio_val = parseInt(openRatio * 100); // 数值
     // onToggleOpenRatio(openRatio_val);
     info.curRatio = openRatio_val;
     onControlDevice('percent_control', openRatio_val);
@@ -208,6 +207,6 @@ export function Curtain_options() {
 
     </article>
   );
-};
+}
 
 export default Curtain_options;

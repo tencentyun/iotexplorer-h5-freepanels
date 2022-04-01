@@ -15,7 +15,7 @@ interface dashboardProps {
   dashboardStatus: string;
 }
 
-const HumidifierDashboard: React.FC<dashboardProps> = props => {
+const HumidifierDashboard: React.FC<dashboardProps> = (props) => {
   const {
     width,
     height,
@@ -23,7 +23,7 @@ const HumidifierDashboard: React.FC<dashboardProps> = props => {
     defaultValue,
     dashboardStatus,
     valueWater = 0,
-    topTitle = ' '
+    topTitle = ' ',
   } = props;
 
   const themeType = getThemeType();
@@ -36,11 +36,9 @@ const HumidifierDashboard: React.FC<dashboardProps> = props => {
   console.log(centerCicle);
 
   // 描述信息 关机/开机
-  const renderDesWord = (dashboardStatus: string) => {
-
-    return dashboardStatus === 'shutdown' ? (
+  const renderDesWord = (dashboardStatus: string) => (dashboardStatus === 'shutdown' ? (
       <div className="shutdown">已关机</div>
-    ) : themeType === 'colorful' || themeType === 'morandi' ? (
+  ) : themeType === 'colorful' || themeType === 'morandi' ? (
       <div className="initiate">
         <div className="number">
           <strong>{value}</strong>
@@ -53,7 +51,7 @@ const HumidifierDashboard: React.FC<dashboardProps> = props => {
           <span>{valueWater} level</span>
         </div>
       </div>
-    ) : (
+  ) : (
       <div className="initiate">
         <div className="title">湿度设置</div>
         <div className="number">
@@ -66,12 +64,11 @@ const HumidifierDashboard: React.FC<dashboardProps> = props => {
           <span>{valueWater} level</span>
         </div>
       </div>
-    );
-  };
+  ));
 
   return (
     <div>
-      <div className={classNames('humidifier-dashboard-wrap', 'humidifier-dashboard-' + themeType)}>
+      <div className={classNames('humidifier-dashboard-wrap', `humidifier-dashboard-${themeType}`)}>
         <RoundDashboard
           step={6}
           defaultValue={defaultValue}

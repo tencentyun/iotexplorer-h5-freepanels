@@ -27,7 +27,7 @@ export function Main() {
   const [isOpen, onToggleIsOpen] = useState(false);
 
   useEffect(() => {
-    setBrightValue(deviceData.bright_value/100);
+    setBrightValue(deviceData.bright_value / 100);
   }, [deviceData.bright_value]);
 
   const currentColor = (value: number) => {
@@ -42,8 +42,8 @@ export function Main() {
         <div
           className={classNames(
             'dimmer-switch-main-view',
-            {'bright': brightValue > 0.3 },
-            {'dark': brightValue <= 0.3 }
+            { bright: brightValue > 0.3 },
+            { dark: brightValue <= 0.3 },
           )}
         >
           {!isOpen ? (
@@ -65,13 +65,13 @@ export function Main() {
           <div
             className={classNames(
               'control-buttons',
-              deviceData.power_switch === 1 ? 'active' : ''
+              deviceData.power_switch === 1 ? 'active' : '',
             )}
           >
             <Block className="button"
               onClick={() => {
-                if (!deviceData.power_switch) return
-                history.push('/timing')
+                if (!deviceData.power_switch) return;
+                history.push('/timing');
               }}>
               <SvgIcon
                 className="icon-clock"
@@ -83,7 +83,7 @@ export function Main() {
             <Block
               className="button"
               onClick={() => {
-                if (!deviceData.power_switch) return
+                if (!deviceData.power_switch) return;
                 if (!isOpen) {
                   document.body.style.overflow = 'hidden';
                   onToggleIsOpen(true);
@@ -103,8 +103,8 @@ export function Main() {
             <Block
               className="button"
               onClick={() => {
-                if (!deviceData.power_switch) return
-                history.replace('/setting')
+                if (!deviceData.power_switch) return;
+                history.replace('/setting');
               }}
             >
               <SvgIcon

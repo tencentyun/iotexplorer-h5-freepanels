@@ -10,14 +10,13 @@ export interface DiskProps {
 
 export function Disk({
   deviceData,
-  doControlDeviceData
+  doControlDeviceData,
 }: DiskProps) {
-
   return (
     <div className="disk">
       <div
         className={classNames('content-wrap', { 'is-open': deviceData.doorsensor_state })}
-        onClick={()=>{
+        onClick={() => {
           doControlDeviceData('doorsensor_state', Number(!deviceData.doorsensor_state));
         }}>
         <div className="content">

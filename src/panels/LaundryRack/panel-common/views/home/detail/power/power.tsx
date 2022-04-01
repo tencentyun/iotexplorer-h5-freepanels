@@ -92,18 +92,18 @@ export function Power() {
   };
   const handleUp = () => {
     apiControlDeviceData({
-      control: sdk.deviceData.control === 'up' ? 'stop' : 'up'
+      control: sdk.deviceData.control === 'up' ? 'stop' : 'up',
     });
   };
   const handleDown = () => {
     apiControlDeviceData({
-      control: sdk.deviceData.control === 'down' ? 'stop' : 'down'
+      control: sdk.deviceData.control === 'down' ? 'stop' : 'down',
     });
   };
 
   const handlePowerSwitch = () => {
     apiControlDeviceData({
-      power_switch: sdk.deviceData.power_switch === 1 ? 0 : 1
+      power_switch: sdk.deviceData.power_switch === 1 ? 0 : 1,
     });
   };
   return (
@@ -111,7 +111,7 @@ export function Power() {
       className={classNames(
         'power-tools-bar',
         sdk.deviceData.control === 'up' && 'up-switch',
-        sdk.deviceData.control === 'down' && 'down-switch'
+        sdk.deviceData.control === 'down' && 'down-switch',
       )}
     >
       <button
@@ -119,7 +119,7 @@ export function Power() {
         className={classNames(
           'button-fillet',
           'box-shadow',
-          'btn-power-switch'
+          'btn-power-switch',
         )}
         onClick={handleUp}
       >
@@ -138,7 +138,7 @@ export function Power() {
         className={classNames(
           'button-fillet',
           'box-shadow',
-          'btn-power-switch'
+          'btn-power-switch',
         )}
         onClick={handleDown}
       >

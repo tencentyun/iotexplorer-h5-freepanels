@@ -13,10 +13,10 @@ export function Users({
   deviceData,
   templateMap,
   doControlDeviceData,
-  history: { PATH, push }
+  history: { PATH, push },
 }) {
   useTitle('用户管理');
-  const [userList, setUserList] = useState([{name: '我', type: '指纹1 密码1'},{name: '妈妈', type: '指纹2'},{name: '我2', type: '指纹1 密码1'}]);
+  const [userList, setUserList] = useState([{ name: '我', type: '指纹1 密码1' }, { name: '妈妈', type: '指纹2' }, { name: '我2', type: '指纹1 密码1' }]);
   const [addUserVisible, setAddUserVisible] = useState(false);
 
   // 删除用户
@@ -51,13 +51,17 @@ export function Users({
             title={name}
             subTitle={type}
             prefixIcon={<Icon name="avatar"></Icon>}
-            onClick={()=>{push(PATH.USERS_EDIT, {userName: name});}}
+            onClick={() => {
+              push(PATH.USERS_EDIT, { userName: name });
+            }}
           ></Cell>
         )}
       />
 
       <footer className="footer">
-        <div className="footer-button" onClick={()=>{setAddUserVisible(true)}}>
+        <div className="footer-button" onClick={() => {
+          setAddUserVisible(true);
+        }}>
           添加用户
         </div>
       </footer>
@@ -66,12 +70,14 @@ export function Users({
         title="添加用户"
         defaultValue={''}
         max={10}
-        onCancel={()=>{setAddUserVisible(false)}}
-        onConfirm={(value)=>{
+        onCancel={() => {
+          setAddUserVisible(false);
+        }}
+        onConfirm={(value) => {
           if (value == '') {
             return;
           }
-          push(PATH.USERS_EDIT, {userName: value});
+          push(PATH.USERS_EDIT, { userName: value });
         }}
       ></InputDialog>
     </main>

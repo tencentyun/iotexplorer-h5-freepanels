@@ -1,28 +1,28 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import './ticker.less';
 import classNames from 'classnames';
-import {getThemeType} from '@libs/theme';
-import {onControlDevice} from '@hooks/useDeviceData';
+import { getThemeType } from '@libs/theme';
+import { onControlDevice } from '@hooks/useDeviceData';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
-import {LampLargeSvg} from '@components/common/lampsvg/lamplarge';
-import {rgb} from 'd3';
+import { LampLargeSvg } from '@components/common/lampsvg/lamplarge';
+import { rgb } from 'd3';
 
-const handleSelectColor = (mode: String) => {
+const handleSelectColor = (mode: string) => {
   onControlDevice('work_mode', mode);
 };
 
 const Ticker = () => {
   const themeType = getThemeType();
   function hsvToRgb(arr) {
-    var h = arr[0], s = arr[1], v = arr[2];
+    const h = arr[0]; let s = arr[1]; let v = arr[2];
     s = s / 100;
     v = v / 100;
-    var r = 0, g = 0, b = 0;
-    var i = parseInt((h / 60) % 6);
-    var f = h / 60 - i;
-    var p = v * (1 - s);
-    var q = v * (1 - f * s);
-    var t = v * (1 - (1 - f) * s);
+    let r = 0; let g = 0; let b = 0;
+    const i = parseInt((h / 60) % 6);
+    const f = h / 60 - i;
+    const p = v * (1 - s);
+    const q = v * (1 - f * s);
+    const t = v * (1 - (1 - f) * s);
     switch (i) {
       case 0:
         r = v;
@@ -57,24 +57,24 @@ const Ticker = () => {
       default:
         break;
     }
-    r = parseInt(r * 255.0)
-    g = parseInt(g * 255.0)
-    b = parseInt(b * 255.0)
+    r = parseInt(r * 255.0);
+    g = parseInt(g * 255.0);
+    b = parseInt(b * 255.0);
     return rgb(r, g, b);
   }
 
-  const [brightness, setBrightness] = useState(sdk.deviceData.brightness ? sdk.deviceData.brightness : 80)
-  const [colorValue, setColorValue] = useState(sdk.deviceData.color_value ? sdk.deviceData.color_value : [86, 32, 92])
+  const [brightness, setBrightness] = useState(sdk.deviceData.brightness ? sdk.deviceData.brightness : 80);
+  const [colorValue, setColorValue] = useState(sdk.deviceData.color_value ? sdk.deviceData.color_value : [86, 32, 92]);
 
   const rgbcolor = colorValue ? hsvToRgb(colorValue) : '#f00';
   // console.log(rgbcolor)
   useEffect(() => {
     setBrightness(sdk.deviceData.brightness);
-  }, [sdk.deviceData.brightness])
+  }, [sdk.deviceData.brightness]);
 
   useEffect(() => {
     setColorValue(sdk.deviceData.color_value);
-  }, [sdk.deviceData.color_value])
+  }, [sdk.deviceData.color_value]);
 
   if (themeType == 'colorful') {
     return (
@@ -84,7 +84,7 @@ const Ticker = () => {
               id={'colored_button'}
               className={classNames(
                 'colored_bottom_colorful',
-                sdk.deviceData.work_mode != '1' ? 'color_mode_selected' : ''
+                sdk.deviceData.work_mode != '1' ? 'color_mode_selected' : '',
               )}
               onClick={() => {
                 handleSelectColor('0');
@@ -97,7 +97,7 @@ const Ticker = () => {
             id={'white_bottom'}
             className={classNames(
               'white_bottom_colorful',
-              sdk.deviceData.work_mode === '1' ? 'color_mode_selected' : ''
+              sdk.deviceData.work_mode === '1' ? 'color_mode_selected' : '',
             )}
             onClick={() => {
               handleSelectColor('1');
@@ -111,15 +111,15 @@ const Ticker = () => {
           <LampLargeSvg color={rgbcolor} opacity={brightness / 100}></LampLargeSvg>
         </div>
       </article>
-    )
-  } else {
-    return (
+    );
+  }
+  return (
       <article id={'ticker'} className={classNames('ticker')}>
           <span
             id={'colored_button'}
             className={classNames(
               'colored_bottom',
-              sdk.deviceData.work_mode != '1' ? 'color_mode_selected' : ''
+              sdk.deviceData.work_mode != '1' ? 'color_mode_selected' : '',
             )}
             onClick={() => {
               handleSelectColor('0');
@@ -137,7 +137,7 @@ const Ticker = () => {
           id={'white_bottom'}
           className={classNames(
             'white_bottom',
-            sdk.deviceData.work_mode === '1' ? 'color_mode_selected' : ''
+            sdk.deviceData.work_mode === '1' ? 'color_mode_selected' : '',
           )}
           onClick={() => {
             handleSelectColor('1');
@@ -146,8 +146,7 @@ const Ticker = () => {
             <span className={classNames('colored_font')}>白光</span>
           </span>
       </article>
-    )
-  }
+  );
 };
 
 export default Ticker;

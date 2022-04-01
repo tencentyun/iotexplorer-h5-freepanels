@@ -3,27 +3,26 @@ import './morandi_head.less';
 import classNames from 'classnames';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 import Bus from '@libs/utillib';
-import {useDidMount} from 'beautiful-react-hooks';
+import { useDidMount } from 'beautiful-react-hooks';
 
 export function Morandi_head() {
   useDidMount(() => {
     Bus.addListener('percent_control', (ratio) => {
       updateDom(ratio, 0);
     });
-  })
+  });
 
   const updateDom = (ratio, tSpan) => {
-    let el_wrap = document.getElementById("dark_leave_wrap");
+    const el_wrap = document.getElementById('dark_leave_wrap');
     // console.log(one_el_div?.clientWidth);
     // console.log(el_wrap?.clientWidth);
-    let x = el_wrap?.clientWidth / 22.0 * ratio / 100;
+    const x = el_wrap?.clientWidth / 22.0 * ratio / 100;
     // console.log(x);
-    let divs = document.getElementsByClassName("dark_leave_div");
+    const divs = document.getElementsByClassName('dark_leave_div');
     for (let i = 0; i < divs.length; i++) {
-
-      divs[i].style.width = x + "px";
+      divs[i].style.width = `${x}px`;
     }
-  }
+  };
 
   return (
     <article id={'morandi_head'} className={classNames('morandi_head')}>
@@ -109,6 +108,6 @@ export function Morandi_head() {
       </div>
     </article>
   );
-};
+}
 
 export default Morandi_head;

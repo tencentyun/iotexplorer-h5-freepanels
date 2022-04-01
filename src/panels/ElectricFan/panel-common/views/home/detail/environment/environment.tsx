@@ -1,8 +1,8 @@
 import React from 'react';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 import classNames from 'classnames';
-import {getThemeType} from '@libs/theme';
-import {onControlDevice} from '@hooks/useDeviceData';
+import { getThemeType } from '@libs/theme';
+import { onControlDevice } from '@hooks/useDeviceData';
 import './environment.less';
 
 import SleepImage from '../../../icons/normal/sleep.svg';
@@ -100,7 +100,7 @@ const Environment = () => {
     }
   };
   const handleMode = (type: string) => {
-    console.log("themeType====="+themeType)
+    console.log(`themeType=====${themeType}`);
     if (sdk.deviceData.power_switch === 1) {
       onControlDevice('mode', type);
     }

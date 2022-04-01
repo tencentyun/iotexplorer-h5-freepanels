@@ -5,7 +5,7 @@ import { Record } from './Record';
 const App = () => {
   const route = [
     { path: '/home', Component: Home },
-    { path: '/record', Component: Record }
+    { path: '/record', Component: Record },
   ];
   return <Router route={route} />;
 };

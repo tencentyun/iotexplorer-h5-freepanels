@@ -2,7 +2,7 @@ import React from 'react';
 import './bormal_head.less';
 import classNames from 'classnames';
 
-export function Bormal_head () {
+export function Bormal_head() {
   // const [lampSrc] = useState(lampIcon);
   return (
         <article id={'morandi_bormal_head'} className={classNames('morandi_bormal_head')}>
@@ -29,7 +29,7 @@ export function Bormal_head () {
 
         </article>
   );
-};
+}
 
 export default Bormal_head;
 

@@ -8,15 +8,15 @@ import { apiControlDeviceData } from '@hooks/useDeviceData';
 import IconChecked from '@components/base/icon-checked/icon-checked';
 
 export const enumSprayMode: stringKey = {
-    humidity: '开启',
-    manual: '关闭',
+  humidity: '开启',
+  manual: '关闭',
 };
 
 const Power_switch = ({ isShow, onClose }) => {
   const [dataUser, setDataUser] = useState();
   const handleCommit = () => {
     apiControlDeviceData({
-      spray_mode: dataUser
+      spray_mode: dataUser,
     });
     onClose();
   };

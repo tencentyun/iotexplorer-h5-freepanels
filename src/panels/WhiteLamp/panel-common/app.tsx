@@ -1,12 +1,12 @@
 /**
  * 冷暖白光灯
  */
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 import { DeviceSateContext } from './deviceStateContext';
 import { useDeviceData } from '@hooks/useDeviceData';
-import {QuicknessMode} from '@components/base';
+import { QuicknessMode } from '@components/base';
 import { Home } from './views/home/home';
 import Timer from './views/timer/timer';
 import 'antd-mobile/es/global';
@@ -15,11 +15,11 @@ import '@icons/themes/icons/svg/white-lamp';
 import './style.less';
 import './themes.less'; // 4套皮肤 构建前要修改var.less变量文件
 
-export const App = QuicknessMode(function App() {
+export const App = QuicknessMode(() => {
   const isBluetoothDevice = true;
   // eslint-disable-next-line no-undef
   const isDev = process.env.NODE_ENV !== 'production';
-  //新旧链接的兼容
+  // 新旧链接的兼容
   const hasScf = /\/scf\//.test(location.href);
 
   let basename = isDev
@@ -32,11 +32,10 @@ export const App = QuicknessMode(function App() {
     basename += '/live';
   }
 
-  const [state, { onDeviceDataChange, onDeviceStatusChange }] =
-    useDeviceData(sdk);
+  const [state, { onDeviceDataChange, onDeviceStatusChange }] =    useDeviceData(sdk);
 
   // 获取设备模型数据
-  const getDeviceData = deviceId => {
+  const getDeviceData = (deviceId) => {
     sdk.getDeviceData({ deviceId });
     console.log('==getDeviceData===', deviceId, state);
   };
@@ -44,7 +43,7 @@ export const App = QuicknessMode(function App() {
 
   useEffect(() => {
     sdk.setShareConfig({
-      title: sdk.displayName
+      title: sdk.displayName,
     });
   }, []);
 
@@ -117,7 +116,7 @@ export const App = QuicknessMode(function App() {
     const doCheckFirmwareUpgrade = async () => {
       try {
         const upgradeInfo = await sdk.checkFirmwareUpgrade({
-          silent: false // 设置为 true 则只检查，不弹出提示
+          silent: false, // 设置为 true 则只检查，不弹出提示
         });
         console.log('firmware upgrade info', upgradeInfo);
       } catch (err) {
@@ -148,11 +147,11 @@ export const App = QuicknessMode(function App() {
       <DeviceSateContext.Provider value={state}>
         <Router basename={basename}>
           <Switch>
-            {/*定时器*/}
+            {/* 定时器*/}
             <Route path="/timer">
               <Timer />
             </Route>
-            {/*首页*/}
+            {/* 首页*/}
             <Route path="/">
               <Home />
             </Route>

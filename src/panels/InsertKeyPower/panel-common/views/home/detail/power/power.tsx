@@ -1,16 +1,16 @@
 import React from 'react';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 import classNames from 'classnames';
-import {apiControlDeviceData, onControlDevice} from '@hooks/useDeviceData';
+import { apiControlDeviceData, onControlDevice } from '@hooks/useDeviceData';
 import { getThemeType } from '@libs/theme';
 import './power.less';
 
-import SwitchImage from "../../../icons/normal/switch.svg";
-import SwitchImageDefault from "../../../icons/normal/switch-close.svg";
-import SwitchImageBlueWhite from "../../../icons/blue-white/switch.svg";
-import SwitchImageBlueWhiteClose from "../../../icons/blue-white/switch-close.svg";
-import SwitchImageDark from "../../../icons/dark/switch.svg";
-import SwitchImageMorandi from "../../../icons/morandi/switch.svg";
+import SwitchImage from '../../../icons/normal/switch.svg';
+import SwitchImageDefault from '../../../icons/normal/switch-close.svg';
+import SwitchImageBlueWhite from '../../../icons/blue-white/switch.svg';
+import SwitchImageBlueWhiteClose from '../../../icons/blue-white/switch-close.svg';
+import SwitchImageDark from '../../../icons/dark/switch.svg';
+import SwitchImageMorandi from '../../../icons/morandi/switch.svg';
 
 export function Power() {
   const themeType = getThemeType();
@@ -37,7 +37,7 @@ export function Power() {
   };
   const handlePowerSwitch = () => {
     apiControlDeviceData({
-      switch: sdk.deviceData.switch === 1 ? 0 : 1
+      switch: sdk.deviceData.switch === 1 ? 0 : 1,
     });
   };
   return (
@@ -47,7 +47,7 @@ export function Power() {
         className={classNames(
           'button-fillet',
           'box-shadow',
-          sdk.deviceData.power_switch === 1 ? 'active' : ''
+          sdk.deviceData.power_switch === 1 ? 'active' : '',
         )}
         onClick={() => handlePivoting(1)}
       >
@@ -65,7 +65,7 @@ export function Power() {
         className={classNames(
           'button-fillet',
           'box-shadow',
-          sdk.deviceData.power_switch === 0 ? 'active' : ''
+          sdk.deviceData.power_switch === 0 ? 'active' : '',
         )}
         onClick={() => handlePivoting(0)}
       >

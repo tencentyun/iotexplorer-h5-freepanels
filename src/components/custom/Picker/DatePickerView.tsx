@@ -50,7 +50,7 @@ export function DatePickerView({
     setOption([
       getYears(range[0], range[1], yearUnit, showTwoDigit),
       getMouths(mouthUnit, showTwoDigit),
-      getDays(dayUnit, showTwoDigit, d.$d)
+      getDays(dayUnit, showTwoDigit, d.$d),
     ]);
     setDate([d.$y, d.$M + 1, d.$D]);
   }, [min, max, value]);

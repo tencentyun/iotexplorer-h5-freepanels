@@ -16,7 +16,7 @@ export function Setting() {
   // 回复出厂设置
   const handleRecovery = async () => {
     const result = await Dialog.confirm({
-      content: '确定恢复出厂设置'
+      content: '确定恢复出厂设置',
     });
     if (result) {
       // Toast.show({ content: '点击了确认', position: 'bottom' })
@@ -28,7 +28,7 @@ export function Setting() {
   const unitLabel: any = {
     cup: '杯子',
     oz: '碗',
-    grid: '碟'
+    grid: '碟',
   };
 
   return (
@@ -52,20 +52,20 @@ export function Setting() {
                 options={[
                   {
                     label: '杯子',
-                    value: 'cup'
+                    value: 'cup',
                   },
                   {
                     label: '碗',
-                    value: 'oz'
+                    value: 'oz',
                   },
                   {
                     label: '碟',
-                    value: 'grid'
-                  }
+                    value: 'grid',
+                  },
                 ]}
                 layoutType="middle"
                 onCancel={() => onToggleUnit(false)}
-                onConfirm={value => {
+                onConfirm={(value) => {
                   onControlDevice('unit_switch', value[0]);
                   onToggleUnit(false);
                 }}
@@ -81,8 +81,8 @@ export function Setting() {
                   name="slowFeed"
                   theme={themeType}
                   checked={
-                    deviceData['slow_feed']
-                      ? Boolean(deviceData['slow_feed'])
+                    deviceData.slow_feed
+                      ? Boolean(deviceData.slow_feed)
                       : false
                   }
                   onChange={(val: boolean) => {
@@ -102,8 +102,8 @@ export function Setting() {
                   name="exportCalibrate"
                   theme={themeType}
                   checked={
-                    deviceData['export_calibrate']
-                      ? Boolean(deviceData['export_calibrate'])
+                    deviceData.export_calibrate
+                      ? Boolean(deviceData.export_calibrate)
                       : false
                   }
                   onChange={(val: boolean) => {
@@ -123,8 +123,8 @@ export function Setting() {
                   name="weightCalibrate"
                   theme={themeType}
                   checked={
-                    deviceData['weight_calibrate']
-                      ? Boolean(deviceData['weight_calibrate'])
+                    deviceData.weight_calibrate
+                      ? Boolean(deviceData.weight_calibrate)
                       : false
                   }
                   onChange={(val: boolean) => {

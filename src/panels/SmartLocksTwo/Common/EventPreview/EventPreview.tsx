@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { Tabs } from '@custom/Tabs';
 import { useTitle } from '@hooks/useTitle';
-import {Photos} from './Photos';
-import {Videos} from './Videos';
-const Tab = Tabs.Tab;
+import { Photos } from './Photos';
+import { Videos } from './Videos';
+const { Tab } = Tabs;
 
 export function EventPreview(props) {
   useTitle('事件回看');

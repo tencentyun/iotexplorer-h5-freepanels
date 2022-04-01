@@ -3,17 +3,17 @@ import React, { useState } from 'react';
 import { Modal } from '@components/Modal';
 // import { TimePickerView, usePickerControl } from '@components/Picker';
 import './CountdownSetting.less';
-import { Switch } from "@components/Switch";
-import { TimePickerView } from "@components/Picker";
-import { usePickerControl } from "@hooks/usePickerControl";
+import { Switch } from '@components/Switch';
+import { TimePickerView } from '@components/Picker';
+import { usePickerControl } from '@hooks/usePickerControl';
 
 export const second2HourMinute = (countdown = 0): [number, number] => {
-	if (!countdown || countdown <= 0) return [0, 0];
+  if (!countdown || countdown <= 0) return [0, 0];
 
-	const hours = Math.floor(countdown / 3600);
-	const minutes = Math.ceil((countdown - hours * 3600) / 60);
+  const hours = Math.floor(countdown / 3600);
+  const minutes = Math.ceil((countdown - hours * 3600) / 60);
 
-	return [hours, minutes];
+  return [hours, minutes];
 };
 
 export const hourMinute2Second = ([hours, minutes]: number[]): number => hours * 3600 + minutes * 60;
@@ -26,28 +26,28 @@ export interface CountdownSettingProps extends StyledProps {
 }
 
 export function CountdownSetting({
-	visible,
-	value,
-	onCancel,
-	onConfirm,
+  visible,
+  value,
+  onCancel,
+  onConfirm,
 }: CountdownSettingProps) {
-	const [countdownEnable, setCountdownEnable] = useState(true);
+  const [countdownEnable, setCountdownEnable] = useState(true);
 
-	const [{ value: localValue }, {
-		onChange,
-		onScrollChange,
-		doSubmit,
-	}] = usePickerControl<number>({
-		onSubmit(value) {
-			onConfirm({
-				enable: countdownEnable,
-				value: hourMinute2Second(value),
-			});
-		},
-		initValue: second2HourMinute(value),
-	});
+  const [{ value: localValue }, {
+    onChange,
+    onScrollChange,
+    doSubmit,
+  }] = usePickerControl<number>({
+    onSubmit(value) {
+      onConfirm({
+        enable: countdownEnable,
+        value: hourMinute2Second(value),
+      });
+    },
+    initValue: second2HourMinute(value),
+  });
 
-	return (
+  return (
 		<Modal
 			containerClassName='countdown-setting-modal'
 			visible={visible}
@@ -79,14 +79,14 @@ export function CountdownSetting({
 			<Modal.Footer>
 				<Modal.FooterConfirmBtnGroup
 					{...{
-						onCancel,
-						onConfirm: doSubmit,
-						confirmText: '保存',
-						isInFixedBottomModal: true,
-						cancelText: '取消',
+					  onCancel,
+					  onConfirm: doSubmit,
+					  confirmText: '保存',
+					  isInFixedBottomModal: true,
+					  cancelText: '取消',
 					}}
 				/>
 			</Modal.Footer>
 		</Modal>
-	);
+  );
 }

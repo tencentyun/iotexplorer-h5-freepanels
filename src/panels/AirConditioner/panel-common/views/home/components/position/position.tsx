@@ -11,8 +11,7 @@ import classNames from 'classnames';
 import './position.less';
 import { DeviceSateContext } from '../../../../deviceStateContext';
 
-const Position = () => {
-  return (
+const Position = () => (
     <DeviceSateContext.Consumer>
       {({ deviceData }) => (
         <div className={classNames('position-wrap', 'text-align-center')}>
@@ -36,7 +35,6 @@ const Position = () => {
         </div>
       )}
     </DeviceSateContext.Consumer>
-  );
-};
+);
 
 export default Position;

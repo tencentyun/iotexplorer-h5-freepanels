@@ -7,9 +7,7 @@ import Bormal_head from './bormal_head/bormal_head';
 export function Purifier_Dark() {
   return (
     <article
-      className={classNames(
-        'dark_home'
-      )}
+      className={classNames('dark_home')}
     >
       <Bormal_head/>
       {/* <Bormal_center /> */}

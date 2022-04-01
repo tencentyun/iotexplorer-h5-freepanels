@@ -1,12 +1,12 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import './side_foot.less';
 import classNames from 'classnames';
-import {SvgIcon} from '@components/common/icon';
+import { SvgIcon } from '@components/common/icon';
 import Options_Work from '../../home-normal/work_model/work_model';
 import Options_Motor from '../../home-normal/motor/motor';
-import {useHistory} from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
-import {onControlDevice} from '@hooks/useDeviceData';
+import { onControlDevice } from '@hooks/useDeviceData';
 
 
 export function Side_Foot() {
@@ -14,17 +14,17 @@ export function Side_Foot() {
 
   const onCurtainWork = () => {
     history.push('/curtain_more');
-  }
+  };
 
   const [selectTheCurtain, theCurtain_options] = useState(false);
   const [selectTheWork, theCurtain_Work] = useState(false);
 
   const onCurtain = () => {
     theCurtain_options(true);
-  }
+  };
   const onWork = () => {
     theCurtain_Work(true);
-  }
+  };
 
   const [openRatio, onToggleOpenRatio] = useState(55);
   const openLeave = (openRatio) => {
@@ -46,10 +46,10 @@ export function Side_Foot() {
     } else {
       onControlDevice('control', 'close');
     }
-  }
+  };
   const onSwitch = () => {
     onControlDevice('control', 'pause');
-  }
+  };
 
   return (
     <article id={'sidefoot'} className={classNames('sidefoot')}>
@@ -90,13 +90,13 @@ export function Side_Foot() {
       </div>
 
       <div className="side_botton">
-        <div className={classNames("side_span", sdk.deviceData.control === 'open' && "button_select")}
+        <div className={classNames('side_span', sdk.deviceData.control === 'open' && 'button_select')}
              onClick={() => openLeave(0)}>
           <SvgIcon
             name={sdk.deviceData.control === 'open' && 'icon-curtains-open-unlock-blueWhite' || 'icon-curtains-open-blueWhite'}
             color="#FFFFF" width={60} height={20}/>
           {/* <img className="span_open" src={require('../images/curtains-open-blueWhite.png')}></img> */}
-          <div className={classNames("open_font", sdk.deviceData.control === 'open' && "font_select")}>
+          <div className={classNames('open_font', sdk.deviceData.control === 'open' && 'font_select')}>
             开启
           </div>
         </div>
@@ -107,12 +107,12 @@ export function Side_Foot() {
             color="#000000" width={250} height={250}/>
         </div>
 
-        <div className={classNames("side_span", sdk.deviceData.control === 'close' && "button_select")}
+        <div className={classNames('side_span', sdk.deviceData.control === 'close' && 'button_select')}
              onClick={() => openLeave(100)}>
           <SvgIcon
             name={sdk.deviceData.control === 'close' && 'icon-curtains-close-unlock-blueWhite' || 'icon-curtains-close-blueWhite'}
             color="#FFFFF" width={60} height={20}/>
-          <div className={classNames("close_font", sdk.deviceData.control === 'close' && "font_select")}>
+          <div className={classNames('close_font', sdk.deviceData.control === 'close' && 'font_select')}>
             关闭
           </div>
         </div>
@@ -134,6 +134,6 @@ export function Side_Foot() {
       />
     </article>
   );
-};
+}
 
 export default Side_Foot;

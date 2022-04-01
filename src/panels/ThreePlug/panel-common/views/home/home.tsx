@@ -37,17 +37,17 @@ export function Home() {
       className={classNames(
         'home',
         sdk.deviceData.power_switch === 0 && 'power-off',
-        sdk.deviceData.power_switch === 1 ? '' : 'home-close'
+        sdk.deviceData.power_switch === 1 ? '' : 'home-close',
       )}
     >
-      {/*仪表盘*/}
+      {/* 仪表盘*/}
       <section className={classNames('dashboard')}>
         <div className="ticker">
           <div
             id={'title'}
             className={classNames(
               'title',
-              sdk.deviceData.power_switch === 1 ? '' : 'btn-off'
+              sdk.deviceData.power_switch === 1 ? '' : 'btn-off',
             )}
           >
             {sdk.deviceData.power_switch === 1 ? '插座已开启' : '插座已关闭'}
@@ -57,7 +57,7 @@ export function Home() {
             id="bg"
             className={classNames(
               'bg',
-              sdk.deviceData.power_switch === 1 ? '' : 'bg-off'
+              sdk.deviceData.power_switch === 1 ? '' : 'bg-off',
             )}
           />
         </div>

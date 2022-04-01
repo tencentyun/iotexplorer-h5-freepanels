@@ -177,12 +177,11 @@ export const useStandardBleConnector = ({
 
       if (!isConfirm) {
         return Promise.reject();
-      } else {
-        return sdk.requestTokenApi('AppDeleteDeviceInFamily', {
-          FamilyId: familyId,
-          DeviceId: deviceId,
-        });
       }
+      return sdk.requestTokenApi('AppDeleteDeviceInFamily', {
+        FamilyId: familyId,
+        DeviceId: deviceId,
+      });
     }
 
     if (!familyId) return Promise.reject('无家庭信息，无法删除');

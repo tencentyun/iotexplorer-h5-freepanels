@@ -3,7 +3,7 @@ import { RawBtn } from '@components/Btn';
 import classNames from 'classnames';
 import { noop } from '@utillib';
 import './PageFooter.less';
-import { useIpx } from "@hooks/useIpx";
+import { useIpx } from '@hooks/useIpx';
 
 export interface PageFooterProps {
 	footerConfig: FooterBtnConfig[];
@@ -20,11 +20,11 @@ export interface FooterBtnConfig {
 }
 
 export function PageFooter({
-	footerConfig,
+  footerConfig,
 }: PageFooterProps) {
-	const ipx = useIpx();
+  const ipx = useIpx();
 
-	return (
+  return (
 		<div className={classNames('free-panel-footer', { ipx })}>
 			<div className='func-footer-mask'/>
 
@@ -32,13 +32,13 @@ export function PageFooter({
 				{footerConfig.map((item, index) => (
 					<div
 						className={classNames('func-btn-item', item.className, {
-							actived: item.actived,
+						  actived: item.actived,
 						})}
 						key={index}
 					>
 						<RawBtn
 							className={classNames('func-btn', item.btnClassName, {
-								disabled: item.disabled,
+							  disabled: item.disabled,
 							})}
 							onClick={item.disabled ? noop : item.onClick}
 							hoverClass={item.disabled ? 'none' : 'hover'}
@@ -55,5 +55,5 @@ export function PageFooter({
 				))}
 			</div>
 		</div>
-	);
+  );
 }

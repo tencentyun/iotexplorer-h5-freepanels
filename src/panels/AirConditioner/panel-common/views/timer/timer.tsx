@@ -9,17 +9,17 @@
 import React, { useState } from 'react';
 import TimerCloud, {
   ITimerDataBind,
-  ITimerOptions
+  ITimerOptions,
 } from '@components/business/timerCloud/timer-cloud';
 import { List, Radio } from 'antd-mobile';
 import { DeviceSateContext } from '../../deviceStateContext';
 import WorkMode, {
-  enumWorkMode
+  enumWorkMode,
 } from '../home/components/tools-bar/work-mode/work-mode';
 import { Modal } from '@components/base';
 import IconChecked from '@components/base/icon-checked/icon-checked';
 import Gear, {
-  enumGear
+  enumGear,
 } from '../home/components/tools-bar/gear/gear';
 import UINumberSlider from '@components/common/number-slider/ui-number-slider';
 import './timer.less';
@@ -29,7 +29,7 @@ const Timer = () => {
     work_mode: 'auto',
     power_switch: 0,
     temp_set: 0,
-    fan_speed_enum: 'sleep'
+    fan_speed_enum: 'sleep',
   } as ITimerDataBind);
   const [isShowWorkMode, setIsShowWorkMode] = useState(false);
   const [tempWorkMode, setTempWorkMode] = useState('');
@@ -40,7 +40,7 @@ const Timer = () => {
   const optionsTimer: ITimerOptions = {
     power_switch: {
       label: '开关',
-      value_enum: ['关', '开']
+      value_enum: ['关', '开'],
     },
     work_mode: {
       label: '工作模式',
@@ -52,14 +52,14 @@ const Timer = () => {
         wind: '送风',
         eco: 'ECO',
         floor_heat: '地暖',
-        floor_eat_and_heat: '地暖及制热'
-      }
+        floor_eat_and_heat: '地暖及制热',
+      },
     },
     temp_set: {
-      label: '温度设置'
+      label: '温度设置',
     },
     temp_set_f: {
-      label: '温度设置'
+      label: '温度设置',
     },
     fan_speed_enum: {
       label: '风速',
@@ -72,9 +72,9 @@ const Timer = () => {
         low: '低风',
         middle: '中风',
         high: '高风',
-        mute: '静音'
-      }
-    }
+        mute: '静音',
+      },
+    },
   };
   return (
     <DeviceSateContext.Consumer>
@@ -85,7 +85,7 @@ const Timer = () => {
               <List.Item
                 prefix={'开关'}
                 extra={
-                  optionsTimer.power_switch.value_enum[data['power_switch']]
+                  optionsTimer.power_switch.value_enum[data.power_switch]
                 }
                 onClick={() => {
                   setIsShowPowerSwitch(true);
@@ -93,7 +93,7 @@ const Timer = () => {
               />
               <List.Item
                 prefix={'工作模式'}
-                extra={enumWorkMode[data['work_mode']]}
+                extra={enumWorkMode[data.work_mode]}
                 onClick={() => {
                   setIsShowWorkMode(true);
                 }}
@@ -113,14 +113,14 @@ const Timer = () => {
               />
               <List.Item
                 prefix={'风速'}
-                extra={enumGear[data['fan_speed_enum']]}
+                extra={enumGear[data.fan_speed_enum]}
                 onClick={() => {
                   setIsFanSpeedEnum(true);
                 }}
               />
             </List>
 
-            {/*开关弹窗*/}
+            {/* 开关弹窗*/}
             <Modal
               title={'开关'}
               visible={isShowPowerSwitch}
@@ -156,7 +156,7 @@ const Timer = () => {
                 </List>
               </Radio.Group>
             </Modal>
-            {/*工作模样弹窗*/}
+            {/* 工作模样弹窗*/}
             <Modal
               title={'工作模式'}
               visible={isShowWorkMode}
@@ -211,7 +211,7 @@ const Timer = () => {
             >
               <Gear
                 defaultValue={data.fan_speed_enum}
-                onChange={val => {
+                onChange={(val) => {
                   setData(Object.assign(data, { fan_speed_enum: val }));
                 }}
               />

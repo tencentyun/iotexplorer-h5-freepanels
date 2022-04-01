@@ -30,21 +30,21 @@ export function Container() {
       >
         <TabPane
           title="训练"
-          icon={<SvgIcon name="icon-home" {...CurrentSkinProps['home'][activeKey == 'training' ? 'active' : 'default']}/>}
+          icon={<SvgIcon name="icon-home" {...CurrentSkinProps.home[activeKey == 'training' ? 'active' : 'default']}/>}
           key="training"
         >
           <Home />
         </TabPane>
         <TabPane
           title="数据"
-          icon={<SvgIcon name="icon-data"  {...CurrentSkinProps['data'][activeKey == 'data' ? 'active' : 'default']}/>}
+          icon={<SvgIcon name="icon-data"  {...CurrentSkinProps.data[activeKey == 'data' ? 'active' : 'default']}/>}
           key="data"
         >
           <Data />
         </TabPane>
         <TabPane
           title="设置"
-          icon={<SvgIcon name="icon-setting"  {...CurrentSkinProps['setting'][activeKey == 'setting' ? 'active' : 'default']}/>}
+          icon={<SvgIcon name="icon-setting"  {...CurrentSkinProps.setting[activeKey == 'setting' ? 'active' : 'default']}/>}
           key="setting"
         >
           <Setting />

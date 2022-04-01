@@ -1,7 +1,7 @@
-import React from "react";
-import { imgNotFound } from "@icons/panel";
-import "./EventDetail.less";
-import moment from "moment";
+import React from 'react';
+import { imgNotFound } from '@icons/panel';
+import './EventDetail.less';
+import moment from 'moment';
 
 export function EventDetail({ item, deviceInfo }) {
   return (
@@ -9,8 +9,8 @@ export function EventDetail({ item, deviceInfo }) {
       <img
         className="event-img"
         src={
-          (item.location.query && item.location.query["ThumbnailURL"]) ||
-          imgNotFound
+          (item.location.query && item.location.query.ThumbnailURL)
+          || imgNotFound
         }
       ></img>
       <div className="detail-info">
@@ -21,18 +21,16 @@ export function EventDetail({ item, deviceInfo }) {
         <div className="detail-info-row">
           <div className="label">事件</div>
           <div className="value">
-            {(item.location.query && item.location.query.EventID) || "-"}
+            {(item.location.query && item.location.query.EventID) || '-'}
           </div>
         </div>
         <div className="detail-info-row">
           <div className="label">告警时间</div>
           <div className="value">
-            {(item.location.query &&
-              item.location.query.StartTime &&
-              moment(item.location.query.StartTime * 1000).format(
-                "yyyy-MM-DD HH:mm:ss"
-              )) ||
-              "="}
+            {(item.location.query
+              && item.location.query.StartTime
+              && moment(item.location.query.StartTime * 1000).format('yyyy-MM-DD HH:mm:ss'))
+              || '='}
           </div>
         </div>
       </div>

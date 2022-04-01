@@ -65,24 +65,24 @@ export function RingDashboard(props: DashboardProps) {
     maxValue = 100,
     startAngle = 90,
     endAngle = 360,
-    currentColor = ''
+    currentColor = '',
   } = props;
   const radius = (width / 2) - borderWidth;
   // 周长
   const getPerimeter = 2 * Math.PI * radius;
   // 缺角周长
   const getLength = 2 * Math.PI * radius * 0.75;
-  const length = getLength - getPerimeter
+  const length = getLength - getPerimeter;
   const [currentLength, setCurrentLength] = useState(0);
   useEffect(() => {
-    let percentage = value / (maxValue - minValue);
-    let perimeter = 2 * Math.PI * radius * 0.75;
+    const percentage = value / (maxValue - minValue);
+    const perimeter = 2 * Math.PI * radius * 0.75;
     setCurrentLength(perimeter * percentage);
   }, [value]);
 
   // 当前角度
   const currentAngle = (() => {
-    //进度
+    // 进度
     const progress = value / (maxValue - minValue);
     const range = endAngle - startAngle;
     let angle = range * progress + startAngle;
@@ -97,7 +97,7 @@ export function RingDashboard(props: DashboardProps) {
 
   // 圆形刻度
   const renderRoundScale: any = () => {
-    //半径
+    // 半径
     const r1 = width / 2;
 
     const scaleList: any[] = [];
@@ -113,16 +113,14 @@ export function RingDashboard(props: DashboardProps) {
       const x = r1 + (r1 - 96) * Math.cos((i * Math.PI) / 180);
       const y = r1 + (r1 - 96) * Math.sin((i * Math.PI) / 180);
 
-      scaleList.push(
-        <circle key={i} cx={x} cy={y} r="6" fill={color} strokeWidth="0" />
-      );
+      scaleList.push(<circle key={i} cx={x} cy={y} r="6" fill={color} strokeWidth="0" />);
     }
 
     return scaleList;
   };
 
   const renderIndicator: any = () => {
-    //半径
+    // 半径
     const r1 = width / 2;
 
     const scaleList: any[] = [];
@@ -130,16 +128,14 @@ export function RingDashboard(props: DashboardProps) {
     const x = r1 + (r1 - borderWidth) * Math.cos((currentAngle * Math.PI) / 180);
     const y = r1 + (r1 - borderWidth) * Math.sin((currentAngle * Math.PI) / 180);
 
-    scaleList.push(
-      <circle
+    scaleList.push(<circle
         cx={x}
         cy={y}
         r={borderWidth - 10}
         fill="#ffffff"
         stroke={currentColor}
         strokeWidth={19}
-      />
-    );
+      />);
     return scaleList;
   };
 
@@ -154,22 +150,22 @@ export function RingDashboard(props: DashboardProps) {
         cy={height / 2}
         r={radius}
         stroke="#C9D4DD"
-        stroke-width={borderWidth}
+        strokeWidth={borderWidth}
         fill="none"
-        stroke-dasharray={getLength + ' ' + getPerimeter}
-        stroke-dashoffset={length}
-        stroke-linecap="round"
+        strokeDasharray={`${getLength} ${getPerimeter}`}
+        strokeDashoffset={length}
+        strokeLinecap="round"
       />
       <circle
         cx={width / 2}
         cy={height / 2}
         r={radius}
         stroke={currentColor}
-        stroke-width={borderWidth}
+        strokeWidth={borderWidth}
         fill="none"
-        stroke-dasharray={currentLength + ' ' + getPerimeter}
-        stroke-dashoffset={length}
-        stroke-linecap="round"
+        strokeDasharray={`${currentLength} ${getPerimeter}`}
+        strokeDashoffset={length}
+        strokeLinecap="round"
       >
       </circle>
       {renderRoundScale()}

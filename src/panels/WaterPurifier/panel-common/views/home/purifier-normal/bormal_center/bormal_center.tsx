@@ -1,10 +1,10 @@
 import React from 'react';
-import './bormal_center.less'
+import './bormal_center.less';
 import classNames from 'classnames';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 
 export function Bormal_center() {
-  const statusSrc = (status: String) => {
+  const statusSrc = (status: string) => {
     switch (status) {
       case 'purified':
         return '净水中';
@@ -47,7 +47,7 @@ export function Bormal_center() {
       </div>
     </article>
   );
-};
+}
 
 export default Bormal_center;
 

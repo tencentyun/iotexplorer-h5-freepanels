@@ -1,5 +1,5 @@
 import React from 'react';
-import './bormal_head.less'
+import './bormal_head.less';
 import classNames from 'classnames';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 
@@ -57,7 +57,7 @@ export function Bormal_head() {
 
     </article>
   );
-};
+}
 
 export default Bormal_head;
 

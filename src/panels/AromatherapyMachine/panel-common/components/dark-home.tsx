@@ -12,24 +12,21 @@ export function DarkHome() {
   const history = useHistory();
   const [workMode, setWorkMode] = useState('middle');
 
-  const imageSrc = () => {
-    return 'https://tencent-1305105198.cos.ap-guangzhou.myqcloud.com/aromatherapy_machine/aromatherapy_machine.png';
-  };
+  const imageSrc = () => 'https://tencent-1305105198.cos.ap-guangzhou.myqcloud.com/aromatherapy_machine/aromatherapy_machine.png';
 
   const workModeLabel: any = {
     large: '大雾量',
     middle: '中雾量',
-    small: '小雾量'
+    small: '小雾量',
   };
 
   const workModeToValue = (label: string) => {
     if (label === 'large') {
       return 100;
-    } else if (label === 'small') {
+    } if (label === 'small') {
       return 0;
-    } else {
-      return 50;
     }
+    return 50;
   };
   // 更多
   const handleMore = () => {
@@ -42,7 +39,7 @@ export function DarkHome() {
         <div
           className={classNames(
             'app-container',
-            !deviceData.power_switch ? 'close' : ''
+            !deviceData.power_switch ? 'close' : '',
           )}
         >
           {/* 顶部 */}
@@ -52,13 +49,13 @@ export function DarkHome() {
               <Block
                 className={classNames(
                   'control-block',
-                  (deviceData.power_switch === 1 && deviceData.spray_switch === 1) ? 'selected' : 'unselected'
+                  (deviceData.power_switch === 1 && deviceData.spray_switch === 1) ? 'selected' : 'unselected',
                 )}
                 onClick={() => {
                   if (!deviceData.power_switch) return;
                   onControlDevice(
                     'spray_switch',
-                    Number(!deviceData.spray_switch)
+                    Number(!deviceData.spray_switch),
                   );
                 }}
               >
@@ -72,13 +69,13 @@ export function DarkHome() {
               <Block
                 className={classNames(
                   'control-block',
-                  (deviceData.power_switch === 1 && deviceData.light_switch === 1) ? 'selected' : 'unselected'
+                  (deviceData.power_switch === 1 && deviceData.light_switch === 1) ? 'selected' : 'unselected',
                 )}
                 onClick={() => {
                   if (!deviceData.power_switch) return;
                   onControlDevice(
                     'light_switch',
-                    Number(!deviceData.light_switch)
+                    Number(!deviceData.light_switch),
                   );
                 }}
               >
@@ -191,8 +188,8 @@ export function DarkHome() {
                 ticks
                 step={50}
                 defaultValue={workModeToValue(deviceData.work_mode)}
-                disabled={deviceData.power_switch === 1 ? false : true}
-                onChange={value => {
+                disabled={deviceData.power_switch !== 1}
+                onChange={(value) => {
                   if (value === 0) {
                     setWorkMode('small');
                   } else if (value === 50) {
@@ -208,12 +205,12 @@ export function DarkHome() {
             <div
               className={classNames(
                 'control-power',
-                deviceData.power_switch ? 'open' : ''
+                deviceData.power_switch ? 'open' : '',
               )}
               onClick={() => {
                 onControlDevice(
                   'power_switch',
-                  Number(!deviceData.power_switch)
+                  Number(!deviceData.power_switch),
                 );
               }}
             >

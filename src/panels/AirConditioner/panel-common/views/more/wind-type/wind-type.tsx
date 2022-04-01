@@ -9,12 +9,12 @@
 import React, { useRef, useState } from 'react';
 import classNames from 'classnames';
 import { DeviceSateContext } from '../../../deviceStateContext';
-import { Cell } from '@components/base';
+import { Cell, Modal } from '@components/base';
 import UINumberSlider from '@components/common/number-slider/ui-number-slider';
 import UpDown, { enumUpDown } from './components/up-down/up-down';
-import { Modal } from '@components/base';
+
 import LeftRight, {
-  enumLeftRight
+  enumLeftRight,
 } from '../../more/wind-type/components/left-right/left-rigth';
 import { apiControlDeviceData } from '@hooks/useDeviceData';
 import './wind-type.less';
@@ -53,7 +53,7 @@ const WindType = () => {
   };
   const saveWindGear = (key: string, val: string) => {
     apiControlDeviceData({
-      [key]: val
+      [key]: val,
     });
   };
 

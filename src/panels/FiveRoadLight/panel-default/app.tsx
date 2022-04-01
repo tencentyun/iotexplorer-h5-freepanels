@@ -1,8 +1,8 @@
 import React from 'react';
-import { entryWrap } from "@src/entryWrap";
+import { entryWrap } from '@src/entryWrap';
 import { Panel } from './Panel';
-import { useDeviceInfo } from "@hooks/useDeviceInfo";
-import { StatusTip } from "@components/StatusTip";
+import { useDeviceInfo } from '@hooks/useDeviceInfo';
+import { StatusTip } from '@components/StatusTip';
 
 function App() {
   const [{

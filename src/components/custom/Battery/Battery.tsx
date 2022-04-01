@@ -19,7 +19,7 @@ export function Battery({
   value,
   isShowPercent = true,
   isShowTip = true,
-  color = ''
+  color = '',
 }: BatteryProps) {
   return (
     <div className="battery">

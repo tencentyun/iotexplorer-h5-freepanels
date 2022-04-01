@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import { Dialog, Input } from 'antd-mobile';
 import classNames from 'classnames';
 import { Cell } from '@components/base';
@@ -6,8 +6,8 @@ import { getThemeType } from '@libs/theme';
 import { apiControlDeviceData } from '@hooks/useDeviceData';
 import './phoneList.less';
 
-import PhoneImage from "../icons/normal/phone-icon.svg";
-import PhoneImageMorandi from "../icons/morandi/phone-icon.svg";
+import PhoneImage from '../icons/normal/phone-icon.svg';
+import PhoneImageMorandi from '../icons/morandi/phone-icon.svg';
 
 export function PhoneList() {
   const themeType = getThemeType();
@@ -25,7 +25,7 @@ export function PhoneList() {
     <Input
       placeholder="请输入密码"
       value={password}
-      onChange={val => {
+      onChange={(val) => {
         onEditPassword(val);
         apiControlDeviceData({ password: val });
       }}
@@ -37,7 +37,7 @@ export function PhoneList() {
     <Input
       placeholder="请输入报警电话号码"
       value={callNumber}
-      onChange={val => {
+      onChange={(val) => {
         onEditCallNumber(val);
         apiControlDeviceData({ alarm_call_number: val });
       }}
@@ -49,7 +49,7 @@ export function PhoneList() {
     <Input
       placeholder="请输入报警短信号码"
       value={smsNumber}
-      onChange={val => {
+      onChange={(val) => {
         onEditSmsNumber(val);
         console.log(val);
       }}
@@ -64,7 +64,7 @@ export function PhoneList() {
       content: '确认删除该号码？',
       cancelText: '取消',
       confirmText: '完成',
-      onConfirm: () => {}
+      onConfirm: () => {},
     });
   };
   return (
@@ -83,7 +83,7 @@ export function PhoneList() {
                 content: callNumberEditor,
                 cancelText: '取消',
                 confirmText: '完成',
-                onConfirm: () => {}
+                onConfirm: () => {},
               });
             }}
           />
@@ -101,7 +101,7 @@ export function PhoneList() {
                 content: callNumberEditor,
                 cancelText: '取消',
                 confirmText: '完成',
-                onConfirm: () => {}
+                onConfirm: () => {},
               });
             }}
           />
@@ -119,7 +119,7 @@ export function PhoneList() {
                 content: callNumberEditor,
                 cancelText: '取消',
                 confirmText: '完成',
-                onConfirm: () => {}
+                onConfirm: () => {},
               });
             }}
           />
@@ -133,7 +133,7 @@ export function PhoneList() {
             content: callNumberEditor,
             cancelText: '取消',
             confirmText: '完成',
-            onConfirm: () => {}
+            onConfirm: () => {},
           });
         }}
       >

@@ -20,42 +20,42 @@ export interface SliderProps extends StyledProps {
 }
 
 export function Slider({
-	min,
-	max,
-	step,
-	value,
-	orientation,
-	reverse,
-	tooltip = false,
+  min,
+  max,
+  step,
+  value,
+  orientation,
+  reverse,
+  tooltip = false,
   alwaysShowTip = false,
-	labels,
-	handleLabel,
-	format,
-	onChangeStart,
-	onChange,
-	onChangeComplete,
-	className,
+  labels,
+  handleLabel,
+  format,
+  onChangeStart,
+  onChange,
+  onChangeComplete,
+  className,
 }: Partial<SliderProps>) {
-	return (
+  return (
 		<ReactSlider
 			className={className}
 			{...{
-				min,
-				max,
-				step,
-				value,
-				orientation,
-				reverse,
-				tooltip,
-				labels,
-				handleLabel,
-				format,
-				onChangeStart,
-				onChange,
-				onChangeComplete,
-        alwaysShowTip
+			  min,
+			  max,
+			  step,
+			  value,
+			  orientation,
+			  reverse,
+			  tooltip,
+			  labels,
+			  handleLabel,
+			  format,
+			  onChangeStart,
+			  onChange,
+			  onChangeComplete,
+			  alwaysShowTip,
 			}}
 		/>
-	)
+  );
 }
 

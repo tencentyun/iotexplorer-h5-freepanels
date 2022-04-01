@@ -26,7 +26,7 @@ export function Switch({
   checked = false,
   onChange = noop,
   onClick = noop,
-  disabled = false
+  disabled = false,
 }: SwitchProps) {
   const [isChecked, onToggleChecked] = useState(checked);
 
@@ -47,14 +47,14 @@ export function Switch({
       className={classNames(
         '_component_base_switch_',
         `theme_${toUnderscores(theme)}`,
-        className
+        className,
       )}
     >
       <div
         className={[
           'switch-inner',
           isChecked ? 'is_checked' : '',
-          disabled ? 'is_disabled' : ''
+          disabled ? 'is_disabled' : '',
         ].join(' ')}
         onClick={handleSwitch}
       />

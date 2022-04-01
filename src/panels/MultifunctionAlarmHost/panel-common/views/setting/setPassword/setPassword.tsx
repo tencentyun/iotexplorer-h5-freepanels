@@ -2,13 +2,13 @@ import React, { useState } from 'react';
 import { Modal } from '@components/base';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 import { Input } from 'antd-mobile';
-import {apiControlDeviceData} from "@hooks/useDeviceData";
+import { apiControlDeviceData } from '@hooks/useDeviceData';
 
 const SetPassword = ({ isShow, onClose }) => {
   const [dataUser, setDataUser] = useState(sdk.deviceData.password);
   const handleCommit = () => {
     apiControlDeviceData({
-      password: dataUser
+      password: dataUser,
     });
     onClose();
   };
@@ -23,7 +23,7 @@ const SetPassword = ({ isShow, onClose }) => {
       <Input
         placeholder="请输入密码"
         value={dataUser}
-        onChange={val => {
+        onChange={(val) => {
           setDataUser(val);
         }}
       />

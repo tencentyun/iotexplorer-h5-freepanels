@@ -26,16 +26,15 @@ const parse = (url = '', { code = '' } = {}) => {
   return qsObj;
 };
 
-const stringify = (obj = {}, { code = '' } = {}) =>
-  Object.keys(obj)
-    .map((key) => {
-      let value = obj[key];
-      if (code) {
-        value = code == 'encode' ? encodeURIComponent(value) : decodeURIComponent(value);
-      }
-      return `${key}=${value}`;
-    })
-    .join('&');
+const stringify = (obj = {}, { code = '' } = {}) => Object.keys(obj)
+  .map((key) => {
+    let value = obj[key];
+    if (code) {
+      value = code == 'encode' ? encodeURIComponent(value) : decodeURIComponent(value);
+    }
+    return `${key}=${value}`;
+  })
+  .join('&');
 
 const PageComponent = ({ Component, PATH, className, ...props }) => {
   const reactDomHistory = useHistory();
@@ -51,7 +50,7 @@ const PageComponent = ({ Component, PATH, className, ...props }) => {
     },
     goBack: reactDomHistory.goBack,
     query: parse(reactDomHistory.location.search, { code: 'need' }),
-    PATH
+    PATH,
   };
   // tips功能
   const { tips } = sdk;

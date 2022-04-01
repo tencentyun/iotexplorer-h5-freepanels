@@ -43,8 +43,8 @@ export function Home() {
             Interval: '1d',
             FieldName: 'power',
             MinTime: startTime,
-            MaxTime: endTime
-          }
+            MaxTime: endTime,
+          },
         );
         console.log('get electricityData', electricityData);
         if (electricityData.Results && electricityData.Results.length > 0) {
@@ -70,7 +70,7 @@ export function Home() {
           1,
           0,
           0,
-          0
+          0,
         ).getTime();
         const endOfMonth = new Date(
           fullYear,
@@ -78,7 +78,7 @@ export function Home() {
           monthDays,
           23,
           59,
-          59
+          59,
         ).getTime();
 
         console.log(startOfMonth, endOfMonth);
@@ -89,21 +89,19 @@ export function Home() {
             Action: 'AppGetDeviceAggsData',
             DeviceId: sdk.deviceId,
             AggMethod: 'sum',
-            Interval: monthDays + 'd',
+            Interval: `${monthDays}d`,
             FieldName: 'power',
             MinTime: startOfMonth,
-            MaxTime: endOfMonth
-          }
+            MaxTime: endOfMonth,
+          },
         );
         console.log('get electricityTotalData', electricityTotalData);
 
         if (
-          electricityTotalData.Results &&
-          electricityTotalData.Results.length > 0
+          electricityTotalData.Results
+          && electricityTotalData.Results.length > 0
         ) {
-          setMonthElectricity(
-            electricityTotalData.Results[0].Data * monthDays * 24
-          );
+          setMonthElectricity(electricityTotalData.Results[0].Data * monthDays * 24);
         } else {
           setMonthElectricity(0);
         }
@@ -141,8 +139,7 @@ export function Home() {
     return skin[currentStatus];
   };
 
-  const renderHeader = (deviceData: any) => {
-    return (
+  const renderHeader = (deviceData: any) => (
       <ul className="header-content">
         <li className="content-item">
           <p className="num">{dayElectricity}</p>
@@ -154,15 +151,13 @@ export function Home() {
           <p className="label">当月电量</p>
         </li>
       </ul>
-    );
-  };
+  );
   // 电源按钮渲染
-  const renderPower = (value: number) => {
-    return (
+  const renderPower = (value: number) => (
       <div
         className={classNames(
           'total-switch',
-          value === 1 ? 'total-switch-open' : ''
+          value === 1 ? 'total-switch-open' : '',
         )}
         onClick={() => {
           handlePower(value);
@@ -174,8 +169,7 @@ export function Home() {
           {...currentColor(value, 'switch')}
         />
       </div>
-    );
-  };
+  );
 
   return (
     <DeviceContext.Consumer>
@@ -199,9 +193,9 @@ export function Home() {
             {themeType === 'morandi' ? renderHeader(deviceData) : null}
           </div>
 
-          {themeType === 'blueWhite' ||
-          themeType === 'dark' ||
-          themeType === 'morandi'
+          {themeType === 'blueWhite'
+          || themeType === 'dark'
+          || themeType === 'morandi'
             ? renderPower(deviceData.power_switch)
             : null}
           {themeType === 'blueWhite' || themeType === 'dark'

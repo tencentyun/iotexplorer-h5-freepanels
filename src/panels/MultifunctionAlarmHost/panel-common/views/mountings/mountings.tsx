@@ -1,41 +1,41 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import classNames from 'classnames';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 import { Cell } from '@components/base';
 import { getThemeType } from '@libs/theme';
-import {useHistory} from "react-router";
+import { useHistory } from 'react-router';
 import './mountings.less';
 
-import LightSensorImage from "../icons/normal/light-sensor.svg";
-import LightSensorImageBlueWhite from "../icons/blue-white/light-sensor.svg";
-import LightSensorImageDark from "../icons/dark/light-sensor.svg";
-import LightSensorImageColorful from "../icons/colorful/light-sensor.svg";
-import LightSensorImageMorandi from "../icons/morandi/light-sensor.svg";
-import ExigencyBtnImage from "../icons/normal/exigency-btn.svg";
-import ExigencyBtnImageBlueWhite from "../icons/blue-white/exigency-btn.svg";
-import ExigencyBtnImageDark from "../icons/dark/exigency-btn.svg";
-import ExigencyBtnImageColorful from "../icons/colorful/exigency-btn.svg";
-import ExigencyBtnImageMorandi from "../icons/morandi/exigency-btn.svg";
-import SoundLightImage from "../icons/normal/sound-light-alarm.svg";
-import SoundLightImageBlueWhite from "../icons/blue-white/sound-light-alarm.svg";
-import SoundLightImageDark from "../icons/dark/sound-light-alarm.svg";
-import SoundLightImageColorful from "../icons/colorful/sound-light-alarm.svg";
-import SoundLightImageMorandi from "../icons/morandi/sound-light-alarm.svg";
-import CoAlarmImage from "../icons/normal/co-alarm.svg";
-import CoAlarmImageBlueWhite from "../icons/blue-white/co-alarm.svg";
-import CoAlarmImageDark from "../icons/dark/co-alarm.svg";
-import CoAlarmImageColorful from "../icons/colorful/co-alarm.svg";
-import CoAlarmImageMorandi from "../icons/morandi/co-alarm.svg";
-import MethaneAlarmImage from "../icons/normal/methane-alarm.svg";
-import MethaneAlarmImageBlueWhite from "../icons/blue-white/methane-alarm.svg";
-import MethaneAlarmImageDark from "../icons/dark/methane-alarm.svg";
-import MethaneAlarmImageColorful from "../icons/colorful/methane-alarm.svg";
-import MethaneAlarmImageMorandi from "../icons/morandi/methane-alarm.svg";
-import GasAlarmImage from "../icons/normal/gas-alarm.svg";
-import GasAlarmImageBlueWhite from "../icons/blue-white/gas-alarm.svg";
-import GasAlarmImageDark from "../icons/dark/gas-alarm.svg";
-import GasAlarmImageColorful from "../icons/colorful/gas-alarm.svg";
-import GasAlarmImageMorandi from "../icons/morandi/gas-alarm.svg";
+import LightSensorImage from '../icons/normal/light-sensor.svg';
+import LightSensorImageBlueWhite from '../icons/blue-white/light-sensor.svg';
+import LightSensorImageDark from '../icons/dark/light-sensor.svg';
+import LightSensorImageColorful from '../icons/colorful/light-sensor.svg';
+import LightSensorImageMorandi from '../icons/morandi/light-sensor.svg';
+import ExigencyBtnImage from '../icons/normal/exigency-btn.svg';
+import ExigencyBtnImageBlueWhite from '../icons/blue-white/exigency-btn.svg';
+import ExigencyBtnImageDark from '../icons/dark/exigency-btn.svg';
+import ExigencyBtnImageColorful from '../icons/colorful/exigency-btn.svg';
+import ExigencyBtnImageMorandi from '../icons/morandi/exigency-btn.svg';
+import SoundLightImage from '../icons/normal/sound-light-alarm.svg';
+import SoundLightImageBlueWhite from '../icons/blue-white/sound-light-alarm.svg';
+import SoundLightImageDark from '../icons/dark/sound-light-alarm.svg';
+import SoundLightImageColorful from '../icons/colorful/sound-light-alarm.svg';
+import SoundLightImageMorandi from '../icons/morandi/sound-light-alarm.svg';
+import CoAlarmImage from '../icons/normal/co-alarm.svg';
+import CoAlarmImageBlueWhite from '../icons/blue-white/co-alarm.svg';
+import CoAlarmImageDark from '../icons/dark/co-alarm.svg';
+import CoAlarmImageColorful from '../icons/colorful/co-alarm.svg';
+import CoAlarmImageMorandi from '../icons/morandi/co-alarm.svg';
+import MethaneAlarmImage from '../icons/normal/methane-alarm.svg';
+import MethaneAlarmImageBlueWhite from '../icons/blue-white/methane-alarm.svg';
+import MethaneAlarmImageDark from '../icons/dark/methane-alarm.svg';
+import MethaneAlarmImageColorful from '../icons/colorful/methane-alarm.svg';
+import MethaneAlarmImageMorandi from '../icons/morandi/methane-alarm.svg';
+import GasAlarmImage from '../icons/normal/gas-alarm.svg';
+import GasAlarmImageBlueWhite from '../icons/blue-white/gas-alarm.svg';
+import GasAlarmImageDark from '../icons/dark/gas-alarm.svg';
+import GasAlarmImageColorful from '../icons/colorful/gas-alarm.svg';
+import GasAlarmImageMorandi from '../icons/morandi/gas-alarm.svg';
 
 export function Mountings() {
   const themeType = getThemeType();
@@ -149,7 +149,7 @@ export function Mountings() {
           ProductId: sdk.productId,
           DeviceName: sdk.deviceName,
           Offset: 0,
-          Limit: 10
+          Limit: 10,
         });
         console.log('get info', recordListInfo);
         setGatewayList(recordListInfo.DeviceList);
@@ -160,12 +160,8 @@ export function Mountings() {
     getDeviceDataGateway();
   }, []);
   const history = useHistory();
-  const handleAdd = () => {
-    return history.push('/addDevExplanatory');
-  };
-  const handleGetGateway = () => {
-    return history.push('/getGateway');
-  };
+  const handleAdd = () => history.push('/addDevExplanatory');
+  const handleGetGateway = () => history.push('/getGateway');
   const cellIcon = (url: string) => (
     <img className="details-icon" src={url}></img>
   );
@@ -189,7 +185,7 @@ export function Mountings() {
             ''
           )
         ))}
-        {/*<li className="list-item" id={'exigency-btn'}>
+        {/* <li className="list-item" id={'exigency-btn'}>
           <Cell
             size="medium"
             title="紧急按钮"

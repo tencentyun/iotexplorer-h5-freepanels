@@ -1,6 +1,6 @@
 import React from 'react';
-import {toggleBooleanByNumber} from '@libs/utillib';
-import {getThemeType} from '@libs/theme';
+import { toggleBooleanByNumber } from '@libs/utillib';
+import { getThemeType } from '@libs/theme';
 import { apiControlDeviceData } from '@hooks/useDeviceData';
 import { Cell, Switch } from '@components/base';
 import { SvgIcon } from '@components/common/icon';
@@ -20,9 +20,7 @@ export function ProductSetting() {
           <Switch
             name={''}
             theme={themeType}
-            checked={toggleBooleanByNumber(
-              sdk.deviceData.disarmed ? sdk.deviceData.disarmed : 0
-            )}
+            checked={toggleBooleanByNumber(sdk.deviceData.disarmed ? sdk.deviceData.disarmed : 0)}
             onChange={(value: boolean) => {
               apiControlDeviceData({ disarmed: value ? 1 : 0 });
             }}
@@ -30,7 +28,7 @@ export function ProductSetting() {
         }
         valueStyle="gray"
         size="medium"
-        prefixIcon={<SvgIcon name={'icon-emergency-disarm-'+themeType} width={40} height={40}/>}
+        prefixIcon={<SvgIcon name={`icon-emergency-disarm-${themeType}`} width={40} height={40}/>}
     />
 
      <Cell
@@ -41,9 +39,7 @@ export function ProductSetting() {
           <Switch
             name={''}
             theme={themeType}
-            checked={toggleBooleanByNumber(
-              sdk.deviceData.arm ? sdk.deviceData.arm : 0
-            )}
+            checked={toggleBooleanByNumber(sdk.deviceData.arm ? sdk.deviceData.arm : 0)}
             onChange={(value: boolean) => {
               apiControlDeviceData({ arm: value ? 1 : 0 });
             }}
@@ -51,7 +47,7 @@ export function ProductSetting() {
         }
         valueStyle="gray"
         size="medium"
-        prefixIcon={<SvgIcon name={'icon-emergency-go-out-and-arm-'+themeType} width={40} height={40}/>}
+        prefixIcon={<SvgIcon name={`icon-emergency-go-out-and-arm-${themeType}`} width={40} height={40}/>}
     />
 
      <Cell
@@ -62,9 +58,7 @@ export function ProductSetting() {
           <Switch
             name={''}
             theme={themeType}
-            checked={toggleBooleanByNumber(
-              sdk.deviceData.home ? sdk.deviceData.home : 0
-            )}
+            checked={toggleBooleanByNumber(sdk.deviceData.home ? sdk.deviceData.home : 0)}
             onChange={(value: boolean) => {
               apiControlDeviceData({ home: value ? 1 : 0 });
             }}
@@ -72,7 +66,7 @@ export function ProductSetting() {
         }
         valueStyle="gray"
         size="medium"
-        prefixIcon={<SvgIcon name={'icon-emergency-arm-your-home-'+themeType} width={40} height={40}/>}
+        prefixIcon={<SvgIcon name={`icon-emergency-arm-your-home-${themeType}`} width={40} height={40}/>}
     />
 
      <Cell
@@ -83,9 +77,7 @@ export function ProductSetting() {
           <Switch
             name={''}
             theme={themeType}
-            checked={toggleBooleanByNumber(
-              sdk.deviceData.sos ? sdk.deviceData.sos : 0
-            )}
+            checked={toggleBooleanByNumber(sdk.deviceData.sos ? sdk.deviceData.sos : 0)}
             onChange={(value: boolean) => {
               apiControlDeviceData({ sos: value ? 1 : 0 });
             }}
@@ -93,10 +85,10 @@ export function ProductSetting() {
         }
         valueStyle="gray"
         size="medium"
-        prefixIcon={<SvgIcon name={'icon-emergency-urgent-'+themeType} width={45} height={45}/>}
+        prefixIcon={<SvgIcon name={`icon-emergency-urgent-${themeType}`} width={45} height={45}/>}
     />
 </div>
   );
-};
+}
 
 export default ProductSetting;

@@ -15,9 +15,8 @@ import { More } from './views/more/more';
 import Timer from './views/timer/timer';
 import { QuicknessMode } from '@components/base/quicknessMode';
 
-export const App = QuicknessMode(function App() {
-  const [state, { onDeviceDataChange, onDeviceStatusChange }]: any =
-    useDeviceData(sdk);
+export const App = QuicknessMode(() => {
+  const [state, { onDeviceDataChange, onDeviceStatusChange }]: any =    useDeviceData(sdk);
 
   // 获取设备模型数据
   const getDeviceData = (deviceId: string) => {
@@ -79,17 +78,16 @@ export const App = QuicknessMode(function App() {
       <HashRouter>
         <Redirect exact from="/" to="/home"></Redirect>
         <Switch>
-          {/*更多页*/}
+          {/* 更多页*/}
           <Route path="/more" render={() => <More></More>}></Route>
 
-          {/*云定时*/}
+          {/* 云定时*/}
           <Route path="/timer" render={() => <Timer></Timer>}></Route>
 
-          {/*首页*/}
+          {/* 首页*/}
           <Route
             path="/home"
-            render={() =>
-              <Home></Home>
+            render={() => <Home></Home>
             }
           ></Route>
         </Switch>

@@ -7,7 +7,7 @@ const FiveWifiName = ({ isShow, onClose }) => {
   const [dataUser, setDataUser] = useState();
   const handleCommit = () => {
     apiControlDeviceData({
-      name_5g: dataUser
+      name_5g: dataUser,
     });
     onClose();
   };
@@ -22,7 +22,7 @@ const FiveWifiName = ({ isShow, onClose }) => {
       <Input
         placeholder="请输入名称"
         value={dataUser}
-        onChange={val => {
+        onChange={(val) => {
           setDataUser(val);
           apiControlDeviceData({ name_24g: val });
         }}

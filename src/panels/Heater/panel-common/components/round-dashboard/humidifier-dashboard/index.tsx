@@ -12,7 +12,7 @@ interface dashboardProps {
   dashboardStatus: string;
 }
 
-const HumidifierDashboard: React.FC<dashboardProps> = props => {
+const HumidifierDashboard: React.FC<dashboardProps> = (props) => {
   const themeType = getThemeType();
   const CurrentSkinProps: any = SkinProps[themeType];
 
@@ -25,10 +25,9 @@ const HumidifierDashboard: React.FC<dashboardProps> = props => {
   console.log(centerCicle);
 
   // 描述信息 关机/开机
-  const renderDesWord = (dashboardStatus: string) => {
-    return dashboardStatus === 'shutdown' ? (
+  const renderDesWord = (dashboardStatus: string) => (dashboardStatus === 'shutdown' ? (
       <div className="shutdown">已关机</div>
-    ) : themeType === 'colorful' || themeType === 'morandi' ? (
+  ) : themeType === 'colorful' || themeType === 'morandi' ? (
       <div className="initiate">
         <div className="top-title">超声波蒸发</div>
         <div className="number">
@@ -42,7 +41,7 @@ const HumidifierDashboard: React.FC<dashboardProps> = props => {
           <span>1 level</span>
         </div>
       </div>
-    ) : (
+  ) : (
       <div className="initiate">
         <div className="title">湿度设置</div>
         <div className="number">
@@ -55,8 +54,7 @@ const HumidifierDashboard: React.FC<dashboardProps> = props => {
           <span>1 level</span>
         </div>
       </div>
-    );
-  };
+  ));
 
   console.log(skinProps, '====');
 

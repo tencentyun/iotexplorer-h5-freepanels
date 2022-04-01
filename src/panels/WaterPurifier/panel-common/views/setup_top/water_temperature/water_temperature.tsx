@@ -10,7 +10,7 @@ const Water_temperature = ({ isShow, onClose }) => {
   const min_value = 0;
   const step = 5;
   const [dataUser, setDataUser] = useState(sdk.deviceData.temp_set ? sdk.deviceData.temp_set : 30);
-  const currentWidth = (dataUser-min_value)*100/(max_value-min_value)+'%';
+  const currentWidth = `${(dataUser - min_value) * 100 / (max_value - min_value)}%`;
 
   useEffect(() => {
     updateTemperaureVal(dataUser);
@@ -18,63 +18,63 @@ const Water_temperature = ({ isShow, onClose }) => {
 
   const handleCommit = () => {
     apiControlDeviceData({
-      temp_set: dataUser
+      temp_set: dataUser,
     });
     onClose();
   };
-  const updateVolumetricVal =(val) => {
-    if(val<min_value) {
+  const updateVolumetricVal = (val) => {
+    if (val < min_value) {
       val = min_value;
-    }else if(val>max_value){
+    } else if (val > max_value) {
       val = max_value;
     }
     setDataUser(val);
-  }
-  
-  const toggleReduce =() =>{
-    updateVolumetricVal(dataUser-step);
-  }
+  };
 
-  const toggleAdd =()=>{
-    updateVolumetricVal(dataUser+step);
-  }
+  const toggleReduce = () => {
+    updateVolumetricVal(dataUser - step);
+  };
 
-  const updateTemperaureVal =(val) => {
-    if(val<min_value) {
+  const toggleAdd = () => {
+    updateVolumetricVal(dataUser + step);
+  };
+
+  const updateTemperaureVal = (val) => {
+    if (val < min_value) {
       val = min_value;
-    }else if(val>max_value){
+    } else if (val > max_value) {
       val = max_value;
     }
     setDataUser(val);
-  }
+  };
 
-const handleSelectBrightness = (e: React.MouseEvent) => {
-  const slider = document.getElementById('lightbright-slider');
+  const handleSelectBrightness = (e: React.MouseEvent) => {
+    const slider = document.getElementById('lightbright-slider');
 
-  let offsetModel = (document.body.clientWidth - document.getElementsByClassName('modal-body')[0].clientWidth)/2;
-  let brightness = (e.clientX - slider.offsetLeft - offsetModel) / slider.clientWidth;
-  let brightness_val = parseInt(brightness * max_value);
-  updateTemperaureVal(brightness_val);
-};
+    const offsetModel = (document.body.clientWidth - document.getElementsByClassName('modal-body')[0].clientWidth) / 2;
+    const brightness = (e.clientX - slider.offsetLeft - offsetModel) / slider.clientWidth;
+    const brightness_val = parseInt(brightness * max_value);
+    updateTemperaureVal(brightness_val);
+  };
 
-const handleMoveBrightness = (e: React.MouseEvent) => {
-  const slider = document.getElementById('lightbright-slider');
+  const handleMoveBrightness = (e: React.MouseEvent) => {
+    const slider = document.getElementById('lightbright-slider');
 
-  let offsetModel = (document.body.clientWidth - document.getElementsByClassName('modal-body')[0].clientWidth)/2;
-  let brightness = (e.changedTouches[0].clientX - slider.offsetLeft - offsetModel) / slider.clientWidth;
-  let brightness_val = parseInt(brightness * max_value);
-  updateTemperaureVal(brightness_val);
-};
+    const offsetModel = (document.body.clientWidth - document.getElementsByClassName('modal-body')[0].clientWidth) / 2;
+    const brightness = (e.changedTouches[0].clientX - slider.offsetLeft - offsetModel) / slider.clientWidth;
+    const brightness_val = parseInt(brightness * max_value);
+    updateTemperaureVal(brightness_val);
+  };
 
-const handleEndMoveBrightness = (e: React.MouseEvent) => {
-  const slider = document.getElementById('lightbright-slider');
+  const handleEndMoveBrightness = (e: React.MouseEvent) => {
+    const slider = document.getElementById('lightbright-slider');
 
-  let offsetModel = (document.body.clientWidth - document.getElementsByClassName('modal-body')[0].clientWidth)/2;
-  let brightness = (e.changedTouches[0].clientX - slider.offsetLeft - offsetModel) / slider.clientWidth;
-  let brightness_val = parseInt(brightness * max_value);
-  // console.log(brightness_val);
-  updateTemperaureVal(brightness_val);
-};
+    const offsetModel = (document.body.clientWidth - document.getElementsByClassName('modal-body')[0].clientWidth) / 2;
+    const brightness = (e.changedTouches[0].clientX - slider.offsetLeft - offsetModel) / slider.clientWidth;
+    const brightness_val = parseInt(brightness * max_value);
+    // console.log(brightness_val);
+    updateTemperaureVal(brightness_val);
+  };
 
   return (
         <Modal
@@ -98,7 +98,7 @@ const handleEndMoveBrightness = (e: React.MouseEvent) => {
                 {/* <div>+</div> */}
               </div>
               <div id={'lightbright-slider'} className={classNames('lightbright-slider')} onClick={handleSelectBrightness} onTouchMove={handleMoveBrightness} onTouchEnd={handleEndMoveBrightness}>
-                <div id={'lightbright-progress'} className={classNames('lightbright-progress')} style={{width:currentWidth}}>
+                <div id={'lightbright-progress'} className={classNames('lightbright-progress')} style={{ width: currentWidth }}>
                   <div id={'lightbright-progress-dot'} className={classNames('lightbright-progress-dot')}>
                   </div>
                 </div>

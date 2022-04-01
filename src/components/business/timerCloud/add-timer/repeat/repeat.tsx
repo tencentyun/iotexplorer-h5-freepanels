@@ -1,5 +1,5 @@
 
-import React, { FC, useEffect, useState } from "react";
+import React, { FC, useEffect, useState } from 'react';
 import { Modal } from '@components/base';
 import { Checkbox, List } from 'antd-mobile';
 import IconChecked from '@components/base/icon-checked/icon-checked';
@@ -84,7 +84,7 @@ const Repeat: FC<{
                   <Checkbox
                     value={index}
                     defaultChecked={arrWeekVal[index] === 1}
-                    onChange={val => {
+                    onChange={(val) => {
                       handleChecked(index, val ? 1 : 0);
                     }}
                   >
@@ -93,7 +93,7 @@ const Repeat: FC<{
                 }
               />
 
-              /*<List.Item
+              /* <List.Item
                 key={day}
                 prefix={day}
                 extra={

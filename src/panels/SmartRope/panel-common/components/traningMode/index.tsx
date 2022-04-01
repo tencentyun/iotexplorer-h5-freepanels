@@ -25,18 +25,18 @@ const trainingConfig: ModeProps[] = [
   {
     id: 'free_jump',
     name: 'free_jump',
-    title: '自由跳'
+    title: '自由跳',
   },
   {
     id: 'countdown_number',
     name: 'countdown_number',
-    title: '计数跳'
+    title: '计数跳',
   },
   {
     id: 'countdown_time',
     name: 'countdown_time',
-    title: '计时跳'
-  }
+    title: '计时跳',
+  },
 ];
 
 export interface TraningModeProps extends StyledProps {
@@ -50,8 +50,8 @@ export function TrainingMode({ layoutMode = 'grid' }: TraningModeProps) {
   const onClickItem = function (meta: ModeProps) {
     onControlDevice('mode', meta.name);
     history.push({
-      pathname: '/training', 
-      state: { mode: meta.name }
+      pathname: '/training',
+      state: { mode: meta.name },
     });
   };
 
@@ -70,12 +70,11 @@ export function TrainingMode({ layoutMode = 'grid' }: TraningModeProps) {
     }
   };
 
-  const renderPropertyItem = (templateConfig: ModeProps) => {
-    return (
+  const renderPropertyItem = (templateConfig: ModeProps) => (
       <Block
         className={classNames(
           'training-mode-item',
-          `item_${templateConfig.name}`
+          `item_${templateConfig.name}`,
         )}
         onClick={() => onClickItem(templateConfig)}
       >
@@ -86,14 +85,13 @@ export function TrainingMode({ layoutMode = 'grid' }: TraningModeProps) {
           </div>
         </Hoverable>
       </Block>
-    );
-  };
+  );
 
   return (
     <div
       className={classNames(
         'training-mode',
-        `training-mode_layout_${layoutMode}`
+        `training-mode_layout_${layoutMode}`,
       )}
     >
       {trainingConfig.map(item => (

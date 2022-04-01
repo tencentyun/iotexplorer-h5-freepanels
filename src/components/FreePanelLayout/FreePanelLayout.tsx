@@ -1,16 +1,16 @@
-import React, { useEffect, useMemo, useState } from "react";
-import classNames from "classnames";
-import { DoControlDeviceData } from "@hooks/useDeviceInfo";
-import { FuncFooter } from "../FuncFooter";
-import sdk from "qcloud-iotexplorer-h5-panel-sdk";
-import "./FreePanelLayout.less";
-import { isFullScreen, px2rpx, rpx2rem } from "@utillib";
-import * as wxlib from "@wxlib";
-import { Modal } from "@components/Modal";
-import { iconGoShop, iconShop } from "@icons/device/index";
-import { getVirtualDeviceShopUrl } from "@src/models";
-import { useParams } from "@hooks/useParams";
-import { appIdMap } from "@constants";
+import React, { useEffect, useMemo, useState } from 'react';
+import classNames from 'classnames';
+import { DoControlDeviceData } from '@hooks/useDeviceInfo';
+import { FuncFooter } from '../FuncFooter';
+import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
+import './FreePanelLayout.less';
+import { isFullScreen, px2rpx, rpx2rem } from '@utillib';
+import * as wxlib from '@wxlib';
+import { Modal } from '@components/Modal';
+import { iconGoShop, iconShop } from '@icons/device/index';
+import { getVirtualDeviceShopUrl } from '@src/models';
+import { useParams } from '@hooks/useParams';
+import { appIdMap } from '@constants';
 
 export interface FreePanelLayoutProps extends StyledProps {
   children: React.ReactNode;
@@ -45,7 +45,7 @@ export function FreePanelLayout({
   onGoTimingProject,
   defaultFooter = true, // 有些面板的footer比较定制化
 }: FreePanelLayoutProps) {
-  const { panelId = "" } = useParams();
+  const { panelId = '' } = useParams();
   const [showShopCard, setShowShopCard] = useState(false);
   useEffect(() => {
     if (offline) {
@@ -55,11 +55,7 @@ export function FreePanelLayout({
     }
   }, [offline]);
 
-  const bodyHeight = useMemo(() => {
-    return rpx2rem(
-      px2rpx(document.documentElement.clientHeight) - getFooterHeight()
-    );
-  }, []);
+  const bodyHeight = useMemo(() => rpx2rem(px2rpx(document.documentElement.clientHeight) - getFooterHeight()), []);
 
   const doGoTimingProject = () => {
     if (sdk.isMock) {
@@ -68,26 +64,24 @@ export function FreePanelLayout({
       return;
     }
 
-    if (typeof onGoTimingProject === "function") {
+    if (typeof onGoTimingProject === 'function') {
       return onGoTimingProject();
     }
 
     wxlib.router.go(
-      "/pages/Device/TimingProject/TimingProjectList/TimingProjectList",
+      '/pages/Device/TimingProject/TimingProjectList/TimingProjectList',
       {
         deviceId: sdk.deviceId,
-      }
+      },
     );
   };
 
   const goShop = async () => {
     if (panelId) {
       const data = await getVirtualDeviceShopUrl();
-      const item = data.find((item) => {
-        return item.panelId === panelId;
-      });
-      wxlib.router.go("/pages/Functional/RedirectTo3rdMP/RedirectTo3rdMP", {
-        appid: appIdMap["pinduoduo"],
+      const item = data.find(item => item.panelId === panelId);
+      wxlib.router.go('/pages/Functional/RedirectTo3rdMP/RedirectTo3rdMP', {
+        appid: appIdMap.pinduoduo,
         path: item.url,
       });
     }
@@ -95,7 +89,7 @@ export function FreePanelLayout({
 
   return (
     <div
-      className={classNames("free-panel-layout clearfix", className)}
+      className={classNames('free-panel-layout clearfix', className)}
       style={style}
     >
       <div

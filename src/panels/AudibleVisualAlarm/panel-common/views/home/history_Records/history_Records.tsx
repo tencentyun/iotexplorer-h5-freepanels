@@ -1,10 +1,10 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
-import {Modal} from '@components/base';
+import { Modal } from '@components/base';
 import './record.less';
 import dayjs from 'dayjs';
-import {Steps} from 'antd-mobile';
-const {Step} = Steps;
+import { Steps } from 'antd-mobile';
+const { Step } = Steps;
 
 const DAY_DESC: string[] = [
   '周日',
@@ -13,7 +13,7 @@ const DAY_DESC: string[] = [
   '周三',
   '周四',
   '周五',
-  '周六'
+  '周六',
 ];
 
 interface HistoryResultProps {
@@ -21,7 +21,7 @@ interface HistoryResultProps {
   Value: string;
 }
 
-const History_Records = ({isShow, onClose}) => {
+const History_Records = ({ isShow, onClose }) => {
   const [recordList, setRecordList] = useState([]);
   // 获取历史记录
   const getDeviceDataHistory = async () => {
@@ -35,7 +35,7 @@ const History_Records = ({isShow, onClose}) => {
         FieldName: 'alarm_state',
         MaxTime: currentTime,
         MinTime: lastYearTime,
-        Limit: 10
+        Limit: 10,
       });
       console.log('get info', recordListInfo);
       setRecordList(recordListInfo.Results);
@@ -53,7 +53,7 @@ const History_Records = ({isShow, onClose}) => {
     alarm_sound: '声音告警',
     alarm_light: '光亮报警',
     alarm_sound_light: '声光报警',
-    normal: '正常'
+    normal: '正常',
   };
   // 记录里面的内容
   const recordItem = (result: HistoryResultProps) => {
@@ -75,7 +75,7 @@ const History_Records = ({isShow, onClose}) => {
         </div>
       </div>
     );
-  }
+  };
   return (
     <Modal
       title={'历史记录'}

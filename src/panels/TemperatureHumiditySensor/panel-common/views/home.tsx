@@ -30,47 +30,47 @@ interface ChartItem {
 const data1: any = [
   {
     x: '12:00',
-    y: 32
+    y: 32,
   },
   {
     x: '13:00',
-    y: 34
+    y: 34,
   },
   {
     x: '14:00',
-    y: 36
+    y: 36,
   },
   {
     x: '15:00',
-    y: 35
+    y: 35,
   },
   {
     x: '16:00',
-    y: 33
-  }
+    y: 33,
+  },
 ];
 
 const data2: any = [
   {
     x: '12:00',
-    y: 44
+    y: 44,
   },
   {
     x: '13:00',
-    y: 54
+    y: 54,
   },
   {
     x: '14:00',
-    y: 80
+    y: 80,
   },
   {
     x: '15:00',
-    y: 20
+    y: 20,
   },
   {
     x: '16:00',
-    y: 33
-  }
+    y: 33,
+  },
 ];
 
 export function Home() {
@@ -98,7 +98,7 @@ export function Home() {
           FieldName: 'tamper_event',
           MaxTime: currentTime,
           MinTime: lastYearTime,
-          Limit: 3
+          Limit: 3,
         });
         setRecordList(recordListInfo.Results);
       } catch (err) {
@@ -119,7 +119,7 @@ export function Home() {
           Interval: '1h',
           FieldName: 'current_temp',
           MinTime: startTime,
-          MaxTime: endTime
+          MaxTime: endTime,
         });
         console.log('get chartData', chartData);
         if (chartData.Results && chartData.Results.length > 0) {
@@ -152,7 +152,7 @@ export function Home() {
           Interval: '1h',
           FieldName: 'current_humidity',
           MinTime: startTime,
-          MaxTime: endTime
+          MaxTime: endTime,
         });
 
         if (chartData.Results && chartData.Results.length > 0) {
@@ -180,43 +180,33 @@ export function Home() {
     1: '防拆报警',
     2: '正常',
     3: '检测中',
-    4: '未知'
+    4: '未知',
   };
 
   // 温度图标
-  const temperatureIcon = () => {
-    return (
+  const temperatureIcon = () => (
       <SvgIcon
         className="svg-icon"
         name="icon-temperature"
         {...CurrentSkinProps.temperature}
       />
-    );
-  };
+  );
 
   // 设置图标
-  const setIcon = () => {
-    return <div className="svg-icon set-hollow"></div>;
-  };
+  const setIcon = () => <div className="svg-icon set-hollow"></div>;
 
   // 历史记录图标
-  const historyIcon = () => {
-    return (
+  const historyIcon = () => (
       <SvgIcon
         className="svg-icon"
         name="icon-history"
         {...CurrentSkinProps.history}
       />
-    );
-  };
+  );
 
-  const formatTime = (time: string) => {
-    return dayjs(Number(time)).format('YYYY.MM.DD HH:mm:ss');
-  };
+  const formatTime = (time: string) => dayjs(Number(time)).format('YYYY.MM.DD HH:mm:ss');
 
-  const formatGetTime = (time: number) => {
-    return dayjs(time).format('HH:mm');
-  };
+  const formatGetTime = (time: number) => dayjs(time).format('HH:mm');
 
   return (
     <DeviceContext.Consumer>
@@ -305,9 +295,9 @@ export function Home() {
               </div>
             </Block>
           )}
-          {themeType === 'blueWhite' ||
-          themeType === 'dark' ||
-          themeType === 'colorful' ? (
+          {themeType === 'blueWhite'
+          || themeType === 'dark'
+          || themeType === 'colorful' ? (
             <div className="cell-wrap">
               <Block className="sensor-block">
                 <Cell
@@ -350,7 +340,7 @@ export function Home() {
                 </ul>
               </Block>
             </div>
-          ) : (
+            ) : (
             <>
               <Block className="sensor-block">
                 <Cell
@@ -393,7 +383,7 @@ export function Home() {
                 </ul>
               </Block>
             </>
-          )}
+            )}
         </main>
       )}
     </DeviceContext.Consumer>

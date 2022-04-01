@@ -1,27 +1,26 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import classNames from 'classnames';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 import { Cell } from '@components/base';
 import { getThemeType } from '@libs/theme';
 import { Detail } from './detail/detail';
-import {useHistory} from "react-router";
+import { useHistory } from 'react-router';
 import './home.less';
 
-import UpImage from "../icons/normal/up.svg";
-import UpImageColorful from "../icons/colorful/up.svg";
-import UpImageMorandi from "../icons/morandi/up.svg";
+import UpImage from '../icons/normal/up.svg';
+import UpImageColorful from '../icons/colorful/up.svg';
+import UpImageMorandi from '../icons/morandi/up.svg';
 
-import DownImage from "../icons/normal/down.svg";
-import DownImageColorful from "../icons/colorful/down.svg";
-import DownImageMorandi from "../icons/morandi/down.svg";
+import DownImage from '../icons/normal/down.svg';
+import DownImageColorful from '../icons/colorful/down.svg';
+import DownImageMorandi from '../icons/morandi/down.svg';
 
-import IconImage from "../icons/normal/icon.svg";
-import IconImageDark from "../icons/dark/icon.svg";
-import IconImageColorful from "../icons/colorful/icon.svg";
-import IconImageMorandi from "../icons/morandi/icon.svg";
+import IconImage from '../icons/normal/icon.svg';
+import IconImageDark from '../icons/dark/icon.svg';
+import IconImageColorful from '../icons/colorful/icon.svg';
+import IconImageMorandi from '../icons/morandi/icon.svg';
 
-const routerIcon =
-  'https://tencent-1305105198.cos.ap-guangzhou.myqcloud.com/router/blue-white/router.png';
+const routerIcon =  'https://tencent-1305105198.cos.ap-guangzhou.myqcloud.com/router/blue-white/router.png';
 export function Home() {
   const themeType = getThemeType();
   const iconImageSrc = () => {
@@ -65,13 +64,13 @@ export function Home() {
     <img className="details-icon" src={url}></img>
   );
   const history = useHistory();
-  const handleSetting = () => {
+  const handleSetting = () =>
     // 更多跳转
-    return history.push('/setting');
-  };
+    history.push('/setting')
+  ;
   return (
     <article className={classNames('home')}>
-      {/*仪表盘*/}
+      {/* 仪表盘*/}
       <section className={classNames('dashboard')}>
         <div className="dashboard-info">
           <img className="dashboard-img" src={routerSrc} alt="" />
@@ -111,7 +110,7 @@ export function Home() {
           onClick={handleSetting}
         />
       </div>
-      {/*详情区域*/}
+      {/* 详情区域*/}
       <Detail />
     </article>
   );

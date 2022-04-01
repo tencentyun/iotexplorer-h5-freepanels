@@ -9,12 +9,12 @@ export const Detail = ({
   timer: { isExistTimer },
   context: { switchNum },
   currentSwitch,
-  history: { PATH, push }
+  history: { PATH, push },
 }) => {
   const SWITCH = { OPEN: 1, CLOSE: 0 };
-  const getStatusData = (status) => currentSwitch.filter(([key]) => deviceData[key] !== status);
+  const getStatusData = status => currentSwitch.filter(([key]) => deviceData[key] !== status);
   const [isChecked, setChecked] = useState(false);
-  const isAll = (status) => !getStatusData(status).length;
+  const isAll = status => !getStatusData(status).length;
   const isAllOpen = isAll(SWITCH.OPEN);
   const isAllClose = isAll(SWITCH.CLOSE);
   const getSwitchData = (status) => {
@@ -65,10 +65,10 @@ export const Detail = ({
   const actions = [
     isOneSwitch
       ? null
-      : [isAllOpen ? '全开' : '全关', 'on', () => {}, isAllOpen, (isChecked) => (isChecked ? onClick() : offClick())],
+      : [isAllOpen ? '全开' : '全关', 'on', () => {}, isAllOpen, isChecked => (isChecked ? onClick() : offClick())],
     ['定时', 'timing', push.bind(null, PATH.TIMER_LIST, { switchNum, isModule: true })],
-    ['倒计时', 'count-down', setVisible.bind(null, true)]
-  ].filter((v) => v);
+    ['倒计时', 'count-down', setVisible.bind(null, true)],
+  ].filter(v => v);
 
   return (
     <div className={`detail  action action-${switchNum}`}>

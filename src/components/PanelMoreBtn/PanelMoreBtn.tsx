@@ -1,15 +1,15 @@
-import React from "react";
-import classNames from "classnames";
-import { RawBtn } from "@components/Btn";
-import { iconMore, iconMoreWhite } from "@icons/common";
-import * as wxlib from "@wxlib";
-import sdk from "qcloud-iotexplorer-h5-panel-sdk";
-import "./PanelMoreBtn.less";
+import React from 'react';
+import classNames from 'classnames';
+import { RawBtn } from '@components/Btn';
+import { iconMore, iconMoreWhite } from '@icons/common';
+import * as wxlib from '@wxlib';
+import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
+import './PanelMoreBtn.less';
 
 export interface PanelMoreBtnProps extends StyledProps {
   deviceId?: string;
   isShareDevice?: boolean;
-  theme: "dark" | "white";
+  theme: 'dark' | 'white';
   onClick?: any;
 }
 
@@ -26,14 +26,14 @@ export function PanelMoreBtn({
   }
   return (
     <RawBtn
-      className={classNames("panel-more-btn", className)}
+      className={classNames('panel-more-btn', className)}
       onClick={() => {
-        if (typeof onClick === "function") {
+        if (typeof onClick === 'function') {
           onClick();
           return;
         }
 
-        wxlib.router.go("/pages/Device/DeviceDetail/DeviceDetail", {
+        wxlib.router.go('/pages/Device/DeviceDetail/DeviceDetail', {
           deviceId,
           isShareDevice,
         });
@@ -42,7 +42,7 @@ export function PanelMoreBtn({
     >
       <img
         className="more-btn-icon"
-        src={theme === "dark" ? iconMoreWhite : iconMore}
+        src={theme === 'dark' ? iconMoreWhite : iconMore}
       />
     </RawBtn>
   );

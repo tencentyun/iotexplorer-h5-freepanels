@@ -10,18 +10,18 @@ import React, { useState } from 'react';
 import classNames from 'classnames';
 import Features from './features/features';
 import { Block } from '@components/layout';
-import { Cell, Switch } from '@components/base';
+import { Cell, Switch, Modal } from '@components/base';
 import { SvgIcon } from '@components/common';
 import { ListPicker } from '@components/business';
-import { Modal } from '@components/base';
+
 // 模版数据
 import { DeviceSateContext } from '../../deviceStateContext';
 import { toggleBooleanByNumber } from '@libs/utillib';
 // 接口，处理属性更改
 import { getThemeType } from '@libs/theme';
-import { onControlDevice } from '@hooks/useDeviceData';
+import { onControlDevice, apiControlDeviceData } from '@hooks/useDeviceData';
 import { stringKey } from '@libs/global';
-import { apiControlDeviceData } from '@hooks/useDeviceData';
+
 import './more.less';
 
 /**
@@ -30,7 +30,7 @@ import './more.less';
 export const enumSprayVolume: stringKey = {
   large: '多',
   middle: '中',
-  small: '少'
+  small: '少',
 };
 /**
  * 喷雾模式
@@ -42,7 +42,7 @@ export const enumSprayMode: stringKey = {
   work: '工作',
   health: '健康',
   baby: '亲亲',
-  sleep: '睡眠'
+  sleep: '睡眠',
 };
 
 export function More() {
@@ -53,7 +53,7 @@ export function More() {
 
   const handleCommit = () => {
     apiControlDeviceData({
-      filter_reset: 1
+      filter_reset: 1,
     });
   };
 
@@ -74,9 +74,9 @@ export function More() {
         x1: '11.8644068%',
         y1: '18.182147%',
         x2: '104.602754%',
-        y2: '88.2505064%'
+        y2: '88.2505064%',
       };
-    } else if (themeType === 'blueWhite') {
+    } if (themeType === 'blueWhite') {
       return {
         gradientId: 'unit',
         startColor: '#3374FA',
@@ -84,9 +84,9 @@ export function More() {
         x1: '50%',
         y1: '0%',
         x2: '50%',
-        y2: '100%'
+        y2: '100%',
       };
-    } else if (themeType === 'dark') {
+    } if (themeType === 'dark') {
       return {
         gradientId: 'unit',
         startColor: '#00F0FF',
@@ -94,26 +94,25 @@ export function More() {
         x1: '11.8644068%',
         y1: '18.182147%',
         x2: '104.602754%',
-        y2: '88.2505064%'
+        y2: '88.2505064%',
       };
-    } else if (themeType === 'morandi') {
+    } if (themeType === 'morandi') {
       return {
-        color: '#576273'
-      };
-    } else {
-      return {
-        color: '#000000'
+        color: '#576273',
       };
     }
+    return {
+      color: '#000000',
+    };
   };
 
   return (
     <DeviceSateContext.Consumer>
       {({ deviceData }) => (
         <div className="more-wrap">
-          {/*功能组*/}
+          {/* 功能组*/}
           <Features />
-          {/*温标切换*/}
+          {/* 温标切换*/}
           <Block className="unit-convert-block">
             <div className="label">
               <SvgIcon
@@ -127,7 +126,7 @@ export function More() {
               <div
                 className={classNames(
                   'temp-btn',
-                  deviceData.temp_unit_convert === 0 ? 'selected' : ''
+                  deviceData.temp_unit_convert === 0 ? 'selected' : '',
                 )}
                 onClick={() => {
                   onControlDevice('temp_unit_convert', 0);
@@ -138,7 +137,7 @@ export function More() {
               <div
                 className={classNames(
                   'temp-btn',
-                  deviceData.temp_unit_convert === 1 ? 'selected' : ''
+                  deviceData.temp_unit_convert === 1 ? 'selected' : '',
                 )}
                 onClick={() => {
                   onControlDevice('temp_unit_convert', 1);
@@ -148,7 +147,7 @@ export function More() {
               </div>
             </div>
           </Block>
-          {/*滤芯复位*/}
+          {/* 滤芯复位*/}
           <article className={classNames('filter-reset-wrap')}>
             <Block className="setting-block">
               <Cell
@@ -169,7 +168,7 @@ export function More() {
               </div>
             </Modal>
           </article>
-          {/*功能组*/}
+          {/* 功能组*/}
           <article className={classNames('Features2-wrap')}>
             <Block className="setting-block">
               <Cell
@@ -182,7 +181,7 @@ export function More() {
                   setIsShowModalSprayVolume(true);
                 }}
               >
-                {/*喷雾量弹窗*/}
+                {/* 喷雾量弹窗*/}
                 <ListPicker
                   visible={isShowModalSprayVolume}
                   title="喷雾量"
@@ -192,11 +191,11 @@ export function More() {
                   options={[
                     { label: '多', value: 'large' },
                     { label: '中', value: 'middle' },
-                    { label: '少', value: 'small' }
+                    { label: '少', value: 'small' },
                   ]}
                   layoutType="middle"
                   onCancel={() => setIsShowModalSprayVolume(false)}
-                  onConfirm={value => {
+                  onConfirm={(value) => {
                     onControlDevice('spray_volume', value[0]);
                   }}
                 />
@@ -211,7 +210,7 @@ export function More() {
                   setIsShowModalSprayMode(true);
                 }}
               >
-                {/*喷雾类型弹窗*/}
+                {/* 喷雾类型弹窗*/}
                 <ListPicker
                   visible={isShowModalSprayMode}
                   title="喷雾模式"
@@ -229,7 +228,7 @@ export function More() {
                   ]}
                   layoutType="spaceBetween"
                   onCancel={() => setIsShowModalSprayMode(false)}
-                  onConfirm={value => {
+                  onConfirm={(value) => {
                     onControlDevice('spray_mode', value[0]);
                   }}
                 />

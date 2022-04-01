@@ -3,9 +3,9 @@ import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 import dayjs from 'dayjs';
 import { Steps } from 'antd-mobile';
 import './record.less';
-const { Step } = Steps;
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
+const { Step } = Steps;
 
 const DAY_DESC: string[] = [
   '周日',
@@ -14,7 +14,7 @@ const DAY_DESC: string[] = [
   '周三',
   '周四',
   '周五',
-  '周六'
+  '周六',
 ];
 
 interface HistoryResultProps {
@@ -36,7 +36,7 @@ export function Record() {
         FieldName: 'systolic_pressure',
         MaxTime: currentTime,
         MinTime: lastYearTime,
-        Limit: 10
+        Limit: 10,
       });
       console.log('get info', recordListInfo);
       setRecordList(recordListInfo.Results);
@@ -70,24 +70,24 @@ export function Record() {
         </div>
       </div>
     );
-  }
+  };
 
-  const calendar = useRef()
+  const calendar = useRef();
 
-  const goToday = (e) =>{
+  const goToday = (e) => {
     e.stopPropagation();
     // setCalView(new Date())
     // history.back();
     calendar.current.setActiveStartDate(new Date());
-  }
-  const viewChange =(e)=>{
-    let el = document.getElementsByClassName('react-calendar__navigation__next2-button')[0];
-    if(e.view=='month'){
+  };
+  const viewChange = (e) => {
+    const el = document.getElementsByClassName('react-calendar__navigation__next2-button')[0];
+    if (e.view == 'month') {
       el.style.visibility = 'visible';
-    }else{
+    } else {
       el.style.visibility = 'hidden';
     }
-  }
+  };
   return (
     <div className="records-view">
       <div onClick={getDeviceDataHistory}>
@@ -97,8 +97,8 @@ export function Record() {
           onViewChange={viewChange}
           value={value}
           showNeighboringMonth={false}
-          next2Label={(<div className={"today"} onClick={(e)=>goToday(e)}>今天</div>)}
-          tileContent={({ activeStartDate, date, view }) => { return view === 'month'?date.getDate(): null}}
+          next2Label={(<div className={'today'} onClick={e => goToday(e)}>今天</div>)}
+          tileContent={({ activeStartDate, date, view }) => (view === 'month' ? date.getDate() : null)}
         />
       </div>
       {recordList.length > 0 ? (

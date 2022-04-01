@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { Modal } from '@components/base';
 import { Input } from 'antd-mobile';
-import {useUserInfo} from "@hooks/useUserInfo";
+import { useUserInfo } from '@hooks/useUserInfo';
 
 const NickName = ({ isShow, onClose }) => {
   const [userInfo, { onUpdateUserInfo }] = useUserInfo();
   const [dataUser, setDataUser] = useState(userInfo.nickName);
   const handleCommit = () => {
-    onUpdateUserInfo({ nickName: dataUser })
+    onUpdateUserInfo({ nickName: dataUser });
     onClose(dataUser);
   };
   const handleClose = () => {
@@ -23,7 +23,7 @@ const NickName = ({ isShow, onClose }) => {
       <Input
         placeholder="请输入昵称"
         value={dataUser}
-        onChange={val => {
+        onChange={(val) => {
           setDataUser(val);
         }}
       />

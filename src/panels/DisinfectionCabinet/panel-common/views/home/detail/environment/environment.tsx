@@ -2,7 +2,7 @@ import React from 'react';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 import classNames from 'classnames';
 import { getThemeType } from '@libs/theme';
-import {useHistory} from "react-router";
+import { useHistory } from 'react-router';
 import { onControlDevice } from '@hooks/useDeviceData';
 import { Cell } from '@components/base';
 import './environment.less';
@@ -40,9 +40,8 @@ const Environment = () => {
     if (sdk.deviceData.child_lock !== 1) {
       // 更多跳转
       return history.push('/timing');
-    } else {
-      return '';
     }
+    return '';
   };
   return (
     <article className={classNames('environment')}>
@@ -55,7 +54,7 @@ const Environment = () => {
                 id={'close-up'}
                 className={classNames(
                   'button-fillet-small',
-                  sdk.deviceData.up_mode === '0' ? 'active' : ''
+                  sdk.deviceData.up_mode === '0' ? 'active' : '',
                 )}
                 onClick={() => handleUpMode('0')}
               >
@@ -65,7 +64,7 @@ const Environment = () => {
                 id={'clean-up'}
                 className={classNames(
                   'button-fillet-small',
-                  sdk.deviceData.up_mode === '1' ? 'active' : ''
+                  sdk.deviceData.up_mode === '1' ? 'active' : '',
                 )}
                 onClick={() => handleUpMode('1')}
               >
@@ -75,7 +74,7 @@ const Environment = () => {
                 id={'bioclean-up'}
                 className={classNames(
                   'button-fillet-small',
-                  sdk.deviceData.up_mode === '2' ? 'active' : ''
+                  sdk.deviceData.up_mode === '2' ? 'active' : '',
                 )}
                 onClick={() => handleUpMode('2')}
               >
@@ -90,7 +89,7 @@ const Environment = () => {
                 id={'close-down'}
                 className={classNames(
                   'button-fillet-small',
-                  sdk.deviceData.down_mode === '0' ? 'active' : ''
+                  sdk.deviceData.down_mode === '0' ? 'active' : '',
                 )}
                 onClick={() => handleDownMode('0')}
               >
@@ -100,7 +99,7 @@ const Environment = () => {
                 id={'clean-down'}
                 className={classNames(
                   'button-fillet-small',
-                  sdk.deviceData.down_mode === '1' ? 'active' : ''
+                  sdk.deviceData.down_mode === '1' ? 'active' : '',
                 )}
                 onClick={() => handleDownMode('1')}
               >
@@ -110,7 +109,7 @@ const Environment = () => {
                 id={'bioclean-down'}
                 className={classNames(
                   'button-fillet-small',
-                  sdk.deviceData.down_mode === '2' ? 'active' : ''
+                  sdk.deviceData.down_mode === '2' ? 'active' : '',
                 )}
                 onClick={() => handleDownMode('2')}
               >

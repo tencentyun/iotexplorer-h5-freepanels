@@ -91,7 +91,7 @@ const Repeat = ({ onConfirm, setPopVisible, defaultArrWeekVal }) => {
               isInFixedBottomModal: true,
               cancelText: '取消',
               confirmBtnType: 'default',
-              cancelBtnType: 'default'
+              cancelBtnType: 'default',
             }}
           />
         </Modal.Footer>

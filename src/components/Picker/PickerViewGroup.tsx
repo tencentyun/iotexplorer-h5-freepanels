@@ -2,7 +2,7 @@ import React, { useMemo } from 'react';
 import MultiPicker from 'rmc-picker/lib/MultiPicker';
 import Picker from 'rmc-picker';
 import './PickerViewGroup.less';
-import { rpx2rem } from "@utillib";
+import { rpx2rem } from '@utillib';
 
 export interface PickerViewGroupProps {
 	value: string[];
@@ -15,39 +15,39 @@ export interface PickerViewGroupProps {
 }
 
 export function PickerViewGroup({
-	value,
-	onChange,
-	options,
-	itemHeight = 80,
-	height = 400,
-	showDivider,
-	onScrollChange,
+  value,
+  onChange,
+  options,
+  itemHeight = 80,
+  height = 400,
+  showDivider,
+  onScrollChange,
 }: PickerViewGroupProps) {
-	const itemHeightRem = useMemo(() => rpx2rem(itemHeight), [itemHeight]);
-	const heightRem = useMemo(() => rpx2rem(height), [height]);
+  const itemHeightRem = useMemo(() => rpx2rem(itemHeight), [itemHeight]);
+  const heightRem = useMemo(() => rpx2rem(height), [height]);
 
-	return (
+  return (
 		<MultiPicker
 			selectedValue={value}
 			onValueChange={onChange}
 			onScrollChange={onScrollChange}
 			style={{
-				height: heightRem,
+			  height: heightRem,
 			}}
 		>
 			{options.map((itemGroup, groupIndex) => (
 				<Picker
 					key={groupIndex}
 					indicatorStyle={{
-						height: itemHeightRem,
-						lineHeight: itemHeightRem,
+					  height: itemHeightRem,
+					  lineHeight: itemHeightRem,
 					}}
 					style={{
-						height: heightRem,
+					  height: heightRem,
 					}}
 					itemStyle={{
-						height: itemHeightRem,
-						lineHeight: itemHeightRem,
+					  height: itemHeightRem,
+					  lineHeight: itemHeightRem,
 					}}
 				>
 					{itemGroup.map(item => (
@@ -64,5 +64,5 @@ export function PickerViewGroup({
 				<div className='picker-view-divider'>-</div>
 			) : <div/>}
 		</MultiPicker>
-	);
+  );
 }

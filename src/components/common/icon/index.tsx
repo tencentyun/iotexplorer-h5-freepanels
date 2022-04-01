@@ -51,7 +51,7 @@ export function SvgIcon(props: SvgIconProps) {
     }
 
     if (props.gradientId) {
-      style.fill = 'url(#' + props.gradientId + ')';
+      style.fill = `url(#${props.gradientId})`;
     }
     return style;
   };
@@ -63,7 +63,7 @@ export function SvgIcon(props: SvgIconProps) {
         'svg-icon',
         `svg-${props.name}`,
         `icon-theme-${toUnderscores(theme)}`,
-        props.className
+        props.className,
       )}
       style={iconStyle()}
       fill={'red'}

@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactSwitch from "react-switch";
+import ReactSwitch from 'react-switch';
 import './BorderSwitch.less';
 
 export interface SwitchProps extends StyledProps {
@@ -9,12 +9,12 @@ export interface SwitchProps extends StyledProps {
 }
 
 export function BorderSwitch({
-    checked,
-    disabled,
-    onChange,
-    className,
+  checked,
+  disabled,
+  onChange,
+  className,
 }: SwitchProps) {
-    return (
+  return (
         <div className={className}>
             <ReactSwitch
                 checked={checked}
@@ -28,13 +28,13 @@ export function BorderSwitch({
                 uncheckedIcon={
                     <div
                         style={{
-                            display: "flex",
-                            justifyContent: "center",
-                            alignItems: "center",
-                            height: "100%",
-                            fontSize: 12,
-                            paddingRight: 3,
-                            color: '#ddd'
+                          display: 'flex',
+                          justifyContent: 'center',
+                          alignItems: 'center',
+                          height: '100%',
+                          fontSize: 12,
+                          paddingRight: 3,
+                          color: '#ddd',
                         }}
                     >
                         off
@@ -43,12 +43,12 @@ export function BorderSwitch({
                 checkedIcon={
                     <div
                         style={{
-                            display: "flex",
-                            justifyContent: "center",
-                            alignItems: "center",
-                            height: "100%",
-                            fontSize: 12,
-                            paddingLeft: 3
+                          display: 'flex',
+                          justifyContent: 'center',
+                          alignItems: 'center',
+                          height: '100%',
+                          fontSize: 12,
+                          paddingLeft: 3,
                         }}
                     >
                         on
@@ -61,5 +61,5 @@ export function BorderSwitch({
                 disabled={disabled}
             />
         </div>
-    );
+  );
 }

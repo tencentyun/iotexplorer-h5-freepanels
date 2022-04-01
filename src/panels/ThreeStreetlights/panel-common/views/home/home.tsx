@@ -1,13 +1,13 @@
 import React from 'react';
 import classNames from 'classnames';
 import './home.less';
-import {Position} from './position/position';
-import {Detail} from './detail/detail';
+import { Position } from './position/position';
+import { Detail } from './detail/detail';
 import Ticker from './tiker/ticker';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
-import {LightBright} from '@components/business/light-bright/light-bright';
+import { LightBright } from '@components/business/light-bright/light-bright';
 import { getThemeType } from '@libs/theme';
-import { onControlDevice} from '@hooks/useDeviceData';
+import { onControlDevice } from '@hooks/useDeviceData';
 
 export function Home() {
   const themeType = getThemeType();
@@ -30,8 +30,8 @@ export function Home() {
           <Detail/>
         </article>
       );
-    } else {
-      return (
+    }
+    return (
         <article>
           <div className='morandi_background'>
             <Ticker/>
@@ -44,15 +44,14 @@ export function Home() {
             <Detail/>
           </div>
         </article>
-      );
-    }
+    );
   };
   return (
     <article
       id={'home'}
       className={classNames(
         'home',
-        sdk.deviceData.power_switch === 1 ? '' : 'power-off'
+        sdk.deviceData.power_switch === 1 ? '' : 'power-off',
       )}
     >
       {getHomePage()}

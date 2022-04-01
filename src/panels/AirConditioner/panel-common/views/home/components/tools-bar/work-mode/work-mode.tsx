@@ -9,7 +9,7 @@
 import React, { FC, useImperativeHandle, useState } from 'react';
 import { enumToArray } from '@libs/utillib';
 import { List, Radio } from 'antd-mobile';
-import {stringKey} from '@libs/global';
+import { stringKey } from '@libs/global';
 import { DeviceSateContext } from '../../../../../deviceStateContext';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 import { apiControlDeviceData } from '@hooks/useDeviceData';
@@ -22,21 +22,21 @@ export const enumWorkMode: stringKey = {
   wind: '送风',
   eco: 'ECO',
   floor_heat: '地暖',
-  floor_eat_and_heat: '地暖及制热'
+  floor_eat_and_heat: '地暖及制热',
 };
 // eslint-disable-next-line no-unused-vars
 const WorkMode: FC<{ onChange?: (val: boolean) => void; cRef?: any; defaultValue?: string | number }> = ({
   cRef,
   defaultValue,
-  onChange
+  onChange,
 }: any) => {
   const [workModeUser, setValue] = useState(sdk.deviceData.mode);
   useImperativeHandle(cRef, () => ({
     commit: () => {
       apiControlDeviceData({
-        mode: workModeUser
+        mode: workModeUser,
       });
-    }
+    },
   }));
 
   const domList = enumToArray(enumWorkMode).map(({ label, value }) => (

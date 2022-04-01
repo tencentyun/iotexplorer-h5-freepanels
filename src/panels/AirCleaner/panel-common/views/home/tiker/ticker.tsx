@@ -5,18 +5,12 @@ import { getThemeType } from '@libs/theme';
 import fleckSrcNormal from '../../icons/normal/fleck.svg';
 import fleckSrcBlue from '../../icons/blue-white/fleck.svg';
 import fleckSrcDark from '../../icons/dark/fleck.svg';
-const circleSrcNormal =
-  'https://tencent-1305105198.cos.ap-guangzhou.myqcloud.com/air-purifier/normal/circle.svg';
-const circleSrcBlue =
-  'https://tencent-1305105198.cos.ap-guangzhou.myqcloud.com/air-purifier/blue-white/circle.svg';
-const circleSrcDark =
-  'https://tencent-1305105198.cos.ap-guangzhou.myqcloud.com/air-purifier/blue-white/circle.svg';
-const circleSrcColor =
-  'https://tencent-1305105198.cos.ap-guangzhou.myqcloud.com/air-purifier/colorful/circle.svg';
-const circleSrcMorandi =
-  'https://tencent-1305105198.cos.ap-guangzhou.myqcloud.com/air-purifier/morandi/circle.svg';
-const circleSrcWhite =
-  'https://tencent-1305105198.cos.ap-guangzhou.myqcloud.com/air-purifier/morandi/circle-white.svg';
+const circleSrcNormal =  'https://tencent-1305105198.cos.ap-guangzhou.myqcloud.com/air-purifier/normal/circle.svg';
+const circleSrcBlue =  'https://tencent-1305105198.cos.ap-guangzhou.myqcloud.com/air-purifier/blue-white/circle.svg';
+const circleSrcDark =  'https://tencent-1305105198.cos.ap-guangzhou.myqcloud.com/air-purifier/blue-white/circle.svg';
+const circleSrcColor =  'https://tencent-1305105198.cos.ap-guangzhou.myqcloud.com/air-purifier/colorful/circle.svg';
+const circleSrcMorandi =  'https://tencent-1305105198.cos.ap-guangzhou.myqcloud.com/air-purifier/morandi/circle.svg';
+const circleSrcWhite =  'https://tencent-1305105198.cos.ap-guangzhou.myqcloud.com/air-purifier/morandi/circle-white.svg';
 
 export interface TickerProps {
   title: string;
@@ -73,7 +67,7 @@ const Ticker: React.FC<TickerProps> = function (props: TickerProps) {
     value,
     unit,
     badNum,
-    status
+    status,
     // width = 100,
     // maxHeight = 10,
     // percent = 50,
@@ -101,19 +95,19 @@ const Ticker: React.FC<TickerProps> = function (props: TickerProps) {
       {status === '0' ? (
         ''
       ) : (
-        value >= badNum ?
-          <div className="bg-img-wrap">
-            <img id={'bg-img'} className={classNames('bg-img','bg-img-animation')} src={circleSrcWhite} alt="" />
-          </div> :
-          <div className="bg-img-wrap">
-            <img id={'bg-img'} className={classNames('bg-img','bg-img-animation')} src={circleSrc()} alt="" />
+        value >= badNum
+          ? <div className="bg-img-wrap">
+            <img id={'bg-img'} className={classNames('bg-img', 'bg-img-animation')} src={circleSrcWhite} alt="" />
+          </div>
+          : <div className="bg-img-wrap">
+            <img id={'bg-img'} className={classNames('bg-img', 'bg-img-animation')} src={circleSrc()} alt="" />
           </div>
       )}
       {status === '0' ? (
         ''
       ) : (
         <div className="bg-fleck-wrap">
-          <img id={'bg-fleck'} className={classNames('bg-fleck','bg-fleck-animation')} src={fleckSrc()} alt="" />
+          <img id={'bg-fleck'} className={classNames('bg-fleck', 'bg-fleck-animation')} src={fleckSrc()} alt="" />
         </div>
       )}
     </article>
