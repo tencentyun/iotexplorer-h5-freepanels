@@ -6,7 +6,7 @@ import { apiControlDeviceData } from '@hooks/useDeviceData';
 import { toggleBooleanByNumber } from '@libs/utillib';
 import { SvgIcon } from '@components/common/icon';
 import { Cell, Switch } from '@components/base';
-import { Bluewhite_progress_bar } from '../blueWhite-progress-bar/bluewhite_progress_bar';
+import { Bluewhite_progress_bar } from '../bluewhite-progress-bar/bluewhite_progress_bar';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 
 export function Home_blueWhite() {

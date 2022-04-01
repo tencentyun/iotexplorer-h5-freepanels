@@ -6,7 +6,7 @@ import { ScaleDial } from '../components/scale-dial';
 import { CircleDial } from '../components/circle-dial';
 import { SvgIcon } from '@components/common/icon';
 import { getThemeType } from '@libs/theme';
-import { SkinProps } from './skinProps';
+import { SkinProps } from './skin-props';
 import './style.less';
 
 interface dashboardProps {
