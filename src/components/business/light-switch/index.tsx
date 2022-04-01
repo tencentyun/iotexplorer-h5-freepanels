@@ -74,7 +74,7 @@ export function LightSwitch(props: LightSwitchProps) {
         onTouchMove={onTouchMove}
         onTouchEnd={onTouchUp}
       >
-        <div className={classNames("wrap-text", {'light': Number(currentHeight.split('%')[0]) >= 80})}>
+        <div className={classNames('wrap-text', { light: Number(currentHeight.split('%')[0]) >= 80 })}>
           <SvgIcon name="icon-light" />
 
           <p className="value-text">{Math.floor(value * 100)}%</p>
