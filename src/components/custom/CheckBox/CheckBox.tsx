@@ -16,7 +16,7 @@ export function CheckBox({
   type = 'checkbox', // radio
   tips,
   className,
-  style
+  style,
 }: CheckBoxProps) {
   const [checked, setChecked] = useState(value);
 

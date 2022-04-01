@@ -3,8 +3,7 @@ import classNames from 'classnames';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 import './position.less';
 
-const Position = () => {
-  return (
+const Position = () => (
     <div className={classNames('position-wrap', 'text-align-center')}>
       <ul className={classNames('flex', 'space-between')}>
         <li>
@@ -26,7 +25,6 @@ const Position = () => {
         </li>
       </ul>
     </div>
-  );
-};
+);
 
 export default Position;

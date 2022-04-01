@@ -12,32 +12,28 @@ export function BlueHome() {
   const history = useHistory();
   const [currentMode, setCurrentMode] = useState('middle');
 
-  const imageSrc = () => {
-    return 'https://tencent-1305105198.cos.ap-guangzhou.myqcloud.com/aromatherapy_machine/aromatherapy_machine.png';
-  };
+  const imageSrc = () => 'https://tencent-1305105198.cos.ap-guangzhou.myqcloud.com/aromatherapy_machine/aromatherapy_machine.png';
 
   const iconColor = (active: number) => {
     if (active === 1) {
       return '#2885FE';
-    } else {
-      return '#B5C4D1';
     }
+    return '#B5C4D1';
   };
 
   const workModeLabel: any = {
     large: '大雾量',
     middle: '中雾量',
-    small: '小雾量'
+    small: '小雾量',
   };
 
   const workModeToValue = (label: string) => {
     if (label === 'large') {
       return 100;
-    } else if (label === 'small') {
+    } if (label === 'small') {
       return 0;
-    } else {
-      return 50;
     }
+    return 50;
   };
   // 更多
   const handleMore = () => {
@@ -50,7 +46,7 @@ export function BlueHome() {
         <div
           className={classNames(
             'app-container',
-            !deviceData.power_switch ? 'close' : ''
+            !deviceData.power_switch ? 'close' : '',
           )}
         >
           {/* 产品图 */}
@@ -75,7 +71,7 @@ export function BlueHome() {
                       'icon',
                       deviceData.power_switch === 1
                         ? 'icon-clock-active'
-                        : 'icon-clock'
+                        : 'icon-clock',
                     )}
                   ></div>
                 </div>
@@ -122,8 +118,8 @@ export function BlueHome() {
               className="countdown-slider"
               step={50}
               defaultValue={workModeToValue(deviceData.work_mode)}
-              disabled={deviceData.power_switch === 1 ? false : true}
-              onChange={value => {
+              disabled={deviceData.power_switch !== 1}
+              onChange={(value) => {
                 if (value === 0) {
                   setCurrentMode('small');
                 } else if (value === 50) {
@@ -143,16 +139,14 @@ export function BlueHome() {
                 onClick={() => {
                   onControlDevice(
                     'power_switch',
-                    Number(!deviceData.power_switch)
+                    Number(!deviceData.power_switch),
                   );
                 }}
               >
                 <div
-                  className={classNames(
-                    deviceData.power_switch === 1
-                      ? 'icon-power-active'
-                      : 'icon-power'
-                  )}
+                  className={classNames(deviceData.power_switch === 1
+                    ? 'icon-power-active'
+                    : 'icon-power')}
                 ></div>
               </li>
               <li
@@ -161,7 +155,7 @@ export function BlueHome() {
                   if (!deviceData.power_switch) return;
                   onControlDevice(
                     'spray_switch',
-                    Number(!deviceData.spray_switch)
+                    Number(!deviceData.spray_switch),
                   );
                 }}
               >
@@ -177,7 +171,7 @@ export function BlueHome() {
                   if (!deviceData.power_switch) return;
                   onControlDevice(
                     'light_switch',
-                    Number(!deviceData.light_switch)
+                    Number(!deviceData.light_switch),
                   );
                 }}
               >

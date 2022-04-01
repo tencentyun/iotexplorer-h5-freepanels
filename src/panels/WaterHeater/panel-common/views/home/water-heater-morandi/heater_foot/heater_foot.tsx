@@ -1,22 +1,22 @@
 import React from 'react';
-import './heater_foot.less'
+import './heater_foot.less';
 import classNames from 'classnames';
-import {SvgIcon} from '@components/common/icon';
+import { SvgIcon } from '@components/common/icon';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
-import {apiControlDeviceData} from '@hooks/useDeviceData';
+import { apiControlDeviceData } from '@hooks/useDeviceData';
 
 export function Normal_Foot() {
   const onSwitch = () => {
     apiControlDeviceData({
-      power_switch: sdk.deviceData.power_switch === 1 ? 0 : 1
+      power_switch: sdk.deviceData.power_switch === 1 ? 0 : 1,
     });
-  }
+  };
   const onMinus = () => {
     if (sdk.deviceData.power_switch === 1) {
       const current = sdk.deviceData.temp_set ? sdk.deviceData.temp_set : 0;
       if (current > 0) {
         const currentNow = current - 1;
-        apiControlDeviceData({temp_set: currentNow});
+        apiControlDeviceData({ temp_set: currentNow });
       }
     }
   };
@@ -25,7 +25,7 @@ export function Normal_Foot() {
       const current = sdk.deviceData.temp_set ? sdk.deviceData.temp_set : 0;
       if (current < 50) {
         const currentNow = current + 1;
-        apiControlDeviceData({temp_set: currentNow});
+        apiControlDeviceData({ temp_set: currentNow });
       }
     }
   };
@@ -48,7 +48,7 @@ export function Normal_Foot() {
       </div>
     </article>
   );
-};
+}
 
 export default Normal_Foot;
 

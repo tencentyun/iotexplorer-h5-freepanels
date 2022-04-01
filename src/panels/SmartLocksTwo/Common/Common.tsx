@@ -23,7 +23,7 @@ const App = () => {
     { path: '/temp/password/add', Component: AddTempPassword },
     { path: '/video/monitor', Component: VideoMonitor },
     { path: '/video/history', Component: VideoHistory },
-    { path: '/event/preview', Component: EventPreview }
+    { path: '/event/preview', Component: EventPreview },
   ];
   return <Router route={route} />;
 };

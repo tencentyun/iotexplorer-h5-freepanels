@@ -25,13 +25,9 @@ export function More() {
     <SvgIcon className="svg-icon" name={svgName} {...CurrentSkinProps.icon} />
   );
 
-  const soundIcon = () => {
-    return <div className="icon-sound"></div>;
-  };
+  const soundIcon = () => <div className="icon-sound"></div>;
 
-  const timingIcon = () => {
-    return <div className="icon-timing"></div>;
-  };
+  const timingIcon = () => <div className="icon-timing"></div>;
 
   const formatTime = (time: number) => {
     const hour = Math.floor(time / 60 / 60) % 24;
@@ -40,9 +36,8 @@ export function More() {
 
     if (day === 1) {
       return '24小时';
-    } else {
-      return `${hour}小时`;
     }
+    return `${hour}小时`;
   };
 
   return (
@@ -81,7 +76,7 @@ export function More() {
           </Block>
           <Block className="setting-block countdown-block">
             <Cell
-              title={'倒计时・' + formatTime(countdown)}
+              title={`倒计时・${formatTime(countdown)}`}
               prefixIcon={cellIcon('icon-aro-countdown')}
               valueStyle={'gray'}
               size="medium"
@@ -95,7 +90,7 @@ export function More() {
               }
               min={0}
               max={86400}
-              onAfterChange={value => {
+              onAfterChange={(value) => {
                 setCountdown(value);
                 onControlDevice('count_down', value);
               }}

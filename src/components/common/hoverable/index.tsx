@@ -29,7 +29,7 @@ export type HoverablePropsType<P extends keyof JSX.IntrinsicElements> =
 
 function HoverableRaw<P extends keyof JSX.IntrinsicElements = 'span'>(
   props: HoverablePropsType<P>,
-  ref: Ref<JSX.IntrinsicElements[P]>
+  ref: Ref<JSX.IntrinsicElements[P]>,
 ) {
   const {
     tag,
@@ -58,14 +58,14 @@ function HoverableRaw<P extends keyof JSX.IntrinsicElements = 'span'>(
     {
       ref,
       className: classNames('_component_common_hoverable_', className, {
-        [hoverClass]: !disabled && hover
+        [hoverClass]: !disabled && hover,
       }),
       onTouchStart: () => !disabled && setHover(true),
       onTouchMove: () => handleHoverEnd(),
       onTouchEnd: () => handleHoverEnd(),
-      ...htmlProps
+      ...htmlProps,
     },
-    children
+    children,
   );
 }
 

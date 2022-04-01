@@ -16,14 +16,12 @@ export function MorandiHome() {
     setWorkMode(sdk.deviceData.work_mode);
   }, []);
 
-  const imageSrc = () => {
-    return 'https://tencent-1305105198.cos.ap-guangzhou.myqcloud.com/aromatherapy_machine/aromatherapy_machine.png';
-  };
+  const imageSrc = () => 'https://tencent-1305105198.cos.ap-guangzhou.myqcloud.com/aromatherapy_machine/aromatherapy_machine.png';
 
   const workModeLabel: any = {
     large: '大雾量',
     middle: '中雾量',
-    small: '小雾量'
+    small: '小雾量',
   };
 
   // 更多
@@ -37,7 +35,7 @@ export function MorandiHome() {
         <div
           className={classNames(
             'app-container',
-            !deviceData.power_switch ? 'close' : ''
+            !deviceData.power_switch ? 'close' : '',
           )}
         >
           <ScrollView height="100vh" scrollY>
@@ -64,13 +62,13 @@ export function MorandiHome() {
                   <div
                     className={classNames(
                       'control-block',
-                      deviceData.spray_switch === 1 ? 'selected' : ''
+                      deviceData.spray_switch === 1 ? 'selected' : '',
                     )}
                     onClick={() => {
                       if (deviceData.power_switch === 0) return;
                       onControlDevice(
                         'spray_switch',
-                        Number(!deviceData.spray_switch)
+                        Number(!deviceData.spray_switch),
                       );
                     }}
                   >
@@ -87,12 +85,12 @@ export function MorandiHome() {
                   <div
                     className={classNames(
                       'control-power',
-                      deviceData.power_switch ? 'open' : ''
+                      deviceData.power_switch ? 'open' : '',
                     )}
                     onClick={() => {
                       onControlDevice(
                         'power_switch',
-                        Number(!deviceData.power_switch)
+                        Number(!deviceData.power_switch),
                       );
                     }}
                   >
@@ -106,13 +104,13 @@ export function MorandiHome() {
                   <div
                     className={classNames(
                       'control-block',
-                      deviceData.light_switch === 1 ? 'selected' : ''
+                      deviceData.light_switch === 1 ? 'selected' : '',
                     )}
                     onClick={() => {
                       if (deviceData.power_switch === 0) return;
                       onControlDevice(
                         'light_switch',
-                        Number(!deviceData.light_switch)
+                        Number(!deviceData.light_switch),
                       );
                     }}
                   >
@@ -145,11 +143,9 @@ export function MorandiHome() {
                     </li>
                   </ul>
                   <div
-                    className={classNames(
-                      deviceData.power_switch === 1
-                        ? 'slider-mask'
-                        : 'slider-mask-close'
-                    )}
+                    className={classNames(deviceData.power_switch === 1
+                      ? 'slider-mask'
+                      : 'slider-mask-close')}
                   >
                     <span
                       onClick={() => {

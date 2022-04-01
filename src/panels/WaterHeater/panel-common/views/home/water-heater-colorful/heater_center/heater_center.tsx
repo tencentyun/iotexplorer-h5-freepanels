@@ -1,12 +1,12 @@
-import React, {useState} from 'react';
-import './heater_center.less'
+import React, { useState } from 'react';
+import './heater_center.less';
 import classNames from 'classnames';
 import Two_Thousand from '../../pop-up/two_thousand/two_thousand';
 import Automatic from '../../pop-up/automatic/automatic';
-import {SvgIcon} from '@components/common/icon';
-import {useHistory} from 'react-router-dom';
+import { SvgIcon } from '@components/common/icon';
+import { useHistory } from 'react-router-dom';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
-import {apiControlDeviceData} from '@hooks/useDeviceData';
+import { apiControlDeviceData } from '@hooks/useDeviceData';
 
 export function Normal_Center() {
   const history = useHistory();
@@ -17,13 +17,13 @@ export function Normal_Center() {
     if (sdk.deviceData.power_switch === 1) {
       theTwo_Thousand(true);
     }
-  }
+  };
 
   const onAutomatic = () => {
     if (sdk.deviceData.power_switch === 1) {
       theAutomatic(true);
     }
-  }
+  };
   const onSetup = () => {
     if (sdk.deviceData.power_switch === 1) {
       return history.push('/setup');
@@ -31,11 +31,11 @@ export function Normal_Center() {
   };
   const onSwitch = () => {
     apiControlDeviceData({
-      power_switch: sdk.deviceData.power_switch === 1 ? 0 : 1
+      power_switch: sdk.deviceData.power_switch === 1 ? 0 : 1,
     });
-  }
+  };
 
-  const modeSrc = (mode: String) => {
+  const modeSrc = (mode: string) => {
     switch (mode) {
       case 'manual':
         return '手动模式';
@@ -59,7 +59,7 @@ export function Normal_Center() {
         return '-';
     }
   };
-  const capacitySrc = (capacity: String) => {
+  const capacitySrc = (capacity: string) => {
     switch (capacity) {
       case 'twoThousand':
         return '2000W';
@@ -76,7 +76,7 @@ export function Normal_Center() {
       const current = sdk.deviceData.temp_set ? sdk.deviceData.temp_set : 0;
       if (current > 0) {
         const currentNow = current - 1;
-        apiControlDeviceData({temp_set: currentNow});
+        apiControlDeviceData({ temp_set: currentNow });
       }
     }
   };
@@ -85,7 +85,7 @@ export function Normal_Center() {
       const current = sdk.deviceData.temp_set ? sdk.deviceData.temp_set : 0;
       if (current < 50) {
         const currentNow = current + 1;
-        apiControlDeviceData({temp_set: currentNow});
+        apiControlDeviceData({ temp_set: currentNow });
       }
     }
   };
@@ -155,7 +155,7 @@ export function Normal_Center() {
 
     </article>
   );
-};
+}
 
 export default Normal_Center;
 

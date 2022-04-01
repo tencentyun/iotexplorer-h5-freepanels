@@ -24,17 +24,17 @@ export function Home() {
     <article
       className={classNames(
         'home',
-        sdk.deviceData.power_switch === 0 && 'power-off'
+        sdk.deviceData.power_switch === 0 && 'power-off',
       )}
     >
-      {/*头部图片*/}
+      {/* 头部图片*/}
       <section className={classNames('dashboard')}>
         <div className={classNames('dashboard-detail')}>
           <img src={sleepImageSrc()} alt="" />
           <div className="equipment_num">在线设备：0</div>
         </div>
       </section>
-      {/*详情区域*/}
+      {/* 详情区域*/}
       <Detail />
     </article>
   );

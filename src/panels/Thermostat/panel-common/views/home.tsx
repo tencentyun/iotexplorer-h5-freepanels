@@ -9,11 +9,11 @@ import { Block } from '@components/layout';
 import { ListPicker } from '@components/business';
 import ThermostatDashboard from '@components/business/round-dashboard/thermostat';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
-import { useDeviceData } from '@hooks/useDeviceData';
+import { useDeviceData, formatDeviceData, onControlDevice } from '@hooks/useDeviceData';
 
 import { DeviceContext } from '../deviceContext';
 import { getThemeType } from '@libs/theme';
-import { formatDeviceData, onControlDevice } from '@hooks/useDeviceData';
+
 import { SkinProps } from '../skinProps';
 import './home.less';
 
@@ -39,7 +39,7 @@ export function Home() {
   const [gearVisible, onToggleGear] = useState(false);
 
   useEffect(() => {
-    if (!deviceMaps['temp_unit_convert']) {
+    if (!deviceMaps.temp_unit_convert) {
       // setTempValue(deviceMaps['set_fahrenheit'].start||0);
     } else {
       setTempValue(1);
@@ -47,108 +47,107 @@ export function Home() {
   }, []);
   // 工作模式选项
   const modeOptions = () => {
-    if (deviceMaps['spray_mode']) {
-      const options = deviceMaps['spray_mode'].map((t: any) => ({
+    if (deviceMaps.spray_mode) {
+      const options = deviceMaps.spray_mode.map((t: any) => ({
         label: t.desc,
-        value: t.name
+        value: t.name,
       }));
       return options.length > 0 ? options : [];
     }
     return [
       {
         label: '制冷',
-        value: 'cold'
+        value: 'cold',
       },
       {
         label: '制热',
-        value: 'hot'
+        value: 'hot',
       },
       {
         label: '出风',
-        value: 'wind'
+        value: 'wind',
       },
       {
         label: '舒适',
-        value: 'comfortable'
+        value: 'comfortable',
       },
       {
         label: '节能',
-        value: 'energy'
+        value: 'energy',
       },
       {
         label: '自动',
-        value: 'auto'
+        value: 'auto',
       },
       {
         label: '节日',
-        value: 'holiday'
+        value: 'holiday',
       },
       {
         label: '手动',
-        value: 'manual'
+        value: 'manual',
       },
       {
         label: 'ECO',
-        value: 'eco'
+        value: 'eco',
       },
       {
         label: '睡眠',
-        value: 'sleep'
+        value: 'sleep',
       },
       {
         label: '除湿',
-        value: 'dry'
+        value: 'dry',
       },
       {
         label: '程控',
-        value: 'program'
+        value: 'program',
       },
       {
         label: '地暖',
-        value: 'floorheat'
+        value: 'floorheat',
       },
       {
         label: '辅热',
-        value: 'auxiliary'
-      }
+        value: 'auxiliary',
+      },
     ];
   };
 
   // 档位选项
   const gearOptions = () => {
-    if (deviceMaps['level']) {
-      const options = deviceMaps['level'].map((t: any) => ({
+    if (deviceMaps.level) {
+      const options = deviceMaps.level.map((t: any) => ({
         label: t.desc,
-        value: t.name
+        value: t.name,
       }));
       return options.length > 0 ? options : [];
     }
     return [
       {
         label: '自动',
-        value: 'auto'
+        value: 'auto',
       },
       {
         label: '低档',
-        value: 'low'
+        value: 'low',
       },
       {
         label: '中档',
-        value: 'middle'
+        value: 'middle',
       },
       {
         label: '高档',
-        value: 'high'
-      }
+        value: 'high',
+      },
     ];
   };
 
   const currentStatus = (powerStatus: number, name: string) => {
     if (!powerStatus) {
-      return CurrentSkinProps['shutdown'][name];
-    } else {
-      return CurrentSkinProps['initiate'][name];
+      return CurrentSkinProps.shutdown[name];
     }
+    return CurrentSkinProps.initiate[name];
   };
 
   // 设置跳转
@@ -160,34 +159,28 @@ export function Home() {
     if (themeType === 'colorful') {
       if (powerStatus === 1) {
         return '#667994';
-      } else {
-        return '#B4C3D0';
       }
-    } else if (themeType === 'blueWhite') {
+      return '#B4C3D0';
+    } if (themeType === 'blueWhite') {
       if (powerStatus === 1) {
         return '#FFFFFF';
-      } else {
-        return '#FFFFFF';
       }
-    } else if (themeType === 'dark') {
+      return '#FFFFFF';
+    } if (themeType === 'dark') {
       if (powerStatus === 1) {
         return '#B5C4D1';
-      } else {
-        return '#B5C4D1';
       }
-    } else if (themeType === 'morandi') {
+      return '#B5C4D1';
+    } if (themeType === 'morandi') {
       if (powerStatus === 1) {
         return '#B6ACA3';
-      } else {
-        return '#909CAB';
       }
-    } else {
-      if (powerStatus === 1) {
-        return '#0F0F0F';
-      } else {
-        return '#B5C4D1';
-      }
+      return '#909CAB';
     }
+    if (powerStatus === 1) {
+      return '#0F0F0F';
+    }
+    return '#B5C4D1';
   };
 
   const enumWorkMode: any = {
@@ -204,18 +197,17 @@ export function Home() {
     dry: '除湿',
     program: '程控',
     floorheat: '地暖',
-    auxiliary: '辅热'
+    auxiliary: '辅热',
   };
 
   const enumGear: any = {
     auto: '自动',
     low: '低档',
     middle: '中档',
-    high: '高档'
+    high: '高档',
   };
 
-  const renderContentArea = (mode: string, level: string, status: number) => {
-    return (
+  const renderContentArea = (mode: string, level: string, status: number) => (
       <ul className={classNames('content-area', { 'content-area-active': status })}>
         <li className="content-item">
           <p className="word">{mode ? enumWorkMode[mode] : '暂无数据'}</p>
@@ -227,32 +219,31 @@ export function Home() {
           <p className="label">档位</p>
         </li>
       </ul>
-    );
-  };
+  );
 
   const minusHandle  = (powerStatus: number, unit: (string | number)) => {
-    if (!powerStatus) return
+    if (!powerStatus) return;
     let value = tempValue;
-    value -= 1
+    value -= 1;
     if (value <= 0) {
       setTempValue(0);
     } else {
       setTempValue(value);
     }
-    unit == 0 ? onControlDevice('current_temp', value) : onControlDevice('current_fahrenheit', value)
-  }
+    unit == 0 ? onControlDevice('current_temp', value) : onControlDevice('current_fahrenheit', value);
+  };
 
   const addHandle = (powerStatus: number, unit: (string | number)) => {
-    if (!powerStatus) return
+    if (!powerStatus) return;
     let value = tempValue;
-    value += 1
+    value += 1;
     if (value >= 100) {
       setTempValue(100);
     } else {
       setTempValue(value);
     }
-    unit == 0 ? onControlDevice('current_temp', value) : onControlDevice('current_fahrenheit', value)
-  }
+    unit == 0 ? onControlDevice('current_temp', value) : onControlDevice('current_fahrenheit', value);
+  };
 
   return (
     <DeviceContext.Consumer>
@@ -292,19 +283,19 @@ export function Home() {
               <div
                 className={classNames('setting-button')}
                 onClick={() => {
-                  minusHandle(deviceData.power_switch, deviceData.temp_unit_convert)
+                  minusHandle(deviceData.power_switch, deviceData.temp_unit_convert);
                 }}>
                 <SvgIcon className="control-icon" name="icon-ther-minus" color={iconColor(deviceData.power_switch)} />
               </div>
               <div
                 className={classNames(
                   'control-power',
-                  deviceData.power_switch == 1 ? 'power-open' : ''
+                  deviceData.power_switch == 1 ? 'power-open' : '',
                 )}
                 onClick={() => {
                   onControlDevice(
                     'power_switch',
-                    Number(!deviceData.power_switch)
+                    Number(!deviceData.power_switch),
                   );
                 }}
               >
@@ -316,7 +307,7 @@ export function Home() {
               <div
                 className={classNames('setting-button')}
                 onClick={() => {
-                  addHandle(deviceData.power_switch, deviceData.temp_unit_convert)
+                  addHandle(deviceData.power_switch, deviceData.temp_unit_convert);
                 }}>
                 <SvgIcon className="control-icon icon-ther-add" name="icon-ther-add" color={iconColor(deviceData.power_switch)} />
               </div>
@@ -346,11 +337,11 @@ export function Home() {
                 title="工作模式"
                 styleType="spaceBetween"
                 theme={themeType}
-                defaultValue={[deviceData['spray_mode']]}
+                defaultValue={[deviceData.spray_mode]}
                 options={modeOptions()}
                 layoutType='spaceBetween'
                 onCancel={() => onToggleMode(false)}
-                onConfirm={value => {
+                onConfirm={(value) => {
                   onControlDevice('spray_mode', value[0]);
                   onToggleMode(false);
                 }}
@@ -364,7 +355,7 @@ export function Home() {
             >
               <div className={classNames(
                 'button-icon',
-                !deviceData.power_switch ? 'icon-gear-default' : 'icon-gear-active'
+                !deviceData.power_switch ? 'icon-gear-default' : 'icon-gear-active',
               )}></div>
               <p className="button-name">档位</p>
               <ListPicker
@@ -372,11 +363,11 @@ export function Home() {
                 title="档位"
                 styleType="spaceBetween"
                 theme={themeType}
-                defaultValue={[deviceData['level']]}
+                defaultValue={[deviceData.level]}
                 options={gearOptions()}
                 layoutType='spaceBetween'
                 onCancel={() => onToggleGear(false)}
-                onConfirm={value => {
+                onConfirm={(value) => {
                   onControlDevice('level', value[0]);
                   onToggleGear(false);
                 }}
@@ -398,7 +389,7 @@ export function Home() {
                 <div
                   className={classNames('setting-button')}
                   onClick={() => {
-                    minusHandle(deviceData.power_switch, deviceData.temp_unit_convert)
+                    minusHandle(deviceData.power_switch, deviceData.temp_unit_convert);
                   }}
                 >
                   <SvgIcon
@@ -410,12 +401,12 @@ export function Home() {
                 <div
                   className={classNames(
                     'control-power',
-                    deviceData.power_switch == 1 ? 'power-open' : ''
+                    deviceData.power_switch == 1 ? 'power-open' : '',
                   )}
                   onClick={() => {
                     onControlDevice(
                       'power_switch',
-                      Number(!deviceData.power_switch)
+                      Number(!deviceData.power_switch),
                     );
                   }}
                 >
@@ -428,7 +419,7 @@ export function Home() {
                 <div
                   className={classNames('setting-button')}
                   onClick={() => {
-                    addHandle(deviceData.power_switch, deviceData.temp_unit_convert)
+                    addHandle(deviceData.power_switch, deviceData.temp_unit_convert);
                   }}
                 >
                   <SvgIcon

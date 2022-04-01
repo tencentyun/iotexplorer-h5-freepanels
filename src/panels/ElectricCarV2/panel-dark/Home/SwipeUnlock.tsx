@@ -31,19 +31,19 @@ export default class SwipeUnlock extends React.Component<
     bgColor: 'rgba(255,255,255,0.20)',
     borderRadius: 80,
     tips: '滑动开锁',
-    barBackground: `url()`,
+    barBackground: 'url()',
     movedColor: 'transform',
-    successTips: '已开锁'
+    successTips: '已开锁',
   };
-  public px2vw (px: number) {
+  public px2vw(px: number) {
     const viewportWidth = 1125;
     const vw = px * (100 / viewportWidth);
-  
+
     if (px === 0) {
       return px;
     }
-    return vw.toFixed(3 || 3) + 'vw';
-  };
+    return `${vw.toFixed(3 || 3)}vw`;
+  }
 
   /**
    * 初始数据
@@ -62,11 +62,11 @@ export default class SwipeUnlock extends React.Component<
     width: this.px2vw(this.props.width),
     height: this.px2vw(this.props.height),
     backgroundColor: this.props.bgColor,
-    borderRadius: this.px2vw(this.props.borderRadius)
+    borderRadius: this.px2vw(this.props.borderRadius),
   };
   /** 滑条盒子样式 */
   private slideBoxStyle = {
-    borderRadius: this.px2vw(this.props.borderRadius)
+    borderRadius: this.px2vw(this.props.borderRadius),
   };
 
   constructor(props: UnlockProps) {
@@ -75,7 +75,7 @@ export default class SwipeUnlock extends React.Component<
       /** 是否滑入 */
       isMouseEnter: false,
       /** 滑动距离 */
-      diff: 0
+      diff: 0,
     };
   }
 
@@ -107,7 +107,7 @@ export default class SwipeUnlock extends React.Component<
       return;
     }
     this.setState({
-      isMouseEnter: true
+      isMouseEnter: true,
     });
   }
 
@@ -119,7 +119,7 @@ export default class SwipeUnlock extends React.Component<
       return;
     }
     this.setState({
-      isMouseEnter: false
+      isMouseEnter: false,
     });
   }
 
@@ -156,7 +156,7 @@ export default class SwipeUnlock extends React.Component<
       this.props.success && this.props.success();
     }
     this.setState({
-      diff
+      diff,
     });
   }
 
@@ -170,7 +170,7 @@ export default class SwipeUnlock extends React.Component<
     this.isMousedown = false;
     this.setState({
       isMouseEnter: false,
-      diff: 0
+      diff: 0,
     });
   }
 
@@ -181,12 +181,12 @@ export default class SwipeUnlock extends React.Component<
     if (!this.isSuccess) return;
     this.isSuccess = false;
     this.setState({
-      diff: 0
+      diff: 0,
     });
     setTimeout(() => {
       this.isMousedown = false;
       this.setState({
-        isMouseEnter: false
+        isMouseEnter: false,
       });
       this.props.resetClick && this.props.resetClick();
     }, 0);
@@ -201,19 +201,19 @@ export default class SwipeUnlock extends React.Component<
       opacity: this.state.isMouseEnter ? 1 : 0,
       transitionDuration:
         !this.state.isMouseEnter || !this.isMousedown ? '.3s' : '0s',
-      transform: `translateX(${this.state.diff}px)`
+      transform: `translateX(${this.state.diff}px)`,
     };
     /** 滑块样式 */
     const barStyle = {
       transitionDuration:
         !this.state.isMouseEnter || !this.isMousedown ? '.3s' : '0s',
-      transform: `translateX(${this.state.diff}px)`
+      transform: `translateX(${this.state.diff}px)`,
     };
     /** 成功文本样式 */
     const textStyle = {
       opacity: this.isSuccess ? 1 : 0,
       transitionDuration:
-        !this.state.isMouseEnter || !this.isMousedown ? '.3s' : '0s'
+        !this.state.isMouseEnter || !this.isMousedown ? '.3s' : '0s',
     };
     return (
       <div style={this.style} className="swipe-unlock">

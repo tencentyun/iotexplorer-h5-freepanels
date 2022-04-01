@@ -18,7 +18,7 @@ export interface InputDialogProps {
 
 export function InputDialog(props: InputDialogProps) {
   const { value, defaultValue, placeholder, max } = props;
-  const [ inputValue, setInputValue] = useState('');
+  const [inputValue, setInputValue] = useState('');
 
   useMemo(() => {
     if (props.visible) {
@@ -56,8 +56,8 @@ export function InputDialog(props: InputDialogProps) {
                 setInputValue(event.target.value);
               }}
             ></input>
-            {inputValue ? 
-              <div onClick={handleClear}>
+            {inputValue
+              ? <div onClick={handleClear}>
                 <Icon name="close"></Icon>
               </div> : null
             }

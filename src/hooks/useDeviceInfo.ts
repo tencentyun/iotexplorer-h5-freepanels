@@ -98,7 +98,7 @@ function initState(sdk): UseDeviceInfoState {
     productInfo,
     templateMap: {},
     deviceData,
-    statusTip: null
+    statusTip: null,
   };
 
   ['events', 'actions', 'properties'].forEach((key) => {

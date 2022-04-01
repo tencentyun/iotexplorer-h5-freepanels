@@ -21,14 +21,14 @@ export function Home() {
     <article
       className={classNames(
         'home',
-        sdk.deviceData.power_switch === 1 ? '' : 'power-off'
+        sdk.deviceData.power_switch === 1 ? '' : 'power-off',
       )}
     >
-      {/*仪表盘*/}
+      {/* 仪表盘*/}
       <section className={classNames('dashboard')}>
-        <img className={classNames('dashboard-img')} style={{animation: sdk.deviceData.power_switch === 1?('linear myrotate '+ (1.0/parseInt(sdk.deviceData.windspeed)) +'s infinite'):''}} src={fanImageSrc()} alt="" />
+        <img className={classNames('dashboard-img')} style={{ animation: sdk.deviceData.power_switch === 1 ? (`linear myrotate ${1.0 / parseInt(sdk.deviceData.windspeed)}s infinite`) : '' }} src={fanImageSrc()} alt="" />
       </section>
-      {/*详情区域*/}
+      {/* 详情区域*/}
       <Detail />
     </article>
   );

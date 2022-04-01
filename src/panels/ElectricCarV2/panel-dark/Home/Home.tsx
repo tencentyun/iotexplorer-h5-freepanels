@@ -10,9 +10,8 @@ import './Home.less';
 export function Home({
   deviceData,
   doControlDeviceData,
-  history: { PATH, push }
+  history: { PATH, push },
 }) {
-
   const handleLock = () => {
     doControlDeviceData('lock_switch', Number(!deviceData.lock_switch));
   };
@@ -27,10 +26,10 @@ export function Home({
         {/* 设置按钮 */}
         <SettingBlock deviceData={deviceData} doControlDeviceData={doControlDeviceData}></SettingBlock>
         <footer className="footer">
-          <Cell title="无感解锁" size="medium" onClick={()=>{
-            push(PATH.UNLOCK)
+          <Cell title="无感解锁" size="medium" onClick={() => {
+            push(PATH.UNLOCK);
           }}></Cell>
-          <Cell title="投保服务" size="medium" onClick={()=>{}}></Cell>
+          <Cell title="投保服务" size="medium" onClick={() => {}}></Cell>
         </footer>
       </div>
     </main>

@@ -11,16 +11,15 @@ export interface DiskProps {
 }
 
 export function Disk({
-  deviceData
+  deviceData,
 }: DiskProps) {
-
   return (
     <div className="disk">
       <div className="content-wrap">
         <div className="content">
           <Icon name="body"/>
         </div>
-        <p className={classNames('status-desc', {'status-active': deviceData.pir_state == 1})}>
+        <p className={classNames('status-desc', { 'status-active': deviceData.pir_state == 1 })}>
           {deviceData.pir_state == 1 ? '检测有人移动' : '未检测到有人移动'}
         </p>
       </div>

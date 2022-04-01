@@ -12,8 +12,8 @@ import { Battery } from '@components/business';
 import { TrainingData } from '../components/trainingData';
 import { TrainingCard } from '../components/trainingCard';
 import { ValuePicker } from '@components/business/valuePicker';
-import { useDeviceData } from '@hooks/useDeviceData';
-import { onControlDevice, formatDeviceData } from '@hooks/useDeviceData';
+import { useDeviceData, onControlDevice, formatDeviceData } from '@hooks/useDeviceData';
+
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 import { StyledProps, ThemeType } from '@libs/global';
 import { mapsToOptions, noop } from '@libs/utillib';
@@ -25,7 +25,7 @@ import { SkinProps } from '../skinProps';
 const TRAINING_MODE = {
   FREE: 'free_jump',
   NUMBER: 'countdown_number',
-  TIME: 'countdown_time'
+  TIME: 'countdown_time',
 };
 const COUNTDOWN_START = 5;
 let countdownTimer: any = null;
@@ -38,7 +38,7 @@ interface ControlItemProps extends StyledProps {
 function ControlItem({
   children,
   className,
-  onClick = noop
+  onClick = noop,
 }: ControlItemProps) {
   return (
     <Col className={classNames('training-control-item', className)}>
@@ -64,7 +64,7 @@ function modeDesc(type: string) {
 export function Training() {
   const theme: ThemeType = getThemeType();
   const CurrentSkinProps: any = SkinProps[theme];
-  
+
   // 接收跳转的训练类型
   const history = useHistory();
   const [userInfo, { onUpdateUserInfo }] = useUserInfo();
@@ -87,9 +87,9 @@ export function Training() {
   // 模式选择器
   const modeColumns = (value: PickerValue[]): PickerColumn[] => {
     // 左侧列表
-    const left = deviceMaps['mode'] ? deviceMaps['mode'].map((item: any) => ({
+    const left = deviceMaps.mode ? deviceMaps.mode.map((item: any) => ({
       label: modeDesc(item.name),
-      value: item.name
+      value: item.name,
     })) : [];
     // 右侧列表
     let right = [];
@@ -125,8 +125,8 @@ export function Training() {
   }, [countdown]);
 
   useEffect(() => {
-    if (deviceMaps['target_time']) {
-      if (currentTime === deviceMaps['target_time'] * 60) {
+    if (deviceMaps.target_time) {
+      if (currentTime === deviceMaps.target_time * 60) {
         console.log(currentTime, '=====currentTime');
         clearInterval(timer);
         // 关闭倒计时显示
@@ -135,7 +135,7 @@ export function Training() {
       }
     }
   }, [currentTime]);
-  
+
   // 准备～倒计时
   const handleCountdown = () => {
     // 开始、暂停、继续
@@ -175,13 +175,13 @@ export function Training() {
       setCountdown(COUNTDOWN_START);
       setCurrentTime(0);
     }
-  }
+  };
 
   return (
-    <div className={classNames('training-container-' + theme)}>
+    <div className={classNames(`training-container-${theme}`)}>
       {/* 头部状态栏 */}
-      {theme !== 'dark' &&
-        <Block className="training-head">
+      {theme !== 'dark'
+        && <Block className="training-head">
           <div className="device-connect-status">
             <SvgIcon
               name="icon-avatar"
@@ -207,7 +207,7 @@ export function Training() {
       <Row className="training-control">
         <ControlItem
           className={classNames('control-item control-stop', {
-            is_disabled: !isStarting
+            is_disabled: !isStarting,
           })}
           onClick={timeStoptHandle}
         >
@@ -250,8 +250,8 @@ export function Training() {
         titalTime={totalTime}
         totalCalories={0}/>
 
-      {theme === 'dark' &&
-        <Block className="training-head" padding="70px 57px 68px 89px">
+      {theme === 'dark'
+        && <Block className="training-head" padding="70px 57px 68px 89px">
           <div className="device-connect-status">
             <SvgIcon
               name="icon-avatar"
@@ -278,7 +278,7 @@ export function Training() {
         value={[currentMode]}
         columns={modeColumns}
         onCancel={() => onToggleModeChange(false)}
-        onConfirm={value => {
+        onConfirm={(value) => {
           const [mode, val] = value;
 
           onControlDevice('mode', mode);
@@ -294,7 +294,7 @@ export function Training() {
       {/* 倒计时 */}
       <div
         className={classNames('countdown-view', {
-          is_hidden: !countdownVisible
+          is_hidden: !countdownVisible,
         })}
       >
         <span>{countdown}</span>

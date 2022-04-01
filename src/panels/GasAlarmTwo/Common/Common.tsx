@@ -8,7 +8,7 @@ const App = () => {
   const route = [
     { path: '/home', Component: Home },
     { path: '/record', Component: Record },
-    { path: '/settings', Component: Settings }
+    { path: '/settings', Component: Settings },
   ];
   return <Router route={route} />;
 };

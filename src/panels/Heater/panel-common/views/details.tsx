@@ -27,9 +27,9 @@ export function Details() {
       try {
         const info = await sdk.requestTokenApi('AppGetDeviceInFamily', {
           Action: 'AppGetDeviceInFamily',
-          ProductId: ProductId,
-          DeviceName: DeviceName,
-          FamilyId: FamilyId
+          ProductId,
+          DeviceName,
+          FamilyId,
         });
         setAliasName(info.Data.AliasName);
       } catch (err) {
@@ -47,7 +47,7 @@ export function Details() {
     <Input
       defaultValue={aliasName}
       placeholder="请填写名称"
-      onChange={val => {
+      onChange={(val) => {
         deviceName = val;
       }}
     />
@@ -79,11 +79,11 @@ export function Details() {
                       setAliasName(deviceName);
                       sdk.requestTokenApi('AppUpdateDeviceInFamily', {
                         Action: 'AppUpdateDeviceInFamily',
-                        ProductId: ProductId,
-                        DeviceName: DeviceName,
-                        AliasName: deviceName
+                        ProductId,
+                        DeviceName,
+                        AliasName: deviceName,
                       });
-                    }
+                    },
                   });
                 }}
               >
@@ -99,28 +99,36 @@ export function Details() {
               valueStyle={'gray'}
               size="medium"
               isLink={true}
-              onClick={() => {sdk.showDeviceDetail()}}
+              onClick={() => {
+                sdk.showDeviceDetail();
+              }}
             ></Cell>
             <Cell
               title="房间信息"
               valueStyle={'gray'}
               size="medium"
               isLink={true}
-              onClick={() => {sdk.showDeviceDetail()}}
+              onClick={() => {
+                sdk.showDeviceDetail();
+              }}
             ></Cell>
             <Cell
               title="设备分享"
               valueStyle={'gray'}
               size="medium"
               isLink={true}
-              onClick={() => {sdk.showDeviceDetail()}}
+              onClick={() => {
+                sdk.showDeviceDetail();
+              }}
             ></Cell>
             <Cell
               title="固件升级"
               valueStyle={'gray'}
               size="medium"
               isLink={true}
-              onClick={() => {sdk.showDeviceDetail()}}
+              onClick={() => {
+                sdk.showDeviceDetail();
+              }}
             ></Cell>
           </Block>
           {/* 云端定时 */}
@@ -146,8 +154,8 @@ export function Details() {
                   name="mode"
                   theme={themeType}
                   checked={
-                    deviceData['child_lock']
-                      ? toggleBooleanByNumber(deviceData['child_lock'])
+                    deviceData.child_lock
+                      ? toggleBooleanByNumber(deviceData.child_lock)
                       : false
                   }
                   onChange={(val: boolean) => {
@@ -166,8 +174,8 @@ export function Details() {
                   name="mode"
                   theme={themeType}
                   checked={
-                    deviceData['swing']
-                      ? toggleBooleanByNumber(deviceData['swing'])
+                    deviceData.swing
+                      ? toggleBooleanByNumber(deviceData.swing)
                       : false
                   }
                   onChange={(val: boolean) => {
@@ -186,8 +194,8 @@ export function Details() {
                   name="mode"
                   theme={themeType}
                   checked={
-                    deviceData['anion']
-                      ? toggleBooleanByNumber(deviceData['anion'])
+                    deviceData.anion
+                      ? toggleBooleanByNumber(deviceData.anion)
                       : false
                   }
                   onChange={(val: boolean) => {
@@ -227,7 +235,7 @@ export function Details() {
               <div
                 className={classNames(
                   'temp-btn',
-                  deviceData.unit_convert === 0 ? 'selected' : ''
+                  deviceData.unit_convert === 0 ? 'selected' : '',
                 )}
                 onClick={() => {
                   onControlDevice('unit_convert', 0);
@@ -238,7 +246,7 @@ export function Details() {
               <div
                 className={classNames(
                   'temp-btn',
-                  deviceData.unit_convert === 1 ? 'selected' : ''
+                  deviceData.unit_convert === 1 ? 'selected' : '',
                 )}
                 onClick={() => {
                   onControlDevice('unit_convert', 1);

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import classNames from 'classnames';
 import './plugs.less';
-import {getThemeType} from '@libs/theme';
+import { getThemeType } from '@libs/theme';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 import { ValuePicker } from '@components/business';
 import { numberToArray } from '@libs/utillib';
@@ -97,7 +97,7 @@ const plugs = () => {
           : ClockImageClose;
     }
   };
-  /*定时*/
+  /* 定时*/
   const countdownImageSrc = () => {
     switch (themeType) {
       case 'normal':
@@ -128,7 +128,7 @@ const plugs = () => {
   };
   const history = useHistory();
 
-  //倒计时关闭
+  // 倒计时关闭
   const [countDownVisible1, onToggleCountDown1] = useState(false);
   const [countDownVisible2, onToggleCountDown2] = useState(false);
   const [countdownTime1, setCountdown1] = useState([]);
@@ -157,40 +157,38 @@ const plugs = () => {
   const handleToggle1 = () => {
     if (sdk.deviceData.switch_1 === 1) {
       apiControlDeviceData({
-        timer_dev: 'switch_1'
+        timer_dev: 'switch_1',
       });
       return history.push('/timing');
-    } else {
-      return '';
     }
+    return '';
   };
   const handleToggle2 = () => {
     if (sdk.deviceData.switch_2 === 1) {
       apiControlDeviceData({
-        timer_dev: 'switch_2'
+        timer_dev: 'switch_2',
       });
       return history.push('/timing');
-    } else {
-      return '';
     }
+    return '';
   };
 
   const handlePlug1 = () => {
     if (sdk.deviceData.power_switch === 1) {
       apiControlDeviceData({
-        switch_1: sdk.deviceData.switch_1 === 0 ? 1 : 0
+        switch_1: sdk.deviceData.switch_1 === 0 ? 1 : 0,
       });
     }
   };
   const handlePlug2 = () => {
     if (sdk.deviceData.power_switch === 1) {
       apiControlDeviceData({
-        switch_2: sdk.deviceData.switch_2 === 0 ? 1 : 0
+        switch_2: sdk.deviceData.switch_2 === 0 ? 1 : 0,
       });
     }
   };
 
-  console.log(sdk.deviceData)
+  console.log(sdk.deviceData);
   return (
     <article className={classNames('plugs')} id={'plugs'}>
       <div className="plug_info">
@@ -233,7 +231,7 @@ const plugs = () => {
         value={countdownTime1}
         columns={countDownColumns()}
         onCancel={() => onToggleCountDown1(false)}
-        onConfirm={value => {
+        onConfirm={(value) => {
           let hour = value[0];
           let minute = value[1];
           if (hour != null) {
@@ -253,7 +251,7 @@ const plugs = () => {
         value={countdownTime2}
         columns={countDownColumns()}
         onCancel={() => onToggleCountDown2(false)}
-        onConfirm={value => {
+        onConfirm={(value) => {
           let hour = value[0];
           let minute = value[1];
           if (hour != null) {

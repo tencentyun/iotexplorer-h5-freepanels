@@ -38,30 +38,30 @@ export function TopNav(props: TopNavProps) {
           classNames(props.status !== 1 ? 'icon-lock' : 'icon-unlock')
         }></span>
         {themeType === 'blueWhite' || themeType === 'dark' ? (
-          <label className={classNames(props.status === 1 ?"lock-status" : "lock-status-close")}>
+          <label className={classNames(props.status === 1 ? 'lock-status' : 'lock-status-close')}>
             {props.status === 1 ? '童锁开' : '童锁关'}
           </label>
         ) : null}
       </div>
-      { (themeType === 'normal' || themeType === 'colorful' || themeType === 'morandi') ?
-        <span className="top-middle">{props.status === 1 ? '童锁开' : '童锁关'}</span> : null
+      { (themeType === 'normal' || themeType === 'colorful' || themeType === 'morandi')
+        ? <span className="top-middle">{props.status === 1 ? '童锁开' : '童锁关'}</span> : null
       }
       <div className="top-right" onClick={() => handleClickMore()}>
-        {themeType === 'normal' ||
-        themeType === 'blueWhite' ||
-        themeType === 'dark' ? (
+        {themeType === 'normal'
+        || themeType === 'blueWhite'
+        || themeType === 'dark' ? (
           <SvgIcon
             className="more-cicle"
             name="icon-more-cicle"
             color={moreColor(navStatus)}
           />
-        ) : (
+          ) : (
           <SvgIcon
             className="more-line"
             name="icon-more-line"
             color={moreColor(navStatus)}
           />
-        )}
+          )}
       </div>
     </header>
   );

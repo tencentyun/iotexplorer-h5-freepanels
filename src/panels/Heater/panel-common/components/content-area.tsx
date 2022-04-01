@@ -10,19 +10,19 @@ export function ContentArea() {
     2: 'ECO模式',
     3: '舒适模式',
     4: '防霜冻模式',
-    5: '手动模式'
+    5: '手动模式',
   };
 
   const enumWorkState: any = {
     0: '待机',
-    1: '加热中'
+    1: '加热中',
   };
 
   const enumGear: any = {
     0: '自动',
     1: '低档',
     2: '中档',
-    3: '高档'
+    3: '高档',
   };
 
   return (
@@ -31,7 +31,7 @@ export function ContentArea() {
         <section
           className={classNames(
             'content-area',
-            deviceData.power_switch == 1 ? '' : 'content-disable'
+            deviceData.power_switch == 1 ? '' : 'content-disable',
           )}
         >
           <div className="items">
@@ -50,8 +50,8 @@ export function ContentArea() {
                     ? deviceData.target_f_temp
                     : '0'
                   : deviceData.target_c_temp
-                  ? deviceData.target_c_temp
-                  : '0'}
+                    ? deviceData.target_c_temp
+                    : '0'}
                 °C
               </div>
               <div className="content">目标温度</div>

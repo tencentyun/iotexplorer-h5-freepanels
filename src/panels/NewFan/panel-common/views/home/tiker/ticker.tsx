@@ -71,7 +71,7 @@ const Ticker: React.FC<TickerProps> = function (props: TickerProps) {
     text1,
     unit,
     badNum,
-    status
+    status,
     // width = 100,
     // maxHeight = 10,
     // percent = 50,
@@ -88,15 +88,13 @@ const Ticker: React.FC<TickerProps> = function (props: TickerProps) {
 
   // @ts-ignore
   const hourArr = [...new Array(55).keys()];
-  const grad = hourArr.map(item => {
-    return (
+  const grad = hourArr.map(item => (
       <div
         key={item}
         className={classNames('grad', item < 25 ? 'active' : null)}
         style={{ transform: `rotateZ(${item * (280 / 55) + 223}deg)` }}
       />
-    );
-  });
+  ));
 
   return (
     <article className={classNames('ticker')}>

@@ -82,7 +82,7 @@ export function Settings() {
                 <Switch
                   name="light"
                   theme={themeType}
-                  checked={Boolean(deviceData['light'])}
+                  checked={Boolean(deviceData.light)}
                   onChange={(val: boolean) => {
                     onControlDevice('light', Number(val));
                   }}
@@ -102,7 +102,7 @@ export function Settings() {
                 <Switch
                   name="sound"
                   theme={themeType}
-                  checked={Boolean(deviceData['sound'])}
+                  checked={Boolean(deviceData.sound)}
                   onChange={(val: boolean) => {
                     onControlDevice('sound', Number(val));
                   }}
@@ -126,7 +126,7 @@ export function Settings() {
                 <Switch
                   name="eco"
                   theme={themeType}
-                  checked={Boolean(deviceData['eco'])}
+                  checked={Boolean(deviceData.eco)}
                   onChange={(val: boolean) => {
                     onControlDevice('eco', Number(val));
                   }}
@@ -146,7 +146,7 @@ export function Settings() {
                 <Switch
                   name="window"
                   theme={themeType}
-                  checked={Boolean(deviceData['window_check'])}
+                  checked={Boolean(deviceData.window_check)}
                   onChange={(val: boolean) => {
                     onControlDevice('window_check', Number(val));
                   }}
@@ -170,7 +170,7 @@ export function Settings() {
                 <Switch
                   name="sleep"
                   theme={themeType}
-                  checked={Boolean(deviceData['sleep'])}
+                  checked={Boolean(deviceData.sleep)}
                   onChange={(val: boolean) => {
                     onControlDevice('sleep', Number(val));
                   }}
@@ -194,7 +194,7 @@ export function Settings() {
                 <Switch
                   name="frost"
                   theme={themeType}
-                  checked={Boolean(deviceData['frost'])}
+                  checked={Boolean(deviceData.frost)}
                   onChange={(val: boolean) => {
                     onControlDevice('frost', Number(val));
                   }}
@@ -218,7 +218,7 @@ export function Settings() {
                 <Switch
                   name="valve"
                   theme={themeType}
-                  checked={Boolean(deviceData['valve_check'])}
+                  checked={Boolean(deviceData.valve_check)}
                   onChange={(val: boolean) => {
                     onControlDevice('valve_check', Number(val));
                   }}
@@ -239,7 +239,7 @@ export function Settings() {
               <div
                 className={classNames(
                   'temp-btn',
-                  deviceData.temp_unit_convert === 0 ? 'selected' : ''
+                  deviceData.temp_unit_convert === 0 ? 'selected' : '',
                 )}
                 onClick={() => {
                   onControlDevice('temp_unit_convert', 0);
@@ -250,7 +250,7 @@ export function Settings() {
               <div
                 className={classNames(
                   'temp-btn',
-                  deviceData.temp_unit_convert === 1 ? 'selected' : ''
+                  deviceData.temp_unit_convert === 1 ? 'selected' : '',
                 )}
                 onClick={() => {
                   onControlDevice('temp_unit_convert', 1);

@@ -6,9 +6,9 @@ import { ListPicker, ValuePicker } from '@components/business';
 import { useHistory } from 'react-router';
 import { Cell, Switch } from '@components/base';
 import { getThemeType } from '@libs/theme';
-import { apiControlDeviceData, onControlDevice, useDeviceData} from '@hooks/useDeviceData';
+import { apiControlDeviceData, onControlDevice, useDeviceData } from '@hooks/useDeviceData';
 import { useUserInfo } from '@hooks/useUserInfo';
-import { numberToArray, toggleBooleanByNumber} from '@libs/utillib';
+import { numberToArray, toggleBooleanByNumber } from '@libs/utillib';
 import NickName from './nickName/nickName';
 import Unit from './unit/unit';
 import dayjs from 'dayjs';
@@ -66,10 +66,10 @@ export function Mine() {
   // 昵称
   const [unit, onUnit] = useState(false);
   const history = useHistory();
-  const handleUnit = () => {
+  const handleUnit = () =>
     // 单位跳转
-    return history.push('/unitSetting');
-  };
+    history.push('/unitSetting')
+  ;
   const heightColumns = () => {
     const heightCols = numberToArray(250, 'cm');
     return [heightCols];
@@ -82,7 +82,7 @@ export function Mine() {
     <article
       className={classNames(
         'mine',
-        sdk.deviceData.power_switch === 0 && 'power-off'
+        sdk.deviceData.power_switch === 0 && 'power-off',
       )}
     >
       <div id={'sacles_center'} className={classNames('sacles_center')}>
@@ -109,8 +109,8 @@ export function Mine() {
             <NickName
               isShow={editNickname}
               onClose={(value) => {
-                if(value != ''){
-                  onUpdateUserInfo({ nickName: value })
+                if (value != '') {
+                  onUpdateUserInfo({ nickName: value });
                 }
                 onEditNickname(false);
               }}
@@ -120,7 +120,7 @@ export function Mine() {
             <Cell
               className="setting_title"
               title="性别"
-              value={deviceData['gender'] ? (deviceData['gender'] == '0' ? '男' : '女' ) : '-'}
+              value={deviceData.gender ? (deviceData.gender == '0' ? '男' : '女') : '-'}
               valueStyle="gray"
               size="medium"
               onClick={() => {
@@ -130,19 +130,19 @@ export function Mine() {
               <ListPicker
                 visible={genderVisible}
                 title="性别"
-                defaultValue={[deviceData['gender']]}
+                defaultValue={[deviceData.gender]}
                 options={[
                   {
                     label: '男',
-                    value: '0'
+                    value: '0',
                   },
                   {
                     label: '女',
-                    value: '1'
-                  }
+                    value: '1',
+                  },
                 ]}
                 onCancel={() => onToggleGender(false)}
-                onConfirm={value => {
+                onConfirm={(value) => {
                   onControlDevice('gender', value[0]);
                   onToggleGender(false);
                 }}
@@ -166,7 +166,7 @@ export function Mine() {
               <DatePicker
                 visible={birthVisible}
                 onClose={() => onToggleBirth(false)}
-                onConfirm={value => {
+                onConfirm={(value) => {
                   onUpdateUserInfo({ birthday: dayjs(value).valueOf() });
                 }}
               />
@@ -175,7 +175,7 @@ export function Mine() {
               className="setting_title"
               title="身高"
               value={
-                sdk.deviceData.height ? sdk.deviceData.height + 'cm' : '-'
+                sdk.deviceData.height ? `${sdk.deviceData.height}cm` : '-'
               }
               valueStyle="gray"
               size="medium"
@@ -186,10 +186,10 @@ export function Mine() {
               <ValuePicker
                 visible={heightVisible}
                 title="身高"
-                value={[sdk.deviceData.height ? sdk.deviceData.height + 'cm' : '100cm']}
+                value={[sdk.deviceData.height ? `${sdk.deviceData.height}cm` : '100cm']}
                 columns={heightColumns}
                 onCancel={() => onToggleHeight(false)}
-                onConfirm={value => {
+                onConfirm={(value) => {
                   let height = value[0];
                   if (height != null) {
                     height = height.substr(0, height.length - 2);
@@ -202,7 +202,7 @@ export function Mine() {
             <Cell
               className="setting_title"
               title="体重"
-              value={sdk.deviceData.weight ? sdk.deviceData.weight + '千克' : '-'}
+              value={sdk.deviceData.weight ? `${sdk.deviceData.weight}千克` : '-'}
               valueStyle="gray"
               size="medium"
               onClick={() => {
@@ -211,11 +211,11 @@ export function Mine() {
             >
               <ValuePicker
                 visible={weightVisible}
-                value={[sdk.deviceData.weight ? sdk.deviceData.weight + '千克' : '45千克']}
+                value={[sdk.deviceData.weight ? `${sdk.deviceData.weight}千克` : '45千克']}
                 title="体重"
                 columns={weightColumns}
                 onCancel={() => onToggleWeight(false)}
-                onConfirm={value => {
+                onConfirm={(value) => {
                   let weight = value[0];
                   if (weight != null) {
                     weight = weight.substr(0, weight.length - 2);
@@ -243,9 +243,7 @@ export function Mine() {
                 <Switch
                   name={''}
                   theme={themeType}
-                  checked={toggleBooleanByNumber(
-                    sdk.deviceData.player ? sdk.deviceData.player : 0
-                  )}
+                  checked={toggleBooleanByNumber(sdk.deviceData.player ? sdk.deviceData.player : 0)}
                   onChange={(value: boolean) => {
                     apiControlDeviceData({ player: value ? 1 : 0 });
                   }}

@@ -32,7 +32,7 @@ export interface ListPickerProps extends StyledProps {
   type?: SelectType['Radio'] | SelectType['Multiple'];
   options: Option[];
   theme?: ThemeType;
-  layoutType?: string; //normal,middle,spacebetween
+  layoutType?: string; // normal,middle,spacebetween
   confirmText?: string;
   cancelText?: string;
   onCancel?: () => void;
@@ -45,13 +45,12 @@ export function ListPicker(props: ListPickerProps) {
     options,
     value,
     defaultValue,
-    theme = getThemeType()
+    theme = getThemeType(),
   } = props;
   const [checkList, setCheckList] = useState(['']);
 
   useMemo(() => {
-    const val =
-      value !== undefined ? value : defaultValue || [options[0].value];
+    const val =      value !== undefined ? value : defaultValue || [options[0].value];
 
     setCheckList(val);
   }, [props.visible]);
@@ -101,47 +100,47 @@ export function ListPicker(props: ListPickerProps) {
       <div
         className={classNames('dialog-selection-item', {
           is_disabled: item.disabled,
-          is_selected: isSelected
+          is_selected: isSelected,
         })}
         key={item.value}
         onClick={() => handleSelect(item)}
       >
-        {props.layoutType === 'middle' ? 
-        (
+        {props.layoutType === 'middle'
+          ? (
           <div className="item">
             <div className="item-label">{item.label}</div>
             <div className="item-select-icon">
               {
-                theme === 'dark' ? 
-                <SvgIcon
+                theme === 'dark'
+                  ? <SvgIcon
                   name={isSelected ? 'icon-selected-dark' : 'icon-unselected'}
-                /> : 
-                <SvgIcon
+                />
+                  : <SvgIcon
                   name={isSelected ? 'icon-selected' : 'icon-unselected'}
                 />
               }
             </div>
           </div>
-        ) :
-        (
+          )
+          : (
           <>
             <div className="item-label">{item.label}</div>
             <div className="item-select-icon">
               {
-                theme === 'dark' ? 
-                <SvgIcon
+                theme === 'dark'
+                  ? <SvgIcon
                   name={isSelected ? 'icon-selected-dark' : 'icon-unselected'}
-                /> : 
-                <SvgIcon
+                />
+                  : <SvgIcon
                   name={isSelected ? 'icon-selected' : 'icon-unselected'}
                 />
               }
             </div>
           </>
-        )
+          )
       }
-        
-        
+
+
       </div>
     );
   };
@@ -170,8 +169,8 @@ export function ListPicker(props: ListPickerProps) {
         `theme_${toUnderscores(theme)}`,
         { is_hidden: !props.visible },
         props.className,
-        {'layout-middle': props.layoutType === 'middle'},
-        {'layout-spaceBetween': props.layoutType === 'spaceBetween'}
+        { 'layout-middle': props.layoutType === 'middle' },
+        { 'layout-spaceBetween': props.layoutType === 'spaceBetween' },
       )}
     >
       <Dialog
@@ -183,14 +182,14 @@ export function ListPicker(props: ListPickerProps) {
           [
             {
               key: 'cancel',
-              text: props.cancelText || '取消'
+              text: props.cancelText || '取消',
             },
             {
               key: 'confirm',
               text: props.confirmText || '完成',
-              disabled: !checkList || !checkList.length
-            }
-          ]
+              disabled: !checkList || !checkList.length,
+            },
+          ],
         ]}
         onAction={onDialogAction}
       />

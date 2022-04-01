@@ -18,9 +18,8 @@ import { Home } from './views/home';
 import { Settings } from './views/settings';
 import { QuicknessMode } from '@components/base/quicknessMode';
 
-export const App = QuicknessMode(function App() {
-  const [state, { onDeviceDataChange, onDeviceStatusChange }] =
-    useDeviceData(sdk);
+export const App = QuicknessMode(() => {
+  const [state, { onDeviceDataChange, onDeviceStatusChange }] =    useDeviceData(sdk);
   console.log(state, 'state===============');
 
   // webSecket 监听
@@ -72,4 +71,4 @@ export const App = QuicknessMode(function App() {
       </HashRouter>
     </DeviceContext.Provider>
   );
-})
+});

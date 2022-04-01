@@ -2,8 +2,8 @@ import React, { useEffect, useMemo, useRef, useState } from 'react';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 import { StyledProps, ThemeType } from '@libs/global';
 import { getOffset } from '@libs/dom';
-import {getThemeType} from "@libs/theme";
-import {onControlDevice} from "@hooks/useDeviceData";
+import { getThemeType } from '@libs/theme';
+import { onControlDevice } from '@hooks/useDeviceData';
 import './style.less';
 
 import triangleImageDefault from '../../../../icons/normal/triangle-close.svg';
@@ -49,7 +49,7 @@ export function Slider(props: SliderProps) {
     }
     const num = Number(Math.floor(value * 100).toFixed(3));
     let winspeed = '1';
-    value = parseInt(value*4)/4;
+    value = parseInt(value * 4) / 4;
     if (num < 13) {
       winspeed = '1';
       value = 0;
@@ -68,7 +68,7 @@ export function Slider(props: SliderProps) {
     }
 
     setValue(value);
-    if(endTouch){
+    if (endTouch) {
       onControlDevice('windspeed', winspeed);
     }
   };

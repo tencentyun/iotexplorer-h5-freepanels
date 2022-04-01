@@ -9,43 +9,31 @@ import './home.less';
 
 import armingImage from '../icons/normal/arming.svg';
 import armingImageBlueWhite from '../icons/blue-white/arming.svg';
-const armingImageDark =
-  'https://tencent-1305105198.cos.ap-guangzhou.myqcloud.com/multifunction-alarm-host/dark/arming.png';
 import armingImageColorful from '../icons/colorful/arming.svg';
 import armingImageMorandi from '../icons/morandi/arming.svg';
 
 import disarmingImage from '../icons/normal/disarming.svg';
 import disarmingImageBlueWhite from '../icons/blue-white/disarming.svg';
-const disarmingImageDark =
-  'https://tencent-1305105198.cos.ap-guangzhou.myqcloud.com/multifunction-alarm-host/dark/disarming.png';
 import disarmingImageColorful from '../icons/colorful/disarming.svg';
 import disarmingImageMorandi from '../icons/morandi/disarming.svg';
 
 import homeImage from '../icons/normal/home.svg';
 import homeImageBlueWhite from '../icons/blue-white/home.svg';
-const homeImageDark =
-  'https://tencent-1305105198.cos.ap-guangzhou.myqcloud.com/multifunction-alarm-host/dark/home.png';
 import homeImageColorful from '../icons/colorful/home.svg';
 import homeImageMorandi from '../icons/morandi/home.svg';
 
 import instancyImage from '../icons/normal/instancy.svg';
 import instancyImageBlueWhite from '../icons/blue-white/instancy.svg';
-const instancyImageDark =
-  'https://tencent-1305105198.cos.ap-guangzhou.myqcloud.com/multifunction-alarm-host/dark/instancy.png';
 import instancyImageColorful from '../icons/colorful/instancy.svg';
 import instancyImageMorandi from '../icons/morandi/instancy.svg';
 
 import relaxImage from '../icons/normal/relax.svg';
 import relaxImageBlueWhite from '../icons/blue-white/relax.svg';
-const relaxImageDark =
-  'https://tencent-1305105198.cos.ap-guangzhou.myqcloud.com/multifunction-alarm-host/dark/relax.png';
 import relaxImageColorful from '../icons/colorful/relax.svg';
 import relaxImageMorandi from '../icons/morandi/relax.svg';
 
 import workImage from '../icons/normal/work.svg';
 import workImageBlueWhite from '../icons/blue-white/work.svg';
-const workImageDark =
-  'https://tencent-1305105198.cos.ap-guangzhou.myqcloud.com/multifunction-alarm-host/dark/work.png';
 import workImageColorful from '../icons/colorful/work.svg';
 import workImageMorandi from '../icons/morandi/work.svg';
 
@@ -96,6 +84,12 @@ import WorkImageOpenColorful from '../icons/colorful/work-open.svg';
 import WorkImageOpenMorandi from '../icons/morandi/work-open.svg';
 import WorkImageClose from '../icons/normal/work-close.svg';
 import WorkImageCloseBlueWhite from '../icons/blue-white/work-close.svg';
+const armingImageDark =  'https://tencent-1305105198.cos.ap-guangzhou.myqcloud.com/multifunction-alarm-host/dark/arming.png';
+const disarmingImageDark =  'https://tencent-1305105198.cos.ap-guangzhou.myqcloud.com/multifunction-alarm-host/dark/disarming.png';
+const homeImageDark =  'https://tencent-1305105198.cos.ap-guangzhou.myqcloud.com/multifunction-alarm-host/dark/home.png';
+const instancyImageDark =  'https://tencent-1305105198.cos.ap-guangzhou.myqcloud.com/multifunction-alarm-host/dark/instancy.png';
+const relaxImageDark =  'https://tencent-1305105198.cos.ap-guangzhou.myqcloud.com/multifunction-alarm-host/dark/relax.png';
+const workImageDark =  'https://tencent-1305105198.cos.ap-guangzhou.myqcloud.com/multifunction-alarm-host/dark/work.png';
 
 export function Home() {
   const themeType = getThemeType();
@@ -321,11 +315,11 @@ export function Home() {
   };
   return (
     <article className={classNames('home')}>
-      {/*仪表盘*/}
+      {/* 仪表盘*/}
       <section className={classNames('dashboard')}>
         <div className="control-panel">
           <div className="panel-head">
-            {/*电量*/}
+            {/* 电量*/}
             <Battery
               isShowPercent={false}
               isShowTip={false}
@@ -344,7 +338,7 @@ export function Home() {
               <div
                 className={classNames(
                   'label',
-                  sdk.deviceData.woke_mode === 'disarmed' ? 'active' : ''
+                  sdk.deviceData.woke_mode === 'disarmed' ? 'active' : '',
                 )}
               >
                 撤防
@@ -356,7 +350,7 @@ export function Home() {
               <div
                 className={classNames(
                   'label',
-                  sdk.deviceData.woke_mode === 'arm' ? 'active' : ''
+                  sdk.deviceData.woke_mode === 'arm' ? 'active' : '',
                 )}
               >
                 布防
@@ -368,7 +362,7 @@ export function Home() {
               <div
                 className={classNames(
                   'label',
-                  sdk.deviceData.woke_mode === 'home' ? 'active' : ''
+                  sdk.deviceData.woke_mode === 'home' ? 'active' : '',
                 )}
               >
                 在家
@@ -381,7 +375,7 @@ export function Home() {
               <div
                 className={classNames(
                   'label',
-                  sdk.deviceData.woke_mode === 'sos' ? 'active' : ''
+                  sdk.deviceData.woke_mode === 'sos' ? 'active' : '',
                 )}
               >
                 紧急
@@ -393,7 +387,7 @@ export function Home() {
               <div
                 className={classNames(
                   'label',
-                  sdk.deviceData.woke_mode === 'work' ? 'active' : ''
+                  sdk.deviceData.woke_mode === 'work' ? 'active' : '',
                 )}
               >
                 工作
@@ -405,7 +399,7 @@ export function Home() {
               <div
                 className={classNames(
                   'label',
-                  sdk.deviceData.woke_mode === 'play' ? 'active' : ''
+                  sdk.deviceData.woke_mode === 'play' ? 'active' : '',
                 )}
               >
                 休闲
@@ -414,7 +408,7 @@ export function Home() {
           </div>
         </div>
       </section>
-      {/*详情区域*/}
+      {/* 详情区域*/}
       <Detail />
     </article>
   );

@@ -1,19 +1,19 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import classNames from 'classnames';
 import './operate.less';
 
-import {ValuePicker} from '@components/business';
-import {getThemeType} from '@libs/theme';
-import {numberToArray} from '@libs/utillib';
-import {SvgIcon} from '@components/common/icon';
-import {useHistory} from 'react-router';
+import { ValuePicker } from '@components/business';
+import { getThemeType } from '@libs/theme';
+import { numberToArray } from '@libs/utillib';
+import { SvgIcon } from '@components/common/icon';
+import { useHistory } from 'react-router';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
-import { apiControlDeviceData, onControlDevice} from '@hooks/useDeviceData';
+import { apiControlDeviceData, onControlDevice } from '@hooks/useDeviceData';
 
 const operate = () => {
   const themeType = getThemeType();
   const history = useHistory();
-  //倒计时关闭
+  // 倒计时关闭
   const [countDownVisible, onToggleCountDown] = useState(false);
   // const [powerOff, onTogglePower] = useState(false);
   const [countdownTime, setCountdown] = useState([]);
@@ -26,12 +26,10 @@ const operate = () => {
   const handleCountdown = () => {
     onToggleCountDown(true);
   };
-  const handleToggle = () => {
-    return history.push('/timer');
-  };
+  const handleToggle = () => history.push('/timer');
   const handlePower = () => {
     apiControlDeviceData({
-      power_switch: sdk.deviceData.power_switch === 1 ? 0 : 1
+      power_switch: sdk.deviceData.power_switch === 1 ? 0 : 1,
     });
   };
   return (
@@ -39,7 +37,7 @@ const operate = () => {
 
       <div id={'clock'} className={classNames('clock')} onClick={handleToggle}>
         <SvgIcon
-          name={sdk.deviceData.power_switch === 1 && 'icon-timer-' + themeType + '2' || 'icon-timer-' + themeType}/>
+          name={sdk.deviceData.power_switch === 1 && `icon-timer-${themeType}2` || `icon-timer-${themeType}`}/>
         <div className={classNames('clock_time')}>
           定时
         </div>
@@ -52,17 +50,17 @@ const operate = () => {
             } */}
         {sdk.deviceData.power_switch === 1 ? (
           <SvgIcon
-            name={'icon-total_switch-' + themeType + '2'}
+            name={`icon-total_switch-${themeType}2`}
             color="#2D3134" />
         ) : (
           <SvgIcon
-            name={'icon-total_switch-' + themeType}
+            name={`icon-total_switch-${themeType}`}
             color="#2D3134" />
         )}
       </div>
       <div id={'setting'} className={classNames('work_mode')} onClick={handleCountdown}>
         <SvgIcon
-          name={sdk.deviceData.power_switch === 1 && 'icon-settings-' + themeType + '2' || 'icon-settings-' + themeType}/>
+          name={sdk.deviceData.power_switch === 1 && `icon-settings-${themeType}2` || `icon-settings-${themeType}`}/>
         <div className={classNames('work_font')}>
           设置
         </div>
@@ -74,7 +72,7 @@ const operate = () => {
         value={countdownTime}
         columns={countDownColumns()}
         onCancel={() => onToggleCountDown(false)}
-        onConfirm={value => {
+        onConfirm={(value) => {
           let hour = value[0];
           let minute = value[1];
           if (hour != null) {

@@ -37,16 +37,15 @@ export function Tabs(props: TabsProps) {
     : [children];
   const activeKey = props.activeKey || children[0].key;
 
-  const tabItem = () => {
-    return tabs.map((tab: any) => {
-      const isActive = tab.key === activeKey;
-      const { title, icon }: TabPaneProps = tab.props;
-      const iconNode = icon ? <span className="tabs-icon">{icon}</span> : null;
+  const tabItem = () => tabs.map((tab: any) => {
+    const isActive = tab.key === activeKey;
+    const { title, icon }: TabPaneProps = tab.props;
+    const iconNode = icon ? <span className="tabs-icon">{icon}</span> : null;
 
-      return (
+    return (
         <div
           className={classNames('tabs-item', {
-            is_active: isActive
+            is_active: isActive,
           })}
           key={tab.key}
           onClick={() => handleChange(tab.key)}
@@ -54,24 +53,23 @@ export function Tabs(props: TabsProps) {
           {iconNode}
           <span className="tabs-title">{title}</span>
         </div>
-      );
-    });
-  };
+    );
+  });
 
   const pane = tabs.filter((t: any) => t.key === activeKey);
 
   return (
     <div className={classNames('component_business_tabs', props.className)}>
-      {props.position === 'top' &&
-        <Block className="tabs" padding={'70px 66px'}>
+      {props.position === 'top'
+        && <Block className="tabs" padding={'70px 66px'}>
           {tabItem()}
         </Block>
       }
-      
+
       <div className="tabs-content">{pane[0]}</div>
 
-      {props.position === 'bottom' &&
-        <Block className="tabs bottom-tabs" padding={'70px 66px'}>
+      {props.position === 'bottom'
+        && <Block className="tabs bottom-tabs" padding={'70px 66px'}>
           {tabItem()}
         </Block>
       }

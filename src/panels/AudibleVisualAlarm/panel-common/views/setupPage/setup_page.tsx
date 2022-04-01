@@ -1,11 +1,11 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import classNames from 'classnames';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
-import {toggleBooleanByNumber} from '@libs/utillib';
-import {getThemeType} from '@libs/theme';
-import { apiControlDeviceData, onControlDevice} from '@hooks/useDeviceData';
-import {Cell, Switch} from '@components/base';
-import {ListPicker} from '@components/business';
+import { toggleBooleanByNumber } from '@libs/utillib';
+import { getThemeType } from '@libs/theme';
+import { apiControlDeviceData, onControlDevice } from '@hooks/useDeviceData';
+import { Cell, Switch } from '@components/base';
+import { ListPicker } from '@components/business';
 import IconChecked from '@components/base/icon-checked/icon-checked';
 
 import './setup_page.less';
@@ -14,7 +14,7 @@ export function SetupPage() {
   const themeType = getThemeType();
   const [tamperEventVisible, onToggleTamperEvent] = useState(false);
   const [masterModeVisible, onToggleMasterMode] = useState(false);
-  const batteryStateSrc = (battery: String) => {
+  const batteryStateSrc = (battery: string) => {
     switch (battery) {
       case 'low':
         return '低';
@@ -26,7 +26,7 @@ export function SetupPage() {
         return '';
     }
   };
-  const tamperEventSrc = (mode: String) => {
+  const tamperEventSrc = (mode: string) => {
     switch (mode) {
       case '0':
         return '未拆卸';
@@ -36,7 +36,7 @@ export function SetupPage() {
         return '';
     }
   };
-  const masterModeSrc = (mode: String) => {
+  const masterModeSrc = (mode: string) => {
     switch (mode) {
       case 'Disarmed':
         return '撤防';
@@ -65,9 +65,7 @@ export function SetupPage() {
             <Switch
               name={''}
               theme={themeType}
-              checked={toggleBooleanByNumber(
-                sdk.deviceData.power_switch ? sdk.deviceData.power_switch : 0
-              )}
+              checked={toggleBooleanByNumber(sdk.deviceData.power_switch ? sdk.deviceData.power_switch : 0)}
               onChange={(value: boolean) => {
                 apiControlDeviceData({ power_switch: value ? 1 : 0 });
               }}
@@ -98,7 +96,7 @@ export function SetupPage() {
           className="_color_white_"
           title="电池电量"
           isLink={false}
-          value={sdk.deviceData.battery_percentage ? sdk.deviceData.battery_percentage + '%' : '0%'}
+          value={sdk.deviceData.battery_percentage ? `${sdk.deviceData.battery_percentage}%` : '0%'}
           valueStyle="gray"
           size="medium"
           // onClick={() => setIsShowPir(true)}
@@ -121,20 +119,20 @@ export function SetupPage() {
             visible={tamperEventVisible}
             title="防拆报警"
             defaultValue={[
-              sdk.deviceData.tamper_event ? sdk.deviceData.tamper_event : ''
+              sdk.deviceData.tamper_event ? sdk.deviceData.tamper_event : '',
             ]}
             options={[
               {
                 label: '未拆卸',
-                value: '0'
+                value: '0',
               },
               {
                 label: '拆卸告警',
-                value: '1'
-              }
+                value: '1',
+              },
             ]}
             onCancel={() => onToggleTamperEvent(false)}
-            onConfirm={value => {
+            onConfirm={(value) => {
               onControlDevice('tamper_event', value[0]);
               onToggleTamperEvent(false);
             }}
@@ -158,36 +156,36 @@ export function SetupPage() {
             visible={masterModeVisible}
             title="工作模式"
             defaultValue={[
-              sdk.deviceData.master_mode ? sdk.deviceData.master_mode : ''
+              sdk.deviceData.master_mode ? sdk.deviceData.master_mode : '',
             ]}
             options={[
               {
                 label: '撤防',
-                value: 'Disarmed'
+                value: 'Disarmed',
               },
               {
                 label: '布防',
-                value: 'Arm'
+                value: 'Arm',
               },
               {
                 label: '在家',
-                value: 'home'
+                value: 'home',
               },
               {
                 label: '紧急',
-                value: 'Sos'
+                value: 'Sos',
               },
               {
                 label: '工作',
-                value: 'Work'
+                value: 'Work',
               },
               {
                 label: '休闲',
-                value: 'Play'
-              }
+                value: 'Play',
+              },
             ]}
             onCancel={() => onToggleMasterMode(false)}
-            onConfirm={value => {
+            onConfirm={(value) => {
               onControlDevice('master_mode', value[0]);
               onToggleMasterMode(false);
             }}

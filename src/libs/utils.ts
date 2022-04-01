@@ -61,7 +61,7 @@ export const getLocalImgData = (localId, options?: any) => new Promise((resolve,
       // console.log('获取到的图片base64数据,可以用img标签显示', res.localData);
       resolve(res);
     },
-    fail: reject
+    fail: reject,
   };
   wx.getLocalImgData({ ...opt, ...options });
 });
@@ -74,7 +74,7 @@ export const chooseImage = async (options?: any) => new Promise((resolve, reject
     success: (res) => {
       resolve(res.localIds);
     },
-    fail: reject
+    fail: reject,
   };
   wx.chooseImage({ ...defaultOption, ...options });
 });
@@ -91,5 +91,5 @@ export const copyText = (text) => {
   return text;
 };
 
-export const copy = (nodeId) => copyText(document.getElementById(nodeId).innerText);
+export const copy = nodeId => copyText(document.getElementById(nodeId).innerText);
 

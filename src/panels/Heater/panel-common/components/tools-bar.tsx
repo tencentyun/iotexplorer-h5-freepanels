@@ -19,14 +19,14 @@ export function ToolsBar() {
     2: 'ECO模式',
     3: '舒适模式',
     4: '防霜冻模式',
-    5: '手动模式'
+    5: '手动模式',
   };
 
   const enumGear: any = {
     0: '自动',
     1: '低档',
     2: '中档',
-    3: '高档'
+    3: '高档',
   };
 
   return (
@@ -36,7 +36,7 @@ export function ToolsBar() {
           <div
             className={classNames(
               'item',
-              deviceData.power_switch ? 'active' : ''
+              deviceData.power_switch ? 'active' : '',
             )}
             onClick={() => {
               if (!deviceData.power_switch) return;
@@ -49,7 +49,7 @@ export function ToolsBar() {
           <div
             className={classNames(
               'item',
-              deviceData.power_switch ? 'active' : ''
+              deviceData.power_switch ? 'active' : '',
             )}
             onClick={() => {
               if (!deviceData.power_switch) return;
@@ -62,7 +62,7 @@ export function ToolsBar() {
           <div
             className={classNames(
               'item',
-              deviceData.power_switch ? 'active' : ''
+              deviceData.power_switch ? 'active' : '',
             )}
             onClick={() => {
               history.push('/timing');
@@ -79,34 +79,34 @@ export function ToolsBar() {
             options={[
               {
                 label: '智能模式',
-                value: '0'
+                value: '0',
               },
               {
                 label: '自动模式',
-                value: '1'
+                value: '1',
               },
               {
                 label: 'ECO模式',
-                value: '2'
+                value: '2',
               },
               {
                 label: '舒适模式',
-                value: '3'
+                value: '3',
               },
               {
                 label: '防霜冻模式',
-                value: '4'
+                value: '4',
               },
               {
                 label: '手动模式',
-                value: '5'
-              }
+                value: '5',
+              },
             ]}
             layoutType="normal"
             onCancel={() => {
               setModeVisible(false);
             }}
-            onConfirm={value => {
+            onConfirm={(value) => {
               onControlDevice('work_mode', value[0]);
             }}
           ></ListPopup>
@@ -118,26 +118,26 @@ export function ToolsBar() {
             options={[
               {
                 label: '自动',
-                value: '0'
+                value: '0',
               },
               {
                 label: '低档',
-                value: '1'
+                value: '1',
               },
               {
                 label: '中档',
-                value: '2'
+                value: '2',
               },
               {
                 label: '高档',
-                value: '3'
-              }
+                value: '3',
+              },
             ]}
             layoutType="middle"
             onCancel={() => {
               setGearVisible(false);
             }}
-            onConfirm={value => {
+            onConfirm={(value) => {
               onControlDevice('heat_level', value[0]);
             }}
           ></ListPopup>

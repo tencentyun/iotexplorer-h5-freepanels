@@ -10,24 +10,24 @@ import './data-show-disk.less';
 const skinProps = {
   normal: {
     normal: { color: '#000000' },
-    alarm: { color: '#FFFFFF' }
+    alarm: { color: '#FFFFFF' },
   },
   blueWhite: {
     normal: { color: '#000000' },
-    alarm: { color: '#FFFFFF' }
+    alarm: { color: '#FFFFFF' },
   },
   dark: {
     normal: { color: '#FFFFFF' },
-    alarm: { color: '#FFFFFF' }
+    alarm: { color: '#FFFFFF' },
   },
   colorful: {
     normal: { color: '#FFFFFF' },
-    alarm: { color: '#FFFFFF' }
+    alarm: { color: '#FFFFFF' },
   },
   morandi: {
     normal: { color: '#B5ABA1' },
-    alarm: { color: '#FFFFFF' }
-  }
+    alarm: { color: '#FFFFFF' },
+  },
 };
 
 interface DiskProps {
@@ -51,7 +51,7 @@ export function DataShowDisk(props: DiskProps) {
       <div
         className={classNames(
           'disk',
-          currentStatus === 'alarm' ? 'active' : ''
+          currentStatus === 'alarm' ? 'active' : '',
         )}
       >
         <div className="data">
@@ -70,7 +70,7 @@ export function DataShowDisk(props: DiskProps) {
       <div
         className={classNames(
           'bg-bubbles',
-          { 'bubbles-animation': currentStatus === 'alarm' }
+          { 'bubbles-animation': currentStatus === 'alarm' },
         )}
       >
         <div className="bubbles-wrap">

@@ -26,8 +26,8 @@ export function Position({ deviceData: { brightness = 80, color_mode }, doContro
     angle *= Math.PI / 180; // 角度转弧度
     const destX = centerX + ((Math.cos(angle) * wrap?.clientWidth) / 2) * 0.77;
     const destY = centerY + ((Math.sin(angle) * wrap?.clientHeight) / 2) * 0.77;
-    point.style.marginLeft = destX - point?.clientWidth / 2 + 'px';
-    point.style.marginTop = destY - point?.clientHeight / 2 + 'px';
+    point.style.marginLeft = `${destX - point?.clientWidth / 2}px`;
+    point.style.marginTop = `${destY - point?.clientHeight / 2}px`;
   };
 
   useDidMount(() => {
@@ -72,8 +72,8 @@ export function Position({ deviceData: { brightness = 80, color_mode }, doContro
     angle *= Math.PI / 180;
     const destX = centerX + ((Math.cos(angle) * wrap?.clientWidth) / 2) * 0.77;
     const destY = centerY + ((Math.sin(angle) * wrap?.clientHeight) / 2) * 0.77;
-    point.style.marginLeft = destX - point?.clientWidth / 2 + 'px';
-    point.style.marginTop = destY - point?.clientHeight / 2 + 'px';
+    point.style.marginLeft = `${destX - point?.clientWidth / 2}px`;
+    point.style.marginTop = `${destY - point?.clientHeight / 2}px`;
   };
 
   return (

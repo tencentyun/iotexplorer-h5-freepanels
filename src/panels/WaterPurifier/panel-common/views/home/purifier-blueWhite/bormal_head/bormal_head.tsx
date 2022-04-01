@@ -36,7 +36,7 @@ export function Bormal_head() {
 
     </article>
   );
-};
+}
 
 export default Bormal_head;
 

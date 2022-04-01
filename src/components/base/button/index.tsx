@@ -36,7 +36,7 @@ export function Button(props: ButtonProps) {
     round = false,
     loading = false,
     disabled = false,
-    onClick = noop
+    onClick = noop,
   } = props;
 
   const inner = () => {
@@ -68,7 +68,7 @@ export function Button(props: ButtonProps) {
         '_component_base_button_',
         className,
         `button_theme_${theme}`,
-        { is_loading: loading, is_disabled: disabled, is_round_button: round }
+        { is_loading: loading, is_disabled: disabled, is_round_button: round },
       )}
       onClick={handleClick}
     >

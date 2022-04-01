@@ -7,11 +7,11 @@ import React, { useEffect, useState } from 'react';
 import classNames from 'classnames';
 import { useHistory } from 'react-router-dom';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
-import { useDeviceData } from '@hooks/useDeviceData';
+import { useDeviceData, onControlDevice } from '@hooks/useDeviceData';
 import { Battery } from '@components/business';
 import { Block } from '@components/layout';
 import { SvgIcon } from '@components/common';
-import { onControlDevice } from '@hooks/useDeviceData';
+
 import { getThemeType } from '@libs/theme';
 import { SkinProps } from '../skinProps';
 import dayjs from 'dayjs';
@@ -22,7 +22,7 @@ export function Home() {
   const CurrentSkinProps: any = SkinProps[themeType];
   const history = useHistory();
   const [state] = useDeviceData(sdk);
-  const deviceData: any = state.deviceData;
+  const { deviceData } = state;
   // 设备状态
   const [isOn, setPowerOn] = useState(false);
   const [recordTime, setRecordTime] = useState('');
@@ -44,7 +44,7 @@ export function Home() {
           FieldName: 'doorsensor_state',
           MaxTime: currentTime,
           MinTime: lastYearTime,
-          Limit: 1
+          Limit: 1,
         });
         setRecordTime(recordListInfo.Results[0]?.Time || '');
         setRecordStatus(recordListInfo.Results[0]?.Value || '');
@@ -60,7 +60,7 @@ export function Home() {
 
   const statusLabel: any = {
     0: '关闭',
-    1: '打开'
+    1: '打开',
   };
 
   const handleOpen = () => {

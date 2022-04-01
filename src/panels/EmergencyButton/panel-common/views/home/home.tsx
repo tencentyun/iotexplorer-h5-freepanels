@@ -1,16 +1,16 @@
 import React from 'react';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
-import './home.less'
+import './home.less';
 import classNames from 'classnames';
-import {getThemeType} from '@libs/theme';
+import { getThemeType } from '@libs/theme';
 import { SvgIcon } from '@components/common/icon';
 import { Normal_progress_bar } from '../normal-progress-bar/normal_progress_bar';
 import { ProductSetting } from '../product-setting/product-setting';
 
-export function Home () {
+export function Home() {
   const themeType = getThemeType();
 
-  const statusSrc = (status: String) => {
+  const statusSrc = (status: string) => {
     switch (status) {
       case 'low':
         return '低';
@@ -26,7 +26,7 @@ export function Home () {
             <article id={'emergency_button_normal'} className={classNames('emergency_button_normal')}>
             <div className="emergency_head">
                 <div className="head-icon">
-                    <SvgIcon name={'icon-emergency-button-'+themeType} width={150} height={150}/>
+                    <SvgIcon name={`icon-emergency-button-${themeType}`} width={150} height={150}/>
                 </div>
 
                 <div id={'center_scale'}>
@@ -58,6 +58,6 @@ export function Home () {
 
         </article>
   );
-};
+}
 
 export default Home;

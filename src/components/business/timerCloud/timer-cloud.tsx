@@ -22,7 +22,7 @@ export interface ITimerCloud {
   options: ITimerOptions;
 }
 
-const TimerCloud: FC<ITimerCloud> = props => {
+const TimerCloud: FC<ITimerCloud> = (props) => {
   const oldTitle = document.title;
   window.document.title = '定时';
   const refList = useRef();
@@ -42,10 +42,8 @@ const TimerCloud: FC<ITimerCloud> = props => {
   //   setIsShowAdd(true);
   // };
 
-  useEffect(() => {
-    return () => {
-      window.document.title = oldTitle;
-    };
+  useEffect(() => () => {
+    window.document.title = oldTitle;
   });
 
   return (

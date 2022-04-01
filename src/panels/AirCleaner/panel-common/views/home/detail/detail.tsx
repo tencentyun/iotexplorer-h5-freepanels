@@ -10,15 +10,15 @@ import Position from './position/position';
 export function Detail() {
   return (
     <article className={classNames('detail')}>
-      {/*锁*/}
+      {/* 锁*/}
       <Lock />
-      {/*设备状态*/}
+      {/* 设备状态*/}
       <Title />
-      {/*电源操作栏*/}
+      {/* 电源操作栏*/}
       <Power />
-      {/*温度、湿度和滤芯使用率*/}
+      {/* 温度、湿度和滤芯使用率*/}
       <Position />
-      {/*产品模式*/}
+      {/* 产品模式*/}
       <Environment />
     </article>
   );

@@ -22,7 +22,7 @@ export function Record(props) {
           FieldName: 'doorsensor_state',
           MaxTime: currentTime,
           MinTime: lastYearTime,
-          Limit: 10
+          Limit: 10,
         });
         console.log('get info', recordListInfo);
         setRecordList(recordListInfo.Results);
@@ -42,7 +42,7 @@ export function Record(props) {
       sdk.requestTokenApi('AppDeleteDeviceDataHistory', {
         Action: 'AppDeleteDeviceDataHistory',
         DeviceName: sdk.deviceName,
-        ProductId: sdk.productId
+        ProductId: sdk.productId,
       });
       setRecordList([]);
       sdk.tips.show('记录已清除');
@@ -52,7 +52,7 @@ export function Record(props) {
   };
 
   return (
-    <main className={classNames('more-record', {'no-record': recordList.length === 0 })}>
+    <main className={classNames('more-record', { 'no-record': recordList.length === 0 })}>
       {recordList.length > 0 ? (
           <Steps stepData={recordList}/>
       ) : (

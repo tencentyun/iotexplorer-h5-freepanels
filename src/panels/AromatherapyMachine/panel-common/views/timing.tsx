@@ -5,7 +5,7 @@
 import React, { useState } from 'react';
 import TimerCloud, {
   ITimerDataBind,
-  ITimerOptions
+  ITimerOptions,
 } from '@components/business/timerCloud/timer-cloud';
 import { DeviceContext } from '../deviceContext';
 import { Modal } from '@components/base';
@@ -17,7 +17,7 @@ export function Timing() {
   const [data, setData] = useState({
     power_switch: 0,
     spray_switch: 0,
-    work_mode: 'middle'
+    work_mode: 'middle',
   } as ITimerDataBind);
 
   const [isShowPowerSwitch, setIsShowPowerSwitch] = useState(false);
@@ -27,20 +27,20 @@ export function Timing() {
   const optionsTimer: ITimerOptions = {
     power_switch: {
       label: '总开关',
-      value_enum: ['关', '开']
+      value_enum: ['关', '开'],
     },
     spray_switch: {
       label: '喷雾开关',
-      value_enum: ['喷雾关闭', '喷雾开启']
+      value_enum: ['喷雾关闭', '喷雾开启'],
     },
     work_mode: {
       label: '工作模式',
       value_enum: {
         large: '大雾量',
         middle: '中雾量',
-        small: '小雾量'
-      }
-    }
+        small: '小雾量',
+      },
+    },
   };
   return (
     <DeviceContext.Consumer>
@@ -49,28 +49,28 @@ export function Timing() {
           <List>
             <List.Item
               prefix={'开关'}
-              extra={optionsTimer.power_switch.value_enum[data['power_switch']]}
+              extra={optionsTimer.power_switch.value_enum[data.power_switch]}
               onClick={() => {
                 setIsShowPowerSwitch(true);
               }}
             />
             <List.Item
               prefix={'喷雾开关'}
-              extra={optionsTimer.spray_switch.value_enum[data['spray_switch']]}
+              extra={optionsTimer.spray_switch.value_enum[data.spray_switch]}
               onClick={() => {
                 setIsShowSpraySwitch(true);
               }}
             />
             <List.Item
               prefix={'工作模式'}
-              extra={optionsTimer.work_mode.value_enum[data['work_mode']]}
+              extra={optionsTimer.work_mode.value_enum[data.work_mode]}
               onClick={() => {
                 setIsShowWorkMode(true);
               }}
             />
           </List>
 
-          {/*开关弹窗*/}
+          {/* 开关弹窗*/}
           <Modal
             title={'开关'}
             visible={isShowPowerSwitch}
@@ -106,7 +106,7 @@ export function Timing() {
               </List>
             </Radio.Group>
           </Modal>
-          {/*喷雾弹窗*/}
+          {/* 喷雾弹窗*/}
           <Modal
             title={'喷雾开关'}
             visible={isShowSpraySwitch}
@@ -142,7 +142,7 @@ export function Timing() {
               </List>
             </Radio.Group>
           </Modal>
-          {/*工作模式弹窗*/}
+          {/* 工作模式弹窗*/}
           <Modal
             title={'工作模式'}
             visible={isShowWorkMode}

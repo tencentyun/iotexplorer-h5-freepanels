@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import classNames from 'classnames';
 import { getThemeType } from '@libs/theme';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
@@ -9,7 +9,7 @@ import SwitchImageBlueWhite from '../../../../icons/blue-white/switch.svg';
 import SwitchImageDark from '../../../../icons/dark/switch.svg';
 import SwitchImageColorful from '../../../../icons/colorful/switch.svg';
 import SwitchImageMorandi from '../../../../icons/morandi/switch.svg';
-import {Cell} from "@components/base";
+import { Cell } from '@components/base';
 
 const Environment = () => {
   const themeType = getThemeType();
@@ -43,7 +43,7 @@ const Environment = () => {
           ProductId: sdk.productId,
           DeviceName: sdk.deviceName,
           Offset: 0,
-          Limit: 10
+          Limit: 10,
         });
         console.log('get info', recordListInfo);
         setGatewayList(recordListInfo.DeviceList);
@@ -72,7 +72,7 @@ const Environment = () => {
       ) : (
         <div className="dev-empty">暂未添加电子设备</div>
       )}
-      {/*<div className="gateway_info">
+      {/* <div className="gateway_info">
         <img src={switchImageSrc()} alt="" />
         <div className="description">
           <div className="name">六位场景开关</div>

@@ -1,10 +1,10 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import classNames from 'classnames';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 import './temperature.less';
 import { getThemeType } from '@libs/theme';
-import {onControlDevice} from '@hooks/useDeviceData';
-import {SvgIcon} from '@components/common/icon';
+import { onControlDevice } from '@hooks/useDeviceData';
+import { SvgIcon } from '@components/common/icon';
 
 export function Light_temperature() {
   const themeType = getThemeType();
@@ -13,31 +13,31 @@ export function Light_temperature() {
   const MIN_VALUE = 2000;
   const MAX_VALUE = 7000;
 
-  const currentWidth = (5 + (temperatureness_val - MIN_VALUE) * 95 / (MAX_VALUE - MIN_VALUE)) + '%';
+  const currentWidth = `${5 + (temperatureness_val - MIN_VALUE) * 95 / (MAX_VALUE - MIN_VALUE)}%`;
   const toggleReduce = () => {
     if (temperatureness_val <= MIN_VALUE) {
       return;
     }
-    let new_val = temperatureness_val - 1;
+    const new_val = temperatureness_val - 1;
     onControlDevice('color_temp', new_val);
     onToggletemperaturenessVal(new_val);
-  }
+  };
 
   const toggleAdd = () => {
     if (temperatureness_val >= MAX_VALUE) {
       return;
     }
-    let new_val = temperatureness_val + 1;
+    const new_val = temperatureness_val + 1;
     onControlDevice('color_temp', new_val);
     onToggletemperaturenessVal(new_val);
-  }
+  };
 
   const handleSelecttemperatureness = (e: React.MouseEvent) => {
     const slider = document.getElementById('lighttemperature-slider');
     const progress = document.getElementById('lighttemperature-progress');
     const dot = document.getElementById('lighttemperature-progress-dot');
 
-    let temperatureness = (e.clientX - slider.offsetLeft) / slider.clientWidth;
+    const temperatureness = (e.clientX - slider.offsetLeft) / slider.clientWidth;
     let temperatureness_val = parseInt(temperatureness * (MAX_VALUE - MIN_VALUE) + MIN_VALUE); // 亮度数值
     if (temperatureness_val < MIN_VALUE) {
       temperatureness_val = MIN_VALUE;
@@ -60,7 +60,7 @@ export function Light_temperature() {
     const progress = document.getElementById('lighttemperature-progress');
     const dot = document.getElementById('lighttemperature-progress-dot');
 
-    let temperatureness = (e.changedTouches[0].clientX - slider.offsetLeft) / slider.clientWidth;
+    const temperatureness = (e.changedTouches[0].clientX - slider.offsetLeft) / slider.clientWidth;
     let temperatureness_val = parseInt(temperatureness * (MAX_VALUE - MIN_VALUE) + MIN_VALUE); // 亮度数值
     if (temperatureness_val < MIN_VALUE) {
       temperatureness_val = MIN_VALUE;
@@ -80,7 +80,7 @@ export function Light_temperature() {
   const handleEndMovetemperatureness = (e: React.MouseEvent) => {
     const slider = document.getElementById('lighttemperature-slider');
 
-    let temperatureness = (e.changedTouches[0].clientX - slider.offsetLeft) / slider.clientWidth;
+    const temperatureness = (e.changedTouches[0].clientX - slider.offsetLeft) / slider.clientWidth;
     let temperatureness_val = parseInt(temperatureness * (MAX_VALUE - MIN_VALUE) + MIN_VALUE); // 亮度数值
     if (temperatureness_val < MIN_VALUE) {
       temperatureness_val = MIN_VALUE;
@@ -98,7 +98,7 @@ export function Light_temperature() {
           <div className={classNames('lighttemperature-mark-op-btn')} onClick={toggleReduce}>-</div>
           <div id={'lighttemperature-value-wrap'} className={classNames('lighttemperature-value-wrap')}>
             {/* <img src={temperaturenessIcon} alt="" /> */}
-            <SvgIcon name={'icon-five-bw-temperature-' + themeType} color="#0F0F0F" width={40} height={40}/>
+            <SvgIcon name={`icon-five-bw-temperature-${themeType}`} color="#0F0F0F" width={40} height={40}/>
             <div id={'lighttemperature-value-text'}
                  className={classNames('lighttemperature-value-text')}>{temperatureness_val}</div>
           </div>
@@ -108,7 +108,7 @@ export function Light_temperature() {
              onClick={handleSelecttemperatureness} onTouchMove={handleMovetemperatureness}
              onTouchEnd={handleEndMovetemperatureness}>
           <div id={'lighttemperature-progress'} className={classNames('lighttemperature-progress')}
-               style={{width: currentWidth}}>
+               style={{ width: currentWidth }}>
             <div id={'lighttemperature-progress-dot'} className={classNames('lighttemperature-progress-dot')}>
             </div>
           </div>
@@ -116,4 +116,4 @@ export function Light_temperature() {
       </div>
     </article>
   );
-};
+}

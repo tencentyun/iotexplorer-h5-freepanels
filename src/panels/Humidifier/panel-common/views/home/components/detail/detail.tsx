@@ -14,16 +14,16 @@ export function Detail() {
     <DeviceSateContext.Consumer>
       {({ deviceStatus, deviceData }) => (
         <article className={classNames('detail')}>
-          {/*电源操作栏*/}
+          {/* 电源操作栏*/}
           <Power />
-          {/*温度和湿度*/}
+          {/* 温度和湿度*/}
           <section className={classNames('environment')}>
             <div className={'environment-wrap'}>
               <div className={classNames('temperature')}>
                 <strong
                   className={classNames(
                     'environment-value',
-                    setDomClassActive(deviceStatus)
+                    setDomClassActive(deviceStatus),
                   )}
                   aria-disabled
                 >
@@ -36,7 +36,7 @@ export function Detail() {
                 <strong
                   className={classNames(
                     'environment-value',
-                    setDomClassActive(deviceStatus)
+                    setDomClassActive(deviceStatus),
                   )}
                 >
                   {deviceData.current_humidity || 0}%
@@ -45,16 +45,14 @@ export function Detail() {
               </div>
             </div>
           </section>
-          {/*温度设置*/}
+          {/* 温度设置*/}
           <SetTemp />
-          {/*地理信息部分*/}
+          {/* 地理信息部分*/}
           <div className={classNames('position-wrap', 'text-align-center')}>
             <ul className={classNames('flex', 'space-between')}>
               <li>
                 <strong
-                  className={classNames(
-                    setDomClassActive(deviceStatus)
-                  )}
+                  className={classNames(setDomClassActive(deviceStatus))}
                 >
                   {deviceData.eco2 || 0}ppm
                 </strong>
@@ -62,9 +60,7 @@ export function Detail() {
               </li>
               <li>
                 <strong
-                  className={classNames(
-                    setDomClassActive(deviceStatus)
-                  )}
+                  className={classNames(setDomClassActive(deviceStatus))}
                 >
                   {deviceData.pm25 || 0}
                 </strong>
@@ -72,9 +68,7 @@ export function Detail() {
               </li>
               <li>
                 <strong
-                  className={classNames(
-                    setDomClassActive(deviceStatus)
-                  )}
+                  className={classNames(setDomClassActive(deviceStatus))}
                 >
                   {deviceData.tvoc || 0}ppm
                 </strong>

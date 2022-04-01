@@ -22,7 +22,7 @@ export const enumGear = {
   level_7: '7档',
   level_8: '8档',
   level_9: '9档',
-  level_MO: '10档'
+  level_MO: '10档',
 };
 
 const Gear = ({ cRef }: any) => {
@@ -30,9 +30,9 @@ const Gear = ({ cRef }: any) => {
   useImperativeHandle(cRef, () => ({
     commit: () => {
       apiControlDeviceData({
-        spray_gears: gearUser
+        spray_gears: gearUser,
       });
-    }
+    },
   }));
 
   const domList = enumToArray(enumGear).map(({ label, value }) => (

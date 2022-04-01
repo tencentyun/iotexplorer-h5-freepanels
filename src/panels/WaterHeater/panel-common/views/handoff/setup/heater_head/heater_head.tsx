@@ -4,7 +4,7 @@ import './heater_head.less';
 import classNames from 'classnames';
 
 export function Setup_head() {
-  const waterQualitySrc = (quality: String) => {
+  const waterQualitySrc = (quality: string) => {
     switch (quality) {
       case 'good':
         return '优';
@@ -84,7 +84,7 @@ export function Setup_head() {
       </div>
     </article>
   );
-};
+}
 
 export default Setup_head;
 

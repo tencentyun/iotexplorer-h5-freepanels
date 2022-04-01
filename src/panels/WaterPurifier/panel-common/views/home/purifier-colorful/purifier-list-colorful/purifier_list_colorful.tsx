@@ -2,7 +2,7 @@ import React from 'react';
 import classNames from 'classnames';
 import './purifier_list_colorful.less';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
-import {onControlDevice} from '@hooks/useDeviceData';
+import { onControlDevice } from '@hooks/useDeviceData';
 
 export function PurifierListColorful() {
   // const [isListVisible, toggleVisible] = useState(false);
@@ -17,7 +17,7 @@ export function PurifierListColorful() {
       day: 'PP剩余天数',
       day_num: sdk.deviceData.pp_day ? sdk.deviceData.pp_day : 0,
       class_name: 'botton_sty1',
-      name: 'pp_switch'
+      name: 'pp_switch',
     },
     {
       id: 1,
@@ -26,7 +26,7 @@ export function PurifierListColorful() {
       day: 'CTO剩余天数',
       day_num: sdk.deviceData.cot_day ? sdk.deviceData.cot_day : 0,
       class_name: 'botton_sty2',
-      name: 'cot_switch'
+      name: 'cot_switch',
     },
     {
       id: 2,
@@ -35,7 +35,7 @@ export function PurifierListColorful() {
       day: 'RO剩余天数',
       day_num: sdk.deviceData.ro_day ? sdk.deviceData.ro_day : 0,
       class_name: 'botton_sty3',
-      name: 'ro_switch'
+      name: 'ro_switch',
     },
     {
       id: 3,
@@ -44,7 +44,7 @@ export function PurifierListColorful() {
       day: 'CBPA剩余天数',
       day_num: sdk.deviceData.CBPA_day ? sdk.deviceData.CBPA_day : 0,
       class_name: 'botton_sty4',
-      name: 'CBPA_switch'
+      name: 'CBPA_switch',
     },
   ];
 
@@ -67,10 +67,10 @@ export function PurifierListColorful() {
                 className={classNames(
                   'botton_sty',
                   t.class_name,
-                  sdk.deviceData.switch != 1 && 'power-off'
+                  sdk.deviceData.switch != 1 && 'power-off',
                 )}
                 onClick={() => {
-                  if (sdk.deviceData.switch == 1){
+                  if (sdk.deviceData.switch == 1) {
                     onControlDevice(t.name, 1);
                   }
                 }}
@@ -83,6 +83,6 @@ export function PurifierListColorful() {
       </div>
     </article>
   );
-};
+}
 
 export default PurifierListColorful;

@@ -15,11 +15,11 @@ import './themes/themes.less'; // 4套皮肤 构建前要修改var.less变量文
 import '@icons/themes/icons/svg/humidifier';
 import { QuicknessMode } from '@components/base/quicknessMode';
 
-export const App = QuicknessMode(function App() {
+export const App = QuicknessMode(() => {
   const isBluetoothDevice = true;
   // eslint-disable-next-line no-undef
   const isDev = process.env.NODE_ENV !== 'production';
-  //新旧链接的兼容
+  // 新旧链接的兼容
   const hasScf = /\/scf\//.test(location.href);
 
   let basename = isDev
@@ -32,8 +32,7 @@ export const App = QuicknessMode(function App() {
     basename += '/live';
   }
 
-  const [state, { onDeviceDataChange, onDeviceStatusChange }]: any =
-    useDeviceData(sdk);
+  const [state, { onDeviceDataChange, onDeviceStatusChange }]: any =    useDeviceData(sdk);
 
   // 获取设备模型数据
   const getDeviceData = (deviceId: string) => {
@@ -95,15 +94,14 @@ export const App = QuicknessMode(function App() {
       <HashRouter basename={basename}>
         <Redirect exact from="/" to="/home"></Redirect>
         <Switch>
-          {/*定时*/}
+          {/* 定时*/}
           <Route path="/timer" render={() => <Timer></Timer>}></Route>
-          {/*更多页*/}
+          {/* 更多页*/}
           <Route path="/more" render={() => <More></More>}></Route>
-          {/*首页*/}
+          {/* 首页*/}
           <Route
             path="/home"
-            render={() =>
-              <Home></Home>
+            render={() => <Home></Home>
             }
           ></Route>
         </Switch>

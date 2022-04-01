@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import classNames from 'classnames';
 // import { SvgIcon } from '@components/common/icon';
-import { Popup } from '@custom/Popop';;
+import { Popup } from '@custom/Popop';
 
 export type SelectType = {
   Radio: 'radio';
@@ -20,13 +20,12 @@ export interface ListPopupProps extends StyledProps {
   value?: string[];
   type?: SelectType['Radio'] | SelectType['Multiple'];
   options: Option[];
-  layoutType?: string; //'middle'
+  layoutType?: string; // 'middle'
   onCancel?: () => void;
   onConfirm?: (checked: string[]) => void;
 }
 
 export function ListPopup(props: ListPopupProps) {
-
   const { type = 'radio', options, value } = props;
   const [checkList, setCheckList] = useState(['']);
 
@@ -61,7 +60,7 @@ export function ListPopup(props: ListPopupProps) {
       <div
         className={classNames('item-block', {
           isDisabled: item.disabled,
-          isSelected: isSelected
+          isSelected,
         })}
         key={item.value}
         onClick={() => handleSelect(item)}

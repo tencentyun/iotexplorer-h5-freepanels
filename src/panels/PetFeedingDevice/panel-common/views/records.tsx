@@ -19,7 +19,7 @@ export function Records() {
           FieldName: 'manual_feed',
           MaxTime: currentTime,
           MinTime: lastYearTime,
-          Limit: 10
+          Limit: 10,
         });
 
         const list: RecordItemProps[] = [];
@@ -29,7 +29,7 @@ export function Records() {
             id: i,
             date: data.Time,
             value: data.Value,
-            label: '喂食分数'
+            label: '喂食分数',
           });
         }
 

@@ -2,23 +2,23 @@ import React from 'react';
 import './side_head.less';
 import classNames from 'classnames';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
-import {onControlDevice} from '@hooks/useDeviceData';
+import { onControlDevice } from '@hooks/useDeviceData';
 import Bus from '@libs/utillib';
-import {useDidMount, useWillUnmount} from 'beautiful-react-hooks';
+import { useDidMount, useWillUnmount } from 'beautiful-react-hooks';
 
 let timer = null;
-const info = {curRatio: sdk.deviceData.percent_control ? sdk.deviceData.percent_control : 30}
+const info = { curRatio: sdk.deviceData.percent_control ? sdk.deviceData.percent_control : 30 };
 
 export function Side_Head() {
   useDidMount(() => {
-    timer = setInterval(changeRatio, 50)
+    timer = setInterval(changeRatio, 50);
     Bus.emit('percent_control', info.curRatio);
     moveProgress(info.curRatio);
   });
 
   useWillUnmount(() => {
     clearInterval(timer);
-  })
+  });
 
   const changeRatio = () => {
     if (sdk.deviceData.control == 'pause') {
@@ -29,18 +29,18 @@ export function Side_Head() {
       if (info.curRatio > 0) {
         info.curRatio--;
         // onToggleOpenRatio(curRatio);
-        moveProgress(info.curRatio)
-        openLeave(info.curRatio)
+        moveProgress(info.curRatio);
+        openLeave(info.curRatio);
       }
     } else if (sdk.deviceData.control == 'close') {
       if (info.curRatio < 100) {
         info.curRatio++;
         // onToggleOpenRatio(curRatio);
-        moveProgress(info.curRatio)
-        openLeave(info.curRatio)
+        moveProgress(info.curRatio);
+        openLeave(info.curRatio);
       }
     }
-  }
+  };
 
   const moveProgress = (ratio) => {
     ratio /= 100.0;
@@ -50,27 +50,25 @@ export function Side_Head() {
 
     let x = control_bar_progress.clientWidth * ratio - control_bar_progress_btn.clientWidth / 2;
     if (x < 0) x = 0;
-    if (x > control_bar_progress?.clientWidth - control_bar_progress_btn.clientWidth)
-      x = control_bar_progress?.clientWidth - control_bar_progress_btn.clientWidth;
-    control_bar_progress_btn.style.marginLeft = x + 'px';
-    control_bar_progress_pass.style.width = (x + control_bar_progress_btn.clientWidth * 0) + 'px';
-  }
+    if (x > control_bar_progress?.clientWidth - control_bar_progress_btn.clientWidth) x = control_bar_progress?.clientWidth - control_bar_progress_btn.clientWidth;
+    control_bar_progress_btn.style.marginLeft = `${x}px`;
+    control_bar_progress_pass.style.width = `${x + control_bar_progress_btn.clientWidth * 0}px`;
+  };
 
   // const [openRatio, onToggleOpenRatio] = useState(55);
 
   const openLeave = (openRatio) => {
-    let one_el_div = document.getElementsByClassName("dark_leave_div")[0];
-    let el_wrap = document.getElementById("dark_leave_wrap");
+    const one_el_div = document.getElementsByClassName('dark_leave_div')[0];
+    const el_wrap = document.getElementById('dark_leave_wrap');
     // console.log(one_el_div?.clientWidth);
     // console.log(el_wrap?.clientWidth);
-    let x = el_wrap?.clientWidth / 18.0 * openRatio / 100;
+    const x = el_wrap?.clientWidth / 18.0 * openRatio / 100;
     // console.log(x);
-    let divs = document.getElementsByClassName("dark_leave_div");
+    const divs = document.getElementsByClassName('dark_leave_div');
     for (let i = 0; i < divs.length; i++) {
-
-      divs[i].style.width = x + "px";
+      divs[i].style.width = `${x}px`;
     }
-  }
+  };
 
   const handleMoveOpenRatio = (e: React.MouseEvent) => {
     const control_bar_progress = document.getElementById('control_bar_progress_total');
@@ -80,7 +78,7 @@ export function Side_Head() {
     let openRatio = (e.changedTouches[0].clientX - control_bar_progress.offsetLeft) / control_bar_progress.clientWidth;
     if (openRatio < 0) openRatio = 0;
     if (openRatio > 1) openRatio = 1;
-    let openRatio_val = parseInt(openRatio * 100); // 亮度数值
+    const openRatio_val = parseInt(openRatio * 100); // 亮度数值
     // console.log(openRatio_val);
     // onToggleOpenRatio(openRatio_val);
     info.curRatio = openRatio_val;
@@ -89,10 +87,9 @@ export function Side_Head() {
 
     let x = e.changedTouches[0].clientX - control_bar_progress.offsetLeft - control_bar_progress_btn.clientWidth / 2;
     if (x < 0) x = 0;
-    if (x > control_bar_progress?.clientWidth - control_bar_progress_btn.clientWidth)
-      x = control_bar_progress?.clientWidth - control_bar_progress_btn.clientWidth;
-    control_bar_progress_btn.style.marginLeft = x + 'px';
-    control_bar_progress_pass.style.width = (x + control_bar_progress_btn.clientWidth * 0) + 'px';
+    if (x > control_bar_progress?.clientWidth - control_bar_progress_btn.clientWidth) x = control_bar_progress?.clientWidth - control_bar_progress_btn.clientWidth;
+    control_bar_progress_btn.style.marginLeft = `${x}px`;
+    control_bar_progress_pass.style.width = `${x + control_bar_progress_btn.clientWidth * 0}px`;
   };
 
   const handleEndMoveOpenRatio = (e: React.MouseEvent) => {
@@ -101,7 +98,7 @@ export function Side_Head() {
     let openRatio = (e.changedTouches[0].clientX - control_bar_progress.offsetLeft) / control_bar_progress.clientWidth;
     if (openRatio < 0) openRatio = 0;
     if (openRatio > 1) openRatio = 1;
-    let openRatio_val = parseInt(openRatio * 100); // 亮度数值
+    const openRatio_val = parseInt(openRatio * 100); // 亮度数值
     // console.log(openRatio_val);
     // onToggleOpenRatio(openRatio_val);
     info.curRatio = openRatio_val;
@@ -118,7 +115,7 @@ export function Side_Head() {
     let openRatio = (e.changedTouches[0].clientX - control_bar_progress.offsetLeft) / control_bar_progress.clientWidth;
     if (openRatio < 0) openRatio = 0;
     if (openRatio > 1) openRatio = 1;
-    let openRatio_val = parseInt(openRatio * 100); // 亮度数值
+    const openRatio_val = parseInt(openRatio * 100); // 亮度数值
     // console.log(openRatio_val);
     // onToggleOpenRatio(openRatio_val);
     info.curRatio = openRatio_val;
@@ -209,6 +206,6 @@ export function Side_Head() {
       </div>
     </article>
   );
-};
+}
 
 export default Side_Head;

@@ -4,8 +4,8 @@ import { Tabs } from '@components/business';
 import { SvgIcon } from '@components/common';
 import { White } from './view-white';
 import { Scene } from './view-scene';
-import {getThemeType} from '@libs/theme';
-import './main.less'
+import { getThemeType } from '@libs/theme';
+import './main.less';
 const { TabPane } = Tabs;
 
 export function Main() {

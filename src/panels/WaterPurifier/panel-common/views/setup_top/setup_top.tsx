@@ -1,17 +1,17 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import classNames from 'classnames';
-import {Cell, Switch} from '@components/base';
+import { Cell, Switch } from '@components/base';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
-import {getThemeType} from '@libs/theme';
-import { apiControlDeviceData, onControlDevice} from '@hooks/useDeviceData';
+import { getThemeType } from '@libs/theme';
+import { apiControlDeviceData, onControlDevice } from '@hooks/useDeviceData';
 import Cupnum_model from './cupnum_model/cupnum_model';
 import Quantity_model from './quantity_model/quantity_model';
 import Water_temperature from './water_temperature/water_temperature';
-import {toggleBooleanByNumber} from '@libs/utillib';
+import { toggleBooleanByNumber } from '@libs/utillib';
 import './setup_top.less';
 
 export function SetupList() {
-  const flowSrc = (status: String) => {
+  const flowSrc = (status: string) => {
     switch (status) {
       case 'continue':
         return '持续出水';
@@ -32,14 +32,14 @@ export function SetupList() {
 
   const onQuantity = () => {
     theQuantity(true);
-  }
+  };
 
   const onCupnum = () => {
     theCupnum(true);
-  }
+  };
   const onTemperature = () => {
     theTemperature(true);
-  }
+  };
 
   const themeType = getThemeType();
 
@@ -51,7 +51,7 @@ export function SetupList() {
           title="设置杯量"
           // isLink={false}
           onClick={onQuantity}
-          value={sdk.deviceData.flow_set ? sdk.deviceData.flow_set + "ML" : ""}
+          value={sdk.deviceData.flow_set ? `${sdk.deviceData.flow_set}ML` : ''}
           valueStyle="gray"
           size="medium"
         >
@@ -62,7 +62,7 @@ export function SetupList() {
           title="取水杯量"
           // isLink={false}
           onClick={onCupnum}
-          value={sdk.deviceData.flow ? flowSrc(sdk.deviceData.flow) : ""}
+          value={sdk.deviceData.flow ? flowSrc(sdk.deviceData.flow) : ''}
           valueStyle="gray"
           size="medium"
         >
@@ -73,7 +73,7 @@ export function SetupList() {
           title="温度设置"
           // isLink={false}
           onClick={onTemperature}
-          value={sdk.deviceData.temp_set ? sdk.deviceData.temp_set + "°C" : ""}
+          value={sdk.deviceData.temp_set ? `${sdk.deviceData.temp_set}°C` : ''}
           valueStyle="gray"
           size="medium"
         >
@@ -90,11 +90,9 @@ export function SetupList() {
             <Switch
               name={''}
               theme={themeType}
-              checked={toggleBooleanByNumber(
-                sdk.deviceData.auto_clean ? sdk.deviceData.auto_clean : 0
-              )}
+              checked={toggleBooleanByNumber(sdk.deviceData.auto_clean ? sdk.deviceData.auto_clean : 0)}
               onChange={(value: boolean) => {
-                apiControlDeviceData({auto_clean: value ? 1 : 0});
+                apiControlDeviceData({ auto_clean: value ? 1 : 0 });
               }}
             />
           }
@@ -111,11 +109,9 @@ export function SetupList() {
             <Switch
               name={''}
               theme={themeType}
-              checked={toggleBooleanByNumber(
-                sdk.deviceData.uv ? sdk.deviceData.uv : 0
-              )}
+              checked={toggleBooleanByNumber(sdk.deviceData.uv ? sdk.deviceData.uv : 0)}
               onChange={(value: boolean) => {
-                apiControlDeviceData({uv: value ? 1 : 0});
+                apiControlDeviceData({ uv: value ? 1 : 0 });
               }}
             />
           }
@@ -132,11 +128,9 @@ export function SetupList() {
             <Switch
               name={''}
               theme={themeType}
-              checked={toggleBooleanByNumber(
-                sdk.deviceData.child_lock ? sdk.deviceData.child_lock : 0
-              )}
+              checked={toggleBooleanByNumber(sdk.deviceData.child_lock ? sdk.deviceData.child_lock : 0)}
               onChange={(value: boolean) => {
-                apiControlDeviceData({child_lock: value ? 1 : 0});
+                apiControlDeviceData({ child_lock: value ? 1 : 0 });
               }}
             />
           }
@@ -153,11 +147,9 @@ export function SetupList() {
             <Switch
               name={''}
               theme={themeType}
-              checked={toggleBooleanByNumber(
-                sdk.deviceData.hotwater_lock ? sdk.deviceData.hotwater_lock : 0
-              )}
+              checked={toggleBooleanByNumber(sdk.deviceData.hotwater_lock ? sdk.deviceData.hotwater_lock : 0)}
               onChange={(value: boolean) => {
-                apiControlDeviceData({hotwater_lock: value ? 1 : 0});
+                apiControlDeviceData({ hotwater_lock: value ? 1 : 0 });
               }}
             />
           }
@@ -169,7 +161,7 @@ export function SetupList() {
         <Cell
           className="_color_white_"
           title="耗水总量"
-          subTitle={sdk.deviceData.water_total ? sdk.deviceData.water_total + 'L' : '0L'}
+          subTitle={sdk.deviceData.water_total ? `${sdk.deviceData.water_total}L` : '0L'}
           isLink={false}
           value={
             <div
@@ -209,6 +201,6 @@ export function SetupList() {
 
     </article>
   );
-};
+}
 
 export default SetupList;

@@ -19,41 +19,41 @@ export interface TimePickerViewProps extends Omit<PickerViewGroupProps, 'options
 }
 
 export function TimePickerView({
-	value,
-	onChange,
-	isTimeRange = false, // 时间范围
-	itemHeight = 80,
-	height = 400,
-	showUnit,
-	hourUnit,
-	minuteUnit,
-	showTwoDigit,
-	...props
+  value,
+  onChange,
+  isTimeRange = false, // 时间范围
+  itemHeight = 80,
+  height = 400,
+  showUnit,
+  hourUnit,
+  minuteUnit,
+  showTwoDigit,
+  ...props
 }: TimePickerViewProps) {
-	// pickerView 不支持 rpx
-	const options = useMemo(() => {
-		const hours = getHour(showTwoDigit);
-		const minutes = getMinute(showTwoDigit);
+  // pickerView 不支持 rpx
+  const options = useMemo(() => {
+    const hours = getHour(showTwoDigit);
+    const minutes = getMinute(showTwoDigit);
 
-		const hourOptions = hours.map(h => ({
-			text: `${h}${showUnit ? (hourUnit || ' 时') : ''}`,
-			value: h,
-		}));
-		const minuteOptions = minutes.map(m => ({
-			text: `${m}${showUnit ? (minuteUnit || ' 分') : ''}`,
-			value: m,
-		}));
+    const hourOptions = hours.map(h => ({
+      text: `${h}${showUnit ? (hourUnit || ' 时') : ''}`,
+      value: h,
+    }));
+    const minuteOptions = minutes.map(m => ({
+      text: `${m}${showUnit ? (minuteUnit || ' 分') : ''}`,
+      value: m,
+    }));
 
-		let options = [hourOptions, minuteOptions];
+    let options = [hourOptions, minuteOptions];
 
-		if (isTimeRange) {
-			options = options.concat([hourOptions, minuteOptions]);
-		}
+    if (isTimeRange) {
+      options = options.concat([hourOptions, minuteOptions]);
+    }
 
-		return options;
-	}, [showTwoDigit, isTimeRange]);
+    return options;
+  }, [showTwoDigit, isTimeRange]);
 
-	return (
+  return (
 		<PickerViewGroup
 			options={options}
 			onChange={value => onChange(value.map(v => +v))}
@@ -63,6 +63,6 @@ export function TimePickerView({
 			showDivider={isTimeRange}
 			{...props}
 		/>
-	);
+  );
 }
 

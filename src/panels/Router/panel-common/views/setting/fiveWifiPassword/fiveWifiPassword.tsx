@@ -7,7 +7,7 @@ const FiveWifiPassword = ({ isShow, onClose }) => {
   const [dataUser, setDataUser] = useState();
   const handleCommit = () => {
     apiControlDeviceData({
-      sta_config_5g: dataUser
+      sta_config_5g: dataUser,
     });
     onClose();
   };
@@ -22,7 +22,7 @@ const FiveWifiPassword = ({ isShow, onClose }) => {
       <Input
         placeholder="请输入密码"
         value={dataUser}
-        onChange={val => {
+        onChange={(val) => {
           setDataUser(val);
           apiControlDeviceData({ name_24g: val });
         }}

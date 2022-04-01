@@ -1,16 +1,16 @@
 import React from 'react';
 import './home_morandi.less';
 import classNames from 'classnames';
-import {getThemeType} from '@libs/theme';
-import {apiControlDeviceData} from '@hooks/useDeviceData';
+import { getThemeType } from '@libs/theme';
+import { apiControlDeviceData } from '@hooks/useDeviceData';
 import { SvgIcon } from '@components/common/icon';
 import { Normal_progress_bar } from '../normal-progress-bar/normal_progress_bar';
-import {toggleBooleanByNumber} from '@libs/utillib';
+import { toggleBooleanByNumber } from '@libs/utillib';
 import { Cell, Switch } from '@components/base';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 
-export function Home_morandi () {
-    const themeType = getThemeType();
+export function Home_morandi() {
+  const themeType = getThemeType();
 
   // const [lampSrc] = useState(lampIcon);
   return (
@@ -18,7 +18,7 @@ export function Home_morandi () {
             <div className="emergency_head">
                 <div className="card_icon_morandi">
                     <div className="head-icon">
-                        <SvgIcon name={'icon-emergency-button-'+themeType} width={160} height={160}/>
+                        <SvgIcon name={`icon-emergency-button-${themeType}`} width={160} height={160}/>
                     </div>
 
                     <div id={'center_scale'}>
@@ -58,9 +58,7 @@ export function Home_morandi () {
                       <Switch
                         name={''}
                         theme={themeType}
-                        checked={toggleBooleanByNumber(
-                          sdk.deviceData.disarmed ? sdk.deviceData.disarmed : 0
-                        )}
+                        checked={toggleBooleanByNumber(sdk.deviceData.disarmed ? sdk.deviceData.disarmed : 0)}
                         onChange={(value: boolean) => {
                           apiControlDeviceData({ disarmed: value ? 1 : 0 });
                         }}
@@ -68,7 +66,7 @@ export function Home_morandi () {
                     }
                     valueStyle="gray"
                     size="medium"
-                    prefixIcon={<SvgIcon name={'icon-emergency-disarm-'+themeType} width={40} height={40}/>}
+                    prefixIcon={<SvgIcon name={`icon-emergency-disarm-${themeType}`} width={40} height={40}/>}
                 />
 
                  <Cell
@@ -80,9 +78,7 @@ export function Home_morandi () {
                       <Switch
                         name={''}
                         theme={themeType}
-                        checked={toggleBooleanByNumber(
-                          sdk.deviceData.arm ? sdk.deviceData.arm : 0
-                        )}
+                        checked={toggleBooleanByNumber(sdk.deviceData.arm ? sdk.deviceData.arm : 0)}
                         onChange={(value: boolean) => {
                           apiControlDeviceData({ arm: value ? 1 : 0 });
                         }}
@@ -90,7 +86,7 @@ export function Home_morandi () {
                     }
                     valueStyle="gray"
                     size="medium"
-                    prefixIcon={<SvgIcon name={'icon-emergency-go-out-and-arm-'+themeType} width={40} height={40}/>}
+                    prefixIcon={<SvgIcon name={`icon-emergency-go-out-and-arm-${themeType}`} width={40} height={40}/>}
                 />
 
                  <Cell
@@ -102,9 +98,7 @@ export function Home_morandi () {
                       <Switch
                         name={''}
                         theme={themeType}
-                        checked={toggleBooleanByNumber(
-                          sdk.deviceData.home ? sdk.deviceData.home : 0
-                        )}
+                        checked={toggleBooleanByNumber(sdk.deviceData.home ? sdk.deviceData.home : 0)}
                         onChange={(value: boolean) => {
                           apiControlDeviceData({ home: value ? 1 : 0 });
                         }}
@@ -112,7 +106,7 @@ export function Home_morandi () {
                     }
                     valueStyle="gray"
                     size="medium"
-                    prefixIcon={<SvgIcon name={'icon-emergency-arm-your-home-'+themeType} width={40} height={40}/>}
+                    prefixIcon={<SvgIcon name={`icon-emergency-arm-your-home-${themeType}`} width={40} height={40}/>}
                 />
 
                  <Cell
@@ -124,9 +118,7 @@ export function Home_morandi () {
                       <Switch
                         name={''}
                         theme={themeType}
-                        checked={toggleBooleanByNumber(
-                          sdk.deviceData.sos ? sdk.deviceData.sos : 0
-                        )}
+                        checked={toggleBooleanByNumber(sdk.deviceData.sos ? sdk.deviceData.sos : 0)}
                         onChange={(value: boolean) => {
                           apiControlDeviceData({ sos: value ? 1 : 0 });
                         }}
@@ -134,11 +126,11 @@ export function Home_morandi () {
                     }
                     valueStyle="gray"
                     size="medium"
-                    prefixIcon={<SvgIcon name={'icon-emergency-urgent-'+themeType} width={45} height={45}/>}
+                    prefixIcon={<SvgIcon name={`icon-emergency-urgent-${themeType}`} width={45} height={45}/>}
                 />
             </div>
         </article>
   );
-};
+}
 
 export default Home_morandi;

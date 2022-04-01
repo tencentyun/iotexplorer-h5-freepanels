@@ -2,22 +2,22 @@ import React, { useState } from 'react';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 import TimerCloud, {
   ITimerDataBind,
-  ITimerOptions
+  ITimerOptions,
 } from '@components/business/timerCloud/timer-cloud';
 import { List, Radio } from 'antd-mobile';
 import { Modal } from '@components/base';
 import IconChecked from '@components/base/icon-checked/icon-checked';
 
 const Timer = () => {
-  const getSwitchNumData = (powerSwitch ) => {
+  const getSwitchNumData = (powerSwitch) => {
     const value = 1 * powerSwitch;
-    const changeData = { power_switch : value };
-    if (sdk.deviceData.timer_dev == 'switch_1'){
-      console.log("timer_dev"+sdk.deviceData.timer_dev);
-      changeData['switch_1'] = value;
-    }else if(sdk.deviceData.timer_dev == 'switch_2'){
-      changeData['switch_2'] = value;
-      console.log("timer_dev"+sdk.deviceData.timer_dev);
+    const changeData = { power_switch: value };
+    if (sdk.deviceData.timer_dev == 'switch_1') {
+      console.log(`timer_dev${sdk.deviceData.timer_dev}`);
+      changeData.switch_1 = value;
+    } else if (sdk.deviceData.timer_dev == 'switch_2') {
+      changeData.switch_2 = value;
+      console.log(`timer_dev${sdk.deviceData.timer_dev}`);
     }
 
     return changeData;
@@ -28,21 +28,21 @@ const Timer = () => {
   const optionsTimer: ITimerOptions = {
     power_switch: {
       label: '开关',
-      value_enum: ['关', '开']
-    }
+      value_enum: ['关', '开'],
+    },
   };
   return (
     <TimerCloud dataBind={data} options={optionsTimer}>
       <List>
         <List.Item
           prefix={'开关'}
-          extra={optionsTimer.power_switch.value_enum[data['power_switch']]}
+          extra={optionsTimer.power_switch.value_enum[data.power_switch]}
           onClick={() => {
             setIsShowPowerSwitch(true);
           }}
         />
       </List>
-      {/*开关弹窗*/}
+      {/* 开关弹窗*/}
       <Modal
         title={'开关'}
         visible={isShowPowerSwitch}
@@ -78,7 +78,7 @@ const Timer = () => {
           </List>
         </Radio.Group>
       </Modal>
-      {/*<button onClick={handleChange}>change11</button>*/}
+      {/* <button onClick={handleChange}>change11</button>*/}
     </TimerCloud>
   );
 };

@@ -1,17 +1,17 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import './morandi_body.less';
 import classNames from 'classnames';
 import Options_Work from '../../home-normal/work_model/work_model';
 import Options_Motor from '../../home-normal/motor/motor';
-import {SvgIcon} from '@components/common/icon';
-import {useHistory} from 'react-router-dom';
+import { SvgIcon } from '@components/common/icon';
+import { useHistory } from 'react-router-dom';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
-import {onControlDevice} from '@hooks/useDeviceData';
-import {useDidMount, useWillUnmount} from 'beautiful-react-hooks';
+import { onControlDevice } from '@hooks/useDeviceData';
+import { useDidMount, useWillUnmount } from 'beautiful-react-hooks';
 import Bus from '@libs/utillib';
 
 let timer = null;
-const info = {curRatio: sdk.deviceData.percent_control ? sdk.deviceData.percent_control : 30}
+const info = { curRatio: sdk.deviceData.percent_control ? sdk.deviceData.percent_control : 30 };
 
 export function Morandi_body() {
   // const [openRatio, onToggleOpenRatio] = useState(
@@ -22,14 +22,14 @@ export function Morandi_body() {
   // }, []);
 
   useDidMount(() => {
-    timer = setInterval(changeRatio, 50)
+    timer = setInterval(changeRatio, 50);
     Bus.emit('percent_control', info.curRatio);
     moveProgress(info.curRatio);
   });
 
   useWillUnmount(() => {
     clearInterval(timer);
-  })
+  });
 
   const changeRatio = () => {
     if (sdk.deviceData.control == 'pause') {
@@ -41,32 +41,32 @@ export function Morandi_body() {
         info.curRatio--;
         // onToggleOpenRatio(curRatio);
         Bus.emit('percent_control', info.curRatio);
-        moveProgress(info.curRatio)
+        moveProgress(info.curRatio);
       }
     } else if (sdk.deviceData.control == 'close') {
       if (info.curRatio < 100) {
         info.curRatio++;
         // onToggleOpenRatio(curRatio);
         Bus.emit('percent_control', info.curRatio);
-        moveProgress(info.curRatio)
+        moveProgress(info.curRatio);
       }
     }
-  }
+  };
 
   const moveProgress = (ratio) => {
     ratio /= 100.0;
-    let index = ratio * 7;
-    let items = document.getElementsByClassName("morandi-progress-card");
+    const index = ratio * 7;
+    const items = document.getElementsByClassName('morandi-progress-card');
     for (let i = 0; i < items.length; i++) {
-      let tmp = items[i];
-      let tag = parseInt(tmp.attributes['data-key'].value);
+      const tmp = items[i];
+      const tag = parseInt(tmp.attributes['data-key'].value);
       if (tag <= index) {
         tmp.style.backgroundColor = tmp.attributes['data-color'].value;
       } else {
-        tmp.style.backgroundColor = "transparent";
+        tmp.style.backgroundColor = 'transparent';
       }
     }
-  }
+  };
 
   // const [openRatio, onToggleOpenRatio] = useState(55);
 
@@ -87,33 +87,33 @@ export function Morandi_body() {
     } else {
       onControlDevice('control', 'close');
     }
-  }
+  };
 
   const history = useHistory();
 
   const onCurtainWork = () => {
-    history.push('/curtain_more')
-  }
+    history.push('/curtain_more');
+  };
 
   const [selectTheCurtain, theCurtain_options] = useState(false);
   const [selectTheWork, theCurtain_Work] = useState(false);
 
   const onCurtain = () => {
     theCurtain_options(true);
-  }
+  };
   const onWork = () => {
     theCurtain_Work(true);
-  }
+  };
   const onSelectOpenRatio = (index) => {
     // console.log(index);
-    let items = document.getElementsByClassName("morandi-progress-card");
+    const items = document.getElementsByClassName('morandi-progress-card');
     for (let i = 0; i < items.length; i++) {
-      let tmp = items[i];
-      let tag = parseInt(tmp.attributes['data-key'].value);
+      const tmp = items[i];
+      const tag = parseInt(tmp.attributes['data-key'].value);
       if (tag <= index) {
         tmp.style.backgroundColor = tmp.attributes['data-color'].value;
       } else {
-        tmp.style.backgroundColor = "transparent";
+        tmp.style.backgroundColor = 'transparent';
       }
     }
     const val = (index + 1) * 100 / 7.0;
@@ -133,11 +133,11 @@ export function Morandi_body() {
     let openRatio = (e.changedTouches[0].clientX - control_bar_progress.offsetLeft) / control_bar_progress.clientWidth;
     if (openRatio < 0) openRatio = 0;
     if (openRatio > 1) openRatio = 1;
-    let openRatio_val = parseInt(openRatio * 100); // 数值
+    const openRatio_val = parseInt(openRatio * 100); // 数值
     // onToggleOpenRatio(openRatio_val);
     info.curRatio = openRatio_val;
     onControlDevice('percent_control', openRatio_val);
-  }
+  };
 
   const handleMoveOpenRatio = (e: React.MouseEvent) => {
     const control_bar_progress = document.getElementById('morandi-progress-card-wrap');
@@ -145,14 +145,14 @@ export function Morandi_body() {
     let openRatio = (e.changedTouches[0].clientX - control_bar_progress.offsetLeft) / control_bar_progress.clientWidth;
     if (openRatio < 0) openRatio = 0;
     if (openRatio > 1) openRatio = 1;
-    let openRatio_val = parseInt(openRatio * 100); // 数值
+    const openRatio_val = parseInt(openRatio * 100); // 数值
 
     // onToggleOpenRatio(openRatio_val);
     info.curRatio = openRatio_val;
     // openLeave(openRatio_val);
     Bus.emit('percent_control', info.curRatio);
     moveProgress(openRatio_val);
-  }
+  };
 
   const handleEndMoveOpenRatio = (e: React.MouseEvent) => {
     const control_bar_progress = document.getElementById('morandi-progress-card-wrap');
@@ -160,13 +160,13 @@ export function Morandi_body() {
     let openRatio = (e.changedTouches[0].clientX - control_bar_progress.offsetLeft) / control_bar_progress.clientWidth;
     if (openRatio < 0) openRatio = 0;
     if (openRatio > 1) openRatio = 1;
-    let openRatio_val = parseInt(openRatio * 100); // 数值
+    const openRatio_val = parseInt(openRatio * 100); // 数值
     // onToggleOpenRatio(openRatio_val);
     info.curRatio = openRatio_val;
     moveProgress(info.curRatio);
     Bus.emit('percent_control', info.curRatio);
     onControlDevice('percent_control', openRatio_val);
-  }
+  };
 
   return (
     <article id={'morandi_body'} className={classNames('morandi_body')}>
@@ -179,7 +179,7 @@ export function Morandi_body() {
                 name={sdk.deviceData.control === 'open' && 'icon-curtains-open-unlock-morandi' || 'icon-curtains-open-morandi'}
                 color="#FFFFF" width={60} height={20}/>
 
-              <div className={classNames("botton_open", sdk.deviceData.control === 'open' && "font_select")}>
+              <div className={classNames('botton_open', sdk.deviceData.control === 'open' && 'font_select')}>
                 开启
               </div>
             </div>
@@ -195,7 +195,7 @@ export function Morandi_body() {
                 name={sdk.deviceData.control === 'close' && 'icon-curtains-close-unlock-morandi' || 'icon-curtains-close-open-morandi'}
                 color="#FFFFF" width={60} height={20}/>
 
-              <div className={classNames("botton_close", sdk.deviceData.control === 'close' && "font_select")}>
+              <div className={classNames('botton_close', sdk.deviceData.control === 'close' && 'font_select')}>
                 关闭
               </div>
             </div>
@@ -218,19 +218,19 @@ export function Morandi_body() {
                  onTouchStart={handleStartOpenRatio} onTouchMove={handleMoveOpenRatio}
                  onTouchEnd={handleEndMoveOpenRatio}>
               <div data-key="0" data-color="#FDFBFC" className="morandi-progress-card"
-                   style={{"backgroundColor": "#FDFBFC"}}></div>
+                   style={{ backgroundColor: '#FDFBFC' }}></div>
               <div data-key="1" data-color="#E6E3E4" className="morandi-progress-card"
-                   style={{"backgroundColor": "#E6E3E4"}}></div>
+                   style={{ backgroundColor: '#E6E3E4' }}></div>
               <div data-key="2" data-color="#BCB5B7" className="morandi-progress-card"
-                   style={{"backgroundColor": "#BCB5B7"}}></div>
+                   style={{ backgroundColor: '#BCB5B7' }}></div>
               <div data-key="3" data-color="#9D9497" className="morandi-progress-card"
-                   style={{"backgroundColor": "#9D9497"}}></div>
+                   style={{ backgroundColor: '#9D9497' }}></div>
               <div data-key="4" data-color="#7E7678" className="morandi-progress-card"
-                   style={{"backgroundColor": "#7E7678"}}></div>
+                   style={{ backgroundColor: '#7E7678' }}></div>
               <div data-key="5" data-color="#655C5F" className="morandi-progress-card"
-                   style={{"backgroundColor": "#655C5F"}}></div>
+                   style={{ backgroundColor: '#655C5F' }}></div>
               <div data-key="6" data-color="#4E4749" className="morandi-progress-card"
-                   style={{"backgroundColor": "#4E4749"}}></div>
+                   style={{ backgroundColor: '#4E4749' }}></div>
             </div>
           </div>
         </div>
@@ -276,6 +276,6 @@ export function Morandi_body() {
       />
     </article>
   );
-};
+}
 
 export default Morandi_body;

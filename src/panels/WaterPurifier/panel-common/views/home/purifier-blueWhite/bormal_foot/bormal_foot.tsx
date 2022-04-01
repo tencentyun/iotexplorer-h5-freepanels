@@ -1,15 +1,15 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import './bormal_foot.less';
 import classNames from 'classnames';
-import {SvgIcon} from '@components/common/icon';
-import {Switch} from '@components/base';
-import {useHistory} from 'react-router-dom';
+import { SvgIcon } from '@components/common/icon';
+import { Switch } from '@components/base';
+import { useHistory } from 'react-router-dom';
 import PurifierList from '../../purifier-list/purifier_list';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
-import {apiControlDeviceData} from '@hooks/useDeviceData';
-import TempModel from "../../temp_model/temp_model";
-import {toggleBooleanByNumber} from '@libs/utillib';
-import {getThemeType} from '@libs/theme';
+import { apiControlDeviceData } from '@hooks/useDeviceData';
+import TempModel from '../../temp_model/temp_model';
+import { toggleBooleanByNumber } from '@libs/utillib';
+import { getThemeType } from '@libs/theme';
 export function Bormal_foot() {
   const themeType = getThemeType();
   // const [lampSrc] = useState(lampIcon);
@@ -19,16 +19,16 @@ export function Bormal_foot() {
 
   const onSetup = () => {
     if (sdk.deviceData.switch === 1) {
-      history.push('/setup')
+      history.push('/setup');
     }
-  }
+  };
   const onSwitchFlow = () => {
     if (sdk.deviceData.switch === 1) {
       apiControlDeviceData({
-        switch_flow: sdk.deviceData.switch_flow === 1 ? 0 : 1
+        switch_flow: sdk.deviceData.switch_flow === 1 ? 0 : 1,
       });
     }
-  }
+  };
   return (
     <article id={'bluewhite_bormal_foot'} className={classNames('bluewhite_bormal_foot')}>
       <PurifierList/>
@@ -37,13 +37,11 @@ export function Bormal_foot() {
           <Switch
             name={''}
             theme={themeType}
-            checked={toggleBooleanByNumber(
-              sdk.deviceData.switch ? sdk.deviceData.switch : 0
-            )}
+            checked={toggleBooleanByNumber(sdk.deviceData.switch ? sdk.deviceData.switch : 0)}
             onChange={(value: boolean) => {
               apiControlDeviceData({
                 switch: value ? 1 : 0,
-                switch_flow: 0
+                switch_flow: 0,
               });
             }}
           />
@@ -54,7 +52,7 @@ export function Bormal_foot() {
             name={sdk.deviceData.switch_flow === 1 && 'icon-purifier-take-water-blueWhite' || 'icon-purifier-take-water-notopen-blueWhite'}
             color="#000000" width={50} height={50}/>
         </div>
-        <div onClick={() => sdk.deviceData.switch === 1 ? setIsShowTempMode(true) : ''}>
+        <div onClick={() => (sdk.deviceData.switch === 1 ? setIsShowTempMode(true) : '')}>
           <SvgIcon
             name={sdk.deviceData.switch === 1 && 'icon-purifier-coffee-blueWhite' || 'icon-purifier-coffee-notopen-blueWhite'}
             color="#000000" width={50} height={50}/>
@@ -76,7 +74,7 @@ export function Bormal_foot() {
 
     </article>
   );
-};
+}
 
 export default Bormal_foot;
 

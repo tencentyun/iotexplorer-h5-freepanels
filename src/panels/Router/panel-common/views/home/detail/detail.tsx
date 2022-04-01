@@ -7,9 +7,9 @@ import Environment from './environment/environment';
 export function Detail() {
   return (
     <article className={classNames('detail')}>
-      {/*产品模式*/}
+      {/* 产品模式*/}
       <Environment />
-      {/*电源操作栏*/}
+      {/* 电源操作栏*/}
       <Power />
     </article>
   );

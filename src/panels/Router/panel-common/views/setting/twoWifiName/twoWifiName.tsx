@@ -7,7 +7,7 @@ const TwoWifiName = ({ isShow, onClose }) => {
   const [dataUser, setDataUser] = useState();
   const handleCommit = () => {
     apiControlDeviceData({
-      name_24g: dataUser
+      name_24g: dataUser,
     });
     onClose();
   };
@@ -22,7 +22,7 @@ const TwoWifiName = ({ isShow, onClose }) => {
       <Input
         placeholder="请输入名称"
         value={dataUser}
-        onChange={val => {
+        onChange={(val) => {
           setDataUser(val);
           apiControlDeviceData({ name_24g: val });
         }}

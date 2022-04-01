@@ -24,7 +24,7 @@ const MONTH_DESC: string[] = [
   '九月',
   '十月',
   '十一月',
-  '十二月'
+  '十二月',
 ];
 const nowTime = dayjs(new Date());
 const nowMonth = nowTime.month();
@@ -37,32 +37,32 @@ const endOfMonth = new Date(nowYear, nowMonth, monthDays, 23, 59, 59).getTime();
 const data: any = [
   {
     x: '1',
-    y: 0.1
+    y: 0.1,
   },
   {
     x: '2',
-    y: 0.5
+    y: 0.5,
   },
   {
     x: '3',
-    y: 0.4
+    y: 0.4,
   },
   {
     x: '4',
-    y: 1.2
+    y: 1.2,
   },
   {
     x: '4',
-    y: 0.2
+    y: 0.2,
   },
   {
     x: '6',
-    y: 1.2
+    y: 1.2,
   },
   {
     x: '7',
-    y: 0.2
-  }
+    y: 0.2,
+  },
 ];
 
 // 聚合数据接口内结构
@@ -113,7 +113,7 @@ export function Monitoring() {
         Interval: '7d',
         FieldName: 'power',
         MinTime: startOfMonth,
-        MaxTime: endOfMonth
+        MaxTime: endOfMonth,
       });
       console.log('get chartData', chartData);
       if (chartData.Results && chartData.Results.length > 0) {
@@ -140,10 +140,10 @@ export function Monitoring() {
         Action: 'AppGetDeviceAggsData',
         DeviceId: sdk.deviceId,
         AggMethod: 'sum',
-        Interval: monthDays + 'd',
+        Interval: `${monthDays}d`,
         FieldName: 'power',
         MinTime: startOfMonth,
-        MaxTime: endOfMonth
+        MaxTime: endOfMonth,
       });
       console.log('get setPower', data);
       if (data.Results && data.Results.length > 0) {
@@ -163,10 +163,10 @@ export function Monitoring() {
         Action: 'AppGetDeviceAggsData',
         DeviceId: sdk.deviceId,
         AggMethod: 'sum',
-        Interval: monthDays + 'd',
+        Interval: `${monthDays}d`,
         FieldName: 'current',
         MinTime: startOfMonth,
-        MaxTime: endOfMonth
+        MaxTime: endOfMonth,
       });
       console.log('get current', data);
       if (data.Results && data.Results.length > 0) {
@@ -186,10 +186,10 @@ export function Monitoring() {
         Action: 'AppGetDeviceAggsData',
         DeviceId: sdk.deviceId,
         AggMethod: 'sum',
-        Interval: monthDays + 'd',
+        Interval: `${monthDays}d`,
         FieldName: 'voltage',
         MinTime: startOfMonth,
-        MaxTime: endOfMonth
+        MaxTime: endOfMonth,
       });
       console.log('get setVoltage', data);
       if (data.Results && data.Results.length > 0) {
@@ -238,9 +238,7 @@ export function Monitoring() {
     }
   };
 
-  const formatGetData = (time: number) => {
-    return dayjs(time).format('MM/DD');
-  };
+  const formatGetData = (time: number) => dayjs(time).format('MM/DD');
 
   return (
     <DeviceContext.Consumer>
@@ -250,7 +248,7 @@ export function Monitoring() {
             <div
               className={classNames(
                 'button-name',
-                currentStatus === 'power' ? 'button-name-active' : ''
+                currentStatus === 'power' ? 'button-name-active' : '',
               )}
               onClick={handlePowerMon}
             >
@@ -260,7 +258,7 @@ export function Monitoring() {
             <div
               className={classNames(
                 'button-name',
-                currentStatus === 'run' ? 'button-name-active' : ''
+                currentStatus === 'run' ? 'button-name-active' : '',
               )}
               onClick={handleRunMon}
             >
@@ -297,7 +295,7 @@ export function Monitoring() {
                 <div
                   className={classNames(
                     'button-month',
-                    mode === 'month' ? 'active' : ''
+                    mode === 'month' ? 'active' : '',
                   )}
                   onClick={() => {
                     setMode('month');
@@ -308,7 +306,7 @@ export function Monitoring() {
                 <div
                   className={classNames(
                     'button-year',
-                    mode === 'year' ? 'active' : ''
+                    mode === 'year' ? 'active' : '',
                   )}
                   onClick={() => {
                     setMode('year');

@@ -29,7 +29,7 @@ export function Bormal_center() {
       </div>
     </article>
   );
-};
+}
 
 export default Bormal_center;
 

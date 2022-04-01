@@ -92,7 +92,7 @@ export function ScaleDial(props: DashboardProps) {
       x: 0,
       y: 0,
       radius: 12,
-      color: '#0F0F0F'
+      color: '#0F0F0F',
     },
     businessType = '',
     centerCicle = {
@@ -104,44 +104,44 @@ export function ScaleDial(props: DashboardProps) {
       strokeWidth: 0,
       shade: 'true', // 阴影
       startColor: '#527DF4',
-      endColor: '#044DFF'
+      endColor: '#044DFF',
     },
     // 刻度线
     scaleLine = {
       defaultColor: 'rgba(156, 170, 181, 0.3)',
       activeColor: '#9CAAB5',
-      animaTime: 60
+      animaTime: 60,
     },
     // 指针
     indicatorStyle = {
-      color: '#9CAAB5'
-    }
+      color: '#9CAAB5',
+    },
   } = props;
 
   useEffect(() => {
     const tickAnimation = () => {
       let interval: any;
       let i = 0;
-      let activeLineList = document.getElementsByClassName('line');
+      const activeLineList = document.getElementsByClassName('line');
       interval = setInterval(() => {
-        let list = activeLineList[i].classList;
+        const list = activeLineList[i].classList;
         if (list.contains('activeLine')) {
-          activeLineList[i].setAttribute('style', 'stroke: ' + scaleLine.activeColor + ';stroke-width: 5');
+          activeLineList[i].setAttribute('style', `stroke: ${scaleLine.activeColor};stroke-width: 5`);
         } else {
-          activeLineList[i].setAttribute('style', 'stroke: ' + scaleLine.defaultColor + ';stroke-width: 5');
+          activeLineList[i].setAttribute('style', `stroke: ${scaleLine.defaultColor};stroke-width: 5`);
         }
         i++;
         if (i === activeLineList.length) {
           clearInterval(interval);
         }
       }, scaleLine.animaTime);
-    }
+    };
     tickAnimation();
-  }, [value])
+  }, [value]);
 
   // 当前角度
   const currentAngle = (() => {
-    //进度
+    // 进度
     const progress = value / (maxValue - minValue);
     const range = endAngle - startAngle;
     let angle = range * progress + startAngle;
@@ -155,11 +155,7 @@ export function ScaleDial(props: DashboardProps) {
   })();
 
   // 当前透明度
-  const currentOpacity: number = (() => {
-    return Number(
-      ((1 - 0.15) / ((currentAngle - startAngle) / step)).toFixed(2)
-    );
-  })();
+  const currentOpacity: number = (() => Number(((1 - 0.15) / ((currentAngle - startAngle) / step)).toFixed(2)))();
 
   const lineArray = () => {
     // 半径
@@ -167,7 +163,7 @@ export function ScaleDial(props: DashboardProps) {
     // 半径2
     const r2 = r1 - 30;
 
-    //遍历角度，算出每条刻度线的起始坐标和终止坐标。
+    // 遍历角度，算出每条刻度线的起始坐标和终止坐标。
     for (let i = startAngle; i <= endAngle; i += step) {
       const color = scaleLine.defaultColor;
       const n = (i - startAngle) / step;
@@ -183,10 +179,10 @@ export function ScaleDial(props: DashboardProps) {
         className: i <= currentAngle ? 'line activeLine' : 'line defaultLine',
         x1: x,
         y1: y,
-        x2: x2,
-        y2: y2,
-        color: color,
-        opacity: scaleIsGradient ? 0.15 + currentOpacity * n : 1
+        x2,
+        y2,
+        color,
+        opacity: scaleIsGradient ? 0.15 + currentOpacity * n : 1,
       });
     }
 
@@ -199,7 +195,7 @@ export function ScaleDial(props: DashboardProps) {
       fill: centerCicle.color,
       filter: 'url(#dropshadow)',
       stroke: centerCicle.strokeColor,
-      strokeWidth: centerCicle.strokeWidth + 'px'
+      strokeWidth: `${centerCicle.strokeWidth}px`,
     };
 
     return (
@@ -214,8 +210,7 @@ export function ScaleDial(props: DashboardProps) {
   };
 
   // 绘制刻度线
-  const renderLine = (item: LineProps, index: number) => {
-    return (
+  const renderLine = (item: LineProps, index: number) => (
       <line
         key={item.angle}
         className={item.className}
@@ -226,8 +221,7 @@ export function ScaleDial(props: DashboardProps) {
         style={{ stroke: item.color, strokeWidth: 5 }}
         strokeLinecap="round"
       ></line>
-    );
-  };
+  );
 
   const ellipse2path = (
     r: number,
@@ -236,9 +230,9 @@ export function ScaleDial(props: DashboardProps) {
     ex: number,
     ey: number,
     angle: number,
-    largeArcFlag: number
+    largeArcFlag: number,
   ) => {
-    //path 属性
+    // path 属性
     const descriptions = [
       'M',
       sx,
@@ -250,7 +244,7 @@ export function ScaleDial(props: DashboardProps) {
       largeArcFlag,
       1,
       ex,
-      ey
+      ey,
     ].join(' ');
 
     return descriptions;
@@ -264,20 +258,18 @@ export function ScaleDial(props: DashboardProps) {
     const distance = indicator.distance ? indicator.distance : 45;
     const r = radius - distance - pathBorder / 2;
     const angle = 180; // 起点角度
-    const startX =
-      pathBorder / 2 + (1 - Math.sin((angle / 360) * Math.PI)) * r + distance;
-    const startY =
-      pathBorder / 2 + (1 + Math.cos((angle / 360) * Math.PI)) * r + distance;
-    let endX, endY, dpath;
+    const startX =      pathBorder / 2 + (1 - Math.sin((angle / 360) * Math.PI)) * r + distance;
+    const startY =      pathBorder / 2 + (1 + Math.cos((angle / 360) * Math.PI)) * r + distance;
+    let endX; let endY; let dpath;
     // 起点确定，终点坐标轴四象限决定终点计算
-    let angleDiff = value * (180 / 50);
+    const angleDiff = value * (180 / 50);
     if (value <= 50) { // 小于等于50%
-      let newAngle = 180 + angleDiff;
+      const newAngle = 180 + angleDiff;
       endX = pathBorder / 2 + (1 - Math.sin(newAngle / 360 * Math.PI)) * r + distance;
       endY = pathBorder / 2 + (1 + Math.cos(newAngle / 360 * Math.PI)) * r + distance;
       dpath = ellipse2path(r, startX, startY, endX, endY, newAngle, 0);
     } else { // 大于50%
-      let newAngle = 540 - angleDiff;
+      const newAngle = 540 - angleDiff;
       endX = pathBorder / 2 + (1 + Math.sin(newAngle / 360 * Math.PI)) * r + distance;
       endY = pathBorder / 2 + (1 + Math.cos(newAngle / 360 * Math.PI)) * r + distance;
       dpath = ellipse2path(r, startX, startY, endX, endY, newAngle, 0);
@@ -297,7 +289,7 @@ export function ScaleDial(props: DashboardProps) {
           cy={endY}
           r={18}
           fill="url(#indicator)"
-          transform={'rotate('+ rotate + ',' + endX + ',' + endY + ')'}
+          transform={`rotate(${rotate},${endX},${endY})`}
         >
           {/* <animateMotion
             begin="0s"
@@ -312,13 +304,11 @@ export function ScaleDial(props: DashboardProps) {
     );
   };
 
-  const getViewbox = () => {
-    return [0, 0, width, height].join(' ');
-  };
+  const getViewbox = () => [0, 0, width, height].join(' ');
 
   return (
     <svg
-      className={businessType + '-round-dashboard'}
+      className={`${businessType}-round-dashboard`}
       xmlns="http://www.w3.org/2000/svg"
       viewBox={getViewbox()}
     >

@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import { delay, rpx2px } from '@utillib';
 import './SceneTab.less';
 import sceneSliderMark from '../../images/scene-slider-mark.svg';
-import { useIpx } from "@hooks/useIpx";
+import { useIpx } from '@hooks/useIpx';
 
 export interface SceneSliderOption {
   text: string;

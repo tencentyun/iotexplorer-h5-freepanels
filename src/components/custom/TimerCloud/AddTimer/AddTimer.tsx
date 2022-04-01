@@ -12,7 +12,7 @@ const AddTimer = ({
   isPopup = true,
   history: { PATH, goBack, push, query },
   setContext,
-  context: { Days = [0, 0, 0, 0, 0, 0, 0], TimePoint = '00:00', ...timerData }
+  context: { Days = [0, 0, 0, 0, 0, 0, 0], TimePoint = '00:00', ...timerData },
 }) => {
   useTitle('添加定时');
   const [visible, setVisible] = useState(false);
@@ -54,9 +54,9 @@ const AddTimer = ({
     const Timer = {
       Data: JSON.stringify(data),
       Days: weekNew.join(''),
-      TimePoint: timer.map((v) => ((`${v}`).length === 1 ? `0${v}` : v)).join(':'),
+      TimePoint: timer.map(v => ((`${v}`).length === 1 ? `0${v}` : v)).join(':'),
       TimerName: Date.now().toString(),
-      Repeat: +weekStr ? 1 : 0
+      Repeat: +weekStr ? 1 : 0,
     };
     await requestTokenApi('AppCreateTimer', Timer);
     sdk.tips.showSuccess('定时添加成功');
@@ -64,7 +64,7 @@ const AddTimer = ({
     goBack();
   };
 
-  const checkedDays = Days.map((day, index) => (day ? arrWeek[index] : '')).filter((v) => v);
+  const checkedDays = Days.map((day, index) => (day ? arrWeek[index] : '')).filter(v => v);
   const checkedDaysLabel = checkedDays.length ? checkedDays.join(' ') : '仅限一次';
 
   const onClose = () => {
@@ -94,7 +94,7 @@ const AddTimer = ({
             value={timer}
             mask={false}
             onCancel={onClose}
-            onChange={(TimePoint) => setContext({ TimePoint: TimePoint.join(':') })}
+            onChange={TimePoint => setContext({ TimePoint: TimePoint.join(':') })}
             onConfirm={handleSubmit}
             visible={true}
             showTwoDigit={true}

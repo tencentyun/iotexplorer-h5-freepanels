@@ -10,7 +10,7 @@ import { OptionDialog } from '@custom/OptionDialog';
 export function VideoConfig({
   deviceData,
   templateMap,
-  doControlDeviceData
+  doControlDeviceData,
 }) {
   useTitle('录像设置');
   // 清晰度
@@ -22,9 +22,8 @@ export function VideoConfig({
     if (templateMap[key]) {
       const typeObj = templateMap[key];
       return typeObj.define?.mapping?.[type];
-    } else {
-      return ''
     }
+    return '';
   };
 
   const getOptions = (key:string) => {
@@ -34,14 +33,14 @@ export function VideoConfig({
         for (const [index, value] of Object.entries(templateMap[key].define.mapping)) {
           options.push({
             label: value,
-            value: index
+            value: index,
           });
         }
         return (options || []).length > 0 ? options : [];
       }
     }
     return [
-      {label: '没数据', value: '0'}
+      { label: '没数据', value: '0' },
     ];
   };
 
@@ -50,7 +49,7 @@ export function VideoConfig({
       <Cell
         className="cell-settings"
         title="SD卡状态"
-        value={getDesc('sd_status',deviceData.sd_status)}
+        value={getDesc('sd_status', deviceData.sd_status)}
         valueStyle="set"
         isLink={false}
       ></Cell>
@@ -68,8 +67,10 @@ export function VideoConfig({
           title="清晰度"
           defaultValue={[deviceData.definition]}
           options={getOptions('definition')}
-          onCancel={()=>{onToggleClarity(false)}}
-          onConfirm={(value)=>{
+          onCancel={() => {
+            onToggleClarity(false);
+          }}
+          onConfirm={(value) => {
             doControlDeviceData('definition', value[0]);
           }}
         ></OptionDialog>
@@ -77,7 +78,7 @@ export function VideoConfig({
       <Cell
         className="cell-settings"
         title="录像模式"
-        value={getDesc('record_mode', deviceData.record_mode? deviceData.record_mode : 1)}
+        value={getDesc('record_mode', deviceData.record_mode ? deviceData.record_mode : 1)}
         valueStyle="set"
         onClick={() => {
           onToggleRecordMode(true);
@@ -88,8 +89,10 @@ export function VideoConfig({
           title="录像模式"
           defaultValue={[deviceData.record_mode ? deviceData.record_mode?.toString() : '1']}
           options={getOptions('record_mode')}
-          onCancel={()=>{onToggleRecordMode(false)}}
-          onConfirm={(value)=>{
+          onCancel={() => {
+            onToggleRecordMode(false);
+          }}
+          onConfirm={(value) => {
             doControlDeviceData('record_mode', value[0]);
           }}
         ></OptionDialog>
@@ -97,7 +100,7 @@ export function VideoConfig({
       <Cell
         className="cell-settings"
         title="SD卡格式化"
-        value={getDesc('sd_format_state',deviceData.sd_format_state)}
+        value={getDesc('sd_format_state', deviceData.sd_format_state)}
         valueStyle="set"
         isLink={false}
       ></Cell>

@@ -14,7 +14,7 @@ interface dashboardProps {
   dashboardStatus: string;
 }
 
-const ThermostatDashboard: React.FC<dashboardProps> = props => {
+const ThermostatDashboard: React.FC<dashboardProps> = (props) => {
   const themeType = getThemeType();
   const CurrentSkinProps: any = SkinProps[themeType];
 
@@ -23,8 +23,7 @@ const ThermostatDashboard: React.FC<dashboardProps> = props => {
   const skinProps = (CurrentSkinProps as any)[dashboardStatus];
 
   // 描述信息 关机/开机
-  const renderDesWord = (dashboardStatus: string) => {
-    return (
+  const renderDesWord = (dashboardStatus: string) => (
       <div className="dashboard-content">
         {dashboardStatus === 'shutdown' ? (
           <div className="word font_48">已关机</div>
@@ -34,7 +33,7 @@ const ThermostatDashboard: React.FC<dashboardProps> = props => {
         <div
           className={classNames(
             'number',
-            dashboardStatus === 'shutdown' ? '' : 'pt'
+            dashboardStatus === 'shutdown' ? '' : 'pt',
           )}
         >
           {value}°C
@@ -42,8 +41,7 @@ const ThermostatDashboard: React.FC<dashboardProps> = props => {
         <div className="title font_48">当前温度</div>
         <div className="small-number font_48">{value}°C</div>
       </div>
-    );
-  };
+  );
 
   return (
     <div className={classNames('thermostat-dashboard-wrap', themeType)}>

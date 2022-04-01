@@ -37,7 +37,7 @@ export function Home() {
           FieldName: 'smoke_sensor_state',
           MaxTime: currentTime,
           MinTime: lastYearTime,
-          Limit: 1
+          Limit: 1,
         });
         console.log('get info', recordListInfo.Results);
         setRecordTime(recordListInfo.Results[0]?.Time || '');
@@ -56,7 +56,7 @@ export function Home() {
     1: '烟雾报警',
     2: '正常',
     3: '检测中',
-    4: '未知'
+    4: '未知',
   };
 
   // 设置
@@ -86,7 +86,7 @@ export function Home() {
                 <div
                   className={classNames(
                     'label',
-                    deviceData.smoke_sensor_state === '1' ? 'active' : ''
+                    deviceData.smoke_sensor_state === '1' ? 'active' : '',
                   )}
                 >
                   {deviceData.smoke_sensor_state === '1'
@@ -114,7 +114,7 @@ export function Home() {
                 <div
                   className={classNames(
                     'label',
-                    deviceData.smoke_sensor_state === '1' ? 'active' : ''
+                    deviceData.smoke_sensor_state === '1' ? 'active' : '',
                   )}
                 >
                   {deviceData.smoke_sensor_state === '1'

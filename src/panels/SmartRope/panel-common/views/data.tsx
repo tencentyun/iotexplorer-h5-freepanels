@@ -20,16 +20,16 @@ import './data.less';
 const data: any = [
   {
     x: '00:00',
-    y: 0.1
+    y: 0.1,
   },
   {
     x: '12:00',
-    y: 0.5
+    y: 0.5,
   },
   {
     x: '24:00',
-    y: 0.4
-  }
+    y: 0.4,
+  },
 ];
 
 // 聚合数据接口内结构
@@ -53,10 +53,8 @@ export function Data() {
   const [calendarVisible, setCalendarVisible] = useState(false);
   const [time, setTime] = useState<Date | undefined>(new Date());
 
-  const formatDate = (value: Date | undefined) => {
-    return dayjs(value).format('MM月DD日');
-  };
-  
+  const formatDate = (value: Date | undefined) => dayjs(value).format('MM月DD日');
+
   return (
     <DeviceSateContext.Consumer>
       {({ deviceData }) => (
@@ -68,7 +66,7 @@ export function Data() {
                 <div
                   className={classNames(
                     'button-month',
-                    unitType === 'day' ? 'active' : ''
+                    unitType === 'day' ? 'active' : '',
                   )}
                   onClick={() => {
                     setUnitType('day');
@@ -79,7 +77,7 @@ export function Data() {
                 <div
                   className={classNames(
                     'button-month',
-                    unitType === 'week' ? 'active' : ''
+                    unitType === 'week' ? 'active' : '',
                   )}
                   onClick={() => {
                     setUnitType('week');
@@ -90,7 +88,7 @@ export function Data() {
                 <div
                   className={classNames(
                     'button-month',
-                    unitType === 'month' ? 'active' : ''
+                    unitType === 'month' ? 'active' : '',
                   )}
                   onClick={() => {
                     setUnitType('month');
@@ -101,7 +99,7 @@ export function Data() {
                 <div
                   className={classNames(
                     'button-year',
-                    unitType === 'year' ? 'active' : ''
+                    unitType === 'year' ? 'active' : '',
                   )}
                   onClick={() => {
                     setUnitType('year');
@@ -111,7 +109,9 @@ export function Data() {
                 </div>
               </div>
             </div>
-            <div className="time-select" onClick={() => {setCalendarVisible(true)}}>
+            <div className="time-select" onClick={() => {
+              setCalendarVisible(true);
+            }}>
               <div onClick={() => {}}>
                 <SvgIcon
                   className="slider-button prev"
@@ -130,7 +130,7 @@ export function Data() {
                 />
               </div>
             </div>
-            
+
             {data ? (
               <LineChart className="line-chart" data={data} {...CurrentSkinProps.lineChart}/>
             ) : null}
@@ -139,7 +139,7 @@ export function Data() {
                 <div
                   className={classNames(
                     'button-month',
-                    mode === 'duration' ? 'active' : ''
+                    mode === 'duration' ? 'active' : '',
                   )}
                   onClick={() => {
                     setMode('duration');
@@ -150,7 +150,7 @@ export function Data() {
                 <div
                   className={classNames(
                     'button-month',
-                    mode === 'calorie' ? 'active' : ''
+                    mode === 'calorie' ? 'active' : '',
                   )}
                   onClick={() => {
                     setMode('calorie');
@@ -161,7 +161,7 @@ export function Data() {
                 <div
                   className={classNames(
                     'button-month',
-                    mode === 'time' ? 'active' : ''
+                    mode === 'time' ? 'active' : '',
                   )}
                   onClick={() => {
                     setMode('time');
@@ -186,7 +186,7 @@ export function Data() {
             visible={calendarVisible}
             value={time}
             onCancel={() => {
-              setCalendarVisible(false)
+              setCalendarVisible(false);
             }}
             onConfirm={(value) => {
               setTime(value);

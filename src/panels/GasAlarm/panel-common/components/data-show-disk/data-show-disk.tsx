@@ -10,24 +10,24 @@ import './data-show-disk.less';
 const skinProps = {
   normal: {
     normal: { color: '#000000' },
-    alarm: { color: '#FFFFFF' }
+    alarm: { color: '#FFFFFF' },
   },
   blueWhite: {
     normal: { color: '#000000' },
-    alarm: { color: '#FFFFFF' }
+    alarm: { color: '#FFFFFF' },
   },
   dark: {
     normal: { color: '#FFFFFF' },
-    alarm: { color: '#FFFFFF' }
+    alarm: { color: '#FFFFFF' },
   },
   colorful: {
     normal: { color: '#FFFFFF' },
-    alarm: { color: '#FFFFFF' }
+    alarm: { color: '#FFFFFF' },
   },
   morandi: {
     normal: { color: '#B5ABA1' },
-    alarm: { color: '#FFFFFF' }
-  }
+    alarm: { color: '#FFFFFF' },
+  },
 };
 
 const bubbles = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];

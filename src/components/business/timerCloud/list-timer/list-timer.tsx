@@ -6,7 +6,7 @@ import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 import { arrWeek } from '../add-timer/repeat/repeat';
 import {
   ITimerDataBind,
-  ITimerOptions
+  ITimerOptions,
 } from '../timer-cloud';
 
 // import { requestTokenApi } from '@/business';
@@ -39,7 +39,7 @@ const ListTimer: FC<{
   const TIMER_API = {
     UPDATE: 'AppModifyTimerStatus',
     LIST: 'AppGetTimerList',
-    DELETE: 'AppDeleteTimer'
+    DELETE: 'AppDeleteTimer',
   };
 
   const changeStatus = async (TimerId: string, Status: number) => {
@@ -74,8 +74,8 @@ const ListTimer: FC<{
     let result = '';
     try {
       const dataObj = JSON.parse(data) as any;
-      Object.keys(dataObj).forEach(k => {
-        if(options[k]){
+      Object.keys(dataObj).forEach((k) => {
+        if (options[k]) {
           const value = options[k].value_enum
             ? options[k].value_enum[dataObj[k]]
             : dataObj[k];
@@ -114,9 +114,7 @@ const ListTimer: FC<{
           <div className="timer-list-body">
             <span className="timer">{TimePoint}</span>
             <span className="repeat">
-              {Days.split('').map((item, index) => {
-                return item === '1' ? arrWeek[index] + ' ' : '';
-              })}
+              {Days.split('').map((item, index) => (item === '1' ? `${arrWeek[index]} ` : ''))}
             </span>
             <span className="switch">
               <Switch

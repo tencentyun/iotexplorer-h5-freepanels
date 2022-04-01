@@ -6,7 +6,7 @@
 import React, { useState } from 'react';
 import { Dialog, Input, DatePicker } from 'antd-mobile';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
-import { useDeviceData } from '@hooks/useDeviceData';
+import { useDeviceData, onControlDevice, formatDeviceData } from '@hooks/useDeviceData';
 import { useUserInfo } from '@hooks/useUserInfo';
 import { Block } from '@components/layout';
 import { Cell, Switch } from '@components/base';
@@ -14,7 +14,7 @@ import { ListPicker, ValuePicker } from '@components/business';
 import { StyledProps } from '@libs/global';
 import { SvgIcon } from '@components/common';
 import { getThemeType } from '@libs/theme';
-import { onControlDevice, formatDeviceData } from '@hooks/useDeviceData';
+
 import { mapsToOptions } from '@libs/utillib';
 import dayjs from 'dayjs';
 import { SkinProps } from '../../skinProps';
@@ -61,9 +61,8 @@ export const SettingPannel = (props: SettingPannelProps) => {
     const { gender } = state.templateMap;
     if (gender) {
       return gender.define.mapping[type] || '';
-    } else {
-      return '';
     }
+    return '';
   };
   // 获取度量字段
   const getUnitData = (name: string): string => {
@@ -77,21 +76,20 @@ export const SettingPannel = (props: SettingPannelProps) => {
   };
 
   const getGenderDes = () => {
-    if (deviceMaps['gender']) {
-      return deviceMaps['gender'].map((t: any) => ({
+    if (deviceMaps.gender) {
+      return deviceMaps.gender.map((t: any) => ({
         label: t.desc,
-        value: t.name
-      }))
-    } else {
-      return []
+        value: t.name,
+      }));
     }
+    return [];
   };
 
   // 昵称编辑框
   const nicknameEditor = (
     <Input
       placeholder="请填写昵称"
-      onChange={val => {
+      onChange={(val) => {
         onEditNickname(val);
       }}
     />
@@ -112,7 +110,7 @@ export const SettingPannel = (props: SettingPannelProps) => {
                 confirmText: '完成',
                 onConfirm: () => {
                   onControlDevice('nickName', editNickname);
-                }
+                },
               });
             }}
           >
@@ -124,7 +122,7 @@ export const SettingPannel = (props: SettingPannelProps) => {
         <div className="setting-panel-body">
           <Cell
             title="性别"
-            value={getGenderDesc(deviceData['gender'])}
+            value={getGenderDesc(deviceData.gender)}
             onClick={() => {
               onToggleGender(true);
             }}
@@ -132,10 +130,10 @@ export const SettingPannel = (props: SettingPannelProps) => {
             <ListPicker
               visible={genderVisible}
               title="性别"
-              defaultValue={[deviceData['gender']]}
+              defaultValue={[deviceData.gender]}
               options={getGenderDes()}
               onCancel={() => onToggleGender(false)}
-              onConfirm={value => {
+              onConfirm={(value) => {
                 onControlDevice('gender', value[0]);
                 onToggleGender(false);
               }}
@@ -153,7 +151,7 @@ export const SettingPannel = (props: SettingPannelProps) => {
             <DatePicker
               visible={birthVisible}
               onClose={() => onToggleBirth(false)}
-              onConfirm={value => {
+              onConfirm={(value) => {
                 onUpdateUserInfo({ birthday: dayjs(value).valueOf() });
               }}
             ></DatePicker>
@@ -166,10 +164,10 @@ export const SettingPannel = (props: SettingPannelProps) => {
             <ValuePicker
               visible={heightVisible}
               title="身高"
-              value={[deviceData['height']]}
+              value={[deviceData.height]}
               columns={[mapsToOptions('height', deviceMaps)]}
               onCancel={() => onToggleHeight(false)}
-              onConfirm={value => {
+              onConfirm={(value) => {
                 onControlDevice('height', +(value[0] || '0'));
                 onToggleHeight(false);
               }}
@@ -183,11 +181,11 @@ export const SettingPannel = (props: SettingPannelProps) => {
           >
             <ValuePicker
               visible={weightVisible}
-              value={[deviceData['weight']]}
+              value={[deviceData.weight]}
               title="体重"
               columns={[mapsToOptions('weight', deviceMaps)]}
               onCancel={() => onToggleWeight(false)}
-              onConfirm={value => {
+              onConfirm={(value) => {
                 onControlDevice('weight', +(value[0] || '0'));
                 onToggleWeight(false);
               }}

@@ -11,7 +11,7 @@ export function Purifier_Normal() {
       <Oven_center/>
       <Oven_foot/>
     </article>
-  )
+  );
 }
 
 export default Purifier_Normal;

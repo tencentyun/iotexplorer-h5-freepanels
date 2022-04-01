@@ -21,22 +21,22 @@ export const enumGear: any = {
   low: '低风',
   middle: '中风',
   high: '高风',
-  mute: '静音'
+  mute: '静音',
 };
 
 // eslint-disable-next-line no-unused-vars
 const Gear: FC<{ cRef?: string; defaultValue?: string | number; onChange?: (val: any) => void }> = ({
   cRef,
   defaultValue,
-  onChange
+  onChange,
 }: any) => {
   const [gearUser, setValue] = useState(sdk.deviceData.fan_speed_enum);
   useImperativeHandle(cRef, () => ({
     commit: () => {
       apiControlDeviceData({
-        fan_speed_enum: gearUser
+        fan_speed_enum: gearUser,
       });
-    }
+    },
   }));
 
   const domList = enumToArray(enumGear).map(({ label, value }) => (

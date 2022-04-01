@@ -21,7 +21,7 @@ export function Battery({
   value,
   isShowPercent = true,
   isShowTip = true,
-  color = ''
+  color = '',
 }: BatteryProps) {
   return (
     <div className="_component_business_battery_">

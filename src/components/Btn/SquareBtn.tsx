@@ -1,7 +1,7 @@
-import React from "react";
-import classNames from "classnames";
-import { RawBtn } from "@components/Btn/Btn";
-import "./SquareBtn.less";
+import React from 'react';
+import classNames from 'classnames';
+import { RawBtn } from '@components/Btn/Btn';
+import './SquareBtn.less';
 
 export interface IconBtnOptions extends StyledProps {
   disabled?: boolean;
@@ -32,7 +32,7 @@ export function SquareBtn({
 
   return (
     <div
-      className={classNames("square-btn-container", className)}
+      className={classNames('square-btn-container', className)}
       style={{
         ...style,
       }}
@@ -48,7 +48,7 @@ export function SquareBtn({
             ...btnSize,
           }}
         >
-          <img className="btn-icon" src={icon as string} style={{ ...iconStyle}}/>
+          <img className="btn-icon" src={icon as string} style={{ ...iconStyle }}/>
         </RawBtn>
       ) : (
         children

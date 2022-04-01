@@ -10,7 +10,6 @@ interface IFunExampleProps {
 }
 
 export function ControlArea(props: IFunExampleProps) {
-
   return (
     <DeviceContext.Consumer>
       {({ deviceData }) => (
@@ -19,14 +18,13 @@ export function ControlArea(props: IFunExampleProps) {
             className={classNames(
               'setting-button',
               'minus-btn',
-              deviceData.power_switch === 1 ? 'button-active' : ''
+              deviceData.power_switch === 1 ? 'button-active' : '',
             )}
             onClick={() => {
               if (!deviceData.power_switch) return;
-              const key =
-                deviceData.unit_convert === 0
-                  ? 'current_c_temp'
-                  : 'current_f_temp';
+              const key =                deviceData.unit_convert === 0
+                ? 'current_c_temp'
+                : 'current_f_temp';
               let value = deviceData[key] ? deviceData[key] - 1 : 0;
               if (value <= 0) {
                 value = 0;
@@ -42,7 +40,7 @@ export function ControlArea(props: IFunExampleProps) {
           <div
             className={classNames(
               'control-power',
-              deviceData.power_switch === 1 ? 'power-open' : ''
+              deviceData.power_switch === 1 ? 'power-open' : '',
             )}
             onClick={() => {
               onControlDevice('power_switch', Number(!deviceData.power_switch));
@@ -54,14 +52,13 @@ export function ControlArea(props: IFunExampleProps) {
             className={classNames(
               'setting-button',
               'add-btn',
-              deviceData.power_switch === 1 ? 'button-active' : ''
+              deviceData.power_switch === 1 ? 'button-active' : '',
             )}
             onClick={() => {
               if (!deviceData.power_switch) return;
-              const key =
-                deviceData.unit_convert === 0
-                  ? 'current_c_temp'
-                  : 'current_f_temp';
+              const key =                deviceData.unit_convert === 0
+                ? 'current_c_temp'
+                : 'current_f_temp';
               let value = deviceData[key] ? deviceData[key] + 1 : 1;
               if (value >= 100) {
                 value = 100;

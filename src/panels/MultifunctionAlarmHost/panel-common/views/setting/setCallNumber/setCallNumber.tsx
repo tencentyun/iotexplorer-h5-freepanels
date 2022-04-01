@@ -2,13 +2,13 @@ import React, { useState } from 'react';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 import { Modal } from '@components/base';
 import { Input } from 'antd-mobile';
-import {apiControlDeviceData} from "@hooks/useDeviceData";
+import { apiControlDeviceData } from '@hooks/useDeviceData';
 
 const SetCallNumber = ({ isShow, onClose }) => {
   const [dataUser, setDataUser] = useState(sdk.deviceData.alarm_call_number);
   const handleCommit = () => {
     apiControlDeviceData({
-      alarm_call_number: dataUser
+      alarm_call_number: dataUser,
     });
     onClose();
   };
@@ -23,7 +23,7 @@ const SetCallNumber = ({ isShow, onClose }) => {
       <Input
         placeholder="请输入报警电话号码"
         value={dataUser}
-        onChange={val => {
+        onChange={(val) => {
           setDataUser(val);
         }}
       />

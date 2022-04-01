@@ -10,7 +10,7 @@ const DAY_DESC: string[] = [
   '周三',
   '周四',
   '周五',
-  '周六'
+  '周六',
 ];
 
 export function RecordItem(props: RecordItemProps) {

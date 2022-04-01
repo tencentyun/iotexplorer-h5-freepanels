@@ -15,7 +15,7 @@ import './set-temp.less';
 export const debounce = (
   fn: { apply: (arg0: any, arg1: any) => void },
   t: number,
-  immediate = false
+  immediate = false,
 ) => {
   let timeId: any = null;
   const delay = t || 500;
@@ -36,7 +36,7 @@ export const debounce = (
 const SetTemp = () => {
   const upDate = (value: number) => {
     apiControlDeviceData({
-      set_temp: value
+      set_temp: value,
     });
   };
 
