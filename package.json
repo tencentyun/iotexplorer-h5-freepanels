@@ -8,7 +8,7 @@
     "pre": "npx webpack serve --config webpack/webpack.config.js --mode=production",
     "build": "npx webpack --config webpack/webpack.config.js --mode=production",
     "lint": "eslint  ./src",
-    "lint:fix": "eslint ./src --ext .ts,.tsx --fix"
+    "lint:fix": "eslint ./src --ext .ts,.tsx,.js --fix"
   },
   "repository": {
     "type": "git",

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { ListTimer as CloudTimerList } from '@custom/TimerCloud';
 const labelEnum = {
   power_switch: {

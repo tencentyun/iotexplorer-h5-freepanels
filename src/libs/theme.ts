@@ -19,12 +19,12 @@ export declare type ThemeType =
   | 'morandi';
 
 
-const THEME_INFO = { theme_type: 'normal' };
-export function getThemeType(): string {
+const THEME_INFO: { theme_type: ThemeType } = { theme_type: 'normal' };
+export function getThemeType(): ThemeType {
   // webpack 环境变量
   const { theme_type } = THEME_INFO || {};
   // 非预制的主题类型，则使用默认 normal 主题
-  return theme_type || 'normal';
+  return theme_type || ('normal' as ThemeType);
 }
 
 export function setThemeType(theme) {

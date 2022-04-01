@@ -1,3 +1,4 @@
+/* eslint-disable no-mixed-operators */
 import React, { useEffect, useRef, useState } from 'react';
 import classNames from 'classnames';
 import './position.less';
@@ -14,7 +15,7 @@ export function Position(props: LightColorProps) {
   const min_value = 0;
   const max_value = 1000;
   const [dataUser, setDataUser] = useState(props.defaultValue);
-  const wrapper = useRef();
+  const wrapper = useRef<HTMLDivElement | null>();
   const circle = useRef();
   const [brightness, setBrightness] = useState(sdk.deviceData.brightness ? sdk.deviceData.brightness : 80);
   useEffect(() => {
@@ -54,7 +55,7 @@ export function Position(props: LightColorProps) {
   };
 
   const handleSelectColor = (e: React.MouseEvent) => {
-    const wrap = wrapper.current;
+    const wrap = wrapper.current as HTMLDivElement;
     const point = circle.current;
     const wrap_y = wrap.getBoundingClientRect().y;
     const x = e.changedTouches[0].clientX - wrap.offsetLeft;
