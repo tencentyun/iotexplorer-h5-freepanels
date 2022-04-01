@@ -16,7 +16,7 @@ export function Bluewhite_progress_bar() {
     const val = dataUser;
     const wrap = document.getElementById('bluewhite-progress-bar-wrap');
     const slider = document.getElementById('bluewhite-progress-bar-slider');
-    slider.style.width = `${val * wrap.clientWidth / 100.0}px`;
+    if (slider && wrap) slider.style.width = `${(val * wrap.clientWidth) / 100.0}px`;
   });
 
   // const [lampSrc] = useState(lampIcon);
