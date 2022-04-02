@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import classNames from 'classnames';
 import { Battery } from '@custom/Battery';
 import { Cell } from '@custom/Cell';
@@ -12,14 +12,20 @@ export function Home({
   productInfo,
   doControlDeviceData,
   history: { PATH, push },
-  tips,
+  tips
 }) {
-  useTitle(productInfo.Name ? productInfo.Name : '首页');
+  useTitle(productInfo.Name ? productInfo.Name :'首页');
 
   const lockStatusWord = {
     0: '未上锁',
     1: '已关闭',
-    2: '已离线',
+    2: '已离线'
+  };
+
+  const lockStatus = {
+    0: 'unlocked',
+    1: 'locked',
+    2: 'offline'
   };
 
   return (
@@ -48,9 +54,7 @@ export function Home({
         </div>
 
         {/* 更多 */}
-        <div className="header-right" onClick={() => {
-          sdk.goDeviceDetailPage();
-        }}>
+        <div className="header-right" onClick={()=>{sdk.goDeviceDetailPage();}}>
           <Icon name='more'></Icon>
         </div>
       </header>
@@ -62,18 +66,14 @@ export function Home({
       ></Disk>
 
       <div className="middle-wrap">
-        <div className="log" onClick={() => {
-          push(PATH.LOG);
-        }}>
+        <div className="log" onClick={()=>{push(PATH.LOG)}}>
           <Icon name="log"></Icon>
         </div>
         <div className={classNames(
-          'status-tip',
-          deviceData.lock_motor_state == 1 ? 'locked' : 'unlocked',
+          "status-tip",
+          lockStatus[deviceData.lock_motor_state]
         )}>{lockStatusWord[deviceData.lock_motor_state || 0]}</div>
-        <div className="config" onClick={() => {
-          push(PATH.SETTINGS_INDEX);
-        }}>
+        <div className="config" onClick={()=>{push(PATH.SETTINGS_INDEX)}}>
           <Icon name="config"></Icon>
         </div>
       </div>
@@ -85,27 +85,21 @@ export function Home({
           title="用户管理"
           prefixIcon={<Icon name="time"/>}
           size="medium"
-          onClick={() => {
-            push(PATH.USERS_INDEX);
-          }}
+          onClick={()=>{push(PATH.USERS_INDEX)}}
         ></Cell>
         <Cell
           className="cell-border"
           title="临时密码"
           prefixIcon={<Icon name="hourglass"/>}
           size="medium"
-          onClick={() => {
-            push(PATH.TEMP_PASSWORD_INDEX);
-          }}
+          onClick={()=>{push(PATH.TEMP_PASSWORD_INDEX)}}
         ></Cell>
         <Cell
           className="cell-border"
           title="视频监控"
           prefixIcon={<Icon name="monitor"/>}
           size="medium"
-          onClick={() => {
-            push(PATH.VIDEO_MONITOR);
-          }}
+          onClick={()=>{push(PATH.VIDEO_MONITOR)}}
         ></Cell>
       </div>
     </main>

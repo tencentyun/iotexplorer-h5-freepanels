@@ -5,17 +5,24 @@ const [panel, category, preview, mode] = getVal(['panel', 'category', 'preview',
 const underLine = str => str.replace(/([A-Z])/g, '-$1').replace(/^-/, '')
   .toLowerCase();
 const isDev = mode === 'development';
-let isRemWidth = false;
+
+const themePaths = ['panel-card', 'panel-cold', 'panel-fresh', 'panel-house', 'panel-brunet'];
+
+const isRemPath = (filePath, remPaths) => {
+  for (let i = 0; i < remPaths.length; i++) {
+    if (filePath.match(remPaths[i])) return true;
+  }
+  return false;
+};
+
+
 module.exports = {
   autoPreFixer: isDev ? undefined : { overrideBrowserslist: ["last 5 version", ">1%", "ie >=8"] },
   isRem: (build, viewport) => {
     const path = build._module.resource.replace(/\\/g, "/").replace(/\.less$/, '.tsx');
-    if (viewport[path] === 375) {
-      isRemWidth = true;
-    }
-    // console.log('±àÒëµÄÎÄ¼þ:--------------------------', isRemWidth, viewport[path], build._module.resource);
-    return isRemWidth;
-  },
+     // console.log('æ¸²æŸ“çš„å®½åº¦:--------------------------', viewport[path], isRem, build._module.resource);
+     return  const isRem = isRemPath(path, viewport[path]);;
+      },
   env: {
     theme: `theme-${panel.split('-')[1]}`,
     app: underLine(category),
