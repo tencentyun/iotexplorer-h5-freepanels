@@ -13,7 +13,7 @@ module.exports = {
     if (viewport[path] === 375) {
       isRemWidth = true;
     }
-    // console.log('±àÒëµÄÎÄ¼þ:--------------------------', isRemWidth, viewport[path], build._module.resource);
+    // console.log('ç¼–è¯‘çš„æ–‡ä»¶:--------------------------', isRemWidth, viewport[path], build._module.resource);
     return isRemWidth;
   },
   env: {

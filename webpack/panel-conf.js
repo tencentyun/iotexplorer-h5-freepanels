@@ -629,7 +629,7 @@ module.exports = {
   },
  SwitchTwo: {
     enable: true,
-    viewportWidth: 375,
+    viewportWidth: 1125,
     panels: [
       ['panel-cold', { enable: true, entry: 'app.tsx' }],
       ['panel-card', { enable: true, entry: 'app.tsx' }],

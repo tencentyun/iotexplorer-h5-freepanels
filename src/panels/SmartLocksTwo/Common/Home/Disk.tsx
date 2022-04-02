@@ -1,7 +1,7 @@
 /*
  * @Description: 智能锁-表盘
  */
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { Icon } from '@custom/Icon';
 export interface DiskProps {
   deviceData: any;
@@ -21,7 +21,7 @@ export function Disk({
   const lockStatus = {
     0: 'unlocked',
     1: 'locked',
-    offline: 'offline'
+    2: 'offline'
   };
 
   const currentColor = (): string => {
@@ -44,7 +44,9 @@ export function Disk({
 
   useEffect(() => {
     // 开屏动画
-    tickAnimation();
+    if (deviceData.lock_motor_state != 2) {
+      tickAnimation();
+    }
   }, []);
   const tickAnimation = () => {
     let perimeter = 2 * Math.PI * radius;
@@ -176,11 +178,6 @@ export function Disk({
     e.preventDefault();
     e.stopPropagation();
     tips.showInfo(deviceData.lock_motor_state == 1 ? '长按关锁' : '长按开锁');
-    if (i > 0 && i < 100) {
-      clearInterval(forwardInterval);
-      clearInterval(fallbackInterval);
-      fallbackAnimation();
-    }
   }
 
   return (
