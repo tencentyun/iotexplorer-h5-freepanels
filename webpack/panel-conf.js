@@ -373,17 +373,6 @@ module.exports = {
       ['panel-morandi', { enable: true, entry: 'app.tsx' }],
     ],
   },
-  AirConditioner: {
-    enable: true,
-    viewportWidth: 1125,
-    panels: [
-      ['panel-default', { enable: true, entry: 'app.tsx' }],
-      ['panel-dark', { enable: true, entry: 'app.tsx' }],
-      ['panel-colorful', { enable: true, entry: 'app.tsx' }],
-      ['panel-blueWhite', { enable: true, entry: 'app.tsx' }],
-      ['panel-morandi', { enable: true, entry: 'app.tsx' }],
-    ],
-  },
   GasAlarm: {
     enable: true,
     viewportWidth: 1125,
@@ -642,22 +631,22 @@ module.exports = {
     enable: true,
     viewportWidth: 375,
     panels: [
-      ['panel-cold', { enable: true }],
-      // ['panel-card', { enable: true }],
-      // ['panel-brunet', { enable: true }],
-      // ['panel-fresh', { enable: true }],
-      // ['panel-house', { enable: true }]
+      ['panel-cold', { enable: true, entry: 'app.tsx' }],
+      ['panel-card', { enable: true, entry: 'app.tsx' }],
+      ['panel-brunet', { enable: true, entry: 'app.tsx' }],
+      ['panel-fresh', { enable: true, entry: 'app.tsx' }],
+      ['panel-house', { enable: true, entry: 'app.tsx' }],
     ],
   },
   SmartLocksTwo: {
     enable: true,
     viewportWidth: 375,
     panels: [
-      ['panel-cold', { enable: true }],
-      // ['panel-card', { enable: true }],
-      // ['panel-brunet', { enable: true }],
-      // ['panel-fresh', { enable: true }],
-      // ['panel-house', { enable: true }]
+      ['panel-cold', { enable: true, entry: 'app.tsx' }],
+      // ['panel-card', { enable: true, entry: 'app.tsx' }],
+      // ['panel-brunet', { enable: true, entry: 'app.tsx' }],
+      // ['panel-fresh', { enable: true, entry: 'app.tsx' }],
+      // ['panel-house', { enable: true, entry: 'app.tsx' }],
     ],
   },
 };
