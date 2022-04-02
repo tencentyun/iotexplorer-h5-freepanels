@@ -71,7 +71,7 @@ export function Home({
         </div>
         <div className={classNames(
           "status-tip",
-          lockStatus[deviceData.lock_motor_state]
+          lockStatus[deviceData.lock_motor_state || 0]
         )}>{lockStatusWord[deviceData.lock_motor_state || 0]}</div>
         <div className="config" onClick={()=>{push(PATH.SETTINGS_INDEX)}}>
           <Icon name="config"></Icon>
