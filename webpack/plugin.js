@@ -20,9 +20,9 @@ module.exports = {
   autoPreFixer: isDev ? undefined : { overrideBrowserslist: ["last 5 version", ">1%", "ie >=8"] },
   isRem: (build, viewport) => {
     const path = build._module.resource.replace(/\\/g, "/").replace(/\.less$/, '.tsx');
-     // console.log('渲染的宽度:--------------------------', viewport[path], isRem, build._module.resource);
-     return  const isRem = isRemPath(path, viewport[path]);;
-      },
+    // console.log('rem---', viewport[path], isRemPath(path, themePaths), build._module.resource);
+    return isRemPath(path, themePaths);
+  },
   env: {
     theme: `theme-${panel.split('-')[1]}`,
     app: underLine(category),
