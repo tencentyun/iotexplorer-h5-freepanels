@@ -172,8 +172,6 @@ export function PasswordAdd({ history: { PATH, push, query } }) {
           </ul>
         </Cell>
       </> : null}
-
-
       <footer className="footer">
         <div
           className="footer-button"
