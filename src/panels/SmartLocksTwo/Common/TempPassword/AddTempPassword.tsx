@@ -15,21 +15,8 @@ const PASSWORD_TYPE = {
   CYCLE: 1, // 周期
 };
 
-const data = [
-  {
-    type: 0,
-    loseTime: 1648145585399, // 失效时间
-    isLose: true,
-  },
-  {
-    type: 1,
-    loseTime: 1648145585399, // 失效时间
-    isLose: false,
-  },
-];
-
 // 随机生成num为数字
-const randomCreatePassword = num => Math.floor(Math.random() * Math.pow(10, num));
+const randomCreatePassword = num => Math.floor(Math.random() * (10 ** num));
 
 export function AddTempPassword({ history: { goBack } }) {
   useTitle('添加临时密码');
@@ -58,7 +45,6 @@ export function AddTempPassword({ history: { goBack } }) {
 
   // 点击随机生成
   const onRandomGenerator = () => {
-    const params = {}; // 从上面获取对应参数
     // TODO
     console.log('随机生成密码');
     setPassword({ password: randomCreatePassword(6) });
@@ -254,7 +240,8 @@ export function AddTempPassword({ history: { goBack } }) {
               </ul>
             </Cell>
           </div>
-        ) : singlePassword?.password ? (
+        ) : null}
+        {!type && singlePassword?.password ? (
           <div className="exist-single-password">
             <div className="show-password">
               <div id="password">{singlePassword.password}</div>
@@ -265,9 +252,10 @@ export function AddTempPassword({ history: { goBack } }) {
               <p>将于北京时间{dayjs(singlePassword.time).format('YYYY/MM/DD HH:  mm')}或使用过一次后自动失效</p>
             </div>
           </div>
-        ) : (
+        ) : null}
+        {!type && !singlePassword?.password ? (
           <div className="tips">有效期为20分钟，失效前仅能使用一次</div>
-        )}
+        ) : null}
       </div>
 
       <div className="fix-bottom-btn">

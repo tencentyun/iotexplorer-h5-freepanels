@@ -1,6 +1,6 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef } from 'react';
 import classNames from 'classnames';
-import { Popup } from '@custom/Popop';
+import { Popup } from '@custom/Popup';
 import { DatePickerView } from '@custom/Picker';
 import dayjs from 'dayjs';
 export interface DimePickerProps extends StyledProps {

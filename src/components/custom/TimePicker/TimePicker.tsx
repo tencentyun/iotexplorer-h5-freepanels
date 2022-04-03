@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
 import classNames from 'classnames';
-import { Popup } from '@custom/Popop';
+import { Popup } from '@custom/Popup';
 import { Switch } from '@custom/Switch';
 import { TimePickerView } from '@custom/Picker';
 export interface TimePickerProps extends StyledProps {

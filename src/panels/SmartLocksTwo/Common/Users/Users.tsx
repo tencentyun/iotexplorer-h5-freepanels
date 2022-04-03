@@ -1,7 +1,7 @@
 /*
  * @Description: 用户管理
  */
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import classNames from 'classnames';
 import { useTitle } from '@hooks/useTitle';
 import { Cell } from '@custom/Cell';
@@ -10,9 +10,6 @@ import { InputDialog } from './InputDialog';
 import { List } from '@custom/List';
 
 export function Users({
-  deviceData,
-  templateMap,
-  doControlDeviceData,
   history: { PATH, push },
 }) {
   useTitle('用户管理');
@@ -47,6 +44,7 @@ export function Users({
         render={({ name, type }, index) => (
 
           <Cell
+            key={index}
             className="cell-user"
             title={name}
             subTitle={type}
@@ -74,7 +72,7 @@ export function Users({
           setAddUserVisible(false);
         }}
         onConfirm={(value) => {
-          if (value == '') {
+          if (value === '') {
             return;
           }
           push(PATH.USERS_EDIT, { userName: value });

@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Modal } from '@custom/Modal';
 import { Checkbox, List } from 'antd-mobile';
 import { Icon } from '@custom/Icon';
@@ -16,7 +16,7 @@ const getWeeks = (weeks: number[]) => {
   return res;
 };
 
-const setWeeksFormat = (weeks: number[]) => {
+const setWeeksFormat = (weeks: (number | string)[]) => {
   if (!weeks) return [];
   const res = [] as number[];
   for (let i = 0; i < 7; i++) {
@@ -25,10 +25,10 @@ const setWeeksFormat = (weeks: number[]) => {
   return res;
 };
 
-const Repeat = ({ onConfirm, setPopVisible, defaultArrWeekVal }) => {
+const Repeat = ({ onConfirm, defaultArrWeekVal }) => {
   const defaultWeeks = getWeeks(defaultArrWeekVal);
   const [visible, setVisible] = useState(false);
-  const [weeks, setWeeks] = useState(defaultWeeks);
+  const [weeks, setWeeks] = useState<(number | string)[]>(defaultWeeks);
 
   const handleConfirm = () => {
     onConfirm && onConfirm(setWeeksFormat(weeks));
@@ -51,8 +51,6 @@ const Repeat = ({ onConfirm, setPopVisible, defaultArrWeekVal }) => {
     return result.length ? result.join(' ') : '仅限一次';
   };
 
-  console.log('checkvalue', weeks);
-
   return (
     <>
       <List.Item
@@ -63,7 +61,12 @@ const Repeat = ({ onConfirm, setPopVisible, defaultArrWeekVal }) => {
           setVisible(true);
         }}
       />
-      <Modal className="repeat-modal" visible={visible} title={'重复'} onClose={handleCancel}>
+      <Modal
+        className="repeat-modal"
+        visible={visible}
+        title={'重复'}
+        onClose={handleCancel}
+      >
         <Modal.Body>
           <List className="repeat-list">
             <Checkbox.Group value={weeks} onChange={setWeeks}>

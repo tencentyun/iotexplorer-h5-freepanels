@@ -1,15 +1,14 @@
-import React, { useState, useMemo } from 'react';
-import { noop, rpx2px } from '@utillib';
+import React, { useState } from 'react';
+import { noop } from '@utillib';
 import { Modal } from '../Modal';
 import { BtnOptions } from '../Btn/Btn';
 import { CheckBoxGroup } from '../CheckBox';
-
 
 export function CheckBoxModal({
   visible,
   value,
   onChange = noop,
-  onClose = noop,
+  onClose,
   options = [],
   title,
   showBackBtn,
@@ -18,11 +17,11 @@ export function CheckBoxModal({
   cancelBtnType,
 }: {
   visible: boolean;
-  value: string;
-  onChange: (value: string) => any;
+  value: string | string[];
+  onChange: (value: string | string[] | void) => void;
   options: SelectorOption[];
   title: string | React.ReactNode;
-  onClose: () => any;
+  onClose?: (e: React.MouseEvent) => React.MouseEvent;
   showBackBtn?: boolean;
   confirmText?: string;
   cancelText?: string;
@@ -36,16 +35,16 @@ export function CheckBoxModal({
       fixedBottom={true}
       onClose={onClose}
       title={title}
-      containerClassName='device-shortcut-modal'
+      containerClassName="device-shortcut-modal"
       showBackBtn={showBackBtn}
     >
       <Modal.Body>
-        <div className='checkbox-scrolly-container'>
+        <div className="checkbox-scroll-container">
           <CheckBoxGroup
             options={options}
             value={localValue}
             onChange={setLocalValue}
-            type='radio'
+            type="radio"
           />
         </div>
       </Modal.Body>

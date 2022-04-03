@@ -31,17 +31,6 @@ export function BtnGroup({
 }: BtnGroupProps) {
   const ipx = useMemo(() => isFullScreen(), []);
 
-  // if (buttons.length === 1) {
-  //   return (
-  //     <Btn
-  //       {...{
-  //         standalone,
-  //         ...buttons[0],
-  //       }}
-  //     />
-  //   );
-  // }
-
   return (
     <div
       className={classNames('btn-group', `btn-layout-${layout}`, className, {
@@ -55,14 +44,18 @@ export function BtnGroup({
         ...style,
       }}
     >
-      {children ? children : buttons.map((btnConfig, index) => <Btn {...btnConfig} key={index} />)}
+      {children
+        ? children
+        : buttons.map((btnConfig, index) => <Btn {...btnConfig} key={index} />)}
     </div>
   );
 }
 
 export interface ConfirmBtnGroupProps {
-  onCancel?: any;
-  onConfirm?: any;
+  onCancel?: (e: React.MouseEvent) => React.MouseEvent | void;
+  onConfirm?: (
+    res: React.MouseEvent | { error: React.MouseEvent } | void
+  ) => React.MouseEvent | void;
   confirmText?: string | React.ReactNode;
   confirmBtnType?: BtnOptions['type'];
   confirmBtnDisabled?: boolean;
@@ -81,12 +74,12 @@ export function ConfirmBtnGroup({
   cancelBtnType = 'cancel',
   cancelBtnDisabled,
 }: ConfirmBtnGroupProps) {
-  const handleOnConfirm = (callbackType, resp) => {
+  const handleOnConfirm = (callbackType, resp: React.MouseEvent) => {
     if (callbackType === 'click') {
-      onConfirm(resp);
+      onConfirm && onConfirm(resp);
     } else {
       if (callbackType === 'error') {
-        onConfirm({ error: resp });
+        onConfirm && onConfirm({ error: resp });
       }
     }
   };
@@ -94,11 +87,19 @@ export function ConfirmBtnGroup({
   return (
     <BtnGroup className="confirm-btn-group">
       {Boolean(cancelText) && (
-        <Btn onClick={onCancel} type={cancelBtnType} disabled={cancelBtnDisabled}>
+        <Btn
+          onClick={onCancel}
+          type={cancelBtnType}
+          disabled={cancelBtnDisabled}
+        >
           {cancelText}
         </Btn>
       )}
-      <Btn onClick={resp => handleOnConfirm('click', resp)} type={confirmBtnType} disabled={confirmBtnDisabled}>
+      <Btn
+        onClick={resp => handleOnConfirm('click', resp)}
+        type={confirmBtnType}
+        disabled={confirmBtnDisabled}
+      >
         {confirmText}
       </Btn>
     </BtnGroup>

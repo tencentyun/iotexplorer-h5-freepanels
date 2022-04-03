@@ -6,7 +6,6 @@ import { Cell } from '@custom/Cell';
 export const Detail = ({
   deviceData,
   doControlDeviceData,
-  timer: { isExistTimer },
   context: { switchNum },
   currentSwitch,
   history: { PATH, push },
@@ -65,8 +64,18 @@ export const Detail = ({
   const actions = [
     isOneSwitch
       ? null
-      : [isAllOpen ? '全开' : '全关', 'on', () => {}, isAllOpen, isChecked => (isChecked ? onClick() : offClick())],
-    ['定时', 'timing', push.bind(null, PATH.TIMER_LIST, { switchNum, isModule: true })],
+      : [
+        isAllOpen ? '全开' : '全关',
+        'on',
+        () => ({}),
+        isAllOpen,
+        isChecked => (isChecked ? onClick() : offClick()),
+      ],
+    [
+      '定时',
+      'timing',
+      push.bind(null, PATH.TIMER_LIST, { switchNum, isModule: true }),
+    ],
     ['倒计时', 'count-down', setVisible.bind(null, true)],
   ].filter(v => v);
 

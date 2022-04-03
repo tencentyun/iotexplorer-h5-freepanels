@@ -23,7 +23,14 @@ const iconMap = {
   'empty-intel': iconStatusEmptyIntel,
 };
 
-export type StatusInfoType = 'empty' | 'empty-msg' | 'empty-device' | 'warning' | 'loading' | 'success' | 'empty-intel';
+export type StatusInfoType =
+  | 'empty'
+  | 'empty-msg'
+  | 'empty-device'
+  | 'warning'
+  | 'loading'
+  | 'success'
+  | 'empty-intel';
 
 interface Props extends StyledProps {
   type: StatusInfoType;
@@ -31,7 +38,7 @@ interface Props extends StyledProps {
   subtitle?: string | React.ReactNode;
   message: string | React.ReactNode;
   buttons: BtnOptions[];
-  onClick: any;
+  onClick: (e: React.MouseEvent) => void;
   fillContainer?: boolean;
 }
 
@@ -52,45 +59,30 @@ export function StatusInfo({
 
   const renderContent = () => {
     if (type === 'loading') {
-      return <Loading/>;
+      return <Loading />;
     }
     return (
-        <>
-          <img className='status-icon' src={icon}/>
-          {Boolean(title) && (
-            <div className='status-title'>
-              {title}
-            </div>
-          )}
-          {Boolean(subtitle) && (
-            <div className='status-subtitle'>
-              {subtitle}
-            </div>
-          )}
-          {Boolean(message) && (
-            <div className='status-message'>
-              {message}
-            </div>
-          )}
-          {buttons && buttons.length > 0 && (
-            <BtnGroup
-              layout='vertical'
-              className='status-info-btn-group'
-              buttons={buttons}
-            />
-          )}
-        </>
+      <>
+        <img className="status-icon" src={icon} />
+        {Boolean(title) && <div className="status-title">{title}</div>}
+        {Boolean(subtitle) && <div className="status-subtitle">{subtitle}</div>}
+        {Boolean(message) && <div className="status-message">{message}</div>}
+        {buttons && buttons.length > 0 && (
+          <BtnGroup
+            layout="vertical"
+            className="status-info-btn-group"
+            buttons={buttons}
+          />
+        )}
+      </>
     );
   };
 
   return (
     <div
-      className={classNames(
-        'status-info', className, `type-${type}`,
-        {
-          'fill-container': fillContainer,
-        },
-      )}
+      className={classNames('status-info', className, `type-${type}`, {
+        'fill-container': fillContainer,
+      })}
       onClick={onClick}
       style={style}
     >

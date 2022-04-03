@@ -7,6 +7,11 @@ import { useTitle } from '@hooks/useTitle';
 import { Cell } from '@custom/Cell';
 import { OptionDialog } from '@custom/OptionDialog';
 
+interface OptionProps {
+  label: string;
+  value: string | number;
+}
+
 export function VideoConfig({
   deviceData,
   templateMap,
@@ -29,13 +34,13 @@ export function VideoConfig({
   const getOptions = (key:string) => {
     if (templateMap[key]) {
       if (templateMap[key].define.type === 'enum') {
-        const options: any = [];
-        for (const [index, value] of Object.entries(templateMap[key].define.mapping)) {
+        const options: OptionProps[] = [];
+        Object.entries(templateMap[key].define.mapping).forEach(([index, value]) => {
           options.push({
             label: value,
             value: index,
           });
-        }
+        });
         return (options || []).length > 0 ? options : [];
       }
     }

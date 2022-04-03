@@ -6,7 +6,10 @@ import { useDidMount } from 'beautiful-react-hooks';
 export interface LightColorProps extends StyledProps {
   defaultValue?: number; // 0 - 1000
 }
-export function Position({ deviceData: { brightness = 80, color_mode }, doControlDeviceData }) {
+export function Position({
+  deviceData: { brightness = 80, color_mode },
+  doControlDeviceData,
+}) {
   const min_value = 0;
   const max_value = 1000;
   const [dataUser, setDataUser] = useState(300);
@@ -18,7 +21,7 @@ export function Position({ deviceData: { brightness = 80, color_mode }, doContro
     }
     const wrap = wrapper.current;
     const point = circle.current;
-    const centerX = wrap.clientWidth / 2 - (document.body.clientWidth / 1125.0) * 10;
+    const centerX =      wrap.clientWidth / 2 - (document.body.clientWidth / 1125.0) * 10;
     const centerY = -wrap.clientHeight / 2 + point?.clientHeight * 0.9;
 
     const n = parseInt((dataUser / 1000.0) * 275, 10);
@@ -35,13 +38,14 @@ export function Position({ deviceData: { brightness = 80, color_mode }, doContro
   });
 
   const updateBrightColor = (val) => {
+    let newVal = val;
     if (val < min_value) {
-      val = min_value;
+      newVal = min_value;
     } else if (val > max_value) {
-      val = max_value;
+      newVal = max_value;
     }
-    setDataUser(val);
-    doControlDeviceData('set_temp', val);
+    setDataUser(newVal);
+    doControlDeviceData('set_temp', newVal);
   };
 
   const onTouchMove = (e: React.MouseEvent) => {
@@ -51,11 +55,14 @@ export function Position({ deviceData: { brightness = 80, color_mode }, doContro
     const x = e.changedTouches[0].clientX - wrap.offsetLeft;
     let y = e.changedTouches[0].clientY - wrap_y - document.body.offsetTop;
     y -= wrap.clientHeight - point.clientHeight;
-    const centerX = wrap.clientWidth / 2 - (document.body.clientWidth / 1125.0) * 10;
+    const centerX =      wrap.clientWidth / 2 - (document.body.clientWidth / 1125.0) * 10;
     const centerY = -wrap.clientHeight / 2 + point?.clientHeight * 0.9;
 
     const dist = Math.sqrt((centerX - x) * (centerX - x) + (centerY - y) * (centerY - y));
-    if (dist < (wrap?.clientWidth / 2) * 0.5 || dist > (wrap?.clientWidth / 2) * 1.05) {
+    if (
+      dist < (wrap?.clientWidth / 2) * 0.5
+      || dist > (wrap?.clientWidth / 2) * 1.05
+    ) {
       return;
     }
     let angle = (Math.atan2(y - centerY, x - centerX) * 180) / Math.PI;

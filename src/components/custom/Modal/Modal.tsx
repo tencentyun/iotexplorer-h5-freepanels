@@ -4,13 +4,12 @@ import { noop } from '@utillib';
 import { themeColorMap } from '@constants';
 import { ConfirmBtnGroup, ConfirmBtnGroupProps } from '@custom/Btn';
 import { iconArrowBack } from '@icons/common';
-// import './Modal.less';
 import { useIpx } from '@hooks/useIpx';
 
 export interface ModalProps extends StyledProps {
   visible: boolean;
   title?: string | React.ReactNode;
-  onClose?: () => any;
+  onClose?: (e: React.MouseEvent | void) => void;
   maskClosable?: boolean;
   fixedBottom?: boolean;
   children?: React.ReactNode;
@@ -67,7 +66,13 @@ export function Modal({
 
 Modal.Body = ({ children }) => <div className="modal-body">{children}</div>;
 
-Modal.Footer = ({ children, showDivider }: { showDivider?: boolean; children?: React.ReactNode }) => (
+Modal.Footer = ({
+  children,
+  showDivider,
+}: {
+  showDivider?: boolean;
+  children?: React.ReactNode;
+}) => (
   <div className={classNames('modal-footer')}>
     {showDivider && <Modal.Divider />}
     {children}
@@ -157,11 +162,17 @@ Modal.FooterConfirmBtnGroup = ({
 
 export interface FooterBtnProps extends StyledProps {
   children: React.ReactNode;
-  onClick?: any;
+  onClick?: (e: React.MouseEvent) => void;
   noBorder?: boolean;
 }
 
-Modal.FooterBtn = ({ children, onClick, style, className, noBorder }: FooterBtnProps) => (
+Modal.FooterBtn = ({
+  children,
+  onClick,
+  style,
+  className,
+  noBorder,
+}: FooterBtnProps) => (
   <button
     className={classNames('modal-footer-btn need-hover', className, {
       'no-border': noBorder,

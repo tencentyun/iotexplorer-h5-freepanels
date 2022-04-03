@@ -27,6 +27,11 @@ export function Home({
     1: 'locked',
     2: 'offline'
   };
+  const lockStatus = {
+    0: 'unlocked',
+    1: 'locked',
+    2: 'offline',
+  };
 
   const goVideoPanel = () => {
     sdk.goDevicePanelPage('II0Q47L8B9/e_69518626_1');
@@ -74,8 +79,8 @@ export function Home({
           <Icon name="log"></Icon>
         </div>
         <div className={classNames(
-          "status-tip",
-          lockStatus[deviceData.lock_motor_state || 0]
+          'status-tip',
+          lockStatus[deviceData.lock_motor_state || 0],
         )}>{lockStatusWord[deviceData.lock_motor_state || 0]}</div>
         <div className="config" onClick={()=>{push(PATH.SETTINGS_INDEX)}}>
           <Icon name="config"></Icon>

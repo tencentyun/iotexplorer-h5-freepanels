@@ -7,15 +7,15 @@ export interface ConfirmModalProps extends StyledProps {
   title?: string;
   content?: string | React.ReactNode;
   children?: string | React.ReactNode;
-  onCancel?: any;
-  onConfirm?: any;
+  onCancel?: (e: React.MouseEvent) => React.MouseEvent | void;
+  onConfirm?: (e: React.MouseEvent) => React.MouseEvent | void;
   confirmText?: string;
   confirmColor?: string;
   cancelText?: string;
   cancelColor?: string;
   maskClosable?: boolean;
   btnFootClass?: string;
-  onClose?: () => any;
+  onClose?: (e: React.MouseEvent) => React.MouseEvent | void;
 }
 
 export function ConfirmModal({
@@ -44,11 +44,13 @@ export function ConfirmModal({
       onClose={onClose}
       style={style}
     >
-      {(!!children || !!content) && <Modal.Body>{children || content}</Modal.Body>}
+      {(!!children || !!content) && (
+        <Modal.Body>{children || content}</Modal.Body>
+      )}
       <Modal.Footer>
         <Modal.FooterConfirmBtnGroup
           {...{
-            onCancel: onClose,
+            onCancel: onCancel || onClose,
             onConfirm,
             confirmText,
             confirmColor,

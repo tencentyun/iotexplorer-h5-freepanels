@@ -10,15 +10,10 @@ import { getLocalImgData, chooseImage } from '@utils';
 import { Cell } from '@custom/Cell';
 
 export function UserEdit({
-  deviceData,
-  templateMap,
-  doControlDeviceData,
   history: { PATH, push, query },
   tips,
 }) {
   useTitle('用户编辑');
-  const [userList, setUserList] = useState([{ name: '我', type: '指纹1 密码1' }, { name: '妈妈', type: '指纹2' }, { name: '我', type: '指纹1 密码1' }]);
-
   // 用户姓名
   const [nameValue, setNameValue] = useState(query.userName ? query.userName : '我');
   const [nameEditVisible, setNameEdit] = useState(false);
@@ -83,7 +78,9 @@ export function UserEdit({
 
       <div className="unlock-method">
         <div>指纹</div>
-        <div onClick={()=> {push(PATH.USERS_PSDRESULT, {type: 'fingerprint'})}}>+添加</div>
+        <div onClick={() => {
+          push(PATH.USERS_PSDRESULT, { type: 'fingerprint' });
+        }}>+添加</div>
       </div>
       {fingerprintList.map((item, index) => (
         <div className="method-item" key={index}>
@@ -101,7 +98,9 @@ export function UserEdit({
       ))}
       <div className="unlock-method">
         <div>密码</div>
-        <div onClick={()=> {push(PATH.USERS_PSDRESULT, {type: 'password'})}}>+添加</div>
+        <div onClick={() => {
+          push(PATH.USERS_PSDRESULT, { type: 'password' });
+        }}>+添加</div>
       </div>
       {passwordList.map((item, index) => (
         <div className="method-item" key={index}>
@@ -119,7 +118,9 @@ export function UserEdit({
       ))}
       <div className="unlock-method">
         <div>卡片</div>
-        <div onClick={()=> {push(PATH.USERS_PSDRESULT, {type: 'card'})}}>+添加</div>
+        <div onClick={() => {
+          push(PATH.USERS_PSDRESULT, { type: 'card' });
+        }}>+添加</div>
       </div>
       {cardList.map((item, index) => (
         <div className="method-item" key={index}>
@@ -137,7 +138,9 @@ export function UserEdit({
       ))}
       <div className="unlock-method">
         <div>脸部</div>
-        <div onClick={()=> {push(PATH.USERS_PSDRESULT, {type: 'face'})}}>+添加</div>
+        <div onClick={() => {
+          push(PATH.USERS_PSDRESULT, { type: 'face' });
+        }}>+添加</div>
       </div>
       {faceList.map((item, index) => (
         <div className="method-item" key={index}>
@@ -156,10 +159,10 @@ export function UserEdit({
       <Cell
         className="cell-settings pd"
         title="生效时间"
-        value={query.effectiveTime == '1' ? '自定义' : '永久'}
+        value={query.effectiveTime === '1' ? '自定义' : '永久'}
         valueStyle="set"
-        onClick={()=>{
-          push(PATH.USERS_PSDADD, {effectiveTime: query.effectiveTime || '0'});
+        onClick={() => {
+          push(PATH.USERS_PSDADD, { effectiveTime: query.effectiveTime || '0' });
         }}
       ></Cell>
 

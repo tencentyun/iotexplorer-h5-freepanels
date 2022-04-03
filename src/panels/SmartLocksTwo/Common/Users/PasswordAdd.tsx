@@ -12,7 +12,7 @@ import dayjs from 'dayjs';
 
 const arrWeek = ['星期一', '星期二', '星期三', '星期四', '星期五', '星期六', '星期日'];
 
-export function PasswordAdd({ deviceData, templateMap, doControlDeviceData, history: { PATH, push, query } }) {
+export function PasswordAdd({ history: { PATH, push, query } }) {
   useTitle('生效时间编辑');
   // 永久/自定义
   const [type, setType] = useState(query.effectiveTime);
@@ -38,11 +38,11 @@ export function PasswordAdd({ deviceData, templateMap, doControlDeviceData, hist
       <div className="choice-type">
         <span>生效时间</span>
         <div>
-          <Btn btnText="永久" type={type != '0' ? 'sub' : 'primary'} size="small" onClick={() => setType('0')} />
-          <Btn btnText="自定义" type={type != '0' ? 'primary' : 'sub'} size="small" onClick={() => setType('1')} />
+          <Btn btnText="永久" type={type !== '0' ? 'sub' : 'primary'} size="small" onClick={() => setType('0')} />
+          <Btn btnText="自定义" type={type !== '0' ? 'primary' : 'sub'} size="small" onClick={() => setType('1')} />
         </div>
       </div>
-      {type != '0' ? <>
+      {type !== '0' ? <>
         <Cell
           title="有效日期"
           className="cell-settings cell-nest"
@@ -172,13 +172,11 @@ export function PasswordAdd({ deviceData, templateMap, doControlDeviceData, hist
           </ul>
         </Cell>
       </> : null}
-      
-
       <footer className="footer">
         <div
           className="footer-button"
           onClick={() => {
-            push(PATH.USERS_EDIT, {effectiveTime: type});
+            push(PATH.USERS_EDIT, { effectiveTime: type });
           }}
         >
           确定
