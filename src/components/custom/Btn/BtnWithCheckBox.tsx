@@ -9,7 +9,7 @@ export interface BtnWithCheckBoxProps extends BtnOptions {
   checkboxText: string | React.ReactNode;
   checkboxType?: 'radio' | 'checkbox';
   checked?: boolean;
-  onCheckedChange?: any;
+  onCheckedChange?: (checked: boolean) => void;
   background?: string;
   associate?: boolean;
   defaultChecked?: boolean;

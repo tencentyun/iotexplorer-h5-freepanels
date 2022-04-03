@@ -30,7 +30,7 @@ const stringify = (obj = {}, { code = '' } = {}) => Object.keys(obj)
   .map((key) => {
     let value = obj[key];
     if (code) {
-      value = code == 'encode' ? encodeURIComponent(value) : decodeURIComponent(value);
+      value = code === 'encode' ? encodeURIComponent(value) : decodeURIComponent(value);
     }
     return `${key}=${value}`;
   })
@@ -70,7 +70,7 @@ const getPathName = (path: string, split = '_', isUpperCase = true) => {
   return isUpperCase ? pathName.toLocaleUpperCase() : pathName.toLocaleLowerCase();
 };
 
-export const Router = ({ route = [] }) => {
+export const Router = ({ route = [] as HashMap[] }) => {
   const [state, action] = useDeviceInfo();
   const [context, setContextData] = useState({});
   const setContext = (key, val = true, isAppend = true) => {

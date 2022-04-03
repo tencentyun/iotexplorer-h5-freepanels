@@ -8,7 +8,7 @@ export interface IconBtnOptions extends StyledProps {
   message?: string;
   icon?: string;
   size?: string | number;
-  onClick?: any;
+  onClick?: (e: React.MouseEvent) => void;
   children?: React.ReactNode;
   iconBackground?: string;
 }
@@ -34,31 +34,18 @@ export function IconBtn({
       }}
     >
       <RawBtn
-        className='icon-btn'
+        className="icon-btn"
         onClick={onClick}
         style={{
           background: iconBackground,
           ...btnSize,
         }}
       >
-        {icon ? (
-          <img
-            className='btn-icon'
-            src={icon as string}
-          />
-        ) : children}
+        {icon ? <img className="btn-icon" src={icon as string} /> : children}
       </RawBtn>
-      <div
-        className='icon-btn-title text-overflow'
-      >
-        {title}
-      </div>
+      <div className="icon-btn-title text-overflow">{title}</div>
       {Boolean(message) && (
-        <div
-          className='icon-btn-msg text-overflow'
-        >
-          {message}
-        </div>
+        <div className="icon-btn-msg text-overflow">{message}</div>
       )}
     </div>
   );

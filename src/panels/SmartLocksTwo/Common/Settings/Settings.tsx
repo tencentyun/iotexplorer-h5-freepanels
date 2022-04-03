@@ -9,6 +9,11 @@ import { Switch } from '@custom/Switch';
 import { OptionDialog } from '@custom/OptionDialog';
 import { TimePicker } from '@custom/TimePicker';
 
+interface OptionProps {
+  label: string;
+  value: string | number;
+}
+
 export function Settings({
   deviceData,
   templateMap,
@@ -54,13 +59,13 @@ export function Settings({
   const getOptions = (key:string) => {
     if (templateMap[key]) {
       if (templateMap[key].define.type === 'enum') {
-        const options: any = [];
-        for (const [index, value] of Object.entries(templateMap[key].define.mapping)) {
+        const options: OptionProps[] = [];
+        Object.entries(templateMap[key].define.mapping).forEach(([index, value]) => {
           options.push({
             label: value,
             value: index,
           });
-        }
+        });
         return (options || []).length > 0 ? options : [];
       }
     }
@@ -80,12 +85,12 @@ export function Settings({
         }}
       ></Cell>
       <Cell
-        className={classNames('cell-settings', { 'no-border': deviceData.stay_alarm_mode == 1 })}
+        className={classNames('cell-settings', { 'no-border': deviceData.stay_alarm_mode === 1 })}
         title="逗留侦测"
         isLink={false}
         value={
           <Switch
-            checked={deviceData.stay_alarm_mode == 1}
+            checked={deviceData.stay_alarm_mode === 1}
             onChange={(value: boolean) => {
               doControlDeviceData('stay_alarm_mode', Number(value));
             }}
@@ -93,7 +98,7 @@ export function Settings({
         }
       >
       </Cell>
-      {deviceData.stay_alarm_mode == 1
+      {deviceData.stay_alarm_mode === 1
         ? <div className="cell-settings-secondary-wrap mb">
           <Cell
             className="cell-settings-secondary"
@@ -167,7 +172,7 @@ export function Settings({
             isLink={false}
             value={
               <Switch
-                checked={deviceData.detect_message == 1}
+                checked={deviceData.detect_message === 1}
                 onChange={(value: boolean) => {
                   doControlDeviceData('detect_message', Number(value));
                 }}
@@ -183,7 +188,7 @@ export function Settings({
         isLink={false}
         value={
           <Switch
-            checked={deviceData.doorbell == 1}
+            checked={deviceData.doorbell === 1}
             onChange={(value: boolean) => {
               doControlDeviceData('doorbell', Number(value));
             }}
@@ -199,13 +204,13 @@ export function Settings({
         }}
       ></Cell>
       <Cell
-        className={classNames('cell-settings-high', { 'no-border': deviceData.dormant_switch == 1 })}
+        className={classNames('cell-settings-high', { 'no-border': deviceData.dormant_switch === 1 })}
         title="休眠设置"
         subTitle={'开启后，门锁在休眠时间段内多数功能不可使用'}
         isLink={false}
         value={
           <Switch
-            checked={deviceData.dormant_switch == 1}
+            checked={deviceData.dormant_switch === 1}
             onChange={(value: boolean) => {
               doControlDeviceData('dormant_switch', Number(value));
             }}
@@ -213,7 +218,7 @@ export function Settings({
         }
       >
       </Cell>
-      {deviceData.dormant_switch == 1 ? <div className="cell-settings-secondary-wrap mb">
+      {deviceData.dormant_switch === 1 ? <div className="cell-settings-secondary-wrap mb">
         <Cell
           className="cell-settings-secondary"
           title="开始时间"
@@ -300,7 +305,7 @@ export function Settings({
         isLink={false}
         value={
           <Switch
-            checked={deviceData.arming_switch == 1}
+            checked={deviceData.arming_switch === 1}
             onChange={(value: boolean) => {
               doControlDeviceData('arming_switch', Number(value));
             }}

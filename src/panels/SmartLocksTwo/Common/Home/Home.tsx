@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import classNames from 'classnames';
 import { Battery } from '@custom/Battery';
 import { Cell } from '@custom/Cell';
@@ -20,6 +20,11 @@ export function Home({
     0: '未上锁',
     1: '已关闭',
     2: '已离线',
+  };
+  const lockStatus = {
+    0: 'unlocked',
+    1: 'locked',
+    2: 'offline',
   };
 
   const goVideoPanel = () => {
@@ -73,7 +78,7 @@ export function Home({
         </div>
         <div className={classNames(
           'status-tip',
-          deviceData.lock_motor_state === 1 ? 'locked' : 'unlocked',
+          lockStatus[deviceData.lock_motor_state || 0],
         )}>{lockStatusWord[deviceData.lock_motor_state || 0]}</div>
         <div className="config" onClick={() => {
           push(PATH.SETTINGS_INDEX);

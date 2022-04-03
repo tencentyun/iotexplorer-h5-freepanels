@@ -1,19 +1,26 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Image as AntImage } from 'antd-mobile';
 import { CheckBox } from '@custom/CheckBox';
 export interface ImageOptions extends StyledProps {
+  src: string;
   checkable?: boolean;
   checked?: boolean;
-  onChange?: any;
+  onChange?: (value: boolean) => boolean | void;
   children?: React.ReactNode;
   className?: string;
 }
 
-// TODO 扩展放大缩小
-export function Image({ className, checkable, onChange, checked, ...props }: ImageOptions) {
+export function Image({
+  className,
+  checkable,
+  onChange,
+  checked,
+  src,
+  ...props
+}: ImageOptions) {
   return (
     <div className={`cus-image ${className}`}>
-      <AntImage {...props}></AntImage>
+      <AntImage src={src} {...props}></AntImage>
       {checkable ? (
         <div className="checked">
           <CheckBox value={!!checked} type="radio" onChange={onChange} />

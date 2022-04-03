@@ -122,7 +122,7 @@ const AddTimer = ({
         type="multiple"
         value={weeks}
         onCancel={() => setVisible(false)}
-        onConfirm={(val: any) => {
+        onConfirm={(val) => {
           setContext('Days', setWeeksFormat(val));
         }}
         options={arrWeek.map((label, value) => ({ label, value }))}

@@ -1,17 +1,20 @@
 import React from 'react';
 import MultiPicker from 'rmc-picker/lib/MultiPicker';
 import Picker from 'rmc-picker';
-// import './PickerViewGroup.less';
 
+export interface OptionProps {
+  text: string;
+  value: number;
+}
 export interface PickerViewGroupProps {
-  value: string[];
-  onChange: (value: string[]) => any;
-  options: SelectorOption[][];
+  value: string[] | number[];
+  onChange: ((value: string[]) => void) | undefined;
+  options: SelectorOption[][] | OptionProps[][];
   itemHeight?: string; // 单位 px
   height?: string; // 单位px
   showDivider?: boolean;
   className?: string;
-  onScrollChange?: (value: string[]) => any;
+  onScrollChange?: (value: string[]) => void;
 }
 
 export function PickerViewGroup({

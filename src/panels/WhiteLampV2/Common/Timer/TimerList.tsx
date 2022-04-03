@@ -7,13 +7,19 @@ const labelEnum = {
   },
 };
 
-const getSwitchNumData = (powerSwitch, num) => {
+const getSwitchNumData = (powerSwitch) => {
   const value = 1 * powerSwitch;
   const changeData = { power_switch: value };
   return changeData;
 };
 
 export const TimerList = (props) => {
-  const defaultValue = getSwitchNumData(0, props.context.switchNum);
-  return <CloudTimerList {...props} labelEnum={labelEnum} defaultValue={defaultValue} />;
+  const defaultValue = getSwitchNumData(0);
+  return (
+    <CloudTimerList
+      {...props}
+      labelEnum={labelEnum}
+      defaultValue={defaultValue}
+    />
+  );
 };

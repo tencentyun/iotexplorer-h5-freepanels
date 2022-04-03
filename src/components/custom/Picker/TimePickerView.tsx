@@ -6,12 +6,13 @@ const genArr = (count, start = 0) => Array(...new Array(count)).map((a, index) =
 const getHour = (showTwoDigit = false) => genArr(24).map(h => (h < 10 ? `${showTwoDigit ? '0' : ''}${h}` : String(h)));
 const getMinute = (showTwoDigit = false) => genArr(60).map(m => (m < 10 ? `${showTwoDigit ? '0' : ''}${m}` : String(m)));
 
-export interface TimePickerViewProps extends Omit<PickerViewGroupProps, 'options' | 'value' | 'onChange'> {
+export interface TimePickerViewProps
+  extends Omit<PickerViewGroupProps, 'options' | 'value' | 'onChange'> {
   value: string[];
-  onChange?: (value: string[]) => any;
+  onChange?: (value: string[]) => void;
   isTimeRange?: boolean;
-  itemHeight?: number; // px
-  height?: number; // px
+  itemHeight?:  string | undefined; // px
+  height?: string | undefined; // px
   showUnit?: boolean;
   className?: string;
   hourUnit?: string;
@@ -29,8 +30,8 @@ export function TimePickerView({
   // itemHeight = '2.75rem',
   // height = '429px',
   // height = '8.9375em',
-  itemHeight = 44,
-  height = 143,
+  itemHeight = '44',
+  height = '143',
   showUnit,
   hourUnit,
   minuteUnit,
@@ -64,7 +65,9 @@ export function TimePickerView({
   }, [showTwoDigit, isTimeRange]);
 
   // select-flag 箭头表示
-  const clsName = `select-flag ${className} ${showSemicolon ? ' semicolon' : ''}`;
+  const clsName = `select-flag ${className} ${
+    showSemicolon ? ' semicolon' : ''
+  }`;
 
   let formatValue = value;
   if (showTwoDigit) {

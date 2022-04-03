@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useTitle } from '@hooks/useTitle';
-import { Video, ACTION } from '@custom/Video';
+import { Video } from '@custom/Video';
 import './VideoHistory.less';
 
 // const actions = [ACTION.VOLUME, ACTION.CAPTURE, ACTION.RECORD, ACTION.FULL];

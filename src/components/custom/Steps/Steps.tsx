@@ -23,13 +23,11 @@ const DAY_DESC: string[] = [
   '周六',
 ];
 
-export function Steps({
-  stepData,
-}: StepsProps) {
+export function Steps({ stepData }: StepsProps) {
   const item = (value: stepProps, index: number) => {
     const date = dayjs(Number(value.Time));
 
-    const statusLabel: any = {
+    const statusLabel: HashMap = {
       1: '有积水',
       2: '正常',
       3: '检测中',
@@ -39,8 +37,7 @@ export function Steps({
     return (
       <div className="step" key={index}>
         <div className="step-indicator">
-          <div className="step-icon-dot">
-          </div>
+          <div className="step-icon-dot"></div>
         </div>
         <div className="step-content">
           <div className="content-left">
@@ -60,9 +57,8 @@ export function Steps({
   };
   return (
     <div className="steps">
-      {stepData.length > 0 && stepData.map((value, index) => (
-        item(value, index)
-      ))}
+      {stepData.length > 0
+        && stepData.map((value, index) => item(value, index))}
     </div>
   );
 }

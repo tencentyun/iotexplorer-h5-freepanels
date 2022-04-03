@@ -4,9 +4,10 @@ import { Image } from '@custom/Image';
 import { Btn } from '@custom/Btn';
 
 const src =  'https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimg9.51tietu.net%2Fpic%2F2019-091216%2Ftn25ktz0usktn25ktz0usk.jpg&refer=http%3A%2F%2Fimg9.51tietu.net&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1650682187&t=9d3ef8eaf2f52353d3ef2dc6e40ca922';
-export function Photos({ tips }) {
+export function Photos() {
   const [select, setSelect] = useState([]); // 选中的照片
   const [checkable, setCheckable] = useState(true); // 是否可以选择
+  setCheckable(true);
   const result = [
     {
       dateTime: 1648089813698,

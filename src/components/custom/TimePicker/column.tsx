@@ -23,20 +23,16 @@ export function Column(props: Props) {
     'div',
     Object.assign({
       className: 'custom-picker-column',
-    },
-      // bind()
-    ),
+    }),
     React.createElement(
       animated.div,
       {
         style: {
-          // y: y
           y: 0,
         },
         className: 'custom-picker-column-wheel',
       },
-      column.map((item, index) => {
-        console.log(item, 'item ======');
+      column.map((item) => {
         function handleClick() {
           // draggingRef.current = false;
           // scrollSelect(index);

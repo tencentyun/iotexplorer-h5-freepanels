@@ -8,6 +8,11 @@ import { Cell } from '@custom/Cell';
 import { Switch } from '@custom/Switch';
 import { OptionDialog } from '@custom/OptionDialog';
 
+interface OptionProps {
+  label: string;
+  value: string | number;
+}
+
 export function CameraConfig({ deviceData, templateMap, doControlDeviceData }) {
   useTitle('摄像头设置');
   // 红外夜视
@@ -27,13 +32,13 @@ export function CameraConfig({ deviceData, templateMap, doControlDeviceData }) {
   const getOptions = (key: string) => {
     if (templateMap[key]) {
       if (templateMap[key].define.type === 'enum') {
-        const options: any = [];
-        for (const [index, value] of Object.entries(templateMap[key].define.mapping)) {
+        const options: OptionProps[] = [];
+        Object.entries(templateMap[key].define.mapping).forEach(([index, value]) => {
           options.push({
             label: value,
             value: index,
           });
-        }
+        });
         return (options || []).length > 0 ? options : [];
       }
     }
@@ -70,7 +75,7 @@ export function CameraConfig({ deviceData, templateMap, doControlDeviceData }) {
         isLink={false}
         value={
           <Switch
-            checked={deviceData.stay_alarm_mode == 1}
+            checked={deviceData.stay_alarm_mode === 1}
             onChange={(value: boolean) => {
               doControlDeviceData('stay_alarm_mode', Number(value));
             }}
@@ -78,7 +83,7 @@ export function CameraConfig({ deviceData, templateMap, doControlDeviceData }) {
         }
       >
       </Cell>
-      {deviceData.stay_alarm_mode == 1
+      {deviceData.stay_alarm_mode === 1
         ? <Cell
           className="cell-settings-secondary"
           title="灵敏度"

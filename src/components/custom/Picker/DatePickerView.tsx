@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import { PickerViewGroup, PickerViewGroupProps } from '@custom/Picker';
+import { PickerViewGroup } from '@custom/Picker';
 import { rpx2rem } from '@utillib';
 import dayjs from 'dayjs';
 import { getYears, getMouths, getDays } from './utils';
-
 export interface DatePickerViewProps {
-  value: Date[] | Date;
-  max: Date[] | Date; // 选择的最大日期
-  min: Date[] | Date; // 选择的最小日期
-  onChange?: (value: string[]) => any;
+  value: Date;
+  max: Date; // 选择的最大日期
+  min: Date; // 选择的最小日期
+  onChange?: (value: string[]) => void;
   isTimeRange?: boolean;
   itemHeight?: number; // px
   height?: number; // px
@@ -18,11 +17,16 @@ export interface DatePickerViewProps {
   className?: string;
   showSemicolon?: boolean;
   selectFlag?: string;
-  onScrollChange?: (value: string[]) => any;
+  onScrollChange?: (value: string[]) => void;
   showTwoDigit?: boolean;
 }
 
-const [defaultMin, defaultMax] = [dayjs().$d, dayjs(0).$d];
+export interface OptionProps {
+  text: string;
+  value: number;
+}
+
+const [defaultMin, defaultMax] = [dayjs()?.$d as Date, dayjs(0)?.$d as Date];
 
 export function DatePickerView({
   value = defaultMax,
@@ -35,27 +39,28 @@ export function DatePickerView({
   yearUnit = '年',
   mouthUnit = '',
   dayUnit = '',
-  showTwoDigit,
+  showTwoDigit = true,
   showSemicolon,
   onScrollChange,
   className = '',
   ...props
 }: DatePickerViewProps) {
-  const [options, setOption] = useState([]);
-  const [date, setDate] = useState([]);
+  const [options, setOption] = useState<OptionProps[][]>([] as OptionProps[][]);
+  const [date, setDate] = useState<number[]>([] as number[]);
 
   useEffect(() => {
-    const range = [dayjs(min), dayjs(max)];
     const d = dayjs(value);
     setOption([
-      getYears(range[0], range[1], yearUnit, showTwoDigit),
+      getYears(min, max, yearUnit, showTwoDigit),
       getMouths(mouthUnit, showTwoDigit),
       getDays(dayUnit, showTwoDigit, d.$d),
     ]);
     setDate([d.$y, d.$M + 1, d.$D]);
   }, [min, max, value]);
 
-  const clsName = `select-flag ${className} ${showSemicolon ? ' semicolon' : ''}`;
+  const clsName = `select-flag ${className} ${
+    showSemicolon ? ' semicolon' : ''
+  }`;
 
   return (
     <PickerViewGroup
