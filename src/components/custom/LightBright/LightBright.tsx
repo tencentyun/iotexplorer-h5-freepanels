@@ -46,7 +46,7 @@ export function LightBright({ maxValue = 100, minValue = 0, status, defaultValue
     updateBrightVal(tmp, true);
   };
 
-  const onTouchStart = (e: TouchEvent) => {
+  const onTouchStart = () => {
     document.addEventListener('touchmove', handleMove);
     document.addEventListener('touchend', handleEndMove);
   };

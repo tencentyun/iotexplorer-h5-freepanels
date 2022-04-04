@@ -6,7 +6,7 @@ export interface BtnOptions extends StyledProps {
   // type=default = type:primary + reverse:true
   // type=cancel 时，只有一个样式，reverse和transparent无效
   type?: 'default' | 'primary' | 'danger' | 'cancel' | 'link' | 'sub';
-  onClick?: any;
+  onClick?: (e: React.MouseEvent) => React.MouseEvent | void;
   icon?: string;
   reverse?: boolean; // 翻转颜色
   transparent?: boolean; // 透明底色
@@ -36,25 +36,32 @@ export function Btn({
       <span className="btn-text">{btnText ? btnText : children}</span>
     </>
   );
-
+  let currentReverse: boolean = reverse;
+  let currentType: string = type;
   if (type === 'default') {
-    type = 'primary';
-    reverse = true;
+    currentType = 'primary';
+    currentReverse = true;
   }
 
   // 如果透明底必须要翻转
   if (transparent) {
-    reverse = true;
+    currentReverse = true;
   }
 
   return (
     <button
-      className={classNames('btn need-hover', `btn-size-${size}`, className, type ? `btn-${type}` : '', {
-        standalone,
-        disabled,
-        transparent,
-        reverse,
-      })}
+      className={classNames(
+        'btn need-hover',
+        `btn-size-${size}`,
+        className,
+        currentType ? `btn-${currentType}` : '',
+        {
+          standalone,
+          disabled,
+          transparent,
+          currentReverse,
+        },
+      )}
       style={style}
       onClick={(e) => {
         if (disabled) {
@@ -72,7 +79,7 @@ export function Btn({
 }
 
 export interface RawBtnProps extends StyledProps {
-  onClick?: any;
+  onClick?: (e: React.MouseEvent) => React.MouseEvent | void;
   children?: string | React.ReactNode;
   hoverClass?: string;
   hoverStopPropagation?: boolean;

@@ -27,11 +27,11 @@ export interface CellProps {
   // 是否展示右侧箭头
   isLink?: boolean;
   size?: 'normal' | 'medium';
-  onClick?: any;
+  onClick?: (cell: CellProps) => void;
   children?: React.ReactNode;
   ele?: string;
   eleValue?: boolean;
-  onChange?: any;
+  onChange?:  (checked: boolean) => void  ;
 }
 
 const supportEle = {
@@ -49,14 +49,13 @@ export function Cell({
   valueStyle = 'normal',
   desc,
   isLink = true,
-  size = 'normal',
   onClick,
   children,
   ele = '', // 默认支持两种常见元素 switch / checkbox
   eleValue = false, // 元素值
   onChange = () => ({}),
 }: CellProps) {
-  const target = useRef<any>(null);
+  const target = useRef(null);
   const meta: CellProps = {
     title,
     subTitle,
@@ -78,18 +77,28 @@ export function Cell({
     <div className={`cell ${className ? className : ''}`} ref={target}>
       <div className="cell-wrapper" onClick={handleClick}>
         {/* 左侧图标 */}
-        {prefixIcon ? <span className="cell-prefix-icon">{prefixIcon}</span> : null}
+        {prefixIcon ? (
+          <span className="cell-prefix-icon">{prefixIcon}</span>
+        ) : null}
 
         {/* 标题 */}
         <p className="cell-title">{title}</p>
         {subTitle ? <span className="cell-subtitle">{subTitle}</span> : null}
 
         {/* 右侧内容区 */}
-        <div className={`cell-content cell-content-style-${valueStyle}`}>{value}</div>
+        <div className={`cell-content cell-content-style-${valueStyle}`}>
+          {value}
+        </div>
 
         {/* 右侧箭头 */}
         {isLink ? <span className="icon-arrow-right"></span> : null}
-        {ele ? <EleComponent onChange={onChange} checked={eleValue} value={eleValue} /> : null}
+        {ele ? (
+          <EleComponent
+            onChange={onChange}
+            checked={eleValue}
+            value={eleValue}
+          />
+        ) : null}
       </div>
 
       {desc ? <p className="cell-desc">{desc}</p> : null}

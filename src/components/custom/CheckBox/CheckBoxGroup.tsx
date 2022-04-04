@@ -1,20 +1,18 @@
 import React from 'react';
 import classNames from 'classnames';
-import { noop } from '@utillib';
 import { CheckBox } from './CheckBox';
-
 
 export interface CheckBoxGroupProps {
   options: SelectorOption[];
-  value: string[];
-  onChange: (value: string[]) => any;
+  value: string | string[];
+  onChange: (value: string[]) => void;
   type: 'checkbox';
 }
 
 export interface RadioGroupProps {
   options: SelectorOption[];
-  value: string;
-  onChange: (value: string) => any;
+  value: | string[] | string;
+  onChange: (value: string | string[]) => void;
   type: 'radio';
 }
 
@@ -40,39 +38,33 @@ export function CheckBoxGroup(props: CheckBoxGroupProps | RadioGroupProps) {
         nextValue.push(item.value);
       }
 
-      onChange(nextValue as any);
+      onChange(nextValue);
     }
   };
 
   return (
     <div className={classNames('checkbox-group', `type-${type}`)}>
       {options.map((item) => {
-        let actived = false;
+        let active = false;
 
         if (type === 'radio') {
-          actived = item.value === value;
+          active = item.value === value;
         } else {
-          const _value = value as string[] || [];
+          const filterValue = (value as string[]) || [];
 
-          actived = _value.findIndex(v => v === item.value) > -1;
+          active = filterValue.findIndex(v => v === item.value) > -1;
         }
 
         return (
           <div
             key={item.value}
             className={classNames('checkbox-item need-hover', {
-              actived,
+              active,
             })}
             onClick={() => onClickItem(item)}
           >
-            <CheckBox
-              type={type}
-              value={actived}
-              onChange={noop}
-            />
-            <div className='checkbox-item-text text-overflow'>
-              {item.text}
-            </div>
+            <CheckBox type={type} value={active} />
+            <div className="checkbox-item-text text-overflow">{item.text}</div>
           </div>
         );
       })}

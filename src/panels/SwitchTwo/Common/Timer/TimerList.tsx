@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { ListTimer as CloudTimerList } from '@custom/TimerCloud';
 const labelEnum = {
   power_switch: {
@@ -18,5 +18,11 @@ const getSwitchNumData = (powerSwitch, num) => {
 
 export const TimerList = (props) => {
   const defaultValue = getSwitchNumData(0, props.context.switchNum);
-  return <CloudTimerList {...props} labelEnum={labelEnum} defaultValue={defaultValue} />;
+  return (
+    <CloudTimerList
+      {...props}
+      labelEnum={labelEnum}
+      defaultValue={defaultValue}
+    />
+  );
 };

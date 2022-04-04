@@ -14,7 +14,6 @@ export const TimerAdd = (props) => {
   const {
     context: { power_switch = 0, switchNum = 4 },
     setContext,
-    // history: { PATH, push }
   } = props;
   const [visible, setVisible] = useState(false);
   const getSwitchNumData = (powerSwitch, num) => {
@@ -48,7 +47,7 @@ export const TimerAdd = (props) => {
         visible={visible}
         value={[power_switch]}
         onCancel={() => setVisible(false)}
-        onConfirm={(val: any) => {
+        onConfirm={(val) => {
           onAllSwitchChange(val?.[0] * 1);
         }}
         options={[

@@ -4,7 +4,7 @@ import { StatusInfo, StatusInfoType } from '@custom/StatusInfo';
 export interface EmptyAddTipProps extends StyledProps {
   emptyMessage?: string | React.ReactNode;
   emptyAddBtnText?: string;
-  onAdd?: any;
+  onAdd?: (e: React.MouseEvent) => void;
   style?: React.CSSProperties;
   className?: string;
   fillContainer?: boolean;

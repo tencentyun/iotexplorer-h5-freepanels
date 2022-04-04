@@ -1,20 +1,15 @@
 /*
  * @Description: 用户密码
  */
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import classNames from 'classnames';
 import { useTitle } from '@hooks/useTitle';
-import { Cell } from '@custom/Cell';
 import { Icon } from '@custom/Icon';
 
 export function PasswordResult({
-  deviceData,
-  templateMap,
-  doControlDeviceData,
   history: { push, PATH, query },
 }) {
   useTitle('用户编辑');
-  const [userList, setUserList] = useState([{ name: '我', type: '指纹1 密码1' }, { name: '妈妈', type: '指纹2' }, { name: '我', type: '指纹1 密码1' }]);
   const [status, setStatus] = useState(true);
 
   const synch_method = {
@@ -53,8 +48,12 @@ export function PasswordResult({
           }}>确认</div>
         ) : (
           <>
-            <div className="cancel-button" onClick={() => {}}>取消</div>
-            <div className="footer-button" onClick={() => {}}>重试</div>
+            <div className="cancel-button" onClick={() => {
+              push(PATH.USERS_EDIT);
+            }}>取消</div>
+            <div className="footer-button" onClick={() => {
+              setStatus(false);
+            }}>重试</div>
           </>
         )}
       </footer>

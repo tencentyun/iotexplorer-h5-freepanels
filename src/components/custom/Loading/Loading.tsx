@@ -22,14 +22,18 @@ export function Loading({
   let width;
 
   if (size) {
-    height = width = `${size}rpx`;
+    height = `${size}rpx`;
+    width = height;
   }
 
   switch (type) {
     case 'rotate-grey':
       return (
         <img
-          className={classNames('loading-icon loading-rotate loading-grey', className)}
+          className={classNames(
+            'loading-icon loading-rotate loading-grey',
+            className,
+          )}
           src={iconLoadingDark}
           style={{
             height,
@@ -41,7 +45,10 @@ export function Loading({
     case 'rotate-blue':
       return (
         <img
-          className={classNames('loading-icon loading-rotate loading-blue', className)}
+          className={classNames(
+            'loading-icon loading-rotate loading-blue',
+            className,
+          )}
           src={iconLoadingBlue}
           style={{
             height,
@@ -61,9 +68,9 @@ export function Loading({
           className={classNames('loading-icon spinner', className)}
           style={style}
         >
-          <div className='bounce bounce1' style={spinnerStyle}/>
-          <div className='bounce bounce2' style={spinnerStyle}/>
-          <div className='bounce bounce3' style={spinnerStyle}/>
+          <div className="bounce bounce1" style={spinnerStyle} />
+          <div className="bounce bounce2" style={spinnerStyle} />
+          <div className="bounce bounce3" style={spinnerStyle} />
         </div>
       );
     }

@@ -6,7 +6,7 @@ export interface ErrorTipProps extends StyledProps {
   errorTitle?: string | React.ReactNode;
   errorMessage?: string | React.ReactNode;
   errorIcon?: string;
-  onRetry?: any;
+  onRetry?: (e: React.MouseEvent) => void;
   retryText?: string | React.ReactNode;
   fillContainer?: boolean;
 }

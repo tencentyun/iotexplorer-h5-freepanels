@@ -14,7 +14,7 @@ export const ACTION = {
   FULL: 'full', // 全屏
 };
 
-export function Video({ actions = Object.entries(ACTION).map(([key, value]) => value), showDateTime = true }) {
+export function Video({ actions = Object.values(ACTION), showDateTime = true }) {
   const onActionClick = (actionName) => {
     console.log('onActionClick', actionName);
   };

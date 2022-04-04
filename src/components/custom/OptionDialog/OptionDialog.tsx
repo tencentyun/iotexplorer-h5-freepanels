@@ -1,4 +1,3 @@
-
 import React, { useState, useMemo } from 'react';
 import classNames from 'classnames';
 import { Mask } from 'antd-mobile';
@@ -20,22 +19,27 @@ export interface OptionDialogProps {
   value?: string[] | number[];
   type?: SelectType['Radio'] | SelectType['Multiple'];
   options: Option[];
-  defaultValue?: string[];
+  defaultValue?: string[] | number[];
   confirmText?: string;
   cancelText?: string;
   onCancel?: () => void;
-  onConfirm?: (value: string) => void;
-  children: React.ReactNode;
+  onConfirm?:
+    | ((value: (string | number)[]) => void)
+    | ((value: number[]) => void);
+  children?: React.ReactNode;
 }
 
 export function OptionDialog(props: OptionDialogProps) {
   const { type = 'radio', options, value, defaultValue } = props;
-  const [checkList, setCheckList] = useState(['']);
+  const [checkList, setCheckList] = useState([] as (string | number)[]);
 
   useMemo(() => {
     if (props.visible) {
       // 显示的时候才渲染
-      const val = value !== undefined ? value : defaultValue || [options[0].value];
+      let val = defaultValue || [options[0]?.value];
+      if (value !== void 0) {
+        val = value;
+      }
       setCheckList(val);
     }
   }, [props.visible]);
@@ -83,7 +87,9 @@ export function OptionDialog(props: OptionDialogProps) {
         onClick={() => handleSelect(item)}
       >
         <div className="item-label">{item.label}</div>
-        <div className={classNames(isSelected ? 'item-icon-selected' : 'item-icon-unselected')}></div>
+        <div
+          className={classNames(isSelected ? 'item-icon-selected' : 'item-icon-unselected')}
+        ></div>
       </div>
     );
   };
@@ -92,7 +98,9 @@ export function OptionDialog(props: OptionDialogProps) {
     <Mask visible={props.visible} onMaskClick={handleCancel}>
       <div className="dialog-wrap">
         <header className="dialog-header">{props.title}</header>
-        <main className="dialog-content">{options.map((option: Option) => selectItem(option))}</main>
+        <main className="dialog-content">
+          {options.map((option: Option) => selectItem(option))}
+        </main>
         <div className="dialog-children">{props.children}</div>
         <footer>
           <div className="dialog-btn cancel" onClick={handleCancel}>

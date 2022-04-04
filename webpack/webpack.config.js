@@ -32,6 +32,7 @@ module.exports = (env, argv) => {
 
   const entry = {};
   const viewport = {};
+  viewportConfig.viewportWidth = 1125;
   Object.keys(panelConfig).forEach((categoryKey) => {
     const { enable, panels, viewportWidth } = panelConfig[categoryKey];
     // console.log('build is DevEnv: ', isDevMode, ', build length:', panels.length);
@@ -41,9 +42,6 @@ module.exports = (env, argv) => {
       && panels.length
       && ((category && categoryKey === category) || (!category && !isDevMode)) //
     ) {
-      if (viewportWidth) {
-        viewportConfig.viewportWidth = viewportWidth;
-      }
       panels.forEach((panelInfo) => {
         let panelName;
         const options = { enable: true, entry: 'app.tsx' };
@@ -55,7 +53,6 @@ module.exports = (env, argv) => {
           panelName = _name;
           Object.assign(options, _options);
         }
-        // console.log('build panelInfo -->', panelName);
         if (options.enable) {
           const entryPath = path.join(
             srcPath,
@@ -157,13 +154,14 @@ module.exports = (env, argv) => {
                 url: true,
               },
             },
-           
+
             {
               loader: 'postcss-loader',
               options: {
                 ident: 'postcss',
                 plugins: (buildEnv) => {
                   const isRem = plugin.isRem(buildEnv, viewport);
+
                   return isRem ? [
                     autoPreFixer(plugin.autoPreFixer),
                     postcss(plugin.postcss)
@@ -174,7 +172,6 @@ module.exports = (env, argv) => {
                 }
               },
             },
-
             {
               loader: 'less-loader',
             },

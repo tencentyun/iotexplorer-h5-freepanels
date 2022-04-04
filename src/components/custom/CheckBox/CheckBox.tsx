@@ -4,7 +4,7 @@ import { Icon } from '@custom/Icon';
 export interface CheckBoxProps extends StyledProps {
   children?: React.ReactNode;
   value: boolean;
-  onChange?: (value: boolean) => any;
+  onChange?: (value: boolean) => boolean | void;
   type?: 'checkbox' | 'radio';
   tips?: string | React.ReactNode;
 }
@@ -26,17 +26,24 @@ export function CheckBox({
 
   return (
     <div
-      className={classNames('checkbox-container need-hover', `type-${type}`, className)}
+      className={classNames(
+        'checkbox-container need-hover',
+        `type-${type}`,
+        className,
+      )}
       onClick={() => (onChange || setChecked)(!checked)}
       style={style}
     >
       {type === 'radio' ? (
         <Icon name={checked ? 'radio-checked' : 'radio'} />
       ) : (
-        // TODO 后续验证checkbox
         <Icon name={checked ? 'radio-checked' : 'radio'} />
       )}
-      {Boolean(tips) ? <span className="checkbox-tips">{tips}</span> : Boolean(children) ? children : null}
+      {Boolean(tips) ? (
+        <span className="checkbox-tips">{tips}</span>
+      ) : (
+        children || null
+      )}
     </div>
   );
 }

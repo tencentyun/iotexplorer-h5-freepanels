@@ -4,7 +4,6 @@ import { Steps } from '@custom/Step';
 import { Icon } from '@custom/Icon';
 import { DatePicker } from '@custom/DatePicker';
 import { Empty } from '@custom/Empty';
-import { collapseTextChangeRangesAcrossMultipleVersions } from 'typescript';
 const { Step } = Steps;
 
 const defaultData = [
@@ -47,6 +46,7 @@ export function LogList({ logType, activeKey }) {
   const isEmpty = isLoaded && !data.length;
   // 后端加载日志数据
   const loadLog = async (dateTime, logType) => {
+    console.log(dateTime, logType);
     const logList = await Promise.resolve(defaultData);
     setLoaded(true);
     setData(logList);

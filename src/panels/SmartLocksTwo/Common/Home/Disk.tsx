@@ -1,19 +1,19 @@
 /*
  * @Description: 智能锁-表盘
  */
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { Icon } from '@custom/Icon';
 export interface DiskProps {
-  deviceData: any;
-  doControlDeviceData: any;
-  tips: any;
+  deviceData: unknown;
+  doControlDeviceData: unknown;
+  tips: unknown;
 }
 
-let flag: any = 0;
+// let flag: any = 0;
 let i = 0;
 
 export function Disk({
-  deviceData,
+  deviceData = {},
   doControlDeviceData,
   tips,
 }: DiskProps) {
@@ -24,7 +24,7 @@ export function Disk({
   };
 
   const currentColor = (): string => {
-    if (deviceData.lock_motor_state == 1) {
+    if (deviceData.lock_motor_state === 1) {
       return '#00A884';
     }
     return '#DA695C';
@@ -34,11 +34,11 @@ export function Disk({
   // 周长
   const getPerimeter = 2 * Math.PI * radius;
   // 开屏动画定时器
-  let interval: any;
+  let interval: NodeJS.Timer;
   // 前进计时器
-  let forwardInterval: any;
+  let forwardInterval: NodeJS.Timer;
   // 后退计时器
-  let fallbackInterval: any;
+  let fallbackInterval: NodeJS.Timer;
 
   useEffect(() => {
     // 开屏动画
@@ -46,8 +46,8 @@ export function Disk({
   }, []);
   const tickAnimation = () => {
     const perimeter = 2 * Math.PI * radius;
-    const circle: any = document.getElementById('circle');
-    const indicator: any = document.getElementById('indicator');
+    const circle = document.getElementById('circle') as HTMLUnknownElement;
+    const indicator = document.getElementById('indicator') as HTMLUnknownElement;
     let startIndex = 0;
     interval = setInterval(() => {
       startIndex += 5;
@@ -67,19 +67,19 @@ export function Disk({
 
   const forwardAnimation = () => {
     const perimeter = 2 * Math.PI * radius;
-    const circle: any = document.getElementById('circle');
-    const indicator: any = document.getElementById('indicator');
+    const circle = document.getElementById('circle') as HTMLUnknownElement;
+    const indicator = document.getElementById('indicator') as HTMLUnknownElement;
     forwardInterval = setInterval(() => {
       i += 2;
       const percent = i / 100;
       circle.setAttribute('stroke-dasharray', `${perimeter * percent} ${perimeter * (1 - percent)}`);
-      circle.setAttribute('stroke', deviceData.lock_motor_state == 1 ? '#DA695C' : '#00A884');
+      circle.setAttribute('stroke', deviceData.lock_motor_state === 1 ? '#DA695C' : '#00A884');
       const currentAngle = 360 * percent + 270;
       const x = 120 + 120 * Math.cos((currentAngle * Math.PI) / 180);
       const y = 120 + 120 * Math.sin((currentAngle * Math.PI) / 180);
       indicator.setAttribute('cx', x);
       indicator.setAttribute('cy', y);
-      indicator.setAttribute('fill', deviceData.lock_motor_state == 1 ? '#DA695C' : '#00A884');
+      indicator.setAttribute('fill', deviceData.lock_motor_state === 1 ? '#DA695C' : '#00A884');
 
       if (i >= 100) {
         clearInterval(forwardInterval);
@@ -92,8 +92,8 @@ export function Disk({
 
   const fallbackAnimation = () => {
     const perimeter = 2 * Math.PI * radius;
-    const circle: any = document.getElementById('circle');
-    const indicator: any = document.getElementById('indicator');
+    const circle = document.getElementById('circle') as HTMLUnknownElement;
+    const indicator = document.getElementById('indicator') as HTMLUnknownElement;
     fallbackInterval = setInterval(() => {
       if (i <= 0) {
         clearInterval(fallbackInterval);
@@ -104,21 +104,21 @@ export function Disk({
       i -= 2;
       const percent = i / 100;
       circle.setAttribute('stroke-dasharray', `${perimeter * percent} ${perimeter * (1 - percent)}`);
-      circle.setAttribute('stroke', deviceData.lock_motor_state == 1 ? '#DA695C' : '#00A884');
+      circle.setAttribute('stroke', deviceData.lock_motor_state === 1 ? '#DA695C' : '#00A884');
       const currentAngle = 360 * percent + 270;
       const x = 120 + 120 * Math.cos((currentAngle * Math.PI) / 180);
       const y = 120 + 120 * Math.sin((currentAngle * Math.PI) / 180);
       indicator.setAttribute('cx', x);
       indicator.setAttribute('cy', y);
-      indicator.setAttribute('fill', deviceData.lock_motor_state == 1 ? '#DA695C' : '#00A884');
+      indicator.setAttribute('fill', deviceData.lock_motor_state === 1 ? '#DA695C' : '#00A884');
     }, 50);
   };
 
   const handleTouchStart = (e) => {
-    console.log('handleTouchStart');
+    console.log(e, 'handleTouchStart');
     // e.preventDefault();
     // 如果离线之后的操作不执行
-    if (deviceData.lock_motor_state == 2) {
+    if (deviceData.lock_motor_state === 2) {
       tips.showInfo('设备已离线');
       return;
     }
@@ -132,19 +132,19 @@ export function Disk({
   };
 
   const handleTouchMove = (e) => {
-    console.log('handleTouchMove');
+    console.log(e, 'handleTouchMove');
   };
   const handleTouchEnd = (e) => {
     console.log('handleTouchEnd');
     e.preventDefault();
-    clearInterval(flag);
-    flag = 0;
+    // clearInterval(flag);
+    // flag = 0;
     clearInterval(forwardInterval);
     if (i > 0 && i < 100) {
       fallbackAnimation();
     }
     // 如果离线之后的操作不执行
-    if (deviceData.lock_motor_state == 2) {
+    if (deviceData.lock_motor_state === 2) {
       tips.showInfo('设备已离线');
       return;
     }
@@ -167,17 +167,17 @@ export function Disk({
     // }
   };
 
-  const handleClick = (e) => {
-    console.log('onClick');
-    e.preventDefault();
-    e.stopPropagation();
-    tips.showInfo(deviceData.lock_motor_state == 1 ? '长按关锁' : '长按开锁');
-    if (i > 0 && i < 100) {
-      clearInterval(forwardInterval);
-      clearInterval(fallbackInterval);
-      fallbackAnimation();
-    }
-  };
+  // const handleClick = (e) => {
+  //   console.log('onClick');
+  //   e.preventDefault();
+  //   e.stopPropagation();
+  //   tips.showInfo(deviceData.lock_motor_state === 1 ? '长按关锁' : '长按开锁');
+  //   if (i > 0 && i < 100) {
+  //     clearInterval(forwardInterval);
+  //     clearInterval(fallbackInterval);
+  //     fallbackAnimation();
+  //   }
+  // };
 
   return (
     <div
@@ -221,7 +221,7 @@ export function Disk({
           fill="none"
           strokeLinecap="round"
         />
-        {deviceData.lock_motor_state != 2
+        {deviceData.lock_motor_state !== 2
           ? <>
             <circle
               id='circle'

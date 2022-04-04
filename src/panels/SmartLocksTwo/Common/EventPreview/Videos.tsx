@@ -66,9 +66,8 @@ const result = [
   },
 ];
 
-export function Videos(props) {
+export function Videos() {
   const [select, setSelect] = useState([]); // 选中的照片
-  const [checkable, setCheckable] = useState(true); // 是否可以选择
   const onChange = (isChecked, id) => {
     if (isChecked) {
       setSelect(select.slice().concat(id));

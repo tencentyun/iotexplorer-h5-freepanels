@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useTitle } from '@hooks/useTitle';
 import { Video, ACTION } from '@custom/Video';
 import { Cell } from '@custom/Cell';

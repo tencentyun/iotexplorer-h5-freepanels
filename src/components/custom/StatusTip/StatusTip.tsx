@@ -8,7 +8,7 @@ import { EmptyAddTip } from './EmptyAddTip';
 export interface StatusTipProps extends StyledProps {
   emptyType?: 'empty-add';
   status: 'loading' | 'empty' | 'error';
-  onAdd?: any;
+  onAdd?: (e: React.MouseEvent) => void;
   emptyIconType?: StatusInfoType;
   emptyMessage?: string;
   emptyAddBtnText?: string;
@@ -16,7 +16,7 @@ export interface StatusTipProps extends StyledProps {
   errorIcon?: string;
   errorTitle?: string | React.ReactNode;
   errorMessage?: string | React.ReactNode;
-  onRetry?: any;
+  onRetry?: (e: React.MouseEvent) => void;
   retryText?: string;
   fillContainer?: boolean;
 }
