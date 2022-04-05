@@ -4,7 +4,7 @@
 }
 .adm-list {
   font-size: 48px;
-  .adm-list-inner {
+  .adm-list-body-inner {
     .adm-list-item {
       padding: 53px 0px;
       // border-bottom: 1px solid #b5c4d1;
@@ -15,6 +15,11 @@
     .adm-list-item:active {
       background-color: transparent;
     }
+  }
+  .adm-list-body {
+    background: transparent;
+    border-top: none;
+    border-bottom: none;
   }
 
   .adm-list-item-content {
@@ -27,7 +32,7 @@
 
   .adm-list-item-content-extra {
     font-size: 48px;
-    color: #B5C4D1;
+    color: #b5c4d1;
   }
 
   .adm-list-item-content-arrow {
@@ -37,7 +42,7 @@
 }
 
 // 后续统一卡片样式
-.list-card-timer{
+.list-card-timer {
   padding: 34px 80px;
   background: #ffffff;
   box-shadow: 0 6px 50px 0 rgba(32, 33, 33, 0.1);
