@@ -19,14 +19,9 @@ export function Home({
   const lockStatusWord = {
     0: '未上锁',
     1: '已关闭',
-    2: '已离线'
+    2: '已离线',
   };
 
-  const lockStatus = {
-    0: 'unlocked',
-    1: 'locked',
-    2: 'offline'
-  };
   const lockStatus = {
     0: 'unlocked',
     1: 'locked',
