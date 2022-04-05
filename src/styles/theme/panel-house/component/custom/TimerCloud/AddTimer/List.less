@@ -14,11 +14,12 @@
     color: @c1;
     font-size: 14px;
     background: transparent;
-    .adm-list-inner {
+    .adm-list-body-inner{
       margin-bottom: 0;
       .adm-list-item {
         border-bottom: 0.5px solid @c7;
         font-weight: 500;
+        font-size: 14px;
         padding-left: 0;
       }
       .adm-list-item:active {
@@ -33,12 +34,18 @@
         color: @c1;
       }
     }
+    .adm-list-body {
+      border-top: none;
+      border-bottom: none;
+    }
   }
 
   .adm-checkbox-icon {
     display: none;
   }
   .adm-list-item-content-extra {
+    font-size: inherit;
+    color: inherit;
     .icon {
       width: 90px;
       height: 90px;
