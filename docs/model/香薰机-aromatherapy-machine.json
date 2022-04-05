@@ -1,0 +1,165 @@
+{
+  "version": "1.0",
+  "properties": [
+    {
+      "id": "power_switch",
+      "name": "电源开关",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "bool",
+        "mapping": {
+          "0": "关",
+          "1": "开"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "spray_switch",
+      "name": "喷雾开关",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "bool",
+        "mapping": {
+          "0": "关",
+          "1": "开"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "sound_switch",
+      "name": "声音开关",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "bool",
+        "mapping": {
+          "0": "关",
+          "1": "开"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "light_switch",
+      "name": "灯光开关",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "bool",
+        "mapping": {
+          "0": "关",
+          "1": "开"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "work_mode",
+      "name": "控制",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "stringenum",
+        "mapping": {
+          "large" : "大",
+          "middle" : "中",
+          "small" : "小"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "light_mode",
+      "name": "灯光模式",
+      "desc": "white、color、colorful",
+      "mode": "rw",
+      "define": {
+        "type": "stringenum",
+        "mapping": {
+          "white" : "大",
+          "color" : "中",
+          "colorful" : "小"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "fault",
+      "name": "故障警告",
+      "desc": "",
+      "mode": "r",
+      "define": {
+        "type": "stringenum",
+        "mapping": {
+          "normal" : "正常",
+          "fault" : "故障"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "count_down",
+      "name": "倒计时",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "int",
+        "min": "0",
+        "max": "86400",
+        "start": "0",
+        "step": "1"
+      },
+      "required": false
+    },
+    {
+      "id": "count_left",
+      "name": "倒计时剩余时间",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "int",
+        "min": "0",
+        "max": "86400",
+        "start": "0",
+        "step": "1"
+      },
+      "required": false
+    },
+    {
+      "id": "bright_value",
+      "name": "亮度值",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "int",
+        "min": "10",
+        "max": "1000",
+        "start": "0",
+        "step": "1"
+      },
+      "required": false
+    },
+    {
+      "id": "color_value",
+      "name": "彩光值",
+      "desc": "内容详见prd",
+      "mode": "rw",
+      "define": {
+        "type": "string",
+        "min": "0",
+        "max": "2048"
+      },
+      "required": false
+    }
+  ],
+  "events": [],
+  "actions": [],
+  "profile": {
+    "ProductId": "P9FCB4V9V1",
+    "CategoryId": "1"
+  }
+}

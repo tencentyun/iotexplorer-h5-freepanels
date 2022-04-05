@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="160px" height="180px" viewBox="0 0 160 180" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 59.1 (86144) - https://sketch.com -->
+    <title>编辑昵称</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="linearGradient-1">
+            <stop stop-color="#16D0FC" offset="0%"></stop>
+            <stop stop-color="#596EF3" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="切图" transform="translate(-30.000000, -832.000000)" fill="url(#linearGradient-1)" fill-rule="nonzero">
+            <g id="暗色" transform="translate(30.000000, 817.000000)">
+                <path d="M77.4778071,15 C103.62728,15 124.779874,35.6115999 124.779874,61.0112359 C124.779874,86.410872 103.60139,107.022472 77.4778071,107.022472 C51.3671696,107.022472 30.1886792,86.410872 30.1886792,61.0112359 C30.1757398,35.6115999 51.3671696,15 77.4778071,15 Z M60.4885863,118.146067 L99.5114137,118.146067 C132.921105,118.146067 160,144.812034 160,177.714602 L160,181.538692 C160,194.512365 132.921105,195 99.5114137,195 L60.4885863,195 C27.09171,195 0,194.974335 0,181.538692 L0,177.714602 C0,144.812034 27.0660793,118.146067 60.4885863,118.146067 Z" id="编辑昵称"></path>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="65px" height="65px" viewBox="0 0 65 65" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>形状</title>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="2" transform="translate(-701.000000, -432.000000)" fill="#000000" fill-rule="nonzero">
+            <g id="编组-11" transform="translate(79.000000, 365.000000)">
+                <g id="场景备份" transform="translate(622.000000, 67.000000)">
+                    <path d="M0,13.0575113 L32.5,0 L65,13.0575113 L65,47.7830394 L32.280625,65 L0,47.7830394 L0,13.0575113 Z M60.6653125,19.5133653 L35.6728125,29.6102561 L35.6728125,58.4428936 L60.6653125,44.704966 L60.6653125,19.5133653 Z M32.7153125,4.84391552 L6.76406249,14.4507446 L32.7153125,23.9158203 L57.9028125,14.3778429 L32.7153125,4.84391552 Z" id="形状"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

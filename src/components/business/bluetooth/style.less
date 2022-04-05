@@ -1,0 +1,81 @@
+.component_business_bluetooth {
+  display: flex;
+  align-items: center;
+  .bluetooth-icon {
+    position: relative;
+    display: block;
+    width: 37px;
+    height: 55px;
+    margin-right: 20px;
+    background: url('./icon-bluetooth.svg') no-repeat center;
+    background-size: cover;
+
+    &.is_error::after {
+      display: none;
+      content: '';
+      position: absolute;
+      right: -39px;
+      top: -24px;
+      width: 31px;
+      height: 31px;
+      border-radius: 50%;
+      background-color: #FF5447;
+    }
+  }
+
+  .connect-state {
+    font-size: 36px;
+    font-style: normal;
+    color: #000000;
+    &.is_hidden {
+      display: none;
+    }
+  }
+}
+body.theme_blue_white {
+  .component_business_bluetooth {
+    .bluetooth-icon{
+      background: url('./icon-bluetooth-blueWhite.svg') no-repeat center;
+      background-size: cover;
+    }
+    .connect-state {
+      color: #A6AFC2;
+    }
+  }
+}
+
+body.theme_dark {
+  .component_business_bluetooth {
+    .bluetooth-icon{
+      background: url('./icon-bluetooth-dark.svg') no-repeat center;
+      background-size: cover;
+    }
+    .connect-state {
+      color: #FFFFFF;
+    }
+  }
+}
+
+body.theme_colorful {
+  .component_business_bluetooth {
+    .bluetooth-icon{
+      background: url('./icon-bluetooth-colorful.svg') no-repeat center;
+      background-size: cover;
+    }
+    .connect-state {
+      color: #FFFFFF;
+    }
+  }
+}
+
+body.theme_morandi {
+  .component_business_bluetooth {
+    .bluetooth-icon{
+      background: url('./icon-bluetooth-morandi.svg') no-repeat center;
+      background-size: cover;
+    }
+    .connect-state {
+      color: #566172;
+    }
+  }
+}

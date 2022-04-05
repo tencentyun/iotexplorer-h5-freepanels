@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import { Btn, BtnOptions } from '@components/Btn/Btn';
 
 import './BtnGroup.less';
-import { isFullScreen } from "@utillib";
+import { isFullScreen } from '@utillib';
 
 export interface BtnGroupProps extends StyledProps {
   children?: React.ReactNode;

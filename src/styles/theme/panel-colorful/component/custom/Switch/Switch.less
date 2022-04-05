@@ -1,0 +1,28 @@
+.adm-switch {
+  --checked-color: #0f0f0f !important;
+  .adm-switch-checkbox {
+    min-width: 150px !important;
+    height: 66px !important;
+    background: #1F1F1F !important;
+    .adm-switch-handle {
+      top: 9px !important;
+      width: 48px !important;
+      height: 48px !important;
+      left:14px !important;
+      border-radius: 48px !important;
+    }
+    &::before{
+      background: #1F1F1F !important;
+      height: 56px;
+    }
+  }
+  &.adm-switch-checked {
+    .adm-switch-checkbox {
+      background-image: linear-gradient(137deg, #C8F664 0%, #79FD8D 100%) !important;
+    }
+    .adm-switch-handle{
+      left: calc(100% - (66px - 2px)) !important;
+    }
+  }
+
+}

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="112px" height="111px" viewBox="0 0 112 111" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>编组 4</title>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="智能网关2" transform="translate(-146.000000, -1320.000000)">
+            <g id="声音" transform="translate(80.000000, 1275.000000)">
+                <g id="编组-4" transform="translate(66.000000, 45.000000)">
+                    <rect id="矩形" fill="#0072FD" x="0" y="0" width="112" height="111" rx="25"></rect>
+                    <rect id="矩形" fill="#FFFFFF" x="13" y="76" width="87" height="26" rx="12"></rect>
+                    <circle id="椭圆形" fill="#0072FD" cx="32.5" cy="89.5" r="4.5"></circle>
+                    <g id="编组-3" transform="translate(13.000000, 12.000000)">
+                        <rect id="矩形" fill="#FFFFFF" x="0" y="0" width="40.210084" height="22" rx="11"></rect>
+                        <line x1="12.3655462" y1="11.3714286" x2="27.7184874" y2="11.3714286" id="直线-2" stroke="#0072FD" stroke-width="3" stroke-linecap="round"></line>
+                        <rect id="矩形备份" fill="#FFFFFF" x="47" y="0" width="40.210084" height="22" rx="11"></rect>
+                        <line x1="59.3655462" y1="11.3714286" x2="74.7184874" y2="11.3714286" id="直线-2" stroke="#0072FD" stroke-width="3" stroke-linecap="round"></line>
+                    </g>
+                    <g id="编组-3备份" transform="translate(13.000000, 39.000000)">
+                        <rect id="矩形" fill="#FFFFFF" x="0" y="0" width="40.210084" height="22" rx="11"></rect>
+                        <line x1="12.3655462" y1="11.3714286" x2="27.7184874" y2="11.3714286" id="直线-2" stroke="#0072FD" stroke-width="3" stroke-linecap="round"></line>
+                        <rect id="矩形备份" fill="#FFFFFF" x="47" y="0" width="40.210084" height="22" rx="11"></rect>
+                        <line x1="59.3655462" y1="11.3714286" x2="74.7184874" y2="11.3714286" id="直线-2" stroke="#0072FD" stroke-width="3" stroke-linecap="round"></line>
+                    </g>
+                    <line x1="57" y1="89.5" x2="88" y2="89.5" id="直线-2" stroke="#0072FD" stroke-width="10" stroke-linecap="round"></line>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

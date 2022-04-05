@@ -1,0 +1,117 @@
+.status-block {
+  &._component_layout_block_ {
+    padding: 42px;
+    border-radius: 42px;
+  }
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 70px;
+  padding: 42px;
+  border-radius: 42px;
+  .icon-unlock {
+    width: 76px;
+    height: 76px;
+    background-image: url('../../images/unlock.svg');
+    background-size: 100% 100%;
+  }
+  .icon-lock {
+    width: 76px;
+    height: 76px;
+    background-image: url('../../images/lock.svg');
+    background-size: 100% 100%;
+  }
+  .status-name {
+    margin-left: 25px;
+    line-height: 77px;
+    font-family: PingFangSC-Medium;
+    font-size: 55px;
+    color: #000000;
+  }
+}
+
+body.theme_dark {
+  .status-block {
+    position: absolute;
+    left: 50%;
+    margin-left: -108px;
+    width: 218px;
+    height: 218px;
+    padding: 0;
+    margin-bottom: 0;
+    border-radius: 50%;
+    background-image: linear-gradient(137deg, #FAFAFA 0%, #E8E8E8 100%);
+    box-shadow: 0 6px 100px 0 rgba(32,33,33,0.10);
+    z-index: 2;
+    .icon-unlock {
+      width: 98px;
+      height: 98px;
+      background-image: url('../../images/unlock-dark.svg');
+      background-size: 100% 100%;
+    }
+    .icon-lock {
+      width: 98px;
+      height: 98px;
+      background-image: url('../../images/lock-dark.svg');
+      background-size: 100% 100%;
+    }
+  }
+  .active {
+    background-image: linear-gradient(137deg, #FF3A5F 0%, #EA0D40 100%);
+    box-shadow: 0 6px 100px 0 rgba(32,33,33,0.10);  
+  }
+}
+
+body.theme_colorful {
+  .icon-unlock {
+    width: 78px;
+    height: 76px;
+    background-image: url('../../images/unlock-colorful.svg');
+    background-size: 100% 100%;
+  }
+  .icon-lock {
+    width: 76px;
+    height: 76px;
+    background-image: url('../../images/lock-colorful.svg');
+    background-size: 100% 100%;
+  }
+  .active {
+    background: #FFFFFF;
+    box-shadow: 0 6px 100px 0 rgba(32,33,33,0.10);
+    .status-name {
+      color: #000000;
+    }
+  }
+}
+
+body.theme_morandi {
+  .status-block {
+    position: absolute;
+    left: 50%;
+    margin-left: -108px;
+    width: 218px;
+    height: 218px;
+    padding: 0;
+    margin-bottom: 0;
+    border-radius: 50%;
+    background-image: linear-gradient(180deg, #576273 0%, #424B5B 100%);
+    box-shadow: 0 6px 15px 0 rgba(32,33,33,0.05);
+    z-index: 2;
+    .icon-unlock {
+      width: 98px;
+      height: 98px;
+      background-image: url('../../images/unlock-morandi.svg');
+      background-size: 100% 100%;
+    }
+    .icon-lock {
+      width: 98px;
+      height: 98px;
+      background-image: url('../../images/lock-morandi.svg');
+      background-size: 100% 100%;
+    }
+  }
+  .active {
+    background-image: linear-gradient(180deg, #D3C7BA 0%, #B5ABA0 100%);
+    box-shadow: 0 6px 15px 0 rgba(32,33,33,0.05);
+  }
+}

@@ -1,0 +1,373 @@
+/*蓝白主题*/
+.theme_blue_white {
+  height: 100%;
+
+  .home {
+    min-height: 100vh;
+    background-image: var(--global-background-color-gradient);
+
+    &.power-off {
+      #operation-up, #operation-down{
+        .active{
+          background: #4B94FF !important;
+          .label{
+            color: #FFFFFF !important;
+          }
+        }
+      }
+    }
+
+    .detail {
+      .power-tools-bar {
+        .dev-info{
+          .title, .label{
+            color: #FFFFFF;
+          }
+        }
+      }
+
+      .environment {
+        .environment-wrap {
+          position: relative;
+
+          .active{
+            background: #FFFFFF !important;
+            .label{
+              color: #2885FE !important;
+            }
+          }
+          .up-mode{
+            margin-top: 220px;
+            padding: 50px 0;
+            border-radius: 60px 60px 0 0;
+            border-bottom: 3px solid var(--global-color-border);
+          }
+          .down-mode{
+            border-radius: 0 0 60px 60px;
+            padding: 50px 0;
+          }
+          .timing{
+            width: 965px;
+            position: absolute;
+            top: 5px;
+            border-radius: 60px;
+            padding: 30px 0;
+            color: #FFFFFF;
+          }
+          .item-list{
+            margin-left: 80px;
+            margin-right: 80px;
+            background: rgba(254, 254, 254, 0.2);
+            .title{
+              color: #FFFFFF;
+            }
+            .operation-btn{
+              justify-content: space-around;
+              button{
+                width: 200px;
+                background: #4B94FF;
+                .label{
+                  color: #FFFFFF;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+/*暗色主题*/
+.theme_dark {
+  height: 100%;
+
+  .home {
+    &.power-off {
+      #operation-up, #operation-down{
+        .active{
+          background: #B3C2CF !important;
+        }
+      }
+    }
+
+    .dashboard{
+      .title{
+        color: #667994;
+      }
+    }
+
+    .detail {
+      .power-tools-bar {
+        .dev-info{
+          .title, .label{
+            color: #FFFFFF;
+          }
+        }
+      }
+
+      .environment {
+        .environment-wrap {
+          position: relative;
+
+          .active{
+            background-image: var(--global-color-gradient) !important;
+            .label{
+              color: #FFFFFF !important;
+            }
+          }
+          .up-mode{
+            margin-top: 220px;
+            padding: 50px 0;
+            border-radius: 60px 60px 0 0;
+            border-bottom: 3px solid var(--global-color-border);
+          }
+          .down-mode{
+            border-radius: 0 0 60px 60px;
+            padding: 50px 0;
+          }
+          .timing{
+            width: 965px;
+            position: absolute;
+            top: 5px;
+            border-radius: 60px;
+            padding: 30px 0;
+            color: #FFFFFF;
+          }
+          .item-list{
+            margin-left: 80px;
+            margin-right: 80px;
+            background-image: var(--global-background-color-gradient);
+            .title{
+              color: #FFFFFF;
+            }
+            .operation-btn{
+              justify-content: space-around;
+              button{
+                width: 200px;
+                background: none;
+                .label{
+                  color: #FFFFFF;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+/*多彩主题*/
+.theme_colorful {
+  height: 100%;
+
+  .home {
+    background-color: #f4f8fb;
+
+    &.power-off {
+      #operation-up, #operation-down{
+        .active{
+          background: #B5C4D1 !important;
+        }
+      }
+    }
+
+    .detail {
+      .power-tools-bar {
+        .dev-info{
+          .title{
+            color: #B5C4D1;
+          }
+        }
+      }
+
+      .environment {
+        .environment-wrap {
+          .active{
+            background-image: linear-gradient(137deg, #527DF4 0%, #044DFF 100%) !important;
+          }
+          .up-mode{
+            padding: 50px 0;
+            border-radius: 60px 60px 0 0;
+            border-bottom: 3px solid var(--global-color-border);
+          }
+          .down-mode{
+            border-radius: 0 0 60px 60px;
+            padding: 50px 0;
+          }
+          .timing{
+            margin-top: 30px;
+            border-radius: 60px;
+            padding: 30px 0;
+          }
+          .item-list{
+            margin-left: 80px;
+            margin-right: 80px;
+            background: #FFFFFF;
+
+            .operation-btn{
+              justify-content: space-around;
+              button{
+                width: 200px;
+                background: #B5C4D1;
+                .label{
+                  color: #FFFFFF;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+/*莫兰迪主题*/
+.theme_morandi {
+  height: 100%;
+
+  .home {
+    height: 1300px;
+    background-image: var(--global-background-color-gradient);
+    &.power-off {
+      #operation-up, #operation-down{
+        .active{
+          background: #909CAB !important;
+        }
+      }
+    }
+
+    .dashboard{
+      .disinfection-img{
+        border-radius: 60px 60px 0 0;
+        background: #FFFFFF;
+        height: 600px;
+        width: 965px;
+        padding-top: 50px;
+        display: flex;
+        justify-content: center;
+        img{
+          width: 80%;
+        }
+        .up-state, .down-state{
+          top: 220px;
+        }
+        .down-state{
+          top: 400px;
+        }
+      }
+    }
+    .detail {
+      .power-tools-bar {
+        background: #FFFFFF;
+        padding: 0 50px;
+        margin: 0 80px;
+        .dev-info{
+          .title{
+            color: #B5C4D1;
+          }
+        }
+      }
+
+      .environment {
+        .environment-wrap {
+          padding-top: 0;
+          .active{
+            background: #B5ABA1 !important;
+          }
+          .up-mode{
+            padding: 50px 0;
+            border-bottom: 3px solid var(--global-color-border);
+          }
+          .down-mode{
+            border-radius: 0 0 60px 60px;
+            padding: 50px 0;
+          }
+          .timing{
+            margin-top: 30px;
+            border-radius: 60px;
+            padding: 30px 0;
+          }
+          .item-list{
+            margin-left: 80px;
+            margin-right: 80px;
+            background: #FFFFFF;
+
+            .operation-btn{
+              justify-content: space-around;
+              button{
+                width: 200px;
+                background: #B5C4D1;
+                .label{
+                  color: #FFFFFF;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+/*黑白主题*/
+.theme_normal {
+  height: 100%;
+
+  .home {
+    background-color: #f4f8fb;
+
+    &.power-off {
+      #workState, #downTemperature{
+        .label{
+          color: #B5C4D1 !important;
+        }
+      }
+      #operation-up, #operation-down{
+        .active{
+          background: #B5C4D1 !important;
+          color: #FFFFFF !important;
+        }
+        button{
+          color: #B5C4D1 !important;
+        }
+      }
+      #title-up, #title-down, #timing{
+        color: #B5C4D1 !important;
+      }
+    }
+
+    .detail {
+      .power-tools-bar {
+        .dev-info{
+          .active{
+            color: #000000 !important;
+          }
+          .title, .label{
+            color: #B5C4D1;
+          }
+        }
+      }
+
+      .environment {
+        background: #FFFFFF;
+        border-radius: 120px 120px 0 0;
+        .environment-wrap {
+          .active{
+            background: #000000;
+            .label{
+              color: #FFFFFF;
+            }
+          }
+          .up-mode, .down-mode{
+            border-bottom: 3px solid var(--global-color-border);
+          }
+          button{
+            background: rgba(218, 225, 232, 0.5);
+          }
+        }
+      }
+    }
+  }
+}

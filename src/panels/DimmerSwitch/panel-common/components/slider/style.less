@@ -1,0 +1,215 @@
+.light-slider {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 auto;
+  width: 794px;
+
+  .slider-value {
+    margin-bottom: 29px;
+    pointer-events: none;
+  }
+
+  .slider-wrapper {
+    position: relative;
+    width: 794px;
+    height: 56px;
+    background: url('../../images/scale.svg') no-repeat 0 center;
+    background-size: 794px 56px;
+
+    .current-scale {
+      position: relative;
+      display: block;
+      width: 40%;
+      height: 56px;
+      background: url('../../images/scale-active.svg') no-repeat 0 100%;
+      background-size: 794px 56px;
+
+      &::after {
+        content: '';
+        position: absolute;
+        right: 0;
+        bottom: -15px;
+        width: 8px;
+        height: 70px;
+        background-color: #FFFFFF;
+        border-radius: 4px;
+      }
+    }
+  }
+}
+
+
+.theme_type_blueWhite {
+  .slider-wrapper {
+    position: relative;
+    width: 794px;
+    height: 56px;
+    background: url('../../images/scale.svg') no-repeat 0 center;
+    background-size: 794px 56px;
+
+    .current-scale {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      display: block;
+      height: 56px;
+      background-image: url('../../images/scale-active-blue-white.svg');
+      background-repeat: no-repeat;
+      background-position: 0 0;
+      background-size: 797px 56px;
+
+      &::after {
+        content: '';
+        position: absolute;
+        right: 0;
+        bottom: -15px;
+        width: 8px;
+        height: 70px;
+        background-color: #0062FF;
+        border-radius: 4px;
+      }
+    }
+  }
+}
+
+.theme_type_dark {
+  .slider-value {
+    color: #FFFFFF;
+  }
+  .slider-wrapper {
+    position: relative;
+    width: 794px;
+    height: 56px;
+    background: url('../../images/scale.svg') no-repeat 0 center;
+    background-size: 794px 56px;
+
+    .current-scale {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      display: block;
+      height: 56px;
+      background-image: url('../../images/scale-active-dark.svg');
+      background-repeat: no-repeat;
+      background-position: 0 0;
+      background-size: 797px 56px;
+
+      &::after {
+        content: '';
+        position: absolute;
+        right: 0;
+        bottom: -15px;
+        width: 8px;
+        height: 70px;
+        background-color: #0BE1FE;
+        border-radius: 4px;
+      }
+    }
+  }
+}
+
+.theme_type_colorful {
+  .slider-wrapper {
+    position: relative;
+    width: 794px;
+    height: 56px;
+    background: url('../../images/scale.svg') no-repeat 0 center;
+    background-size: 794px 56px;
+
+    .current-scale {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      display: block;
+      height: 56px;
+      background-image: url('../../images/scale-active-colorful.svg');
+      background-repeat: no-repeat;
+      background-position: 0 0;
+      background-size: 797px 56px;
+
+      &::after {
+        content: '';
+        position: absolute;
+        right: 0;
+        bottom: -15px;
+        width: 8px;
+        height: 70px;
+        background-color: #0A51FE;
+        border-radius: 4px;
+      }
+    }
+  }
+}
+
+.theme_type_morandi {
+  .slider-wrapper {
+    position: relative;
+    width: 794px;
+    height: 56px;
+    background: url('../../images/scale.svg') no-repeat 0 center;
+    background-size: 794px 56px;
+
+    .current-scale {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      display: block;
+      height: 56px;
+      background-image: url('../../images/scale-active-morandi.svg');
+      background-repeat: no-repeat;
+      background-position: 0 0;
+      background-size: 797px 56px;
+
+      &::after {
+        content: '';
+        position: absolute;
+        right: 0;
+        bottom: -15px;
+        width: 8px;
+        height: 70px;
+        background-color: #B5ABA1;
+        border-radius: 4px;
+      }
+    }
+  }
+}
+
+
+.disable {
+  .slider-value {
+    color: #B7C5D2;
+  }
+
+  .slider-wrapper {
+    position: relative;
+    width: 794px;
+    height: 56px;
+    background: url('../../images/scale.svg') no-repeat 0 center;
+    background-size: 794px 56px;
+
+    .current-scale {
+      position: relative;
+      display: block;
+      width: 40%;
+      height: 100%;
+      background: url('../../images/scale.svg') no-repeat 0 100%;
+      background-size: 794px 56px;
+
+      &::after {
+        content: '';
+        position: absolute;
+        right: 0;
+        bottom: -15px;
+        width: 8px;
+        height: 70px;
+        background-color: #B7C5D2;
+        border-radius: 4px;
+      }
+    }
+  }
+}

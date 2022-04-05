@@ -2,7 +2,74 @@
 
 腾讯连连免开发面板
 
-## Startup
+## 项目简介
+
+腾讯连连免开发面板是腾讯物联网平台为各行业设备制造商、方案商及应用开发商、普通开发者提供的各类物联网设备在腾讯连连小程序中控制的页面组件。
+当前免开发面板提供[42个品类](./docs/product.md)的物联网标准化控制设备，**236** 个标准化模板。
+
+通过提供的代码，可以支持两种方式实现智能硬件的快速接入。
+
+### 1、直接使用
+
+通过 [腾讯云物联网开发平台](https://console.cloud.tencent.com/iotexplorer) 提供的标准方案，可以实现快速配置。通过 [快速配置方案](./docs/explorer.md) 配置成功后，通过手机微信扫一扫，调试或验证物联网王设备智能控制的免开发面板效果。
+
+当前已经支持的品类 [更多产品详情](./docs/product.md) , **模板预览效果：[点击跳转预览效果图](./docs/product-preview.md)**
+
+| 一级分类     | 二级产品品类    | 现名称    | 文件名称                        |
+|----------|-----------|--------|------------------------------|
+| 电工-插座类   | 五孔单插      | 五孔单插   | five-plug                    |
+|          | 三孔单插      | 三孔单插   | three-plug                   |
+|          | 电量统计插座    | 电量统计插座 | electricity-stats-receptacle |
+|          | 墙壁插座带USB  | 墙壁插头   | wall-plug                    |
+| 电工类-开关类  | 场景开关      | 一路开关   | switch-one                   |
+|          | 多路开关      | 二路开关   | two-switch                   |
+|          |           | 三路开关   | three-switch                 |
+|          |           | 四路开关   | four-switch                  |
+|          |           | 五路开关   | five-switch                  |
+|          | 调光开关      | 调光开关   | dimmer-switch                |
+|          | 冷暖白光灯     | 冷暖白光灯  | white-lamp                   |
+|          | 四路灯       | 四路灯    | four-streetlights            |
+|          | 五路灯       | 五路灯    | five-streetlights            |
+|          | 智能灯       | 智能灯    | lamp                         |
+|          | 一路灯       | 一路灯    | lamp-one                     |
+| 网关类      | 网关        | 智能网关   | intelligent-gateway          |
+| 传感类      | 门窗磁传感器    | 门磁     | magnetic-door                |
+|          | 人体运动&存在传感 | 人体传感器  | body-sensor                  |
+|          | 声光报警器     | 声光报警器  | audible-visual-alarm         |
+|          | 温湿度传感器    | 温湿度传感器 | temperature-humidity-sensor  |
+|          | 紧急按钮      | 紧急按钮   | emergency-button             |
+|          | 报警主机      | 多功能报警器 | multifunction-alarm-host     |
+|          | 烟雾报警      | 烟雾传感器  | smoke-alarm                  |
+|          | 燃气报警      | 燃气报警器  | gas-alarm                    |
+|          | 水浸报警      | 水浸传感器  | immersion-sensor             |
+| 小家电      | 取暖器       | 取暖器    | heater                       |
+|          | 加湿器       | 加湿器    | humidifier                   |
+|          | 温控器       | 温控器    | thermostat                   |
+|          | 电动窗帘      | 电动窗帘   | electric-curtains            |
+|          | 空气净化器     | 空气净化器  | air-purifier                 |
+|          | 净水机       | 净水机    | water-purifier               |
+|          | 电扇        | 风扇     | fan                          |
+|          | 香薰机       | 香薰机    | aromatherapy-machine         |
+|          | 晾衣架       | 晾衣架    | laundry-rack                 |
+|          | 宠物喂养机     | 宠物喂养机  | pet-feeding-device           |
+| 运动健康（蓝牙） | 体脂秤       | 体脂秤    | body-scales                  |
+|          | 血压计       | 血压计    | blood-pressure-meter         |
+|          | 智能跳绳      | 智能跳绳   | smart-rope                   |
+| 大家电      | 新风机       | 新风机    | new-fan                      |
+|          | 空调        | 空调     | air-conditioner              |
+|          | 热水器       | 热水器    | water-heater                 |
+| 厨电类      | 电烤箱       | 电烤箱    | electric-oven                |
+
+
+
+### 2、二次开发
+
+通过提供的免开发面板的示例代码，基于此进行二次定制开发，可以参考[Demo](https://github.com/tencentyun/iotexplorer-h5-panel-demo)开发出自己产品匹配的效果。
+
+
+
+
+## 开发说明
 
 ### 启动项目
 
@@ -112,7 +179,3 @@ _
         |-- underscore # underscore 提供的基础方法
         |--
 ```
-
-
-
-## 已支持设备

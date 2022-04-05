@@ -1,11 +1,11 @@
-import React, { useState } from "react";
-import classNames from "classnames";
-import { PanelMoreBtn } from "@components/PanelMoreBtn";
-import { BorderSwitch } from "./BorderSwitch";
-import { PanelComponentProps } from "@src/entryWrap";
-import "./AirPurifierPanel.less";
-import { FreePanelLayout } from "@components/FreePanelLayout";
-import { AirPurifierFuncFooter } from "./AirPurifierFuncFooter";
+import React, { useState } from 'react';
+import classNames from 'classnames';
+import { PanelMoreBtn } from '@components/PanelMoreBtn';
+import { BorderSwitch } from './BorderSwitch';
+import { PanelComponentProps } from '@src/entryWrap';
+import './AirPurifierPanel.less';
+import { FreePanelLayout } from '@components/FreePanelLayout';
+import { AirPurifierFuncFooter } from './AirPurifierFuncFooter';
 
 export function AirPurifierPanel({
   deviceInfo,
@@ -20,63 +20,52 @@ export function AirPurifierPanel({
   onSwitchChange,
 }: PanelComponentProps) {
   const airPurifierDisabled = offline || powerOff;
-  const [wetEnable, setWetdownEnable] = useState(deviceData.wet ? true : false);
-  const [anionEnable, setAniondownEnable] = useState(
-    deviceData.anion ? true : false
-  );
-  const [uvEnable, setUvdownEnable] = useState(deviceData.uv ? true : false);
+  const [wetEnable, setWetdownEnable] = useState(!!deviceData.wet);
+  const [anionEnable, setAniondownEnable] = useState(!!deviceData.anion);
+  const [uvEnable, setUvdownEnable] = useState(!!deviceData.uv);
 
   const transformShow = (val, defalut) => {
     if (airPurifierDisabled) {
-      return "-";
-    } else {
-      if (deviceData[val] || deviceData[val] === 0) {
-        return (
-          deviceData[val] +
-          (templateMap[val].define.unit === "day"
-            ? "天"
-            : templateMap[val].define.unit)
-        );
-      } else {
-        if (deviceInfo.isVirtualDevice) {
-          return defalut;
-        } else {
-          return "-";
-        }
-      }
+      return '-';
     }
+    if (deviceData[val] || deviceData[val] === 0) {
+      return (
+        deviceData[val]
+          + (templateMap[val].define.unit === 'day'
+            ? '天'
+            : templateMap[val].define.unit)
+      );
+    }
+    if (deviceInfo.isVirtualDevice) {
+      return defalut;
+    }
+    return '-';
   };
 
   const transformShowMapping = (val, defalut) => {
     if (airPurifierDisabled) {
-      return "-";
-    } else {
-      if (deviceData[val] || deviceData[val] === 0) {
-        return templateMap[val].define.mapping[deviceData[val]];
-      } else {
-        if (deviceInfo.isVirtualDevice) {
-          return defalut;
-        } else {
-          return "-";
-        }
-      }
+      return '-';
     }
+    if (deviceData[val] || deviceData[val] === 0) {
+      return templateMap[val].define.mapping[deviceData[val]];
+    }
+    if (deviceInfo.isVirtualDevice) {
+      return defalut;
+    }
+    return '-';
   };
 
   const transformRotate = (rotate) => {
     if (airPurifierDisabled) {
       return 50;
-    } else {
-      if (rotate) {
-        return 50 + (260 / 500) * rotate;
-      } else {
-        if (deviceInfo.isVirtualDevice) {
-          return 50 + (260 / 500) * 300;
-        } else {
-          return 50;
-        }
-      }
     }
+    if (rotate) {
+      return 50 + (260 / 500) * rotate;
+    }
+    if (deviceInfo.isVirtualDevice) {
+      return 50 + (260 / 500) * 300;
+    }
+    return 50;
   };
 
   return (
@@ -86,10 +75,10 @@ export function AirPurifierPanel({
       powerOff={powerOff}
       deviceData={deviceData}
       title={deviceInfo.displayName}
-      className={classNames("free-air-purifier-page", {
+      className={classNames('free-air-purifier-page', {
         warning:
           !powerOff && deviceData.air_quality && deviceData.air_quality > 1,
-        "power-off": powerOff,
+        'power-off': powerOff,
       })}
       defaultFooter={false}
     >
@@ -99,16 +88,16 @@ export function AirPurifierPanel({
           {!airPurifierDisabled && (
             <div className="mode-speed">
               <span className="mode">
-                模式：{transformShowMapping("mode", "自动")}
+                模式：{transformShowMapping('mode', '自动')}
               </span>
-              <span>风速：{transformShowMapping("windspeed", "高档")}</span>
+              <span>风速：{transformShowMapping('windspeed', '高档')}</span>
             </div>
           )}
           <div className="air-circle">
             <div className="air-circle-inner">
               {airPurifierDisabled ? (
                 <div className="close-down">
-                  {offline ? "已离线" : "已关机"}
+                  {offline ? '已离线' : '已关机'}
                 </div>
               ) : (
                 <div>
@@ -117,11 +106,11 @@ export function AirPurifierPanel({
                     {deviceData.pm2_5 || deviceData.pm2_5 === 0
                       ? deviceData.pm2_5
                       : deviceInfo.isVirtualDevice
-                      ? "300"
-                      : "-"}
+                        ? '300'
+                        : '-'}
                   </div>
                   <div>
-                    室内空气质量：{transformShowMapping("air_quality", "优")}
+                    室内空气质量：{transformShowMapping('air_quality', '优')}
                   </div>
                 </div>
               )}
@@ -132,43 +121,43 @@ export function AirPurifierPanel({
                 transform: `rotate(${transformRotate(deviceData.pm2_5)}deg)`,
               }}
             >
-              {!airPurifierDisabled &&
-                (deviceData.pm2_5 ||
-                  deviceData.pm2_5 === 0 ||
-                  deviceInfo.isVirtualDevice) && <div className="dot"></div>}
+              {!airPurifierDisabled
+                && (deviceData.pm2_5
+                  || deviceData.pm2_5 === 0
+                  || deviceInfo.isVirtualDevice) && <div className="dot"></div>}
             </div>
           </div>
           <div className="air-purifier-property-body">
             <div className="air-purifier-property">
               <div className="label">TVOC</div>
-              <div className="value">{transformShow("tvoc", "1ppm")}</div>
+              <div className="value">{transformShow('tvoc', '1ppm')}</div>
             </div>
             <div className="air-purifier-property">
               <div className="label">湿度</div>
-              <div className="value">{transformShow("humidity", "50%")}</div>
+              <div className="value">{transformShow('humidity', '50%')}</div>
             </div>
             <div className="air-purifier-property">
               <div className="label">温度</div>
-              <div className="value">{transformShow("temperature", "22℃")}</div>
+              <div className="value">{transformShow('temperature', '22℃')}</div>
             </div>
           </div>
           <div className="air-purifier-property-body">
             <div className="air-purifier-property">
               <div className="label">滤芯剩余寿命</div>
               <div className="value">
-                {transformShow("filter_left_level", "70%")}
+                {transformShow('filter_left_level', '70%')}
               </div>
             </div>
             <div className="air-purifier-property">
               <div className="label">滤芯剩余天数</div>
               <div className="value">
-                {transformShow("filter_left_days", "200天")}
+                {transformShow('filter_left_days', '200天')}
               </div>
             </div>
             <div className="air-purifier-property">
               <div className="label">滤芯已使用</div>
               <div className="value">
-                {transformShow("filter_used_days", "22天")}
+                {transformShow('filter_used_days', '22天')}
               </div>
             </div>
           </div>
@@ -180,7 +169,7 @@ export function AirPurifierPanel({
                 checked={wetEnable}
                 onChange={(val) => {
                   setWetdownEnable(val);
-                  doControlDeviceData("wet", val ? 1 : 0);
+                  doControlDeviceData('wet', val ? 1 : 0);
                 }}
                 className="air-purifier-switch"
                 disabled={airPurifierDisabled}
@@ -192,7 +181,7 @@ export function AirPurifierPanel({
                 checked={anionEnable}
                 onChange={(val) => {
                   setAniondownEnable(val);
-                  doControlDeviceData("anion", val ? 1 : 0);
+                  doControlDeviceData('anion', val ? 1 : 0);
                 }}
                 className="air-purifier-switch"
                 disabled={airPurifierDisabled}
@@ -204,7 +193,7 @@ export function AirPurifierPanel({
                 checked={uvEnable}
                 onChange={(val) => {
                   setUvdownEnable(val);
-                  doControlDeviceData("uv", val ? 1 : 0);
+                  doControlDeviceData('uv', val ? 1 : 0);
                 }}
                 className="air-purifier-switch"
                 disabled={airPurifierDisabled}

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="78px" height="73px" viewBox="0 0 78 73" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 59.1 (86144) - https://sketch.com -->
+    <title>模式</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="49.9904025%" y1="-11.5722196%" x2="50.0142892%" y2="126.978102%" id="linearGradient-1">
+            <stop stop-color="#00F0FF" offset="0%"></stop>
+            <stop stop-color="#704DF0" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="49.3685783%" y1="0%" x2="50.9400882%" y2="112.510417%" id="linearGradient-2">
+            <stop stop-color="#00F0FF" offset="0%"></stop>
+            <stop stop-color="#704DF0" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="linearGradient-3">
+            <stop stop-color="#03EAFE" offset="0%"></stop>
+            <stop stop-color="#006FFF" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="1备份" transform="translate(-309.000000, -787.000000)">
+            <g id="编组-2" transform="translate(305.000000, 787.000000)">
+                <g id="模式" transform="translate(7.000000, 0.000000)">
+                    <g id="矩形" transform="translate(4.000000, 0.000000)">
+                        <g id="path-2-link" fill="#000000" fill-rule="nonzero">
+                            <rect id="path-2" x="0" y="0" width="9" height="73" rx="4.5"></rect>
+                        </g>
+                        <g id="path-2-link" fill="url(#linearGradient-2)">
+                            <rect id="path-2" x="0" y="0" width="9" height="73" rx="4.5"></rect>
+                        </g>
+                    </g>
+                    <g id="矩形备份-6" transform="translate(32.000000, 0.000000)">
+                        <g id="path-4-link" fill="#000000" fill-rule="nonzero">
+                            <rect id="path-4" x="0" y="0" width="9" height="73" rx="4.5"></rect>
+                        </g>
+                        <g id="path-4-link" fill="url(#linearGradient-2)">
+                            <rect id="path-4" x="0" y="0" width="9" height="73" rx="4.5"></rect>
+                        </g>
+                    </g>
+                    <g id="矩形备份-8" transform="translate(60.000000, 0.000000)">
+                        <g id="path-6-link" fill="#000000" fill-rule="nonzero">
+                            <rect id="path-6" x="0" y="0" width="9" height="73" rx="4.5"></rect>
+                        </g>
+                        <g id="path-6-link" fill="url(#linearGradient-2)">
+                            <rect id="path-6" x="0" y="0" width="9" height="73" rx="4.5"></rect>
+                        </g>
+                    </g>
+                    <circle id="椭圆形" stroke="url(#linearGradient-3)" stroke-width="6" fill="#2E3948" fill-rule="nonzero" cx="8" cy="48" r="8"></circle>
+                    <circle id="椭圆形备份-3" stroke="url(#linearGradient-3)" stroke-width="6" fill="#2E3948" fill-rule="nonzero" cx="36" cy="23" r="8"></circle>
+                    <circle id="椭圆形备份-4" stroke="url(#linearGradient-3)" stroke-width="6" fill="#2E3948" fill-rule="nonzero" cx="64" cy="48" r="8"></circle>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

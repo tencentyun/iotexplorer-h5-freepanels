@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="21px" height="36px" viewBox="0 0 21 36" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 59.1 (86144) - https://sketch.com -->
+    <title>箭头</title>
+    <desc>Created with Sketch.</desc>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round">
+        <g id="1备份" transform="translate(-863.000000, -409.000000)" stroke="#B5C4D1" stroke-width="5">
+            <g id="黑白" transform="translate(26.000000, 73.000000)">
+                <g id="箭头" transform="translate(840.000000, 339.000000)">
+                    <line x1="15" y1="15" x2="0" y2="0" id="直线"></line>
+                    <line x1="0" y1="30" x2="15" y2="15" id="直线备份"></line>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

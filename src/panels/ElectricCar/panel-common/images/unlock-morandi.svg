@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="82px" height="82px" viewBox="0 0 82 82" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 59.1 (86144) - https://sketch.com -->
+    <title>锁</title>
+    <desc>Created with Sketch.</desc>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="2" transform="translate(-411.000000, -1361.000000)">
+            <g id="编组-6" transform="translate(80.000000, 1323.000000)">
+                <g id="编组-5" transform="translate(331.000000, 38.000000)">
+                    <g id="锁" transform="translate(4.000000, 4.000000)">
+                        <path d="M40,0 L40,9.10447761 C40,20.644756 31.045695,30 20,30 C8.954305,30 0,20.644756 0,9.10447761 L0,0" id="矩形" stroke="#FFFFFF" stroke-width="7" transform="translate(20.000000, 15.000000) scale(1, -1) translate(-20.000000, -15.000000) "></path>
+                        <rect id="矩形" stroke="#FFFFFF" stroke-width="7" fill="#FFFFFF" x="21.5" y="29.5" width="53" height="43" rx="13"></rect>
+                        <circle id="椭圆形" fill="#C1B6AA" cx="48" cy="51" r="7"></circle>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

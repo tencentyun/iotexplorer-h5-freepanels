@@ -1,0 +1,260 @@
+body.theme_colorful {
+  .app-container {
+    padding-top: 60px;
+    padding-bottom: 190px;
+    background-color: #FFFFFF;
+    overflow: hidden;
+
+    .decoration-block {
+      margin: 0 80px 96px;
+      border-radius: 120px;
+      background: #FFFFFF;
+      box-shadow: 0 6px 100px 0 rgba(32, 33, 33, 0.08);
+
+      .decoration-bottom {
+        padding: 48px 66px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        .content-item {
+          text-align: center;
+          
+          .icon-power {
+            width: 99px;
+            height: 50px;
+            background-image: url('../images/power-switch.svg');
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: 100% 100%;
+          }
+          .icon-power-active {
+            width: 99px;
+            height: 50px;
+            background-image: url('../images/power-switch-active-colorful.svg');
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: 100% 100%;
+          }
+
+          .word {
+            margin-bottom: 15px;
+            line-height: 67px;
+            font-size: 48px;
+            color: #B5C4D1;
+            letter-spacing: 0.1px;
+          }
+
+          .text {
+            font-size: 38px;
+          }
+
+          .label {
+            line-height: 67px;
+            font-size: 48px;
+            color: #0F0F0F;
+          }
+        }
+      }
+    }
+
+    .product-image-wrap {
+      display: flex;
+      justify-content: space-between;
+      position: relative;
+      width: 100%;
+      margin-bottom: 135px;
+      .product-image-left {
+        position: relative;
+        padding-top: 273px;
+        // overflow: hidden;
+        .fumes {
+          position: absolute;
+          top: 0;
+          left: 340px;
+          width: 190px;
+          height: 312px;
+          background-image: url('https://tencent-1305105198.cos.ap-guangzhou.myqcloud.com/aromatherapy-machine/smoke.svg');
+          background-repeat: no-repeat;
+          background-position: center;
+          background-size: contain;
+          z-index: 2;
+        }
+        .product-image {
+          margin-left: 141px;
+          position: relative;
+          display: block;
+          width: 529px;
+          height: 826px;
+          z-index: 3;
+        }
+        .shadow {
+          position: absolute;
+          top: 1068px;
+          left: -6px;
+          width: 835px;
+          height: 48px;
+          background-image: url('../images/shadow.svg');
+          background-repeat: no-repeat;
+          background-position: center;
+          background-size: contain;
+          transform: scaleX(3);
+          z-index: 1;
+        }
+      }
+      .countdown-slider-wrap {
+        margin-right: 275px;
+        padding: 67px 48px;
+        width: 25px;
+        background: #F3F4F6;
+        border-radius: 56px;
+        z-index: 2;
+  
+        .countdown-slider-tips {
+          position: relative;
+          display: flex;
+          flex-direction: column;
+          font-size: 36px;
+          color: #0F0F0F;
+  
+          li {
+            position: relative;
+            width: 25px;
+            height: 25px;
+            margin-bottom: 487px;
+            &::before {
+              content: '';
+              position: absolute;
+              display: inline-block;
+              left: 50%;
+              top: 0;
+              width: 25px;
+              height: 25px;
+              border-radius: 50%;
+              background-color: #000401;
+              transform: translateX(-50%);
+              z-index: 0;
+            }
+            &::after {
+              content: '';
+              position: absolute;
+              display: inline-block;
+              left: 50%;
+              top: 25px;
+              width: 3px;
+              height: 487px;
+              background-color: #CAC7C7;
+              transform: translateX(-50%);
+              z-index: 0;
+            }
+            &:last-child {
+              margin-bottom: 0;
+              &::after {
+                display: none;
+              }
+            }
+            span {
+              position: absolute;
+              top: 50%;
+              left: 84px;
+              margin-top: -25px;
+              display: inline-block;
+              width: 111px;
+              font-size: 36px;
+              line-height: 50px;
+              color: #0F0F0F;
+            }
+            .icon-arrow-down {
+              position: absolute;
+              top: 50%;
+              left: 207px;
+              margin-top: -20px;
+              width: 40px;
+              height: 40px;
+              transform: rotate(90deg);
+            }
+          }
+  
+          .selected {
+            &::before {
+              background-color: #FF5447;
+            }
+            .icon-arrow-down {
+              fill: #FF5447;
+            }
+          }
+        }
+
+        .default {
+          li {
+            &::before {
+              background-color: #B4C3D0;
+            }
+            .icon-arrow-down {
+              fill: #B4C3D0;
+            }
+          }
+          .selected {
+            &::before {
+              background-color: #B4C3D0;
+            }
+            .icon-arrow-down {
+              fill: #B4C3D0;
+            }
+          }
+        }
+      }
+    }
+
+
+    .product-control {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 80px;
+
+      .control-block {
+        width: 455px;
+        height: 330px;
+        border-radius: 80px;
+        color: #B4C3D0;
+
+        .top {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          margin-bottom: 55px;
+          font-size: 36px;
+
+          .icon {
+            width: 80px;
+            height: 80px;
+          }
+        }
+
+        .word {
+          font-size: 50px;
+        }
+      }
+
+      .blue {
+        color: #FFFFFF;
+        background-image: linear-gradient(138deg, #527DF4 0%, #044DFF 100%);
+        box-shadow: 0 6px 100px 0 rgba(124, 121, 245, 0.30);
+      }
+
+      .yellow {
+        color: #FFFFFF;
+        background-image: linear-gradient(136deg, #FFDD00 0%, #FFBF06 100%);
+        box-shadow: 0 6px 100px 0 rgba(32, 33, 33, 0.10);
+      }
+    }
+
+
+
+    
+  }
+  // .close {
+
+  // }
+}

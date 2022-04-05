@@ -1,0 +1,90 @@
+// 重置ant-mobile list 样式 二期统一外层处理 TODO
+.adm-list-default {
+  border: none !important;
+}
+.adm-list {
+  font-size: 48px;
+  .adm-list-body-inner {
+    .adm-list-item {
+      padding: 53px 0px;
+      // border-bottom: 1px solid #b5c4d1;
+      border-bottom: 3px solid rgba(181, 196, 209, 0.5);
+      font-weight: 500;
+      color: #000000;
+    }
+    .adm-list-item:active {
+      background-color: transparent;
+    }
+  }
+
+  .adm-list-item-content {
+    font-size: 48px;
+    border-bottom: none;
+    .adm-list-item-content-prefix {
+      color: #FBFBFF;
+    }
+  }
+  .adm-list-body {
+    background: transparent;
+    border-top: none;
+    border-bottom: none;
+  }
+
+  .adm-list-item-content-extra {
+    font-size: 48px;
+    color: #B5C4D1;
+  }
+
+  .adm-list-item-content-arrow {
+    font-size: 48px;
+    // margin-left: 36px;
+  }
+}
+
+// 后续统一卡片样式
+.list-card-timer {
+  background: #ffffff;
+  border: none;
+  background: transparent;
+  .adm-list {
+    background: transparent;
+  }
+  .adm-list-item {
+    border: none !important;
+    padding: 66px 41px 66px 66px !important;
+    margin-bottom: 25px;
+    background: #202137 !important;
+    border-radius: 100px;
+    margin-bottom: 25px;
+    // height: 200px;
+    .adm-list-item-content {
+      padding: 0;
+    }
+  }
+
+  .adm-checkbox-icon {
+    display: none;
+  }
+  .adm-list-item-content-extra {
+    .icon {
+      width: 90px;
+      height: 90px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+    }
+    .icon-select {
+      background: #89ce6b;
+    }
+  }
+  .description {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 84px;
+    font-weight: 400;
+    font-size: 48px;
+    color: #b5c4d1;
+  }
+}

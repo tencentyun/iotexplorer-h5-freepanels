@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="82px" height="82px" viewBox="0 0 82 82" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>编组 10</title>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="1" transform="translate(-247.000000, -2110.000000)">
+            <g id="编组-8" transform="translate(78.000000, 1661.000000)">
+                <g id="编组-7" transform="translate(42.000000, 449.000000)">
+                    <g id="编组-10" transform="translate(127.000000, 0.000000)">
+                        <circle id="椭圆形" fill="#B5C4D1" cx="41" cy="41" r="41"></circle>
+                        <text id="OFF" font-family="PingFangSC-Medium, PingFang SC" font-size="24" font-weight="400" fill="#FFFFFF">
+                            <tspan x="18.28" y="50">OFF</tspan>
+                        </text>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

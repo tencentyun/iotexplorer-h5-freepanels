@@ -1,0 +1,61 @@
+.home {
+  .dashboard {
+    width: 1000px;
+    height: 750px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 0 auto;
+
+    .dashboard-btn{
+      width: 100%;
+      height: 100px;
+      margin: 30px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      .lock{
+        width: 100px;
+        #lock{
+          height: 100px;
+        }
+      }
+      #more{
+        width: 80px;
+      }
+      .title{
+        color: #B5C4D1;
+      }
+    }
+    .disinfection-img {
+      width: 80%;
+      position: relative;
+
+      img{
+        width: 100%;
+      }
+      .up-state, .down-state{
+        position: absolute;
+        left: 42%;
+        font-size: 36px;
+        color: #72757E;
+      }
+      .up-state, .down-state{
+        top: 150px;
+      }
+      .down-state{
+        top: 350px;
+      }
+    }
+  }
+
+  &.power-off {
+    #power{
+      pointer-events: auto !important;
+    }
+    *{
+      /*color: @color-disabled !important;*/
+      pointer-events: none;
+    }
+  }
+}

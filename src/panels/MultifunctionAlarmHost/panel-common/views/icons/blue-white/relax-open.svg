@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="88px" height="88px" viewBox="0 0 88 88" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 59.1 (86144) - https://sketch.com -->
+    <title>休闲</title>
+    <desc>Created with Sketch.</desc>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="切图蓝白" transform="translate(-699.000000, -888.000000)">
+            <g id="编组" transform="translate(74.000000, 96.000000)">
+                <g id="休闲" transform="translate(628.000000, 798.000000)">
+                    <path d="M57.6131976,25.9459465 L5.08950509,25.9459465 C2.27864904,25.9459465 4.01456646e-13,28.2275061 4.01456646e-13,31.041952 L4.01456646e-13,71.3003914 C4.01456646e-13,74.1148372 2.27864904,76.3963964 5.08950509,76.3963964 L57.6131976,76.3963964 C60.4240537,76.3963964 62.7027027,74.1148372 62.7027027,71.3003914 L62.7027027,30.8890718 C62.6201342,28.1345044 60.3654901,25.9447066 57.6131976,25.9459465 Z" id="路径" stroke="#FFFFFF" stroke-width="5" fill-rule="nonzero"></path>
+                    <path d="M85,42 L85,47.4626866 C85,54.3868536 79.627417,60 73,60 C66.372583,60 61,54.3868536 61,47.4626866 L61,42" id="矩形" stroke="#FFFFFF" stroke-width="5" transform="translate(73.000000, 51.000000) scale(1, -1) rotate(-90.000000) translate(-73.000000, -51.000000) "></path>
+                    <rect id="矩形" fill="#FFFFFF" fill-rule="nonzero" x="14.4144144" y="0" width="7.20720721" height="18.018018" rx="3.6036036"></rect>
+                    <rect id="矩形" fill="#FFFFFF" fill-rule="nonzero" x="28.1081081" y="0" width="7.20720721" height="18.018018" rx="3.6036036"></rect>
+                    <rect id="矩形" fill="#FFFFFF" fill-rule="nonzero" x="41.8018018" y="-1.31450406e-13" width="7.20720721" height="18.018018" rx="3.6036036"></rect>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

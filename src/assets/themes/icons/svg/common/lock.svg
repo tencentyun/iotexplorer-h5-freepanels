@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 81 80" class="design-iconfont">
+  <g transform="translate(4 4)" fill="none" fill-rule="evenodd">
+    <path d="M40,0 L40,9.10447761 C40,20.644756 31.045695,30 20,30 C8.954305,30 0,20.644756 0,9.10447761 L0,0" stroke="#0F0F0F" stroke-width="7" transform="matrix(1 0 0 -1 0 30)"/>
+    <rect stroke="#0F0F0F" stroke-width="7" x="20.5" y="29.5" width="53" height="43" rx="13"/>
+    <path fill="#0F0F0F" d="M47 44A7 7 0 1 0 47 58A7 7 0 1 0 47 44Z"/>
+  </g>
+</svg>

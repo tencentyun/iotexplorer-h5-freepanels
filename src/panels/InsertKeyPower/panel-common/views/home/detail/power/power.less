@@ -1,0 +1,27 @@
+.power-tools-bar {
+  display: flex;
+  padding: 66px 123px 108px;
+  justify-content: space-around;
+  align-items: center;
+  button {
+    color: #B5C4D1;
+    &#power svg {
+      width: 300px;
+      height: 300px;
+      transform: translate3d(-16%,-14%,0);
+    }
+    &.add,&.reduce {
+      img {
+        width: 90px;
+      }
+    }
+    .label {
+      width: 154px;
+      height: 50px;
+      line-height: 50px;
+      margin-top: 28px;
+      font-size: 36px;
+      text-align: center;
+    }
+  }
+}

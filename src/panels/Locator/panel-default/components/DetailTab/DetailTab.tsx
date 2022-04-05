@@ -27,9 +27,15 @@ export function DetailTab() {
   return (
     <div className="locator-tab locator-detail-tab">
       <div className="locator-detail-tab-menu">
-        <DetailMenuEntry text="历史轨迹" onClick={() => { onGoPage(DetailPage.HistoryList); }} />
-        <DetailMenuEntry text="报警记录" onClick={() => { onGoPage(DetailPage.EventList); }} />
-        <DetailMenuEntry text="定位模式" onClick={() => { onGoPage(DetailPage.PositioningMode); }} />
+        <DetailMenuEntry text="历史轨迹" onClick={() => {
+          onGoPage(DetailPage.HistoryList);
+        }} />
+        <DetailMenuEntry text="报警记录" onClick={() => {
+          onGoPage(DetailPage.EventList);
+        }} />
+        <DetailMenuEntry text="定位模式" onClick={() => {
+          onGoPage(DetailPage.PositioningMode);
+        }} />
       </div>
     </div>
   );

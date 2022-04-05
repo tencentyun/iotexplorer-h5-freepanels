@@ -1,0 +1,41 @@
+@import url('./icon/style.less');
+.cus-video {
+  color: @c1;
+  font-family: 'PingFang SC';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+
+  .video {
+    width: 100%;
+    height: 282px;
+    background: turquoise;
+  }
+  .action {
+    padding: 26px 20;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .action-icon {
+      width: 24px;
+      height: 24px;
+    }
+  }
+  .content {
+    .time-pick {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      .show-date {
+        flex: 1;
+        align-items: center;
+        justify-content: center;
+        display: flex;
+      }
+      .date {
+        margin-right: 16px;
+      }
+    }
+  }
+}

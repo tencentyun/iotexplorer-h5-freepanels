@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="82px" height="82px" viewBox="0 0 82 82" version="1.1">
+  <title>锁</title>
+  <defs>
+    <linearGradient x1="51.5199925%" y1="0%" x2="51.5199925%" y2="100%" id="linearGradient-1">
+      <stop stop-color="#BB81FF" offset="0%"></stop>
+      <stop stop-color="#6685F9" offset="44.2744755%"></stop>
+      <stop stop-color="#036EF3" offset="100%"></stop>
+    </linearGradient>
+    <rect id="path-2" x="0" y="0" width="965" height="160" rx="80"></rect>
+    <filter x="-15.9%" y="-91.9%" width="131.7%" height="291.2%" filterUnits="objectBoundingBox" id="filter-3">
+      <feOffset dx="0" dy="6" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+      <feGaussianBlur stdDeviation="50" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+      <feComposite in="shadowBlurOuter1" in2="SourceAlpha" operator="out" result="shadowBlurOuter1"></feComposite>
+      <feColorMatrix values="0 0 0 0 0.125490196   0 0 0 0 0.127812629   0 0 0 0 0.129411765  0 0 0 0.1 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+    </filter>
+    <rect id="path-4" x="0" y="0" width="308" height="160" rx="80"></rect>
+    <filter x="-49.7%" y="-91.9%" width="199.4%" height="291.2%" filterUnits="objectBoundingBox" id="filter-5">
+      <feOffset dx="0" dy="6" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+      <feGaussianBlur stdDeviation="50" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+      <feColorMatrix values="0 0 0 0 0.125490196   0 0 0 0 0.127812629   0 0 0 0 0.129411765  0 0 0 0.1 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+    </filter>
+    <linearGradient x1="14.0176603%" y1="25.5453186%" x2="104.602754%" y2="80.9829102%" id="linearGradient-6">
+      <stop stop-color="#C6F5B3" offset="0%"></stop>
+      <stop stop-color="#1E99F5" offset="100%"></stop>
+    </linearGradient>
+    <linearGradient x1="14.0176603%" y1="19.8090354%" x2="104.602754%" y2="88.2505064%" id="linearGradient-7">
+      <stop stop-color="#C6F5B3" offset="0%"></stop>
+      <stop stop-color="#1E99F5" offset="100%"></stop>
+    </linearGradient>
+  </defs>
+  <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+    <g id="2-1" transform="translate(-187.000000, -1361.000000)">
+      <rect fill="#FFFFFF" x="0" y="0" width="1125" height="2436"></rect>
+      <rect id="矩形" fill="#F4F8FB" x="0" y="0" width="1125" height="2437"></rect>
+      <rect id="矩形" fill="url(#linearGradient-1)" x="0" y="0" width="1125" height="2437"></rect>
+      <g id="编组-6" transform="translate(80.000000, 1323.000000)">
+        <g id="矩形">
+          <use fill="black" fill-opacity="1" filter="url(#filter-3)" xlink:href="#path-2"></use>
+          <use fill-opacity="0.2" fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-2"></use>
+        </g>
+        <g id="矩形">
+          <use fill="black" fill-opacity="1" filter="url(#filter-5)" xlink:href="#path-4"></use>
+          <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-4"></use>
+        </g>
+      </g>
+      <g id="锁" transform="translate(198.000000, 1365.000000)">
+        <path d="M50,0 L50,9.10447761 C50,20.644756 41.045695,30 30,30 C18.954305,30 10,20.644756 10,9.10447761 L10,0" id="矩形" stroke="url(#linearGradient-6)" stroke-width="7" transform="translate(30.000000, 15.000000) scale(1, -1) translate(-30.000000, -15.000000) "></path>
+        <rect id="矩形" stroke="url(#linearGradient-7)" stroke-width="7" fill="url(#linearGradient-7)" x="3.5" y="29.5" width="53" height="43" rx="13"></rect>
+        <circle id="椭圆形" fill="#FFFFFF" cx="30" cy="51" r="7"></circle>
+      </g>
+    </g>
+  </g>
+</svg>

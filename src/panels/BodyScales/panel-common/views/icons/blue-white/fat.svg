@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="63px" height="63px" viewBox="0 0 63 63" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 59.1 (86144) - https://sketch.com -->
+    <title>脂肪量</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="0%" y1="6.80044777%" x2="97.2025913%" y2="98.0740451%" id="linearGradient-1">
+            <stop stop-color="#0081FF" offset="0%"></stop>
+            <stop stop-color="#005BFF" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="2" transform="translate(-144.000000, -1193.000000)">
+            <g id="编组-2" transform="translate(79.000000, 925.000000)">
+                <g id="脂肪量" transform="translate(65.000000, 268.000000)">
+                    <g>
+                        <rect id="矩形" fill="url(#linearGradient-1)" x="0" y="0" width="63" height="63" rx="10"></rect>
+                        <circle id="椭圆形" fill="#FFFFFF" fill-rule="nonzero" cx="19.5" cy="15.5" r="3.5"></circle>
+                        <circle id="椭圆形" fill="#FFFFFF" fill-rule="nonzero" cx="27.5" cy="15.5" r="3.5"></circle>
+                        <circle id="椭圆形" fill="#FFFFFF" fill-rule="nonzero" cx="36.5" cy="15.5" r="3.5"></circle>
+                        <circle id="椭圆形" fill="#FFFFFF" fill-rule="nonzero" cx="44.5" cy="15.5" r="3.5"></circle>
+                        <circle id="椭圆形" fill="#FFFFFF" fill-rule="nonzero" cx="23.5" cy="23.5" r="3.5"></circle>
+                        <circle id="椭圆形" fill="#FFFFFF" fill-rule="nonzero" cx="32.5" cy="23.5" r="3.5"></circle>
+                        <circle id="椭圆形" fill="#FFFFFF" fill-rule="nonzero" cx="40.5" cy="23.5" r="3.5"></circle>
+                        <circle id="椭圆形" fill="#FFFFFF" fill-rule="nonzero" cx="19.5" cy="47.5" r="3.5"></circle>
+                        <circle id="椭圆形" fill="#FFFFFF" fill-rule="nonzero" cx="27.5" cy="47.5" r="3.5"></circle>
+                        <circle id="椭圆形" fill="#FFFFFF" fill-rule="nonzero" cx="36.5" cy="47.5" r="3.5"></circle>
+                        <circle id="椭圆形" fill="#FFFFFF" fill-rule="nonzero" cx="44.5" cy="47.5" r="3.5"></circle>
+                        <circle id="椭圆形" fill="#FFFFFF" fill-rule="nonzero" cx="23.5" cy="39.5" r="3.5"></circle>
+                        <circle id="椭圆形" fill="#FFFFFF" fill-rule="nonzero" cx="32.5" cy="39.5" r="3.5"></circle>
+                        <circle id="椭圆形" fill="#FFFFFF" fill-rule="nonzero" cx="40.5" cy="39.5" r="3.5"></circle>
+                        <circle id="椭圆形" fill="#FFFFFF" fill-rule="nonzero" cx="26.5" cy="31.5" r="3.5"></circle>
+                        <circle id="椭圆形" fill="#FFFFFF" fill-rule="nonzero" cx="35.5" cy="31.5" r="3.5"></circle>
+                        <path d="M10.1547524,12 C13.9671288,17.6121084 16.0100848,24.3234498 16,31.2021759 C16.0108077,38.7652594 13.5406367,46.1044676 9,52" id="路径" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round"></path>
+                        <path d="M53.8415698,12 C45.6429796,24.1129864 46.1154107,40.4257906 55,52" id="路径" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round"></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -49,7 +49,7 @@ export function Marker({
         icon.origin && new qqMaps.Point(icon.origin.x, icon.origin.y),
         icon.anchor && new qqMaps.Point(icon.anchor.x, icon.anchor.y),
         icon.scaleSize && new qqMaps.Size(icon.scaleSize.width, icon.scaleSize.height),
-        icon.shadowAngle
+        icon.shadowAngle,
       ) : null);
     }
   }, [icon]);

@@ -1,0 +1,46 @@
+// 不同的主题 适配设备间适配性等基础样式
+// 1. 浏览器兼容性
+// 2. 浏览器样式
+// 3. 设备的分辨率等适配等 不同的终端
+
+// 当前采用 3 * 375设计稿进行的设计
+
+html {
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+body {
+  height: 100%;
+  overflow: auto;
+  position: relative;
+}
+
+#app {
+  font-size: 48px;
+  width: 100vw;
+  height: 100vh;
+}
+
+.category-root {
+  width: 100%;
+  height: 100%;
+}
+
+.route-root {
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  display: flex;
+  justify-content: center;
+}
+
+li {
+  list-style-type: none;
+}
+
+p {
+  margin: 0;
+  padding: 0;
+}

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="326px" height="326px" viewBox="0 0 326 326" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 61.2 (89653) - https://sketch.com -->
+    <title>编组 3</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <filter x="-16.9%" y="-16.9%" width="133.8%" height="133.8%" filterUnits="objectBoundingBox" id="filter-1">
+            <feOffset dx="0" dy="5" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="10" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0.133333333   0 0 0 0 0.145098039   0 0 0 0 0.196078431  0 0 0 0.895705857 0" type="matrix" in="shadowBlurOuter1" result="shadowMatrixOuter1"></feColorMatrix>
+            <feMerge>
+                <feMergeNode in="shadowMatrixOuter1"></feMergeNode>
+                <feMergeNode in="SourceGraphic"></feMergeNode>
+            </feMerge>
+        </filter>
+        <linearGradient x1="9.23611111%" y1="1.30781938%" x2="90.7415254%" y2="96.3203125%" id="linearGradient-2">
+            <stop stop-color="#333E4D" offset="0%"></stop>
+            <stop stop-color="#202C3A" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="1" transform="translate(-400.000000, -729.000000)">
+            <g id="编组-4" transform="translate(363.000000, 505.000000)">
+                <g id="开关" transform="translate(0.000000, 182.000000)">
+                    <g id="编组-3" filter="url(#filter-1)" transform="translate(56.509695, 56.509695)">
+                        <g id="编组-2" fill="url(#linearGradient-2)" stroke="#3E4454" stroke-opacity="0.2" stroke-width="3">
+                            <path d="M143.251246,285.002492 C180.846014,285.002492 216.900998,270.068029 243.484514,243.484514 C270.068029,216.900998 285.002492,180.846014 285.002492,143.251246 C285.002492,64.9641946 221.538298,1.5 143.251246,1.5 C64.9641946,1.5 1.5,64.9641946 1.5,143.251246 C1.5,221.538298 64.9641946,285.002492 143.251246,285.002492 Z" id="路径"></path>
+                        </g>
+                        <path d="M143.490696,175.735317 C130.442322,175.735317 118.680173,167.871181 113.693666,155.8132 C108.707159,143.75522 111.479353,129.880522 120.716462,120.664452 C129.953571,111.448382 143.834551,108.707835 155.881125,113.721829 C167.9277,118.735823 175.764956,130.515878 175.735317,143.564222 C175.694733,161.343702 161.270217,175.735317 143.490696,175.735317 Z" id="路径" fill="#FF3C5E"></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

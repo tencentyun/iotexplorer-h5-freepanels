@@ -142,7 +142,7 @@ export function SwitchPanel({
                 setVisible(true);
                 currentEditItem.current = item;
                 inputRef.current?.focus();
-                setCurrentName(switchNames.data[currentEditItem.current.id])
+                setCurrentName(switchNames.data[currentEditItem.current.id]);
               }}
             />))}
         </div>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="70px" height="70px" viewBox="0 0 70 70" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <g id="页面-1" stroke="none" stroke-width="1" fill-rule="evenodd">
+        <g id="6" transform="translate(-901.000000, -569.000000)">
+            <g id="总开关" transform="translate(80.000000, 363.000000)">
+                <g id="选中勾" transform="translate(821.000000, 206.000000)">
+                    <circle id="椭圆形" cx="35" cy="35" r="35"></circle>
+                    <line x1="18.5" y1="31.5" x2="32.5" y2="45.5" id="直线-2" stroke="#FFFFFF" stroke-width="5" stroke-linecap="round"></line>
+                    <line x1="33" y1="46" x2="53" y2="23" id="直线-3" stroke="#FFFFFF" stroke-width="5" stroke-linecap="round"></line>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

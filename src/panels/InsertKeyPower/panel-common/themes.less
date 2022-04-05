@@ -1,0 +1,451 @@
+/*蓝白主题*/
+.theme_blue_white {
+  height: 100%;
+
+  .home {
+    background-image: var(--global-background-color-gradient);
+    min-height: 100vh;
+    &.power-off {
+      #pivoting {
+        svg{
+          color: #B5C4D1 !important;
+          fill: #B5C4D1 !important;
+        }
+        .label{
+          color: #B5C4D1 !important;
+        }
+      }
+
+      #power {}
+
+      #timing {
+        svg{
+          color: #B5C4D1 !important;
+          fill: #B5C4D1 !important;
+        }
+        .label{
+          color: #B5C4D1 !important;
+        }
+      }
+    }
+
+    .detail {
+      background: none;
+      border: 0;
+      box-shadow: none;
+
+      .power-tools-bar {
+        width: 90%;
+        padding: 0;
+        margin: 0 5%;
+
+        .active{
+          background: #FFFFFF !important;
+          .label{
+            color: #006BFF !important;
+          }
+        }
+        #dev-open, #dev-close {
+          background: #4090FF;
+          .label{
+            color: #FFFFFF;
+          }
+        }
+
+        .btn-power-switch {
+          background: none;
+          img {
+            width: 300px;
+            height: 300px;
+          }
+        }
+      }
+
+      .environment {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        padding-bottom: 0;
+        margin-top: 150px;
+        background-color: var(--global-color-white);
+        border-radius: 90px 90px 0 0;
+
+        .environment-wrap {
+          display: flex;
+          padding: 30px 0;
+
+          .time, .card {
+            flex: .5;
+            width: 300px;
+            height: 284px;
+            color: var(--global-color-black);
+            padding: 50px 0;
+            img {
+              margin-bottom: 10px;
+              width: 80px;
+              height: 80px;
+            }
+            .value{
+              margin-bottom: 10px;
+              color: #0f0f0f;
+            }
+            .label{
+              color: #B5C4D1;
+            }
+          }
+
+          .time {
+            border-right: 3px solid #EDEEF2;
+          }
+        }
+      }
+    }
+  }
+}
+
+/*暗色主题*/
+.theme_dark {
+  height: 100%;
+
+  .home {
+
+    &.power-off {
+      #power {}
+    }
+
+    .detail {
+      background: none;
+      border: 0;
+      box-shadow: none;
+
+      .power-tools-bar {
+        width: 90%;
+        padding: 0;
+        margin: 0 5%;
+
+        .active{
+          background-image: linear-gradient(137deg, #00F0FF 0%, #704DF0 100%) !important;
+          .label{
+            color: #FFFFFF;
+          }
+        }
+
+        .btn-power-switch {
+          background: none;
+          img {
+            width: 300px;
+            height: 300px;
+          }
+        }
+
+        #dev-open, #dev-close {
+          color: #FFFFFF;
+          background-image: linear-gradient(180deg, #333E4D 0%, #202C3A 100%);
+        }
+      }
+
+      .environment {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        padding-bottom: 0;
+        margin-top: 150px;
+        background-image: linear-gradient(180deg, #333E4D 0%, #202C3A 100%);
+        border-radius: 90px 90px 0 0;
+
+        .environment-wrap {
+          display: flex;
+          padding: 30px 0;
+
+          .time, .card {
+            flex: .5;
+            width: 300px;
+            height: 254px;
+            color: var(--global-color-lighter);
+            padding: 50px 0;
+            img {
+              margin-bottom: 10px;
+              width: 80px;
+              height: 80px;
+            }
+            .value{
+              margin-bottom: 10px;
+              color: #FFFFFF;
+            }
+            .label{
+              color: #B5C4D1;
+            }
+          }
+
+          .time {
+            border-right: 3px solid #89949e;
+          }
+        }
+      }
+    }
+  }
+}
+
+/*多彩主题*/
+.theme_colorful {
+  height: 100%;
+
+  .home {
+    background-color: #f4f8fb;
+
+    &.power-off {
+      #power {}
+    }
+
+    /*详情*/
+    .detail {
+      background: none;
+      box-shadow: none;
+      border-radius: unset;
+      border: 0;
+
+      .power-tools-bar {
+        width: 90%;
+        padding: 0;
+        margin: 0 5%;
+
+        .active{
+          background-image: linear-gradient(137deg, #527DF4 0%, #044DFF 100%) !important;
+          .label{
+            color: #FFFFFF !important;
+          }
+        }
+        #pivoting {
+          .label{
+            color: #000000;
+          }
+        }
+
+        .btn-power-switch {
+          background: none;
+
+          img {
+            width: 300px;
+            height: 300px;
+          }
+        }
+
+        #timing {
+          .label{
+            color: #000000;
+          }
+        }
+      }
+
+      .environment {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        padding-bottom: 0;
+        margin-top: 150px;
+        background-color: var(--global-color-white);
+        border-radius: 90px 90px 0 0;
+
+        .environment-wrap {
+          display: flex;
+          padding: 30px 0;
+
+          .time, .card {
+            flex: .5;
+            width: 300px;
+            height: 284px;
+            color: var(--global-color-black);
+            padding: 50px 0;
+            img {
+              margin-bottom: 10px;
+              width: 80px;
+              height: 80px;
+            }
+            .value{
+              margin-bottom: 10px;
+              color: #0f0f0f;
+            }
+            .label{
+              color: #B5C4D1;
+            }
+          }
+
+          .time {
+            border-right: 3px solid #EDEEF2;
+          }
+        }
+      }
+    }
+  }
+}
+
+/*莫兰迪主题*/
+.theme_morandi {
+  height: 100%;
+
+  .home {
+
+    &.power-off {
+      #power {}
+    }
+
+    .dashboard {
+      width: 100%;
+      background-image: var(--global-background-color-gradient);
+    }
+
+    /*详情*/
+    .detail {
+      background: none;
+      box-shadow: none;
+      border: 0;
+      margin-top: 150px;
+
+      .power-tools-bar {
+        width: 90%;
+        padding: 0;
+        margin: 0 5%;
+
+        .active{
+          background-image: var(--global-background-color-gradient);
+
+          .label{
+            color: #FFFFFF !important;
+          }
+        }
+
+        .btn-power-switch {
+          box-shadow: none;
+          background: none;
+          img {
+            width: 300px;
+            height: 300px;
+          }
+        }
+      }
+
+      .environment {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        padding-bottom: 0;
+        margin-top: 150px;
+        background: #FFFFFF;
+        border-radius: 90px 90px 0 0;
+
+        .environment-wrap {
+          display: flex;
+          padding: 30px 0;
+
+          .time, .card {
+            flex: .5;
+            width: 300px;
+            height: 284px;
+            padding: 50px 0;
+            img {
+              margin-bottom: 10px;
+              width: 80px;
+              height: 80px;
+            }
+            .value{
+              margin-bottom: 10px;
+              color: #0f0f0f;
+            }
+            .label{
+              color: #B5C4D1;
+            }
+          }
+
+          .time {
+            border-right: 3px solid #EDEEF2;
+          }
+        }
+      }
+    }
+  }
+}
+
+/*黑白主题*/
+.theme_normal {
+  height: 100%;
+  position: relative;
+  .home {
+    min-height: 100vh;
+    background-color: #f4f8fb;
+
+    &.power-off {
+      #power{ }
+      #dev-open, #dev-close{
+        color: #B5C4D1 !important;
+      }
+    }
+
+    /*详情*/
+    .detail {
+      background: none;
+      box-shadow: none;
+      border-radius: unset;
+      border: 0;
+
+      .power-tools-bar {
+        width: 90%;
+        padding: 0;
+        margin: 0 5%;
+
+        .active{
+          background: #000000;
+          .label{
+            color: #FFFFFF;
+          }
+        }
+
+        #power {
+          background: none;
+          img {
+            width: 300px;
+            height: 300px;
+          }
+        }
+      }
+
+      .environment {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        padding-bottom: 0;
+        margin-top: 150px;
+        background-color: var(--global-color-white);
+        border-radius: 90px 90px 0 0;
+
+        .environment-wrap {
+          display: flex;
+          padding: 30px 0;
+
+          .time, .card {
+            flex: .5;
+            width: 300px;
+            color: var(--global-color-black);
+            padding: 50px 0;
+            img {
+              margin-bottom: 10px;
+              width: 80px;
+              height: 80px;
+            }
+            .value{
+              margin-bottom: 10px;
+              color: #0f0f0f;
+            }
+            .label{
+              color: #B5C4D1;
+            }
+          }
+
+          .time {
+            border-right: 3px solid #EDEEF2;
+          }
+        }
+      }
+    }
+  }
+}
+

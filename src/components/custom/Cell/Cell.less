@@ -1,0 +1,50 @@
+.cell {
+  line-height: 67px;
+  font-size: 48px;
+  font-weight: 500;
+  color: #333333;
+  padding: 60px 0;
+
+  .cell-wrapper {
+    display: flex;
+    align-items: center;
+  }
+  .icon-arrow-right {
+    margin-left: 12px;
+    width: 21px;
+    height: 36px;
+    background: url('./icon-arrow-right.svg') no-repeat center;
+    background-size: contain;
+  }
+  .cell-desc {
+    color: #b4c3d0;
+    margin-top: 37px;
+  }
+  .cell-content {
+    margin-left: auto;
+    &.cell-content-style-gray {
+      color: #b6c4d2;
+    }
+  }
+
+  .cell-subtitle {
+    font-size: 24px;
+    color: #a3a6ab;
+    margin-left: 35px;
+  }
+
+  .cell-prefix-icon {
+    display: block;
+    width: 63px;
+    height: 63px;
+    overflow: hidden;
+    margin-right: 40px;
+  }
+  &.cell-settings {
+    border-bottom: 1px solid #EFF3F5;;
+  }
+  // &.border {
+  //   border: 1px solid @c7;
+  //   border-radius: 16px;
+  // }
+}

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="99px" height="50px" viewBox="0 0 99 50" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 59.1 (86144) - https://sketch.com -->
+    <title>开关</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="0%" y1="42.8125399%" x2="97.2025913%" y2="57.9984691%" id="linearGradient-1">
+            <stop stop-color="#0081FF" offset="0%"></stop>
+            <stop stop-color="#005BFF" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="0%" y1="6.80044777%" x2="97.2025913%" y2="98.0740451%" id="linearGradient-2">
+            <stop stop-color="#0081FF" offset="0%"></stop>
+            <stop stop-color="#005BFF" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="2" transform="translate(-145.000000, -2216.000000)">
+            <g id="导航" transform="translate(79.000000, 2144.000000)">
+                <g id="开关" transform="translate(66.000000, 72.000000)">
+                    <rect id="矩形" fill="url(#linearGradient-1)" x="0" y="9.80392157" width="74.5098039" height="30.3921569" rx="15.1960784"></rect>
+                    <circle id="椭圆形" fill="url(#linearGradient-2)" cx="73.0392157" cy="25" r="25"></circle>
+                    <circle id="椭圆形" fill="#FFFFFF" cx="74.0196078" cy="25" r="14.2156863"></circle>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

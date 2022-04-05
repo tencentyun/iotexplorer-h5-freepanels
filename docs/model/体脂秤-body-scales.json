@@ -1,0 +1,97 @@
+{
+  "version": "1.0",
+  "properties": [
+    {
+      "id": "battery_low",
+      "name": "电量低状态",
+      "desc": "",
+      "mode": "r",
+      "define": {
+        "type": "bool",
+        "mapping": {
+          "0": "关",
+          "1": "开"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "data_identification",
+      "name": "标识位",
+      "desc": "枚举值：true，false",
+      "mode": "rw",
+      "define": {
+        "type": "stringenum",
+        "mapping": {
+          "reserve_1": "reserve_1"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "unit_switch",
+      "name": "单位转换",
+      "desc": "枚举值：kg、lb、st",
+      "mode": "rw",
+      "define": {
+        "type": "stringenum",
+        "mapping": {
+          "kg": "kg",
+          "lb": "lb",
+          "st": "st"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "weight",
+      "name": "体重",
+      "desc": "",
+      "mode": "r",
+      "define": {
+        "type": "int",
+        "min": "0",
+        "max": "1800",
+        "start": "0",
+        "step": "1",
+        "unit": "kg"
+      },
+      "required": false
+    },
+    {
+      "id": "current_data",
+      "name": "实时数据",
+      "desc": "",
+      "mode": "r",
+      "define": {
+        "type": "int",
+        "min": "0",
+        "max": "1800",
+        "start": "0",
+        "step": "1",
+        "unit": "kg"
+      },
+      "required": false
+    },
+    {
+      "id": "heart_rate",
+      "name": "静息心率",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "int",
+        "min": "0",
+        "max": "300",
+        "start": "0",
+        "step": "1"
+      },
+      "required": false
+    }
+  ],
+  "events": [],
+  "actions": [],
+  "profile": {
+    "ProductId": "P9FCB4V9V1",
+    "CategoryId": "1"
+  }
+}

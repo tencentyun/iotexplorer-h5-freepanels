@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="89px" height="32px" viewBox="0 0 89 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 59.1 (86144) - https://sketch.com -->
+    <title>开启</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="13.6015158%" y1="45.0607281%" x2="91.8220339%" y2="54.8938913%" id="linearGradient-1">
+            <stop stop-color="#527DF4" offset="0.00791807432%"></stop>
+            <stop stop-color="#044DFF" offset="100%"></stop>
+        </linearGradient>
+        <path d="M25.1243557,2.5 C26.090854,4.17402418 25.5172909,6.3145906 23.8432667,7.28108891 L10.4731488,14.9994156 L23.8432667,22.7189111 C25.459566,23.6520819 26.0499894,25.6797466 25.2188626,27.3252281 L25.1243557,27.5 C24.1578573,29.1740242 22.0172909,29.7475872 20.3432667,28.7810889 L20.3432667,28.7810889 L2.15673326,18.2810889 C0.957543524,17.5887364 0.323065846,16.2938997 0.414898392,14.9996714 C0.323318757,13.7055842 0.957782509,12.4111256 2.15673326,11.7189111 L20.3432667,1.21891109 C22.0172909,0.252412775 24.1578573,0.825975818 25.1243557,2.5 Z M61.75,2.5 C62.7164983,0.825975818 64.8570647,0.252412775 66.5310889,1.21891109 L66.5310889,1.21891109 L84.7176224,11.7189111 C85.9165731,12.4111256 86.5510369,13.7055842 86.4595121,14.9995548 C86.5512898,16.2938997 85.9168121,17.5887364 84.7176224,18.2810889 L66.5310889,28.7810889 C64.8570647,29.7475872 62.7164983,29.1740242 61.75,27.5 C60.7835017,25.8259758 61.3570647,23.6854094 63.0310889,22.7189111 L76.4001488,14.9994156 L63.0310889,7.28108891 C61.4147897,6.34791813 60.8243663,4.32025341 61.6554931,2.67477189 Z" id="path-2"></path>
+        <filter x="-177.8%" y="-515.8%" width="455.6%" height="1173.6%" filterUnits="objectBoundingBox" id="filter-3">
+            <feOffset dx="0" dy="6" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="50" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0.48627451   0 0 0 0 0.474509804   0 0 0 0 0.960784314  0 0 0 0.3 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="1备份" transform="translate(-87.000000, -289.000000)">
+            <g id="多彩" transform="translate(87.000000, 289.000000)">
+                <g id="开启" transform="translate(1.000000, 1.000000)">
+                    <g id="形状结合">
+                        <use fill="black" fill-opacity="1" filter="url(#filter-3)" xlink:href="#path-2"></use>
+                        <use fill="url(#linearGradient-1)" fill-rule="evenodd" xlink:href="#path-2"></use>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

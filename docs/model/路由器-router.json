@@ -1,0 +1,117 @@
+{
+  "version": "1.0",
+  "properties": [
+    {
+      "id": "switch_24g",
+      "name": "2.4G Wi-Fi开关",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "bool",
+        "mapping": {
+          "0": "关",
+          "1": "开"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "switch_5g",
+      "name": "5G Wi-Fi开关",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "bool",
+        "mapping": {
+          "0": "关",
+          "1": "开"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "upload_rate",
+      "name": "上传速率",
+      "desc": "",
+      "mode": "r",
+      "define": {
+        "type": "int",
+        "min": "0",
+        "max": "2100000000",
+        "start": "0",
+        "step": "1",
+        "unit": "KB/s"
+      },
+      "required": false
+    },
+    {
+      "id": "download_rate",
+      "name": "下载速率",
+      "desc": "",
+      "mode": "r",
+      "define": {
+        "type": "int",
+        "min": "0",
+        "max": "2100000000",
+        "start": "0",
+        "step": "1",
+        "unit": "KB/s"
+      },
+      "required": false
+    },
+    {
+      "id": "name_24g",
+      "name": "2.4G Wi-Fi名称",
+      "desc": "内容详见prd",
+      "mode": "rw",
+      "define": {
+        "type": "string",
+        "min": "0",
+        "max": "64"
+      },
+      "required": false
+    },
+    {
+      "id": "sta_config_24g",
+      "name": "2.4G Station配置",
+      "desc": "内容详见prd",
+      "mode": "rw",
+      "define": {
+        "type": "string",
+        "min": "0",
+        "max": "2048"
+      },
+      "required": false
+    },
+    {
+      "id": "name_5g",
+      "name": "5G Wi-Fi名称",
+      "desc": "内容详见prd",
+      "mode": "rw",
+      "define": {
+        "type": "string",
+        "min": "0",
+        "max": "64"
+      },
+      "required": false
+    },
+    {
+      "id": "sta_config_5g",
+      "name": "5G Station配置",
+      "desc": "内容详见prd",
+      "mode": "rw",
+      "define": {
+        "type": "string",
+        "min": "0",
+        "max": "2048"
+      },
+      "required": false
+    }
+  ],
+  "events": [],
+  "actions": [],
+  "profile": {
+    "ProductId": "P9FCB4V9V1",
+    "CategoryId": "1"
+  }
+}

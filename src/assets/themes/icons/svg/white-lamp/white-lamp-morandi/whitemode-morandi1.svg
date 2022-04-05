@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="65px" height="65px" viewBox="0 0 65 65" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 59.1 (86144) - https://sketch.com -->
+    <title>白光2</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M32.5,20 C14.625,20 0,34.625 0,52.5 C0,70.375 14.625,85 32.5,85 C50.375,85 65,70.375 65,52.5 C65,34.625 50.375,20 32.5,20 Z M32.5,80.9375 C16.859375,80.9375 4.06250001,68.140625 4.06250001,52.5 C4.06250001,36.859375 16.859375,24.0625 32.5,24.0625 L32.5,80.9375 Z" id="path-1"></path>
+        <filter x="-235.4%" y="-226.2%" width="570.8%" height="570.8%" filterUnits="objectBoundingBox" id="filter-2">
+            <feOffset dx="0" dy="6" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="50" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0.125490196   0 0 0 0 0.127812629   0 0 0 0 0.129411765  0 0 0 0.1 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="1" transform="translate(-377.000000, -1949.000000)">
+            <g id="编组-2" transform="translate(377.000000, 1929.000000)">
+                <g id="白光">
+                    <use fill="black" fill-opacity="1" filter="url(#filter-2)" xlink:href="#path-1"></use>
+                    <use fill="#B5ABA1" fill-rule="evenodd" xlink:href="#path-1"></use>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

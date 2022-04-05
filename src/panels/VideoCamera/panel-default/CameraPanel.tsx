@@ -1,17 +1,17 @@
-import React, { useEffect, useState, useMemo } from "react";
-import { useHistory } from "react-router-dom";
-import { CalendarList } from "../CalendarList/CalendarList";
-import { Modal } from "@components/Modal";
-import { imgNotFound } from "@icons/panel";
-import "./CameraPanel.less";
-import moment from "moment";
-import { describeCloudStorageEvents } from "./models";
-import { useInfiniteList } from "@hooks/useInfiniteList";
-import classNames from "classnames";
-import { StatusTip } from "@components/StatusTip";
-import { ScrollView } from "@src/components/ScrollView";
-import { DropDown } from "@components/DropDown";
-import { PanelMoreBtn } from "@components/PanelMoreBtn";
+import React, { useEffect, useState, useMemo } from 'react';
+import { useHistory } from 'react-router-dom';
+import { CalendarList } from '../CalendarList/CalendarList';
+import { Modal } from '@components/Modal';
+import { imgNotFound } from '@icons/panel';
+import './CameraPanel.less';
+import moment from 'moment';
+import { describeCloudStorageEvents } from './models';
+import { useInfiniteList } from '@hooks/useInfiniteList';
+import classNames from 'classnames';
+import { StatusTip } from '@components/StatusTip';
+import { ScrollView } from '@src/components/ScrollView';
+import { DropDown } from '@components/DropDown';
+import { PanelMoreBtn } from '@components/PanelMoreBtn';
 export function CameraPanel() {
   // useEffect(() => {
   //   if (offline) {
@@ -23,15 +23,11 @@ export function CameraPanel() {
   const { state } = window.history;
   const [calendarVisible, setCalendarVisible] = useState(false);
   const [eventModalVisible, setEventModalVisible] = useState(false);
-  const [date, setDate] = useState(
-    state && state.date ? moment(state.date * 1000) : moment()
-  );
-  const [eventId, setEventId] = useState(
-    state && state.eventId ? state.eventId : ""
-  );
+  const [date, setDate] = useState(state && state.date ? moment(state.date * 1000) : moment());
+  const [eventId, setEventId] = useState(state && state.eventId ? state.eventId : '');
   const [listState, { statusTip, reload, loadMore }] = useInfiniteList({
     statusTipOpts: {
-      emptyMessage: "暂无事件",
+      emptyMessage: '暂无事件',
       fillContainer: true,
     },
     getData: async ({ context }) => {
@@ -40,8 +36,10 @@ export function CameraPanel() {
         context: newContext,
         listOver,
       } = await describeCloudStorageEvents({
-        StartTime: date.clone().startOf("date").unix(),
-        EndTime: date.clone().endOf("date").unix(),
+        StartTime: date.clone().startOf('date')
+          .unix(),
+        EndTime: date.clone().endOf('date')
+          .unix(),
         EventId: eventId,
         Context: context,
         Size: 10,
@@ -54,41 +52,39 @@ export function CameraPanel() {
     },
     dependences: [eventId, date],
     needReloadByDependences: true,
-    shouldUpdate: (dependences) => {
-      return true;
-    },
+    shouldUpdate: dependences => true,
   });
   const history = useHistory();
 
   const eventIdMap = [
-    "_sys_id1_data",
-    "_sys_id2_data",
-    "_sys_id3_data",
-    "_sys_id4_data",
-    "_sys_id5_data",
-    "_sys_id6_data",
-    "_sys_id7_data",
-    "_sys_id8_data",
-    "_sys_id9_data",
-    "_sys_id10_data",
-    "_sys_id11_data",
-    "_sys_id12_data",
-    "_sys_id13_data",
-    "_sys_id14_data",
-    "_sys_id15_data",
-    "_sys_id16_data",
+    '_sys_id1_data',
+    '_sys_id2_data',
+    '_sys_id3_data',
+    '_sys_id4_data',
+    '_sys_id5_data',
+    '_sys_id6_data',
+    '_sys_id7_data',
+    '_sys_id8_data',
+    '_sys_id9_data',
+    '_sys_id10_data',
+    '_sys_id11_data',
+    '_sys_id12_data',
+    '_sys_id13_data',
+    '_sys_id14_data',
+    '_sys_id15_data',
+    '_sys_id16_data',
   ];
   const goDetail = (item) => {
     console.log(date, date.unix());
     window.history.pushState(
       {
         date: date.unix(),
-        eventId: eventId,
+        eventId,
       },
-      ""
+      '',
     );
     history.push({
-      pathname: "/detail",
+      pathname: '/detail',
       query: item,
     });
   };
@@ -101,13 +97,13 @@ export function CameraPanel() {
             onClick={() => {
               setCalendarVisible(true);
             }}
-            text={date.format("M月D日")}
+            text={date.format('M月D日')}
           />
           <DropDown
             onClick={() => {
               setEventModalVisible(true);
             }}
-            text={eventId || "全部事件"}
+            text={eventId || '全部事件'}
           />
         </div>
         <PanelMoreBtn theme="white"></PanelMoreBtn>
@@ -117,7 +113,7 @@ export function CameraPanel() {
       ) : (
         <ScrollView
           className="events-container"
-          style={{ height: "100%", overflow: "scroll" }}
+          style={{ height: '100%', overflow: 'scroll' }}
           onReachBottom={() => {
             if (!listState.loadFinish && !listState.loading) {
               loadMore();
@@ -135,17 +131,17 @@ export function CameraPanel() {
               >
                 <div className="event-info">
                   <div className="event-time">
-                    {moment(item["StartTime"] * 1000).format("HH:mm")}
+                    {moment(item.StartTime * 1000).format('HH:mm')}
                   </div>
-                  <div className="event-name">{item["EventID"]}</div>
+                  <div className="event-name">{item.EventID}</div>
                 </div>
                 <div className="event-img">
                   <img
                     className={classNames({
-                      "not-found": !item["ThumbnailURL"],
-                      logo: !!item["ThumbnailURL"],
+                      'not-found': !item.ThumbnailURL,
+                      logo: !!item.ThumbnailURL,
                     })}
-                    src={item["ThumbnailURL"] || imgNotFound}
+                    src={item.ThumbnailURL || imgNotFound}
                   />
                 </div>
               </div>
@@ -160,8 +156,10 @@ export function CameraPanel() {
           setDate(v);
         }}
         disabledDate={(date) => {
-          let start = moment().subtract(8, "days").format("yyyy-MM-DD");
-          let end = moment().add(1, "days").format("yyyy-MM-DD");
+          const start = moment().subtract(8, 'days')
+            .format('yyyy-MM-DD');
+          const end = moment().add(1, 'days')
+            .format('yyyy-MM-DD');
           if (date.isBetween(start, end)) {
             return false;
           }
@@ -178,21 +176,21 @@ export function CameraPanel() {
         maskClosable={true}
       >
         <div
-          className={classNames("modal-title", {
-            "event-active": eventId === "",
+          className={classNames('modal-title', {
+            'event-active': eventId === '',
           })}
           onClick={() => {
-            setEventId("");
+            setEventId('');
             setEventModalVisible(false);
           }}
         >
           全部事件
         </div>
         <div className="modal-events">
-          {eventIdMap.map((item) => (
+          {eventIdMap.map(item => (
             <div
-              className={classNames("modal-event-item", {
-                "event-active": eventId === item,
+              className={classNames('modal-event-item', {
+                'event-active': eventId === item,
               })}
               onClick={() => {
                 setEventId(item);

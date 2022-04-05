@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="70px" height="70px" viewBox="0 0 70 70" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 59.1 (86144) - https://sketch.com -->
+    <title>撤防</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="13.8212086%" y1="3.6796875%" x2="85.2382954%" y2="93.5130208%" id="linearGradient-1">
+            <stop stop-color="#FFDD00" offset="0%"></stop>
+            <stop stop-color="#FFBF06" offset="100%"></stop>
+        </linearGradient>
+        <path d="M27.8623077,0.314872341 C20.227071,5.4382434 11.3843633,8.43432722 2.23076923,8.9993432 C0.998749402,8.9993432 0,10.0066411 0,11.2492061 L0,26.1657973 C-0.000679519504,43.5545333 11.7335663,58.71198 28.4601538,62.9285575 C28.8259505,63.0238142 29.2097418,63.0238142 29.5755384,62.9285575 L30.6909231,62.6270758 C46.8506599,57.9949612 58,43.1093206 58,26.1657973 L58,11.2492061 C58,10.0066411 57.0012506,8.9993432 55.7692308,8.9993432 C50.6250769,8.9993432 41.9384615,6.08352087 29.9726154,0.224877839 C29.2987738,-0.104177498 28.5062024,-0.0703781267 27.8623077,0.314872341 Z" id="path-2"></path>
+        <filter x="-263.8%" y="-233.3%" width="627.6%" height="585.7%" filterUnits="objectBoundingBox" id="filter-3">
+            <feOffset dx="0" dy="6" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="50" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0.125490196   0 0 0 0 0.127812629   0 0 0 0 0.129411765  0 0 0 0.1 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="1" transform="translate(-446.000000, -630.000000)">
+            <g id="多彩" transform="translate(446.000000, 286.000000)">
+                <g id="撤防" transform="translate(6.000000, 348.000000)">
+                    <g id="路径">
+                        <use fill="black" fill-opacity="1" filter="url(#filter-3)" xlink:href="#path-2"></use>
+                        <use fill="url(#linearGradient-1)" fill-rule="evenodd" xlink:href="#path-2"></use>
+                    </g>
+                    <line x1="14" y1="31.5" x2="44" y2="31.5" id="直线-2" stroke="#FDFDFD" stroke-width="5" stroke-linecap="round"></line>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

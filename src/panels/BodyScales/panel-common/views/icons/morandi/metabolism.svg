@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="63px" height="63px" viewBox="0 0 63 63" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 59.1 (86144) - https://sketch.com -->
+    <title>基层代谢</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <rect id="path-1" x="0" y="0" width="63" height="63" rx="10"></rect>
+        <filter x="-242.9%" y="-233.3%" width="585.7%" height="585.7%" filterUnits="objectBoundingBox" id="filter-2">
+            <feOffset dx="0" dy="6" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="50" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0.125490196   0 0 0 0 0.127812629   0 0 0 0 0.129411765  0 0 0 0.1 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="1备份" transform="translate(-434.000000, -1522.000000)">
+            <rect fill="#FFFFFF" x="0" y="0" width="1125" height="2866"></rect>
+            <rect id="矩形" fill="#222532" x="-1" y="-6" width="1128" height="2872"></rect>
+            <g id="莫兰迪" transform="translate(33.000000, 1257.000000)">
+                <g id="基层代谢" transform="translate(401.000000, 265.000000)">
+                    <g id="矩形">
+                        <use fill="black" fill-opacity="1" filter="url(#filter-2)" xlink:href="#path-1"></use>
+                        <use fill="#566172" fill-rule="evenodd" xlink:href="#path-1"></use>
+                    </g>
+                    <path d="M32.2525333,52 C24.8874883,51.854554 18.811104,46.2991004 18.1429101,39.1 C16.959805,26.458 23.4449735,23.706 25.7235462,19.406 C27.7172056,16.3118956 28.5392381,12.6285927 28.0459376,9 C33.2128041,9.80658912 37.4344478,13.4797305 38.8691579,18.417 C40.2774614,22.4763935 40.4900934,26.8433335 39.4826197,31.016 C41.7409346,28.1018112 43.2446114,24.6932162 43.8644903,21.083 C44.5655896,18.417 55.3888099,51.312 32.2525333,52 Z" id="路径" fill="#FFFFFF" fill-rule="nonzero"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

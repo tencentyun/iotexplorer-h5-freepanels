@@ -1,0 +1,88 @@
+{
+  "version": "1.0",
+  "properties": [
+    {
+      "id": "power_switch",
+      "name": "电源开关",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "bool",
+        "mapping": {
+          "0": "关",
+          "1": "开"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "swing",
+      "name": "摇头",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "bool",
+        "mapping": {
+          "0": "关",
+          "1": "开"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "mode",
+      "name": "模式",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "stringenum",
+        "mapping": {
+          "0": "正常风",
+          "1": "自然风",
+          "2": "睡眠风",
+          "3": "智能模式"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "windspeed",
+      "name": "风速",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "stringenum",
+        "mapping": {
+          "0": "自动",
+          "1": "静音档",
+          "2": "低档",
+          "3": "中档",
+          "4": "高档",
+          "5": "最高档"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "timer",
+      "name": "倒计时",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "int",
+        "min": "0",
+        "max": "86400",
+        "start": "0",
+        "step": "1",
+        "unit": ""
+      },
+      "required": false
+    }
+  ],
+  "events": [],
+  "actions": [],
+  "profile": {
+    "ProductId": "P9FCB4V9V1",
+    "CategoryId": "1"
+  }
+}

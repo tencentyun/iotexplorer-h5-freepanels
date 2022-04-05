@@ -1,0 +1,49 @@
+.disk {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  height: 260px;
+  width: 260px;
+  border-radius: 50%;
+  background-image: url(./bg.svg);
+  .content-wrap {
+    height: 212px;
+    width: 212px;
+    border-radius: 50%;
+
+    .content {
+      display: flex;
+      margin: 68px 83px 8px;
+    }
+
+    .status-desc {
+      position: relative;
+      margin: 0 auto;
+      width: 112px;
+      height: 20px;
+      line-height: 20px;
+      font-size: 14px;
+      font-weight: 600;
+      color: #FFFFFF;
+      &::before {
+        content: '';
+        position: absolute;
+        bottom: -16px;
+        left: 50%;
+        margin-left: -4px;
+        display: inline-block;
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: #FFFFFF;
+      }
+    }
+    .status-active {
+      width: 84px;
+      &::before {
+        background: #FF4D54;
+      }
+    }
+  }
+}

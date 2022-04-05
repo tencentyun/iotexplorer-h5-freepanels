@@ -1,0 +1,66 @@
+.home {
+  .dashboard {
+    width: 760px;
+    height: 760px;
+    //height: 676px;
+    margin: 0 auto;
+    //background-color: white;
+    .lr-rack-wrapper{
+      width: 1000px;
+      height: 600px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      .lr-rack-img-up {
+        width: 550px;
+      }
+      .lr-rack-div-middle{
+        margin-top: -40px;
+        height: 580px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        .lr-rack-div-progress{
+          width: 490px;
+          // height: 12%; // 有效范围12%-58%
+          overflow: hidden;
+          .lr-rack-img-middle {
+            width: 100%;
+          }
+        }
+      }
+      .lr-rack-img-down {
+        margin-top: -10px;
+        width: 800px;
+      }
+    }
+  }
+  > .title {
+    padding: 53px 0 56px;
+  }
+
+  /*ant重置*/
+  /*List*/
+  .adm-list {
+    &.adm-list-default {
+      .adm-list-item {
+        //padding-left: 90px;
+        .adm-list-item-content {
+          padding-right: 73px;
+          border-bottom: 0;
+        }
+      }
+    }
+  }
+  &.power-off {
+    #power{
+      pointer-events: auto !important;
+    }
+    *{
+      /*color: @color-disabled !important;*/
+      pointer-events: none;
+    }
+  }
+}

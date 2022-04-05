@@ -1,0 +1,48 @@
+@import "../reset";
+.AddTimer-wrap {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  padding: 34px 80px 0;
+  background: #F4F8FB;
+  box-sizing: border-box;
+  .reset();
+  >.adm-list {
+    margin-bottom: 25px;
+    padding: 32px 66px;
+    background: #FFFFFF;
+    box-shadow: 0 6px 50px 0 rgba(32,33,33,0.10);
+    border-radius: 60px;
+    color: #000000;
+    .week-repeat .adm-list-item-content-extra {
+      font-size: 30px;
+    }
+  }
+  .btn-add {
+    width: 965px;
+    height: 200px;
+    background: #FFFFFF;
+    box-shadow: 0 6px 50px 0 rgba(32,33,33,0.10);
+    border-radius: 60px;
+    position: fixed;
+    left: 80px;
+    bottom: 150px;
+    font-size: 48px;
+    color: #000000;
+  }
+  input:after {
+    content: '\2714';
+  }
+  .week-repeat-desc {
+    text-align: center;
+    color: var(--global-color-text-regular);
+  }
+  .adm-checkbox-icon {
+    display: none !important;
+  }
+}
+.AddTimer-wrap * {
+  box-sizing: border-box;
+}

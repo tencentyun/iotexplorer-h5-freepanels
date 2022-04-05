@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="88px" height="88px" viewBox="0 0 88 88" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 59.1 (86144) - https://sketch.com -->
+    <title>撤防</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="61.5645064%" y1="-28.7259615%" x2="61.5645064%" y2="100%" id="linearGradient-1">
+            <stop stop-color="#00F0FF" offset="0%"></stop>
+            <stop stop-color="#5A6CF3" offset="100%"></stop>
+        </linearGradient>
+        <path d="M36.9995285,44.9775504 C37.035025,42.1686042 35.062904,39.7222494 32.2799629,39.1230758 C29.4970218,38.5239021 26.6705024,39.9370985 25.5157004,42.5050556 C24.3608984,45.0730126 25.1961865,48.0877584 27.5146635,49.7197704 L27.5146635,54.5490037 C27.5145889,55.4681469 27.8878214,56.3490254 28.5509839,56.9948574 C29.2141464,57.6406894 30.1119801,57.9976604 31.0439156,57.9860256 L31.1321469,57.9860256 C32.0564625,57.9860256 32.9429206,57.6239119 33.5965105,56.9793452 C34.2501004,56.3347786 34.6172833,55.4605586 34.6172833,54.5490037 L34.6172833,49.7197704 C36.1350594,48.6060246 37.0206345,46.843153 36.9995285,44.9775504 L36.9995285,44.9775504 Z" id="path-2"></path>
+        <filter x="-1275.0%" y="-773.7%" width="2650.0%" height="1710.5%" filterUnits="objectBoundingBox" id="filter-3">
+            <feOffset dx="0" dy="6" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="50" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0.125490196   0 0 0 0 0.127812629   0 0 0 0 0.129411765  0 0 0 0.1 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+        <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="linearGradient-4">
+            <stop stop-color="#517AF4" offset="0%"></stop>
+            <stop stop-color="#21C1FB" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="linearGradient-5">
+            <stop stop-color="#21C1FB" offset="0%"></stop>
+            <stop stop-color="#517AF4" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="切图暗色" transform="translate(-99.000000, -730.000000)">
+            <g id="编组" transform="translate(38.000000, 96.000000)">
+                <g id="撤防" transform="translate(74.000000, 642.000000)">
+                    <g id="路径">
+                        <use fill="black" fill-opacity="1" filter="url(#filter-3)" xlink:href="#path-2"></use>
+                        <use fill="url(#linearGradient-1)" fill-rule="evenodd" xlink:href="#path-2"></use>
+                    </g>
+                    <path d="M51,0.98630137 L51,10.090779 C51,21.6310573 42.045695,30.9863014 31,30.9863014 C19.954305,30.9863014 11,21.6310573 11,10.090779 L11,0.98630137" id="矩形" stroke="url(#linearGradient-4)" stroke-width="6" transform="translate(31.000000, 15.986301) scale(1, -1) translate(-31.000000, -15.986301) "></path>
+                    <path d="M50.8914286,29 L10.1085714,29 C6.17985318,29 3,32.1667692 3,36.0669782 L2.9999719,60.9610864 C3.01680141,64.8494317 6.19175552,67.9976932 10.1085714,67.997657 L50.7379855,67.9983486 C52.6470817,68.0393489 54.4919663,67.3150625 55.8576131,65.989466 C57.2207993,64.6662579 57.9922734,62.8548581 58,60.9740709 L58,36.0669782 C58,34.1953061 57.2530916,32.3995294 55.9223254,31.0742387 C54.589175,29.7465737 52.7793396,29 50.8914286,29 Z" id="路径" stroke="url(#linearGradient-5)" stroke-width="6"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

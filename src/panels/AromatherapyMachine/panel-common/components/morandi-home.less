@@ -1,0 +1,346 @@
+body.theme_morandi {
+  .app-container {
+    background: #FFFFFF;
+
+    .inner {
+      position: relative;
+
+      .product-image-wrap {
+        position: relative;
+        padding-top: 263px;
+        padding-bottom: 38px;
+        margin-bottom: 205px;
+        overflow: hidden;
+        .cicle {
+          position: absolute;
+          top: 63px;
+          left: 50%;
+          margin-left: -300px;
+          display: inline-block;
+          width: 600px;
+          height: 600px;
+          border-radius: 50%;
+          background-image: linear-gradient(44deg, #F1F1F3 0%, #BEC7CB 100%);
+        }
+        .fumes {
+          position: absolute;
+          top: 54px;
+          left: 50%;
+          margin-left: -56px;
+          width: 149px;
+          height: 245px;
+          background-image: url('https://tencent-1305105198.cos.ap-guangzhou.myqcloud.com/aromatherapy-machine/smoke.svg');
+          background-repeat: no-repeat;
+          background-position: center;
+          background-size: contain;
+          z-index: 2;
+        }
+        .product-image {
+          position: relative;
+          margin: 0 auto;
+          display: block;
+          width: 415px;
+          height: 648px;
+          z-index: 3;
+        }
+        .shadow {
+          position: absolute;
+          bottom: 26px;
+          left: 50%;
+          margin-left: -328px;
+          width: 656px;
+          height: 38px;
+          background-image: url('../images/shadow.svg');
+          background-repeat: no-repeat;
+          background-position: center;
+          background-size: contain;
+          transform: scaleX(3);
+          z-index: 1;
+        }
+      }
+
+      // 更多按钮
+      .more {
+        display: flex;
+        align-items: center;
+        position: absolute;
+        left: 0px;
+        top: 57px;
+        width: 200px;
+        height: 120px;
+        line-height: 120px;
+        border-top-right-radius: 60px;
+        border-bottom-right-radius: 60px;
+        background-color: #F6F6F6;
+        text-align: right;
+        z-index: 1;
+
+        .icon-more {
+          margin-left: 78px;
+          width: 77px;
+          height: 18px;
+        }
+      }
+
+      .control-area-wrap {
+        position: absolute;
+        top: 970px;
+        left: 80px;
+        width: 967px;
+        height: 300px;
+        border-radius: 60px;
+        background: #F6F6F6;
+
+        .control-area {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          padding: 60px 72px;
+
+          .control-block {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            .label {
+              line-height: 50px;
+              font-size: 36px;
+              color: #9DA9B3;
+            }
+          }
+
+          .selected {
+            .label {
+              color: #B5ABA1;
+            }
+          }
+
+          .control-icon {
+            display: block;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: contain;
+            margin-bottom: 36px;
+
+            &.icon-spray {
+              width: 66px;
+              height: 74px;
+            }
+
+            &.icon-light {
+              width: 62px;
+              height: 75px;
+            }
+
+          }
+
+          .control-power {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            background: #576273;
+            text-align: center;
+          }
+
+          .open {
+            background: #B5ABA1;
+          }
+
+          ._component_layout_block_ {
+            width: 295px;
+            height: 300px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+          }
+        }
+      }
+
+    }
+
+    .decoration-block {
+      min-height: calc(~"100vh - 1128px");
+      border-top-left-radius: 120px;
+      border-top-right-radius: 120px;
+      background-image: linear-gradient(180deg, #576273 0%, #414B5B 86%);
+      box-shadow: 0 6px 100px 0 rgba(32, 33, 33, 0.10);
+      color: #909CAB;
+
+      .countdown-slider-wrap {
+        position: relative;
+        padding: 247px 130px 136px;
+        border-bottom: 3px solid #909CAB;
+
+        .countdown-slider-tips {
+          margin-bottom: 30px;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          font-size: 36px;
+          color: #FCFBFC;
+
+          .item {
+            position: relative;
+            .icon-cicle {
+              position: absolute;
+              top: -54px;
+              left: 50%;
+              margin-left: -15px;
+              width: 30px;
+              height: 30px;
+              border-radius: 50%;
+              background-color: #FFFFFF;
+            }
+          }
+        }
+
+        .countdown-slider {
+          padding: 0;
+          height: 100px;
+          --fill-color: #909CAB;
+
+          .adm-slider-track {
+            height: 100px;
+            border-radius: 33px;
+            background-color: transparent;
+            border: 5px solid #FDFBFC;
+            overflow: hidden;
+
+            .adm-slider-fill {
+              height: 100px;
+              border-top-left-radius: 33px;
+              border-bottom-left-radius: 33px;
+            }
+
+            .adm-slider-thumb {
+              position: relative;
+              display: none;
+              // width: 14px;
+              // height: 50px;
+            }
+          }
+        }
+
+        .slider-mask {
+          width: 875px;
+          height: 100px;
+          border-radius: 33px;
+          border: 5px solid #FDFBFC;
+          overflow: hidden;
+          span {
+            display: inline-block;
+            width: 125px;
+            height: 100px;
+            &:nth-child(1) {
+              border-top-left-radius: 33px;
+              border-bottom-left-radius: 33px;
+              background-color: #FDFBFC;
+            }
+            &:nth-child(2) {
+              background-color: #E6E3E4;
+            }
+            &:nth-child(3) {
+              background-color: #BCB5B7;
+            }
+            &:nth-child(4) {
+              background-color: #9D9497;
+            }
+            &:nth-child(5) {
+              background-color: #7E7678;
+            }
+            &:nth-child(6) {
+              background-color: #655C5F;
+            }
+            &:nth-child(7) {
+              border-top-right-radius: 33px;
+              border-bottom-right-radius: 33px;
+              background-color: #4E4749;
+            }
+          }
+        }
+        .slider-mask-close {
+          width: 875px;
+          height: 100px;
+          border: 5px solid #FDFBFC;
+          border-radius: 33px;
+          span {
+            display: inline-block;
+            width: 125px;
+            height: 100px;
+            background-color: #909CAB;
+            &:nth-child(1) {
+              border-top-left-radius: 33px;
+              border-bottom-left-radius: 33px;
+            }
+            &:nth-child(7) {
+              border-top-right-radius: 33px;
+              border-bottom-right-radius: 33px;
+            }
+          }
+        }
+      }
+
+      .decoration-bottom {
+        padding: 74px 130px 124px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        .content-item {
+          text-align: center;
+
+          .word {
+            margin-bottom: 15px;
+            line-height: 67px;
+            font-size: 48px;
+            letter-spacing: 0.1px;
+          }
+
+          .text {
+            font-size: 38px;
+          }
+
+          .label {
+            line-height: 67px;
+            font-size: 48px;
+            color: #FEFEFB;
+          }
+        }
+      }
+    }
+  }
+  .close {
+    .control-area-wrap {
+      .control-area {
+        .control-power {
+          background: #576273;
+        }
+      }
+    }
+    .decoration-block {
+      .countdown-slider-wrap {
+
+        .countdown-slider-tips {
+          color: #909CAB;
+
+          .item {
+            .icon-cicle {
+              background-color: #909CAB;
+            }
+          }
+        }
+      }
+      .decoration-bottom {
+        .content-item {
+          .label {
+            color: #909CAB;
+          }
+        }
+      }
+    }
+  }
+}

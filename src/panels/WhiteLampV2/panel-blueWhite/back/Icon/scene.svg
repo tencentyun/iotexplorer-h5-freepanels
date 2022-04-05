@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="65px" height="65px" viewBox="0 0 65 65" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>3-1-场景-未选中</title>
+    <defs>
+        <path d="M0,13.0575113 L32.5,0 L65,13.0575113 L65,47.7830394 L32.280625,65 L0,47.7830394 L0,13.0575113 Z M60.6653125,19.5133653 L35.6728125,29.6102561 L35.6728125,58.4428936 L60.6653125,44.704966 L60.6653125,19.5133653 Z M32.7153125,4.84391552 L6.76406249,14.4507446 L32.7153125,23.9158203 L57.9028125,14.3778429 L32.7153125,4.84391552 Z" id="path-1"></path>
+        <filter x="-235.4%" y="-226.2%" width="570.8%" height="570.8%" filterUnits="objectBoundingBox" id="filter-2">
+            <feOffset dx="0" dy="6" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="50" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0.125490196   0 0 0 0 0.127812629   0 0 0 0 0.129411765  0 0 0 0.1 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="切图" transform="translate(-494.000000, -1125.000000)">
+            <g id="编组" transform="translate(104.000000, 152.000000)">
+                <g id="形状" transform="translate(390.000000, 973.000000)">
+                    <use fill="black" fill-opacity="1" filter="url(#filter-2)" xlink:href="#path-1"></use>
+                    <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-1"></use>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

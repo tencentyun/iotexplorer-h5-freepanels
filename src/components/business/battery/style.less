@@ -1,0 +1,102 @@
+._component_business_battery_ {
+  display: flex;
+  align-items: center;
+
+  .battery-wrap {
+    flex-shrink: 0;
+    width: 95px;
+    height: 57px;
+    background: url(./icon-battery.svg) no-repeat center;
+    background-size: contain;
+    display: flex;
+    align-items: center;
+
+    .inner {
+      margin-left: 10px;
+      width: 70px;
+      height: 35px;
+    }
+
+    .current-level {
+      width: 0;
+      height: 100%;
+      background-color: #0f0f0f;
+      border-radius: 8px;
+    }
+  }
+
+  .white {
+    background: url(./icon-battery-white.svg) no-repeat center;
+    background-size: contain;
+    .current-level {
+      background-color: #FFFFFF;
+    }
+  }
+
+  .blue {
+    background: url(./icon-battery-blue.svg) no-repeat center;
+    background-size: contain;
+    .current-level {
+      background-image: linear-gradient(180deg, #00B4FF 0%, #5277F4 100%);
+    }
+  }
+
+  .green {
+    background: url(./icon-battery-green.svg) no-repeat center;
+    background-size: contain;
+    .current-level {
+      background-color: #0ADBA0;
+    }
+  }
+
+  .brown {
+    background: url(./icon-battery-brown.svg) no-repeat center;
+    background-size: contain;
+    .current-level {
+      background-color: #B6ACA3;
+    }
+  }
+
+  .colorful {
+    background: url(./icon-battery-colorful.svg) no-repeat center;
+    background-size: contain;
+    .current-level {
+      background-image: linear-gradient(138deg, #527DF4 0%, #044DFF 100%);
+    }
+  }
+
+  .royalBlue {
+    background: url(./icon-battery-royalBlue.svg) no-repeat center;
+    background-size: contain;
+    .current-level {
+      background-color: #006FFF;
+    }
+  }
+
+  .royalBlueGradient {
+    background: url(./icon-battery-royalBlueGradient.svg) no-repeat center;
+    background-size: contain;
+    .current-level {
+      background-image: linear-gradient(133deg, #0081FF 0%, #005BFF 100%);
+    }
+  }
+
+  .morandi {
+    background: url(./icon-battery-morandi.svg) no-repeat center;
+    background-size: contain;
+    .current-level {
+      background-color: #4E5869;
+    }
+  }
+
+  .battery-percent {
+    font-size: 36px;
+    color: #000000;
+    margin-left: 10px;
+  }
+
+  .battery-tip {
+    white-space: nowrap;
+    margin-left: 22px;
+  }
+}

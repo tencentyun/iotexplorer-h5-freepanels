@@ -1,0 +1,65 @@
+.light-slider {
+  display: flex;
+  flex-direction: column;
+
+  .slider-value {
+    width: 820px;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 39px;
+    pointer-events: none;
+  }
+
+  .slider-wrapper {
+    position: relative;
+    width: 780px;
+    height: 60px;
+    margin-bottom: 29px;
+    background: url('../../icons/normal/scale.svg') no-repeat 0 center;
+    background-size: 780px 100px;
+
+    .current-scale {
+      position: relative;
+      display: block;
+      width: 40%;
+      height: 100%;
+      background: url('../../icons/normal/scale-active.svg') no-repeat 0 center;
+      background-size: 780px 100px;
+      &::after {
+        content: '';
+        position: absolute;
+        right: -1px;
+        bottom: -15px;
+        width: 8px;
+        height: 70px;
+        background-color: #000000;
+        border-radius: 4px;
+      }
+    }
+  }
+}
+body.theme_colorful {
+  .light-slider {
+    .current-scale {
+      background: url('../../icons/colorful/scale-active.svg') no-repeat 0 center;
+      background-size: 780px 100px;
+      &::after {
+        background-color: #FFC205;
+      }
+    }
+  }
+}
+body.theme_morandi {
+  .light-slider {
+    .slider-value{
+      color: #FFFFFF;
+    }
+    .current-scale {
+      background: url('../../icons/morandi/scale-active.svg') no-repeat 0 center;
+      background-size: 780px 100px;
+      &::after {
+        background-color: #B5ABA1;
+      }
+    }
+  }
+}

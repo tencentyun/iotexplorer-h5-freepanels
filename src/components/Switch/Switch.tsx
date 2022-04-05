@@ -1,6 +1,6 @@
-import React from "react";
-import ReactSwitch from "react-switch";
-import "./Switch.less";
+import React from 'react';
+import ReactSwitch from 'react-switch';
+import './Switch.less';
 
 export interface SwitchProps extends StyledProps {
   checked: boolean;
@@ -29,11 +29,11 @@ export function Switch({
         disabled={disabled}
         checked={checked}
         onChange={onChange}
-        onColor={onColor || "#0066ff"}
-        offColor={offColor || "#fff"}
+        onColor={onColor || '#0066ff'}
+        offColor={offColor || '#fff'}
         boxShadow="0px 0px 2px rgba(0, 0, 0, 0.6)"
-        onHandleColor={onHandleColor || "#fff"}
-        offHandleColor={offHandleColor || "#fff"}
+        onHandleColor={onHandleColor || '#fff'}
+        offHandleColor={offHandleColor || '#fff'}
         handleDiameter={30}
         uncheckedIcon={false}
         checkedIcon={false}

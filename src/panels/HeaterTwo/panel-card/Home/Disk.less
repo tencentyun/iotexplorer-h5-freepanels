@@ -1,0 +1,153 @@
+@cicleColor: #F6F8FA;
+@cicleActiveColor: #DA695C;
+.disk {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  width: 308px;
+  height: 308px;
+  border-radius: 50%;
+  background: #FBFBFC;
+  z-index: 1;
+  .content {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 210px;
+    height: 210px;
+    border-radius: 50%;
+    background: linear-gradient(0deg, #F6F8FA, #F6F8FA), radial-gradient(50% 50% at 50% 50%, #F4F7F9 0%, #F1F6F6 100%);
+    border: 1px solid #FFFFFF;
+    box-shadow: 0px 0px 10px #EAEDF1;
+    // z-index: 2;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      display: inline-block;
+      width: 230px;
+      height: 4px;
+      background: rgba(246, 248, 250, 1);
+      border: 1px solid #FFFFFF;
+      box-shadow: 0px 0px 10px #EAEDF1;
+      z-index: -1;
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      display: inline-block;
+      width: 4px;
+      height: 230px;
+      background: rgba(246, 248, 250, 1);
+      border: 1px solid #FFFFFF;
+      box-shadow: 0px 0px 10px #EAEDF1;
+      z-index: -1;
+    }
+
+    .disk-icon {
+      position: relative;
+      margin-top: 47px;
+      z-index: 3;
+    }
+
+    .number {
+      position: relative;
+      margin-top: 12px;
+      font-family: DIN Alternate;
+      font-weight: bold;
+      font-size: 38px;
+      line-height: 44px;
+      color: #1D2C3E;
+      z-index: 3;
+    }
+  }
+  .status-desc {
+    position: absolute;
+    left: 50%;
+    bottom: -36px;
+    transform: translateX(-50%);
+    line-height: 20px;
+    font-weight: 600;
+    font-size: 14px;
+    color: #222E39;
+  }
+  .pulse {
+    position: absolute;
+    border-radius: 50%;
+    border-style: solid;
+    border-color: #EFF3F5;
+  }
+  .pulse1 {
+    top: 24px;
+    left: 24px;
+    width: 260px;
+    height: 260px;
+    border-width: 1px;
+    z-index: 2;
+  }
+  
+  .pulse2 {
+    left: 12px;
+    top: 12px;
+    width: 284px;
+    height: 284px;
+    border-width: 1px;
+    z-index: 3;
+  }
+  
+  .pulse3 {
+    top: 0;
+    left: 0;
+    width: 308px;
+    height: 308px;
+    border-width: 1px;
+    z-index: 4;
+  }
+
+  .pulseAnimation {
+    animation-iteration-count: infinite;
+    animation-timing-function: forwards;
+    animation-duration: 2s;
+    animation-name: diffusion;
+  }
+
+  &.is-alarm {
+    .content {
+      .number {
+        color: #FF5057;
+      }
+    }
+    .pulse {
+      border-color: #FF5057;
+    }
+    .pulse1 {
+      opacity: 1;
+    }
+    
+    .pulse2 {
+      opacity: 0.75;
+    }
+    
+    .pulse3 {
+      opacity: 0.4;
+    }
+  }
+}
+
+@keyframes diffusion {
+  0% {
+  }
+  100% {
+    opacity: 0;
+  }
+}

@@ -1,0 +1,56 @@
+.power-tools-bar {
+  display: flex;
+  padding: 66px 63px 108px;
+  justify-content: space-around;
+  align-items: center;
+  .button-circle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 200px;
+    height: 200px;
+    background: #FFFFFF;
+    box-shadow: 0 6px 50px 0 rgba(32,33,33,0.10);
+  }
+  .btn-power-switch {
+    width: 229px;
+    height: 230px;
+    background: #C9D4DD;
+  }
+  .svg-icon-reduce {
+    width: 80px;
+    height: 80px;
+  }
+  .svg-icon-power {
+    width: 95px;
+    height: 96px;
+    fill: #FCFCFC;
+  }
+  .svg-icon-add {
+    width: 80px;
+    height: 80px;
+  }
+
+  &.power-open {
+    .btn-power-switch {
+      background: #0F0F0F;
+    }
+    .svg-icon-reduce {
+      fill: #0F0F0F;
+    }
+    .svg-icon-add {
+      fill: #0F0F0F;
+    }
+  }
+  &.power-close {
+    .btn-power-switch {
+      background: #C9D4DD;
+    }
+    .svg-icon-reduce {
+      fill: #C9D4DD;
+    }
+    .svg-icon-add {
+      fill: #C9D4DD;
+    }
+  }
+}

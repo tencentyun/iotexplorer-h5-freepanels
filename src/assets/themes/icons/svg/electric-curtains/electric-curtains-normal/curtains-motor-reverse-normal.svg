@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="67px" height="69px" viewBox="0 0 67 69" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 59.1 (86144) - https://sketch.com -->
+    <title>电机反向</title>
+    <desc>Created with Sketch.</desc>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="2" transform="translate(-186.000000, -2131.000000)" fill="#0F0F0F">
+            <g id="电机反向" transform="translate(186.000000, 2129.531089)">
+                <rect id="矩形" x="0.874355653" y="51" width="66" height="7" rx="3.5"></rect>
+                <rect id="矩形备份-2" transform="translate(33.874356, 16.500000) scale(-1, 1) translate(-33.874356, -16.500000) " x="0.874355653" y="13" width="66" height="7" rx="3.5"></rect>
+                <rect id="矩形备份" transform="translate(14.000000, 60.968911) scale(-1, 1) rotate(-30.000000) translate(-14.000000, -60.968911) " x="0" y="57.4689111" width="28" height="7" rx="3.5"></rect>
+                <rect id="矩形备份-3" transform="translate(52.874356, 10.500000) scale(-1, 1) rotate(-30.000000) translate(-52.874356, -10.500000) " x="38.8743557" y="7" width="28" height="7" rx="3.5"></rect>
+            </g>
+        </g>
+    </g>
+</svg>

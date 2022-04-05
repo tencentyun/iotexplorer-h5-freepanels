@@ -1,0 +1,50 @@
+// 重置ant-mobile list 样式 二期统一外层处理 TODO
+.adm-list-default {
+  border: none !important;
+}
+.adm-list {
+  font-size: 48px;
+  .adm-list-body-inner {
+    .adm-list-item {
+      padding: 53px 0px;
+      // border-bottom: 1px solid #b5c4d1;
+      border-bottom: 3px solid rgba(181, 196, 209, 0.5);
+      font-weight: 500;
+      color: #000000;
+    }
+    .adm-list-item:active {
+      background-color: transparent;
+    }
+  }
+  .adm-list-body {
+    background: transparent;
+    border-top: none;
+    border-bottom: none;
+  }
+
+  .adm-list-item-content {
+    font-size: 48px;
+    border-bottom: none;
+    .adm-list-item-content-prefix {
+      color: #000000;
+    }
+  }
+
+  .adm-list-item-content-extra {
+    font-size: 48px;
+    color: #b5c4d1;
+  }
+
+  .adm-list-item-content-arrow {
+    font-size: 48px;
+    // margin-left: 36px;
+  }
+}
+
+// 后续统一卡片样式
+.list-card-timer {
+  padding: 34px 80px;
+  background: #ffffff;
+  box-shadow: 0 6px 50px 0 rgba(32, 33, 33, 0.1);
+  border-radius: 60px;
+}

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="70px" height="70px" viewBox="0 0 70 70" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 59.1 (86144) - https://sketch.com -->
+    <title>紧急</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="linearGradient-1">
+            <stop stop-color="#0060FF" offset="0%"></stop>
+            <stop stop-color="#007BFF" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="linearGradient-2">
+            <stop stop-color="#0060FF" offset="0%"></stop>
+            <stop stop-color="#007BFF" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="linearGradient-3">
+            <stop stop-color="#007DFF" offset="0%"></stop>
+            <stop stop-color="#0060FF" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="1" transform="translate(-547.000000, -1842.000000)">
+            <g id="蓝白" transform="translate(539.000000, 1264.000000)">
+                <g id="紧急" transform="translate(19.000000, 590.000000)">
+                    <rect id="矩形" fill="url(#linearGradient-1)" x="0" y="33" width="48" height="5" rx="2.5"></rect>
+                    <rect id="矩形备份" fill="url(#linearGradient-2)" x="11" y="41" width="25" height="5" rx="2.5"></rect>
+                    <path d="M39,0 L39,20.6764706 C39,29.6917069 32.2842712,37 24,37 C15.7157288,37 9,29.6917069 9,20.6764706 L9,0" id="矩形" stroke="url(#linearGradient-3)" stroke-width="5" fill-rule="nonzero" transform="translate(24.000000, 18.500000) scale(1, -1) translate(-24.000000, -18.500000) "></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

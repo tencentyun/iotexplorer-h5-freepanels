@@ -1,0 +1,74 @@
+.timer-cloud-list {
+  // width: 100%;
+  margin-top: 0;
+  padding: 57px 80px 400px;
+  font-size: 36px;
+  .timer-list-card {
+    background: #ffffff;
+    box-shadow: 0 6px 50px 0 rgba(32, 33, 33, 0.1);
+    border-radius: 60px;
+    margin-bottom: 50px;
+    color: #b4c3d0;
+    transform: rotate(0deg);
+    .adm-swipe-action {
+      display: flow-root;
+      border-radius: 60px;
+      width: 100%;
+      transform: rotate(0deg);
+      .adm-swipe-action-track {
+        padding: 34px 66px;
+      }
+      .adm-swipe-action-action-button {
+        width: 200px;
+        font-weight: 500;
+        font-size: 48px;
+        border-top-right-radius: 60px;
+        border-bottom-right-radius: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        span {
+          position: absolute;
+        }
+      }
+      .adm-swipe-action-actions-right {
+        margin-left: 1px;
+        background: #ff3141;
+      }
+    }
+    &.open-status {
+      color: #000000;
+    }
+    .timer-list-body {
+      display: flex;
+      height: 109px;
+      align-items: baseline;
+      margin-bottom: 46px;
+      > .timer {
+        width: 274px;
+        font-size: 92px;
+        font-weight: 700;
+        position: relative;
+        bottom: -5px;
+      }
+
+      > .switch {
+        width: 150px;
+      }
+
+      > .repeat {
+        flex: 1;
+        font-weight: 500;
+        font-size: 36px;
+      }
+      .week-small {
+        font-size: 25px;
+      }
+
+      > .timer-list-desc {
+        font-weight: 400;
+        font-size: 36px;
+      }
+    }
+  }
+}

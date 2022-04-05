@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="322px" height="258px" viewBox="0 0 322 258" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>插座</title>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="1" transform="translate(-401.000000, -888.000000)" fill="#A4ADC0">
+            <g id="插座" transform="translate(401.000000, 888.000000)">
+                <path d="M273.724138,11 L273.724,18.2 L296.5,18.2 C310.583261,18.2 322,29.6167389 322,43.7 L322,62.3 C322,76.3832611 310.583261,87.8 296.5,87.8 L273.724,87.8 L273.724138,95 L252,95 L252,11 L273.724138,11 Z" id="形状结合"></path>
+                <path d="M21.7241379,11 L21.724,18.2 L44.5,18.2 C58.5832611,18.2 70,29.6167389 70,43.7 L70,62.3 C70,76.3832611 58.5832611,87.8 44.5,87.8 L21.724,87.8 L21.7241379,95 L0,95 L0,11 L21.7241379,11 Z" id="形状结合备份" transform="translate(35.000000, 53.000000) scale(-1, 1) translate(-35.000000, -53.000000) "></path>
+                <rect id="矩形" x="145" y="0" width="33" height="104"></rect>
+                <polygon id="矩形备份-6" transform="translate(62.827028, 204.077344) rotate(-30.000000) translate(-62.827028, -204.077344) " points="46.4534784 151.777145 78.9748267 151.847205 79.2005771 256.377543 46.6792288 256.307482"></polygon>
+                <polygon id="矩形备份-7" transform="translate(259.891386, 204.077344) scale(-1, 1) rotate(-30.000000) translate(-259.891386, -204.077344) " points="243.517836 151.777145 276.039185 151.847205 276.264935 256.377543 243.743587 256.307482"></polygon>
+            </g>
+        </g>
+    </g>
+</svg>

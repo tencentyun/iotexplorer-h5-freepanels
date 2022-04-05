@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="95px" height="95px" viewBox="0 0 95 95" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 59.1 (86144) - https://sketch.com -->
+    <title>纸杯蛋糕</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M39.8879048,0.717099547 C34.2433899,2.06729929 32.361885,12.1187862 32.361885,12.1187862 L32.361885,12.1187862 L31.609283,12.1187862 C31.609283,12.1187862 3.51013562,23.1468882 0,53.2984075 L0,53.2984075 L84.7911491,53.2984075 C84.7911491,53.2984075 85.7966253,24.8647894 52.4322745,12.1187862 L52.4322745,12.1187862 C51.4298087,2.55854843 45.7822834,0.717099547 45.7822834,0.717099547 L45.7822834,0.717099547 L39.8879048,0.717099547 Z" id="path-1"></path>
+        <linearGradient x1="50.0012065%" y1="0.0035020979%" x2="50.0012065%" y2="100.003502%" id="linearGradient-3">
+            <stop stop-color="#0074FF" offset="0%"></stop>
+            <stop stop-color="#FFFFFF" offset="100%"></stop>
+        </linearGradient>
+        <polygon id="path-4" points="0 0.462857143 12.0942857 32.6373626 24.1916071 32.6373626 14.6078571 0.462857143"></polygon>
+        <linearGradient x1="49.9984314%" y1="0.00230542235%" x2="49.9984314%" y2="100%" id="linearGradient-6">
+            <stop stop-color="#FFFFFF" offset="0%"></stop>
+            <stop stop-color="#0074FF" offset="100%"></stop>
+        </linearGradient>
+        <polygon id="path-7" points="9.92208696 0.462857143 0.591304348 32.6373626 12.370087 32.6373626 24.1488696 0.462857143"></polygon>
+        <linearGradient x1="49.9922678%" y1="0.00230542235%" x2="49.9922678%" y2="100%" id="linearGradient-9">
+            <stop stop-color="#FFFFFF" offset="0%"></stop>
+            <stop stop-color="#0072FF" offset="100%"></stop>
+        </linearGradient>
+        <polygon id="path-10" points="20.9929762 0.462857143 0.619357993 0.462857143 8.39837585 32.6373626 20.9929762 32.6373626 33.5875765 32.6373626 41.3665944 0.462857143"></polygon>
+        <linearGradient x1="49.9991236%" y1="0.00230542235%" x2="49.9991236%" y2="100%" id="linearGradient-12">
+            <stop stop-color="#FFFFFF" offset="0%"></stop>
+            <stop stop-color="#0075FF" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="1备份" transform="translate(-31.000000, -969.000000)">
+            <g id="蓝白" transform="translate(18.000000, 969.000000)">
+                <g id="工作模式" transform="translate(8.000000, 0.000000)">
+                    <g id="纸杯蛋糕" transform="translate(10.000000, 3.000000)">
+                        <g id="编组">
+                            <g>
+                                <mask id="mask-2" fill="white">
+                                    <use xlink:href="#path-1"></use>
+                                </mask>
+                                <g id="Clip-2"></g>
+                                <path d="M39.8879048,0.717099547 C34.2433899,2.06729929 32.361885,12.1187862 32.361885,12.1187862 L32.361885,12.1187862 L31.609283,12.1187862 C31.609283,12.1187862 3.51013562,23.1468882 0,53.2984075 L0,53.2984075 L84.7911491,53.2984075 C84.7911491,53.2984075 85.7966253,24.8647894 52.4322745,12.1187862 L52.4322745,12.1187862 C51.4298087,2.55854843 45.7822834,0.717099547 45.7822834,0.717099547 L45.7822834,0.717099547 L39.8879048,0.717099547 Z" id="Fill-1" fill="url(#linearGradient-3)" mask="url(#mask-2)"></path>
+                            </g>
+                            <g transform="translate(0.000000, 56.373626)">
+                                <mask id="mask-5" fill="white">
+                                    <use xlink:href="#path-4"></use>
+                                </mask>
+                                <g id="Clip-4"></g>
+                                <polygon id="Fill-3" fill="url(#linearGradient-6)" mask="url(#mask-5)" points="0 0.462857143 12.0942857 32.6373626 24.1916071 32.6373626 14.6078571 0.462857143"></polygon>
+                            </g>
+                            <g transform="translate(60.714286, 56.373626)">
+                                <mask id="mask-8" fill="white">
+                                    <use xlink:href="#path-7"></use>
+                                </mask>
+                                <g id="Clip-6"></g>
+                                <polygon id="Fill-5" fill="url(#linearGradient-9)" mask="url(#mask-8)" points="9.92208696 0.462857143 0.591304348 32.6373626 12.370087 32.6373626 24.1488696 0.462857143"></polygon>
+                            </g>
+                            <g transform="translate(22.261905, 56.373626)">
+                                <mask id="mask-11" fill="white">
+                                    <use xlink:href="#path-10"></use>
+                                </mask>
+                                <g id="Clip-8"></g>
+                                <polygon id="Fill-7" fill="url(#linearGradient-12)" mask="url(#mask-11)" points="20.9929762 0.462857143 0.619357993 0.462857143 8.39837585 32.6373626 20.9929762 32.6373626 33.5875765 32.6373626 41.3665944 0.462857143"></polygon>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

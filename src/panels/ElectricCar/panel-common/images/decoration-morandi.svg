@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1125px" height="1037px" viewBox="0 0 1125 1037" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 59.1 (86144) - https://sketch.com -->
+    <title>icon栏界面凹凸</title>
+    <desc>Created with Sketch.</desc>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="1" transform="translate(0.000000, -1399.000000)">
+            <g id="编组-6" transform="translate(-1.000000, 0.000000)">
+                <path d="M775.48,1399.57812 C734,1399.57812 698.09,1427.19812 686.23,1466.90812 C686.06,1467.48812 685.89,1468.01812 685.71,1468.51812 C666.946833,1520.08156 617.839045,1554.32067 562.968344,1554.0965 C508.097643,1553.87234 459.271244,1519.23314 440.93,1467.51813 C440.76,1467.02813 440.59,1466.51813 440.42,1465.93813 C428.94,1426.35813 392.09,1399.57812 350.9,1399.57812 L1,1399.57812 L1,2439 L1126,2439 L1126,1399.57812 L775.48,1399.57812 Z" id="icon栏界面凹凸" fill="#FFFFFF"></path>
+                <rect id="手势条" fill="#DDDDDD" x="365" y="2393" width="402" height="15" rx="7.5"></rect>
+            </g>
+        </g>
+    </g>
+</svg>

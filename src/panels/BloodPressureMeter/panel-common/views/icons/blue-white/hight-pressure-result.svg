@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="114px" height="40px" viewBox="0 0 114 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 59.1 (86144) - https://sketch.com -->
+    <title>高压</title>
+    <desc>Created with Sketch.</desc>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="切图" transform="translate(-313.000000, -536.000000)" fill="#0071FF">
+            <g id="蓝白" transform="translate(30.000000, 506.000000)">
+                <path d="M344.472136,38.9442719 L356.381966,62.763932 C357.616912,65.2338245 356.615791,68.2371897 354.145898,69.472136 C353.451621,69.8192745 352.686056,70 351.90983,70 L328.09017,70 C325.328746,70 323.09017,67.7614237 323.09017,65 C323.09017,64.2237745 323.270895,63.4582092 323.618034,62.763932 L335.527864,38.9442719 C336.76281,36.4743794 339.766175,35.4732577 342.236068,36.7082039 C343.203705,37.1920224 343.988317,37.9766349 344.472136,38.9442719 Z" id="高压" transform="translate(340.000000, 50.000000) scale(1, -1) rotate(-270.000000) translate(-340.000000, -50.000000) "></path>
+            </g>
+        </g>
+    </g>
+</svg>

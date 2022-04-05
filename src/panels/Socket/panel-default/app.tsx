@@ -1,8 +1,8 @@
 import React from 'react';
 import { useDeviceInfo } from '@hooks/useDeviceInfo';
 import { SocketPanel } from './SocketPanel';
-import { entryWrap } from "@src/entryWrap";
-import { StatusTip } from "@components/StatusTip";
+import { entryWrap } from '@src/entryWrap';
+import { StatusTip } from '@components/StatusTip';
 
 function App() {
   const [{
@@ -16,8 +16,8 @@ function App() {
   }, { doControlDeviceData }] = useDeviceInfo();
 
   return (
-    statusTip ? <StatusTip fillContainer {...statusTip}/> :
-      <SocketPanel
+    statusTip ? <StatusTip fillContainer {...statusTip}/>
+      : <SocketPanel
         deviceInfo={deviceInfo}
         productInfo={productInfo}
         templateMap={templateMap}

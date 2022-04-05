@@ -27,7 +27,7 @@ interface InfiniteListState<T> {
   total: number;
 }
 
-export const useInfiniteList = <T extends {}>({
+export const useInfiniteList = <T extends HashMap>({
   getData,
   dependences = [],
   shouldUpdate = null,

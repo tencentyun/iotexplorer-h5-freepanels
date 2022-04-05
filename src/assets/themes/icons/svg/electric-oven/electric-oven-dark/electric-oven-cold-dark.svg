@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="130px" height="130px" viewBox="0 0 130 130" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 59.1 (86144) - https://sketch.com -->
+    <title>冷风</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="19.5647761%" y1="14.0180212%" x2="79.7611187%" y2="86.3959794%" id="linearGradient-1">
+            <stop stop-color="#15D0FC" offset="0%"></stop>
+            <stop stop-color="#5475F4" offset="100%"></stop>
+        </linearGradient>
+        <polygon id="path-2" points="0.000206553294 0.791815413 31.8522533 0.791815413 31.8522533 24.5901639 0.000206553294 24.5901639"></polygon>
+        <polygon id="path-4" points="0.13522768 0.791815413 31.986993 0.791815413 31.986993 24.5901639 0.13522768 24.5901639"></polygon>
+    </defs>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="1备份" transform="translate(-562.000000, -2163.000000)">
+            <g id="暗色" transform="translate(18.000000, 1770.000000)">
+                <g id="冷风" transform="translate(544.000000, 393.000000)">
+                    <circle id="椭圆形备份-5" fill="url(#linearGradient-1)" cx="65" cy="65" r="65"></circle>
+                    <g transform="translate(30.000000, 35.000000)">
+                        <path d="M45.3521127,17.704918 C45.3521127,27.4829737 40.9378946,35.4098361 35.4929577,35.4098361 C30.0480209,35.4098361 25.6338028,27.4829737 25.6338028,17.704918 C25.6338028,7.92686237 30.0480209,0 35.4929577,0 C40.9378946,0 45.3521127,7.92686237 45.3521127,17.704918" id="Fill-1" fill="#FFFFFF"></path>
+                        <g id="编组" transform="translate(0.000000, 35.409836)">
+                            <mask id="mask-3" fill="white">
+                                <use xlink:href="#path-2"></use>
+                            </mask>
+                            <g id="Clip-4"></g>
+                            <path d="M20.8394535,20.9901639 C12.4746507,25.6995769 3.49493239,25.8019038 0.781495775,21.2186145 C-1.93194085,16.634532 2.6490169,9.10121629 11.0130063,4.39180328 C19.3769958,-0.31760973 28.3575275,-0.419936542 31.0709641,4.16414595 C33.7844007,8.74743522 29.203443,16.2807509 20.8394535,20.9901639" id="Fill-3" fill="#FFFFFF" mask="url(#mask-3)"></path>
+                        </g>
+                        <g id="编组" transform="translate(37.464789, 35.409836)">
+                            <mask id="mask-5" fill="white">
+                                <use xlink:href="#path-4"></use>
+                            </mask>
+                            <g id="Clip-6"></g>
+                            <path d="M11.1480275,20.9901639 C19.5120169,25.6995769 28.4925486,25.8019038 31.2059852,21.2186145 C33.9194218,16.634532 29.3384641,9.10121629 20.9744746,4.39180328 C12.6096718,-0.31760973 3.62995352,-0.419936542 0.916516901,4.16414595 C-1.79691972,8.74743522 2.78403803,16.2807509 11.1480275,20.9901639" id="Fill-5" fill="#FFFFFF" mask="url(#mask-5)"></path>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

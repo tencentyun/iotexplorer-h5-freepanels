@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="70px" height="70px" viewBox="0 0 70 70" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>编组 7</title>
+    <defs>
+        <linearGradient x1="0%" y1="6.80044777%" x2="97.2025913%" y2="98.0740451%" id="linearGradient-1">
+            <stop stop-color="#0081FF" offset="0%"></stop>
+            <stop stop-color="#005BFF" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="1" transform="translate(-188.000000, -2090.000000)" fill="url(#linearGradient-1)">
+            <g id="模式开关" transform="translate(78.000000, 2004.000000)">
+                <g id="编组-7" transform="translate(110.000000, 86.000000)">
+                    <rect id="矩形" x="0" y="0" width="32" height="32" rx="8"></rect>
+                    <rect id="矩形备份-3" x="38" y="0" width="32" height="32" rx="8"></rect>
+                    <rect id="矩形备份-4" x="38" y="38" width="32" height="32" rx="16"></rect>
+                    <rect id="矩形备份-5" x="0" y="38" width="32" height="32" rx="8"></rect>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,292 @@
+/*蓝白主题*/
+.color_primary() {
+  color: var(--global-color-white);
+}
+
+.theme_blue_white {
+  height: 100%;
+  background: #F4F8FB !important;
+  .home {
+    background-image: var(--global-background-color-gradient);
+
+    &.power-off {
+      #power {}
+    }
+
+    .dashboard {
+      .alarm-tools-bar{
+        button{
+          .active{
+            color: #FFFFFF !important;
+          }
+          .label{
+            color: #B5C4D1;
+          }
+        }
+      }
+    }
+
+    /*详情*/
+
+    .detail {
+      background: #FFFFFF;
+      box-shadow: 0 6px 100px 0 rgba(32,33,33,0.10);
+      border-radius: 90px 90px 0 0;
+      padding-top: 50px;
+
+      .setting-list {
+        .list-item{
+          box-shadow: 0 6px 50px 0 rgba(32,33,33,0.10);
+          ._component_base_cell_{
+            padding: 60px 71px 60px 65px;
+          }
+
+          .history-list{
+            .history-title{
+              color: #B5C4D1;
+            }
+            .active{
+              color: #000000;
+            }
+          }
+        }
+      }
+    }
+  }
+  // 选中勾颜色
+  .icon-check-bg{
+    svg{
+      fill: none;
+    }
+  }
+}
+
+/*暗色主题*/
+.theme_dark {
+  position: relative;
+  height: 100%;
+
+  .home {
+    &.power-off {
+      #power {}
+    }
+
+    .dashboard {
+      .control-panel{
+        background-image: linear-gradient(137deg, #333E4D 0%, #202C3A 100%);
+      }
+
+      .alarm-tools-bar{
+        button{
+          .active{
+            color: #21C1FB !important;
+          }
+          .label{
+            color: #B5C4D1;
+          }
+        }
+      }
+    }
+
+    .detail {
+      .setting-list {
+        background-image: linear-gradient(137deg, #333E4D 0%, #202C3A 100%);
+        border-radius: 60px;
+
+        .list-item{
+          background: none;
+          margin-bottom: 0;
+          border-bottom: 3px solid #3B4757;
+          border-radius: unset;
+          ._component_base_cell_{
+            padding: 60px 71px 60px 65px;
+            color: #FFFFFF;
+          }
+
+          .history-list{
+            .history-title{
+              color: #B5C4D1;
+            }
+            .active{
+              color: #B5C4D1;
+            }
+          }
+        }
+        .list-item:last-child{
+          border-bottom: none;
+        }
+      }
+    }
+  }
+  // 选中勾颜色
+  .icon-check-bg{
+    svg{
+      fill: none;
+    }
+  }
+}
+
+/*多彩主题*/
+.theme_colorful {
+  height: 100%;
+
+  .home {
+    background-color: #f4f8fb;
+
+    &.power-off {}
+
+    .dashboard {
+      .control-panel{
+        background: #FFFFFF;
+        box-shadow: 0 6px 100px 0 rgba(32,33,33,0.10);
+
+        .alarm-tools-bar{
+          button{
+            .active{
+              color: #1A55FD !important;
+            }
+            .label{
+              color: #B5C4D1;
+            }
+          }
+        }
+      }
+    }
+
+    /*详情*/
+    .detail {
+      .setting-list {
+        .list-item{
+          box-shadow: 0 6px 50px 0 rgba(32,33,33,0.10);
+          background: #FFFFFF;
+          ._component_base_cell_{
+            padding: 60px 71px 60px 65px;
+          }
+
+          .history-list{
+            .history-title{
+              color: #B5C4D1;
+            }
+            .active{
+              color: #000000;
+            }
+          }
+        }
+      }
+    }
+  }
+  // 选中勾颜色
+  .icon-check-bg{
+    svg{
+      fill: none;
+    }
+  }
+}
+
+/*莫兰迪主题*/
+.theme_morandi {
+  height: 100%;
+
+  .home {
+    &.power-off {}
+
+    .dashboard {
+      background-image: var(--global-background-color-gradient);
+      .control-panel{
+        .alarm-tools-bar{
+          button{
+            .active{
+              color: #B5ABA1 !important;
+            }
+            .label{
+              color: #B5C4D1;
+            }
+          }
+        }
+      }
+    }
+
+    .detail {
+      .setting-list {
+        .list-item{
+          background: #FFFFFF;
+          box-shadow: 0 6px 50px 0 rgba(32,33,33,0.10);
+          color: #566172;
+          ._component_base_cell_{
+            padding: 60px 71px 60px 65px;
+          }
+
+          .history-list{
+            .history-title{
+              color: #B5C4D1;
+            }
+            .active{
+              color: #B5ABA1;
+            }
+          }
+        }
+      }
+    }
+  }
+  // 选中勾颜色
+  .icon-check-bg{
+    svg{
+      fill: none;
+    }
+  }
+}
+
+/*黑白主题*/
+.theme_normal {
+  height: 100%;
+  .home {
+    background: #F4F8FB;
+
+    &.power-off {
+      #power {}
+    }
+
+    .dashboard {
+      .control-panel{
+        background: #FFFFFF;
+      }
+
+      .alarm-tools-bar{
+        button{
+          .active{
+            color: #000000 !important;
+          }
+          .label{
+            color: #B5C4D1;
+          }
+        }
+      }
+    }
+
+    /*详情*/
+    .detail {
+      .setting-list {
+        .list-item{
+          ._component_base_cell_{
+            padding: 60px 71px 60px 65px;
+          }
+
+          .history-list{
+            .history-title{
+              color: #B5C4D1;
+            }
+            .active{
+              color: #000000;
+            }
+          }
+        }
+      }
+    }
+  }
+  // 选中勾颜色
+  .icon-check-bg{
+    svg{
+      fill: none;
+    }
+  }
+}

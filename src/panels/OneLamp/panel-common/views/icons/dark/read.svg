@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="106px" height="85px" viewBox="0 0 106 85" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 59.1 (86144) - https://sketch.com -->
+    <title>阅读</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="11.8644068%" y1="20.5381859%" x2="104.602754%" y2="85.4181442%" id="linearGradient-1">
+            <stop stop-color="#00F0FF" offset="0%"></stop>
+            <stop stop-color="#704DF0" offset="100%"></stop>
+        </linearGradient>
+        <path d="M35.9590488,1.45035412 C17.6199339,-0.32632975 7.19180976,0.0290070984 7.19180976,0.0290070984 C3.23631439,0.0290070984 0,3.22703811 0,7.13574268 L0,72.5177098 C0,76.4264144 3.23631439,79.6244454 7.19180976,79.6244454 L19.0582959,80.335119 C28.0480581,80.6904557 36.6782298,81.0457926 43.1508586,83.8884868 C43.510449,84.2438236 45.3084015,84.9544971 46.387173,84.9544971 C48.5447159,85.3098339 49.9830778,83.53315 49.9830778,81.4011293 L49.9830778,17.0851724 C50.3426682,7.13574268 44.948811,2.87170126 35.9590488,1.45035412 L35.9590488,1.45035412 Z M99.1418696,0.113594585 C99.1418696,0.113594585 88.7159178,-0.59637152 70.3806232,1.53352667 C61.3927337,2.95345888 56,7.21325538 56,17.1527807 L56,81.4047119 C56,83.5346102 57.7975779,85.3095254 59.5951559,84.9545424 C60.314187,84.9545424 62.4712806,84.2445763 62.8307961,83.8895933 C69.3020765,81.0497289 78.289966,80.6947459 86.9183399,80.3397628 L98.782354,79.6297967 C102.737025,79.6297967 105.972666,76.4349493 105.972666,72.5301358 L105.972666,7.21325551 C106.332181,3.30844199 103.096541,0.113594585 99.1418696,0.113594585 L99.1418696,0.113594585 Z" id="path-2"></path>
+        <filter x="-144.3%" y="-172.9%" width="388.7%" height="460.0%" filterUnits="objectBoundingBox" id="filter-3">
+            <feOffset dx="0" dy="6" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="50" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0.125490196   0 0 0 0 0.127812629   0 0 0 0 0.129411765  0 0 0 0.1 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="1备份" transform="translate(-52.000000, -446.000000)">
+            <g id="编组" transform="translate(32.000000, 102.000000)">
+                <g id="暗色" transform="translate(20.000000, 0.000000)">
+                    <g id="阅读" transform="translate(0.000000, 344.000000)">
+                        <g id="形状">
+                            <use fill="black" fill-opacity="1" filter="url(#filter-3)" xlink:href="#path-2"></use>
+                            <use fill="url(#linearGradient-1)" fill-rule="evenodd" xlink:href="#path-2"></use>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

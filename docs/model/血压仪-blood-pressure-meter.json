@@ -1,0 +1,103 @@
+{
+  "version": "1.0",
+  "properties": [
+    {
+      "id": "power_switch",
+      "name": "电源开关",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "bool",
+        "mapping": {
+          "0": "关",
+          "1": "开"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "battery_percent_age",
+      "name": "电池电量",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "int",
+        "min": "1",
+        "max": "100",
+        "start": "0",
+        "step": "1",
+        "unit": "%"
+      },
+      "required": false
+    },
+    {
+      "id": "systolic_pressure",
+      "name": "收缩压",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "int",
+        "min": "1",
+        "max": "500",
+        "start": "0",
+        "step": "1",
+        "unit": "mmHg"
+      },
+      "required": false
+    },
+    {
+      "id": "disatolic_pressure",
+      "name": "舒张压",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "int",
+        "min": "1",
+        "max": "500",
+        "start": "0",
+        "step": "1",
+        "unit": "mmHg"
+      },
+      "required": false
+    },
+    {
+      "id": "pulse",
+      "name": "脉搏",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "int",
+        "min": "1",
+        "max": "100",
+        "start": "0",
+        "step": "1",
+        "unit": "bpm"
+      },
+      "required": false
+    },
+    {
+      "id": "fault",
+      "name": "故障告警",
+      "desc": "",
+      "mode": "r",
+      "define": {
+        "type": "stringenum",
+        "mapping": {
+          "no_result": "正常",
+          "result_error": "故障",
+          "low_battery": "正常",
+          "interference": "故障",
+          "inflatable_error": "正常",
+          "other_error": "故障"
+        }
+      },
+      "required": false
+    }
+  ],
+  "events": [],
+  "actions": [],
+  "profile": {
+    "ProductId": "P9FCB4V9V1",
+    "CategoryId": "1"
+  }
+}

@@ -1,0 +1,75 @@
+._component_base_button_ {
+  display: block;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+
+  .button-inner {
+    font-size: 60px;
+    line-height: 84px;
+    padding: 25px 100px;
+    // background-color: ${({ theme }: ButtonProps) => {
+    //   switch (theme) {
+    //     case 'normal':
+    //       return '#000000';
+    //     case 'blueWhite':
+    //       return '#ffffff';
+    //     case 'dark':
+    //     case 'colorful':
+    //       return 'initial';
+    //     case 'morandi':
+    //       return '#566172';
+    //   }
+    // }};
+    border-radius: 30px;
+    box-sizing: border-box;
+  }
+
+  &.is_round_button .button-inner {
+    border-radius: 60px;
+  }
+
+  &.button_theme_normal {
+    .button-inner {
+      background-color: #000;
+      color: #fff;
+    }
+  }
+
+  &.button_theme_blueWhite {
+    .button-inner {
+      background-color: #fff;
+      color: #006BFF;
+    }
+  }
+
+  &.button_theme_dark {
+    .button-inner {
+      background-image: linear-gradient(180deg, #559DFC 0%, #3171FA 100%);
+      box-shadow: 0 6px 100px 0 rgba(32,33,33,0.10);background-color: #000;
+      color: #fff;
+    }
+  }
+
+  &.button_theme_colorful {
+    .button-inner {
+      background-image: linear-gradient(138deg, #527DF4 0%, #044DFF 100%);
+      box-shadow: 0 6px 100px 0 rgba(124,121,245,0.30);
+      color: #fff;
+    }
+  }
+
+  &.button_theme_morandi {
+    .button-inner {
+      background-color: #566172;
+      color: #fff;
+    }
+    &.is_disabled .button-inner,
+      &.is_loading .button-inner{
+      background-color: #B5C4D1;
+    }
+  }
+}

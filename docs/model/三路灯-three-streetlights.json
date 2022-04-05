@@ -1,0 +1,98 @@
+{
+  "version": "1.0",
+  "properties": [
+    {
+      "id": "power_switch",
+      "name": "电源开关",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "bool",
+        "mapping": {
+          "0": "关",
+          "1": "开"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "count_down",
+      "name": "倒计时",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "int",
+        "min": "0",
+        "max": "86400",
+        "start": "0",
+        "step": "1",
+        "unit": ""
+      },
+      "required": false
+    },
+    {
+      "id": "brightness",
+      "name": "亮度",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "int",
+        "min": "0",
+        "max": "100",
+        "start": "0",
+        "step": "1",
+        "unit": "%"
+      },
+      "required": false
+    },
+    {
+      "id": "scene",
+      "name": "场景",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "stringenum",
+        "mapping": {
+          "0": "工作",
+          "1": "阅读",
+          "2": "睡眠",
+          "3": "休闲",
+          "4": "柔和"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "work_mode",
+      "name": "模式",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "stringenum",
+        "mapping": {
+          "0": "彩光",
+          "1": "场景"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "color_value",
+      "name": "彩光",
+      "desc": "内容详见prd",
+      "mode": "rw",
+      "define": {
+        "type": "string",
+        "min": "0",
+        "max": "2048"
+      },
+      "required": false
+    }
+  ],
+  "events": [],
+  "actions": [],
+  "profile": {
+    "ProductId": "P9FCB4V9V1",
+    "CategoryId": "1"
+  }
+}

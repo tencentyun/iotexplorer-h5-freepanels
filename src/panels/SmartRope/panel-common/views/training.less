@@ -1,0 +1,480 @@
+.training-container-normal {
+  padding: 57px 80px 141px;
+  .training-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 44px;
+    padding: 70px 57px 68px 89px;
+    .device-connect-status {
+      display: flex;
+      align-items: center;
+      .avatar-name {
+        margin-left: 25px;
+        line-height: 43px;
+        font-family: PingFangSC-Medium;
+        font-weight: Medium;
+        font-size: 36px;
+        color: #000000;
+      }
+      .svg-icon-avatar {
+        width: 56px;
+        height: 62px;
+      }
+    }
+  }
+
+  .training-card {
+    padding: 54px 49px 52px 87px;
+  }
+  .training-control {
+    margin: 50px -45px;
+    .item-inner {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 260px;
+    }
+
+    .training-control-item {
+      margin: 0 45px;
+      padding: 0 !important;
+
+      .control-icon {
+        display: block;
+        width: 95px;
+        height: 95px;
+      }
+
+      &.is_disabled {
+        .control-icon {
+          fill: var(--global-disable-color);
+        }
+      }
+    }
+
+    .control-change {
+      color: #A3A6AB;
+      .item-title {
+        margin-bottom: 20px;
+        line-height: 67px;
+        font-weight: 500;
+        font-size: 48px;
+        color: #000000;
+      }
+    }
+  }
+
+  .countdown-view {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(45,48,54,0.95);
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    &.is_hidden {
+      display: none;
+    }
+    & > span {
+      font-family: DINCondensed-Bold;
+      font-size: 500px;
+      color: #F8FDFF;
+    }
+  }
+}
+
+.training-container-blueWhite {
+  padding: 57px 80px 141px;
+  background-image: linear-gradient(133deg, #0081FF 0%, #005BFF 100%);
+
+  .training-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 44px;
+    padding: 70px 57px 68px 89px;
+
+    .device-connect-status {
+      display: flex;
+      align-items: center;
+      .avatar-name {
+        margin-left: 25px;
+        line-height: 43px;
+        font-family: PingFangSC-Medium;
+        font-weight: Medium;
+        font-size: 36px;
+        color: #4676F6;
+      }
+      .svg-icon-avatar {
+        width: 56px;
+        height: 62px;
+      }
+    }
+    .battery-percent {
+      color: #4474F6;
+    }
+  }
+
+  .training-card {
+    padding: 54px 49px 52px 87px;
+    background: #FFFFFF;
+    box-shadow: 0 6px 15px 0 rgba(32,33,33,0.05);
+  }
+
+  .training-control {
+    margin: 50px -45px;
+    .item-inner {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 260px;
+    }
+
+    .training-control-item {
+      margin: 0 45px;
+      padding: 0 !important;
+
+      .control-icon {
+        display: block;
+        width: 95px;
+        height: 95px;
+      }
+
+      &.is_disabled {
+        .control-icon {
+          fill: #B8C6D3;
+        }
+      }
+    }
+
+    .control-change {
+      color: #A3A6AB;
+      .item-title {
+        margin-bottom: 20px;
+        line-height: 67px;
+        font-weight: 500;
+        font-size: 48px;
+        color: #000000;
+      }
+    }
+  }
+
+  .countdown-view {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(45,48,54,0.95);
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    &.is_hidden {
+      display: none;
+    }
+    & > span {
+      font-family: DINCondensed-Bold;
+      font-size: 500px;
+      color: #F8FDFF;
+    }
+  }
+}
+
+.training-container-dark {
+  padding: 57px 80px 141px;
+  .training-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 46px;
+    padding: 70px 57px 68px 89px;
+
+    .device-connect-status {
+      display: flex;
+      align-items: center;
+      .avatar-name {
+        margin-left: 25px;
+        line-height: 43px;
+        font-family: PingFangSC-Medium;
+        font-weight: Medium;
+        font-size: 36px;
+        color: #FFFFFF;
+      }
+      .svg-icon-avatar {
+        width: 56px;
+        height: 62px;
+      }
+    }
+    .battery-percent {
+      margin-left: 30px;
+      font-size: 36px;
+      color: #FFFFFF;
+    }
+  }
+
+  .training-card {
+    padding: 54px 49px 52px 67px;
+    background-image: linear-gradient(138deg, #527DF4 0%, #044DFF 100%);
+    box-shadow: 0 6px 100px 0 rgba(124,121,245,0.30);
+  }
+
+  .training-control {
+    margin: 50px -45px;
+    .item-inner {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 260px;
+    }
+
+    .training-control-item {
+      margin: 0 45px;
+      padding: 0 !important;
+
+      .control-icon {
+        display: block;
+        width: 95px;
+        height: 95px;
+      }
+
+      &.is_disabled {
+        .control-icon {
+          fill: #B8C6D3;
+        }
+      }
+    }
+
+    .control-change {
+      color: #A3A6AB;
+      .item-title {
+        margin-bottom: 20px;
+        line-height: 67px;
+        font-size: 48px;
+        color: #F4F8FB;
+      }
+    }
+  }
+
+  .countdown-view {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(45,48,54,0.95);
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    &.is_hidden {
+      display: none;
+    }
+    & > span {
+      font-family: DINCondensed-Bold;
+      font-size: 500px;
+      color: #F8FDFF;
+    }
+  }
+}
+
+.training-container-colorful {
+  padding: 57px 80px 141px;
+  .training-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 44px;
+    padding: 70px 57px 68px 89px;
+
+    .device-connect-status {
+      display: flex;
+      align-items: center;
+      .avatar-name {
+        margin-left: 25px;
+        line-height: 43px;
+        font-family: PingFangSC-Medium;
+        font-weight: Medium;
+        font-size: 36px;
+        color: #4676F6;
+      }
+      .svg-icon-avatar {
+        width: 56px;
+        height: 62px;
+      }
+    }
+    .battery-percent {
+      color: #4474F6;
+    }
+  }
+
+  .training-card {
+    padding: 54px 49px 52px 87px;
+    background-image: linear-gradient(138deg, #527DF4 0%, #044DFF 100%);
+    box-shadow: 0 6px 100px 0 rgba(124,121,245,0.30);
+  }
+
+  .training-control {
+    margin: 50px -45px;
+    .item-inner {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 260px;
+    }
+
+    .training-control-item {
+      margin: 0 45px;
+      padding: 0 !important;
+
+      .control-icon {
+        display: block;
+        width: 95px;
+        height: 95px;
+      }
+
+      &.is_disabled {
+        .control-icon {
+          fill: #B8C6D3;
+        }
+      }
+    }
+
+    .control-change {
+      color: #A3A6AB;
+      .item-title {
+        margin-bottom: 20px;
+        line-height: 67px;
+        font-weight: 500;
+        font-size: 48px;
+        color: #000000;
+      }
+    }
+  }
+
+  .countdown-view {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(45,48,54,0.95);
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    &.is_hidden {
+      display: none;
+    }
+    & > span {
+      font-family: DINCondensed-Bold;
+      font-size: 500px;
+      color: #F8FDFF;
+    }
+  }
+}
+
+.training-container-morandi {
+  padding: 57px 80px 141px;
+  .training-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 44px;
+    padding: 70px 57px 68px 89px;
+
+    .device-connect-status {
+      display: flex;
+      align-items: center;
+      .avatar-name {
+        margin-left: 25px;
+        line-height: 43px;
+        font-family: PingFangSC-Medium;
+        font-weight: Medium;
+        font-size: 36px;
+        color: #4E5869;
+      }
+      .svg-icon-avatar {
+        width: 56px;
+        height: 62px;
+      }
+    }
+    .battery-percent {
+      color: #4E5869;
+    }
+  }
+
+  .training-card {
+    padding: 54px 49px 52px 87px;
+    background: #FFFFFF;
+    box-shadow: 0 6px 15px 0 rgba(32,33,33,0.05);
+  }
+
+  .training-control {
+    margin: 50px -45px;
+    .item-inner {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 260px;
+    }
+
+    .training-control-item {
+      margin: 0 45px;
+      padding: 0 !important;
+
+      .control-icon {
+        display: block;
+        width: 95px;
+        height: 95px;
+      }
+
+      &.is_disabled {
+        .control-icon {
+          fill: #B8C6D3;
+        }
+      }
+    }
+
+    .control-change {
+      color: #A3A6AB;
+      .item-title {
+        margin-bottom: 20px;
+        line-height: 67px;
+        font-weight: 500;
+        font-size: 48px;
+        color: #000000;
+      }
+    }
+  }
+
+  .countdown-view {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(45,48,54,0.95);
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    &.is_hidden {
+      display: none;
+    }
+    & > span {
+      font-family: DINCondensed-Bold;
+      font-size: 500px;
+      color: #F8FDFF;
+    }
+  }
+}

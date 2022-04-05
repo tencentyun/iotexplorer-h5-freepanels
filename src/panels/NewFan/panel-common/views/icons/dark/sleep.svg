@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="73px" height="73px" viewBox="0 0 73 73" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 59.1 (86144) - https://sketch.com -->
+    <title>睡眠2备份</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="8.45868644%" y1="0%" x2="111.848517%" y2="112.510417%" id="linearGradient-1">
+            <stop stop-color="#00F0FF" offset="0%"></stop>
+            <stop stop-color="#704DF0" offset="100%"></stop>
+        </linearGradient>
+        <path d="M72.8031952,53.3991411 C72.5407889,53.1374239 71.7535697,53.1374239 70.9663505,53.3991411 C63.3565652,56.8014661 55.4843735,57.3249007 47.3497754,55.4928795 C31.8677983,51.5671199 20.8467299,37.9578201 20.0595107,21.7313473 C20.0595107,16.235284 21.1091362,11.0009379 23.4707938,6.02830906 C23.7332001,5.24315718 24.2580129,4.98143983 23.4707938,4.19628795 C22.6835746,3.93457068 22.4211682,3.93457068 21.3715427,4.19628795 C17.9602596,6.02830906 14.5489765,7.86033018 12.187319,10.7392205 C5.10234643,17.2821531 1.16625054,25.1336722 0.116625044,34.5554952 C0.116625044,35.3406471 -0.145781305,39.2664067 0.116625044,40.0515586 L0.116625044,41.0984278 C0.116625044,44.5007528 0.903844185,47.6413604 1.95346977,50.5202508 C6.41437845,64.9147024 19.534698,75.1216774 34.2294558,76.6919811 C39.4775836,77.477133 44.463305,76.6919811 49.7114329,75.1216774 C59.9452821,71.7193524 67.8174739,65.1764198 72.8031952,55.2311622 L72.8031952,54.9694449 C73.0656016,54.4460103 73.0656016,54.184293 72.8031952,53.3991411 Z" id="path-2"></path>
+        <filter x="-209.6%" y="-201.4%" width="519.2%" height="519.2%" filterUnits="objectBoundingBox" id="filter-3">
+            <feOffset dx="0" dy="6" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="50" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0.125490196   0 0 0 0 0.127812629   0 0 0 0 0.129411765  0 0 0 0.1 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="1备份" transform="translate(-190.000000, -237.000000)">
+            <g id="暗色" transform="translate(190.000000, 233.000000)">
+                <g id="睡眠2备份">
+                    <use fill="black" fill-opacity="1" filter="url(#filter-3)" xlink:href="#path-2"></use>
+                    <use fill="url(#linearGradient-1)" fill-rule="evenodd" xlink:href="#path-2"></use>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

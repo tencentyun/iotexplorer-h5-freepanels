@@ -1,0 +1,61 @@
+.modal-container {
+  // 临时一期样式
+  .modal-mask {
+    left: -1px;
+  }
+  .switch-modal {
+    width: calc(100% - 152px);
+    border-radius: 60px;
+    .modal-header {
+      font-weight: 500;
+      font-size: 48px;
+      color: #0f0f0f;
+      padding-top: 60px;
+      .modal-title {
+        font-size: 48px;
+      }
+    }
+    .modal-body {
+      position: relative;
+      padding: 0 80px;
+      .adm-list-item {
+        border-bottom: none;
+      }
+
+      .icon {
+        width: 90px;
+        height: 90px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+      }
+      .icon-select {
+        background: #87FC86;
+      }
+      &::after {
+        content: ' ';
+        width: calc(100% - 200px);
+        border-top: solid 3px #edeef2;
+        position: absolute;
+        top: 0;
+        left: 100px;
+      }
+    }
+    .modal-footer {
+      border-top: 3px solid #edeef2;
+      padding: 60px 0;
+      .footer-confirm-btn-group {
+        button {
+          border: none;
+          font-size: 48px;
+          &:last-child{
+            font-weight: 500;
+            font-size: 48px;
+            color: #263D4D !important; // 二期采用组件内部设置即可
+          }
+        }
+      }
+    }
+  }
+}

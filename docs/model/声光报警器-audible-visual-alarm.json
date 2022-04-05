@@ -1,0 +1,161 @@
+{
+  "version": "1.0",
+  "properties": [
+    {
+      "id": "alert_state",
+      "name": "布防",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "bool",
+        "mapping": {
+          "0": "撤防",
+          "1": "布防"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "lifecycle",
+      "name": "使用寿命",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "bool",
+        "mapping": {
+          "0": "撤防",
+          "1": "布防"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "muffling",
+      "name": "消音",
+      "desc": "0：不消音； 1：消音",
+      "mode": "rw",
+      "define": {
+        "type": "bool",
+        "mapping": {
+          "0": "不消音",
+          "1": "消音"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "alarm_vol",
+      "name": "报警音量",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "stringenum",
+        "mapping": {
+          "low": "low",
+          "middle": "middle",
+          "high": "high",
+          "mute" : "mute"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "master_mode",
+      "name": "主机工作模式",
+      "desc": "\"枚举值: \nDisarmed：撤防\nArm：布防\n home：在家；\nSos:紧急\nWork：工作\nPlay：休闲\"",
+      "mode": "rw",
+      "define": {
+        "type": "stringenum",
+        "mapping": {
+          "Disarmed": "撤防",
+          "Arm": "布防",
+          "home": "在家",
+          "Sos" : "紧急",
+          "Work": "工作",
+          "Play" : "休闲"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "battery_state",
+      "name": "电池电量状态",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "stringenum",
+        "mapping": {
+          "low": "低",
+          "middle": "中",
+          "high": "高"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "alarm_state",
+      "name": "电池电量状态",
+      "desc": "表示通过声音告警；\n光亮报警：\n声光报警：\n正常：",
+      "mode": "rw",
+      "define": {
+        "type": "stringenum",
+        "mapping": {
+          "alarm_sound": "声音告警",
+          "alarm_light": "光亮报警",
+          "alarm_sound_light": "声光报警",
+          "normal": "正常"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "alarm_time",
+      "name": "报警时长",
+      "desc": "这个值的转换需要确定",
+      "mode": "rw",
+      "define": {
+        "type": "int",
+        "min": "1",
+        "max": "60",
+        "start": "0",
+        "step": "1"
+      },
+      "required": false
+    },
+    {
+      "id": "tamper_event",
+      "name": "防拆告警",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "stringenum",
+        "mapping": {
+          "0": "未拆卸",
+          "1": "拆卸告警"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "battery_percentage",
+      "name": "电池电量",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "int",
+        "min": "0",
+        "max": "100",
+        "start": "0",
+        "step": "1",
+        "unit": "%"
+      },
+      "required": false
+    }
+  ],
+  "events": [],
+  "actions": [],
+  "profile": {
+    "ProductId": "P9FCB4V9V1",
+    "CategoryId": "1"
+  }
+}
