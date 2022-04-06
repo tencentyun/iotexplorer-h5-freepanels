@@ -4,7 +4,6 @@
 .list-card-timer {
   background: #ffffff;
   border: none;
-  background: transparent;
   font-size: 14px;
   margin: 16px;
   .adm-list-default {
@@ -14,12 +13,13 @@
     color: @c1;
     font-size: 14px;
     background: transparent;
-    .adm-list-inner {
+    .adm-list-body-inner {
       margin-bottom: 0;
       .adm-list-item {
         border-bottom: 0.5px solid @c7;
         font-weight: 500;
         padding-left: 0;
+        font-size: 14px;
       }
       .adm-list-item:active {
         background-color: transparent;
@@ -33,12 +33,19 @@
         color: @c1;
       }
     }
+    .adm-list-body {
+      background: #ffffff;
+      border-top: none;
+      border-bottom: none;
+    }
   }
 
   .adm-checkbox-icon {
     display: none;
   }
   .adm-list-item-content-extra {
+    font-size: inherit;
+    color: inherit;
     .icon {
       width: 90px;
       height: 90px;

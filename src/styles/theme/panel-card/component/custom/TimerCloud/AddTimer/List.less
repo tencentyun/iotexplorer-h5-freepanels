@@ -1,5 +1,3 @@
-// 后续统一卡片样式
-
 
 .list-card-timer {
   background: #ffffff;
@@ -14,11 +12,12 @@
     color: @c1;
     font-size: 14px;
     background: transparent;
-    .adm-list-inner {
+    .adm-list-body-inner {
       margin-bottom: 0;
       .adm-list-item {
         border-bottom: 0.5px solid @c7;
         font-weight: 500;
+        font-size: 14px;
         padding-left: 0;
       }
       .adm-list-item:active {
@@ -29,9 +28,14 @@
     .adm-list-item-content {
       border: none;
       padding: 12px 0;
-      .adm-list-item-content-arrow{
+      .adm-list-item-content-arrow {
         color: @c1;
       }
+    }
+    .adm-list-body {
+      background: #ffffff;
+      border-top: none;
+      border-bottom: none;
     }
   }
 
@@ -39,6 +43,8 @@
     display: none;
   }
   .adm-list-item-content-extra {
+    font-size: inherit;
+    color: inherit;
     .icon {
       width: 90px;
       height: 90px;

@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import classNames from 'classnames';
 // import { SvgIcon } from '@components/common/icon';
-import { Popup } from '@custom/Popop';
+import { Popup } from '@custom/Popup';
 
 export type SelectType = {
   Radio: 'radio';
