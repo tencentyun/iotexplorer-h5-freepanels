@@ -1,0 +1,63 @@
+@import url('./icon/Icon.less');
+
+.cus-light-bright {
+  .mark {
+    // height: 150px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 600;
+    font-size: 16px;
+    margin-bottom: 8px;
+    padding: 0 4px;
+    .mark-op-btn {
+      font-size: 22px;
+      color: #fff;
+      width: 20px;
+      height: 20px;
+      background: #2D374D;
+      border-radius: 5px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      &:first-child{
+        font-size: 32px;
+      }
+    }
+  }
+
+  .value-wrap {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .value-text {
+    margin-left: 4px;
+    color:#ffffff;
+  }
+
+  .slider {
+    height: 16px;
+    background:#121723;
+    border-radius: 25px;
+    .progress {
+      min-width: 16px;
+      background: @c3;
+      height: 16px;
+      border-radius: 25px;
+    }
+    .progress-dot {
+      margin: 2px;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: #fbfbff;
+      float: right;
+    }
+    .border {
+      margin-top: -40px;
+      width: 100%;
+    }
+  }
+}

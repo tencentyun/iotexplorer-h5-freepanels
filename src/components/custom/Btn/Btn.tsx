@@ -5,7 +5,7 @@ export interface BtnOptions extends StyledProps {
   disabled?: boolean;
   // type=default = type:primary + reverse:true
   // type=cancel 时，只有一个样式，reverse和transparent无效
-  type?: 'default' | 'primary' | 'danger' | 'cancel' | 'link' | 'sub';
+  type?: 'default' | 'primary' | 'danger' | 'cancel' | 'link' | 'sub' | 'reverse';
   onClick?: (e: React.MouseEvent) => React.MouseEvent | void;
   icon?: string;
   reverse?: boolean; // 翻转颜色

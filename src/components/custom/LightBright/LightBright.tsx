@@ -1,6 +1,6 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { Icon } from '@custom/Icon';
-import './LightBright.less';
+// import './LightBright.less';
 
 export function LightBright({ maxValue = 100, minValue = 0, status, defaultValue = 80, onChange }) {
   const [dataInfo, setDataInfo] = useState({ dataUser: defaultValue, endTouch: false });
