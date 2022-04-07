@@ -15,15 +15,19 @@
 |                  | 五路灯       | five-streetlights            |
 |                  | 智能灯       | lamp                         |
 |                  | 一路灯       | lamp-one                     |
-| 网关类           | 智能网关     | intelligent-gateway          |
-| 传感类           | 门磁         | magnetic-door                |
+| 网关类            | 智能网关     | intelligent-gateway          |
+| 传感类            | 门磁         | magnetic-door                |
+|                  | 门磁v2      | magnetic-door-two            | <img src="./img/magnetic-door-two-cold.png" alt="冷淡" width="50" height="auto" /> <img src="./img/magnetic-door-two-card.png" alt="卡片" width="50" height="auto" /> <img src="./img/magnetic-door-two-brunet.png" alt="暗色" width="50" height="auto" /> <img src="./img/magnetic-door-two-fresh.png" alt="清新" width="50" height="auto" /> <img src="./img/magnetic-door-two-house.png" alt="家居" width="50" height="auto" /> |
 |                  | 人体传感器   | body-sensor                  |
+|                  | 人体传感器v2 | body-sensor-two              | <img src="./img/body-sensors-two-cold.png" alt="冷淡" width="50" height="auto" /> <img src="./img/body-sensors-two-card.png" alt="卡片" width="50" height="auto" /> <img src="./img/body-sensors-two-brunet.png" alt="暗色" width="50" height="auto" /> <img src="./img/body-sensors-two-fresh.png" alt="清新" width="50" height="auto" /> <img src="./img/body-sensors-two-house.png" alt="家居" width="50" height="auto" /> |
 |                  | 声光报警器   | audible-visual-alarm         |
 |                  | 温湿度传感器 | temperature-humidity-sensor  |
 |                  | 紧急按钮     | emergency-button             |
 |                  | 多功能报警器 | multifunction-alarm-host     |
 |                  | 烟雾传感器   | smoke-alarm                  |
+|                  | 烟雾传感器v2 | smoke-alarm-two              | <img src="./img/smoke-alarm-two-cold.png" alt="冷淡" width="50" height="auto" /> <img src="./img/smoke-alarm-two-card.png" alt="卡片" width="50" height="auto" /> <img src="./img/smoke-alarm-two-brunet.png" alt="暗色" width="50" height="auto" /> <img src="./img/smoke-alarm-two-fresh.png" alt="清新" width="50" height="auto" /> <img src="./img/smoke-alarm-two-house.png" alt="家居" width="50" height="auto" /> |
 |                  | 燃气报警器   | gas-alarm                    |
+|                  | 燃气报警器v2 | gas-alarm-two                | <img src="./img/gas-alarm-two-cold.png" alt="冷淡" width="50" height="auto" /> <img src="./img/gas-alarm-two-card.png" alt="卡片" width="50" height="auto" /> <img src="./img/gas-alarm-two-brunet.png" alt="暗色" width="50" height="auto" /> <img src="./img/gas-alarm-two-fresh.png" alt="清新" width="50" height="auto" /> <img src="./img/gas-alarm-two-house.png" alt="家居" width="50" height="auto" /> |
 |                  | 水浸传感器   | immersion-sensor             |
 | 小家电           | 取暖器       | heater                       |
 |                  | 加湿器       | humidifier                   |
