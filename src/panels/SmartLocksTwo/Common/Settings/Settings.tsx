@@ -1,7 +1,7 @@
 /*
  * @Description: 设置
  */
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import classNames from 'classnames';
 import { useTitle } from '@hooks/useTitle';
 import { Cell } from '@custom/Cell';
@@ -13,6 +13,8 @@ interface OptionProps {
   label: string;
   value: string | number;
 }
+
+const getTimeArr = (time: string) => time.split(':');
 
 export function Settings({
   deviceData,
@@ -34,18 +36,32 @@ export function Settings({
   // 导航音量
   const [beepVolumeVisible, onToggleBeepVolume] = useState(false);
 
-  // 休眠时间/勿扰模式
-  const [dormantTime, setDormantTime] = useState(false);
   // 休眠时间
-  const [effectTime, setEffectTime] = useState(['00', '00']); // 开始时间
+  const [effectTime, setEffectTime] = useState(getTimeArr(deviceData.dormant_time_set.start_time) || ['00', '00']); // 开始时间
   const [effectTimeVisible, setEffectTimeVisible] = useState(false);
-  const [effectivenessTime, setEffectivenessTime] = useState(['23', '59']); // 结束时间
+  const [effectivenessTime, setEffectivenessTime] = useState(getTimeArr(deviceData.dormant_time_set.end_time) || ['23', '59']); // 结束时间
   const [effectivenessTimeVisible, setEffectivenessTimeVisible] = useState(false);
   // 勿扰时间
-  const [dormantStartTime, setDormantStartTime] = useState(['00', '00']); // 开始时间
+  const [noDisturbStartTime, setNoDisturbStartTime] = useState(getTimeArr(deviceData.no_disturb_time_set.start_time) || ['00', '00']); // 开始时间
   const [dormantStartTimeVisible, setDormantStartTimeVisible] = useState(false);
-  const [dormantEndTime, setDormantEndTime] = useState(['23', '59']); // 结束时间
+  const [noDisturbEndTime, setNoDisturbEndTime] = useState(getTimeArr(deviceData.no_disturb_time_set.end_time) || ['23', '59']); // 结束时间
   const [dormantEndTimeVisible, setDormantEndTimeVisible] = useState(false);
+
+  // 设置休眠时间
+  useEffect(() => {
+    doControlDeviceData('dormant_time_set', {
+      start_time: effectTime.join(':'),
+      end_time: effectivenessTime.join(':'),
+    });
+  }, [effectTime, effectivenessTime]);
+
+  // 设置勿扰时间
+  useEffect(() => {
+    doControlDeviceData('no_disturb_time_set', {
+      start_time: noDisturbStartTime.join(':'),
+      end_time: noDisturbEndTime.join(':'),
+    });
+  }, [noDisturbStartTime, noDisturbEndTime]);
 
   const getDesc = (key:string, type: string): string => {
     if (templateMap[key]) {
@@ -188,9 +204,9 @@ export function Settings({
         isLink={false}
         value={
           <Switch
-            checked={deviceData.doorbell === 1}
+            checked={deviceData.doorbell_switch === 1}
             onChange={(value: boolean) => {
-              doControlDeviceData('doorbell', Number(value));
+              doControlDeviceData('doorbell_switch', Number(value));
             }}
           />
         }
@@ -315,7 +331,7 @@ export function Settings({
       <Cell
         className="cell-settings"
         title="门铃铃声"
-        value={getDesc('doorbell_song', deviceData.doorbell_song ? deviceData.doorbell_song : 0)}
+        value={getDesc('doorbell_song', deviceData.doorbell_song  !== undefined ? deviceData.doorbell_song : 0)}
         valueStyle="set"
         onClick={() => {
           onToggleDoorbellSong(true);
@@ -324,20 +340,20 @@ export function Settings({
         <OptionDialog
           visible={doorbellSongVisible}
           title="门铃铃声"
-          defaultValue={[deviceData.doorbell_song ? deviceData.doorbell_song?.toString() : '0']}
+          defaultValue={[deviceData.doorbell_song !== undefined ? deviceData.doorbell_song?.toString() : '0']}
           options={getOptions('doorbell_song')}
           onCancel={() => {
             onToggleDoorbellSong(false);
           }}
           onConfirm={(value) => {
-            doControlDeviceData('doorbell_song', value[0]);
+            doControlDeviceData('doorbell_song', Number(value[0]));
           }}
         ></OptionDialog>
       </Cell>
       <Cell
         className="cell-settings mb"
         title="导航音量"
-        value={getDesc('beep_volume', deviceData.beep_volume ? deviceData.beep_volume : 2)}
+        value={getDesc('beep_volume', deviceData.beep_volume !== undefined ? deviceData.beep_volume : 2)}
         valueStyle="set"
         onClick={() => {
           onToggleBeepVolume(true);
@@ -346,37 +362,37 @@ export function Settings({
         <OptionDialog
           visible={beepVolumeVisible}
           title="导航音量"
-          defaultValue={[deviceData.beep_volume ? deviceData.beep_volume?.toString() : '2']}
+          defaultValue={[deviceData.beep_volume !== undefined ? deviceData.beep_volume?.toString() : '2']}
           options={getOptions('beep_volume')}
           onCancel={() => {
             onToggleBeepVolume(false);
           }}
           onConfirm={(value) => {
-            doControlDeviceData('beep_volume', value[0]);
+            doControlDeviceData('beep_volume', Number(value[0]));
           }}
         ></OptionDialog>
       </Cell>
       <Cell
-        className={classNames('cell-settings-high', { 'no-border': dormantTime })}
+        className={classNames('cell-settings-high', { 'no-border': deviceData.no_disturb_switch })}
         title="勿扰模式"
         subTitle={'开启后，可是门锁在特定时间内处理静音模式'}
         size="medium"
         isLink={false}
         value={
           <Switch
-            checked={dormantTime}
+            checked={deviceData.no_disturb_switch}
             onChange={(value: boolean) => {
-              setDormantTime(value);
+              doControlDeviceData('no_disturb_switch', Number(value));
             }}
           />
         }
       >
       </Cell>
-      {dormantTime ? <div className="cell-settings-secondary-wrap mb">
+      {deviceData.no_disturb_switch ? <div className="cell-settings-secondary-wrap mb">
         <Cell
           className="cell-settings-secondary"
           title="开始时间"
-          value={dormantStartTime ? dormantStartTime.join(':') : ''}
+          value={noDisturbStartTime ? noDisturbStartTime.join(':') : ''}
           valueStyle="set"
           onClick={() => {
             setDormantStartTimeVisible(true);
@@ -384,7 +400,7 @@ export function Settings({
         >
           <TimePicker
             showSemicolon={false}
-            value={dormantStartTime}
+            value={noDisturbStartTime}
             showUnit={true}
             mask={false}
             showTime={false}
@@ -394,7 +410,7 @@ export function Settings({
             title="开始时间"
             onCancel={setDormantStartTimeVisible.bind(null, false)}
             onConfirm={(val) => {
-              setDormantStartTime(val);
+              setNoDisturbStartTime(val);
               setDormantStartTimeVisible(false);
             }}
             confirmText="确认"
@@ -404,7 +420,7 @@ export function Settings({
         <Cell
           className="cell-settings-secondary no-border"
           title="结束时间"
-          value={dormantEndTime ? dormantEndTime.join(':') : ''}
+          value={noDisturbEndTime ? noDisturbEndTime.join(':') : ''}
           valueStyle="set"
           onClick={() => {
             setDormantEndTimeVisible(true);
@@ -412,7 +428,7 @@ export function Settings({
         >
           <TimePicker
             showSemicolon={false}
-            value={dormantEndTime}
+            value={noDisturbEndTime}
             showUnit={true}
             mask={false}
             showTime={false}
@@ -422,7 +438,7 @@ export function Settings({
             title="结束时间"
             onCancel={setDormantEndTimeVisible.bind(null, false)}
             onConfirm={(val) => {
-              setDormantEndTime(val);
+              setNoDisturbEndTime(val);
               setDormantEndTimeVisible(false);
             }}
             confirmText="确认"
@@ -434,14 +450,14 @@ export function Settings({
       <Cell
         className="cell-settings"
         title="门锁电池电量"
-        value={deviceData.battery_percentage || '0%'}
+        value={`${deviceData.battery_percentage || 0}%`}
         valueStyle="set"
         isLink={false}
       ></Cell>
       <Cell
         className="cell-settings"
         title="摄像头电池电量"
-        value={deviceData.ipc_battery_percentage || '0%'}
+        value={`${deviceData.ipc_battery_percentage || 0}%`}
         valueStyle="set"
         isLink={false}
       ></Cell>

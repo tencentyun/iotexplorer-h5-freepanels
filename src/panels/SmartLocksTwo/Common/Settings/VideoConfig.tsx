@@ -54,14 +54,14 @@ export function VideoConfig({
       <Cell
         className="cell-settings"
         title="SD卡状态"
-        value={getDesc('sd_status', deviceData.sd_status)}
+        value={getDesc('sd_status', deviceData.sd_status) || '--'}
         valueStyle="set"
         isLink={false}
       ></Cell>
       <Cell
         className="cell-settings"
         title="清晰度"
-        value={getDesc('definition', deviceData.definition)}
+        value={getDesc('clarity', deviceData.clarity)}
         valueStyle="set"
         onClick={() => {
           onToggleClarity(true);
@@ -70,13 +70,13 @@ export function VideoConfig({
         <OptionDialog
           visible={clarityVisible}
           title="清晰度"
-          defaultValue={[deviceData.definition]}
-          options={getOptions('definition')}
+          defaultValue={[deviceData.clarity]}
+          options={getOptions('clarity')}
           onCancel={() => {
             onToggleClarity(false);
           }}
           onConfirm={(value) => {
-            doControlDeviceData('definition', value[0]);
+            doControlDeviceData('clarity', Number(value[0]));
           }}
         ></OptionDialog>
       </Cell>

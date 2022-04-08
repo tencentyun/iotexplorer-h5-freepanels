@@ -18,7 +18,7 @@ export function Home({
 
   const lockStatusWord = {
     0: '未上锁',
-    1: '已关闭',
+    1: '已上锁',
     2: '已离线',
   };
 
@@ -40,7 +40,7 @@ export function Home({
           {/* 门锁电源模块 */}
           <div>
             <Battery
-              value={deviceData.battery_percentage || 50}
+              value={deviceData.battery_percentage || 0}
               isShowPercent={true}
               isShowTip={false}
             />
@@ -49,7 +49,7 @@ export function Home({
           {/* IPC电源模块 */}
           <div className="ipc">
             <Battery
-              value={deviceData.ipc_battery_percentage || 50}
+              value={deviceData.ipc_battery_percentage || 0}
               isShowPercent={true}
               isShowTip={false}
             />

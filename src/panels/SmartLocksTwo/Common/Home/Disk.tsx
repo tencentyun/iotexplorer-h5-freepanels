@@ -2,11 +2,12 @@
  * @Description: 智能锁-表盘
  */
 import React, { useEffect } from 'react';
+import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 import { Icon } from '@custom/Icon';
 export interface DiskProps {
-  deviceData: unknown;
-  doControlDeviceData: unknown;
-  tips: unknown;
+  deviceData: any;
+  doControlDeviceData: (...params: any) => Promise<void>;
+  tips: any;
 }
 
 // let flag: any = 0;
@@ -83,11 +84,12 @@ export function Disk({
 
       if (i >= 100) {
         clearInterval(forwardInterval);
-        doControlDeviceData('lock_motor_state', Number(!deviceData.lock_motor_state));
+        sdk.callDeviceAction({}, 'unlock_remote');
+        // doControlDeviceData('lock_motor_state', Number(!deviceData.lock_motor_state));
         // 重置
         i = 0;
       }
-    }, 100);
+    }, 60);
   };
 
   const fallbackAnimation = () => {
@@ -132,6 +134,7 @@ export function Disk({
   };
 
   const handleTouchMove = (e) => {
+    e.preventDefault();
     console.log(e, 'handleTouchMove');
   };
   const handleTouchEnd = (e) => {
@@ -153,6 +156,12 @@ export function Disk({
   const longPress = () => {
     // clearInterval(flag)
     // flag = 0;
+
+    // 长按只能解锁
+    if (deviceData.lock_motor_state === 0) {
+      console.log('设备已经解锁');
+      return;
+    }
     clearInterval(fallbackInterval);
     forwardAnimation();
     // console.log(i);
