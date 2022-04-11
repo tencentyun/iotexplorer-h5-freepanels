@@ -9,30 +9,16 @@ import { InputDialog } from './InputDialog';
 import { getLocalImgData, chooseImage } from '@utils';
 import { Cell } from '@custom/Cell';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
-
-type Auth = {
-  name: string;
-}
-interface UserInfo {
-  name: string;
-  id: string;
-  fingerPrints: Auth[];
-  passwords: Auth[];
-  faces: Auth[];
-  cards: Auth[];
-}
+import { useUser } from './hooks/useUser';
 
 export function UserEdit({
   history: { PATH, push, query, goBack },
-  deviceData,
   doControlDeviceData,
   tips,
 }) {
   useTitle('用户编辑');
   // 用户姓名
-  const users = deviceData.users || [];
-  const userIndex = users.findIndex((user: UserInfo) => user.id === query.id);
-  const userInfo = users[userIndex] || { name: query.userName, id: query.id };
+  const [{ userInfo, userIndex }, { deleteUser, editUser }] = useUser({ id: query.id, name: query.userName });
   const nameValue = userInfo.name;
 
   const [nameEditVisible, setNameEdit] = useState(false);
@@ -56,8 +42,7 @@ export function UserEdit({
   const handleUserDelete = async () => {
     const isDelete = await tips.confirm('确认删除');
     if (isDelete) {
-      users.splice(userIndex, 1);
-      await doControlDeviceData('users', users);
+      await deleteUser();
       push(PATH.USERS_INDEX);
     }
   };
@@ -90,8 +75,7 @@ export function UserEdit({
               return;
             }
             userInfo.name = value.trim();
-            const newUsers = [...users.slice(0, userIndex), userInfo, ...users.slice(userIndex + 1)];
-            doControlDeviceData('users', newUsers);
+            editUser(userInfo);
           }}
         ></InputDialog>
       </div>
@@ -118,7 +102,7 @@ export function UserEdit({
       ))}
       <div className="unlock-method">
         <div>密码</div>
-        <div onClick={async() => {
+        <div onClick={async () => {
           push(PATH.USERS_PSDRESULT, { type: 'password' });
           await sdk.callDeviceAction({ wait_timeout: 60, token: userInfo.id }, 'add_password');
         }}>+添加</div>
@@ -179,10 +163,10 @@ export function UserEdit({
       <Cell
         className="cell-settings pd"
         title="生效时间"
-        value={query.effectiveTime === '1' ? '自定义' : '永久'}
+        value={userInfo.effectiveTime?.type === 1 ? '自定义' : '永久'}
         valueStyle="set"
         onClick={() => {
-          push(PATH.USERS_PSDADD, { effectiveTime: query.effectiveTime || '0' });
+          push(PATH.USERS_PSDADD, { id: query.id });
         }}
       ></Cell>
 
