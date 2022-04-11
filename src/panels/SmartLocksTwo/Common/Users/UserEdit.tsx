@@ -18,7 +18,7 @@ interface UserInfo {
   id: string;
   fingerPrints: Auth[];
   passwords: Auth[];
-  face: Auth[];
+  faces: Auth[];
   cards: Auth[];
 }
 
@@ -32,16 +32,16 @@ export function UserEdit({
   // 用户姓名
   const users = deviceData.users || [];
   const userIndex = users.findIndex((user: UserInfo) => user.id === query.id);
-  const userInfo = users[userIndex];
+  const userInfo = users[userIndex] || { name: query.userName, id: query.id };
   const nameValue = userInfo.name;
 
   const [nameEditVisible, setNameEdit] = useState(false);
   const [images, setImages] = useState([]);
 
-  const [fingerprintList, setFingerprintList] = useState(userInfo.fingerPrints || []);
-  const [passwordList, setPasswordList] = useState(userInfo.passwords || []);
-  const [cardList, setCardList] = useState(userInfo.cards || []);
-  const [faceList, setFaceList] = useState(userInfo.faces || []);
+  const fingerprintList = userInfo.fingerPrints || [];
+  const passwordList = userInfo.passwords || [];
+  const cardList = userInfo.cards || [];
+  const faceList = userInfo.faces || [];
 
   // 暂时不支持上传头像
   const openPhotoSdk = async () => {
@@ -110,7 +110,6 @@ export function UserEdit({
             const isDelete = await tips.confirm('确认删除');
             if (isDelete) {
               // TODO
-              setFingerprintList([]);
             }
           }}>
             <Icon name="delete"></Icon>
@@ -119,8 +118,9 @@ export function UserEdit({
       ))}
       <div className="unlock-method">
         <div>密码</div>
-        <div onClick={() => {
+        <div onClick={async() => {
           push(PATH.USERS_PSDRESULT, { type: 'password' });
+          await sdk.callDeviceAction({ wait_timeout: 60, token: userInfo.id }, 'add_password');
         }}>+添加</div>
       </div>
       {passwordList.map((item, index) => (
@@ -130,7 +130,6 @@ export function UserEdit({
             const isDelete = await tips.confirm('确认删除');
             if (isDelete) {
               // TODO
-              setPasswordList([]);
             }
           }}>
             <Icon name="delete"></Icon>
@@ -139,8 +138,9 @@ export function UserEdit({
       ))}
       <div className="unlock-method">
         <div>卡片</div>
-        <div onClick={() => {
+        <div onClick={async () => {
           push(PATH.USERS_PSDRESULT, { type: 'card' });
+          await sdk.callDeviceAction({ wait_timeout: 60, token: userInfo.id }, 'add_card');
         }}>+添加</div>
       </div>
       {cardList.map((item, index) => (
@@ -150,7 +150,6 @@ export function UserEdit({
             const isDelete = await tips.confirm('确认删除');
             if (isDelete) {
               // TODO
-              setCardList([]);
             }
           }}>
             <Icon name="delete"></Icon>
@@ -159,8 +158,9 @@ export function UserEdit({
       ))}
       <div className="unlock-method">
         <div>脸部</div>
-        <div onClick={() => {
+        <div onClick={async () => {
           push(PATH.USERS_PSDRESULT, { type: 'face' });
+          await sdk.callDeviceAction({ wait_timeout: 60, token: userInfo.id }, 'add_face');
         }}>+添加</div>
       </div>
       {faceList.map((item, index) => (
@@ -170,7 +170,6 @@ export function UserEdit({
             const isDelete = await tips.confirm('确认删除');
             if (isDelete) {
               // TODO
-              setFaceList([]);
             }
           }}>
             <Icon name="delete"></Icon>
