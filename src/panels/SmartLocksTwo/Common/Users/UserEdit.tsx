@@ -8,24 +8,44 @@ import { Icon } from '@custom/Icon';
 import { InputDialog } from './InputDialog';
 import { getLocalImgData, chooseImage } from '@utils';
 import { Cell } from '@custom/Cell';
+import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
+
+type Auth = {
+  name: string;
+}
+interface UserInfo {
+  name: string;
+  id: string;
+  fingerPrints: Auth[];
+  passwords: Auth[];
+  face: Auth[];
+  cards: Auth[];
+}
 
 export function UserEdit({
-  history: { PATH, push, query },
+  history: { PATH, push, query, goBack },
+  deviceData,
+  doControlDeviceData,
   tips,
 }) {
   useTitle('用户编辑');
   // 用户姓名
-  const [nameValue, setNameValue] = useState(query.userName ? query.userName : '我');
+  const users = deviceData.users || [];
+  const userIndex = users.findIndex((user: UserInfo) => user.id === query.id);
+  const userInfo = users[userIndex];
+  const nameValue = userInfo.name;
+
   const [nameEditVisible, setNameEdit] = useState(false);
   const [images, setImages] = useState([]);
 
-  const [fingerprintList, setFingerprintList] = useState([{ name: '拇指1' }]);
-  const [passwordList, setPasswordList] = useState([{ name: '密码1' }]);
-  const [cardList, setCardList] = useState([{ name: '卡片1' }]);
-  const [faceList, setFaceList] = useState([{ name: '脸部1' }]);
+  const [fingerprintList, setFingerprintList] = useState(userInfo.fingerPrints || []);
+  const [passwordList, setPasswordList] = useState(userInfo.passwords || []);
+  const [cardList, setCardList] = useState(userInfo.cards || []);
+  const [faceList, setFaceList] = useState(userInfo.faces || []);
 
+  // 暂时不支持上传头像
   const openPhotoSdk = async () => {
-    const imagePaths = await chooseImage();
+    const imagePaths: any = await chooseImage();
     setImages(imagePaths);
     console.log('图片路径:', imagePaths);
     // 读取图片base64数据
@@ -33,18 +53,11 @@ export function UserEdit({
     console.log('base64数据:', base64Data);
   };
 
-  // const handleDelete = async () => {
-  //   const isDelete = await tips.confirm('确认删除');
-  //   if (isDelete) {
-  //     // TODO
-
-  //   }
-  // }
-
   const handleUserDelete = async () => {
     const isDelete = await tips.confirm('确认删除');
     if (isDelete) {
-      // TODO
+      users.splice(userIndex, 1);
+      await doControlDeviceData('users', users);
       push(PATH.USERS_INDEX);
     }
   };
@@ -52,16 +65,18 @@ export function UserEdit({
   return (
     <main className={classNames('user-edit')}>
       <div className="user-edit-header">
-        <div className="user-avatar" onClick={openPhotoSdk}>
+        <div className="user-avatar">
           {images.length === 0 && <Icon name="default-avatar"></Icon>}
           {images.map((src, index) => <img className="avatar" key={index} src={src} />)}
         </div>
-        <p className="user-name">
+        <div className="user-name">
           <span className="name">{nameValue}</span>
           <span className="edit" onClick={() => {
             setNameEdit(true);
-          }}><Icon name="edit"></Icon></span>
-        </p>
+          }}>
+            <Icon name="edit"></Icon>
+          </span>
+        </div>
         <InputDialog
           visible={nameEditVisible}
           title="姓名修改"
@@ -71,15 +86,21 @@ export function UserEdit({
             setNameEdit(false);
           }}
           onConfirm={(value) => {
-            setNameValue(value);
+            if (value.trim() === '') {
+              return;
+            }
+            userInfo.name = value.trim();
+            const newUsers = [...users.slice(0, userIndex), userInfo, ...users.slice(userIndex + 1)];
+            doControlDeviceData('users', newUsers);
           }}
         ></InputDialog>
       </div>
 
       <div className="unlock-method">
         <div>指纹</div>
-        <div onClick={() => {
+        <div onClick={async () => {
           push(PATH.USERS_PSDRESULT, { type: 'fingerprint' });
+          await sdk.callDeviceAction({ wait_timeout: 60, token: userInfo.id }, 'add_fingerprint');
         }}>+添加</div>
       </div>
       {fingerprintList.map((item, index) => (

@@ -1,13 +1,14 @@
 /*
  * @Description: 用户密码
  */
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import classNames from 'classnames';
 import { useTitle } from '@hooks/useTitle';
 import { Icon } from '@custom/Icon';
+import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 
 export function PasswordResult({
-  history: { push, PATH, query },
+  history: { push, PATH, query, goBack },
 }) {
   useTitle('用户编辑');
   const [status, setStatus] = useState(true);
@@ -18,6 +19,23 @@ export function PasswordResult({
     card: 'card',
     face: 'face',
   };
+  const synchMethodEvent = {
+    fingerprint: 'add_fingerprint_result',
+    password: 'add_password_result',
+    card: 'add_card_result',
+    face: 'add_face_result',
+  };
+
+  useEffect(() => {
+    sdk.once('wsEventReport', ({ Payload, deviceId }) => {
+      console.log('receive event:', Payload, deviceId);
+      if (deviceId === sdk.deviceId && Payload.eventId === synchMethodEvent[query.type]) {
+        // TODO: 这里判断添加指纹是否成功
+        goBack();
+      }
+      // 这里等待返回结果
+    });
+  }, []);
 
   return (
     <main className={classNames('user-password')}>
@@ -44,7 +62,7 @@ export function PasswordResult({
       <footer className={classNames('footer', status ? '' : 'retry')}>
         {status ? (
           <div className="footer-button" onClick={() => {
-            push(PATH.USERS_EDIT);
+            goBack();
           }}>确认</div>
         ) : (
           <>

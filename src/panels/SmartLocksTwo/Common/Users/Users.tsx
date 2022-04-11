@@ -8,12 +8,16 @@ import { Cell } from '@custom/Cell';
 import { Icon } from '@custom/Icon';
 import { InputDialog } from './InputDialog';
 import { List } from '@custom/List';
+import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 
 export function Users({
   history: { PATH, push },
+  doControlDeviceData,
+  tips,
+  deviceData,
 }) {
   useTitle('用户管理');
-  const [userList, setUserList] = useState([{ name: '我', type: '指纹1 密码1' }, { name: '妈妈', type: '指纹2' }, { name: '我2', type: '指纹1 密码1' }]);
+  const [userList, setUserList] = useState(deviceData.users || []);
   const [addUserVisible, setAddUserVisible] = useState(false);
 
   // 删除用户
@@ -24,37 +28,27 @@ export function Users({
 
   return (
     <main className={classNames('users')}>
-      {/* {userList.length > 0 ? (
-        userList.length > 0 && userList.map((item, index) => (
-          <Cell
-            className="cell-user"
-            title={item.name}
-            subTitle={item.type}
-            prefixIcon={<Icon name="avatar"></Icon>}
-            onClick={()=>{push(PATH.USERS_EDIT, {userName: item.name});}}
-          ></Cell>
-        ))
-      ) : (
-        <div className="no-record-tips">暂无用户</div>
-      )} */}
 
-      <List
+    {userList.length > 0
+      ? <List
         data={userList}
         onDelete={onDelete}
-        render={({ name, type }, index) => (
+        render={({ name, type, id }) => (
 
           <Cell
-            key={index}
+            key={id}
             className="cell-user"
             title={name}
             subTitle={type}
             prefixIcon={<Icon name="avatar"></Icon>}
             onClick={() => {
-              push(PATH.USERS_EDIT, { userName: name });
+              push(PATH.USERS_EDIT, { userName: name, id });
             }}
           ></Cell>
         )}
       />
+      : <div className="no-record-tips"></div>
+    }
 
       <footer className="footer">
         <div className="footer-button" onClick={() => {
@@ -71,13 +65,18 @@ export function Users({
         onCancel={() => {
           setAddUserVisible(false);
         }}
-        onConfirm={(value) => {
-          if (value === '') {
+        onConfirm={async (value) => {
+          const trimedValue = value.trim();
+          if (trimedValue.trim() === '') {
             return;
           }
-          push(PATH.USERS_EDIT, { userName: value });
+          const id = sdk.appDevSdk.utils.shortid();
+          // 更新users物模型
+          await doControlDeviceData('users', [...userList, { name: value, id }]);
+          // 跳转到用户编辑
+          push(PATH.USERS_EDIT, { userName: value, id });
         }}
-      ></InputDialog>
+      />
     </main>
   );
 }
