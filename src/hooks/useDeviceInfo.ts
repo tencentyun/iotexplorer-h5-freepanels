@@ -122,7 +122,7 @@ export const useDeviceInfo = (): UseDeviceInfoResult => {
     deviceInfo: {},
     productInfo: {},
     templateMap: {},
-    deviceData: {},
+    deviceData: sdk.deviceData || {},
     statusTip: { status: 'loading' },
   });
 

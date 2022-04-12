@@ -5,7 +5,7 @@ type Auth = {
 
 export interface EffectiveTime {
   type: 0 | 1,
-  beiginDate: string;
+  beginDate: string;
   endDate: string;
   beginTime: string;
   endTime: string;
@@ -32,6 +32,7 @@ type UserResult = [
 export const useUser = ({ id, name }: { id: string, name?: string }): UserResult => {
   const [{ deviceData }, { doControlDeviceData }] = useDeviceInfo();
   const users = deviceData.users || [];
+  console.log('users:', deviceData.users, deviceData);
   const userIndex = users.findIndex((user: UserInfo) => user.id === id);
   const userInfo = users[userIndex] || { name, id, effectiveTime: {} };
 

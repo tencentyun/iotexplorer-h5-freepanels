@@ -8,13 +8,12 @@ import { Cell } from '@custom/Cell';
 import { Switch } from '@custom/Switch';
 import { OptionDialog } from '@custom/OptionDialog';
 import { TimePicker } from '@custom/TimePicker';
+import { getTimeArr } from '../utils';
 
 interface OptionProps {
   label: string;
   value: string | number;
 }
-
-const getTimeArr = (time: string) => time.split(':');
 
 export function Settings({
   deviceData,
@@ -78,7 +77,7 @@ export function Settings({
         const options: OptionProps[] = [];
         Object.entries(templateMap[key].define.mapping).forEach(([index, value]) => {
           options.push({
-            label: value,
+            label: String(value),
             value: index,
           });
         });
