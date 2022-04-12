@@ -9,7 +9,7 @@ import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 import { sleep } from '../utils';
 
 export function PasswordResult({
-  history: { push, PATH, query, goBack },
+  history: { query, goBack },
 }) {
   useTitle('用户编辑');
   const [status, setStatus] = useState(false);

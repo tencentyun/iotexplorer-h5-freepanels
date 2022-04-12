@@ -7,6 +7,7 @@ import { Input } from '@custom/Input';
 import { useTitle } from '@hooks/useTitle';
 import { TimePicker } from '@custom/TimePicker';
 import { DatePicker } from '@custom/DatePicker';
+import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 
 export const arrWeek = ['周日', '周一', '周二', '周三', '周四', '周五', '周六'];
 
@@ -23,7 +24,7 @@ export function AddTempPassword({ history: { goBack } }) {
   // 周期与单次
   const [type, setType] = useState(PASSWORD_TYPE.SINGLE);
   // 单次密码
-  const [singlePassword, setSinglePassword] = useState({ password: '', time: '' });
+  const [singlePassword, setSinglePassword] = useState({ password: '', expired: '' });
   // 周期密码
   const [password, setPassword] = useState({ password: '', time: '' });
   // 有效日期
@@ -51,10 +52,21 @@ export function AddTempPassword({ history: { goBack } }) {
   };
   // 获取单次密码
   const getSinglePassword = () => {
-    // TODO
-    setSinglePassword({
-      password: '372940',
-      time: +new Date(),
+    sdk.requestTokenApi('AppGenerateDeviceOTP', {
+      DeviceId: sdk.deviceId,
+      Digit: 6,
+    }).then((res) => {
+      console.log(res);
+      const {
+        OTPPasswordProperty: {
+          Expired: expired,
+          OTPPassword: password,
+        },
+      } = res;
+      setSinglePassword({
+        password,
+        expired: dayjs(1000 * expired).format('YYYY/MM/DD HH:  mm'),
+      });
     });
   };
 
@@ -249,7 +261,7 @@ export function AddTempPassword({ history: { goBack } }) {
             </div>
             <div className="password-tips">
               <p>有效期</p>
-              <p>将于北京时间{dayjs(singlePassword.time).format('YYYY/MM/DD HH:  mm')}或使用过一次后自动失效</p>
+              <p>将于北京时间{singlePassword.expired}或使用过一次后自动失效</p>
             </div>
           </div>
         ) : null}

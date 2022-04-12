@@ -3,58 +3,46 @@ import { useTitle } from '@hooks/useTitle';
 import { Btn } from '@custom/Btn';
 import dayjs from 'dayjs';
 import { List } from '@custom/List';
+import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 
 // 密码类型
 const PASSWORD_TYPE = ['单次', '周期'];
 
-const mockData = [
-  {
-    id: 1,
-    type: 0,
-    loseTime: 1648145585399, // 失效时间
-    isLose: true,
-  },
-  {
-    id: 2,
-    type: 1,
-    startTime: 1648145585399, // 开始时间
-    endTime: 1648643044260, // 结束时间
-    week: '周一、周三',
-    isLose: false,
-  },
-  {
-    id: 3,
-    type: 0,
-    loseTime: 1648145585399, // 失效时间
-    isLose: true,
-  },
-  {
-    id: 4,
-    type: 1,
-    startTime: 1648145585399, // 开始时间
-    endTime: 1648643044260, // 结束时间
-    week: '周二、周三',
-    isLose: false,
-  },
-  {
-    id: 5,
-    type: 0,
-    loseTime: 1648145585399, // 失效时间
-    isLose: true,
-  },
-
-
-];
+interface PasswordItem {
+  BeginTime: number
+  DeviceName: string
+  Expired: number
+  OTPPassword: string
+  ProductId: string
+  Status: 0 | 1
+}
 
 export function TempPassword({ history: { push, PATH }, tips }) {
   useTitle('临时密码');
   const [data, setData] = useState([]);
 
   const getPasswordList = async () => {
-    // TODO
-    const result = await Promise.resolve(mockData);
-    setData(result);
+    try {
+      const { OTPPasswordProperties: passwords } = await sdk.requestTokenApi('AppGetDeviceOTPList', {
+        DeviceId: sdk.deviceId,
+      });
+      setData(passwords);
+    } catch (err) {
+      console.log('获取密码列表出错', err);
+      tips.showError('获取密码列表出错');
+    }
   };
+
+  const getsign = async (payload: string) => {
+    const res = await sdk.requestTokenApi('AppDeviceCustomSignature', {
+      DeviceId: sdk.deviceId,
+      Content: payload,
+      SignMethod: 'hmacsha1',
+    });
+    return res.Signature;
+  };
+
+  getsign('123456');
 
   // 删除单条密码
   const onDelete = (item) => {
@@ -85,6 +73,23 @@ export function TempPassword({ history: { push, PATH }, tips }) {
         <List
           data={data}
           onDelete={onDelete}
+          render={({ OTPPassword, Expired, Status }: PasswordItem, index) => {
+            const isLose = Status === 1 || Expired * 1000 < Date.now();
+            return (
+              <div key={index} className="item">
+                <span>
+                  <div>单次</div>
+                  <div>将于 {dayjs(Expired * 1000).format('YYYY/MM/DD  HH:mm:ss')} 失效</div>
+                </span>
+                <span className={isLose ? 'flag fail' : 'flag success'}>{isLose ? '已失效' : '生效中'}</span>
+              </div>
+            );
+          }
+          }
+        />
+        <List
+          data={data}
+          onDelete={onDelete}
           render={({ loseTime, type, isLose, startTime, endTime, week }, index) => (
             <div key={index} className="item">
               <span>
@@ -94,7 +99,7 @@ export function TempPassword({ history: { push, PATH }, tips }) {
                     <div>{`${dayjs(startTime).format('YYYY/MM/DD HH:mm')} - ${dayjs(endTime).format('YYYY/MM/DD HH:mm')}`}</div>
                     <div>{`${week} ${dayjs(loseTime).format('HH:mm')}`}</div>
                   </div>
-                  : <div>将于{dayjs(loseTime).format('YYYY/MM/DD  HH:mm')}失效</div>
+                  : <div>将于{dayjs(loseTime).format('YYYY/MM/DD  HH:mm:ss')}失效</div>
                 }
 
               </span>
@@ -102,16 +107,6 @@ export function TempPassword({ history: { push, PATH }, tips }) {
             </div>
           )}
         />
-
-        {/* {data.map(({ loseTime, type, isLose }, index) => (
-          <div key={index} className="item">
-            <span>
-              <div>{PASSWORD_TYPE[type]}</div>
-              <div>将于{dayjs(loseTime).format('YYYY/MM/DD  HH:mm')}失效</div>
-            </span>
-            <span className={isLose ? 'flag fail' : 'flag success'}>{isLose ? '已失效' : '生效中'}</span>
-          </div>
-        ))} */}
       </div>
       <div className="fix-bottom-btn">
         <Btn btnText="清空" type="danger" onClick={onCleanClick} />
