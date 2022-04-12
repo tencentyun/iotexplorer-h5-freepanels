@@ -6,18 +6,19 @@ import classNames from 'classnames';
 import { useTitle } from '@hooks/useTitle';
 import { Icon } from '@custom/Icon';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
+import { sleep } from '../utils';
 
 export function PasswordResult({
   history: { push, PATH, query, goBack },
 }) {
   useTitle('用户编辑');
-  const [status, setStatus] = useState(true);
+  const [status, setStatus] = useState(false);
 
   const synch_method = {
-    fingerprint: 'fingerprint',
-    password: 'password',
-    card: 'card',
-    face: 'face',
+    fingerprint: '指纹',
+    password: '密码',
+    card: '卡片',
+    face: '面容ID',
   };
   const synchMethodEvent = {
     fingerprint: 'add_fingerprint_result',
@@ -26,12 +27,21 @@ export function PasswordResult({
     face: 'add_face_result',
   };
 
+  const synchMethodTips = {
+    fingerprint: '请在门锁的指纹识别区按压指纹',
+    password: '请在门锁键盘上输入密码',
+    card: '请在门锁刷卡区贴近卡片',
+    face: '请将面部靠近门锁的摄像头',
+  };
+
   useEffect(() => {
-    sdk.once('wsEventReport', ({ Payload, deviceId }) => {
+    sdk.once('wsEventReport', async ({ Payload, deviceId }) => {
       console.log('receive event:', Payload, deviceId);
       if (deviceId === sdk.deviceId && Payload.eventId === synchMethodEvent[query.type]) {
         // TODO: 这里判断添加指纹是否成功
-        goBack();
+        setStatus(true);
+        await sleep(2000);
+        // goBack();
       }
       // 这里等待返回结果
     });
@@ -40,12 +50,12 @@ export function PasswordResult({
   return (
     <main className={classNames('user-password')}>
 
-      {status ? (
+      {!status ? (
         <>
-          <div className="tips">请在门锁的指纹识别区按压指纹</div>
+          <div className="tips">{synchMethodTips[query.type]}</div>
           <div className="scan-area">
             <div className="scan-icon">
-              <Icon name={synch_method[query.type]}></Icon>
+              <Icon name={query.type}></Icon>
             </div>
             <div className="scan-line"></div>
           </div>
@@ -55,23 +65,21 @@ export function PasswordResult({
           <div className="result-icon">
             <Icon name="success"></Icon>
           </div>
-          <div className="result-tips">指纹添加成功</div>
+          <div className="result-tips">{synch_method[query.type]}添加成功</div>
         </>
       )}
 
-      <footer className={classNames('footer', status ? '' : 'retry')}>
-        {status ? (
-          <div className="footer-button" onClick={() => {
-            goBack();
-          }}>确认</div>
+      <footer className={classNames('footer', !status ? '' : 'retry')}>
+        {!status ? (
+          <div className="footer-button">添加中...</div>
         ) : (
           <>
             <div className="cancel-button" onClick={() => {
-              push(PATH.USERS_EDIT);
-            }}>取消</div>
-            <div className="footer-button" onClick={() => {
+              goBack();
+            }}>返回</div>
+            {/* <div className="footer-button" onClick={() => {
               setStatus(false);
-            }}>重试</div>
+            }}>重试</div> */}
           </>
         )}
       </footer>
