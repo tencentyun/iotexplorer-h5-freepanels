@@ -40,7 +40,7 @@ const supportEle = {
 };
 
 export function Cell({
-  className, // 支持边框 和下边框 border border-bottom
+  className, // 支持边框 和下边框  cell-settings
   prefixIcon,
   title,
   subTitle,

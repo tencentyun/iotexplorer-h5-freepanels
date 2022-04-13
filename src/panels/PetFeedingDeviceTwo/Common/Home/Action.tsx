@@ -30,10 +30,9 @@ export const Action = ({
     [
       '设置',
       power_switch ? 'setting-checked' : 'setting',
-      onSwitchChange,
+      () => push(PATH.SETTING),
       !!power_switch,
     ],
-
   ];
 
   return (
@@ -55,5 +54,3 @@ export const Action = ({
     </div>
   );
 };
-
-
