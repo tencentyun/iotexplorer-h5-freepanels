@@ -22,7 +22,6 @@ const ListTimer = ({
     await doTimer(TIMER_API.DELETE, { TimerId });
   };
   const renderDesc = (data: string) => {
-    if (renderLabel) return renderLabel(data);
     if (!data) return '';
     let result = '';
     let dataObj = {};
@@ -31,6 +30,7 @@ const ListTimer = ({
     } catch (e) {
       console.error(e);
     }
+    if (renderLabel) return renderLabel(dataObj);
     Object.keys(dataObj).forEach((k) => {
       const value = labelEnum[k]?.value?.[dataObj[k]];
       if (value) result += `${labelEnum[k].label}: ${value} `;
