@@ -1,12 +1,12 @@
 import React, { useState, useRef, useEffect } from 'react';
 // import './Circular.less';
 export interface CircularProps {
-  className?: string;
+  className?: string ;
   value?: number;
   onChange?: (value: number) => void;
   onMove?: (value: number) => void;
 }
-export const Circular = ({ value = 0, onChange, onMove, className }) => {
+export const Circular = ({ value = 0, onChange, onMove, className } : CircularProps) => {
   const wrapper = useRef();
   const [deg, setDeg] = useState(value);
 

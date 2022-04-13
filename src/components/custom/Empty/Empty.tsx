@@ -1,9 +1,9 @@
 import React from 'react';
 import { Icon } from '@custom/Icon';
-export function Empty() {
+export function Empty({ children }) {
   return (
     <div className="cus-empty">
-      <Icon name="empty" className="empty" />
+      {children ? children : <Icon name="empty" className="empty" />}
     </div>
   );
 }

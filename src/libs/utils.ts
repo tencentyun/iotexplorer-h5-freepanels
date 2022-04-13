@@ -93,3 +93,33 @@ export const copyText = (text) => {
 
 export const copy = nodeId => copyText(document.getElementById(nodeId).innerText);
 
+interface OptionProps {
+  label: string;
+  value: string | number;
+}
+export const getOptions = (templateMap, key: string) => {
+  if (templateMap[key]) {
+    const type = templateMap[key]?.define?.type;
+    if (type === 'enum' || type === 'stringenum') {
+      const options: OptionProps[] = [];
+      Object.entries(templateMap[key].define.mapping).forEach(([index, value]) => {
+        options.push({
+          label: value,
+          value: index,
+        });
+      });
+      return (options || []).length > 0 ? options : [];
+    }
+  }
+  return [{ label: '没数据', value: '0' }];
+};
+
+
+export const getDesc = (templateMap, key: string, type: string): string => {
+  if (templateMap[key]) {
+    const typeObj = templateMap[key];
+
+    return typeObj.define.mapping[type];
+  }
+  return '';
+};
