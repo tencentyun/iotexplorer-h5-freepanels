@@ -649,7 +649,7 @@ module.exports = {
       // ['panel-house', { enable: true, entry: 'app.tsx' }],
     ],
   },
-   WhiteLampTwo: {
+  WhiteLampTwo: {
     enable: true,
     viewportWidth: 375,
     panels: [

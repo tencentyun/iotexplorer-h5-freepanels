@@ -4,8 +4,8 @@
 import React, { useEffect, useState } from 'react';
 import './Disk.less';
 export interface DashboardProps {
-  width: number;
-  height: number;
+  width?: number;
+  height?: number;
   radius?: number;
   scaleIsGradient?: boolean;
   // 起始角度。采用角度制
@@ -20,9 +20,9 @@ export interface DashboardProps {
   maxValue?: number;
   value?: number;
   indicator?: IndicatorProps;
-  businessType: string;
+  businessType?: string;
   centerCicle?: CenterCicle;
-  scaleLine: ScaleLine;
+  scaleLine?: ScaleLine;
   indicatorStyle?: Indicator;
 }
 
@@ -198,57 +198,30 @@ export function Disk(props: DashboardProps) {
         y1={item.y1}
         x2={item.x2}
         y2={item.y2}
-        style={{ stroke: item.color, strokeWidth: 5 }}
+        style={{ stroke: item.color, strokeWidth: 2 }}
         strokeLinecap="round"
       ></line>
   );
 
-  const ellipse2path = (
-    r: number,
-    sx: number,
-    sy: number,
-    ex: number,
-    ey: number,
-    angle: number,
-    largeArcFlag: number,
-  ) => {
-    // path 属性
-    const descriptions = [
-      'M',
-      sx,
-      sy,
-      'A',
-      r,
-      r,
-      angle,
-      largeArcFlag,
-      1,
-      ex,
-      ey,
-    ].join(' ');
-
-    return descriptions;
-  };
 
   // 绘制指示标
   const renderIndicator: any = () => {
     // 半径
     const r1 = (width / 2) - borderWidth - 10;
 
-    const scaleList: any[] = [];
+    // const scaleList: any[] = [];
     // 0 刻度线跟svg外层距离
     const x = r1 + (r1 - borderWidth - 10) * Math.cos((currentAngle * Math.PI) / 180);
     const y = r1 + (r1 - borderWidth - 10) * Math.sin((currentAngle * Math.PI) / 180);
 
-    scaleList.push(<circle
-        cx={x}
-        cy={y}
-        r={10}
-        fill="#ffffff"
-        stroke="#26313D"
-        strokeWidth={6}
-      />);
-    return scaleList;
+    return <circle
+      cx={x}
+      cy={y}
+      r={10}
+      fill="#ffffff"
+      stroke="#26313D"
+      strokeWidth={6}
+    />;
   };
 
   const getViewbox = () => [0, 0, width, height].join(' ');
