@@ -35,24 +35,11 @@ export function Settings({
   // 导航音量
   const [beepVolumeVisible, onToggleBeepVolume] = useState(false);
 
-  // 休眠时间
-  const [effectTime, setEffectTime] = useState(getTimeArr(deviceData.dormant_time_set.start_time) || ['00', '00']); // 开始时间
-  const [effectTimeVisible, setEffectTimeVisible] = useState(false);
-  const [effectivenessTime, setEffectivenessTime] = useState(getTimeArr(deviceData.dormant_time_set.end_time) || ['23', '59']); // 结束时间
-  const [effectivenessTimeVisible, setEffectivenessTimeVisible] = useState(false);
   // 勿扰时间
   const [noDisturbStartTime, setNoDisturbStartTime] = useState(getTimeArr(deviceData.no_disturb_time_set.start_time) || ['00', '00']); // 开始时间
   const [dormantStartTimeVisible, setDormantStartTimeVisible] = useState(false);
   const [noDisturbEndTime, setNoDisturbEndTime] = useState(getTimeArr(deviceData.no_disturb_time_set.end_time) || ['23', '59']); // 结束时间
   const [dormantEndTimeVisible, setDormantEndTimeVisible] = useState(false);
-
-  // 设置休眠时间
-  useEffect(() => {
-    doControlDeviceData('dormant_time_set', {
-      start_time: effectTime.join(':'),
-      end_time: effectivenessTime.join(':'),
-    });
-  }, [effectTime, effectivenessTime]);
 
   // 设置勿扰时间
   useEffect(() => {
@@ -196,7 +183,7 @@ export function Settings({
           ></Cell>
         </div> : null
       }
-      <Cell
+      {/* <Cell
         className="cell-settings-high mb"
         title="门铃可视对讲"
         subTitle={'开启后，微信将接收到门铃可视呼叫'}
@@ -209,7 +196,7 @@ export function Settings({
             }}
           />
         }
-      ></Cell>
+      ></Cell> */}
       <Cell
         className="cell-settings mb"
         title="录像设置"
@@ -218,79 +205,6 @@ export function Settings({
           push(PATH.SETTINGS_VIDEO);
         }}
       ></Cell>
-      <Cell
-        className={classNames('cell-settings-high', { 'no-border': deviceData.dormant_switch === 1 })}
-        title="休眠设置"
-        subTitle={'开启后，门锁在休眠时间段内多数功能不可使用'}
-        isLink={false}
-        value={
-          <Switch
-            checked={deviceData.dormant_switch === 1}
-            onChange={(value: boolean) => {
-              doControlDeviceData('dormant_switch', Number(value));
-            }}
-          />
-        }
-      >
-      </Cell>
-      {deviceData.dormant_switch === 1 ? <div className="cell-settings-secondary-wrap mb">
-        <Cell
-          className="cell-settings-secondary"
-          title="开始时间"
-          value={deviceData.dormant_time_set ? deviceData.dormant_time_set.start_time : effectTime.join(':')}
-          valueStyle="set"
-          onClick={() => {
-            setEffectTimeVisible(true);
-          }}
-        >
-          <TimePicker
-            showSemicolon={false}
-            value={effectTime}
-            showUnit={true}
-            mask={false}
-            showTime={false}
-            itemHeight={58}
-            height={175}
-            showTwoDigit={true}
-            title="开始时间"
-            onCancel={setEffectTimeVisible.bind(null, false)}
-            onConfirm={(val) => {
-              setEffectTime(val);
-              setEffectTimeVisible(false);
-            }}
-            confirmText="确认"
-            visible={effectTimeVisible}
-          />
-        </Cell>
-        <Cell
-          className="cell-settings-secondary no-border"
-          title="结束时间"
-          value={deviceData.dormant_time_set ? deviceData.dormant_time_set.end_time : effectivenessTime.join(':')}
-          valueStyle="set"
-          onClick={() => {
-            setEffectivenessTimeVisible(true);
-          }}
-        >
-          <TimePicker
-            showSemicolon={false}
-            value={effectivenessTime}
-            showUnit={true}
-            mask={false}
-            showTime={false}
-            itemHeight={58}
-            height={175}
-            showTwoDigit={true}
-            title="结束时间"
-            onCancel={setEffectivenessTimeVisible.bind(null, false)}
-            onConfirm={(val) => {
-              setEffectivenessTime(val);
-              setEffectivenessTimeVisible(false);
-            }}
-            confirmText="确认"
-            visible={effectivenessTimeVisible}
-          />
-        </Cell>
-      </div> : null}
       <Cell
         className="cell-settings mb"
         title="多重验证"
