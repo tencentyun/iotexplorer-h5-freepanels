@@ -39,6 +39,15 @@ export function TempPassword({ history: { push, PATH }, tips, deviceData }) {
     });
   };
 
+  const onDeleteCyclePassword = async (item) => {
+    try {
+      await sdk.callDeviceAction({ id: item.id }, 'del_cycle_password');
+    } catch (err) {
+      console.error(err);
+      tips.showError('删除失败, 请重试');
+    }
+  };
+
   // 删除单条密码
   const onDelete = async (item) => {
     // TODO 执行删除指定的密码
@@ -87,7 +96,7 @@ export function TempPassword({ history: { push, PATH }, tips, deviceData }) {
         <div style={{ marginTop: '0.42rem' }}></div>
         <List
           data={cyclePasswordList}
-          onDelete={onDelete}
+          onDelete={onDeleteCyclePassword}
           render={({ take_effect_date, invalid_date, isLose, take_effect_time, invalid_time, week }, index) => {
             const weekStr = week.split('').map((index) => arrWeek[index]).join(',');
             return (<div key={index} className="item">
@@ -105,7 +114,7 @@ export function TempPassword({ history: { push, PATH }, tips, deviceData }) {
         />
       </div>
       <div className="fix-bottom-btn">
-        <Btn btnText="清空" type="danger" onClick={onCleanClick} />
+        {/* <Btn btnText="清空" type="danger" onClick={onCleanClick} /> */}
       </div>
     </div>
   );
