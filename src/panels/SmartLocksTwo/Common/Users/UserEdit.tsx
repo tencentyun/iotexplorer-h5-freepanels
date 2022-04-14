@@ -18,7 +18,7 @@ export function UserEdit({
 }) {
   useTitle('用户编辑');
   // 用户姓名
-  const [{ userInfo, userIndex }, { deleteUser, editUser }] = useUser({ id: query.id, name: query.userName });
+  const [{ userInfo }, { deleteUser, editUser }] = useUser({ id: query.id, name: query.userName });
   const nameValue = userInfo.name;
 
   const [nameEditVisible, setNameEdit] = useState(false);
@@ -44,6 +44,30 @@ export function UserEdit({
     if (isDelete) {
       await deleteUser();
       push(PATH.USERS_INDEX);
+    }
+  };
+
+  const addAuth = async (type: 'face' | 'password' | 'card' | 'fingerprint') => {
+    try {
+      push(PATH.USERS_PSDRESULT, { type });
+      await sdk.callDeviceAction({ userid: userInfo.id }, `add_${type}`);
+      // TODO: 超时一分钟后也返回
+      // setTimeout(() => {
+      //   goBack();
+      // }, 60000);
+    } catch (err) {
+      console.error(type, err);
+      tips.showError('添加失败，请稍后重试');
+      goBack();
+    }
+  };
+
+  const removeAuth = async (id, type: 'face' | 'password' | 'card' | 'fingerprint') => {
+    // 需要设备端提供指纹的ID
+    console.log('正在删除', type);
+    const res = await sdk.callDeviceAction({ id }, `delete_${type}`);
+    if (!res.result) {
+      tips.showError('删除失败');
     }
   };
 
@@ -83,8 +107,7 @@ export function UserEdit({
       <div className="unlock-method">
         <div>指纹</div>
         <div onClick={async () => {
-          push(PATH.USERS_PSDRESULT, { type: 'fingerprint' });
-          await sdk.callDeviceAction({ wait_timeout: 60, token: userInfo.id }, 'add_fingerprint');
+          await addAuth('fingerprint');
         }}>+添加</div>
       </div>
       {fingerprintList.map((item, index) => (
@@ -93,7 +116,7 @@ export function UserEdit({
           <div onClick={async () => {
             const isDelete = await tips.confirm('确认删除');
             if (isDelete) {
-              // TODO
+              removeAuth(item.id, 'fingerprint');
             }
           }}>
             <Icon name="delete"></Icon>
@@ -103,8 +126,7 @@ export function UserEdit({
       <div className="unlock-method">
         <div>密码</div>
         <div onClick={async () => {
-          push(PATH.USERS_PSDRESULT, { type: 'password' });
-          await sdk.callDeviceAction({ wait_timeout: 60, token: userInfo.id }, 'add_password');
+          await addAuth('password');
         }}>+添加</div>
       </div>
       {passwordList.map((item, index) => (
@@ -113,7 +135,7 @@ export function UserEdit({
           <div onClick={async () => {
             const isDelete = await tips.confirm('确认删除');
             if (isDelete) {
-              // TODO
+              removeAuth(item.id, 'password');
             }
           }}>
             <Icon name="delete"></Icon>
@@ -123,8 +145,7 @@ export function UserEdit({
       <div className="unlock-method">
         <div>卡片</div>
         <div onClick={async () => {
-          push(PATH.USERS_PSDRESULT, { type: 'card' });
-          await sdk.callDeviceAction({ wait_timeout: 60, token: userInfo.id }, 'add_card');
+          await addAuth('card');
         }}>+添加</div>
       </div>
       {cardList.map((item, index) => (
@@ -133,7 +154,7 @@ export function UserEdit({
           <div onClick={async () => {
             const isDelete = await tips.confirm('确认删除');
             if (isDelete) {
-              // TODO
+              removeAuth(item.id, 'card');
             }
           }}>
             <Icon name="delete"></Icon>
@@ -143,8 +164,7 @@ export function UserEdit({
       <div className="unlock-method">
         <div>脸部</div>
         <div onClick={async () => {
-          push(PATH.USERS_PSDRESULT, { type: 'face' });
-          await sdk.callDeviceAction({ wait_timeout: 60, token: userInfo.id }, 'add_face');
+          await addAuth('face');
         }}>+添加</div>
       </div>
       {faceList.map((item, index) => (
@@ -153,7 +173,7 @@ export function UserEdit({
           <div onClick={async () => {
             const isDelete = await tips.confirm('确认删除');
             if (isDelete) {
-              // TODO
+              removeAuth(item.id, 'face');
             }
           }}>
             <Icon name="delete"></Icon>

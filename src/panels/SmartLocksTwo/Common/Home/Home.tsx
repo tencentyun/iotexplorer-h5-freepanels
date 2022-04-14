@@ -29,7 +29,17 @@ export function Home({
   };
 
   const goVideoPanel = () => {
-    sdk.goDevicePanelPage('II0Q47L8B9/e_69518626_1');
+    sdk.callDeviceAction({
+      deviceId: sdk.deviceId,
+    }, 'get_ipc_device_id')
+      .then((res) => {
+        console.log('获取video id 结果', res);
+        sdk.goDevicePanelPage('II0Q47L8B9/e_69518626_1');
+      })
+      .catch((err) => {
+        console.error(err);
+        sdk.goDevicePanelPage('II0Q47L8B9/e_69518626_1');
+      });
   };
 
   return (

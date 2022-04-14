@@ -17,7 +17,7 @@ const arrWeek = ['星期一', '星期二', '星期三', '星期四', '星期五'
 export function PasswordAdd({ history: { PATH, goBack, query } }) {
   useTitle('生效时间编辑');
   const [{ userInfo }, { editUser }] = useUser({ id: query.id });
-  console.log('userinfo', userInfo);
+
   // 永久/自定义
   const [type, setType] = useState<0|1>(userInfo.effectiveTime?.type || 0);
   // 有效日期

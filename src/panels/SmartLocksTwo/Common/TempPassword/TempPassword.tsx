@@ -4,10 +4,7 @@ import { Btn } from '@custom/Btn';
 import dayjs from 'dayjs';
 import { List } from '@custom/List';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
-
-// 密码类型
-const PASSWORD_TYPE = ['单次', '周期'];
-
+import { arrWeek } from './AddTempPassword';
 interface PasswordItem {
   BeginTime: number
   DeviceName: string
@@ -17,10 +14,10 @@ interface PasswordItem {
   Status: 0 | 1
 }
 
-export function TempPassword({ history: { push, PATH }, tips }) {
+export function TempPassword({ history: { push, PATH }, tips, deviceData }) {
   useTitle('临时密码');
   const [data, setData] = useState([]);
-
+  const cyclePasswordList = deviceData.cycle_password_list || [];
   const getPasswordList = async () => {
     try {
       const { OTPPasswordProperties: passwords } = await sdk.requestTokenApi('AppGetDeviceOTPList', {
@@ -33,20 +30,20 @@ export function TempPassword({ history: { push, PATH }, tips }) {
     }
   };
 
-  const getsign = async (payload: string) => {
-    const res = await sdk.requestTokenApi('AppDeviceCustomSignature', {
+  const removeSinglePassword = (id: string) => {
+    sdk.requestTokenApi('AppRemoveDeviceOTP', {
+      PropertyId: id,
       DeviceId: sdk.deviceId,
-      Content: payload,
-      SignMethod: 'hmacsha1',
+    }).then((res) => {
+      console.log(res);
     });
-    return res.Signature;
   };
 
-  getsign('123456');
-
   // 删除单条密码
-  const onDelete = (item) => {
+  const onDelete = async (item) => {
     // TODO 执行删除指定的密码
+    await removeSinglePassword(item.PropertyId);
+    getPasswordList();
     setData(data.filter(({ id }) => item.id !== id));
   };
 
@@ -87,25 +84,24 @@ export function TempPassword({ history: { push, PATH }, tips }) {
           }
           }
         />
+        <div style={{ marginTop: '0.42rem' }}></div>
         <List
-          data={data}
+          data={cyclePasswordList}
           onDelete={onDelete}
-          render={({ loseTime, type, isLose, startTime, endTime, week }, index) => (
-            <div key={index} className="item">
+          render={({ take_effect_date, invalid_date, isLose, take_effect_time, invalid_time, week }, index) => {
+            const weekStr = week.split('').map((index) => arrWeek[index]).join(',');
+            return (<div key={index} className="item">
               <span>
-                <div>{PASSWORD_TYPE[type]}</div>
-                {type === 1
-                  ? <div>
-                    <div>{`${dayjs(startTime).format('YYYY/MM/DD HH:mm')} - ${dayjs(endTime).format('YYYY/MM/DD HH:mm')}`}</div>
-                    <div>{`${week} ${dayjs(loseTime).format('HH:mm')}`}</div>
-                  </div>
-                  : <div>将于{dayjs(loseTime).format('YYYY/MM/DD  HH:mm:ss')}失效</div>
-                }
-
+                <div>周期</div>
+                <div>
+                  <div>{`${take_effect_date} ${take_effect_time} - ${invalid_date} ${invalid_time}`}</div>
+                  <div>{`${weekStr}`}</div>
+                </div>
               </span>
               <span className={isLose ? 'flag fail' : 'flag success'}>{isLose ? '已失效' : '生效中'}</span>
-            </div>
-          )}
+            </div>);
+          }
+        }
         />
       </div>
       <div className="fix-bottom-btn">

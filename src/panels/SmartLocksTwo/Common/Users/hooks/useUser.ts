@@ -1,6 +1,7 @@
 import { useDeviceInfo } from '@hooks/useDeviceInfo';
 type Auth = {
-  name: string;
+  name?: string;
+  id: string;
 }
 
 export interface EffectiveTime {
