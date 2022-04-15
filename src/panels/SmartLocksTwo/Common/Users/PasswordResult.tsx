@@ -36,17 +36,19 @@ export function PasswordResult({
     face: '请将面部靠近门锁的摄像头',
   };
 
-  const cancel = async () => {
-    await sdk.callDeviceAction({}, `cancel_add_${query.type}`);
-    goBack();
+  const cancel = async (shouldGoBack?: boolean) => {
+    if (status === 0) {
+      await sdk.callDeviceAction({}, `cancel_add_${query.type}`);
+      shouldGoBack && goBack();
+    }
   };
 
   useEffect(() => {
     const handler = async ({ Payload, deviceId }) => {
       console.log('receive event:', Payload, deviceId);
-      if (deviceId === sdk.deviceId) {
+      if (deviceId === sdk.deviceId && Payload.eventId === synchMethodEvent[query.type]) {
         // TODO: 这里判断添加指纹是否成功
-        setStatus(Payload.result === 1 ? 1 : 2);
+        setStatus(Payload.params.result === 1 ? 1 : 2);
         await sleep(2000);
       }
       // 这里等待返回结果
@@ -54,12 +56,14 @@ export function PasswordResult({
     sdk.once('wsEventReport', handler);
     return () => {
       sdk.off('wsEventReport', handler);
-      // 退出页面如果还没完成，就cancel
-      if (status === 0) {
-        cancel();
-      }
     };
   }, []);
+
+  useEffect(() => {
+    return () => {
+      cancel();
+    };
+  }, [status]);
 
   return (
     <main className={classNames('user-password')}>
@@ -85,7 +89,7 @@ export function PasswordResult({
 
       <footer className={classNames('footer', !status ? '' : 'retry')}>
         {status === 0 ? (
-          <div className="footer-button" onClick={cancel}>取消</div>
+          <div className="footer-button" onClick={() => cancel(true)}>取消</div>
         ) : (
           <>
             <div className="cancel-button" onClick={() => {

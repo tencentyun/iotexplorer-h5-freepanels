@@ -50,7 +50,7 @@ export function UserEdit({
   const addAuth = async (type: 'face' | 'password' | 'card' | 'fingerprint') => {
     try {
       push(PATH.USERS_PSDRESULT, { type });
-      await sdk.callDeviceAction({ userid: userInfo.id }, `add_${type}`);
+      await sdk.callDeviceAction({ userid: userInfo.userid }, `add_${type}`);
       // TODO: 超时一分钟后也返回
       // setTimeout(() => {
       //   goBack();
@@ -112,7 +112,7 @@ export function UserEdit({
       </div>
       {fingerprintList.map((item, index) => (
         <div className="method-item" key={index}>
-          <div>{item.name}</div>
+          <div>指纹{ index + 1 }</div>
           <div onClick={async () => {
             const isDelete = await tips.confirm('确认删除');
             if (isDelete) {
@@ -131,7 +131,7 @@ export function UserEdit({
       </div>
       {passwordList.map((item, index) => (
         <div className="method-item" key={index}>
-          <div>{item.name}</div>
+          <div>密码{ index + 1 }</div>
           <div onClick={async () => {
             const isDelete = await tips.confirm('确认删除');
             if (isDelete) {
@@ -150,7 +150,7 @@ export function UserEdit({
       </div>
       {cardList.map((item, index) => (
         <div className="method-item" key={index}>
-          <div>{item.name}</div>
+          <div>卡片{ index + 1 }</div>
           <div onClick={async () => {
             const isDelete = await tips.confirm('确认删除');
             if (isDelete) {
@@ -169,7 +169,7 @@ export function UserEdit({
       </div>
       {faceList.map((item, index) => (
         <div className="method-item" key={index}>
-          <div>{item.name}</div>
+          <div>面容ID{ index + 1 }</div>
           <div onClick={async () => {
             const isDelete = await tips.confirm('确认删除');
             if (isDelete) {

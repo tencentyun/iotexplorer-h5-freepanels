@@ -15,7 +15,7 @@ export interface EffectiveTime {
 
 interface UserInfo {
   name: string;
-  id: string;
+  userid: string;
   fingerPrints: Auth[];
   passwords: Auth[];
   faces: Auth[];
@@ -33,9 +33,8 @@ type UserResult = [
 export const useUser = ({ id, name }: { id: string, name?: string }): UserResult => {
   const [{ deviceData }, { doControlDeviceData }] = useDeviceInfo();
   const users = deviceData.users || [];
-  console.log('users:', deviceData.users, deviceData);
-  const userIndex = users.findIndex((user: UserInfo) => user.id === id);
-  const userInfo = users[userIndex] || { name, id, effectiveTime: {} };
+  const userIndex = users.findIndex((user: UserInfo) => user.userid === id);
+  const userInfo = users[userIndex] || { name, userid: id, effectiveTime: {} };
 
   const deleteUser = async (index = userIndex) => {
     users.splice(index, 1);

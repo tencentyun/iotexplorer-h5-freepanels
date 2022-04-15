@@ -13,7 +13,6 @@ import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 export function Users({
   history: { PATH, push },
   doControlDeviceData,
-  tips,
   deviceData,
 }) {
   useTitle('用户管理');
@@ -22,8 +21,9 @@ export function Users({
 
   // 删除用户
   const onDelete = (item) => {
-    // TODO 执行删除指定的密码
-    setUserList(userList.filter(({ name }) => item.name !== name));
+    const newUsers = userList.filter(({ userid }) => item.userid !== userid);
+    setUserList(newUsers);
+    doControlDeviceData('users', newUsers);
   };
 
   return (

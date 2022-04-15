@@ -5,6 +5,7 @@ import { Icon } from '@custom/Icon';
 import { DatePicker } from '@custom/DatePicker';
 import { Empty } from '@custom/Empty';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
+import { tips } from '@src/libs/wxlib';
 const { Step } = Steps;
 
 const eventMap = {
@@ -46,6 +47,7 @@ export function LogList({ logType, activeKey }) {
   const [isLoaded, setLoaded] = useState(false);
   const isEmpty = isLoaded && !data.length;
   const getActionLog = async (date: [Date, Date]) => {
+    // tips.showLoading();
     const res = await sdk.requestTokenApi('AppGetDeviceActionHistories', {
       DeviceId: sdk.deviceId,
       MinTime: +dayjs(date[0]).startOf('day'),
@@ -53,26 +55,27 @@ export function LogList({ logType, activeKey }) {
       Limit: 500,
       ActionId: 'unlock_remote',
     });
-    console.log(res);
+    // tips.hide();
     const logList = res.ActionHistories;
     return [
       {
         groupDate: date[0].getTime(), // 分组时间
         children: logList.map(log => ({
           label: log.ActionName,
-          time: dayjs(log.RspTime * 1000).format('YYYY-MM-DD HH:mm'),
+          time: dayjs.unix(log.RspTime).format('YYYY-MM-DD HH:mm'),
         })),
       },
     ];
   };
   const getEventlog = async (date) => {
+    // tips.showLoading();
     const res = await sdk.requestTokenApi('AppListEventHistory', {
       DeviceId: sdk.deviceId,
       StartTime: Math.floor(+dayjs(date[0]).startOf('day') / 1000),
       EndTime: Math.floor(+dayjs(date[0]).endOf('day') / 1000),
       Limit: 500,
     });
-    console.log(res);
+    // tips.hide();
     const logList = res.EventHistory;
     return [
       {
@@ -86,10 +89,15 @@ export function LogList({ logType, activeKey }) {
   };
   // 后端加载日志数据
   const loadLog = async (dateTime, logType) => {
-    const logList = await (logType === 'action' ? getActionLog(dateTime) : getEventlog(dateTime));
-    console.log({ logList });
-    setLoaded(true);
-    setData(logList);
+    try {
+      const logList = await (logType === 'action' ? getActionLog(dateTime) : getEventlog(dateTime));
+      console.log({ logList });
+      setLoaded(true);
+      setData(logList);
+    } catch (err) {
+      console.error('get log err', err);
+      tips.showError('获取日志信息出错');
+    }
   };
 
   useEffect(() => {
