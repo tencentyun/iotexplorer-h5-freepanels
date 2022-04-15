@@ -36,9 +36,9 @@ export function Settings({
   const [beepVolumeVisible, onToggleBeepVolume] = useState(false);
 
   // 勿扰时间
-  const [noDisturbStartTime, setNoDisturbStartTime] = useState(getTimeArr(deviceData.no_disturb_time_set.start_time) || ['00', '00']); // 开始时间
+  const [noDisturbStartTime, setNoDisturbStartTime] = useState(getTimeArr(deviceData.no_disturb_time_set?.start_time) || ['00', '00']); // 开始时间
   const [dormantStartTimeVisible, setDormantStartTimeVisible] = useState(false);
-  const [noDisturbEndTime, setNoDisturbEndTime] = useState(getTimeArr(deviceData.no_disturb_time_set.end_time) || ['23', '59']); // 结束时间
+  const [noDisturbEndTime, setNoDisturbEndTime] = useState(getTimeArr(deviceData.no_disturb_time_set?.end_time) || ['23', '59']); // 结束时间
   const [dormantEndTimeVisible, setDormantEndTimeVisible] = useState(false);
 
   // 设置勿扰时间
