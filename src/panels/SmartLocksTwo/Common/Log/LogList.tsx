@@ -48,12 +48,12 @@ export function LogList({ logType, activeKey }) {
   const isEmpty = isLoaded && !data.length;
   const getActionLog = async (date: [Date, Date]) => {
     // tips.showLoading();
-    const res = await sdk.requestTokenApi('AppGetDeviceActionHistories', {
+    const res = await sdk.requestTokenApi('AppGetDeviceMultiActionHistories', {
       DeviceId: sdk.deviceId,
       MinTime: +dayjs(date[0]).startOf('day'),
       MaxTime: +dayjs(date[0]).endOf('day'),
       Limit: 500,
-      ActionId: 'unlock_remote',
+      ActionIds: ['unlock_remote', 'add_fingerprint', 'add_card', 'add_face'],
     });
     // tips.hide();
     const logList = res.ActionHistories;

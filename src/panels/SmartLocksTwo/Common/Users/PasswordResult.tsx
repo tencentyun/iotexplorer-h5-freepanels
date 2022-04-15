@@ -59,12 +59,6 @@ export function PasswordResult({
     };
   }, []);
 
-  useEffect(() => {
-    return () => {
-      cancel();
-    };
-  }, [status]);
-
   return (
     <main className={classNames('user-password')}>
 
