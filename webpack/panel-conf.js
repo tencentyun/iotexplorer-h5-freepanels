@@ -660,4 +660,15 @@ module.exports = {
       ['panel-house', { enable: true }],
     ],
   },
+  AirConditionerTwo: {
+    enable: true,
+    viewportWidth: 375,
+    panels: [
+      ['panel-cold', { enable: true, entry: 'app.tsx' }],
+      // ['panel-card', { enable: true, entry: 'app.tsx' }],
+      // ['panel-brunet', { enable: true, entry: 'app.tsx' }],
+      // ['panel-fresh', { enable: true, entry: 'app.tsx' }],
+      // ['panel-house', { enable: true, entry: 'app.tsx' }],
+    ],
+  },
 };
