@@ -1,13 +1,11 @@
 import React, { useState } from 'react';
 import { StyledProps } from '@libs/global';
 import { Circular } from '@custom/Circular';
-import { Icon } from '@custom/Icon';
 export interface LightColorProps extends StyledProps {
   defaultValue?: number; // 0 - 1000
 }
 export function Position({
   deviceData: { battery_percentage },
-  doControlDeviceData,
 }) {
   return (
     <div className="position_card">
@@ -23,7 +21,7 @@ export function Position({
 
             </div>
           </div>
-          <Circular value={battery_percentage  * 36 || 0} />
+          <Circular max={330} min={30} touch={true} value={(battery_percentage)  * 30 || 30} />
         </div>
       </div>
     </div>
