@@ -223,7 +223,7 @@ export function Settings({
             onToggleUnlockSwitch(false);
           }}
           onConfirm={(value) => {
-            doControlDeviceData('unlock_switch', value[0]);
+            doControlDeviceData('unlock_switch', +value[0]);
           }}
         ></OptionDialog>
       </Cell>
