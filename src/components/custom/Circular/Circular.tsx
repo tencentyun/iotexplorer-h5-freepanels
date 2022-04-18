@@ -1,22 +1,27 @@
 import React, { useState, useRef, useEffect } from 'react';
-// import './Circular.less';
+import Process from './Process';
+import Shape from './Shape.jsx';
 export interface CircularProps {
   className?: string;
   value?: number;
   max?: number;
   min?: number;
   touch?: boolean;
+  process?: boolean;
   onChange?: (value: number) => void;
   onMove?: (value: number) => void;
+  children?: React.ReactNode;
 }
 export const Circular = ({
   value = 0,
   onChange,
   onMove,
-  max = 360, // »¬¶¯×î´óÖµ
-  min = 0, // »¬¶¯×îÐ¡Öµ
+  max = 360, // æ»‘åŠ¨æœ€å¤§å€¼
+  min = 0, // æ»‘åŠ¨æœ€å°å€¼
   className,
-  touch = true, // ÊÇ·ñÆô¶¯»¬¶¯¹¦ÄÜ
+  children, // å†…éƒ¨åµŒå…¥é¢æ¿å†…å®¹
+  process = false, // æ˜¯å¦æ˜¾ç¤ºè¿›åº¦
+  touch = true, // æ˜¯å¦å¯åŠ¨æ»‘åŠ¨åŠŸèƒ½
 }: CircularProps) => {
   const wrapper = useRef();
   const [deg, setDeg] = useState(value);
@@ -46,12 +51,17 @@ export const Circular = ({
     onChange && onChange(deg);
   };
   const props = touch ? { onTouchMove, onTouchEnd } : {};
-
+  const shape = 360 + min - max;
   return (
-    <div className={`round-container ${className}`} ref={wrapper}>
-      <div className="round" style={{ transform: `rotate(${deg}deg)` }}>
-        <div className="point" {...props} />
+    <div className="cus-circle-panel">
+      <div className={`round-container ${className}`} ref={wrapper}>
+        <div className="round" style={{ transform: `rotate(${deg}deg)` }}>
+          <div className="point" {...props} />
+        </div>
       </div>
+      {process ? <Process value={deg} /> : null}
+      {shape ? <Shape value={shape} /> : null}
+      <div className="content-node">{children}</div>
     </div>
   );
 };

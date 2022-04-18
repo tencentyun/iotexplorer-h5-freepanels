@@ -6,20 +6,41 @@
     border: 1px solid #eff3f5;
     border-radius: 50%;
     .bg-img {
-      width: calc(100% - 24px);
-      height: calc(100% - 24px);
-      background: #26313d;
-      top: 38px;
-      left: 38px;
-      width: calc(100% - 100px);
-      height: calc(100% - 100px);
+      top: 22px;
+      left: 22px;
+      width: calc(100% - 44px);
+      height: calc(100% - 44px);
       position: absolute;
-      margin: 12px;
       border-radius: 50%;
       background: @c1;
       .svg-icon {
         width: 60px;
         height: 60px;
+      }
+      .device-status {
+        font-weight: 600;
+        font-size: 14px;
+        line-height: 20px;
+        text-align: center;
+        color: #ffffff;
+        .feed-num {
+          font-weight: 700;
+          font-size: 38px;
+          line-height: 44px;
+        }
+        .next-feed{
+          opacity: 0.5;
+          padding-top: 5px;
+        }
+      }
+    }
+    .round {
+      .point {
+        width: 10px;
+        height: 10px;
+        margin: 5px;
+        background: white;
+        border: 8px solid @c1;
       }
     }
   }
@@ -34,7 +55,7 @@
       .outer {
         width: 100%;
         height: 100%;
-        background-image: linear-gradient(90deg, #fbed96 0%, #aeecd5 100%);
+        // background-image: linear-gradient(90deg, #fbed96 0%, #aeecd5 100%);
       }
 
       .inner {
