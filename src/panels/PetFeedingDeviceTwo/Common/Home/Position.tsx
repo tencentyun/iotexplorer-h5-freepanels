@@ -23,8 +23,8 @@ export function Position({
           max={330}
           min={30}
           process={true}
-          touch={true}
-          value={battery_percentage * 30 || 30}
+          touch={false}
+          value={battery_percentage * 30 || 6 * 30}
         >
           <div className="circle-ring">
             <div className="bg">
