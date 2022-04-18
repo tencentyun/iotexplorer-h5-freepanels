@@ -52,7 +52,7 @@ export const Record = ({
           MinTime: lastYearTime,
           Limit: 10,
         });
-        setRecordList(defaultData || recordListInfo?.Results);
+        setRecordList(recordListInfo?.Results || defaultData);
         setLoaded(true);
       } catch (err) {
         console.error('get info fail', err);
@@ -65,6 +65,7 @@ export const Record = ({
   window.dayjs = dayjs;
   return (
     <div className="records-list">
+      喂食记录
       {isEmpty ? (
         <Empty>没有喂食记录</Empty>
       ) : (
