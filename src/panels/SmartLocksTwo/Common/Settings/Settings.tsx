@@ -120,7 +120,7 @@ export function Settings({
                 onToggleStayCaptureMode(false);
               }}
               onConfirm={(value) => {
-                doControlDeviceData('stay_capture_mode', value[0]);
+                doControlDeviceData('stay_capture_mode', Number(value[0]));
               }}
             ></OptionDialog>
           </Cell>
