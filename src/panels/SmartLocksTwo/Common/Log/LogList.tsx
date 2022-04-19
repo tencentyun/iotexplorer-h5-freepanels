@@ -56,7 +56,7 @@ export function LogList({ logType, activeKey }) {
       ActionIds: ['unlock_remote', 'add_fingerprint', 'add_card', 'add_face'],
     });
     // tips.hide();
-    const logList = res.ActionHistories;
+    const logList = res.ActionHistories.filter(log => log.ActionId !== 'get_ipc_device_id');
     return [
       {
         groupDate: date[0].getTime(), // 分组时间

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import classNames from 'classnames';
 import { Battery } from '@custom/Battery';
 import { Cell } from '@custom/Cell';
@@ -6,16 +6,26 @@ import { Icon } from '@custom/Icon';
 import { Disk } from './Disk';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 import { useTitle } from '@hooks/useTitle';
+import { useDeviceData } from '@src/hooks/useDeviceData';
 
 export function Home({
   deviceData,
   productInfo,
   doControlDeviceData,
+  context,
+  setContext,
   history: { PATH, push },
   tips,
 }) {
   useTitle(productInfo.Name ? productInfo.Name : '首页');
-
+  const [{ deviceStatus }] = useDeviceData(sdk);
+  useEffect(() => {
+    if (deviceStatus === 0) {
+      sdk.offlineTip.show();
+    } else {
+      sdk.offlineTip.hide();
+    }
+  }, [deviceStatus]);
   const lockStatusWord = {
     0: '未上锁',
     1: '已上锁',
@@ -29,18 +39,24 @@ export function Home({
   };
 
   const goVideoPanel = () => {
-    sdk.callDeviceAction({
-      deviceId: sdk.deviceId,
-    }, 'get_ipc_device_id')
+    console.log('IPC deviceId:', context.deviceId);
+    sdk.goDevicePanelPage(context.deviceId || 'II0Q47L8B9/e_69518626_1');
+  };
+
+  useEffect(() => {
+    sdk.callDeviceAction({}, 'get_ipc_device_id')
       .then((res) => {
-        console.log('获取video id 结果', res);
-        sdk.goDevicePanelPage('II0Q47L8B9/e_69518626_1');
+        console.log('门锁信息：', res);
+        const { OutputParams } = res;
+        const { productId, deviceName } = JSON.parse(OutputParams);
+        setContext({
+          deviceId: `${productId}/${deviceName}`,
+        });
       })
       .catch((err) => {
-        console.error(err);
-        sdk.goDevicePanelPage('II0Q47L8B9/e_69518626_1');
+        console.log('获取门锁IPC信息失败', err);
       });
-  };
+  }, []);
 
   return (
     <main className="home">
