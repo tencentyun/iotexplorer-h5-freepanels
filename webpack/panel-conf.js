@@ -671,7 +671,7 @@ module.exports = {
       // ['panel-house', { enable: true, entry: 'app.tsx' }],
     ],
   },
-    PetFeedingDeviceTwo: {
+  PetFeedingDeviceTwo: {
     enable: true,
     viewportWidth: 375,
     panels: [
@@ -680,6 +680,17 @@ module.exports = {
       ['panel-brunet', { enable: true }],
       ['panel-fresh', { enable: true }],
       ['panel-house', { enable: true }],
+    ],
+  },
+  HumidifierTwo: {
+    enable: true,
+    viewportWidth: 375,
+    panels: [
+      ['panel-cold', { enable: true, entry: 'app.tsx' }],
+      // ['panel-card', { enable: true, entry: 'app.tsx' }],
+      // ['panel-brunet', { enable: true, entry: 'app.tsx' }],
+      // ['panel-fresh', { enable: true, entry: 'app.tsx' }],
+      // ['panel-house', { enable: true, entry: 'app.tsx' }],
     ],
   },
 };
