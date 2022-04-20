@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import dayjs from 'dayjs';
 import { Steps } from '@custom/Step';
-import { Icon } from '@custom/Icon';
-import { DatePicker } from '@custom/DatePicker';
 import { Empty } from '@custom/Empty';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 import { tips } from '@src/libs/wxlib';
@@ -33,21 +31,15 @@ interface Log{
 
 type LogGroup = Log[];
 
-const getStartDate = () => {
-  const date = new Date();
-  date.setHours(0);
-  return date;
-};
-
-export function LogList({ logType, activeKey }) {
+export function LogList({ logType, activeKey, dateTime }) {
   // 默认显示最近一个月的数据
-  const [dateTime, setDateTime] = useState([getStartDate(), new Date()]);
-  const [visible, setVisible] = useState(false);
+
   const [data, setData] = useState<LogGroup>([]);
   const [isLoaded, setLoaded] = useState(false);
   const isEmpty = isLoaded && !data.length;
   const getActionLog = async (date: [Date, Date]) => {
     // tips.showLoading();
+    console.log('date:', date);
     const res = await sdk.requestTokenApi('AppGetDeviceMultiActionHistories', {
       DeviceId: sdk.deviceId,
       MinTime: +dayjs(date[0]).startOf('day'),
@@ -130,26 +122,6 @@ export function LogList({ logType, activeKey }) {
               </div>
             </div>
           ))}
-          <div className="date-pick" onClick={setVisible.bind(null, true)}>
-            <Icon name="date" size="large"></Icon>
-          </div>
-
-          <DatePicker
-            visible={visible}
-            showSemicolon={false}
-            value={dateTime[0]}
-            showUnit={true}
-            mask={false}
-            showTime={false}
-            itemHeight={58}
-            height={175}
-            showTwoDigit={true}
-            onConfirm={(startDate) => {
-              setDateTime([startDate, new Date()]);
-              setVisible(false);
-            }}
-            onCancel={setVisible.bind(null, false)}
-          />
         </>
       )}
     </div>
