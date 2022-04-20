@@ -32,7 +32,7 @@ export function Settings({
   const [unlockSwitchVisible, onToggleUnlockSwitch] = useState(false);
   // 门铃铃声
   const [doorbellSongVisible, onToggleDoorbellSong] = useState(false);
-  // 导航音量
+  // 音量
   const [beepVolumeVisible, onToggleBeepVolume] = useState(false);
 
   // 勿扰时间
@@ -265,8 +265,8 @@ export function Settings({
       </Cell>
       <Cell
         className="cell-settings mb"
-        title="导航音量"
-        value={getDesc('beep_volume', deviceData.beep_volume !== undefined ? deviceData.beep_volume : 2)}
+        title="音量"
+        value={getDesc('volume', deviceData.volume !== undefined ? deviceData.volume : 2)}
         valueStyle="set"
         onClick={() => {
           onToggleBeepVolume(true);
@@ -274,14 +274,14 @@ export function Settings({
       >
         <OptionDialog
           visible={beepVolumeVisible}
-          title="导航音量"
-          defaultValue={[deviceData.beep_volume !== undefined ? deviceData.beep_volume?.toString() : '2']}
-          options={getOptions('beep_volume')}
+          title="音量"
+          defaultValue={[deviceData.volume !== undefined ? deviceData.volume?.toString() : '2']}
+          options={getOptions('volume')}
           onCancel={() => {
             onToggleBeepVolume(false);
           }}
           onConfirm={(value) => {
-            doControlDeviceData('beep_volume', Number(value[0]));
+            doControlDeviceData('volume', Number(value[0]));
           }}
         ></OptionDialog>
       </Cell>

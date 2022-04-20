@@ -51,10 +51,6 @@ export function UserEdit({
     try {
       push(PATH.USERS_PSDRESULT, { type });
       await sdk.callDeviceAction({ userid: userInfo.userid }, `add_${type}`);
-      // TODO: 超时一分钟后也返回
-      // setTimeout(() => {
-      //   goBack();
-      // }, 60000);
     } catch (err) {
       console.error(type, err);
       tips.showError('添加失败，请稍后重试');

@@ -1,7 +1,7 @@
 /*
  * @Description: 用户密码
  */
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import classNames from 'classnames';
 import { useTitle } from '@hooks/useTitle';
 import { Icon } from '@custom/Icon';
@@ -15,7 +15,19 @@ export function PasswordResult({
 }) {
   useTitle('用户编辑');
   const [status, setStatus] = useState<Status>(0);
+  const statusRef = useRef(0);
+  const cancelByBtnRef = useRef(0);
 
+  useEffect(() => {
+    statusRef.current = status;
+  }, [status]);
+
+  // 返回页面还没添加完就取消
+  useEffect(() => () => {
+    if (statusRef.current === 0 && cancelByBtnRef.current !== 1) {
+      cancel();
+    }
+  }, []);
   const synch_method = {
     fingerprint: '指纹',
     password: '密码',
@@ -83,7 +95,10 @@ export function PasswordResult({
 
       <footer className={classNames('footer', !status ? '' : 'retry')}>
         {status === 0 ? (
-          <div className="footer-button" onClick={() => cancel(true)}>取消</div>
+          <div className="footer-button" onClick={() => {
+            cancelByBtnRef.current = 1;
+            cancel(true);
+          }}>取消</div>
         ) : (
           <>
             <div className="cancel-button" onClick={() => {
