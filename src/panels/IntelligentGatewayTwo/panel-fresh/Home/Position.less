@@ -1,0 +1,97 @@
+.position {
+  margin-top: 16px;
+  .area {
+    position: relative;
+    width: 280px;
+    height: 280px;
+    .circular-outer {
+      width: 277.42px;
+      height: 277.42px;
+      // border: 0.7px solid rgba(201, 209, 213, 0.43);
+      border-radius: 50%;
+      background: radial-gradient(
+        53.3% 53.3% at 50% 50%,
+        rgba(102, 85, 248, 0.253906) 0%,
+        rgba(247, 244, 253, 0.148465) 100%
+      );
+      position: relative;
+      .circular-inner {
+        width: 198.15px;
+        height: 198.15px;
+        // border: 1.4px solid rgba(201, 209, 213, 0.37);
+        border-radius: 50%;
+        .content {
+          color: #342a73;
+          font-weight: 600;
+          font-size: 10px;
+          line-height: 14px;
+          width: 136.23px;
+          height: 136.23px;
+          background: #ffffff;
+          box-shadow: 0px 2px 6px 2px #dedaff;
+          border-radius: 50%;
+          .num {
+            margin-bottom: 8px;
+            font-family: "DIN Alternate";
+            font-style: normal;
+            font-weight: 700;
+            font-size: 32px;
+            line-height: 37px;
+          }
+          .dev {
+            color: #a29ddf;
+          }
+          .gateway-icon {
+            margin-top: 8px;
+            width: 87.97px;
+            height: 35.67px;
+          }
+        }
+      }
+    }
+    .layer {
+      position: absolute;
+      top: 0;
+      left: 0;
+      background-color: #5440eb;
+      > div {
+        background: #5440eb;
+        mix-blend-mode: normal;
+        position: absolute;
+        border-radius: 50%;
+      }
+      .dot1 {
+        width: 7px;
+        height: 7px;
+        left: 7.19px;
+        top: 189.39px;
+        opacity: 0.44;
+      }
+      .dot2 {
+        width: 11px;
+        height: 11px;
+        left: 87.88px;
+        top: 221.4px;
+      }
+      .dot3 {
+        width: 7px;
+        height: 7px;
+        left: 89.93px;
+        top: 48.07px;
+      }
+      .dot4 {
+        width: 10px;
+        height: 10px;
+        left: 216.73px;
+        top: 131.09px;
+      }
+      .dot5 {
+        width: 7px;
+        height: 7px;
+        left: 262.36px;
+        top: 77.45px;
+        opacity: 0.44;
+      }
+    }
+  }
+}
