@@ -86,7 +86,7 @@ export function UserEdit({
           visible={nameEditVisible}
           title="姓名修改"
           defaultValue={nameValue}
-          max={10}
+          max={5}
           onCancel={() => {
             setNameEdit(false);
           }}

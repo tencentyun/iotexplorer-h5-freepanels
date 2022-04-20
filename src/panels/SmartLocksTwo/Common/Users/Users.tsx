@@ -9,6 +9,7 @@ import { Icon } from '@custom/Icon';
 import { InputDialog } from './InputDialog';
 import { List } from '@custom/List';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
+import { shortid } from '../utils';
 
 export function Users({
   history: { PATH, push },
@@ -61,7 +62,7 @@ export function Users({
         visible={addUserVisible}
         title="添加用户"
         defaultValue={''}
-        max={10}
+        max={5}
         onCancel={() => {
           setAddUserVisible(false);
         }}
@@ -70,7 +71,7 @@ export function Users({
           if (trimedValue.trim() === '') {
             return;
           }
-          const id = sdk.appDevSdk.utils.shortid();
+          const id = shortid();
           // 更新users物模型
           await doControlDeviceData('users', [...userList, { name: value, id }]);
           // 跳转到用户编辑

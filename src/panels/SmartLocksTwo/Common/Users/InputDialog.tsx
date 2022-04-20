@@ -1,7 +1,6 @@
 
 import React, { useState, useMemo } from 'react';
-import { Mask } from 'antd-mobile';
-import { Icon } from '@custom/Icon';
+import { Mask, Input } from 'antd-mobile';
 
 export interface InputDialogProps {
   title?: string;
@@ -46,21 +45,17 @@ export function InputDialog(props: InputDialogProps) {
       <div className="input-dialog-wrap">
         <header className="dialog-header">{props.title}</header>
         <main className="dialog-content">
-          <div className="adm-input">
-            <input
+          <div>
+            <Input
               className="username"
               value={inputValue}
               placeholder={placeholder ? placeholder : '请输入用户名'}
-              max={max}
-              onChange={(event) => {
-                setInputValue(event.target.value);
+              maxLength={max}
+              clearable
+              onChange={(value) => {
+                setInputValue(value);
               }}
-            ></input>
-            {inputValue
-              ? <div onClick={handleClear}>
-                <Icon name="close"></Icon>
-              </div> : null
-            }
+            ></Input>
           </div>
         </main>
         <footer>
