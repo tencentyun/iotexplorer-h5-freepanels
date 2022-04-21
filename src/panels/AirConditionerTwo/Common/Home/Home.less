@@ -12,10 +12,10 @@
     background-size: contain;
     z-index: 1;
     &.conditioner-open {
-      background-image: url('./conditioner-open.svg');
+      background-image: url('../Images/conditioner-open.svg');
     }
     &.conditioner-close {
-      background-image: url('./conditioner.svg');
+      background-image: url('../Images/conditioner.svg');
     }
     .air-cloud {
       position: relative;
@@ -23,7 +23,7 @@
       left: 50%;
       width: 404px;
       height: 174px;
-      background-image: url('./wind.svg');
+      background-image: url('../Images/wind.svg');
       background-position: center;
       background-repeat: no-repeat;
       background-size: 100%;
@@ -37,6 +37,7 @@
     position: relative;
     margin-bottom: 42px;
     text-align: center;
+    opacity: 0.5;
     z-index: 2;
     .num {
       margin-bottom: 8px;
@@ -57,6 +58,7 @@
     padding: 0 34px;
     display: flex;
     justify-content: space-between;
+    opacity: 0.5;
 
     &::before {
       content: '';
@@ -91,6 +93,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    opacity: 0.5;
   }
 
   .home-footer {
@@ -110,6 +113,20 @@
         height: 80px;
         border-radius: 22px;
         background: #30414D;
+        .icon {
+          opacity: 0.5;
+        }
+      }
+    }
+  }
+
+  .active {
+    opacity: 1;
+    .control-wrap {
+      .control-btn {
+        .icon {
+          opacity: 1;
+        }
       }
     }
   }

@@ -51,11 +51,15 @@ export function Home({
       <div className={classNames('conditioner-image', deviceData.power_switch === 1 ? 'conditioner-open' : 'conditioner-close')}>
         {deviceData.power_switch === 1 ? <div className="air-cloud"></div> : null}
       </div>
-      <div className="temperature">
+      <div className={classNames('temperature', { active: deviceData.power_switch === 1 })}>
         <p className="num">{deviceData.temp_unit_convert === 'fahrenheit' ? `${deviceData.temp_set_f || '0'}°F` : `${deviceData.temp_set || '0'}°C`}</p>
-        <p className="content">当前温度 -12℃</p>
+        <p className="content">
+          当前温度 {deviceData.temp_unit_convert === 'fahrenheit' ? deviceData.temp_current_f || 0 : deviceData.temp_current || 0}
+          <i>&#176;</i>
+          {deviceData.temp_unit_convert === 'fahrenheit' ? 'F' : 'C'}
+        </p>
       </div>
-      <ul className="setting-content">
+      <ul className={classNames('setting-content', { active: deviceData.power_switch === 1 })}>
         <li className="setting-item">
           <div className="content">{getDesc(templateMap, 'fan_speed_enum', gearValue) || '暂无'}</div>
           <div className="label">风速</div>
@@ -67,10 +71,11 @@ export function Home({
       </ul>
 
       {/* 设置按钮 */}
-      <div className="setting-button-wrap">
+      <div className={classNames('setting-button-wrap', { active: deviceData.power_switch === 1 })}>
         <div
           className="block-button-icon"
           onClick={() => {
+            if (deviceData.power_switch !== 1) return;
             setModeVisible(true);
           }}
         >
@@ -93,6 +98,7 @@ export function Home({
         <div
           className="block-button-icon"
           onClick={() => {
+            if (deviceData.power_switch !== 1) return;
             setGearVisible(true);
           }}
         >
@@ -115,6 +121,7 @@ export function Home({
         <div
           className="block-button-icon"
           onClick={() => {
+            if (deviceData.power_switch !== 1) return;
             push(PATH.SETTINGS);
           }}
         >
@@ -123,7 +130,7 @@ export function Home({
         </div>
       </div>
       {/* 设置按钮 */}
-      <footer className="home-footer">
+      <footer className={classNames('home-footer', { active: deviceData.power_switch === 1 })}>
         <div className="control-wrap">
           <div
             className="control-btn"

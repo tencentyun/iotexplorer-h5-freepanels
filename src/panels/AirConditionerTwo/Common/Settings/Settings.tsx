@@ -1,11 +1,13 @@
 /*
- * @Description: 取暖器-设置页面
+ * @Description: 空调-设置页面
  */
 import React, { useState } from 'react';
+import classNames from 'classnames';
 import { Cell } from '@custom/Cell';
 import { Switch } from '@custom/Switch';
+import { NumberSlider } from './NumberSlider';
 import { OptionDialog } from '@custom/OptionDialog';
-import { TimePicker } from '@custom/TimePicker';
+import { getOptions, getDesc } from '@utils';
 
 export function Settings({
   deviceData,
@@ -13,98 +15,102 @@ export function Settings({
   doControlDeviceData,
   history: { PATH, push },
 }) {
-  const getDesc = (key:string, type: string): string => {
-    if (templateMap[key]) {
-      const typeObj = templateMap[key];
-
-      return typeObj.define.mapping[type];
-    }
-    return '';
-  };
-
-  const volOptions = () => {
-    if (templateMap.alarm_vol) {
-      const options = templateMap.alarm_vol.map((t: any) => ({
-        label: t.desc,
-        value: t.name,
-      }));
-      return options.length > 0 ? options : [];
-    }
-    return [
-      { label: 'low', value: '0' },
-      { label: 'middle', value: '1' },
-      { label: 'high', value: '2' },
-      { label: 'mute', value: '3' },
-    ];
-  };
-
-  const ringtoneOptions = () => {
-    if (templateMap.alarm_ringtone) {
-      const options = templateMap.alarm_ringtone.map((t: any) => ({
-        label: t.desc,
-        value: t.name,
-      }));
-      return options.length > 0 ? options : [];
-    }
-    return [
-      { label: 'ringtone1', value: '1' },
-      { label: 'ringtone2', value: '2' },
-    ];
-  };
+  // 上下摆风档位gear_vertical
+  const [gearVerticalVisible, setGearVertical] = useState(false);
+  // 左右摆风档位
+  const [gearHorizontalVisible, setGearHorizontal] = useState(false);
+  // 湿度设置
+  const [humidityVisible, setHumidity] = useState(false);
 
   return (
     <main className="settings">
       <Cell
         className="cell-settings"
         title="耗电"
-        size="medium"
+        value={`${deviceData.power_consumption || 0}Kwh`}
+        valueStyle="set"
+        isLink={false}
       ></Cell>
       <Cell
         className="cell-settings"
         title="当前温度"
-        size="medium"
-        value={getDesc('checking_result', deviceData.checking_result) || ''}
+        value={deviceData.temp_unit_convert === 'fahrenheit' ? `${deviceData.temp_current_f || 0}°F` : `${deviceData.temp_current_f || 0}°C`}
         valueStyle="set"
+        isLink={false}
       ></Cell>
       <Cell
         className="cell-settings"
         title="上下摆风挡位"
-        size="medium"
-        value={getDesc('checking_result', deviceData.checking_result) || ''}
+        value={''}
         valueStyle="set"
-      ></Cell>
+        onClick={() => {
+          setGearVertical(true);
+        }}
+      >
+        <NumberSlider
+          className="gear-slider"
+          defaultValue={deviceData.angle_horizontal}
+          maxValue={180}
+          minValue={0}
+          status={deviceData.power_switch}
+          onChange={(value: number) => {
+            // setVal(value);
+          }}
+        ></NumberSlider>
+        <OptionDialog
+          visible={gearVerticalVisible}
+          title="上下摆风挡位"
+          defaultValue={[deviceData.angle_vertical ? deviceData.angle_vertical?.toString() : '2']}
+          options={getOptions(templateMap, 'angle_vertical')}
+          onCancel={() => {
+            setGearVertical(false);
+          }}
+          onConfirm={(value) => {
+            doControlDeviceData('angle_vertical', value[0]);
+          }}
+        ></OptionDialog>
+      </Cell>
       <Cell
         className="cell-settings"
         title="左右摆风挡位"
-        size="medium"
-        value={getDesc('checking_result', deviceData.checking_result) || ''}
+        value={''}
         valueStyle="set"
       ></Cell>
       <Cell
         className="cell-settings"
         title="温标切换"
-        size="medium"
-        value={getDesc('checking_result', deviceData.checking_result) || ''}
-        valueStyle="set"
-      ></Cell>
+        isLink={false}
+      >
+        <div className="unit-convert">
+          <div
+            className={classNames('unit-btn', { active: deviceData.temp_unit_convert === 'celsius' })}
+            onClick={() => {
+              doControlDeviceData('temp_unit_convert', 'celsius');
+            }}
+          >°C</div>
+          <div
+            className={classNames('unit-btn', { active: deviceData.temp_unit_convert === 'fahrenheit' })}
+            onClick={() => {
+              doControlDeviceData('temp_unit_convert', 'fahrenheit');
+            }}
+          >°F</div>
+        </div>
+      </Cell>
       <Cell
         className="cell-settings"
-        title="房间信息"
-        size="medium"
-        isLink={false}
-        value={getDesc('checking_result', deviceData.checking_result) || ''}
+        title="温度设置"
+        value={''}
         valueStyle="set"
       ></Cell>
       <Cell
         className="cell-settings"
         title="3D扫风"
-        size="medium"
         isLink={false}
         value={
           <Switch
-            checked={deviceData.self_checking === 1}
+            checked={deviceData.swing_3d === 1}
             onChange={(value: boolean) => {
-              doControlDeviceData('self_checking', Number(value));
+              doControlDeviceData('swing_3d', Number(value));
             }}
           />
         }
@@ -112,69 +118,12 @@ export function Settings({
       <Cell
         className="cell-settings"
         title="烘干"
-        size="medium"
         isLink={false}
         value={
           <Switch
-            checked={deviceData.self_checking === 1}
+            checked={deviceData.drying === 1}
             onChange={(value: boolean) => {
-              doControlDeviceData('self_checking', Number(value));
-            }}
-          />
-        }
-      ></Cell>
-      <Cell
-        className="cell-settings"
-        title="换气模式"
-        size="medium"
-        isLink={false}
-        value={
-          <Switch
-            checked={deviceData.self_checking === 1}
-            onChange={(value: boolean) => {
-              doControlDeviceData('self_checking', Number(value));
-            }}
-          />
-        }
-      ></Cell>
-      <Cell
-        className="cell-settings"
-        title="负离子"
-        size="medium"
-        isLink={false}
-        value={
-          <Switch
-            checked={deviceData.self_checking === 1}
-            onChange={(value: boolean) => {
-              doControlDeviceData('self_checking', Number(value));
-            }}
-          />
-        }
-      ></Cell>
-      <Cell
-        className="cell-settings"
-        title="自清洁"
-        size="medium"
-        isLink={false}
-        value={
-          <Switch
-            checked={deviceData.self_checking === 1}
-            onChange={(value: boolean) => {
-              doControlDeviceData('self_checking', Number(value));
-            }}
-          />
-        }
-      ></Cell>
-      <Cell
-        className="cell-settings"
-        title="加热"
-        size="medium"
-        isLink={false}
-        value={
-          <Switch
-            checked={deviceData.self_checking === 1}
-            onChange={(value: boolean) => {
-              doControlDeviceData('self_checking', Number(value));
+              doControlDeviceData('drying', Number(value));
             }}
           />
         }
@@ -182,13 +131,12 @@ export function Settings({
       <Cell
         className="cell-settings"
         title="自动"
-        size="medium"
         isLink={false}
         value={
           <Switch
-            checked={deviceData.self_checking === 1}
+            checked={deviceData.auto === 1}
             onChange={(value: boolean) => {
-              doControlDeviceData('self_checking', Number(value));
+              doControlDeviceData('auto', Number(value));
             }}
           />
         }
@@ -196,13 +144,12 @@ export function Settings({
       <Cell
         className="cell-settings"
         title="ECO模式"
-        size="medium"
         isLink={false}
         value={
           <Switch
-            checked={deviceData.self_checking === 1}
+            checked={deviceData.eco === 1}
             onChange={(value: boolean) => {
-              doControlDeviceData('self_checking', Number(value));
+              doControlDeviceData('eco', Number(value));
             }}
           />
         }
@@ -210,13 +157,12 @@ export function Settings({
       <Cell
         className="cell-settings"
         title="换气模式"
-        size="medium"
         isLink={false}
         value={
           <Switch
-            checked={deviceData.self_checking === 1}
+            checked={deviceData.ventilation === 1}
             onChange={(value: boolean) => {
-              doControlDeviceData('self_checking', Number(value));
+              doControlDeviceData('ventilation', Number(value));
             }}
           />
         }
@@ -224,37 +170,46 @@ export function Settings({
       <Cell
         className="cell-settings"
         title="负离子"
-        size="medium"
         isLink={false}
         value={
           <Switch
-            checked={deviceData.self_checking === 1}
+            checked={deviceData.anion === 1}
             onChange={(value: boolean) => {
-              doControlDeviceData('self_checking', Number(value));
+              doControlDeviceData('anion', Number(value));
             }}
           />
         }
       ></Cell>
       <Cell
         className="cell-settings"
-        title="负离子"
-        size="medium"
+        title="自清洁"
         isLink={false}
         value={
           <Switch
-            checked={deviceData.self_checking === 1}
+            checked={deviceData.cleaning === 1}
             onChange={(value: boolean) => {
-              doControlDeviceData('self_checking', Number(value));
+              doControlDeviceData('cleaning', Number(value));
             }}
           />
         }
       ></Cell>
       <Cell
         className="cell-settings"
-        title="云端定时"
-        size="medium"
-        // value={getDesc('checking_result', deviceData.checking_result) || ''}
-        valueStyle="set"
+        title="加热"
+        isLink={false}
+        value={
+          <Switch
+            checked={deviceData.heat === 1}
+            onChange={(value: boolean) => {
+              doControlDeviceData('heat', Number(value));
+            }}
+          />
+        }
+      ></Cell>
+      <Cell
+        className="cell-settings"
+        title="云定时"
+        isLink={true}
         onClick={() => {
           push(PATH.TIMER_LIST);
         }}
