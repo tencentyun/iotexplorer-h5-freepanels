@@ -102,13 +102,6 @@ export function VideoConfig({
           }}
         ></OptionDialog>
       </Cell>
-      <Cell
-        className="cell-settings"
-        title="SD卡格式化"
-        value={getDesc('sd_format_state', deviceData.sd_format_state)}
-        valueStyle="set"
-        isLink={false}
-      ></Cell>
     </main>
   );
 }

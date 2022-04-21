@@ -70,8 +70,12 @@ export function Disk({
     const perimeter = 2 * Math.PI * radius;
     const circle = document.getElementById('circle') as HTMLUnknownElement;
     const indicator = document.getElementById('indicator') as HTMLUnknownElement;
+    // 3s完成动画
+    const time = 2000;
+    const step = 2;
+    const loop = 100 / step;
     forwardInterval = setInterval(() => {
-      i += 2;
+      i += step;
       const percent = i / 100;
       circle.setAttribute('stroke-dasharray', `${perimeter * percent} ${perimeter * (1 - percent)}`);
       circle.setAttribute('stroke', deviceData.lock_motor_state === 1 ? '#DA695C' : '#00A884');
@@ -89,7 +93,7 @@ export function Disk({
         // 重置
         i = 0;
       }
-    }, 60);
+    }, time / loop);
   };
 
   const fallbackAnimation = () => {
@@ -208,6 +212,7 @@ export function Disk({
       <div className="content-wrap">
         <div className="content">
           <Icon name={lockStatus[deviceData.lock_motor_state || '0']} />
+          <span>{deviceData.lock_motor_state === 1 ? '长按解锁' : ''}</span>
         </div>
       </div>
       <svg
