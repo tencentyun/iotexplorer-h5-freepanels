@@ -8,7 +8,6 @@ import { Cell } from '@custom/Cell';
 import { Icon } from '@custom/Icon';
 import { InputDialog } from './InputDialog';
 import { List } from '@custom/List';
-import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 import { shortid } from '../utils';
 
 export function Users({

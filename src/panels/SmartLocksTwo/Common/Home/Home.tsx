@@ -38,8 +38,11 @@ export function Home({
     2: 'offline',
   };
 
-  const goVideoPanel = () => {
+  const goVideoPanel = async () => {
     console.log('IPC deviceId:', context.deviceId);
+    if (deviceData.wakeup_state !== 1) {
+      await sdk.callDeviceAction({}, 'wake_up');
+    }
     sdk.goDevicePanelPage(context.deviceId || 'II0Q47L8B9/e_69518626_1');
   };
 
