@@ -9,6 +9,7 @@ import { Icon } from '@custom/Icon';
 import { InputDialog } from './InputDialog';
 import { List } from '@custom/List';
 import { shortid } from '../utils';
+import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 
 export function Users({
   history: { PATH, push },
@@ -33,16 +34,16 @@ export function Users({
       ? <List
         data={userList}
         onDelete={onDelete}
-        render={({ name, type, id }) => (
+        render={({ name, type, userid }) => (
 
           <Cell
-            key={id}
+            key={userid}
             className="cell-user"
             title={name}
             subTitle={type}
             prefixIcon={<Icon name="avatar"></Icon>}
             onClick={() => {
-              push(PATH.USERS_EDIT, { userName: name, id });
+              push(PATH.USERS_EDIT, { userName: name, userid });
             }}
           ></Cell>
         )}
@@ -71,10 +72,11 @@ export function Users({
             return;
           }
           const id = shortid();
+          await sdk.callDeviceAction({ name: value, userid: id }, 'add_user');
           // 更新users物模型
-          await doControlDeviceData('users', [...userList, { name: value, id }]);
+          // await doControlDeviceData('users', [...userList, { name: value, id }]);
           // 跳转到用户编辑
-          push(PATH.USERS_EDIT, { userName: value, id });
+          push(PATH.USERS_EDIT, { userName: value, userid: id });
         }}
       />
     </main>

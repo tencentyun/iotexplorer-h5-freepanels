@@ -13,18 +13,18 @@ import { useUser } from './hooks/useUser';
 
 export function UserEdit({
   history: { PATH, push, query, goBack },
-  doControlDeviceData,
   tips,
 }) {
   useTitle('用户编辑');
   // 用户姓名
-  const [{ userInfo }, { deleteUser, editUser }] = useUser({ id: query.id, name: query.userName });
+  const [{ userInfo }, { deleteUser, editUser }] = useUser({ id: query.userid, name: query.userName });
+  console.log({ userInfo });
   const nameValue = userInfo.name;
 
   const [nameEditVisible, setNameEdit] = useState(false);
   const [images, setImages] = useState([]);
 
-  const fingerprintList = userInfo.fingerPrints || [];
+  const fingerprintList = userInfo.fingerprints || [];
   const passwordList = userInfo.passwords || [];
   const cardList = userInfo.cards || [];
   const faceList = userInfo.faces || [];
@@ -94,8 +94,7 @@ export function UserEdit({
             if (value.trim() === '') {
               return;
             }
-            userInfo.name = value.trim();
-            editUser(userInfo);
+            editUser({ userid: userInfo.userid, name: value.trim() });
           }}
         ></InputDialog>
       </div>
@@ -182,7 +181,7 @@ export function UserEdit({
         value={userInfo.effectiveTime?.type === 1 ? '自定义' : '永久'}
         valueStyle="set"
         onClick={() => {
-          push(PATH.USERS_PSDADD, { id: query.id });
+          push(PATH.USERS_PSDADD, { userid: query.userid });
         }}
       ></Cell>
 

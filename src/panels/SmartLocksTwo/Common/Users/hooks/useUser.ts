@@ -1,4 +1,5 @@
 import { useDeviceInfo } from '@hooks/useDeviceInfo';
+import { sdk } from '@src/models/kugou';
 type Auth = {
   name?: string;
   id: string;
@@ -16,34 +17,54 @@ export interface EffectiveTime {
 interface UserInfo {
   name: string;
   userid: string;
-  fingerPrints: Auth[];
+  fingerprints: Auth[];
   passwords: Auth[];
   faces: Auth[];
   cards: Auth[];
-  effectiveTime: EffectiveTime
+  effectiveTime: EffectiveTime | string;
 }
 type UserResult = [
   { userInfo: UserInfo, userIndex: number },
   {
     deleteUser: () => Promise<void>,
-    editUser: (userInfo: UserInfo, index?: number) => Promise<void>,
+    editUser: (userInfo: Partial<UserInfo>, index?: number) => Promise<void>,
   }
 ];
 
 export const useUser = ({ id, name }: { id: string, name?: string }): UserResult => {
   const [{ deviceData }, { doControlDeviceData }] = useDeviceInfo();
-  const users = deviceData.users || [];
+  const {
+    users = [],
+    fingerprints = [],
+    cards = [],
+    faces = [],
+    passwords = [],
+  } = deviceData;
   const userIndex = users.findIndex((user: UserInfo) => user.userid === id);
-  const userInfo = users[userIndex] || { name, userid: id, effectiveTime: {} };
+  const userInfo = users[userIndex] || { name, userid: id, effectiveTime: '{}' };
+  console.log('effectiveTime', userInfo.effectiveTime);
+  const userData = {
+    ...userInfo,
+    effectiveTime: JSON.parse(userInfo.effectiveTime || '{}'),
+    passwords: passwords.filter(item => item.userid === userInfo.userid),
+    fingerprints: fingerprints.filter(item => item.userid === userInfo.userid),
+    cards: cards.filter(item => item.userid === userInfo.userid),
+    faces: faces.filter(item => item.userid === userInfo.userid),
+  };
 
   const deleteUser = async (index = userIndex) => {
-    users.splice(index, 1);
-    await doControlDeviceData('users', users);
+    await sdk.callDeviceAction({ userid: users[userIndex].userid }, 'delete_user');
+    // users.splice(index, 1);
+    // await doControlDeviceData('users', users);
   };
 
   const editUser = async (userInfo: UserInfo, index = userIndex) => {
-    const newUsers = [...users.slice(0, index), userInfo, ...users.slice(index + 1)];
-    await doControlDeviceData('users', newUsers);
+    await sdk.callDeviceAction({
+      ...userInfo,
+      effectiveTime: userInfo.effectiveTime || '',
+    }, 'edit_user');
+    // const newUsers = [...users.slice(0, index), userInfo, ...users.slice(index + 1)];
+    // await doControlDeviceData('users', newUsers);
   };
-  return [{ userInfo, userIndex }, { deleteUser, editUser }];
+  return [{ userInfo: userData, userIndex }, { deleteUser, editUser }];
 };

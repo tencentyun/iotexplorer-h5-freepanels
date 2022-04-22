@@ -15,7 +15,6 @@ let i = 0;
 
 export function Disk({
   deviceData = {},
-  doControlDeviceData,
   tips,
 }: DiskProps) {
   const lockStatus = {
@@ -89,8 +88,6 @@ export function Disk({
       if (i >= 100) {
         clearInterval(forwardInterval);
         sdk.callDeviceAction({}, 'unlock_remote');
-        // doControlDeviceData('lock_motor_state', Number(!deviceData.lock_motor_state));
-        // 重置
         i = 0;
       }
     }, time / loop);
