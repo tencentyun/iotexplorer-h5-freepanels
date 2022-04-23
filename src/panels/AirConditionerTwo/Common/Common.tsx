@@ -5,7 +5,7 @@ import { Settings } from './Settings';
 import { TimerList, TimerAdd, MainSwitch, Repeat } from './Timer';
 const App = () => {
   const route = [
-    { path: '/home', Component: Settings },
+    { path: '/home', Component: TimerAdd },
     { path: '/settings', Component: Settings },
     { path: '/timer/list', Component: TimerList },
     { path: '/timer/add', Component: TimerAdd },

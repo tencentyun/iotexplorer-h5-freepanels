@@ -39,9 +39,9 @@ export function Settings({
         isLink={false}
       ></Cell>
       <Cell
-        className="cell-settings"
+        className="cell-settings no-border"
         title="上下摆风挡位"
-        value={''}
+        value={getDesc(templateMap, 'angle_vertical', deviceData.angle_vertical)}
         valueStyle="set"
         onClick={() => {
           setGearVertical(true);
@@ -54,7 +54,7 @@ export function Settings({
           minValue={0}
           status={deviceData.power_switch}
           onChange={(value: number) => {
-            // setVal(value);
+            doControlDeviceData('angle_vertical', value);
           }}
         ></NumberSlider>
         <OptionDialog
@@ -73,9 +73,35 @@ export function Settings({
       <Cell
         className="cell-settings"
         title="左右摆风挡位"
-        value={''}
+        value={getDesc(templateMap, 'gear_horizontal', deviceData.gear_horizontal)}
         valueStyle="set"
-      ></Cell>
+        onClick={() => {
+          setGearHorizontal(true);
+        }}
+      >
+        <NumberSlider
+          className="gear-slider"
+          defaultValue={deviceData.angle_horizontal}
+          maxValue={180}
+          minValue={0}
+          status={deviceData.power_switch}
+          onChange={(value: number) => {
+            doControlDeviceData('angle_horizontal', value);
+          }}
+        ></NumberSlider>
+        <OptionDialog
+          visible={gearHorizontalVisible}
+          title="左右摆风挡位"
+          defaultValue={[deviceData.gear_horizontal ? deviceData.gear_horizontal?.toString() : '']}
+          options={getOptions(templateMap, 'gear_horizontal')}
+          onCancel={() => {
+            setGearHorizontal(false);
+          }}
+          onConfirm={(value) => {
+            doControlDeviceData('gear_horizontal', value[0]);
+          }}
+        ></OptionDialog>
+      </Cell>
       <Cell
         className="cell-settings"
         title="温标切换"
@@ -99,9 +125,14 @@ export function Settings({
       <Cell
         className="cell-settings"
         title="温度设置"
-        value={''}
+        value={`${deviceData.humidity_set || 0}%`}
         valueStyle="set"
-      ></Cell>
+        onClick={() => {
+          setHumidity(true);
+        }}
+      >
+
+      </Cell>
       <Cell
         className="cell-settings"
         title="3D扫风"

@@ -2,20 +2,17 @@ import React from 'react';
 import { List, Radio } from 'antd-mobile';
 import { Icon } from '@custom/Icon';
 
-export const MainSwitch = ({ context: { power_switch = 0, switchNum = 4 }, setContext }) => {
-  const getSwitchNumData = (powerSwitch, num) => {
-    const value = 5 * powerSwitch;
+export const MainSwitch = ({ context: { power_switch = 0 }, setContext }) => {
+  const getSwitchNumData = (powerSwitch) => {
     const changeData = { power_switch: powerSwitch };
-    for (let i = 0; i < num; i++) {
-      changeData[`switch_${i + 1}`] = value;
-    }
     return changeData;
   };
 
   const onAllSwitchChange = (powerSwitch) => {
-    const data = getSwitchNumData(powerSwitch, switchNum);
+    const data = getSwitchNumData(powerSwitch);
     setContext(data);
   };
+
   return (
     <div className="timer-action switch-modal">
       <Radio.Group onChange={onAllSwitchChange} value={power_switch}>

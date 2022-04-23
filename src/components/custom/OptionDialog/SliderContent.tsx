@@ -4,7 +4,7 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { Icon } from '@custom/Icon';
 
-export function NumberSlider({ className, maxValue = 100, minValue = 0, status, defaultValue = 80, onChange }) {
+export function SliderContent({ className, maxValue = 100, minValue = 0, status, defaultValue = 80, onChange }) {
   const [dataInfo, setDataInfo] = useState({ dataUser: defaultValue, endTouch: false });
   const currentWidth = `${5 + ((dataInfo.dataUser - minValue) * 95) / (maxValue - minValue)}%`;
   const slider = useRef();
@@ -54,27 +54,27 @@ export function NumberSlider({ className, maxValue = 100, minValue = 0, status, 
   };
 
   return (
-    <div className={`cus-gear-slider ${className}`}>
-      <div className="mark">
-        <div className="mark-op-btn" onClick={toggleReduce}>
-          <Icon name="slider-minus"></Icon>
-        </div>
-        <div className="value-wrap">
-          <div className="value-text">{dataInfo.dataUser}</div>
-        </div>
-        <div className="mark-op-btn" onClick={toggleAdd}>
-          <Icon name="slider-minus"></Icon>
-        </div>
-      </div>
+     <div className={`slider-content ${className}`}>
+       <div className="mark">
+         <div className="mark-op-btn" onClick={toggleReduce}>
+           <Icon name="slider-minus"></Icon>
+         </div>
+         <div className="value-wrap">
+           <div className="value-text">{dataInfo.dataUser}</div>
+         </div>
+         <div className="mark-op-btn" onClick={toggleAdd}>
+           <Icon name="slider-minus"></Icon>
+         </div>
+       </div>
 
-      <div className="border" onTouchStart={onTouchStart}>
-        <div ref={slider} className="slider">
-          <div className="progress" style={{ width: currentWidth }}>
-            <div className="progress-dot"></div>
-          </div>
-        </div>
-      </div>
-    </div>
+       <div className="border" onTouchStart={onTouchStart}>
+         <div ref={slider} className="slider">
+           <div className="progress" style={{ width: currentWidth }}>
+             <div className="progress-dot"></div>
+           </div>
+         </div>
+       </div>
+     </div>
   );
 }
 

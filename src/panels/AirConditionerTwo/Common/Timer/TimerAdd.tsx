@@ -8,49 +8,82 @@ const labelEnum = {
     label: '开关',
     value: ['关闭', '开启'],
   },
+  mode: {
+    label: '开关',
+    value: [{
+      cold: '制冷',
+    }, {
+      cold: '制冷',
+    }, {
+      cold: '制冷',
+    }, {
+      cold: '制冷',
+    }, {
+      cold: '制冷',
+    }],
+  },
 };
 
 export const TimerAdd = (props) => {
   const {
-    context: { power_switch = 0 },
-    history: { PATH, push },
+    context: { power_switch, mode, temp_set, fan_speed_enum },
+    setContext,
   } = props;
   const [visible, setVisible] = useState(false);
+  const [modeVisible, setModeVisible] = useState(false);
+  const [gearVisible, setGearVisible] = useState(false);
 
   return (
     <>
-      <CloudTimerAdd labelEnum={labelEnum}  {...props}>
+      <CloudTimerAdd {...props}>
         <List.Item
-          prefix={'开关'}
-          extra={labelEnum.power_switch.value[power_switch]}
-          onClick={() => push(PATH.TIMER_ACTION_SWITCH)}
+          prefix="开关"
+          extra={power_switch || ''}
+          onClick={() => {
+            setVisible(true);
+          }}
         />
         <List.Item
-          prefix={'总开关'}
-          extra={labelEnum.power_switch.value[power_switch]}
-          onClick={() => push(PATH.TIMER_ACTION_SWITCH)}
+          prefix="模式"
+          extra={mode || ''}
+          onClick={() => {
+            setVisible(true);
+          }}
+        />
+        <List.Item
+          prefix="温度设置"
+          extra={temp_set || 0}
+          onClick={() => {
+            setVisible(true);
+          }}
+        />
+        <List.Item
+          prefix="风速"
+          extra={fan_speed_enum || ''}
+          onClick={() => {
+            setVisible(true);
+          }}
         />
       </CloudTimerAdd>
       <OptionDialog
-        title="喂食份数"
-        visible={visible}
-        // value={[manual_feed]}
-        onCancel={() => setVisible(false)}
-        // onConfirm={manual_feed => setContext({ manual_feed: manual_feed[0] })}
-        options={[
-          { label: '1', value: 1 },
-          { label: '2', value: 2 },
-          { label: '3', value: 3 },
-          { label: '4', value: 4 },
-          { label: '5', value: 5 },
-          { label: '6', value: 6 },
-          { label: '7', value: 7 },
-          { label: '8', value: 8 },
-          { label: '9', value: 9 },
-          { label: '10', value: 10 },
-          { label: '11', value: 11 },
-          { label: '12', value: 12 },
-        ]}
+        visible={modeVisible}
+        title="模式"
+        defaultValue={[mode]}
+        options={[]}
+        onCancel={() => {
+          setModeVisible(false);
+        }}
+        onConfirm={mode => setContext({ mode: mode[0] })}
+      ></OptionDialog>
+      <OptionDialog
+        visible={gearVisible}
+        title="风速"
+        defaultValue={[fan_speed_enum]}
+        options={[]}
+        onCancel={() => {
+          setGearVisible(false);
+        }}
+        onConfirm={fan_speed_enum => setContext({ fan_speed_enum: fan_speed_enum[0] })}
       ></OptionDialog>
     </>
   );
