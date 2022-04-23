@@ -1,0 +1,55 @@
+.home {
+  .bottom-action {
+    color: #1D2C3E;
+    position: fixed;
+    width: 100%;
+    height: 123px;
+    top: 0;
+
+    .config-action {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      position: relative;
+      overflow: hidden;
+      padding: 24px 16px 0 16px;
+      .item {
+        .action-item {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          flex-direction: column;
+          // border: 1px solid #eff3f5;
+          width: 48px;
+          height: 48px;
+          background: #FFFFFF;
+          border-radius: 16px;
+
+          .action-ele {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            font-size: 15px;
+            font-weight: 600;
+            &.action-ele-0{
+              .svg-icon{
+                width: 32px;
+              }
+            }
+          }
+
+        }
+        > div:last-child {
+          margin-top: 10px;
+          opacity: 0.5;
+        }
+        &.checked {
+          > div:last-child {
+            opacity:1;
+          }
+        }
+      }
+    }
+  }
+}
