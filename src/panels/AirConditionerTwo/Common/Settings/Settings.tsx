@@ -23,7 +23,7 @@ export function Settings({
   const [humidityVisible, setHumidity] = useState(false);
 
   return (
-    <main className="settings">
+    <main className="settings-wrap">
       <Cell
         className="cell-settings"
         title="耗电"

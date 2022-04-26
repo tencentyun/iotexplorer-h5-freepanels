@@ -123,3 +123,17 @@ export const getDesc = (templateMap, key: string, type: string): string => {
   }
   return '';
 };
+
+export function mapsToOptions(templateMap, name: string): string[] {
+  if (!templateMap[name]) return ['1', '2', '3'];
+
+  const min = Number(templateMap[name]?.define.min);
+  const max = Number(templateMap[name]?.define.max);
+  const step = Number(templateMap[name]?.define.step);
+  const result: string[] = [];
+
+  for (let i = min; i <= max; i += step) {
+    result.push(i.toString());
+  }
+  return result;
+}
