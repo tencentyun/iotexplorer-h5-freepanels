@@ -14,8 +14,6 @@ export function Disk({
 }: DiskProps) {
   const bubbles = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13];
 
-  deviceData.smoke_sensor_state = 1;
-
   return (
     <div className={classNames('disk', { 'is-alarm': deviceData.smoke_sensor_state })}>
       <div className="content">

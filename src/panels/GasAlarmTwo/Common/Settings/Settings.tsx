@@ -21,7 +21,7 @@ export function Settings({
   const [alarmTimeVisible, onToggleAlarmTime] = useState(false);
 
   return (
-    <main className="settings">
+    <main className="settings-wrap">
       <Cell
         className="cell-settings"
         title="设备自检"
