@@ -1,0 +1,84 @@
+.heater-disk-wrap {
+  position: relative;
+  margin: 0 auto;
+  width: 260px;
+  height: 260px;
+  overflow: visible;
+  svg {
+    overflow: visible;
+  }
+  .humidifier-disk {
+    width: 260px;
+    height: 260px;
+  }
+  .disk-circle-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-weight: 600;
+    font-size: 14px;
+    color: #6655F8;
+    text-align: center;
+    
+    .num {
+      margin-top: 22px;
+      font-weight: 700;
+      font-size: 40px;
+      line-height: 47px;
+      font-family: 'DIN Alternate';
+    }
+    .title {
+      margin-top: 4px;
+      line-height: 20px;
+    }
+    .desc {
+      margin-top: 22px;
+      line-height: 20px;
+      color: #6655F8;
+      opacity: 0.5;
+    }
+  }
+  .outer-circle {
+    fill: url(#radialGradient);
+    stroke: none; 
+  }
+  .center-circle {
+    fill: #FFFFFF;
+    stroke: none;
+  }
+  .line {
+    stroke: rgba(102, 85, 248, 0.5);
+  }
+  #circle-bg {
+    stroke: none;
+  }
+  &.status-active {
+    opacity: 1;
+    #circle {
+      stroke: #6655F8;
+    }
+    #indicator {
+      stroke: #6655F8;
+      fill: #FFFFFF;
+    }
+    .text {
+      fill: #342A73;
+    }
+  }
+  &.status-disable {
+    #circle {
+      stroke: #A29DDF;
+    }
+    #indicator {
+      stroke: #A29DDF;
+      fill: #FFFFFF;
+    }
+    .text {
+      fill: rgba(52, 42, 115, 0.5);
+    }
+    .light {
+      opacity: 0.5;
+    }
+  }
+}

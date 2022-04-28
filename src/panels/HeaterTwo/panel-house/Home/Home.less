@@ -1,60 +1,81 @@
 .home {
   position: relative;
-  padding: 20px 16px;
+  padding: 16px 16px 0;
 
   header {
-    margin-bottom: 68px;
-  }
-  .tips {
-    margin: 74px 0 48px;
-    line-height: 20px;
-    font-size: 14px;
-    font-weight: 600;
-    color: #060606;
-    text-align: center;
-    span {
-      position: relative;
-      margin-left: 14px;
-      display: inline-block;
-      &::before {
-        content: '';
-        position: absolute;
-        top: 50%;
-        left: -14px;
-        margin-top: -3px;
-        display: inline-block;
-        width: 6px;
-        height: 6px;
-        border-radius: 50%;
-        background: #2C3134;
-      }
-    }
-  }
-  .setting-block {
-    margin: 0 15px 50px;
+    margin-bottom: 58px;
     display: flex;
     align-items: center;
+    .child-lock-status {
+      flex: 1;
+      padding-left: 24px;
+      font-weight: 600;
+      font-size: 14px;
+      line-height: 20px;
+      text-align: center;
+      opacity: 0.5;
+    }
+    .more-btn {
+      width: 24px;
+      height: 24px;
+    }
+  }
+
+  .disk-wrap {
+    display: flex;
+    justify-content: center;
+  }
+
+  .control-wrap {
+    padding: 16px 29px 56px;
+    display: flex;
     justify-content: space-between;
-  
-    &>.setting-button {
-      position: relative;
+    opacity: 0.5;
+    .minus-btn, .plus-btn {
       display: flex;
       align-items: center;
       justify-content: center;
-      flex-direction: column;
-      width: 100px;
-      height: 100px;
-      border: 1px solid #EEEEEE;
-      border-radius: 16px;
-      background-color: #FFFFFF;
-  
-      .button-name {
-        margin-top: 10px;
-        line-height: 20px;
-        font-size: 14px;
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      background: #30414D;
+    }
+  }
+
+  footer {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    border-radius: 40px 40px 0px 0px;
+    background: #26313D;
+    .footer-top {
+      margin: 32px 20px 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      opacity: 0.5;
+    }
+    .footer-bottom {
+      margin: 16px 20px 46px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      opacity: 0.5;
+      .rectangle-button {
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        width: 154px;
+        height: 60px;
+        border-radius: 16px;
         font-weight: 600;
-        color: #060606;
+        font-size: 14px;
+        color: #FFFFFF;
+        background: #30414D;
       }
     }
+  }
+  .open-status {
+    opacity: 1;
   }
 }

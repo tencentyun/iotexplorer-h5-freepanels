@@ -1,4 +1,86 @@
-.heater-disk {
+.heater-disk-wrap {
+  position: relative;
+  margin: 0 auto;
   width: 260px;
   height: 260px;
+  overflow: visible;
+  svg {
+    overflow: visible;
+  }
+
+  .humidifier-disk {
+    width: 260px;
+    height: 260px;
+  }
+  .disk-circle-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-weight: 600;
+    font-size: 14px;
+    color: #FFFFFF;
+    text-align: center;
+    
+    .num {
+      margin-top: 22px;
+      font-weight: 700;
+      font-size: 40px;
+      line-height: 47px;
+      font-family: 'DIN Alternate';
+    }
+    .title {
+      margin-top: 4px;
+      line-height: 20px;
+    }
+    .desc {
+      margin-top: 22px;
+      line-height: 20px;
+      color: rgba(255, 255, 255, 0.5);
+    }
+  }
+  .outer-circle {
+    fill: #FBFBFC;
+    stroke: #EFF3F5; 
+  }
+  .center-circle {
+    fill: #26313D;
+  }
+  .line {
+    stroke: rgba(216, 216, 216, 0.5);
+  }
+  #circle-bg {
+    stroke: #EFF3F5;
+  }
+  &.status-active {
+    opacity: 1;
+    #circle {
+      stroke: #26313D;
+    }
+    #indicator {
+      stroke: #26313D;
+      fill: #ffffff;
+    }
+    .text {
+      fill: #26313D;
+    }
+  }
+  &.status-disable {
+    .disk-circle-content {
+      color: rgba(255, 255, 255, 0.5);
+    }
+    #circle {
+      stroke: #97A0A6;
+    }
+    #indicator {
+      stroke: #97A0A6;
+      fill: #ffffff;
+    }
+    .text {
+      fill: #97A0A6;
+    }
+    .light {
+      opacity: 0.5;
+    }
+  }
 }

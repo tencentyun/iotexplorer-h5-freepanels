@@ -2,119 +2,118 @@
  * @Description: 取暖器-设置页面
  */
 import React, { useState } from 'react';
+import classNames from 'classnames';
 import { Cell } from '@custom/Cell';
 import { Switch } from '@custom/Switch';
-import { OptionDialog } from '@custom/OptionDialog';
-import { TimePicker } from '@custom/TimePicker';
+import { InputDialog } from './InputDialog';
+import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 
 export function Settings({
   deviceData,
-  templateMap,
+  deviceInfo,
   doControlDeviceData,
   history: { PATH, push },
 }) {
-  const getDesc = (key:string, type: string): string => {
-    if (templateMap[key]) {
-      const typeObj = templateMap[key];
-
-      return typeObj.define.mapping[type];
-    }
-    return '';
-  };
-
-  const volOptions = () => {
-    if (templateMap.alarm_vol) {
-      const options = templateMap.alarm_vol.map((t: any) => ({
-        label: t.desc,
-        value: t.name,
-      }));
-      return options.length > 0 ? options : [];
-    }
-    return [
-      { label: 'low', value: '0' },
-      { label: 'middle', value: '1' },
-      { label: 'high', value: '2' },
-      { label: 'mute', value: '3' },
-    ];
-  };
-
-  const ringtoneOptions = () => {
-    if (templateMap.alarm_ringtone) {
-      const options = templateMap.alarm_ringtone.map((t: any) => ({
-        label: t.desc,
-        value: t.name,
-      }));
-      return options.length > 0 ? options : [];
-    }
-    return [
-      { label: 'ringtone1', value: '1' },
-      { label: 'ringtone2', value: '2' },
-    ];
-  };
+  const [aliasName, setAliasName] = useState(deviceInfo.AliasName || '');
+  const [nameEditVisible, setNameEdit] = useState(false);
 
   return (
-    <main className="settings">
+    <main className="settings-wrap">
       <Cell
         className="cell-settings"
         title="设备名称"
-        size="medium"
-      ></Cell>
+        value={aliasName}
+        valueStyle="set"
+        onClick={() => {
+          setNameEdit(true);
+        }}
+      >
+        <InputDialog
+          visible={nameEditVisible}
+          title="编辑名称"
+          placeholder="请输入设备名称"
+          defaultValue={aliasName}
+          max={10}
+          onCancel={() => {
+            setNameEdit(false);
+          }}
+          onConfirm={(value) => {
+            setAliasName(value);
+            sdk.requestTokenApi('AppUpdateDeviceInFamily', {
+              Action: 'AppUpdateDeviceInFamily',
+              ProductId: deviceInfo.ProductId,
+              DeviceName: deviceInfo.DeviceName,
+              AliasName: value,
+            });
+          }}
+        ></InputDialog>
+      </Cell>
       <Cell
         className="cell-settings"
         title="设备信息"
-        size="medium"
-        value={getDesc('checking_result', deviceData.checking_result) || ''}
-        valueStyle="set"
+        onClick={() => {
+          sdk.goDeviceDetailPage();
+        }}
       ></Cell>
       <Cell
         className="cell-settings"
         title="房间信息"
-        size="medium"
-        value={getDesc('checking_result', deviceData.checking_result) || ''}
-        valueStyle="set"
+        onClick={() => {
+          sdk.goDeviceDetailPage();
+        }}
       ></Cell>
       <Cell
         className="cell-settings"
         title="设备分享"
-        size="medium"
-        value={getDesc('checking_result', deviceData.checking_result) || ''}
-        valueStyle="set"
+        onClick={() => {
+          sdk.goDeviceDetailPage();
+        }}
       ></Cell>
       <Cell
         className="cell-settings"
         title="固件升级"
-        size="medium"
-        value={getDesc('checking_result', deviceData.checking_result) || ''}
-        valueStyle="set"
+        onClick={() => {
+          sdk.goDeviceDetailPage();
+        }}
       ></Cell>
       <Cell
-        className="cell-settings"
+        className="cell-settings mt"
         title="温标切换"
         size="medium"
         isLink={false}
-        value={getDesc('checking_result', deviceData.checking_result) || ''}
-        valueStyle="set"
-      ></Cell>
+      >
+        <div className="unit-convert">
+          <div
+            className={classNames('unit-btn', { active: deviceData.temp_unit_convert === 'celsius' })}
+            onClick={() => {
+              doControlDeviceData('temp_unit_convert', 'celsius');
+            }}
+          >°C</div>
+          <div
+            className={classNames('unit-btn', { active: deviceData.temp_unit_convert === 'fahrenheit' })}
+            onClick={() => {
+              doControlDeviceData('temp_unit_convert', 'fahrenheit');
+            }}
+          >°F</div>
+        </div>
+      </Cell>
       <Cell
-        className="cell-settings"
+        className="cell-settings mt"
         title="云端定时"
-        size="medium"
-        // value={getDesc('checking_result', deviceData.checking_result) || ''}
-        valueStyle="set"
         onClick={() => {
           push(PATH.TIMER_LIST);
         }}
       ></Cell>
       <Cell
-        className="cell-settings"
+        className="cell-settings mt"
         title="童锁开关"
         size="medium"
         isLink={false}
         value={
           <Switch
-            checked={deviceData.self_checking === 1}
+            checked={deviceData.child_lock === 1}
             onChange={(value: boolean) => {
-              doControlDeviceData('self_checking', Number(value));
+              doControlDeviceData('child_lock', Number(value));
             }}
           />
         }
@@ -126,9 +125,9 @@ export function Settings({
         isLink={false}
         value={
           <Switch
-            checked={deviceData.self_checking === 1}
+            checked={deviceData.swing === 1}
             onChange={(value: boolean) => {
-              doControlDeviceData('self_checking', Number(value));
+              doControlDeviceData('swing', Number(value));
             }}
           />
         }
@@ -140,9 +139,9 @@ export function Settings({
         isLink={false}
         value={
           <Switch
-            checked={deviceData.self_checking === 1}
+            checked={deviceData.anion === 1}
             onChange={(value: boolean) => {
-              doControlDeviceData('self_checking', Number(value));
+              doControlDeviceData('anion', Number(value));
             }}
           />
         }
@@ -154,16 +153,16 @@ export function Settings({
         isLink={false}
         value={
           <Switch
-            checked={deviceData.self_checking === 1}
+            checked={deviceData.light === 1}
             onChange={(value: boolean) => {
-              doControlDeviceData('self_checking', Number(value));
+              doControlDeviceData('light', Number(value));
             }}
           />
         }
       ></Cell>
       <footer className="footer">
         <div className="footer-button" onClick={() => {
-          // setAddUserVisible(true);
+          sdk.deleteDevice({ deviceId: deviceInfo.DeviceId });
         }}>
           移除设备
         </div>
