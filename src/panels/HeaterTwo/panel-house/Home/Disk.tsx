@@ -1,11 +1,13 @@
 /*
  * @Description: 取暖器-表盘
  */
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
+import classNames from 'classnames';
 import { Icon } from '@src/components/custom/Icon';
 
 export interface DashboardProps {
   status: boolean;// 启用/停用
+  unit: string;
   width?: number;
   height?: number;
   startAngle?: number;// 起始角度。采用角度制
@@ -34,8 +36,9 @@ export interface LineProps {
 export function Disk(props: DashboardProps) {
   const {
     status = true,
-    width = 262,
-    height = 262,
+    unit = 'C',
+    width = 308,
+    height = 308,
     startAngle = 130, // 开始角度
     endAngle = 410, // 终止角度
     step = 4, // 间隔角度
@@ -43,32 +46,24 @@ export function Disk(props: DashboardProps) {
     minValue = 0,
     maxValue = 100,
     value = 0,
-    scaleLineColor = 'rgba(216, 216, 216, 0.5)', // 刻度线颜色
-    progressColor = '#26313D', // 进度条颜色
   } = props;
   // 开屏动画定时器
   let interval: NodeJS.Timer;
-  const getPerimeter = 2 * Math.PI * 120; // 周长
-  const getLength = 2 * Math.PI * 120 * 0.778; // 缺角周长
-  const length = getLength - getPerimeter;
-  const [currentLength, setCurrentLength] = useState(0);
 
   useEffect(() => {
     const tickAnimation = () => {
       if (value > 0) {
         const r1 = (width / 2);
-        const circle = document.getElementById('circle') as HTMLUnknownElement;
         const indicator = document.getElementById('indicator') as HTMLUnknownElement;
         let startIndex = 0;
         interval = setInterval(() => {
           startIndex += 2;
           const percent = startIndex / (maxValue - minValue);
-          circle.setAttribute('stroke-dasharray', `${getLength * percent} ${getPerimeter * (1 - percent)}`);
           const angle = 280 * percent + 130;
-          const x = r1 + (r1 - 13) * Math.cos((angle * Math.PI) / 180);
-          const y = r1 + (r1 - 13) * Math.sin((angle * Math.PI) / 180);
-          indicator.setAttribute('cx', x);
-          indicator.setAttribute('cy', y);
+          const x: number = r1 + (r1 - 13) * Math.cos((angle * Math.PI) / 180);
+          const y: number = r1 + (r1 - 13) * Math.sin((angle * Math.PI) / 180);
+          indicator.setAttribute('cx', x.toString());
+          indicator.setAttribute('cy', y.toString());
 
           if (startIndex >= value) {
             clearInterval(interval);
@@ -78,11 +73,6 @@ export function Disk(props: DashboardProps) {
     };
     tickAnimation();
   }, []);
-
-  useEffect(() => {
-    const percentage = value / (maxValue - minValue);
-    setCurrentLength(getLength * percentage);
-  }, [value]);
 
   // 当前角度
   const currentAngle = (() => {
@@ -103,17 +93,17 @@ export function Disk(props: DashboardProps) {
     // 半径
     const r1 = width / 2;
     // 半径2
-    const r2 = r1 - 6;
+    const r2 = r1 - 9;
 
     // 遍历角度，算出每条刻度线的起始坐标和终止坐标。
     for (let i = startAngle; i <= endAngle; i += step) {
-      const color = scaleLineColor;
+      const color = '#E3D3C6';
 
-      const x = r1 + (r1 - 36) * Math.cos((i * Math.PI) / 180);
-      const y = r1 + (r1 - 36) * Math.sin((i * Math.PI) / 180);
+      const x = r1 + (r1 - 22) * Math.cos((i * Math.PI) / 180);
+      const y = r1 + (r1 - 22) * Math.sin((i * Math.PI) / 180);
 
-      const x2 = r1 + (r2 - 36) * Math.cos((i * Math.PI) / 180);
-      const y2 = r1 + (r2 - 36) * Math.sin((i * Math.PI) / 180);
+      const x2 = r1 + (r2 - 22) * Math.cos((i * Math.PI) / 180);
+      const y2 = r1 + (r2 - 22) * Math.sin((i * Math.PI) / 180);
 
       lines.push({
         angle: i,
@@ -151,114 +141,114 @@ export function Disk(props: DashboardProps) {
     const r1 = (width / 2);
 
     // 0 刻度线跟svg外层距离
-    const x = r1 + (r1 - 13) * Math.cos((currentAngle * Math.PI) / 180);
-    const y = r1 + (r1 - 13) * Math.sin((currentAngle * Math.PI) / 180);
+    const x = r1 + (r1 - 44) * Math.cos((currentAngle * Math.PI) / 180);
+    const y = r1 + (r1 - 44) * Math.sin((currentAngle * Math.PI) / 180);
 
     return <circle
       id='indicator'
       cx={x}
       cy={y}
       r={8}
-      fill="#ffffff"
-      stroke={progressColor}
-      strokeWidth={6}
+      fill={status ? 'url(#paint4)' : '#1C1D1C'}
+      stroke={status ? '#E7BE86' : '#D8D8D8'}
+      strokeWidth={4}
     />;
   };
 
   const getViewbox = () => [0, 0, width, height].join(' ');
 
   return (
-    <div className="heater-disk-wrap">
+    <div className={classNames(
+      'heater-disk-wrap',
+      status ? 'status-active' : 'status-disable',
+    )}>
       <svg
         className="heater-disk"
         xmlns="http://www.w3.org/2000/svg"
         viewBox={getViewbox()}
       >
-       <defs>
-        <filter id="filter0" x="0" y="0" width="260" height="260" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
-          <feFlood floodOpacity="0" result="BackgroundImageFix"/>
-          <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
-          <feMorphology radius="3" operator="dilate" in="SourceAlpha" result="effect1_dropShadow_63_9919"/>
-          <feOffset/>
-          <feGaussianBlur stdDeviation="6.5"/>
-          <feColorMatrix type="matrix" values="0 0 0 0 0.917875 0 0 0 0 0.928587 0 0 0 0 0.944548 0 0 0 1 0"/>
-          <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_63_9919"/>
-          <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_63_9919" result="shape"/>
-        </filter>
-        <filter id="filter1" x="48.1519" y="48.1519" width="163.696" height="163.696" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
-          <feFlood floodOpacity="0" result="BackgroundImageFix"/>
-          <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
-          <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
-          <feOffset/>
-          <feGaussianBlur stdDeviation="2"/>
-          <feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1"/>
-          <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0"/>
-          <feBlend mode="normal" in2="shape" result="effect1_innerShadow_63_9919"/>
-        </filter>
-        <radialGradient id="paint0" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(130 130) rotate(90) scale(106 106.294)">
-          <stop/>
-          <stop offset="1" stopColor="#1E1E1E"/>
-        </radialGradient>
-        <linearGradient id="paint1" x1="-15.087" y1="77.6604" x2="75.1472" y2="277.176" gradientUnits="userSpaceOnUse">
-          <stop stopColor="#FBD8A8"/>
-          <stop offset="1" stopColor="#A47146"/>
-        </linearGradient>
-        <radialGradient id="paint2" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(129.906 131.64) rotate(90) scale(60.081)">
-          <stop/>
-          <stop offset="1" stopColor="#080906"/>
-        </radialGradient>
-      </defs>
+        <defs>
+          <filter id="filter0" x="24" y="24" width="260" height="260" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
+            <feFlood floodOpacity="0" result="BackgroundImageFix"/>
+            <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+            <feMorphology radius="3" operator="dilate" in="SourceAlpha" result="effect1_dropShadow_63_10055"/>
+            <feOffset/>
+            <feGaussianBlur stdDeviation="6.5"/>
+            <feColorMatrix type="matrix" values="0 0 0 0 0.917875 0 0 0 0 0.928587 0 0 0 0 0.944548 0 0 0 1 0"/>
+            <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_63_10055"/>
+            <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_63_10055" result="shape"/>
+          </filter>
+          <filter id="filter1" x="72.1519" y="72.1519" width="163.696" height="163.696" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
+            <feFlood floodOpacity="0" result="BackgroundImageFix"/>
+            <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+            <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+            <feOffset/>
+            <feGaussianBlur stdDeviation="2"/>
+            <feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1"/>
+            <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0"/>
+            <feBlend mode="normal" in2="shape" result="effect1_innerShadow_63_10055"/>
+          </filter>
+          <radialGradient id="paint0" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(154 154) rotate(90) scale(106 106.294)">
+            <stop/>
+            <stop offset="1" stopColor="#1E1E1E"/>
+          </radialGradient>
+          <linearGradient id="paint1" x1="8.91302" y1="101.66" x2="99.1472" y2="301.176" gradientUnits="userSpaceOnUse">
+            <stop stopColor="#FBD8A8"/>
+            <stop offset="1" stopColor="#A47146"/>
+          </linearGradient>
+          <radialGradient id="paint2" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(153.906 155.64) rotate(90) scale(60.081)">
+            <stop/>
+            <stop offset="1" stopColor="#080906"/>
+          </radialGradient>
+          <radialGradient id="paint3" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(91.3376 65.0429) rotate(89.1595) scale(81.3907 130.608)">
+            <stop stopColor="white" stopOpacity="0.236014"/>
+            <stop offset="0.456184" stopColor="white" stopOpacity="0.173978"/>
+            <stop offset="1" stopColor="white" stopOpacity="0.01"/>
+            <stop offset="1" stopColor="white" stopOpacity="0.01"/>
+          </radialGradient>
+          <radialGradient id="paint4" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(48 127) rotate(90) scale(6 6.01663)">
+            <stop/>
+            <stop offset="1" stopColor="#1E1E1E"/>
+          </radialGradient>
+          <radialGradient id="paint5" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(153.906 155.64) rotate(90) scale(60.081)">
+            <stop/>
+            <stop offset="1" stopColor="#080906"/>
+          </radialGradient>
+        </defs>
 
-        {/* <circle cx="131" cy="131" r="131" stroke="#EFF3F5" strokeWidth="1" fill="#FBFBFC" />
-        <circle cx="131" cy="131" r="106" fill="#26313D" /> */}
-
+        <circle cx="154" cy="154" r="154" fill="#FCF8F6" opacity="0.352655"/>
+        <circle cx="154" cy="154" r="142" fill="white" stroke="#A47146" strokeOpacity="0.29835"/>
         <g filter="url(#filter0)">
-          <circle cx="130" cy="130" r="106" fill="url(#paint0)"/>
-          <circle cx="130" cy="130" r="110" stroke="url(#paint1)" strokeWidth="8"/>
+          <circle cx="154" cy="154" r="106" fill="url(#paint0)"/>
+          <circle cx="154" cy="154" r="110" stroke={status ? 'url(#paint1)' : '#D8D8D8'} strokeWidth="8"/>
         </g>
         <g filter="url(#filter1)">
-          <circle cx="130" cy="130" r="81.8481" fill="#1C1D1C"/>
+          <circle cx="154" cy="154" r="81.8481" fill="#1C1D1C"/>
         </g>
-        <circle cx="130" cy="130" r="61.7215" fill="url(#paint2)"/>
+        <circle cx="154" cy="154" r="61.7215" fill="url(#paint2)"/>
+        {status
+          ? <>
+            <mask id="mask0" maskUnits="userSpaceOnUse" x="47" y="48" width="212" height="212">
+              <circle cx="153" cy="154" r="106" fill="white"/>
+            </mask>
+            <g mask="url(#mask0)">
+              <ellipse cx="91.2785" cy="63.4302" rx="139.544" ry="117.405" transform="rotate(-27 91.2785 63.4302)" fill="url(#paint3)"/>
+            </g>
+          </>
+          : null
+        }
 
-        <circle
-          cx={131}
-          cy={131}
-          r={120}
-          stroke="#EFF3F5"
-          strokeWidth="6"
-          fill="none"
-          strokeDasharray={getPerimeter}
-          strokeDashoffset={length}
-          strokeLinecap="round"
-          transform="rotate(50, 131, 131)"
-        />
-        <circle
-          id='circle'
-          cx={131}
-          cy={131}
-          r={120}
-          stroke={progressColor}
-          strokeWidth="6"
-          fill="none"
-          strokeDasharray={`${currentLength} ${getPerimeter}`}
-          strokeDashoffset={length}
-          strokeLinecap="round"
-          transform="rotate(50, 131, 131)"
-        >
-        </circle>
         {renderIndicator()}
 
         <g id="lineList">{lineArray().map(renderLine)}</g>
-        <text x="125" y="-3" fontSize={12} fill={progressColor}>20°</text>
-        <text x="-20" y="131" fontSize={12} fill={progressColor}>20°</text>
-        <text x="265" y="131" fontSize={12} fill={progressColor}>20°</text>
+        <text className="text" x="148" y="-3" fontSize={12} fill="#26313D">15°</text>
+        <text className="text" x="-20" y="154" fontSize={12} fill="#26313D">20°</text>
+        <text className="text" x="311" y="154" fontSize={12} fill="#26313D">25°</text>
       </svg>
       <div className="disk-circle-content">
         <Icon name="light"></Icon>
-        <div className="num">20°C</div>
+        <div className="num">{value}°{unit}</div>
         <div className="title">当前温度</div>
-        <div className="desc">目标温度20°</div>
       </div>
     </div>
   );

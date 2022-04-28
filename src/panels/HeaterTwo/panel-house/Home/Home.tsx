@@ -39,7 +39,7 @@ export function Home({
         <div
           className={classNames(
             'child-lock-status',
-            { 'open-status': deviceData.power_switch === 1 },
+            deviceData.power_switch === 1 ? 'active' : 'disable',
           )}>{deviceData.child_lock ? '童锁开' : '童锁关'}</div>
         {/* 更多 */}
         <div className="more-btn" onClick={() => {
@@ -57,14 +57,17 @@ export function Home({
               ? deviceData.current_c_temp
               : deviceData.current_f_temp
           }
-          scaleLineColor={'rgba(216, 216, 216, 0.5)'}
-          progressColor={deviceData.power_switch === 1 ? '#26313D' : 'rgba(151, 160, 166, 1)'}
+          unit={
+            deviceData.unit_convert === 0
+              ? 'C'
+              : 'F'
+          }
         ></Disk>
       </div>
       {/* 表盘控制区 */}
       <div className={classNames(
         'control-wrap',
-        { 'open-status': deviceData.power_switch === 1 },
+        deviceData.power_switch === 1 ? 'active' : 'disable',
       )}>
         <div
           className="minus-btn"
@@ -82,6 +85,11 @@ export function Home({
         >
           <Icon name="minus"></Icon>
         </div>
+        <div className="desc">目标温度{
+            deviceData.unit_convert === 0
+              ? (deviceData.target_c_temp || 0)
+              : (deviceData.target_f_temp || 0)
+          }°</div>
         <div
           className="plus-btn"
           onClick={() => {
@@ -104,7 +112,7 @@ export function Home({
       <footer>
         <div className={classNames(
           'footer-top',
-          { 'open-status': deviceData.power_switch === 1 },
+          deviceData.power_switch === 1 ? 'active' : 'disable',
         )}>
           <div
             className="block-button-word"
@@ -216,7 +224,7 @@ export function Home({
         </div>
         <div className={classNames(
           'footer-bottom',
-          { 'open-status': deviceData.power_switch === 1 },
+          deviceData.power_switch === 1 ? 'active' : 'disable',
         )}>
           <div
             className="rectangle-button"

@@ -6,6 +6,8 @@ import classNames from 'classnames';
 import { Icon } from '@src/components/custom/Icon';
 export interface DashboardProps {
   status: boolean;// 启用/停用
+  unit: string;
+  temp: string | number;
   width?: number;
   height?: number;
   startAngle?: number;// 起始角度。采用角度制
@@ -31,6 +33,8 @@ export interface LineProps {
 export function Disk(props: DashboardProps) {
   const {
     status = true,
+    unit = 'C',
+    temp = 0,
     width = 262,
     height = 262,
     startAngle = 130, // 开始角度
@@ -206,15 +210,15 @@ export function Disk(props: DashboardProps) {
         {renderIndicator()}
 
         <g id="lineList">{lineArray().map(renderLine)}</g>
-        <text className="text" x="125" y="-3" fontSize={12} fill={'#26313D'}>20°</text>
+        <text className="text" x="125" y="-3" fontSize={12} fill={'#26313D'}>15°</text>
         <text className="text" x="-20" y="131" fontSize={12} fill={'#26313D'}>20°</text>
-        <text className="text" x="265" y="131" fontSize={12} fill={'#26313D'}>20°</text>
+        <text className="text" x="265" y="131" fontSize={12} fill={'#26313D'}>25°</text>
       </svg>
       <div className="disk-circle-content">
         <Icon name="light"></Icon>
-        <div className="num">20°C</div>
+        <div className="num">{value}°{unit}</div>
         <div className="title">当前温度</div>
-        <div className="desc">目标温度20°</div>
+        <div className="desc">目标温度{temp}°</div>
       </div>
     </div>
   );

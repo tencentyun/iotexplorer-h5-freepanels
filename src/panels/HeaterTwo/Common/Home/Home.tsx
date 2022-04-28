@@ -57,6 +57,16 @@ export function Home({
               ? deviceData.current_c_temp
               : deviceData.current_f_temp
           }
+          unit={
+            deviceData.unit_convert === 0
+              ? 'C'
+              : 'F'
+          }
+          temp={
+            deviceData.unit_convert === 0
+              ? deviceData.target_c_temp
+              : deviceData.target_f_temp
+          }
         ></Disk>
       </div>
       {/* 表盘控制区 */}
