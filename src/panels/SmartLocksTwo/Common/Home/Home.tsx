@@ -18,14 +18,17 @@ export function Home({
   tips,
 }) {
   useTitle(productInfo.Name ? productInfo.Name : '首页');
-  const [{ deviceStatus }] = useDeviceData(sdk);
   useEffect(() => {
-    if (deviceStatus === 0) {
-      sdk.offlineTip.show();
-    } else {
-      sdk.offlineTip.hide();
-    }
-  }, [deviceStatus]);
+    sdk.on('wsStatusChange', (detail) => {
+      if (detail.deviceStatus === 0) {
+        sdk.offlineTip.show();
+      } else {
+        sdk.offlineTip.hide();
+      }
+      console.warn('+++ status change !!!', detail);
+    });
+    return () => sdk.off('wsStatusChange');
+  }, []);
   const lockStatusWord = {
     0: '未上锁',
     1: '已上锁',
