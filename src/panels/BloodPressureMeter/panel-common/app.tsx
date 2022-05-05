@@ -36,6 +36,7 @@ export const App = QuicknessMode(function App() {
 
   const [state, {onDeviceDataChange, onDeviceStatusChange}] =
     useDeviceData(sdk);
+  const isStandardBleDevice = sdk.isStandardBleDevice;
   console.log(state, 'state===============');
 
   // WebSocket 监听

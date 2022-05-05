@@ -34,6 +34,7 @@ export const App = QuicknessMode(function App() {
 
   const [state, { onDeviceDataChange, onDeviceStatusChange }] =
     useDeviceData(sdk);
+  const isStandardBleDevice = sdk.isStandardBleDevice;
   console.log(state, 'state===============');
 
   // webSecket 监听
@@ -71,7 +72,9 @@ export const App = QuicknessMode(function App() {
 
   return (
     <article>
-      <StandardBleConnector familyId={sdk.familyId} deviceId={sdk.deviceId} />
+      {isStandardBleDevice && (
+        <StandardBleConnector familyId={sdk.familyId} deviceId={sdk.deviceId} />
+      )}
       <Router basename={basename}>
         <Switch>
           <Route path="/unitSetting">
