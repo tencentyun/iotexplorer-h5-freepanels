@@ -57,8 +57,7 @@
     // min-height: calc(100vh - 413px);
     background-image: url('../Images/bg.svg');
     background-repeat: no-repeat;
-    background-size: 100% 100%;
-    background-position: center;
+    background-size: cover;
     .control-wrap {
       display: flex;
       align-items: center;
@@ -87,49 +86,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      .block-button-word {
-        .button-name {
-          color: #fff;
-        }
-      }
-    }
-    .desc-content-wrap {
-      .top, .bottom {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 0 42px 32px;
-        .item {
-          display: flex;
-          align-items: center;
-          flex-direction: column;
-        }
-        .value {
-          margin-bottom: 4px;
-          font-weight: 700;
-          font-size: 24px;
-          line-height: 28px;
-          color: #FFFFFF;
-        }
-        .label {
-          font-weight: 600;
-          font-size: 14px;
-          line-height: 20px;
-          color: #FFFFFF;
-          opacity: 0.5;
-        }
-      }
-      .top {
-        padding: 6px 35px 32px;
-        .value {
-          font-family: 'DIN Alternate';
-        }
-      }
     }
   }
-  &.power-off {
-    .icon, .content, .value, .button-name {
-      opacity: 0.5;
-    }
-  }
+
 }

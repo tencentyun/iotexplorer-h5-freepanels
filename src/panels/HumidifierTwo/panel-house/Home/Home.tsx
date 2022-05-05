@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import classNames from 'classnames';
 import { Icon } from '@custom/Icon';
 import { Disk } from './Disk';
@@ -22,22 +22,6 @@ export function Home({
   // 档位弹窗
   const [gearVisible, setGearVisible] = useState(false);
   const [gearValue, setGearValue] = useState(deviceData.fan_speed_enum || '');
-
-  const [windowHeight, setWindowHeight] = useState(window.innerHeight);
-  const handleScroll = (event) => {
-    const { scrollY } = window;
-    console.log(event.srcElement.scrollTop, 'asdfasdfsdf====');
-    setWindowHeight(event.srcElement.scrollTop);
-    // console.log(window.innerHeight, 'handleResize');
-    // setWindowHeight(window.innerHeight);
-  };
-  useEffect(() => {
-    console.log(window, 'Home');
-    // 监听
-    window.addEventListener('scroll', handleScroll, true);
-    // 销毁
-    return () => window.removeEventListener('scroll', handleScroll, true);
-  });
 
   // 根据当前温度单位，控制最大值
   const handleToggle = (isAdd: boolean) => {
@@ -63,14 +47,9 @@ export function Home({
   };
 
   return (
-    <main
-      className={classNames(
-        'home',
-        deviceData.power_switch === 1 ? 'power-on' : 'power-off',
-      )}
-    >
+    <main className="home">
       {/* 顶部 */}
-      <ul  className="content-wrap">
+      <ul className="content-wrap">
         <li className="content-item">
           <div className="content">{deviceData.current_temp || 0}{'°'}<span>{deviceData.temp_unit_convert === 1 ? 'F' : 'C'}</span></div>
           <div className="label">环境温度</div>
@@ -88,6 +67,11 @@ export function Home({
             deviceData.unit_convert === 0
               ? deviceData.current_c_temp
               : deviceData.current_f_temp
+          }
+          unit={
+            deviceData.unit_convert === 0
+              ? 'C'
+              : 'F'
           }
         ></Disk>
       </div>
@@ -175,34 +159,6 @@ export function Home({
             <p className="button-name">更多</p>
           </div>
         </div>
-        {windowHeight > 195
-          ? <div className="desc-content-wrap">
-            <div className="top">
-              <div className="item">
-                <span className="value">350ppm</span>
-                <span className="label">eCO2</span>
-              </div>
-              <div className="item">
-                <span className="value">0</span>
-                <span className="label">PM2,5</span>
-              </div>
-              <div className="item">
-                <span className="value">0ppm</span>
-                <span className="label">TVOC</span>
-              </div>
-            </div>
-            <div className="bottom">
-              <div className="item">
-                <span className="value">深圳</span>
-                <span className="label">位置</span>
-              </div>
-              <div className="item">
-                <span className="value">多云</span>
-                <span className="label">天气</span>
-              </div>
-            </div>
-          </div> : null
-        }
       </footer>
     </main>
   );

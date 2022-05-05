@@ -2,165 +2,74 @@
  * @Description: 加湿器-设置页面
  */
 import React, { useState } from 'react';
+import classNames from 'classnames';
 import { Cell } from '@custom/Cell';
 import { Switch } from '@custom/Switch';
 import { OptionDialog } from '@custom/OptionDialog';
-import { TimePicker } from '@custom/TimePicker';
+import { getOptions, getDesc } from '@utils';
 
 export function Settings({
   deviceData,
   templateMap,
   doControlDeviceData,
   history: { PATH, push },
+  tips,
 }) {
-  const getDesc = (key:string, type: string): string => {
-    if (templateMap[key]) {
-      const typeObj = templateMap[key];
+  const [isShowModalSprayVolume, setIsShowModalSprayVolume] = useState(false);
+  const [isShowModalSprayMode, setIsShowModalSprayMode] = useState(false);
 
-      return typeObj.define.mapping[type];
+  // 滤芯复位
+  const onResetClick = async () => {
+    const isReset = await tips.confirm('确定要复位滤网吗？');
+    if (isReset) {
+      doControlDeviceData('filter_reset', 1);
     }
-    return '';
-  };
-
-  const volOptions = () => {
-    if (templateMap.alarm_vol) {
-      const options = templateMap.alarm_vol.map((t: any) => ({
-        label: t.desc,
-        value: t.name,
-      }));
-      return options.length > 0 ? options : [];
-    }
-    return [
-      { label: 'low', value: '0' },
-      { label: 'middle', value: '1' },
-      { label: 'high', value: '2' },
-      { label: 'mute', value: '3' },
-    ];
-  };
-
-  const ringtoneOptions = () => {
-    if (templateMap.alarm_ringtone) {
-      const options = templateMap.alarm_ringtone.map((t: any) => ({
-        label: t.desc,
-        value: t.name,
-      }));
-      return options.length > 0 ? options : [];
-    }
-    return [
-      { label: 'ringtone1', value: '1' },
-      { label: 'ringtone2', value: '2' },
-    ];
   };
 
   return (
-    <main className="settings">
+    <main className="settings-wrap">
       <Cell
         className="cell-settings"
-        title="耗电"
-        size="medium"
-      ></Cell>
-      <Cell
-        className="cell-settings"
-        title="当前温度"
-        size="medium"
-        value={getDesc('checking_result', deviceData.checking_result) || ''}
-        valueStyle="set"
-      ></Cell>
-      <Cell
-        className="cell-settings"
-        title="上下摆风挡位"
-        size="medium"
-        value={getDesc('checking_result', deviceData.checking_result) || ''}
-        valueStyle="set"
-      ></Cell>
-      <Cell
-        className="cell-settings"
-        title="左右摆风挡位"
-        size="medium"
-        value={getDesc('checking_result', deviceData.checking_result) || ''}
-        valueStyle="set"
-      ></Cell>
-      <Cell
-        className="cell-settings"
-        title="温标切换"
-        size="medium"
-        value={getDesc('checking_result', deviceData.checking_result) || ''}
-        valueStyle="set"
-      ></Cell>
-      <Cell
-        className="cell-settings"
-        title="房间信息"
-        size="medium"
-        isLink={false}
-        value={getDesc('checking_result', deviceData.checking_result) || ''}
-        valueStyle="set"
-      ></Cell>
-      <Cell
-        className="cell-settings"
-        title="3D扫风"
-        size="medium"
-        isLink={false}
-        value={
-          <Switch
-            checked={deviceData.self_checking === 1}
-            onChange={(value: boolean) => {
-              doControlDeviceData('self_checking', Number(value));
-            }}
-          />
-        }
-      ></Cell>
-      <Cell
-        className="cell-settings"
-        title="烘干"
-        size="medium"
-        isLink={false}
-        value={
-          <Switch
-            checked={deviceData.self_checking === 1}
-            onChange={(value: boolean) => {
-              doControlDeviceData('self_checking', Number(value));
-            }}
-          />
-        }
-      ></Cell>
-      <Cell
-        className="cell-settings"
-        title="换气模式"
-        size="medium"
-        isLink={false}
-        value={
-          <Switch
-            checked={deviceData.self_checking === 1}
-            onChange={(value: boolean) => {
-              doControlDeviceData('self_checking', Number(value));
-            }}
-          />
-        }
+        title="定时"
+        onClick={() => {
+          push(PATH.TIMER_LIST);
+        }}
       ></Cell>
       <Cell
         className="cell-settings"
         title="负离子"
-        size="medium"
         isLink={false}
         value={
           <Switch
-            checked={deviceData.self_checking === 1}
+            checked={deviceData.anion === 1}
             onChange={(value: boolean) => {
-              doControlDeviceData('self_checking', Number(value));
+              doControlDeviceData('anion', Number(value));
             }}
           />
         }
       ></Cell>
       <Cell
         className="cell-settings"
-        title="自清洁"
-        size="medium"
+        title="香薰"
         isLink={false}
         value={
           <Switch
-            checked={deviceData.self_checking === 1}
+            checked={deviceData.fragrance === 1}
             onChange={(value: boolean) => {
-              doControlDeviceData('self_checking', Number(value));
+              doControlDeviceData('fragrance', Number(value));
+            }}
+          />
+        }
+      ></Cell>
+      <Cell
+        className="cell-settings"
+        title="除菌"
+        isLink={false}
+        value={
+          <Switch
+            checked={deviceData.sterilization === 1}
+            onChange={(value: boolean) => {
+              doControlDeviceData('sterilization', Number(value));
             }}
           />
         }
@@ -168,96 +77,144 @@ export function Settings({
       <Cell
         className="cell-settings"
         title="加热"
-        size="medium"
         isLink={false}
         value={
           <Switch
-            checked={deviceData.self_checking === 1}
+            checked={deviceData.heat === 1}
             onChange={(value: boolean) => {
-              doControlDeviceData('self_checking', Number(value));
+              doControlDeviceData('heat', Number(value));
+            }}
+          />
+        }
+      ></Cell>
+      <Cell
+        className="cell-settings mt"
+        title="温标切换"
+        size="medium"
+        isLink={false}
+      >
+        <div className="unit-convert">
+          <div
+            className={classNames('unit-btn', { active: deviceData.temp_unit_convert === 'celsius' })}
+            onClick={() => {
+              doControlDeviceData('temp_unit_convert', 'celsius');
+            }}
+          >°C</div>
+          <div
+            className={classNames('unit-btn', { active: deviceData.temp_unit_convert === 'fahrenheit' })}
+            onClick={() => {
+              doControlDeviceData('temp_unit_convert', 'fahrenheit');
+            }}
+          >°F</div>
+        </div>
+      </Cell>
+      <Cell
+        className="cell-settings mt"
+        title="滤芯复位"
+        onClick={onResetClick}
+      ></Cell>
+      <Cell
+        className="cell-settings mt"
+        title="喷雾开关"
+        isLink={false}
+        value={
+          <Switch
+            checked={deviceData.spray === 1}
+            onChange={(val: boolean) => {
+              doControlDeviceData('spray', Number(val));
             }}
           />
         }
       ></Cell>
       <Cell
         className="cell-settings"
-        title="自动"
-        size="medium"
-        isLink={false}
-        value={
-          <Switch
-            checked={deviceData.self_checking === 1}
-            onChange={(value: boolean) => {
-              doControlDeviceData('self_checking', Number(value));
-            }}
-          />
-        }
-      ></Cell>
+        title="喷雾量"
+        value={getDesc(templateMap, 'spray_volume', deviceData.spray_volume) || '暂无'}
+        valueStyle="set"
+        isLink={true}
+        onClick={() => {
+          setIsShowModalSprayVolume(true);
+        }}
+      >
+        {/* 喷雾量弹窗*/}
+        <OptionDialog
+          visible={isShowModalSprayVolume}
+          title="喷雾量"
+          defaultValue={[deviceData.spray_volume]}
+          options={getOptions(templateMap, 'spray_volume')}
+          onCancel={() => setIsShowModalSprayVolume(false)}
+          onConfirm={(value) => {
+            doControlDeviceData('spray_volume', value[0]);
+          }}
+        />
+      </Cell>
       <Cell
         className="cell-settings"
-        title="ECO模式"
+        title="喷雾模式"
         size="medium"
-        isLink={false}
-        value={
-          <Switch
-            checked={deviceData.self_checking === 1}
-            onChange={(value: boolean) => {
-              doControlDeviceData('self_checking', Number(value));
-            }}
-          />
-        }
-      ></Cell>
-      <Cell
-        className="cell-settings"
-        title="换气模式"
-        size="medium"
-        isLink={false}
-        value={
-          <Switch
-            checked={deviceData.self_checking === 1}
-            onChange={(value: boolean) => {
-              doControlDeviceData('self_checking', Number(value));
-            }}
-          />
-        }
-      ></Cell>
-      <Cell
-        className="cell-settings"
-        title="负离子"
-        size="medium"
-        isLink={false}
-        value={
-          <Switch
-            checked={deviceData.self_checking === 1}
-            onChange={(value: boolean) => {
-              doControlDeviceData('self_checking', Number(value));
-            }}
-          />
-        }
-      ></Cell>
-      <Cell
-        className="cell-settings"
-        title="负离子"
-        size="medium"
-        isLink={false}
-        value={
-          <Switch
-            checked={deviceData.self_checking === 1}
-            onChange={(value: boolean) => {
-              doControlDeviceData('self_checking', Number(value));
-            }}
-          />
-        }
-      ></Cell>
-      <Cell
-        className="cell-settings"
-        title="云端定时"
-        size="medium"
-        // value={getDesc('checking_result', deviceData.checking_result) || ''}
+        value={getDesc(templateMap, 'spray_mode', deviceData.spray_mode) || '暂无'}
         valueStyle="set"
         onClick={() => {
-          push(PATH.TIMER_LIST);
+          setIsShowModalSprayMode(true);
         }}
+      >
+        {/* 喷雾类型弹窗*/}
+        <OptionDialog
+          visible={isShowModalSprayMode}
+          title="喷雾模式"
+          defaultValue={[deviceData.spray_volume]}
+          options={getOptions(templateMap, 'spray_mode')}
+          onCancel={() => setIsShowModalSprayMode(false)}
+          onConfirm={(value) => {
+            doControlDeviceData('spray_mode', value[0]);
+          }}
+        />
+      </Cell>
+      <Cell
+        className="cell-settings"
+        title="睡眠"
+        isLink={false}
+        value={
+          <Switch
+            checked={deviceData.sleep === 1}
+            onChange={(val: boolean) => {
+              doControlDeviceData('sleep', Number(val));
+            }}
+          />
+        }
+      ></Cell>
+      <Cell
+        className="cell-settings"
+        title="童锁开关"
+        isLink={false}
+        value={
+          <Switch
+            checked={deviceData.childjock === 1}
+            onChange={(val: boolean) => {
+              doControlDeviceData('childjock', Number(val));
+            }}
+          />
+        }
+      ></Cell>
+      <Cell
+        className="cell-settings"
+        title="滤网寿命"
+        size="medium"
+        value={deviceData.filterlife}
+        isLink={false}
+      ></Cell>
+      <Cell
+        className="cell-settings"
+        title="等离子"
+        isLink={false}
+        value={
+          <Switch
+            checked={deviceData.plasma === 1}
+            onChange={(val: boolean) => {
+              doControlDeviceData('plasma', Number(val));
+            }}
+          />
+        }
       ></Cell>
     </main>
   );

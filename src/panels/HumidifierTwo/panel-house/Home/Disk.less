@@ -1,4 +1,4 @@
-.humidifier-disk-wrap {
+.heater-disk-wrap {
   position: relative;
   margin: 0 auto;
   width: 300px;
@@ -37,34 +37,19 @@
       color: #FFFFFF;
       opacity: 0.5;
     }
-    .close {
-      font-weight: 600;
-      font-size: 28px;
-      line-height: 39px;
-      color: #FFFFFF;
-      opacity: 0.5;
-    }
-  }
-  .outer-circle {
-    fill: #FBFBFC;
-    stroke: #EFF3F5; 
-  }
-  .center-circle {
-    fill: #26313D;
-  }
-  .line {
-    stroke: #26313D;
-  }
-  #indicator {
-    stroke: #26313D;
-    fill: #ffffff;
   }
   &.status-active {
     opacity: 1;
   }
   &.status-disable {
-    .line {
-      stroke: #D8D8D8;
+    .disk-circle-content {
+      color: rgba(255, 255, 255, 0.5);
+    }
+    .text {
+      fill: rgba(6, 6, 6, 0.5);
+    }
+    .light {
+      opacity: 0.5;
     }
   }
 }
