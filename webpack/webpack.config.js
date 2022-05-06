@@ -12,6 +12,9 @@ const viewportConfig = require('./pxToViewport.config');
 const argv = require('minimist')(process.argv.slice(2));
 const category = argv.category || process.env.npm_config_category || '';
 
+// 使用 npm run dev --category=xxx --index 统一生成index.js, index.css
+const outputIndex = ((argv.index || process.env.npm_config_index) === 'true');
+
 class ModifiedMiniCssExtractPlugin extends MiniCssExtractPlugin {
   getCssChunkObject(mainChunk) {
     return {};
@@ -32,6 +35,8 @@ module.exports = (env, argv) => {
 
   const entry = {};
   const viewport = {};
+
+  // 这里可能会影响之前的面板布局，布局乱了可注释掉
   viewportConfig.viewportWidth = 1125;
   Object.keys(panelConfig).forEach((categoryKey) => {
     const { enable, panels, viewportWidth } = panelConfig[categoryKey];
@@ -67,13 +72,15 @@ module.exports = (env, argv) => {
     }
   });
   console.log('entry list length --->', Object.keys(entry).length);
+
+  const outputFileName = outputIndex ? 'index' : '[name]';
   return {
     name: 'iotexplorer-h5-freepanels',
     mode,
     entry,
     output: {
       path: outputPath,
-      filename: (isDevMode || isPreview) ? '[name].js' : '[name].[contenthash:10].js',
+      filename: (isDevMode || isPreview) ? `${outputFileName}.js` : '[name].[contenthash:10].js',
       libraryTarget: 'umd',
       asyncChunks: true,
       clean: true,
@@ -93,7 +100,6 @@ module.exports = (env, argv) => {
       static: {
         directory: path.join(__dirname, outputPath),
       },
-      open: true,
     },
     module: {
       // 现在的 babel 配置已经很简单了，我们只需要加入默认的配置即可
@@ -248,7 +254,7 @@ module.exports = (env, argv) => {
         'process.env.NODE_ENV': JSON.stringify(mode)
       }),
       new ModifiedMiniCssExtractPlugin({
-        filename: (isDevMode || isPreview) ? '[name].css' : '[name].[contenthash:10].css',
+        filename: (isDevMode || isPreview) ? `${outputFileName}.css` : '[name].[contenthash:10].css',
       }),
     ].filter(Boolean),
     // stats: { children: false },
