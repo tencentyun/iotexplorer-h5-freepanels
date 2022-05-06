@@ -1,21 +1,25 @@
 import { getModalName, modifyModalName } from '@src/panels/FiveRoadHub/panel-default/models';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useMemo } from 'react';
 import { useAsyncFetch } from './useAsyncFetch';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 
+interface Switch {
+  id: string;
+  name: string;
+  [key: string]: any;
+}
 export function useSwitchEditName({
   switchList,
   deviceId = sdk.deviceId,
 }: {
-  switchList: any[],
+  switchList: Switch[],
   deviceId?: string;
 }) {
   const deviceKey = `switch_name_map_${deviceId}`;
-  const initState = switchList.reduce((prev, current) => ({
+  const initState = useMemo(() => switchList.reduce((prev, current) => ({
     ...prev,
     [current.id]: current.name,
-  }), {});
-  console.log({ switchList });
+  }), {}), [switchList]);
   const [switchNames, setSwitchNames] = useState(initState);
 
   const [res, { statusTip }] = useAsyncFetch({
@@ -34,9 +38,14 @@ export function useSwitchEditName({
 
   useEffect(() => {
     if (res.data[deviceKey]) {
-      setSwitchNames(JSON.parse(res.data[deviceKey]));
+      setSwitchNames({
+        ...initState,
+        ...JSON.parse(res.data[deviceKey]),
+      });
+    } else {
+      setSwitchNames(initState);
     }
-  }, [res.data, deviceKey]);
+  }, [res.data, deviceKey, initState]);
 
   const updateSwitchNames = (nameConfig: Record<string, string>) => {
     const newSwitchNames = {
