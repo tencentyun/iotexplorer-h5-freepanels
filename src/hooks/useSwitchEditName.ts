@@ -1,45 +1,62 @@
-import { getModalName } from '@src/panels/FiveRoadHub/panel-default/models';
+import { getModalName, modifyModalName } from '@src/panels/FiveRoadHub/panel-default/models';
+import { useEffect, useState } from 'react';
 import { useAsyncFetch } from './useAsyncFetch';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
+
 export function useSwitchEditName({
-  onChangeSwitchNames,
   switchList,
+  deviceId = sdk.deviceId,
 }: {
-  onChangeSwitchNames: (names) => void,
   switchList: any[],
+  deviceId?: string;
 }) {
-  const switchs = localStorage.getItem(`switchNames${sdk.deviceId}`);
-  const [switchNames, { updateAsyncFetch, statusTip }] = useAsyncFetch({
-    initData: switchs,
-    fetch: async ({ reload = false, id } = {}) => {
-      const names = (switchs && JSON.parse(switchs)) || {};
-      if (!id && switchs && switchs !== '{}') { // 不重复拉，用localstorage中的数据
-        onChangeSwitchNames(names);
-        return names;
+  const deviceKey = `switch_name_map_${deviceId}`;
+  const initState = switchList.reduce((prev, current) => ({
+    ...prev,
+    [current.id]: current.name,
+  }), {});
+  console.log({ switchList });
+  const [switchNames, setSwitchNames] = useState(initState);
+
+  const [res, { statusTip }] = useAsyncFetch({
+    initData: switchNames,
+    fetch: async () => {
+      try {
+        const { Configs } =  await getModalName({
+          DeviceKey: deviceKey,
+        });
+        return Configs;
+      } catch (err) {
+        console.error(err);
       }
-      // eslint-disable-next-line no-restricted-syntax
-      for (const value of switchList) {
-        if (id && (id !== value.id)) continue;
-        let Configs = [];
-        try {
-          ({ Configs } = await getModalName({
-            DeviceKey: value.id,
-          }));
-        } catch (err) {
-          //
-          console.log(err.msg);
-        }
-        const name = Configs[value.id] || '';
-        names[value.id] = name ? name : value.name;
-      }
-      localStorage.setItem(`switchNames${sdk.deviceId}`, JSON.stringify(names)); // 缓存
-      onChangeSwitchNames(names);
-      return names;
     },
   });
+
+  useEffect(() => {
+    if (res.data[deviceKey]) {
+      setSwitchNames(JSON.parse(res.data[deviceKey]));
+    }
+  }, [res.data, deviceKey]);
+
+  const updateSwitchNames = (nameConfig: Record<string, string>) => {
+    const newSwitchNames = {
+      ...switchNames,
+      ...nameConfig,
+    };
+    modifyModalName({
+      DeviceKey: deviceKey,
+      DeviceValue: JSON.stringify(newSwitchNames),
+    }).then(() => {
+      setSwitchNames(newSwitchNames);
+    })
+      .catch((err) => {
+        console.error('修改失败', err);
+        sdk.tips.showError('修改失败');
+      });
+  };
   return {
     switchNames,
+    updateSwitchNames,
     statusTip,
-    updateAsyncFetch,
   };
 }
