@@ -8,6 +8,7 @@ export interface DiskProps {
   deviceData: any;
   doControlDeviceData: (...params: any) => Promise<void>;
   tips: any;
+  offline: boolean;
 }
 
 // let flag: any = 0;
@@ -16,6 +17,7 @@ let i = 0;
 export function Disk({
   deviceData = {},
   tips,
+  offline,
 }: DiskProps) {
   const lockStatus = {
     0: 'unlocked',
@@ -118,19 +120,13 @@ export function Disk({
   };
 
   const handleTouchStart = (e) => {
-    console.log(e, 'handleTouchStart');
     // e.preventDefault();
     // 如果离线之后的操作不执行
-    if (deviceData.lock_motor_state === 2) {
+    if (offline) {
       tips.showInfo('设备已离线');
       return;
     }
 
-    // if (flag) {
-    //   return;
-    // }
-    // // 设置定时器
-    // flag = setInterval(longPress, 0)
     longPress();
   };
 
@@ -148,7 +144,7 @@ export function Disk({
       fallbackAnimation();
     }
     // 如果离线之后的操作不执行
-    if (deviceData.lock_motor_state === 2) {
+    if (offline) {
       tips.showInfo('设备已离线');
       return;
     }
@@ -209,7 +205,7 @@ export function Disk({
       <div className="content-wrap">
         <div className="content">
           <Icon name={lockStatus[deviceData.lock_motor_state || '0']} />
-          <span>{deviceData.lock_motor_state === 1 ? '长按解锁' : ''}</span>
+          <span>{deviceData.lock_motor_state === 1 ? '长按远程解锁' : ''}</span>
         </div>
       </div>
       <svg

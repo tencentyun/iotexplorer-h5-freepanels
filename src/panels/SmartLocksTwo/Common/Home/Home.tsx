@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import classNames from 'classnames';
 import { Battery } from '@custom/Battery';
 import { Cell } from '@custom/Cell';
@@ -6,43 +6,48 @@ import { Icon } from '@custom/Icon';
 import { Disk } from './Disk';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 import { useTitle } from '@hooks/useTitle';
-import { useDeviceData } from '@src/hooks/useDeviceData';
+
+const lockStatusWord = {
+  0: '未上锁',
+  1: '已上锁',
+  2: '已离线',
+};
+
+const lockStatus = {
+  0: 'unlocked',
+  1: 'locked',
+  2: 'offline',
+};
 
 export function Home({
   deviceData,
   productInfo,
   doControlDeviceData,
+  offline,
   context,
   setContext,
   history: { PATH, push },
   tips,
 }) {
   useTitle(productInfo.Name ? productInfo.Name : '首页');
-  useEffect(() => {
-    sdk.on('wsStatusChange', (detail) => {
-      if (detail.deviceStatus === 0) {
-        sdk.offlineTip.show();
-      } else {
-        sdk.offlineTip.hide();
-      }
-      console.warn('+++ status change !!!', detail);
-    });
-    return () => sdk.off('wsStatusChange');
-  }, []);
-  const lockStatusWord = {
-    0: '未上锁',
-    1: '已上锁',
-    2: '已离线',
-  };
 
-  const lockStatus = {
-    0: 'unlocked',
-    1: 'locked',
-    2: 'offline',
-  };
+  useEffect(() => {
+    if (offline) {
+      sdk.offlineTip.show();
+    } else {
+      sdk.offlineTip.hide();
+    }
+  }, [offline]);
+
+  // 门锁状态
+  const status = useMemo(() => {
+    if (offline) return 2;
+    return deviceData.lock_motor_state;
+  }, [offline, deviceData]);
 
   const goVideoPanel = async () => {
     console.log('IPC deviceId:', context.deviceId);
+    if (offline) return;
     if (deviceData.wakeup_state !== 1) {
       await sdk.callDeviceAction({}, 'wake_up');
     }
@@ -78,15 +83,6 @@ export function Home({
             />
             <label>门锁电池</label>
           </div>
-          {/* IPC电源模块 */}
-          <div className="ipc">
-            <Battery
-              value={deviceData.ipc_battery_percentage || 0}
-              isShowPercent={true}
-              isShowTip={false}
-            />
-            <label>IPC电池</label>
-          </div>
         </div>
 
         {/* 更多 */}
@@ -99,6 +95,7 @@ export function Home({
       {/* 表盘 */}
       <Disk
         deviceData={deviceData}
+        offline={offline}
         doControlDeviceData={doControlDeviceData}
         tips={tips}
       ></Disk>
@@ -111,8 +108,8 @@ export function Home({
         </div>
         <div className={classNames(
           'status-tip',
-          lockStatus[deviceData.lock_motor_state || 0],
-        )}>{lockStatusWord[deviceData.lock_motor_state || 0]}</div>
+          lockStatus[status],
+        )}>{lockStatusWord[status]}</div>
         <div className="config" onClick={() => {
           push(PATH.SETTINGS_INDEX);
         }}>
@@ -141,7 +138,7 @@ export function Home({
           }}
         ></Cell>
         <Cell
-          className="cell-border"
+          className={classNames('cell-border', { disabled: offline })}
           title="视频监控"
           prefixIcon={<Icon name="monitor"/>}
           size="medium"

@@ -5,6 +5,7 @@ import dayjs from 'dayjs';
 import { List } from '@custom/List';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 import { arrWeek } from './AddTempPassword';
+import { StatusTip } from '@components/StatusTip';
 interface PasswordItem {
   BeginTime: number
   DeviceName: string
@@ -29,6 +30,8 @@ export function TempPassword({ history: { push, PATH }, tips, deviceData }) {
       tips.showError('获取密码列表出错');
     }
   };
+
+  const totalListLength = data.length + cyclePasswordList.length;
 
   const removeSinglePassword = (id: string) => {
     sdk.requestTokenApi('AppRemoveDeviceOTP', {
@@ -72,14 +75,11 @@ export function TempPassword({ history: { push, PATH }, tips, deviceData }) {
 
   return (
     <div className="temp-password">
-      <Btn className="add-btn" onClick={() => push(PATH.TEMP_PASSWORD_ADD)}>
-        添加+{' '}
-      </Btn>
       <div className="password-list">
         <List
           data={data}
           onDelete={onDelete}
-          render={({ OTPPassword, Expired, Status }: PasswordItem, index) => {
+          render={({ Expired, Status }: PasswordItem, index) => {
             const isLose = Status === 1 || Expired * 1000 < Date.now();
             return (
               <div key={index} className="item">
@@ -113,6 +113,10 @@ export function TempPassword({ history: { push, PATH }, tips, deviceData }) {
         }
         />
       </div>
+      { totalListLength === 0 && <StatusTip emptyMessage='暂无数据' status='empty' className='empty'/>}
+      <Btn className="add-btn" onClick={() => push(PATH.TEMP_PASSWORD_ADD)}>
+        添加+{' '}
+      </Btn>
       <div className="fix-bottom-btn">
         {/* <Btn btnText="清空" type="danger" onClick={onCleanClick} /> */}
       </div>

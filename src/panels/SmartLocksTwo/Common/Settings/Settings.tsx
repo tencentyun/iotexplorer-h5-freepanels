@@ -197,14 +197,14 @@ export function Settings({
           />
         }
       ></Cell> */}
-      <Cell
+      {/* <Cell
         className="cell-settings mb"
         title="录像设置"
         isLink={true}
         onClick={() => {
           push(PATH.SETTINGS_VIDEO);
         }}
-      ></Cell>
+      ></Cell> */}
       <Cell
         className="cell-settings mb"
         title="多重验证"
@@ -367,13 +367,13 @@ export function Settings({
         valueStyle="set"
         isLink={false}
       ></Cell>
-      <Cell
+      {/* <Cell
         className="cell-settings"
         title="摄像头电池电量"
         value={`${deviceData.ipc_battery_percentage || 0}%`}
         valueStyle="set"
         isLink={false}
-      ></Cell>
+      ></Cell> */}
     </main>
   );
 }

@@ -10,6 +10,7 @@ import { InputDialog } from './InputDialog';
 import { List } from '@custom/List';
 import { shortid } from '../utils';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
+import { StatusTip } from '@components/StatusTip';
 
 export function Users({
   history: { PATH, push },
@@ -48,7 +49,9 @@ export function Users({
           ></Cell>
         )}
       />
-      : <div className="no-record-tips"></div>
+      : <div className="no-record-tips">
+          <StatusTip emptyMessage='暂无用户' status='empty' className='empty'/>
+        </div>
     }
 
       <footer className="footer">
