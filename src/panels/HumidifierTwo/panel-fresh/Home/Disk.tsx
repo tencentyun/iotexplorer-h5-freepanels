@@ -15,7 +15,6 @@ export interface DashboardProps {
   minValue?: number;
   maxValue?: number;
   value?: number;
-  valueWater?: number;
   scaleLineColor?: string;
   progressColor?: string;
 }
@@ -43,7 +42,6 @@ export function Disk(props: DashboardProps) {
     minValue = 0,
     maxValue = 100,
     value = 0,
-    valueWater = 0,
   } = props;
   // 开屏动画定时器
   let interval: NodeJS.Timer;
@@ -124,7 +122,7 @@ export function Disk(props: DashboardProps) {
       y1={item.y1}
       x2={item.x2}
       y2={item.y2}
-      style={{ strokeWidth: 2 }}
+      style={{ stroke: 'rgba(102, 85, 248, 0.5)', strokeWidth: 2 }}
       strokeLinecap="round"
     ></line>
   );
@@ -138,13 +136,16 @@ export function Disk(props: DashboardProps) {
     const x = r1 + (r1 - 52) * Math.cos((currentAngle * Math.PI) / 180);
     const y = r1 + (r1 - 52) * Math.sin((currentAngle * Math.PI) / 180);
 
-    return <circle
-      id='indicator'
-      cx={x}
-      cy={y}
-      r={12}
-      strokeWidth={8}
-    />;
+    return <g id='indicator' filter="url(#filter0)">
+      <circle
+        cx={x}
+        cy={y}
+        r={12}
+        strokeWidth={8}
+        fill="#6655F8"
+        stroke="white"
+      />
+    </g>;
   };
 
   const getViewbox = () => [0, 0, width, height].join(' ');
@@ -159,8 +160,26 @@ export function Disk(props: DashboardProps) {
         xmlns="http://www.w3.org/2000/svg"
         viewBox={getViewbox()}
       >
-        <circle className="outer-circle" cx="150" cy="150" r="150" strokeWidth="1" />
-        <circle className="center-circle" cx="150" cy="150" r="106" />
+        <defs>
+          <radialGradient id="paint0" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(150 150) rotate(90) scale(159.889)">
+            <stop stopColor="#6655F8" stopOpacity="0.253906"/>
+            <stop offset="1" stopColor="#F7F4FD" stopOpacity="0.148465"/>
+          </radialGradient>
+          <filter id="filter0" x="36" y="38" width="228" height="228" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
+            <feFlood floodOpacity="0" result="BackgroundImageFix"/>
+            <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+            <feMorphology radius="2" operator="dilate" in="SourceAlpha" result="effect1_dropShadow_104_86"/>
+            <feOffset dy="2"/>
+            <feGaussianBlur stdDeviation="3"/>
+            <feColorMatrix type="matrix" values="0 0 0 0 0.869126 0 0 0 0 0.853887 0 0 0 0 1 0 0 0 1 0"/>
+            <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_104_86"/>
+            <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_104_86" result="shape"/>
+          </filter>
+        </defs>
+        <circle cx="150" cy="150" r="150" fill="url(#paint0)"/>
+        <g filter="url(#filter0)">
+          <circle cx="150" cy="150" r="106" fill="white"/>
+        </g>
 
         {renderIndicator()}
 
@@ -171,7 +190,7 @@ export function Disk(props: DashboardProps) {
           ? <>
             <div className="title">湿度设置</div>
             <div className="num">{value}<span>%</span></div>
-            <div className="desc">当前水位 | {valueWater} level</div>
+            <div className="desc">当前水位 | 1 level</div>
           </>
           : <div className="close">已关机</div>
         }

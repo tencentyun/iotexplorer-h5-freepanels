@@ -1,7 +1,7 @@
 .home {
   position: relative;
   padding-top: 30px;
-  color: #342A73;
+  color: #FFFFFF;
 
   .content-wrap {
     position: relative;
@@ -77,8 +77,8 @@
         width: 80px;
         height: 80px;
         border-radius: 50%;
-        background: #FFFFFF;
-        box-shadow: 0px 2px 6px 2px #DEDAFF;
+        background: #2D374D;
+        box-shadow: 0px 4px 6px rgba(31, 39, 56, 0.3);
       }
     }
     .setting-button-wrap {
@@ -88,7 +88,7 @@
       justify-content: space-between;
       .block-button-word {
         .button-name {
-          color: #342A73;
+          color: #FFFFFF;
         }
       }
     }
@@ -108,13 +108,13 @@
           font-weight: 700;
           font-size: 24px;
           line-height: 28px;
-          color: #342A73;
+          color: #FFFFFF;
         }
         .label {
           font-weight: 600;
           font-size: 14px;
           line-height: 20px;
-          color: #342A73;
+          color: #FFFFFF;
           opacity: 0.5;
         }
       }
@@ -126,5 +126,9 @@
       }
     }
   }
-
+  &.power-off {
+    .icon, .content, .value, .button-name {
+      opacity: 0.5;
+    }
+  }
 }

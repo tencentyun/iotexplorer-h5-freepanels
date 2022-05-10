@@ -6,7 +6,6 @@ import classNames from 'classnames';
 
 export interface DashboardProps {
   status: boolean;// 启用/停用
-  unit: string;
   width?: number;
   height?: number;
   startAngle?: number;// 起始角度。采用角度制
@@ -35,9 +34,8 @@ export interface LineProps {
 export function Disk(props: DashboardProps) {
   const {
     status = true,
-    unit = 'C',
-    width = 300,
-    height = 300,
+    width = 308,
+    height = 308,
     startAngle = 130, // 开始角度
     endAngle = 410, // 终止角度
     step = 4, // 间隔角度
@@ -139,16 +137,16 @@ export function Disk(props: DashboardProps) {
     const r1 = (width / 2);
 
     // 0 刻度线跟svg外层距离
-    const x = r1 + (r1 - 55) * Math.cos((currentAngle * Math.PI) / 180);
-    const y = r1 + (r1 - 55) * Math.sin((currentAngle * Math.PI) / 180);
+    const x = r1 + (r1 - 44) * Math.cos((currentAngle * Math.PI) / 180);
+    const y = r1 + (r1 - 44) * Math.sin((currentAngle * Math.PI) / 180);
 
     return <circle
       id='indicator'
       cx={x}
       cy={y}
       r={8}
-      fill={status ? 'url(#paint4)' : '#1C1D1C'}
-      stroke={status ? '#E7BE86' : '#D8D8D8'}
+      fill={'url(#paint4)'}
+      stroke={'#E7BE86'}
       strokeWidth={4}
     />;
   };
@@ -214,36 +212,37 @@ export function Disk(props: DashboardProps) {
           </radialGradient>
         </defs>
 
-        <circle cx="150" cy="150" r="154" fill="#FCF8F6" opacity="0.352655"/>
-        <circle cx="150" cy="150" r="142" fill="white" stroke="#A47146" strokeOpacity="0.29835"/>
+        <circle opacity="0.352655" cx="154" cy="154" r="154" fill="#FCF8F6"/>
+        <circle cx="154" cy="154" r="142" fill="white" stroke="#A47146" strokeOpacity="0.29835"/>
         <g filter="url(#filter0)">
-          <circle cx="150" cy="150" r="106" fill="url(#paint0)"/>
-          <circle cx="150" cy="150" r="110" stroke={status ? 'url(#paint1)' : '#D8D8D8'} strokeWidth="8"/>
+          <circle cx="154" cy="154" r="106" fill="url(#paint0)"/>
+          <circle cx="154" cy="154" r="110" stroke="url(#paint1)" strokeWidth="8"/>
         </g>
         <g filter="url(#filter1)">
-          <circle cx="150" cy="150" r="81.8481" fill="#1C1D1C"/>
+          <circle cx="154" cy="154" r="81.8481" fill="#1C1D1C"/>
         </g>
-        <circle cx="150" cy="150" r="61.7215" fill="url(#paint2)"/>
-        {status
-          ? <>
-            <mask id="mask0" maskUnits="userSpaceOnUse" x="47" y="48" width="212" height="212">
-              <circle cx="153" cy="154" r="106" fill="white"/>
-            </mask>
-            <g mask="url(#mask0)">
-              <ellipse cx="91.2785" cy="63.4302" rx="139.544" ry="117.405" transform="rotate(-27 91.2785 63.4302)" fill="url(#paint3)"/>
-            </g>
-          </>
-          : null
-        }
+        <circle cx="154" cy="154" r="61.7215" fill="url(#paint2)"/>
+
+        <mask id="mask0" maskUnits="userSpaceOnUse" x="47" y="48" width="212" height="212">
+          <circle cx="153" cy="154" r="106" fill="white"/>
+        </mask>
+        <g mask="url(#mask0)">
+          <ellipse cx="91.2785" cy="63.4302" rx="139.544" ry="117.405" transform="rotate(-27 91.2785 63.4302)" fill="url(#paint3)"/>
+        </g>
 
         {renderIndicator()}
 
         <g id="lineList">{lineArray().map(renderLine)}</g>
       </svg>
       <div className="disk-circle-content">
-        <div className="title">湿度设置</div>
-        <div className="num">20<span>%</span></div>
-        <div className="desc">当前水位 | 1 level</div>
+        {status
+          ? <>
+              <div className="title">湿度设置</div>
+              <div className="num">{value}<span>%</span></div>
+              <div className="desc">当前水位 | 1 level</div>
+            </>
+          : <div className="close">已关机</div>
+        }
       </div>
     </div>
   );

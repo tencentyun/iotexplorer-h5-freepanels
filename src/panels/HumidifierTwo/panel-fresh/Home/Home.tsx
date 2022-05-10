@@ -2,9 +2,13 @@ import React, { useState, useEffect } from 'react';
 import classNames from 'classnames';
 import { Icon } from '@custom/Icon';
 import { Disk } from './Disk';
-import { Slider } from './Slider';
 import { OptionDialog } from '@custom/OptionDialog';
 import { getOptions, getDesc } from '@utils';
+
+enum enumTempKey {
+  celsius = 'temp_set',
+  fahrenheit = 'temp_set_f'
+}
 
 export function Home({
   deviceData,
@@ -19,32 +23,30 @@ export function Home({
   const [gearVisible, setGearVisible] = useState(false);
   const [gearValue, setGearValue] = useState(deviceData.fan_speed_enum || '');
 
-  const [isShow, setShow] = useState(false);
+  const [windowHeight, setWindowHeight] = useState(window.innerHeight);
   const handleScroll = (event) => {
-    const scrollY: number = window.screenY;
+    const { scrollY } = window;
     console.log(event.srcElement.scrollTop, 'asdfasdfsdf====');
-    if (event.srcElement.scrollTop > 0) {
-      setShow(true);
-    } else {
-      setShow(false);
-    }
+    setWindowHeight(event.srcElement.scrollTop);
     // console.log(window.innerHeight, 'handleResize');
     // setWindowHeight(window.innerHeight);
   };
   useEffect(() => {
+    console.log(window, 'Home');
     // 监听
     window.addEventListener('scroll', handleScroll, true);
     // 销毁
     return () => window.removeEventListener('scroll', handleScroll, true);
   });
 
+  // 根据当前温度单位，控制最大值
   const handleToggle = (isAdd: boolean) => {
     if (deviceData.power_switch !== 1) return;
 
-    const action = 'set_humidity';
-    const max = 100;
-    const oldVal = deviceData.set_humidity || 0;
-
+    const { temp_unit_convert } = deviceData;
+    const action = enumTempKey[temp_unit_convert || 'celsius'];
+    const max = temp_unit_convert === 'fahrenheit' ? 100 : 50; // 摄氏度
+    const oldVal = deviceData[action] || 0;
     if (isAdd) {
       if (oldVal < max) {
         doControlDeviceData({
@@ -79,26 +81,19 @@ export function Home({
         </li>
       </ul>
       {/* 表盘 */}
-      <div className={classNames(!isShow ? 'disk-wrap' : 'slider-wrap')}>
-        {!isShow
-          ? <Disk
-            status={deviceData.power_switch === 1}
-            value={deviceData.set_humidity || 0}
-            valueWater={deviceData.current_level}
-            // maxValue={}
-            // minValue={}
-          ></Disk>
-          : <Slider defaultValue={deviceData.set_humidity || 0}></Slider>
-        }
+      <div className="disk-wrap">
+        <Disk
+          status={deviceData.power_switch === 1}
+          value={
+            deviceData.unit_convert === 0
+              ? deviceData.current_c_temp
+              : deviceData.current_f_temp
+          }
+        ></Disk>
       </div>
 
       {/* 设置按钮 */}
-      <footer
-        className={classNames(
-          'home-footer',
-          isShow ? 'footer-open' : 'footer-close',
-        )}
-      >
+      <footer className="home-footer">
         <div className="control-wrap">
           <div
             className="control-btn"
@@ -129,22 +124,22 @@ export function Home({
           <div
             className="block-button-word"
             onClick={() => {
-              setModeVisible(true);
+              push(PATH.SETTINGS);
             }}
           >
             <Icon name="mode"/>
-            <p className="button-name">{modeValue ? getDesc(templateMap, 'work_mode', modeValue) : '超声波'}</p>
+            <p className="button-name">超声波</p>
             <OptionDialog
-              visible={modeVisible}
+              visible={gearVisible}
               title="工作模式"
-              defaultValue={[modeValue ? modeValue : '']}
-              options={getOptions(templateMap, 'work_mode')}
+              defaultValue={[gearValue ? gearValue : '']}
+              options={getOptions(templateMap, 'fan_speed_enum')}
               onCancel={() => {
-                setModeVisible(false);
+                setGearVisible(false);
               }}
               onConfirm={(value) => {
-                setModeValue(value[0]);
-                doControlDeviceData('work_mode', value[0]);
+                setGearValue(value[0]);
+                doControlDeviceData('fan_speed_enum', value[0]);
               }}
             ></OptionDialog>
           </div>
@@ -155,18 +150,18 @@ export function Home({
             }}
           >
             <Icon name="gear"/>
-            <p className="button-name">{gearValue ? getDesc(templateMap, 'spray_gears', gearValue) : '档位'}</p>
+            <p className="button-name">{gearValue ? getDesc(templateMap, 'fan_speed_enum', gearValue) : '档位'}</p>
             <OptionDialog
               visible={gearVisible}
-              title="喷雾档位"
+              title="档位"
               defaultValue={[gearValue ? gearValue : '']}
-              options={getOptions(templateMap, 'spray_gears')}
+              options={getOptions(templateMap, 'fan_speed_enum')}
               onCancel={() => {
                 setGearVisible(false);
               }}
               onConfirm={(value) => {
                 setGearValue(value[0]);
-                doControlDeviceData('spray_gears', value[0]);
+                doControlDeviceData('fan_speed_enum', value[0]);
               }}
             ></OptionDialog>
           </div>
@@ -180,19 +175,19 @@ export function Home({
             <p className="button-name">更多</p>
           </div>
         </div>
-        {isShow
+        {windowHeight > 195
           ? <div className="desc-content-wrap">
             <div className="top">
               <div className="item">
-                <span className="value">{deviceData.eco2 || 0}ppm</span>
+                <span className="value">350ppm</span>
                 <span className="label">eCO2</span>
               </div>
               <div className="item">
-                <span className="value">{deviceData.pm25 || 0}</span>
+                <span className="value">0</span>
                 <span className="label">PM2,5</span>
               </div>
               <div className="item">
-                <span className="value">{deviceData.tvoc || 0}ppm</span>
+                <span className="value">0ppm</span>
                 <span className="label">TVOC</span>
               </div>
             </div>
