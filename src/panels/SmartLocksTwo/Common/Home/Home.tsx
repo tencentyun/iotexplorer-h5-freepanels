@@ -42,12 +42,15 @@ export function Home({
   // 门锁状态
   const status = useMemo(() => {
     if (offline) return 2;
-    return deviceData.lock_motor_state;
+    return deviceData.lock_motor_state || 0;
   }, [offline, deviceData]);
 
   const goVideoPanel = async () => {
     console.log('IPC deviceId:', context.deviceId);
-    if (offline) return;
+    if (offline) {
+      sdk.tips.showError('设备已离线');
+      return;
+    }
     if (deviceData.wakeup_state !== 1) {
       await sdk.callDeviceAction({}, 'wake_up');
     }

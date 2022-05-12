@@ -288,7 +288,7 @@ export function Settings({
       <Cell
         className={classNames('cell-settings-high', { 'no-border': deviceData.no_disturb_switch })}
         title="勿扰模式"
-        subTitle={'开启后，可是门锁在特定时间内处理静音模式'}
+        subTitle={'开启后，门锁在特定时间内处理静音模式'}
         size="medium"
         isLink={false}
         value={

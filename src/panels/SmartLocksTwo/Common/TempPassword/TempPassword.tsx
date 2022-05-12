@@ -43,8 +43,14 @@ export function TempPassword({ history: { push, PATH }, tips, deviceData }) {
   };
 
   const onDeleteCyclePassword = async (item) => {
+    console.log('to delete', item);
     try {
-      await sdk.callDeviceAction({ id: item.id }, 'del_cycle_password');
+      const result = await sdk.callDeviceAction({ id: item.id }, 'del_cycle_password');
+      if (result.OutputParams && JSON.parse(result.OutputParams).result === 1) {
+        tips.showInfo('删除成功');
+      } else {
+        tips.showInfo('删除失败');
+      }
     } catch (err) {
       console.error(err);
       tips.showError('删除失败, 请重试');
@@ -59,16 +65,6 @@ export function TempPassword({ history: { push, PATH }, tips, deviceData }) {
     setData(data.filter(({ id }) => item.id !== id));
   };
 
-  // 清空密码
-  const onCleanClick = async () => {
-    const isClean = await tips.confirm('确认清空');
-    if (isClean) {
-      // TODO
-      setData([]);
-      // getPasswordList();
-    }
-  };
-
   useEffect(() => {
     getPasswordList();
   }, []);
@@ -80,12 +76,13 @@ export function TempPassword({ history: { push, PATH }, tips, deviceData }) {
           data={data}
           onDelete={onDelete}
           render={({ Expired, Status }: PasswordItem, index) => {
-            const isLose = Status === 1 || Expired * 1000 < Date.now();
+            const expired = Expired + 1200; /* 有效期20分钟 */
+            const isLose = Status === 1 || expired * 1000 < Date.now();
             return (
               <div key={index} className="item">
                 <span>
                   <div>单次</div>
-                  <div>将于 {dayjs(Expired * 1000).format('YYYY/MM/DD  HH:mm:ss')} 失效</div>
+                  <div>将于 {dayjs(expired * 1000).format('YYYY/MM/DD  HH:mm:ss')} 失效</div>
                 </span>
                 <span className={isLose ? 'flag fail' : 'flag success'}>{isLose ? '已失效' : '生效中'}</span>
               </div>
@@ -98,7 +95,7 @@ export function TempPassword({ history: { push, PATH }, tips, deviceData }) {
           data={cyclePasswordList}
           onDelete={onDeleteCyclePassword}
           render={({ take_effect_date, invalid_date, isLose, take_effect_time, invalid_time, week }, index) => {
-            const weekStr = week.split('').map((index) => arrWeek[index]).join(',');
+            const weekStr = week.split('').map((index) => arrWeek[index]).join(' ');
             return (<div key={index} className="item">
               <span>
                 <div>周期</div>

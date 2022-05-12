@@ -129,12 +129,6 @@ export const useDeviceInfo = (): UseDeviceInfoResult => {
   const controlDeviceData = async (deviceData) => {
     try {
       await sdk.controlDeviceData(deviceData);
-      dispatch({
-        type: UseDeviceInfoAction.UpdateDeviceData,
-        payload: {
-          deviceData,
-        },
-      });
     } catch (err) {
       await tips.showError(err);
     }
@@ -183,6 +177,7 @@ export const useDeviceInfo = (): UseDeviceInfoResult => {
     };
     const handleWsControl = ({ deviceId, deviceData }) => {
       console.log('wsControl==========', deviceData);
+      // 最好在 report消息触发后更新，因为这时候物模型才是真正的更新了
       if (deviceId === sdk.deviceId) {
         const data = {};
         for (const key in deviceData) {

@@ -18,7 +18,6 @@ export function UserEdit({
   useTitle('用户编辑');
   // 用户姓名
   const [{ userInfo }, { deleteUser, editUser }] = useUser({ id: query.userid, name: query.userName });
-  console.log({ userInfo });
   const nameValue = userInfo.name;
 
   const [nameEditVisible, setNameEdit] = useState(false);
@@ -42,8 +41,15 @@ export function UserEdit({
   const handleUserDelete = async () => {
     const isDelete = await tips.confirm('确认删除');
     if (isDelete) {
-      await deleteUser();
-      push(PATH.USERS_INDEX);
+      try {
+        await deleteUser(userInfo.userid);
+        tips.showInfo('删除成功');
+        setTimeout(() => {
+          goBack();
+        }, 2000);
+      } catch (err) {
+        tips.showError('删除失败，请重试');
+      }
     }
   };
 
@@ -61,8 +67,14 @@ export function UserEdit({
   const removeAuth = async (id, type: 'face' | 'password' | 'card' | 'fingerprint') => {
     // 需要设备端提供指纹的ID
     console.log('正在删除', type);
-    const res = await sdk.callDeviceAction({ id }, `delete_${type}`);
-    if (!res.result) {
+    try {
+      const res = await sdk.callDeviceAction({ id }, `delete_${type}`);
+      if (JSON.parse(res.OutputParams || '{}').result !== 1) {
+        throw new Error('删除失败, 请重试');
+      } else {
+        tips.showInfo('删除成功');
+      }
+    } catch (err) {
       tips.showError('删除失败');
     }
   };

@@ -26,9 +26,13 @@ export function Disk({
   };
 
   const currentColor = (): string => {
+    if (offline) {
+      return '#999999';
+    }
     if (deviceData.lock_motor_state === 1) {
       return '#00A884';
     }
+
     return '#DA695C';
   };
 
@@ -161,29 +165,7 @@ export function Disk({
     }
     clearInterval(fallbackInterval);
     forwardAnimation();
-    // console.log(i);
-    // if (i > 0 && i < 100) {
-    //   clearInterval(forwardInterval);
-    //   fallbackAnimation();
-    // } else {
-    //   // i = 0;
-    //   console.log(i);
-    //   clearInterval(fallbackInterval);
-    //   forwardAnimation();
-    // }
   };
-
-  // const handleClick = (e) => {
-  //   console.log('onClick');
-  //   e.preventDefault();
-  //   e.stopPropagation();
-  //   tips.showInfo(deviceData.lock_motor_state === 1 ? '长按关锁' : '长按开锁');
-  //   if (i > 0 && i < 100) {
-  //     clearInterval(forwardInterval);
-  //     clearInterval(fallbackInterval);
-  //     fallbackAnimation();
-  //   }
-  // };
 
   return (
     <div
@@ -204,7 +186,7 @@ export function Disk({
     >
       <div className="content-wrap">
         <div className="content">
-          <Icon name={lockStatus[deviceData.lock_motor_state || '0']} />
+          <Icon name={offline ? 'offline' : lockStatus[deviceData.lock_motor_state || '0']} />
           <span>{deviceData.lock_motor_state === 1 ? '长按远程解锁' : ''}</span>
         </div>
       </div>

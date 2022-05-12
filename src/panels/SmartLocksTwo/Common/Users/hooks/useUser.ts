@@ -42,7 +42,6 @@ export const useUser = ({ id, name }: { id: string, name?: string }): UserResult
   } = deviceData;
   const userIndex = users.findIndex((user: UserInfo) => user.userid === id);
   const userInfo = users[userIndex] || { name, userid: id, effectiveTime: '{}' };
-  console.log('effectiveTime', userInfo.effectiveTime);
   const userData = {
     ...userInfo,
     effectiveTime: JSON.parse(userInfo.effectiveTime || '{}'),
@@ -52,8 +51,8 @@ export const useUser = ({ id, name }: { id: string, name?: string }): UserResult
     faces: faces.filter(item => item.userid === userInfo.userid),
   };
 
-  const deleteUser = async (index = userIndex) => {
-    await sdk.callDeviceAction({ userid: users[userIndex].userid }, 'delete_user');
+  const deleteUser = async (userid) => {
+    await sdk.callDeviceAction({ userid }, 'delete_user');
     // users.splice(index, 1);
     // await doControlDeviceData('users', users);
   };

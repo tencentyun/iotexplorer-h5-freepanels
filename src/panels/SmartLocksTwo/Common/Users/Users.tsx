@@ -20,7 +20,23 @@ export function Users({
   useTitle('用户管理');
   const [userList, setUserList] = useState(deviceData.users || []);
   const [addUserVisible, setAddUserVisible] = useState(false);
-
+  const {
+    fingerprints = [],
+    cards = [],
+    faces = [],
+    passwords = [],
+  } = deviceData;
+  const getAuth = (userid: string) => {
+    const filterAuthByUserid = (authArr, name) => authArr
+      .filter(item => item.userid === userid)
+      .reduce((prev, _curr, index) => [...prev, `${name}${index + 1}`], []);
+    return [
+      ...filterAuthByUserid(passwords, '密码'),
+      ...filterAuthByUserid(fingerprints, '指纹'),
+      ...filterAuthByUserid(cards, '卡片'),
+      ...filterAuthByUserid(faces, '面容ID'),
+    ];
+  };
   // 删除用户
   const onDelete = (item) => {
     const newUsers = userList.filter(({ userid }) => item.userid !== userid);
@@ -41,7 +57,11 @@ export function Users({
             key={userid}
             className="cell-user"
             title={name}
-            subTitle={type}
+            subTitle={<>
+              {
+                getAuth(userid).map(name => <span key={name} className="auth-item">{name}</span>)
+              }
+            </>}
             prefixIcon={<Icon name="avatar"></Icon>}
             onClick={() => {
               push(PATH.USERS_EDIT, { userName: name, userid });
@@ -76,8 +96,6 @@ export function Users({
           }
           const id = shortid();
           await sdk.callDeviceAction({ name: value, userid: id }, 'add_user');
-          // 更新users物模型
-          // await doControlDeviceData('users', [...userList, { name: value, id }]);
           // 跳转到用户编辑
           push(PATH.USERS_EDIT, { userName: value, userid: id });
         }}
