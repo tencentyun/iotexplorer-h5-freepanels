@@ -127,7 +127,7 @@ export function Disk({
     // e.preventDefault();
     // 如果离线之后的操作不执行
     if (offline) {
-      tips.showInfo('设备已离线');
+      tips.showError('设备已离线');
       return;
     }
 
@@ -149,7 +149,7 @@ export function Disk({
     }
     // 如果离线之后的操作不执行
     if (offline) {
-      tips.showInfo('设备已离线');
+      tips.showError('设备已离线');
       return;
     }
   };
@@ -187,7 +187,7 @@ export function Disk({
       <div className="content-wrap">
         <div className="content">
           <Icon name={offline ? 'offline' : lockStatus[deviceData.lock_motor_state || '0']} />
-          <span>{deviceData.lock_motor_state === 1 ? '长按远程解锁' : ''}</span>
+          <span>{!offline && deviceData.lock_motor_state === 1 ? '长按远程解锁' : ''}</span>
         </div>
       </div>
       <svg
