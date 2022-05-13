@@ -542,7 +542,8 @@ export const appendParams = (url: string, data: any) => {
 const clampClientWidth = (clientWidth: number) => {
   if (clientWidth >= 640) {
     return 640;
-  } if (clientWidth <= 320) {
+  }
+  if (clientWidth <= 320) {
     return 320;
   }
   return clientWidth;
