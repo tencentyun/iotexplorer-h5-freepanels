@@ -1,0 +1,34 @@
+.home-action {
+  margin-top: 32px;
+  .action {
+    display: flex;
+    justify-content: space-between;
+
+    position: relative;
+    overflow: hidden;
+    padding: 0 16px;
+
+    .action-item {
+      background: #ffffff;
+      border-radius: 16px;
+      width: 100px;
+      height: 100px;
+      display: flex;
+      .action-ele {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        font-size: 14px;
+        font-weight: 600;
+        width: 100%;
+        > div:last-child {
+          margin-top: 12px;
+        }
+      }
+    }
+    &.action-off {
+      color: @c2;
+    }
+  }
+}

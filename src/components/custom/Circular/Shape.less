@@ -1,0 +1,88 @@
+.fan-shape-container {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 10px;
+  .fan-shape {
+    width: 200px;
+    height: 200px;
+    position: relative;
+    background: blueviolet;
+
+    .shape-circle {
+      width: 100%;
+      height: 100%;
+      background: aqua;
+      position: absolute;
+      clip: rect(0, 200px, 200px, 0);
+      border-radius: 50%;
+    }
+
+    .shape-fan {
+      width: 100%;
+      height: 100%;
+      background: aqua;
+      border-radius: 50%;
+
+      position: absolute;
+      clip: rect(100px, 200px, 200px, 100px);
+    }
+
+    // 指定角度
+    .shape-deg {
+      width: 100%;
+      height: 100%;
+      background: aqua;
+      border-radius: 50%;
+      transform: rotate(60deg);
+      position: absolute;
+      clip: rect(100px, 200px, 200px, 100px);
+    }
+    // clip-path
+    .clip-path {
+      width: 100%;
+      height: 100%;
+      background: aqua;
+      // border-radius: 50%;
+
+      position: absolute;
+      // 圆形  第一个大小  at 坐标
+      clip-path: circle(50% at 50% 50%);
+    }
+
+    .clip-path2 {
+      width: 100%;
+      height: 100%;
+      background: aqua;
+      position: absolute;
+      border-radius: 50%;
+
+    }
+
+    .clip-path3 {
+        width: 100%;
+        height: 100%;
+        background: aqua;
+        // border-radius: 50%;
+        position: absolute;
+        // 圆形  第一个大小  at 坐标
+        // 扇形
+        border-radius: 50%;
+        clip-path: polygon(50% 50%, 0% 100%, 100% 100%);
+      }
+
+
+    .clip-path4 {
+        width: 100%;
+        height: 100%;
+        background: aqua;
+        // border-radius: 50%;
+        position: absolute;
+        // 圆形  第一个大小  at 坐标
+        // 扇形
+      //   clip-path: polygon(50% 50%, 0% 100%, 100% 100%);
+      //------------------中心点  第一点   第二点      第三点      第四点
+        clip-path: polygon(50% 50%, 0% -0%, 100% -0%, 100% 100%, 0% 100%);
+
+      }
+  }
+}

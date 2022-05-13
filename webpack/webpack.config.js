@@ -160,7 +160,6 @@ module.exports = (env, argv) => {
                 url: true,
               },
             },
-
             {
               loader: 'postcss-loader',
               options: {
@@ -170,12 +169,12 @@ module.exports = (env, argv) => {
 
                   return isRem ? [
                     autoPreFixer(plugin.autoPreFixer),
-                    postcss(plugin.postcss)
+                    postcss(plugin.postcss),
                   ] : [
                     require('postcss-px-to-viewport')(viewportConfig),
                     autoPreFixer(),
                   ];
-                }
+                },
               },
             },
             {
@@ -224,7 +223,7 @@ module.exports = (env, argv) => {
         '@icons': path.resolve(__dirname, '../src/assets'),
         '@underscore': path.resolve(
           __dirname,
-          '../src/vendor/underscore/index'
+          '../src/vendor/underscore/index',
         ),
         '@wxlib': path.resolve(__dirname, '../src/libs/wxlib/index.js'),
         '@custom': path.resolve(__dirname, '../src/components/custom'),
@@ -251,7 +250,7 @@ module.exports = (env, argv) => {
       (isDevMode || isPreview) && new webpack.HotModuleReplacementPlugin(),
       new webpack.DefinePlugin({ _env_: JSON.stringify(plugin.env) }),
       new webpack.DefinePlugin({
-        'process.env.NODE_ENV': JSON.stringify(mode)
+        'process.env.NODE_ENV': JSON.stringify(mode),
       }),
       new ModifiedMiniCssExtractPlugin({
         filename: (isDevMode || isPreview) ? `${outputFileName}.css` : '[name].[contenthash:10].css',

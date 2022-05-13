@@ -1,0 +1,145 @@
+.home {
+  position: relative;
+  padding-top: 16px;
+  color: #FFFFFF;
+
+  .conditioner-image {
+    margin: 0 auto 46px;
+    width: 320px;
+    height: 108px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    z-index: 1;
+    &.conditioner-open {
+      background-image: url('../../Common/Images/conditioner-open.svg');
+    }
+    &.conditioner-close {
+      background-image: url('../../Common/Images/conditioner.svg');
+    }
+    .air-cloud {
+      position: relative;
+      top: 48px;
+      left: 50%;
+      width: 404px;
+      height: 174px;
+      background-image: url('../../Common/Images/wind-brunet.svg');
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: 100%;
+      transform: translateX(-50%);
+      animation: fadeInOut 5s ease-in-out 1s infinite;
+    }
+
+  }
+
+  .temperature {
+    position: relative;
+    margin-bottom: 42px;
+    text-align: center;
+    opacity: 0.5;
+    z-index: 2;
+    .num {
+      margin-bottom: 8px;
+      line-height: 44px;
+      font-weight: 700;
+      font-size: 38px;
+      font-family: 'DIN Alternate';
+    }
+    .content {
+      font-weight: 600;
+      font-size: 14px;
+      line-height: 20px;
+    }
+  }
+  .setting-content {
+    position: relative;
+    margin-bottom: 76px;
+    padding: 0 34px;
+    display: flex;
+    justify-content: space-between;
+    opacity: 0.5;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 2px;
+      height: 20px;
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.5);
+    }
+
+    .setting-item {
+      text-align: center;
+      .content {
+        margin-bottom: 6px;
+        font-weight: 600;
+        font-size: 24px;
+        line-height: 34px;
+      }
+      .label {
+        font-weight: 600;
+        font-size: 14px;
+        line-height: 20px;
+      }
+    }
+  }
+
+  .setting-button-wrap {
+    padding: 0 22px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    opacity: 0.5;
+  }
+
+  .home-footer {
+    width: 100%;
+    border-radius: 40px 40px 0px 0px;
+    background: #2D374D;
+    .control-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 40px 38px 58px;
+      .control-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 80px;
+        height: 80px;
+        border-radius: 22px;
+        background: #454F65;
+        .icon {
+          opacity: 0.5;
+        }
+      }
+    }
+  }
+
+  .active {
+    opacity: 1;
+    .control-wrap {
+      .control-btn {
+        .icon {
+          opacity: 1;
+        }
+      }
+    }
+  }
+
+  @keyframes fadeInOut {
+    0% {
+      opacity: 0;
+    }
+    50% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+}

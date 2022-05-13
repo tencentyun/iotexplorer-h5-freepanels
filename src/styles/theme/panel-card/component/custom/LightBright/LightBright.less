@@ -1,0 +1,57 @@
+@import url('./icon/Icon.less');
+
+.cus-light-bright {
+  .mark {
+    // height: 150px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 600;
+    font-size: 16px;
+    margin-bottom: 8px;
+    padding: 0 4px;
+    .mark-op-btn {
+      font-size: 22px;
+      color: @c1;
+      &:first-child{
+        font-size: 32px;
+      }
+    }
+  }
+
+  .value-wrap {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .value-text {
+    margin-left: 4px;
+    color: @c1;
+  }
+
+  .slider {
+    height: 16px;
+    background: @c7;
+    border-radius: 25px;
+    .progress {
+      min-width: 16px;
+      // background-image: linear-gradient(137deg, #7fc96c 0%, #c2eb6a 100%);
+      background: @c1;
+      height: 16px;
+      border-radius: 25px;
+    }
+    .progress-dot {
+      margin: 2px;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: #fbfbff;
+      float: right;
+    }
+    .border {
+      margin-top: -40px;
+      width: 100%;
+    }
+  }
+}

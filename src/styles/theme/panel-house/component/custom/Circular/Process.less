@@ -1,0 +1,35 @@
+.process-out {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  z-index: 0;
+  .p-circular {
+    display: flex;
+    margin: 12px;
+    .circle {
+      width: 50%;
+      .process-left {
+        overflow: hidden;
+      }
+      .process-right {
+        overflow: hidden;
+        .circular-process {
+          margin-left: -102%;
+        }
+      }
+      // // 进度
+      .circular-process {
+        width: 236px;
+        height: 236px;
+        border-left: 10px solid @c1;
+        border-top: 10px solid @c1;
+        border-right: 10px solid #E4D5C8;
+        border-bottom: 10px solid #E4D5C8;
+        border-radius: 50%;
+        box-sizing: border-box;
+      }
+    }
+  }
+}

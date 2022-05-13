@@ -1,10 +1,23 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { Icon } from '@custom/Icon';
-import './LightBright.less';
+import { noop } from '@utillib';
+// import './LightBright.less';
 
-export function LightBright({ maxValue = 100, minValue = 0, status, defaultValue = 80, onChange }) {
-  const [dataInfo, setDataInfo] = useState({ dataUser: defaultValue, endTouch: false });
-  const currentWidth = `${5 + ((dataInfo.dataUser - minValue) * 95) / (maxValue - minValue)}%`;
+export function LightBright({
+  maxValue = 100,
+  minValue = 0,
+  status = false,
+  defaultValue = 80,
+  onChange = noop,
+  isMask = true,
+}) {
+  const [dataInfo, setDataInfo] = useState({
+    dataUser: defaultValue,
+    endTouch: false,
+  });
+  const currentWidth = `${
+    5 + ((dataInfo.dataUser - minValue) * 95) / (maxValue - minValue)
+  }%`;
   const slider = useRef();
 
   const updateBrightVal = (val, endTouch) => {
@@ -31,7 +44,8 @@ export function LightBright({ maxValue = 100, minValue = 0, status, defaultValue
   };
 
   const handleMove = (e: TouchEvent) => {
-    const val = (e.touches[0].clientX - slider.current.offsetLeft) / slider.current.clientWidth;
+    const val =      (e.touches[0].clientX - slider.current.offsetLeft)
+      / slider.current.clientWidth;
     const tmp = parseInt(val * (maxValue - minValue), 10) + minValue;
     updateBrightVal(tmp, false);
   };
@@ -41,7 +55,8 @@ export function LightBright({ maxValue = 100, minValue = 0, status, defaultValue
     e.stopPropagation();
     document.removeEventListener('touchmove', handleMove);
     document.removeEventListener('touchend', handleEndMove);
-    const val = (e.changedTouches[0].clientX - slider.current.offsetLeft) / slider.current.clientWidth;
+    const val =      (e.changedTouches[0].clientX - slider.current.offsetLeft)
+      / slider.current.clientWidth;
     const tmp = parseInt(val * (maxValue - minValue), 10) + minValue;
     updateBrightVal(tmp, true);
   };
@@ -53,18 +68,20 @@ export function LightBright({ maxValue = 100, minValue = 0, status, defaultValue
 
   return (
     <div className="cus-light-bright">
-      <div className="mark">
-        <div className="mark-op-btn" onClick={toggleReduce}>
-          -
+      {isMask ? (
+        <div className="mark">
+          <div className="mark-op-btn" onClick={toggleReduce}>
+            -
+          </div>
+          <div className="value-wrap">
+            <Icon name={status ? 'light-checked' : 'light'}></Icon>
+            <div className="value-text">{dataInfo.dataUser}</div>
+          </div>
+          <div className="mark-op-btn" onClick={toggleAdd}>
+            +
+          </div>
         </div>
-        <div className="value-wrap">
-          <Icon name={status ? 'light-checked' : 'light'}></Icon>
-          <div className="value-text">{dataInfo.dataUser}</div>
-        </div>
-        <div className="mark-op-btn" onClick={toggleAdd}>
-          +
-        </div>
-      </div>
+      ) : null}
 
       <div className="border" onTouchStart={onTouchStart}>
         <div ref={slider} className="slider">
