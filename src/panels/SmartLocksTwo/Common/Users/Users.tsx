@@ -26,16 +26,24 @@ export function Users({
     faces = [],
     passwords = [],
   } = deviceData;
+
   const getAuth = (userid: string) => {
-    const filterAuthByUserid = (authArr, name) => authArr
-      .filter(item => item.userid === userid)
-      .reduce((prev, _curr, index) => [...prev, `${name}${index + 1}`], []);
-    return [
-      ...filterAuthByUserid(passwords, '密码'),
-      ...filterAuthByUserid(fingerprints, '指纹'),
-      ...filterAuthByUserid(cards, '卡片'),
-      ...filterAuthByUserid(faces, '面容ID'),
-    ];
+    const filterAuthByUserid = (authArr, name) => {
+      const { length } = authArr
+        .filter(item => item.userid === userid);
+      return length > 0 ? `${name}${length}个` : '';
+    };
+
+    const authSummary = [
+      filterAuthByUserid(passwords, '密码'),
+      filterAuthByUserid(fingerprints, '指纹'),
+      filterAuthByUserid(cards, '卡片'),
+      filterAuthByUserid(faces, '面容'),
+    ].filter(name => name !== '');
+
+    return authSummary.length > 0
+      ? authSummary.map(name => <span key={name} className="auth-item">{name}</span>)
+      : <span>未录入开锁方式</span>;
   };
   // 删除用户
   const onDelete = (item) => {
@@ -51,15 +59,14 @@ export function Users({
       ? <List
         data={userList}
         onDelete={onDelete}
-        render={({ name, type, userid }) => (
-
+        render={({ name, userid }) => (
           <Cell
             key={userid}
             className="cell-user"
             title={name}
             subTitle={<>
               {
-                getAuth(userid).map(name => <span key={name} className="auth-item">{name}</span>)
+                getAuth(userid)
               }
             </>}
             prefixIcon={<Icon name="avatar"></Icon>}

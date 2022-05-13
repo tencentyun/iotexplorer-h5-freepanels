@@ -176,7 +176,7 @@ export function UserEdit({
       </div>
       {faceList.map((item, index) => (
         <div className="method-item" key={index}>
-          <div>面容ID{ index + 1 }</div>
+          <div>面容{ index + 1 }</div>
           <div onClick={async () => {
             const isDelete = await tips.confirm('确认删除');
             if (isDelete) {

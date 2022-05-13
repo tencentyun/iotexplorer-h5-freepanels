@@ -32,7 +32,7 @@ export function PasswordResult({
     fingerprint: '指纹',
     password: '密码',
     card: '卡片',
-    face: '面容ID',
+    face: '面容',
   };
   const synchMethodEvent = {
     fingerprint: 'add_fingerprint_result',
@@ -104,9 +104,6 @@ export function PasswordResult({
             <div className="cancel-button" onClick={() => {
               goBack();
             }}>返回</div>
-            {/* <div className="footer-button" onClick={() => {
-              setStatus(false);
-            }}>重试</div> */}
           </>
         )}
       </footer>
