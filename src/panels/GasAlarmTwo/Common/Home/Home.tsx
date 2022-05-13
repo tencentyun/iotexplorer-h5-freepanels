@@ -7,17 +7,12 @@ import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 
 export function Home({
   deviceData,
-  doControlDeviceData,
   history: { PATH, push },
 }) {
-  const [isOn, setPowerOn] = useState(false);
   const [recordTime, setRecordTime] = useState('');
   const [recordStatus, setRecordStatus] = useState('');
 
   useEffect(() => {
-    const { doorsensor_state } = deviceData;
-
-    setPowerOn(doorsensor_state === 1);
     // 获取历史记录
     const getDeviceDataHistory = async () => {
       try {
@@ -27,7 +22,7 @@ export function Home({
         const lastYearTime = time.setFullYear(lastYear);
 
         const recordListInfo = await sdk.getDeviceDataHistory({
-          FieldName: 'doorsensor_state',
+          FieldName: 'gas_sensor_state',
           MaxTime: currentTime,
           MinTime: lastYearTime,
           Limit: 1,
@@ -35,7 +30,7 @@ export function Home({
         setRecordTime(recordListInfo.Results[0]?.Time || '');
         setRecordStatus(recordListInfo.Results[0]?.Value || '');
       } catch (err) {
-        console.error('get info fail', err);
+        console.error('get gas_sensor_state', err);
       }
     };
     getDeviceDataHistory();
@@ -61,7 +56,7 @@ export function Home({
         />
       </header>
 
-      <Disk deviceData={deviceData} doControlDeviceData={doControlDeviceData}></Disk>
+      <Disk deviceData={deviceData}></Disk>
       <div className="tips">
         {recordStatus ? (
           <span>

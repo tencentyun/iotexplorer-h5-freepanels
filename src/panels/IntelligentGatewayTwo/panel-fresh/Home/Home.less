@@ -1,0 +1,75 @@
+@import url("./Position.less");
+
+.home {
+  width: 100%;
+  color: @c1;
+  // height: calc( 100vh - 90px );
+  .dev-block {
+    margin-top: 16px;
+    padding: 16px;
+    margin-bottom: 90px;
+    .title {
+      font-weight: 600;
+      font-size: 12px;
+      line-height: 17px;
+    }
+  }
+  .fix-bottom-btn {
+    .btn-primary {
+      background: #ff5057;
+    }
+  }
+}
+
+.dev-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  .dev-info {
+    width: 139px;
+    height: 77px;
+    background: #f7f4fd;
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-top: 12px;
+    padding: 12px;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 20px;
+    .dot {
+      font-weight: 500;
+      font-size: 12px;
+      line-height: 17px;
+      position: relative;
+      margin-left: 8px;
+      color: #9A98AF;
+      &.dot-disable {
+        color: #9A98AF;
+      }
+      &.dot-disable:before {
+        background:  #A29DDF;
+      }
+    }
+    .dot::before {
+      content: " ";
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #65E266;
+      position: absolute;
+      top: 6px;
+      left: -8px;
+    }
+  }
+}
+.dev-empty {
+  padding-top: 100px;
+  width: 100%;
+  .info {
+    font-weight: 600;
+    font-size: 12px;
+    opacity: 0.8;
+  }
+}

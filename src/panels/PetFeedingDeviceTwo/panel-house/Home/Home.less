@@ -1,0 +1,46 @@
+@import url("./Position.less");
+@import url("./Action.less");
+@import url("./Feed.less");
+@import url("./Record.less");
+
+.route-home {
+  display: inherit !important;
+}
+.home {
+  width: 100%;
+  .header {
+    padding: 20px 0 0 16px;
+  }
+  .today-info {
+    color: @c1;
+    margin-top: 4px;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 40px;
+    font-weight: 600;
+    font-size: 14px;
+    > div {
+      width: 100px;
+      height: 100px;
+      > div {
+        display: flex;
+        align-items: baseline;
+        margin-bottom: 4px;
+        .num {
+          font-weight: 700;
+          font-size: 38px;
+        }
+        .tip {
+          font-weight: 600;
+          font-size: 16px;
+        }
+      }
+    }
+  }
+  .feed-panel {
+    background: @c1;
+    border-radius: 40px 40px 0px 0px;
+    margin-top:24px;
+    padding:32px 16px 80px 16px;
+  }
+}

@@ -1,0 +1,67 @@
+.position_card {
+  padding: 70px 0;
+  .main-bg {
+    width: 260px;
+    height: 260px;
+    background: #fbfbfc;
+    border: 1px solid #eff3f5;
+    border-radius: 50%;
+    .bg-img {
+      width: calc(100% - 24px);
+      height: calc(100% - 24px);
+      background: #26313d;
+      top: 38px;
+      left: 38px;
+      width: calc(100% - 100px);
+      height: calc(100% - 100px);
+      position: absolute;
+      margin: 12px;
+      border-radius: 50%;
+      background: @c1;
+      .svg-icon {
+        width: 60px;
+        height: 60px;
+      }
+      .device-status {
+        font-weight: 600;
+        font-size: 14px;
+        line-height: 20px;
+        text-align: center;
+        color: #ffffff;
+        .feed-num {
+          font-weight: 700;
+          font-size: 38px;
+          line-height: 44px;
+        }
+        .next-feed{
+          opacity: 0.5;
+        }
+      }
+    }
+  }
+  .circle-ring {
+    width: 236px;
+    height: 236px;
+    position: relative;
+  }
+  &.off-switch {
+    .bg {
+      .outer {
+        background: #d8d8d8 !important;
+      }
+    }
+    .bg-img {
+      background: @c2 !important;
+    }
+    .inner {
+      opacity: 0.5;
+    }
+  }
+  &.scene-type {
+    .bg {
+      .outer {
+        background-image: linear-gradient(90deg, #fedf42 0%, #fa7299 100%);
+      }
+    }
+  }
+}
