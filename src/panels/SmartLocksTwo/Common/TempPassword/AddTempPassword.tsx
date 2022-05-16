@@ -7,6 +7,9 @@ import { Input } from '@custom/Input';
 import { useTitle } from '@hooks/useTitle';
 import { TimePicker } from '@custom/TimePicker';
 import { DatePicker } from '@custom/DatePicker';
+import { getDeviceOTP, getSign } from './model';
+import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
+import { tips } from '@src/libs/wxlib';
 
 export const arrWeek = ['周日', '周一', '周二', '周三', '周四', '周五', '周六'];
 
@@ -23,9 +26,9 @@ export function AddTempPassword({ history: { goBack } }) {
   // 周期与单次
   const [type, setType] = useState(PASSWORD_TYPE.SINGLE);
   // 单次密码
-  const [singlePassword, setSinglePassword] = useState({ password: '', time: '' });
+  const [singlePassword, setSinglePassword] = useState({ password: '', expired: '' });
   // 周期密码
-  const [password, setPassword] = useState({ password: '', time: '' });
+  const [password, setPassword] = useState('');
   // 有效日期
   const [beginDate, setBeginDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
@@ -45,22 +48,43 @@ export function AddTempPassword({ history: { goBack } }) {
 
   // 点击随机生成
   const onRandomGenerator = () => {
-    // TODO
+    // 周期性密码由前端生成随机6位数，并加密后发给设备
     console.log('随机生成密码');
-    setPassword({ password: randomCreatePassword(6) });
+    setPassword(randomCreatePassword(6).toString());
   };
   // 获取单次密码
   const getSinglePassword = () => {
-    // TODO
-    setSinglePassword({
-      password: '372940',
-      time: +new Date(),
+    getDeviceOTP().then((res) => {
+      setSinglePassword({
+        password: res.password,
+        expired: dayjs(1000 * (res.expired + 20 * 60) /* 有效期 20分钟 */).format('YYYY/MM/DD HH:mm'),
+      });
     });
   };
 
   // 保存周期密码
-  const saveCyclePassword = () => {
-    // TODO
+  const saveCyclePassword = async () => {
+    try {
+      const res = await getSign(password);
+      const result = await sdk.callDeviceAction({
+        take_effect_time: beginTime.join(':'),
+        invalid_time: endTime.join(':'),
+        check_code: res,
+        week: repeat.join(''),
+        take_effect_date: dayjs(beginDate).format('YYYY/MM/DD'),
+        invalid_date: dayjs(endDate).format('YYYY/MM/DD'),
+      }, 'add_cycle_password');
+      if (result.OutputParams && JSON.parse(result.OutputParams).result === 1) {
+        tips.showInfo('保存成功');
+        goBack();
+      } else {
+        throw new Error('保存周期密码失败');
+      }
+      console.log('add password result', result);
+    } catch (err) {
+      console.error('保存周期密码', err);
+      tips.showError('保存周期密码出错');
+    }
   };
 
   const onSubmit = () => {
@@ -72,7 +96,6 @@ export function AddTempPassword({ history: { goBack } }) {
       }
     } else {
       saveCyclePassword();
-      goBack();
     }
   };
 
@@ -102,9 +125,10 @@ export function AddTempPassword({ history: { goBack } }) {
               <div className="show-password">
                 <div>
                   <Input
-                    value={password.password}
+                    value={password}
+                    readOnly
                     onChange={(val) => {
-                      setPassword({ ...password, password: val });
+                      setPassword(val);
                     }}
                   />
                 </div>
@@ -245,16 +269,19 @@ export function AddTempPassword({ history: { goBack } }) {
           <div className="exist-single-password">
             <div className="show-password">
               <div id="password">{singlePassword.password}</div>
-              <span onClick={copy.bind(null, 'password')}>复制</span>
+              <span onClick={() => {
+                copy('password');
+                sdk.tips.showInfo('已复制');
+              }}>复制</span>
             </div>
             <div className="password-tips">
               <p>有效期</p>
-              <p>将于北京时间{dayjs(singlePassword.time).format('YYYY/MM/DD HH:  mm')}或使用过一次后自动失效</p>
+              <p>将于北京时间 {singlePassword.expired} 或使用过一次后自动失效</p>
             </div>
           </div>
         ) : null}
         {!type && !singlePassword?.password ? (
-          <div className="tips">有效期为20分钟，失效前仅能使用一次</div>
+          <div className="tips">有效期为 20 分钟，失效前仅能使用一次</div>
         ) : null}
       </div>
 
