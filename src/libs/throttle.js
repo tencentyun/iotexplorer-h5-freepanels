@@ -13,10 +13,10 @@
  */
 export default function (delay, noTrailing, callback, debounceMode) {
   /*
-	 * After wrapper has stopped being called, this timeout ensures that
-	 * `callback` is executed at the proper times in `throttle` and `end`
-	 * debounce modes.
-	 */
+     * After wrapper has stopped being called, this timeout ensures that
+     * `callback` is executed at the proper times in `throttle` and `end`
+     * debounce modes.
+     */
   let timeoutID;
   let cancelled = false;
 
@@ -44,10 +44,10 @@ export default function (delay, noTrailing, callback, debounceMode) {
   }
 
   /*
-	 * The `wrapper` function encapsulates all of the throttling / debouncing
-	 * functionality and when executed will limit the rate at which `callback`
-	 * is executed.
-	 */
+     * The `wrapper` function encapsulates all of the throttling / debouncing
+     * functionality and when executed will limit the rate at which `callback`
+     * is executed.
+     */
   function wrapper(...arguments_) {
     const self = this;
     const elapsed = Date.now() - lastExec;
@@ -63,18 +63,18 @@ export default function (delay, noTrailing, callback, debounceMode) {
     }
 
     /*
-		 * If `debounceMode` is true (at begin) this is used to clear the flag
-		 * to allow future `callback` executions.
-		 */
+         * If `debounceMode` is true (at begin) this is used to clear the flag
+         * to allow future `callback` executions.
+         */
     function clear() {
       timeoutID = undefined;
     }
 
     if (debounceMode && !timeoutID) {
       /*
-			 * Since `wrapper` is being called for the first time and
-			 * `debounceMode` is true (at begin), execute `callback`.
-			 */
+             * Since `wrapper` is being called for the first time and
+             * `debounceMode` is true (at begin), execute `callback`.
+             */
       exec();
     }
 
@@ -82,22 +82,22 @@ export default function (delay, noTrailing, callback, debounceMode) {
 
     if (debounceMode === undefined && elapsed > delay) {
       /*
-			 * In throttle mode, if `delay` time has been exceeded, execute
-			 * `callback`.
-			 */
+             * In throttle mode, if `delay` time has been exceeded, execute
+             * `callback`.
+             */
       exec();
     } else if (noTrailing !== true) {
       /*
-			 * In trailing throttle mode, since `delay` time has not been
-			 * exceeded, schedule `callback` to execute `delay` ms after most
-			 * recent execution.
-			 *
-			 * If `debounceMode` is true (at begin), schedule `clear` to execute
-			 * after `delay` ms.
-			 *
-			 * If `debounceMode` is false (at end), schedule `callback` to
-			 * execute after `delay` ms.
-			 */
+             * In trailing throttle mode, since `delay` time has not been
+             * exceeded, schedule `callback` to execute `delay` ms after most
+             * recent execution.
+             *
+             * If `debounceMode` is true (at begin), schedule `clear` to execute
+             * after `delay` ms.
+             *
+             * If `debounceMode` is false (at end), schedule `callback` to
+             * execute after `delay` ms.
+             */
       timeoutID = setTimeout(
         debounceMode ? clear : exec,
         debounceMode === undefined ? delay - elapsed : delay,

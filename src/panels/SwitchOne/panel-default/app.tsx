@@ -1,3 +1,4 @@
+import React from 'react';
 import ReactDOM from 'react-dom';
 import { App } from '../panel-common/app';
 import { withTheme } from '@libs/theme';

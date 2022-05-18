@@ -7,7 +7,6 @@ import {
   Route,
   Redirect,
   Switch,
-  useHistory,
 } from 'react-router-dom';
 import { SubDeviceList } from './SubDeviceList';
 import { StatusTip } from '@components/StatusTip';
@@ -15,7 +14,7 @@ import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 
 function App() {
   const [
-    { deviceInfo, deviceData, productInfo, templateMap, offline, powerOff, statusTip },
+    { deviceData, offline, powerOff, statusTip },
     { doControlDeviceData },
   ] = useDeviceInfo();
   const [subDeviceList, setSubDeviceList] = useState<any[]>([]);
