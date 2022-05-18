@@ -95,7 +95,8 @@ export function TempPassword({ history: { push, PATH }, tips, deviceData }) {
           data={cyclePasswordList}
           onDelete={onDeleteCyclePassword}
           render={({ take_effect_date, invalid_date, take_effect_time, invalid_time, week }, index) => {
-            const weekStr = week.split('').map((index) => arrWeek[index]).join(' ');
+            const weekStr = week.split('').map(index => arrWeek[index])
+              .join(' ');
             const invalidTime = +dayjs(`${invalid_date} ${invalid_time}`);
             const isLose = Date.now() > invalidTime;
             return (<div key={index} className="item">
