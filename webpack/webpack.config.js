@@ -14,12 +14,22 @@ const category = argv.category || process.env.npm_config_category || '';
 
 // 使用 npm run dev --category=xxx --index 统一生成index.js, index.css
 const outputIndex = ((argv.index || process.env.npm_config_index) === 'true');
-
+// const DefaultBuildGroup = 50; // 通过导出多分target组的异步编译，解决内存不足问题
 class ModifiedMiniCssExtractPlugin extends MiniCssExtractPlugin {
   getCssChunkObject(mainChunk) {
     return {};
   }
 }
+// const getMulitConfig  = (baseConfig, ArrayEntry) => {
+//   if (ArrayEntry.length > 1) {
+//     return ArrayEntry.map((entry, index) => ({ ...baseConfig, output: {
+//       ...baseConfig.output,
+//       clean: index === 0, // 解决第一个配置才清除目录，后续分组不清除目录中历史文件
+//     }, entry,
+//     }));
+//   }
+//   return baseConfig;
+// };
 
 module.exports = (env, argv) => {
   const { mode } = argv;
@@ -71,13 +81,16 @@ module.exports = (env, argv) => {
       });
     }
   });
-  console.log('entry list length --->', Object.keys(entry).length);
+  console.log('build panel length:', Object.keys(panelConfig).length, 'build template length --->', Object.keys(entry).length);
 
   const outputFileName = outputIndex ? 'index' : '[name]';
-  return {
+  const webpackConfigs =  {
     name: 'iotexplorer-h5-freepanels',
     mode,
     entry,
+    cache: {
+      type: 'filesystem',
+    },
     output: {
       path: outputPath,
       filename: (isDevMode || isPreview) ? `${outputFileName}.js` : '[name].[contenthash:10].js',
@@ -106,42 +119,8 @@ module.exports = (env, argv) => {
       rules: [
         {
           test: /\.(j|t)sx?$/,
-          exclude: /node_modules|vendors/,
+          exclude: /(node_modules|vendors)/,
           use: [
-            // {
-            //   loader: 'thread-loader',
-            //   options: {
-            //     // the number of spawned workers, defaults to (number of cpus - 1) or
-            //     // fallback to 1 when require('os').cpus() is undefined
-            //     workers: 4,
-
-            //     // number of jobs a worker processes in parallel
-            //     // defaults to 20
-            //     workerParallelJobs: 50,
-
-            //     // additional node.js arguments
-            //     workerNodeArgs: ['--max-old-space-size=4096'],
-
-            //     // Allow to respawn a dead worker pool
-            //     // respawning slows down the entire compilation
-            //     // and should be set to false for development
-            //     poolRespawn: false,
-
-            //     // timeout for killing the worker processes when idle
-            //     // defaults to 500 (ms)
-            //     // can be set to Infinity for watching builds to keep workers alive
-            //     poolTimeout: 2000,
-
-            //     // number of jobs the poll distributes to the workers
-            //     // defaults to 200
-            //     // decrease of less efficient but more fair distribution
-            //     poolParallelJobs: 50,
-
-            //     // name of the pool
-            //     // can be used to create different pools with elsewise identical options
-            //     name: 'my-pool',
-            //   },
-            // },
             {
               loader: 'babel-loader',
               options: {
@@ -215,6 +194,7 @@ module.exports = (env, argv) => {
             {
               loader: 'less-loader',
             },
+            { loader: 'thread-loader' },
           ],
         },
         {
@@ -274,6 +254,7 @@ module.exports = (env, argv) => {
       minimize: !isDevMode,
       minimizer: [
         new TerserPlugin({
+          parallel: true,
           extractComments: false,
         }),
         new CssMinimizerPlugin(),
@@ -293,4 +274,20 @@ module.exports = (env, argv) => {
     ].filter(Boolean),
     // stats: { children: false },
   };
+  // const maxLength = Object.keys(entry).length;
+  // if (isDevMode || maxLength <= DefaultBuildGroup)
+  return webpackConfigs;
+
+  // const entryArray = [];
+  // let group = {};
+  // Object.keys(entry).forEach((key, index) => {
+  //   // 每100个分组 或最后一个才做处理
+  //   if ((index > 0 && index % DefaultBuildGroup === 0) || index === maxLength - 1) {
+  //     entryArray.push(group);
+  //     group = {};
+  //   }
+  //   group[key] = entry[key];
+  // });
+  // console.log(`分 ${entryArray.length} 组，编译防止内存空间不够,导致编译失败`);
+  // return getMulitConfig(webpackConfigs, entryArray);
 };

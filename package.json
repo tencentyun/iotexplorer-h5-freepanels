@@ -6,7 +6,9 @@
   "scripts": {
     "dev": "npx webpack serve --config webpack/webpack.config.js --mode=development ",
     "pre": "npx webpack serve --config webpack/webpack.config.js --mode=production",
-    "build": "npx webpack --config webpack/webpack.config.js --mode=production",
+    "build": "npm run node-mem",
+    "node-mem": "node --max-old-space-size=8192 ./node_modules/webpack/bin/webpack.js --config webpack/webpack.config.js --mode=production",
+    "build-file": "npx webpack --config webpack/webpack.config.js --mode=production",
     "lint": "eslint  ./src",
     "lint:fix": "eslint ./src --ext .ts,.tsx,.js --fix"
   },
