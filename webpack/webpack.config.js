@@ -14,22 +14,11 @@ const category = argv.category || process.env.npm_config_category || '';
 
 // 使用 npm run dev --category=xxx --index 统一生成index.js, index.css
 const outputIndex = ((argv.index || process.env.npm_config_index) === 'true');
-// const DefaultBuildGroup = 50; // 通过导出多分target组的异步编译，解决内存不足问题
 class ModifiedMiniCssExtractPlugin extends MiniCssExtractPlugin {
   getCssChunkObject(mainChunk) {
     return {};
   }
 }
-// const getMulitConfig  = (baseConfig, ArrayEntry) => {
-//   if (ArrayEntry.length > 1) {
-//     return ArrayEntry.map((entry, index) => ({ ...baseConfig, output: {
-//       ...baseConfig.output,
-//       clean: index === 0, // 解决第一个配置才清除目录，后续分组不清除目录中历史文件
-//     }, entry,
-//     }));
-//   }
-//   return baseConfig;
-// };
 
 module.exports = (env, argv) => {
   const { mode } = argv;
@@ -84,7 +73,7 @@ module.exports = (env, argv) => {
   console.log('build panel length:', Object.keys(panelConfig).length, 'build template length --->', Object.keys(entry).length);
 
   const outputFileName = outputIndex ? 'index' : '[name]';
-  const webpackConfigs =  {
+  return {
     name: 'iotexplorer-h5-freepanels',
     mode,
     entry,
@@ -274,20 +263,4 @@ module.exports = (env, argv) => {
     ].filter(Boolean),
     // stats: { children: false },
   };
-  // const maxLength = Object.keys(entry).length;
-  // if (isDevMode || maxLength <= DefaultBuildGroup)
-  return webpackConfigs;
-
-  // const entryArray = [];
-  // let group = {};
-  // Object.keys(entry).forEach((key, index) => {
-  //   // 每100个分组 或最后一个才做处理
-  //   if ((index > 0 && index % DefaultBuildGroup === 0) || index === maxLength - 1) {
-  //     entryArray.push(group);
-  //     group = {};
-  //   }
-  //   group[key] = entry[key];
-  // });
-  // console.log(`分 ${entryArray.length} 组，编译防止内存空间不够,导致编译失败`);
-  // return getMulitConfig(webpackConfigs, entryArray);
 };
