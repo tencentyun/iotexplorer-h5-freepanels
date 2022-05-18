@@ -7,15 +7,15 @@ const getHour = (showTwoDigit = false) => genArr(24).map(h => (h < 10 ? `${showT
 const getMinute = (showTwoDigit = false) => genArr(60).map(m => (m < 10 ? `${showTwoDigit ? '0' : ''}${m}` : String(m)));
 
 export interface TimePickerViewProps extends Omit<PickerViewGroupProps, 'options' | 'value' | 'onChange'> {
-	value: number[];
-	onChange: (value: number[]) => any;
-	isTimeRange?: boolean;
-	itemHeight?: number; // 单位 rpx
-	height?: number; // 单位rpx
-	showUnit?: boolean;
-	hourUnit?: string;
-	minuteUnit?: string;
-	showTwoDigit?: boolean;
+    value: number[];
+    onChange: (value: number[]) => any;
+    isTimeRange?: boolean;
+    itemHeight?: number; // 单位 rpx
+    height?: number; // 单位rpx
+    showUnit?: boolean;
+    hourUnit?: string;
+    minuteUnit?: string;
+    showTwoDigit?: boolean;
 }
 
 export function TimePickerView({
@@ -54,15 +54,15 @@ export function TimePickerView({
   }, [showTwoDigit, isTimeRange]);
 
   return (
-		<PickerViewGroup
-			options={options}
-			onChange={value => onChange(value.map(v => +v))}
-			height={height}
-			itemHeight={itemHeight}
-			value={value.map(v => String(v))}
-			showDivider={isTimeRange}
-			{...props}
-		/>
+        <PickerViewGroup
+            options={options}
+            onChange={value => onChange(value.map(v => +v))}
+            height={height}
+            itemHeight={itemHeight}
+            value={value.map(v => String(v))}
+            showDivider={isTimeRange}
+            {...props}
+        />
   );
 }
 
