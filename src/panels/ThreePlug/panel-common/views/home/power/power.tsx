@@ -3,31 +3,30 @@ import { useHistory } from 'react-router';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 import classNames from 'classnames';
 import { getThemeType } from '@libs/theme';
-import { ValuePicker } from '@components/business';
-import { numberToArray } from '@libs/utillib';
-import { apiControlDeviceData, onControlDevice } from '@hooks/useDeviceData';
+import {TimePicker} from '@components/business';
+import { apiControlDeviceData, onControlDevice} from '@hooks/useDeviceData';
 import './power.less';
-import SwitchImage from '../../icons/normal/switch.svg';
-import SwitchImageClose from '../../icons/normal/switch-close.svg';
-import SwitchImageBlueWhite from '../../icons/blue-white/switch.svg';
-import SwitchImageDark from '../../icons/dark/switch.svg';
-import SwitchImageDarkClose from '../../icons/dark/switch-close.svg';
-import SwitchImageColorfulClose from '../../icons/colorful/switch-close.svg';
-import SwitchImageMorandi from '../../icons/morandi/switch.svg';
+import SwitchImage from "../../icons/normal/switch.svg";
+import SwitchImageClose from "../../icons/normal/switch-close.svg";
+import SwitchImageBlueWhite from "../../icons/blue-white/switch.svg";
+import SwitchImageDark from "../../icons/dark/switch.svg";
+import SwitchImageDarkClose from "../../icons/dark/switch-close.svg";
+import SwitchImageColorfulClose from "../../icons/colorful/switch-close.svg";
+import SwitchImageMorandi from "../../icons/morandi/switch.svg";
 
-import TimingImage from '../../icons/normal/timing.svg';
-import TimingImageDefaule from '../../icons/normal/timing-close.svg';
-import TimingImageBlueWhite from '../../icons/blue-white/timing.svg';
-import TimingImageDark from '../../icons/dark/timing.svg';
-import TimingImageColorful from '../../icons/colorful/timing.svg';
-import TimingImageMorandi from '../../icons/morandi/timing.svg';
+import TimingImage from "../../icons/normal/timing.svg";
+import TimingImageDefaule from "../../icons/normal/timing-close.svg";
+import TimingImageBlueWhite from "../../icons/blue-white/timing.svg";
+import TimingImageDark from "../../icons/dark/timing.svg";
+import TimingImageColorful from "../../icons/colorful/timing.svg";
+import TimingImageMorandi from "../../icons/morandi/timing.svg";
 
-import SettingImage from '../../icons/normal/setting.svg';
-import SettingImageDefaule from '../../icons/normal/setting-close.svg';
-import SettingImageBlueWhite from '../../icons/blue-white/setting.svg';
-import SettingImageDark from '../../icons/dark/setting.svg';
-import SettingImageColorful from '../../icons/colorful/setting.svg';
-import SettingImageMorandi from '../../icons/morandi/setting.svg';
+import SettingImage from "../../icons/normal/setting.svg";
+import SettingImageDefaule from "../../icons/normal/setting-close.svg";
+import SettingImageBlueWhite from "../../icons/blue-white/setting.svg";
+import SettingImageDark from "../../icons/dark/setting.svg";
+import SettingImageColorful from "../../icons/colorful/setting.svg";
+import SettingImageMorandi from "../../icons/morandi/setting.svg";
 
 export function Power() {
   const themeType = getThemeType();
@@ -81,13 +80,19 @@ export function Power() {
     }
   };
   const [timingVisible, onToggleTiming] = useState(false);
-  const [timingTime] = useState([]);
-  const countDownColumns = () => {
-    const hourCols = numberToArray(12, '时');
-    const minuteCols = numberToArray(60, '分');
 
-    return [hourCols, minuteCols];
+  const handleCountdownDefault = (value: number) => {
+    const hours: number = (value - value % (60 * 60)) / (60 * 60);
+    const minutes: number = (value % (60 * 60)) / (60);
+    const countdownTime: any = [hours.toString(), minutes.toString()];
+    return countdownTime;
   };
+
+  const handleCountdownVal = () => {
+    let switchOpen = sdk.deviceData.count_down;
+    return handleCountdownDefault(switchOpen);
+  };
+
   const handleTiming = () => {
     if (sdk.deviceData.power_switch === 1) {
       onToggleTiming(true);
@@ -95,15 +100,16 @@ export function Power() {
   };
   const handlePowerSwitch = () => {
     apiControlDeviceData({
-      power_switch: sdk.deviceData.power_switch === 1 ? 0 : 1,
+      power_switch: sdk.deviceData.power_switch === 1 ? 0 : 1
     });
   };
   const history = useHistory();
   const handleToggle = () => {
     if (sdk.deviceData.power_switch === 1) {
       return history.push('/timing');
+    } else {
+      return '';
     }
-    return '';
   };
   return (
     <article className={classNames('power-tools-bar')}>
@@ -111,7 +117,7 @@ export function Power() {
         id={'timing'}
         className={classNames(
           'button-fillet',
-          'box-shadow',
+          'box-shadow'
         )}
         onClick={handleToggle}
       >
@@ -119,7 +125,7 @@ export function Power() {
         <div
           className={classNames(
             'label',
-            sdk.deviceData.power_switch === 1 ? '' : 'btn-off',
+            sdk.deviceData.power_switch === 1 ? '' : 'btn-off'
           )}
         >
           定时
@@ -136,7 +142,7 @@ export function Power() {
         id={'setting'}
         className={classNames(
           'button-fillet',
-          'box-shadow',
+          'box-shadow'
         )}
         onClick={handleTiming}
       >
@@ -144,33 +150,28 @@ export function Power() {
         <div
           className={classNames(
             'label',
-            sdk.deviceData.power_switch === 1 ? '' : 'btn-off',
+            sdk.deviceData.power_switch === 1 ? '' : 'btn-off'
           )}
         >
           设置
         </div>
       </button>
-      <ValuePicker
+      <TimePicker
+        showSemicolon={false}
+        value={handleCountdownVal()}
+        showUnit={true}
+        showTime={false}
+        showTwoDigit={false}
+        theme={themeType}
         title="倒计时关闭"
+        onCancel={onToggleTiming.bind(null, false)}
+        onConfirm={(value: any) => {
+          const hour: number = Number(value[0].split('时')[0]);
+          const mins: number = Number(value[1].split('分')[0]);
+          const num = hour * 3600 + mins * 60;
+          onControlDevice('count_down', num);
+        }}
         visible={timingVisible}
-        value={timingTime}
-        columns={countDownColumns()}
-        onCancel={() => {
-          onToggleTiming(false);
-        }}
-        onConfirm={(value) => {
-          let hour = value[0];
-          let minute = value[1];
-          if (hour != null) {
-            hour = hour.substr(0, hour.length - 1);
-          }
-          if (minute != null) {
-            minute = minute.substr(0, minute.length - 1);
-          }
-          const countDown = Number(hour) * 3600 + Number(minute) * 60;
-          onControlDevice('count_down', Number(countDown));
-          onToggleTiming(false);
-        }}
       />
     </article>
   );

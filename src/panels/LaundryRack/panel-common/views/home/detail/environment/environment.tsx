@@ -3,64 +3,63 @@ import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 import classNames from 'classnames';
 import './environment.less';
 import { getThemeType } from '@libs/theme';
-import { apiControlDeviceData, onControlDevice } from '@hooks/useDeviceData';
-import { numberToArray } from '@libs/utillib';
-import { ValuePicker } from '@components/business';
+import { apiControlDeviceData } from '@hooks/useDeviceData';
+import {TimePicker} from "@components/business";
 
-import LightImage from '../../../icons/normal/light-open.svg';
-import LightImageDefault from '../../../icons/normal/light-close.svg';
-import LightImageBlueWhite from '../../../icons/blue-white/light-open.svg';
-import LightImageBlueWhiteDefault from '../../../icons/blue-white/light-close.svg';
-import LightImageDark from '../../../icons/dark/light-open.svg';
-import LightImageDarkDefault from '../../../icons/dark/light-close.svg';
-import LightImageColorful from '../../../icons/colorful/light-open.svg';
-import LightImageColorfulDefault from '../../../icons/colorful/light-close.svg';
-import LightImageMorandi from '../../../icons/morandi/light-open.svg';
-import LightImageMorandiDefault from '../../../icons/morandi/light-close.svg';
+import LightImage from "../../../icons/normal/light-open.svg";
+import LightImageDefault from "../../../icons/normal/light-close.svg";
+import LightImageBlueWhite from "../../../icons/blue-white/light-open.svg";
+import LightImageBlueWhiteDefault from "../../../icons/blue-white/light-close.svg";
+import LightImageDark from "../../../icons/dark/light-open.svg";
+import LightImageDarkDefault from "../../../icons/dark/light-close.svg";
+import LightImageColorful from "../../../icons/colorful/light-open.svg";
+import LightImageColorfulDefault from "../../../icons/colorful/light-close.svg";
+import LightImageMorandi from "../../../icons/morandi/light-open.svg";
+import LightImageMorandiDefault from "../../../icons/morandi/light-close.svg";
 
-import SterilizeImage from '../../../icons/normal/sterilize-open.svg';
-import SterilizeImageDefault from '../../../icons/normal/sterilize-close.svg';
-import SterilizeImageBlueWhite from '../../../icons/blue-white/sterilize-open.svg';
-import SterilizeImageBlueWhiteDefault from '../../../icons/blue-white/sterilize-close.svg';
-import SterilizeImageDark from '../../../icons/dark/sterilize-open.svg';
-import SterilizeImageDarkDefault from '../../../icons/dark/sterilize-close.svg';
-import SterilizeImageColorful from '../../../icons/colorful/sterilize-open.svg';
-import SterilizeImageColorfulDefault from '../../../icons/colorful/sterilize-close.svg';
-import SterilizeImageMorandi from '../../../icons/morandi/sterilize-open.svg';
-import SterilizeImageMorandiDefault from '../../../icons/morandi/sterilize-close.svg';
+import SterilizeImage from "../../../icons/normal/sterilize-open.svg";
+import SterilizeImageDefault from "../../../icons/normal/sterilize-close.svg";
+import SterilizeImageBlueWhite from "../../../icons/blue-white/sterilize-open.svg";
+import SterilizeImageBlueWhiteDefault from "../../../icons/blue-white/sterilize-close.svg";
+import SterilizeImageDark from "../../../icons/dark/sterilize-open.svg";
+import SterilizeImageDarkDefault from "../../../icons/dark/sterilize-close.svg";
+import SterilizeImageColorful from "../../../icons/colorful/sterilize-open.svg";
+import SterilizeImageColorfulDefault from "../../../icons/colorful/sterilize-close.svg";
+import SterilizeImageMorandi from "../../../icons/morandi/sterilize-open.svg";
+import SterilizeImageMorandiDefault from "../../../icons/morandi/sterilize-close.svg";
 
-import SeasonImage from '../../../icons/normal/season-open.svg';
-import SeasonImageDefault from '../../../icons/normal/season-close.svg';
-import SeasonImageBlueWhite from '../../../icons/blue-white/season-open.svg';
-import SeasonImageBlueWhiteDefault from '../../../icons/blue-white/season-close.svg';
-import SeasonImageDark from '../../../icons/dark/season-open.svg';
-import SeasonImageDarkDefault from '../../../icons/dark/season-close.svg';
-import SeasonImageColorful from '../../../icons/colorful/season-open.svg';
-import SeasonImageColorfulDefault from '../../../icons/colorful/season-close.svg';
-import SeasonImageMorandi from '../../../icons/morandi/season-open.svg';
-import SeasonImageMorandiDefault from '../../../icons/morandi/season-close.svg';
+import SeasonImage from "../../../icons/normal/season-open.svg";
+import SeasonImageDefault from "../../../icons/normal/season-close.svg";
+import SeasonImageBlueWhite from "../../../icons/blue-white/season-open.svg";
+import SeasonImageBlueWhiteDefault from "../../../icons/blue-white/season-close.svg";
+import SeasonImageDark from "../../../icons/dark/season-open.svg";
+import SeasonImageDarkDefault from "../../../icons/dark/season-close.svg";
+import SeasonImageColorful from "../../../icons/colorful/season-open.svg";
+import SeasonImageColorfulDefault from "../../../icons/colorful/season-close.svg";
+import SeasonImageMorandi from "../../../icons/morandi/season-open.svg";
+import SeasonImageMorandiDefault from "../../../icons/morandi/season-close.svg";
 
-import DryingImage from '../../../icons/normal/drying-open.svg';
-import DryingImageDefault from '../../../icons/normal/drying-close.svg';
-import DryingImageBlueWhite from '../../../icons/blue-white/drying-open.svg';
-import DryingImageBlueWhiteDefault from '../../../icons/blue-white/drying-close.svg';
-import DryingImageDark from '../../../icons/dark/drying-open.svg';
-import DryingImageDarkDefault from '../../../icons/dark/drying-close.svg';
-import DryingImageColorful from '../../../icons/colorful/drying-open.svg';
-import DryingImageColorfulDefault from '../../../icons/colorful/drying-close.svg';
-import DryingImageMorandi from '../../../icons/morandi/drying-open.svg';
-import DryingImageMorandiDefault from '../../../icons/morandi/drying-close.svg';
+import DryingImage from "../../../icons/normal/drying-open.svg";
+import DryingImageDefault from "../../../icons/normal/drying-close.svg";
+import DryingImageBlueWhite from "../../../icons/blue-white/drying-open.svg";
+import DryingImageBlueWhiteDefault from "../../../icons/blue-white/drying-close.svg";
+import DryingImageDark from "../../../icons/dark/drying-open.svg";
+import DryingImageDarkDefault from "../../../icons/dark/drying-close.svg";
+import DryingImageColorful from "../../../icons/colorful/drying-open.svg";
+import DryingImageColorfulDefault from "../../../icons/colorful/drying-close.svg";
+import DryingImageMorandi from "../../../icons/morandi/drying-open.svg";
+import DryingImageMorandiDefault from "../../../icons/morandi/drying-close.svg";
 
-import TimimgImage from '../../../icons/normal/timing-open.svg';
-import TimimgImageDefault from '../../../icons/normal/timing-close.svg';
-import TimimgImageBlueWhite from '../../../icons/blue-white/timing-open.svg';
-import TimimgImageBlueWhiteDefault from '../../../icons/blue-white/timing-close.svg';
-import TimimgImageDark from '../../../icons/dark/timing-open.svg';
-import TimimgImageDarkDefault from '../../../icons/dark/timing-close.svg';
-import TimimgImageColorful from '../../../icons/colorful/timing-open.svg';
-import TimimgImageColorfulDefault from '../../../icons/colorful/timing-close.svg';
-import TimimgImageMorandi from '../../../icons/morandi/timing-open.svg';
-import TimimgImageMorandiDefault from '../../../icons/morandi/timing-close.svg';
+import TimimgImage from "../../../icons/normal/timing-open.svg";
+import TimimgImageDefault from "../../../icons/normal/timing-close.svg";
+import TimimgImageBlueWhite from "../../../icons/blue-white/timing-open.svg";
+import TimimgImageBlueWhiteDefault from "../../../icons/blue-white/timing-close.svg";
+import TimimgImageDark from "../../../icons/dark/timing-open.svg";
+import TimimgImageDarkDefault from "../../../icons/dark/timing-close.svg";
+import TimimgImageColorful from "../../../icons/colorful/timing-open.svg";
+import TimimgImageColorfulDefault from "../../../icons/colorful/timing-close.svg";
+import TimimgImageMorandi from "../../../icons/morandi/timing-open.svg";
+import TimimgImageMorandiDefault from "../../../icons/morandi/timing-close.svg";
 
 const Environment = () => {
   const themeType = getThemeType();
@@ -211,38 +210,51 @@ const Environment = () => {
 
   const handleLight = () => {
     apiControlDeviceData({
-      light_switch: sdk.deviceData.light_switch === 1 ? 0 : 1,
+      light_switch: sdk.deviceData.light_switch === 1 ? 0 : 1
     });
   };
   const handleSterilize = () => {
     apiControlDeviceData({
-      disinfect_switch: sdk.deviceData.disinfect_switch === 1 ? 0 : 1,
+      disinfect_switch: sdk.deviceData.disinfect_switch === 1 ? 0 : 1
     });
   };
   const handleSeason = () => {
     apiControlDeviceData({
-      air_dry_switch: sdk.deviceData.air_dry_switch === 1 ? 0 : 1,
+      air_dry_switch: sdk.deviceData.air_dry_switch === 1 ? 0 : 1
     });
   };
   const handleDrying = () => {
     apiControlDeviceData({
-      drying_switch: sdk.deviceData.drying_switch === 1 ? 0 : 1,
+      drying_switch: sdk.deviceData.drying_switch === 1 ? 0 : 1
     });
   };
   const handleTiming = () => {
     apiControlDeviceData({
-      timing: sdk.deviceData.timing === 1 ? 0 : 1,
+      timing: sdk.deviceData.timing === 1 ? 0 : 1
     });
     onToggleTiming(true);
   };
   const [timingVisible, onToggleTiming] = useState(false);
-  const [timingTime] = useState([]);
+  const handleCountdownDefault = (value: number) => {
+    const hours: number = (value - value % (60 * 60)) / (60 * 60);
+    const minutes: number = (value % (60 * 60)) / (60);
+    const countdownTime: any = [hours.toString(), minutes.toString()];
+    return countdownTime;
+  };
 
-  const countDownColumns = () => {
-    const hourCols = numberToArray(24, '时');
-    const minuteCols = numberToArray(60, '分');
+  const handleCountdownVal = () => {
+    let switchOpen = 0;
+    if (sdk.deviceData.disinfect_switch === 1) {
+      switchOpen = sdk.deviceData.set_disinfection;
+    }
+    if (sdk.deviceData.air_dry_switch === 1) {
+      switchOpen = sdk.deviceData.set_air_dry;
+    }
+    if (sdk.deviceData.drying_switch === 1) {
+      switchOpen = sdk.deviceData.set_drying;
+    }
 
-    return [hourCols, minuteCols];
+    return handleCountdownDefault(switchOpen);
   };
   return (
     <article className={classNames('environment')}>
@@ -252,7 +264,7 @@ const Environment = () => {
           <div
             className={classNames(
               'label',
-              sdk.deviceData.light_switch === 1 ? 'check' : '',
+              sdk.deviceData.light_switch === 1 ? 'check' : ''
             )}
           >
             灯光
@@ -267,7 +279,7 @@ const Environment = () => {
           <div
             className={classNames(
               'label',
-              sdk.deviceData.disinfect_switch === 1 ? 'check' : '',
+              sdk.deviceData.disinfect_switch === 1 ? 'check' : ''
             )}
           >
             消毒
@@ -278,7 +290,7 @@ const Environment = () => {
           <div
             className={classNames(
               'label',
-              sdk.deviceData.air_dry_switch === 1 ? 'check' : '',
+              sdk.deviceData.air_dry_switch === 1 ? 'check' : ''
             )}
           >
             风干
@@ -289,7 +301,7 @@ const Environment = () => {
           <div
             className={classNames(
               'label',
-              sdk.deviceData.drying_switch === 1 ? 'check' : '',
+              sdk.deviceData.drying_switch === 1 ? 'check' : ''
             )}
           >
             烘干
@@ -299,47 +311,41 @@ const Environment = () => {
           <img src={timingImageSrc()} alt="" />
           <div className="label">定时</div>
         </div>
-        <ValuePicker
-          title="定时关闭"
-          visible={timingVisible}
-          value={timingTime}
-          columns={countDownColumns()}
-          onCancel={() => {
-            onToggleTiming(false);
-          }}
-          onConfirm={(value) => {
-            let hour = value[0];
-            let minute = value[1];
-            if (hour != null) {
-              hour = hour.substr(0, hour.length - 1);
-            }
-            if (minute != null) {
-              minute = minute.substr(0, minute.length - 1);
-            }
-            const countDown = Number(hour) * 3600 + Number(minute) * 60;
-            if (sdk.deviceData.disinfect_switch === 1) {
-              apiControlDeviceData({
-                set_disinfection: Number(countDown),
-                disinfect_left: Number(countDown),
-              });
-            }
-            if (sdk.deviceData.air_dry_switch === 1) {
-              apiControlDeviceData({
-                set_air_dry: Number(countDown),
-                air_dry_left: Number(countDown),
-              });
-            }
-            if (sdk.deviceData.drying_switch === 1) {
-              apiControlDeviceData({
-                set_drying: Number(countDown),
-                drying_left: Number(countDown),
-              });
-              onControlDevice('set_drying', Number(countDown));
-            }
-            onToggleTiming(false);
-          }}
-        />
       </div>
+      <TimePicker
+        showSemicolon={false}
+        value={handleCountdownVal()}
+        showUnit={true}
+        showTime={false}
+        showTwoDigit={false}
+        theme={themeType}
+        title="倒计时关闭"
+        onCancel={onToggleTiming.bind(null, false)}
+        onConfirm={(value: any) => {
+          const hour: number = Number(value[0].split('时')[0]);
+          const mins: number = Number(value[1].split('分')[0]);
+          const num = hour * 3600 + mins * 60;
+          if (sdk.deviceData.disinfect_switch === 1) {
+            apiControlDeviceData({
+              set_disinfection: Number(num),
+              disinfect_left: Number(num)
+            });
+          }
+          if (sdk.deviceData.air_dry_switch === 1) {
+            apiControlDeviceData({
+              set_air_dry: Number(num),
+              air_dry_left: Number(num)
+            });
+          }
+          if (sdk.deviceData.drying_switch === 1) {
+            apiControlDeviceData({
+              set_drying: Number(num),
+              drying_left: Number(num)
+            });
+          }
+        }}
+        visible={timingVisible}
+      />
     </article>
   );
 };
