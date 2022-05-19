@@ -3,9 +3,8 @@ import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 import classNames from 'classnames';
 import './environment.less';
 import { getThemeType } from '@libs/theme';
-import { apiControlDeviceData, onControlDevice} from '@hooks/useDeviceData';
-import {numberToArray} from '@libs/utillib';
-import {ValuePicker} from "@components/business";
+import { apiControlDeviceData } from '@hooks/useDeviceData';
+import {TimePicker} from "@components/business";
 
 import LightImage from "../../../icons/normal/light-open.svg";
 import LightImageDefault from "../../../icons/normal/light-close.svg";
@@ -236,13 +235,26 @@ const Environment = () => {
     onToggleTiming(true);
   };
   const [timingVisible, onToggleTiming] = useState(false);
-  const [timingTime] = useState([]);
+  const handleCountdownDefault = (value: number) => {
+    const hours: number = (value - value % (60 * 60)) / (60 * 60);
+    const minutes: number = (value % (60 * 60)) / (60);
+    const countdownTime: any = [hours.toString(), minutes.toString()];
+    return countdownTime;
+  };
 
-  const countDownColumns = () => {
-    const hourCols = numberToArray(24, '时');
-    const minuteCols = numberToArray(60, '分');
+  const handleCountdownVal = () => {
+    let switchOpen = 0;
+    if (sdk.deviceData.disinfect_switch === 1) {
+      switchOpen = sdk.deviceData.set_disinfection;
+    }
+    if (sdk.deviceData.air_dry_switch === 1) {
+      switchOpen = sdk.deviceData.set_air_dry;
+    }
+    if (sdk.deviceData.drying_switch === 1) {
+      switchOpen = sdk.deviceData.set_drying;
+    }
 
-    return [hourCols, minuteCols];
+    return handleCountdownDefault(switchOpen);
   };
   return (
     <article className={classNames('environment')}>
@@ -299,47 +311,41 @@ const Environment = () => {
           <img src={timingImageSrc()} alt="" />
           <div className="label">定时</div>
         </div>
-        <ValuePicker
-          title="定时关闭"
-          visible={timingVisible}
-          value={timingTime}
-          columns={countDownColumns()}
-          onCancel={() => {
-            onToggleTiming(false);
-          }}
-          onConfirm={value => {
-            let hour = value[0];
-            let minute = value[1];
-            if (hour != null) {
-              hour = hour.substr(0, hour.length - 1);
-            }
-            if (minute != null) {
-              minute = minute.substr(0, minute.length - 1);
-            }
-            const countDown = Number(hour) * 3600 + Number(minute) * 60;
-            if (sdk.deviceData.disinfect_switch === 1) {
-              apiControlDeviceData({
-                set_disinfection: Number(countDown),
-                disinfect_left: Number(countDown)
-              });
-            }
-            if (sdk.deviceData.air_dry_switch === 1) {
-              apiControlDeviceData({
-                set_air_dry: Number(countDown),
-                air_dry_left: Number(countDown)
-              });
-            }
-            if (sdk.deviceData.drying_switch === 1) {
-              apiControlDeviceData({
-                set_drying: Number(countDown),
-                drying_left: Number(countDown)
-              });
-              onControlDevice('set_drying', Number(countDown));
-            }
-            onToggleTiming(false);
-          }}
-        />
       </div>
+      <TimePicker
+        showSemicolon={false}
+        value={handleCountdownVal()}
+        showUnit={true}
+        showTime={false}
+        showTwoDigit={false}
+        theme={themeType}
+        title="倒计时关闭"
+        onCancel={onToggleTiming.bind(null, false)}
+        onConfirm={(value: any) => {
+          const hour: number = Number(value[0].split('时')[0]);
+          const mins: number = Number(value[1].split('分')[0]);
+          const num = hour * 3600 + mins * 60;
+          if (sdk.deviceData.disinfect_switch === 1) {
+            apiControlDeviceData({
+              set_disinfection: Number(num),
+              disinfect_left: Number(num)
+            });
+          }
+          if (sdk.deviceData.air_dry_switch === 1) {
+            apiControlDeviceData({
+              set_air_dry: Number(num),
+              air_dry_left: Number(num)
+            });
+          }
+          if (sdk.deviceData.drying_switch === 1) {
+            apiControlDeviceData({
+              set_drying: Number(num),
+              drying_left: Number(num)
+            });
+          }
+        }}
+        visible={timingVisible}
+      />
     </article>
   );
 };

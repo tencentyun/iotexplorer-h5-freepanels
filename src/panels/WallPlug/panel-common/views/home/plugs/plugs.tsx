@@ -3,8 +3,7 @@ import classNames from 'classnames';
 import './plugs.less';
 import {getThemeType} from '@libs/theme';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
-import { ValuePicker } from '@components/business';
-import { numberToArray } from '@libs/utillib';
+import {TimePicker} from '@components/business';
 import { useHistory } from 'react-router';
 import { apiControlDeviceData, onControlDevice } from '@hooks/useDeviceData';
 
@@ -131,13 +130,22 @@ const plugs = () => {
   //倒计时关闭
   const [countDownVisible1, onToggleCountDown1] = useState(false);
   const [countDownVisible2, onToggleCountDown2] = useState(false);
-  const [countdownTime1, setCountdown1] = useState([]);
-  const [countdownTime2, setCountdown2] = useState([]);
-  const countDownColumns = () => {
-    const hourCols = numberToArray(12, '时');
-    const minuteCols = numberToArray(60, '分');
 
-    return [hourCols, minuteCols];
+  const handleCountdownDefault = (value: number) => {
+    const hours: number = (value - value % (60 * 60)) / (60 * 60);
+    const minutes: number = (value % (60 * 60)) / (60);
+    const countdownTime: any = [hours.toString(), minutes.toString()];
+    return countdownTime;
+  };
+
+  const handleCountdownVal1 = () => {
+    let switchOpen = sdk.deviceData.count_down_1;
+    return handleCountdownDefault(switchOpen);
+  };
+
+  const handleCountdownVal2 = () => {
+    let switchOpen = sdk.deviceData.count_down_2;
+    return handleCountdownDefault(switchOpen);
   };
   const handleCountdown1 = () => {
     if (sdk.deviceData.switch_1 === 1) {
@@ -227,45 +235,39 @@ const plugs = () => {
           <img src={countdownImageSrc()} alt="" />
         </div>
       </div>
-      <ValuePicker
+      <TimePicker
+        showSemicolon={false}
+        value={handleCountdownVal1()}
+        showUnit={true}
+        showTime={false}
+        showTwoDigit={false}
+        theme={themeType}
         title="倒计时关闭"
+        onCancel={onToggleCountDown1.bind(null, false)}
+        onConfirm={(value: any) => {
+          const hour: number = Number(value[0].split('时')[0]);
+          const mins: number = Number(value[1].split('分')[0]);
+          const num = hour * 3600 + mins * 60;
+          onControlDevice('count_down_1', num);
+        }}
         visible={countDownVisible1}
-        value={countdownTime1}
-        columns={countDownColumns()}
-        onCancel={() => onToggleCountDown1(false)}
-        onConfirm={value => {
-          let hour = value[0];
-          let minute = value[1];
-          if (hour != null) {
-            hour = hour.substr(0, hour.length - 1);
-          }
-          if (minute != null) {
-            minute = minute.substr(0, minute.length - 1);
-          }
-          const countDown = Number(hour) * 3600 + Number(minute) * 60;
-          onControlDevice('count_down_1', Number(countDown));
-          onToggleCountDown1(false);
-        }}
       />
-      <ValuePicker
+      <TimePicker
+        showSemicolon={false}
+        value={handleCountdownVal2()}
+        showUnit={true}
+        showTime={false}
+        showTwoDigit={false}
+        theme={themeType}
         title="倒计时关闭"
-        visible={countDownVisible2}
-        value={countdownTime2}
-        columns={countDownColumns()}
-        onCancel={() => onToggleCountDown2(false)}
-        onConfirm={value => {
-          let hour = value[0];
-          let minute = value[1];
-          if (hour != null) {
-            hour = hour.substr(0, hour.length - 1);
-          }
-          if (minute != null) {
-            minute = minute.substr(0, minute.length - 1);
-          }
-          const countDown = Number(hour) * 3600 + Number(minute) * 60;
-          onControlDevice('count_down_2', Number(countDown));
-          onToggleCountDown2(false);
+        onCancel={onToggleCountDown2.bind(null, false)}
+        onConfirm={(value: any) => {
+          const hour: number = Number(value[0].split('时')[0]);
+          const mins: number = Number(value[1].split('分')[0]);
+          const num = hour * 3600 + mins * 60;
+          onControlDevice('count_down_2', num);
         }}
+        visible={countDownVisible2}
       />
     </article>
   );

@@ -5,8 +5,7 @@ import { Block } from '@components/layout';
 import { LightSwitch } from '@components/business/light-switch';
 import { getThemeType } from '@libs/theme';
 import { apiControlDeviceData, onControlDevice} from '@hooks/useDeviceData';
-import { ValuePicker } from '@components/business';
-import { numberToArray } from '@libs/utillib';
+import {TimePicker} from '@components/business';
 
 import SwitchImageDefaule from "./icons/normal/switch-close.svg";
 import SwitchImage from "./icons/normal/switch.svg";
@@ -27,7 +26,6 @@ export function White() {
   const [switchSrc] = useState(SwitchImageDefaule);
   const [timingSrc] = useState(TimingImageDefaule);
   const [timingVisible, onToggleTiming] = useState(false);
-  const [timingTime] = useState([]);
 
   const switchImageSrc = () => {
     switch (themeType) {
@@ -61,11 +59,16 @@ export function White() {
         return TimingImage;
     }
   };
-  const countDownColumns = () => {
-    const hourCols = numberToArray(12, '时');
-    const minuteCols = numberToArray(60, '分');
+  const handleCountdownDefault = (value: number) => {
+    const hours: number = (value - value % (60 * 60)) / (60 * 60);
+    const minutes: number = (value % (60 * 60)) / (60);
+    const countdownTime: any = [hours.toString(), minutes.toString()];
+    return countdownTime;
+  };
 
-    return [hourCols, minuteCols];
+  const handleCountdownVal = () => {
+    let switchOpen = sdk.deviceData.count_down;
+    return handleCountdownDefault(switchOpen);
   };
   const handleTiming = () => {
     if (sdk.deviceData.power_switch === 1) {
@@ -116,27 +119,22 @@ export function White() {
           />
           <div>定时</div>
         </Block>
-        <ValuePicker
-          title="定时关闭"
+        <TimePicker
+          showSemicolon={false}
+          value={handleCountdownVal()}
+          showUnit={true}
+          showTime={false}
+          showTwoDigit={false}
+          theme={themeType}
+          title="倒计时关闭"
+          onCancel={onToggleTiming.bind(null, false)}
+          onConfirm={(value: any) => {
+            const hour: number = Number(value[0].split('时')[0]);
+            const mins: number = Number(value[1].split('分')[0]);
+            const num = hour * 3600 + mins * 60;
+            onControlDevice('count_down', num);
+          }}
           visible={timingVisible}
-          value={timingTime}
-          columns={countDownColumns()}
-          onCancel={() => {
-            onToggleTiming(false);
-          }}
-          onConfirm={value => {
-            let hour = value[0];
-            let minute = value[1];
-            if (hour != null) {
-              hour = hour.substr(0, hour.length - 1);
-            }
-            if (minute != null) {
-              minute = minute.substr(0, minute.length - 1);
-            }
-            const countDown = Number(hour) * 3600 + Number(minute) * 60;
-            onControlDevice('count_down', Number(countDown));
-            onToggleTiming(false);
-          }}
         />
       </div>
     </div>

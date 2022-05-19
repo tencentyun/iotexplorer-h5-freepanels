@@ -157,33 +157,6 @@ const Environment = () => {
           <img src={countdownImageSrc()} alt="" />
           <div>倒计时</div>
         </div>
-        {/*<ValuePicker
-          title="倒计时关闭"
-          visible={countDownVisible}
-          value={handleCountdownVal()}
-          columns={countDownColumns()}
-          onCancel={() => {
-            onToggleCountDown(false);
-          }}
-          onConfirm={value => {
-            let hour = value[0];
-            let minute = value[1];
-            if (hour != null) {
-              hour = hour.substr(0, hour.length - 1);
-            }
-            if (minute != null) {
-              minute = minute.substr(0, minute.length - 1);
-            }
-            const countDown = Number(hour) * 3600 + Number(minute) * 60;
-            if (sdk.deviceData.switch_1 === 1) {
-              onControlDevice('count_down_1', countDown);
-            }
-            if (sdk.deviceData.switch_2 === 1) {
-              onControlDevice('count_down_2', countDown);
-            }
-            onToggleCountDown(false);
-          }}
-        />*/}
         <TimePicker
           showSemicolon={false}
           value={handleCountdownVal()}
