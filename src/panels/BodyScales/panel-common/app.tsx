@@ -1,14 +1,14 @@
 /**
- * 体脂秤
+ * 体脂称
  */
 import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 import { useDeviceData } from '@hooks/useDeviceData';
-import { QuicknessMode, StandardBleConnector } from '@components/base';
+import {QuicknessMode} from '@components/base';
 import { Container } from './views/container/container';
 import UnitSetting from './views/unitSetting/unitSetting';
-
+import { StandardBleConnector } from "@components/base";
 import 'antd-mobile/es/global';
 import '@icons/themes/global.less';
 import '@icons/themes/icons/svg/body-scales';
@@ -16,10 +16,10 @@ import '@icons/themes/icons/svg/common';
 import './style.less';
 import './themes.less';
 
-export const App = QuicknessMode(() => {
+export const App = QuicknessMode(function App() {
   const isBluetoothDevice = true;
   const isDev = process.env.NODE_ENV !== 'production';
-  // 新旧链接的兼容
+  //新旧链接的兼容
   const hasScf = /\/scf\//.test(location.href);
 
   let basename = isDev
@@ -32,7 +32,9 @@ export const App = QuicknessMode(() => {
     basename += '/live';
   }
 
-  const [state, { onDeviceDataChange, onDeviceStatusChange }] =    useDeviceData(sdk);
+  const [state, { onDeviceDataChange, onDeviceStatusChange }] =
+    useDeviceData(sdk);
+  const isStandardBleDevice = sdk.isStandardBleDevice;
   console.log(state, 'state===============');
 
   // webSecket 监听
@@ -70,7 +72,9 @@ export const App = QuicknessMode(() => {
 
   return (
     <article>
-      <StandardBleConnector familyId={sdk.familyId} deviceId={sdk.deviceId} />
+      {isStandardBleDevice && (
+        <StandardBleConnector familyId={sdk.familyId} deviceId={sdk.deviceId} />
+      )}
       <Router basename={basename}>
         <Switch>
           <Route path="/unitSetting">
