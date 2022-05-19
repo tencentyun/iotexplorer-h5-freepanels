@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 import classNames from 'classnames';
-import {getThemeType} from '@libs/theme';
-import { apiControlDeviceData, onControlDevice} from '@hooks/useDeviceData';
-import {TimePicker} from '@components/business';
+import { getThemeType } from '@libs/theme';
+import { apiControlDeviceData, onControlDevice } from '@hooks/useDeviceData';
+import { TimePicker } from '@components/business';
 import './power.less';
 
 import pivotingImageDefault from '../../../icons/normal/pivoting-close.svg';
@@ -90,7 +90,7 @@ export function Power() {
   };
 
   const handleCountdownVal = () => {
-    let switchOpen = sdk.deviceData.timer;
+    const switchOpen = sdk.deviceData.timer;
     return handleCountdownDefault(switchOpen);
   };
 
@@ -102,7 +102,7 @@ export function Power() {
   };
   const handlePowerSwitch = () => {
     apiControlDeviceData({
-      power_switch: sdk.deviceData.power_switch === 1 ? 0 : 1
+      power_switch: sdk.deviceData.power_switch === 1 ? 0 : 1,
     });
   };
   return (
@@ -112,7 +112,7 @@ export function Power() {
         className={classNames(
           'button-fillet',
           'btn-power-switch',
-          sdk.deviceData.swing === 1 ? 'active' : ''
+          sdk.deviceData.swing === 1 ? 'active' : '',
         )}
         onClick={handlePivoting}
       >
@@ -123,7 +123,7 @@ export function Power() {
         id={'power'}
         className={classNames(
           'btn-power-switch',
-          sdk.deviceData.power_switch === 0 ? 'power-on' : ''
+          sdk.deviceData.power_switch === 0 ? 'power-on' : '',
         )}
         onClick={handlePowerSwitch}
       >
@@ -133,7 +133,7 @@ export function Power() {
         id={'timing'}
         className={classNames(
           'button-fillet',
-          'btn-power-switch'
+          'btn-power-switch',
         )}
         onClick={handleTiming}
       >
@@ -150,8 +150,8 @@ export function Power() {
         title="倒计时关闭"
         onCancel={onToggleTiming.bind(null, false)}
         onConfirm={(value: any) => {
-          const hour: number = Number(value[0].split('时')[0]);
-          const mins: number = Number(value[1].split('分')[0]);
+          const hour = Number(value[0].split('时')[0]);
+          const mins = Number(value[1].split('分')[0]);
           const num = hour * 3600 + mins * 60;
           onControlDevice('timer', num);
         }}
