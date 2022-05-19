@@ -146,6 +146,13 @@ developing.style/developing.css https://127.0.0.1:9000/FiveRoadLight_panel-defau
 
 ### 目录说明
 
+- 1、项目文档
+    当前支持43个品类， 73个模版类型，317个模版皮肤样式。[产品支持列表](./product.md)、[产品皮肤预览](./product-preview.md)
+    开发说明：[如何开发自定义面板](./explorer.md)
+    项目日志：[免开发面板更新日志](./changeLog.md)
+
+- 2、代码结构说明
+
 ```
 _
 |-- dist # 构建编译的页面级js 文件

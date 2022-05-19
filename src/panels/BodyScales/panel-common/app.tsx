@@ -1,5 +1,5 @@
 /**
- * 体脂秤
+ * 体脂称
  */
 import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
@@ -33,6 +33,7 @@ export const App = QuicknessMode(() => {
   }
 
   const [state, { onDeviceDataChange, onDeviceStatusChange }] =    useDeviceData(sdk);
+  const { isStandardBleDevice } = sdk;
   console.log(state, 'state===============');
 
   // webSecket 监听
@@ -70,7 +71,9 @@ export const App = QuicknessMode(() => {
 
   return (
     <article>
-      <StandardBleConnector familyId={sdk.familyId} deviceId={sdk.deviceId} />
+      {isStandardBleDevice && (
+        <StandardBleConnector familyId={sdk.familyId} deviceId={sdk.deviceId} />
+      )}
       <Router basename={basename}>
         <Switch>
           <Route path="/unitSetting">
