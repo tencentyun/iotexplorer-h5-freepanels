@@ -229,24 +229,24 @@ export function Scene() {
           />
           <div>定时</div>
         </Block>
-        <TimePicker
-          showSemicolon={false}
-          value={handleCountdownVal()}
-          showUnit={true}
-          showTime={false}
-          showTwoDigit={false}
-          theme={themeType}
-          title="倒计时关闭"
-          onCancel={onToggleTiming.bind(null, false)}
-          onConfirm={(value: any) => {
-            const hour: number = Number(value[0].split('时')[0]);
-            const mins: number = Number(value[1].split('分')[0]);
-            const num = hour * 3600 + mins * 60;
-            onControlDevice('count_down', num);
-          }}
-          visible={timingVisible}
-        />
       </div>
+      <TimePicker
+        showSemicolon={false}
+        value={handleCountdownVal()}
+        showUnit={true}
+        showTime={false}
+        showTwoDigit={false}
+        theme={themeType}
+        title="倒计时关闭"
+        onCancel={onToggleTiming.bind(null, false)}
+        onConfirm={(value: any) => {
+          const hour: number = Number(value[0].split('时')[0]);
+          const mins: number = Number(value[1].split('分')[0]);
+          const num = hour * 3600 + mins * 60;
+          onControlDevice('count_down', num);
+        }}
+        visible={timingVisible}
+      />
     </div>
   );
 }
