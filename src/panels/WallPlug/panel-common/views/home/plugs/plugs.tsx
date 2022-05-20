@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import classNames from 'classnames';
 import './plugs.less';
-import {getThemeType} from '@libs/theme';
+import { getThemeType } from '@libs/theme';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
-import {TimePicker} from '@components/business';
+import { TimePicker } from '@components/business';
 import { useHistory } from 'react-router';
 import { apiControlDeviceData, onControlDevice } from '@hooks/useDeviceData';
 
@@ -96,7 +96,7 @@ const plugs = () => {
           : ClockImageClose;
     }
   };
-  /*定时*/
+  /* 定时*/
   const countdownImageSrc = () => {
     switch (themeType) {
       case 'normal':
@@ -127,7 +127,7 @@ const plugs = () => {
   };
   const history = useHistory();
 
-  //倒计时关闭
+  // 倒计时关闭
   const [countDownVisible1, onToggleCountDown1] = useState(false);
   const [countDownVisible2, onToggleCountDown2] = useState(false);
 
@@ -139,12 +139,12 @@ const plugs = () => {
   };
 
   const handleCountdownVal1 = () => {
-    let switchOpen = sdk.deviceData.count_down_1;
+    const switchOpen = sdk.deviceData.count_down_1;
     return handleCountdownDefault(switchOpen);
   };
 
   const handleCountdownVal2 = () => {
-    let switchOpen = sdk.deviceData.count_down_2;
+    const switchOpen = sdk.deviceData.count_down_2;
     return handleCountdownDefault(switchOpen);
   };
   const handleCountdown1 = () => {
@@ -165,40 +165,38 @@ const plugs = () => {
   const handleToggle1 = () => {
     if (sdk.deviceData.switch_1 === 1) {
       apiControlDeviceData({
-        timer_dev: 'switch_1'
+        timer_dev: 'switch_1',
       });
       return history.push('/timing');
-    } else {
-      return '';
     }
+    return '';
   };
   const handleToggle2 = () => {
     if (sdk.deviceData.switch_2 === 1) {
       apiControlDeviceData({
-        timer_dev: 'switch_2'
+        timer_dev: 'switch_2',
       });
       return history.push('/timing');
-    } else {
-      return '';
     }
+    return '';
   };
 
   const handlePlug1 = () => {
     if (sdk.deviceData.power_switch === 1) {
       apiControlDeviceData({
-        switch_1: sdk.deviceData.switch_1 === 0 ? 1 : 0
+        switch_1: sdk.deviceData.switch_1 === 0 ? 1 : 0,
       });
     }
   };
   const handlePlug2 = () => {
     if (sdk.deviceData.power_switch === 1) {
       apiControlDeviceData({
-        switch_2: sdk.deviceData.switch_2 === 0 ? 1 : 0
+        switch_2: sdk.deviceData.switch_2 === 0 ? 1 : 0,
       });
     }
   };
 
-  console.log(sdk.deviceData)
+  console.log(sdk.deviceData);
   return (
     <article className={classNames('plugs')} id={'plugs'}>
       <div className="plug_info">
@@ -245,8 +243,8 @@ const plugs = () => {
         title="倒计时关闭"
         onCancel={onToggleCountDown1.bind(null, false)}
         onConfirm={(value: any) => {
-          const hour: number = Number(value[0].split('时')[0]);
-          const mins: number = Number(value[1].split('分')[0]);
+          const hour = Number(value[0].split('时')[0]);
+          const mins = Number(value[1].split('分')[0]);
           const num = hour * 3600 + mins * 60;
           onControlDevice('count_down_1', num);
         }}
@@ -262,8 +260,8 @@ const plugs = () => {
         title="倒计时关闭"
         onCancel={onToggleCountDown2.bind(null, false)}
         onConfirm={(value: any) => {
-          const hour: number = Number(value[0].split('时')[0]);
-          const mins: number = Number(value[1].split('分')[0]);
+          const hour = Number(value[0].split('时')[0]);
+          const mins = Number(value[1].split('分')[0]);
           const num = hour * 3600 + mins * 60;
           onControlDevice('count_down_2', num);
         }}

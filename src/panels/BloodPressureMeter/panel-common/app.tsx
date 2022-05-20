@@ -1,27 +1,27 @@
 /**
  * 血压计
  */
-import React, {useEffect} from 'react';
-import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
-import {DeviceSateContext} from './deviceStateContext';
-import {useDeviceData} from '@hooks/useDeviceData';
-import {QuicknessMode} from '@components/base';
+import { DeviceSateContext } from './deviceStateContext';
+import { useDeviceData } from '@hooks/useDeviceData';
+import { QuicknessMode, StandardBleConnector } from '@components/base';
 import { Home } from './views/home/home';
 import { Record } from './views/record/record';
 import { MyInfo } from './views/myInfo/myInfo';
-import { StandardBleConnector } from "@components/base";
+
 import 'antd-mobile/es/global';
 import '@icons/themes/global.less';
 import '@icons/themes/icons/svg/common';
 import './style.less';
 import './themes.less'; // 4套皮肤 构建前要修改var.less变量文件
 
-export const App = QuicknessMode(function App() {
+export const App = QuicknessMode(() => {
   const isBluetoothDevice = true;
   // eslint-disable-next-line no-undef
   const isDev = process.env.NODE_ENV !== 'production';
-  //新旧链接的兼容
+  // 新旧链接的兼容
   const hasScf = /\/scf\//.test(location.href);
 
   let basename = isDev
@@ -34,8 +34,7 @@ export const App = QuicknessMode(function App() {
     basename += '/live';
   }
 
-  const [state, {onDeviceDataChange, onDeviceStatusChange}] =
-    useDeviceData(sdk);
+  const [state, { onDeviceDataChange, onDeviceStatusChange }] = useDeviceData(sdk);
   const isStandardBleDevice = sdk.isStandardBleDevice;
   console.log(state, 'state===============');
 
@@ -71,7 +70,7 @@ export const App = QuicknessMode(function App() {
       window.document.title = deviceDisplayName;
     });
 
-    const handleWsControl = ({deviceId, deviceData}) => {
+    const handleWsControl = ({ deviceId, deviceData }) => {
       if (deviceId === sdk.deviceId) {
         onDeviceDataChange(deviceData);
       }
@@ -84,7 +83,7 @@ export const App = QuicknessMode(function App() {
       }
     };
 
-    const handleWsStatusChange = ({deviceId, deviceStatus}) => {
+    const handleWsStatusChange = ({ deviceId, deviceStatus }) => {
       console.log('handleWsStatusChange>>>>', deviceStatus);
       if (deviceId === sdk.deviceId) {
         onDeviceStatusChange(deviceStatus);
@@ -115,7 +114,7 @@ export const App = QuicknessMode(function App() {
     const doCheckFirmwareUpgrade = async () => {
       try {
         const upgradeInfo = await sdk.checkFirmwareUpgrade({
-          silent: false // 设置为 true 则只检查，不弹出提示
+          silent: false, // 设置为 true 则只检查，不弹出提示
         });
         console.log('firmware upgrade info', upgradeInfo);
       } catch (err) {
@@ -150,15 +149,15 @@ export const App = QuicknessMode(function App() {
       <DeviceSateContext.Provider value={state}>
         <Router basename={basename}>
           <Switch>
-            {/*历史记录*/}
+            {/* 历史记录*/}
             <Route path="/record">
               <Record/>
             </Route>
-            {/*设置页*/}
+            {/* 设置页*/}
             <Route path="/myInfo">
               <MyInfo/>
             </Route>
-            {/*首页*/}
+            {/* 首页*/}
             <Route path="/">
               <Home/>
             </Route>
