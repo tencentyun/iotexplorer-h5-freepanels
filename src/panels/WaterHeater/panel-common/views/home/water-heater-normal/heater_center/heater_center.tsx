@@ -71,7 +71,7 @@ export function Normal_Center() {
              onClick={onAutomatic}
         >
           <SvgIcon
-            name={sdk.deviceData.power_switch == 1 && 'icon-water-heater-automatic-normal2' || 'icon-water-heater-automatic-normal'}
+            name={sdk.deviceData.power_switch === 1 ? 'icon-water-heater-automatic-normal2' : 'icon-water-heater-automatic-normal'}
             width={60} height={60}/>
           <div className="botton_font">
             {sdk.deviceData.mode ? modeSrc(sdk.deviceData.mode) : '-'}
@@ -82,7 +82,7 @@ export function Normal_Center() {
              onClick={onTwo_Thousand}
         >
           <SvgIcon
-            name={sdk.deviceData.power_switch == 1 && 'icon-water-heater-2000w-normal2' || 'icon-water-heater-2000w-normal'}
+            name={sdk.deviceData.power_switch === 1 ? 'icon-water-heater-2000w-normal2' : 'icon-water-heater-2000w-normal'}
             width={60} height={60}/>
           <div className="botton_font">
             {sdk.deviceData.capacity_set ? capacitySrc(sdk.deviceData.capacity_set) : '-'}
@@ -94,7 +94,7 @@ export function Normal_Center() {
           onClick={onSetup}
         >
           <SvgIcon
-            name={sdk.deviceData.power_switch == 1 && 'icon-water-heater-more-normal2' || 'icon-water-heater-more-normal'}
+            name={sdk.deviceData.power_switch === 1 ? 'icon-water-heater-more-normal2' : 'icon-water-heater-more-normal'}
             width={60} height={60}/>
           <div className="botton_font">
             设置

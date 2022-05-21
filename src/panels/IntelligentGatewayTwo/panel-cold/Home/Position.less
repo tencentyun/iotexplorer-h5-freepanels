@@ -1,0 +1,88 @@
+.position {
+  margin-top: 16px;
+  .area {
+    position: relative;
+    width: 280px;
+    height: 280px;
+    .circular-outer {
+      width: 277.42px;
+      height: 277.42px;
+      border: 0.7px solid rgba(201, 209, 213, 0.43);
+      border-radius: 50%;
+      position: relative;
+      .circular-inner {
+        width: 198.15px;
+        height: 198.15px;
+        border: 1.4px solid rgba(201, 209, 213, 0.37);
+        border-radius: 50%;
+        .content {
+          color: #fff;
+          font-weight: 600;
+          font-size: 10px;
+          line-height: 14px;
+          width: 136.23px;
+          height: 136.23px;
+          background: @c1;
+          border-radius: 50%;
+          .num {
+            margin-bottom: 8px;
+            font-family: "DIN Alternate";
+            font-style: normal;
+            font-weight: 700;
+            font-size: 32px;
+            line-height: 37px;
+          }
+          .gateway-icon {
+            margin-top: 8px;
+            width: 87.97px;
+            height: 35.67px;
+          }
+        }
+      }
+    }
+    .layer {
+      position: absolute;
+      top: 0;
+      left: 0;
+      background-color: antiquewhite;
+      > div {
+        background: linear-gradient(180deg, #6b7a83 0.78%, #2c3134 100%);
+        mix-blend-mode: normal;
+        position: absolute;
+        border-radius: 50%;
+      }
+      .dot1 {
+        width: 7px;
+        height: 7px;
+        left: 7.19px;
+        top: 189.39px;
+        opacity: 0.44;
+      }
+      .dot2 {
+        width: 11px;
+        height: 11px;
+        left: 87.88px;
+        top: 221.4px;
+      }
+      .dot3 {
+        width: 7px;
+        height: 7px;
+        left: 89.93px;
+        top: 48.07px;
+      }
+      .dot4 {
+        width: 10px;
+        height: 10px;
+        left: 216.73px;
+        top: 131.09px;
+      }
+      .dot5 {
+        width: 7px;
+        height: 7px;
+        left: 262.36px;
+        top: 77.45px;
+        opacity: 0.44;
+      }
+    }
+  }
+}

@@ -1,0 +1,170 @@
+@import url("./BtnGroup.less");
+@import url("./BtnWithCheckBox.less");
+@import url("./IconBtn.less");
+@import url("./SquareBtn.less");
+
+button {
+  position: relative;
+  display: block;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+  color: inherit;
+  background-color: inherit;
+
+  &::after {
+    content: "";
+    border: none;
+  }
+
+  &[disabled]:not([type]),
+  &.disabled {
+    color: inherit;
+    background-color: inherit;
+    opacity: 0.6;
+  }
+}
+
+/* 会覆盖掉原生button样式 */
+button.pure-btn {
+  font-size: inherit;
+  text-align: inherit;
+  text-decoration: none;
+  line-height: inherit;
+  -webkit-tap-highlight-color: transparent;
+  overflow: hidden;
+  color: inherit;
+  background-color: inherit;
+}
+
+.btn {
+  position: relative;
+  height: 44px;
+  width: 100%;
+  text-align: center;
+  box-sizing: border-box;
+  border-radius: 8px;
+  overflow: hidden;
+  border-style: none;
+  outline: none;
+  &.standalone {
+    margin: 48px 32px 0;
+  }
+
+  .btn-icon {
+    width: 36px;
+    height: 36px;
+    margin-right: 20px;
+    vertical-align: middle;
+  }
+
+  .btn-text {
+    vertical-align: middle;
+    font-size: 16px;
+  }
+
+  &.disabled {
+    background-image: none;
+    background-color: #d6d8dc;
+    color: #ffffff;
+    border-color: transparent;
+  }
+
+  &.btn-primary {
+    background: @c1;
+    color: #ffffff;
+
+    &.reverse {
+      background-image: none;
+      background-color: #ffffff;
+      color: @c1;
+    }
+
+    &.transparent {
+      background-image: none;
+      background-color: transparent;
+      border-color: #0066ff;
+    }
+
+    &.disabled {
+      .disabled;
+    }
+  }
+
+  &.btn-sub {
+    background: @c2;
+    color: #ffffff;
+
+    &.reverse {
+      background-image: none;
+      background-color: #ffffff;
+      color: @c1;
+    }
+
+    &.transparent {
+      background-image: none;
+      background-color: transparent;
+      border-color: #0066ff;
+    }
+
+    &.disabled {
+      .disabled;
+    }
+  }
+
+  &.btn-danger {
+    background-color: @c8;
+    color: #ffffff;
+
+    &.reverse {
+      background-image: none;
+      background-color: #ffffff;
+      color: @c8;
+    }
+
+    &.transparent {
+      background-image: none;
+      background-color: transparent;
+      border-color: @c8;
+    }
+
+    &.disabled {
+      .disabled;
+    }
+  }
+
+  &.btn-cancel {
+    background: #f3f3f5;
+    color: #0066ff;
+
+    &.disabled {
+      .disabled;
+    }
+  }
+
+  &.btn-reverse {
+    border: 1px solid @c7;
+    color: @c4;
+  }
+
+  &.btn-link {
+    display: inline-block;
+    font-size: 28px;
+    color: #0066ff;
+    letter-spacing: 0;
+    line-height: 36px;
+    height: auto;
+    padding: 0;
+    border-radius: 0;
+    vertical-align: middle;
+
+    &.link-hover {
+      color: lighten(#0052d9, 20%);
+    }
+  }
+  &.btn-size-small {
+    width: 80px;
+    height: 24px;
+  }
+}

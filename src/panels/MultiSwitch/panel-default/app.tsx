@@ -5,13 +5,8 @@ import { entryWrap } from '@src/entryWrap';
 import { getCountdownStrWithoutDevice } from '@components/FuncFooter';
 import { PanelPageWithMultiFeatures } from '@components/PanelPageWithMultiFeatures';
 import { StatusTip } from '@components/StatusTip';
+import { useSwitchEditName } from '@src/hooks/useSwitchEditName';
 import './style.less';
-
-interface SwitchNames {
-  switchNames: any,
-  onChangeSwitchNames?: any
-}
-export const SwitchNamesContext = createContext<any>({} as SwitchNames);
 
 function App() {
   const [{
@@ -44,11 +39,10 @@ function App() {
     return switchList;
   }, [templateMap]);
 
-  const [switchNames, setSwitchNames] = useState<any>({});
+  const { switchNames, updateSwitchNames, statusTip: reqStatus } = useSwitchEditName({
+    switchList,
+  });
 
-  const onChangeSwitchNames = (names) => {
-    setSwitchNames(names);
-  };
   return (
     statusTip
       ? <StatusTip fillContainer {...statusTip}/>
@@ -78,7 +72,9 @@ function App() {
         powerOff={powerOff}
         doControlDeviceData={doControlDeviceData}
         switchList={switchList}
-        onChangeSwitchNames={onChangeSwitchNames}
+        {...{
+          switchNames, updateSwitchNames, statusTip: reqStatus,
+        }}
         />
       </PanelPageWithMultiFeatures>
   );

@@ -122,19 +122,13 @@ export const useDeviceInfo = (): UseDeviceInfoResult => {
     deviceInfo: {},
     productInfo: {},
     templateMap: {},
-    deviceData: {},
+    deviceData: sdk.deviceData || {},
     statusTip: { status: 'loading' },
   });
 
   const controlDeviceData = async (deviceData) => {
     try {
       await sdk.controlDeviceData(deviceData);
-      dispatch({
-        type: UseDeviceInfoAction.UpdateDeviceData,
-        payload: {
-          deviceData,
-        },
-      });
     } catch (err) {
       await tips.showError(err);
     }
@@ -183,6 +177,7 @@ export const useDeviceInfo = (): UseDeviceInfoResult => {
     };
     const handleWsControl = ({ deviceId, deviceData }) => {
       console.log('wsControl==========', deviceData);
+      // 最好在 report消息触发后更新，因为这时候物模型才是真正的更新了
       if (deviceId === sdk.deviceId) {
         const data = {};
         for (const key in deviceData) {
@@ -223,11 +218,7 @@ export const useDeviceInfo = (): UseDeviceInfoResult => {
   const { deviceInfo, deviceData } = state;
   // const offline = !deviceInfo.isVirtualDevice && deviceInfo.Status === 0;
 
-  let offline = !deviceInfo.isVirtualDevice && deviceInfo.Status === 0;
-  // 开发模式设备一致在线状态
-  if (_env_.isDev) {
-    offline = false;
-  }
+  const offline = !deviceInfo.isVirtualDevice && deviceInfo.Status === 0;
   const powerOff = offline || !deviceData.power_switch;
 
   return [{

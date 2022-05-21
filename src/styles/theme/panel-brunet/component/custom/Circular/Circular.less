@@ -1,0 +1,49 @@
+@import url("./Process.less");
+@import url("./Shape.less");
+
+@point: 25px;
+.circle {
+  border-radius: 50%;
+}
+.cus-circle-panel {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  .round-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    z-index: 10;
+    .round {
+      width: 100%;
+      height: 100%;
+      transform-origin: 50% 50%;
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+      .point {
+        width: @point;
+        height: @point;
+        border-radius: 50%;
+        width: 18px;
+        height: 18px;
+        margin: 2px;
+        border: 3px solid #ffffff;
+      }
+    }
+  }
+  .content-node{
+    position: absolute;
+    z-index:7;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}

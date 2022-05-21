@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import classNames from 'classnames';
 import { Battery } from '@custom/Battery';
-import { Cell } from '@custom/Cell';
 import { Icon } from '@custom/Icon';
 import { Disk } from './Disk';
 import dayjs from 'dayjs';
@@ -12,14 +10,10 @@ export function Home({
   doControlDeviceData,
   history: { PATH, push },
 }) {
-  const [isOn, setPowerOn] = useState(false);
   const [recordTime, setRecordTime] = useState('');
   const [recordStatus, setRecordStatus] = useState('');
 
   useEffect(() => {
-    const { doorsensor_state } = deviceData;
-
-    setPowerOn(doorsensor_state === 1);
     // 获取历史记录
     const getDeviceDataHistory = async () => {
       try {
@@ -89,7 +83,9 @@ export function Home({
         </div>
         <div
           className="setting-button"
-          // onClick={handleMute}
+          onClick={() => {
+            sdk.goDeviceDetailPage();
+          }}
         >
           <Icon name="settings"/>
           <p className="button-name">设置</p>

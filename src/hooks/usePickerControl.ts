@@ -4,17 +4,17 @@ export function usePickerControl<T>({
   onSubmit,
   initValue = [],
 }: {
-	onSubmit: (value: T[]) => any;
-	initValue?: T[] | (() => T[]);
+    onSubmit: (value: T[]) => any;
+    initValue?: T[] | (() => T[]);
 }): [
-	{
-		value: T[];
-	},
-	{
-		onChange: (value: T[]) => any;
-		doSubmit: () => any;
-		onScrollChange: () => any;
-	}
+    {
+        value: T[];
+    },
+    {
+        onChange: (value: T[]) => any;
+        doSubmit: () => any;
+        onScrollChange: () => any;
+    }
 ] {
   const pickingLockRef = useRef(false);
   const [localValue, setLocalValue] = useState<T[]>(initValue);

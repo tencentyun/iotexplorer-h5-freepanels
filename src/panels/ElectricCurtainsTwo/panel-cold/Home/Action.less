@@ -1,0 +1,68 @@
+.home {
+  .action {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    position: relative;
+    overflow: hidden;
+    margin-top: 26px;
+    padding: 0 16px;
+    .action-item {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      border: 1px solid #eff3f5;
+      border-radius: 16px;
+      margin-top: 24px;
+      width: 100px;
+      height: 100px;
+      .svg-icon-normal {
+        width: 42px;
+      }
+      .action-ele-3 {
+        .svg-icon-normal {
+          height: 25px;
+        }
+      }
+      .icon-stop {
+        .svg-icon-normal {
+          width: 28px;
+          height: 28px;
+        }
+      }
+      .action-ele-3 {
+        .svg-icon-normal {
+          height: 25px;
+        }
+      }
+      .action-ele-4 {
+        .svg-icon-normal {
+          height: 24px;
+        }
+      }
+      .action-ele-5 {
+        .svg-icon-normal {
+          height: 24px;
+        }
+      }
+
+      .action-ele {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        font-size: 15px;
+        margin-top: 10px;
+        font-weight: 600;
+        > div:last-child {
+          margin-top: 10px;
+        }
+      }
+      &.checked {
+        color: #ffffff;
+        background: @c4;
+      }
+    }
+  }
+}

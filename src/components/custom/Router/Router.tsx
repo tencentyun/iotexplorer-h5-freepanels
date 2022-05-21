@@ -44,6 +44,7 @@ const PageComponent = ({ Component, PATH, className, ...props }) => {
       let url = pathName;
       if (params) {
         const queryString = stringify(params);
+        console.log('query', queryString, params);
         url = `${pathName}?${queryString}`;
       }
       reactDomHistory.push(url);

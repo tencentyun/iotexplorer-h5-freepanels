@@ -39,6 +39,7 @@
     "@typescript-eslint/ban-ts-ignore": 0,
     "@typescript-eslint/explicit-module-boundary-types": 0,
     "camelcase": 0,
+    "new-cap": 0,
     "react/display-name": 0
   },
   "parser": "@typescript-eslint/parser"

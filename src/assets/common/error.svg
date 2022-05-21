@@ -2,29 +2,29 @@
 <!-- Generator: Adobe Illustrator 18.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <svg version="1.1" id="图层_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 width="160px" height="160px" viewBox="0 0 160 160" style="enable-background:new 0 0 160 160;" xml:space="preserve">
+     width="160px" height="160px" viewBox="0 0 160 160" style="enable-background:new 0 0 160 160;" xml:space="preserve">
 <style type="text/css">
-	.st0{fill:url(#SVGID_1_);}
-	.st1{fill:url(#SVGID_2_);}
+    .st0{fill:url(#SVGID_1_);}
+    .st1{fill:url(#SVGID_2_);}
 </style>
 <g>
-	<linearGradient id="SVGID_1_" gradientUnits="userSpaceOnUse" x1="105.8744" y1="128.8157" x2="46.3314" y2="25.6843">
-		<stop  offset="0" style="stop-color:#B2B6BE"/>
-		<stop  offset="1" style="stop-color:#D5D6D8"/>
-	</linearGradient>
-	<polygon class="st0" points="25,38 25,130 48,112 135,112 135,38 	"/>
-	<g>
-		<g>
-			<g>
+    <linearGradient id="SVGID_1_" gradientUnits="userSpaceOnUse" x1="105.8744" y1="128.8157" x2="46.3314" y2="25.6843">
+        <stop  offset="0" style="stop-color:#B2B6BE"/>
+        <stop  offset="1" style="stop-color:#D5D6D8"/>
+    </linearGradient>
+    <polygon class="st0" points="25,38 25,130 48,112 135,112 135,38     "/>
+    <g>
+        <g>
+            <g>
 
-					<linearGradient id="SVGID_2_" gradientUnits="userSpaceOnUse" x1="96.4976" y1="60.4255" x2="63.5024" y2="117.5747" gradientTransform="matrix(1 0 0 -1 39 197.0001)">
-					<stop  offset="0" style="stop-color:#414143"/>
-					<stop  offset="1" style="stop-color:#636466"/>
-				</linearGradient>
-				<path class="st1" d="M117,121h4V87h-4V121z M117,129h4v-4h-4V129z M119,75c-18.2,0-33,14.8-33,33s14.8,33,33,33s33-14.8,33-33
-					S137.2,75,119,75z M119,137c-16,0-29-13-29-29s13-29,29-29s29,13,29,29S135,137,119,137z"/>
-			</g>
-		</g>
-	</g>
+                    <linearGradient id="SVGID_2_" gradientUnits="userSpaceOnUse" x1="96.4976" y1="60.4255" x2="63.5024" y2="117.5747" gradientTransform="matrix(1 0 0 -1 39 197.0001)">
+                    <stop  offset="0" style="stop-color:#414143"/>
+                    <stop  offset="1" style="stop-color:#636466"/>
+                </linearGradient>
+                <path class="st1" d="M117,121h4V87h-4V121z M117,129h4v-4h-4V129z M119,75c-18.2,0-33,14.8-33,33s14.8,33,33,33s33-14.8,33-33
+                    S137.2,75,119,75z M119,137c-16,0-29-13-29-29s13-29,29-29s29,13,29,29S135,137,119,137z"/>
+            </g>
+        </g>
+    </g>
 </g>
 </svg>

@@ -2,9 +2,8 @@ import React, { useState } from 'react';
 import classNames from 'classnames';
 import './operate.less';
 
-import { ValuePicker } from '@components/business';
+import { TimePicker } from '@components/business';
 import { getThemeType } from '@libs/theme';
-import { numberToArray } from '@libs/utillib';
 import { SvgIcon } from '@components/common/icon';
 import { useHistory } from 'react-router';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
@@ -15,13 +14,17 @@ const operate = () => {
   const history = useHistory();
   // 倒计时关闭
   const [countDownVisible, onToggleCountDown] = useState(false);
-  // const [powerOff, onTogglePower] = useState(false);
-  const [countdownTime, setCountdown] = useState([]);
-  const countDownColumns = () => {
-    const hourCols = numberToArray(12, '时');
-    const minuteCols = numberToArray(60, '分');
 
-    return [hourCols, minuteCols];
+  const handleCountdownDefault = (value: number) => {
+    const hours: number = (value - value % (60 * 60)) / (60 * 60);
+    const minutes: number = (value % (60 * 60)) / (60);
+    const countdownTime: any = [hours.toString(), minutes.toString()];
+    return countdownTime;
+  };
+
+  const handleCountdownVal = () => {
+    const switchOpen = sdk.deviceData.count_down;
+    return handleCountdownDefault(switchOpen);
   };
   const handleCountdown = () => {
     onToggleCountDown(true);
@@ -65,26 +68,22 @@ const operate = () => {
           设置
         </div>
       </div>
-
-      <ValuePicker
+      <TimePicker
+        showSemicolon={false}
+        value={handleCountdownVal()}
+        showUnit={true}
+        showTime={false}
+        showTwoDigit={false}
+        theme={themeType}
         title="倒计时关闭"
-        visible={countDownVisible}
-        value={countdownTime}
-        columns={countDownColumns()}
-        onCancel={() => onToggleCountDown(false)}
-        onConfirm={(value) => {
-          let hour = value[0];
-          let minute = value[1];
-          if (hour != null) {
-            hour = hour.substr(0, hour.length - 1);
-          }
-          if (minute != null) {
-            minute = minute.substr(0, minute.length - 1);
-          }
-          const countDown = Number(hour) * 3600 + Number(minute) * 60;
-          onControlDevice('count_down', Number(countDown));
-          onToggleCountDown(false);
+        onCancel={onToggleCountDown.bind(null, false)}
+        onConfirm={(value: any) => {
+          const hour = Number(value[0].split('时')[0]);
+          const mins = Number(value[1].split('分')[0]);
+          const num = hour * 3600 + mins * 60;
+          onControlDevice('count_down', num);
         }}
+        visible={countDownVisible}
       />
     </div>
   );

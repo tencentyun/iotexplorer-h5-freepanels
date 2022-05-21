@@ -14,7 +14,7 @@ export interface CellProps {
   // 左侧标题
   title: string;
   // 副标题
-  subTitle?: string;
+  subTitle?: string | React.ReactNode;
   name?: string;
   // 副标题
   desc?: string;
@@ -40,7 +40,7 @@ const supportEle = {
 };
 
 export function Cell({
-  className, // 支持边框 和下边框 border border-bottom
+  className, // 支持边框 和下边框  cell-settings
   prefixIcon,
   title,
   subTitle,
@@ -81,9 +81,12 @@ export function Cell({
           <span className="cell-prefix-icon">{prefixIcon}</span>
         ) : null}
 
-        {/* 标题 */}
-        <p className="cell-title">{title}</p>
-        {subTitle ? <span className="cell-subtitle">{subTitle}</span> : null}
+        <div className="cell-title-wrapper">
+          {/* 标题 */}
+          <p className="cell-title">{title}</p>
+          {subTitle ? <span className="cell-subtitle">{subTitle}</span> : null}
+        </div>
+
 
         {/* 右侧内容区 */}
         <div className={`cell-content cell-content-style-${valueStyle}`}>

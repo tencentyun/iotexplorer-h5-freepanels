@@ -6,7 +6,7 @@ import classNames from 'classnames';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 import { Steps } from '@src/components/custom/Steps';
 
-export function Record(props) {
+export function Record() {
   const [recordList, setRecordList] = useState([]);
 
   useEffect(() => {

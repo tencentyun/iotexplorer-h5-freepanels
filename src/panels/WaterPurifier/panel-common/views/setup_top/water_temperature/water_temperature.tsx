@@ -50,28 +50,29 @@ const Water_temperature = ({ isShow, onClose }) => {
 
   const handleSelectBrightness = (e: React.MouseEvent) => {
     const slider = document.getElementById('lightbright-slider');
+    if (!slider) return;
 
     const offsetModel = (document.body.clientWidth - document.getElementsByClassName('modal-body')[0].clientWidth) / 2;
     const brightness = (e.clientX - slider.offsetLeft - offsetModel) / slider.clientWidth;
-    const brightness_val = parseInt(brightness * max_value);
+    const brightness_val = brightness * max_value;
     updateTemperaureVal(brightness_val);
   };
 
   const handleMoveBrightness = (e: React.MouseEvent) => {
     const slider = document.getElementById('lightbright-slider');
-
+    if (!slider) return;
     const offsetModel = (document.body.clientWidth - document.getElementsByClassName('modal-body')[0].clientWidth) / 2;
     const brightness = (e.changedTouches[0].clientX - slider.offsetLeft - offsetModel) / slider.clientWidth;
-    const brightness_val = parseInt(brightness * max_value);
+    const brightness_val = brightness * max_value;
     updateTemperaureVal(brightness_val);
   };
 
   const handleEndMoveBrightness = (e: React.MouseEvent) => {
     const slider = document.getElementById('lightbright-slider');
-
+    if (!slider) return;
     const offsetModel = (document.body.clientWidth - document.getElementsByClassName('modal-body')[0].clientWidth) / 2;
     const brightness = (e.changedTouches[0].clientX - slider.offsetLeft - offsetModel) / slider.clientWidth;
-    const brightness_val = parseInt(brightness * max_value);
+    const brightness_val = brightness * max_value;
     // console.log(brightness_val);
     updateTemperaureVal(brightness_val);
   };

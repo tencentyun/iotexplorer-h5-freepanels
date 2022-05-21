@@ -1,3 +1,54 @@
-.settings {
-  padding: 0 16px;
+.settings-wrap {
+  padding: 0 16px 124px;
+  .cell-settings {
+    position: relative;
+    .unit-convert {
+      position: absolute;
+      right: 0;
+      top: 50%;
+      margin-top: -12px;
+      display: flex;
+      justify-content: center;
+      text-align: center;
+      .unit-btn {
+        width: 80px;
+        height: 24px;
+        line-height: 24px;
+        font-weight: 500;
+        font-size: 14px;
+        color: #FFFFFF;
+        border-radius: 8px;
+        background: #26313D;
+        opacity: 0.5;
+        &:last-child {
+          margin-left: 12px;
+        }
+      }
+      .active {
+        opacity: 1;
+      }
+    }
+  }
+  .footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100px;
+    text-align: center;
+    z-index: 10;
+    background: #FFFFFF;
+    .footer-button {
+      margin: 10px 16px;
+      height: 44px;
+      line-height: 44px;
+      font-size: 16px;
+      border-radius: 8px;
+      color: #FFFFFF;
+      background: #DA695C;
+    }
+  }
+  .mt {
+    margin-top: 24px;
+  }
 }

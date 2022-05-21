@@ -1,59 +1,81 @@
 .home {
   position: relative;
-  padding: 20px 17px;
+  padding: 16px 16px 0;
 
   header {
-    margin-bottom: 78px;
-  }
-  .tips {
-    margin: 114px 0 48px;
-    line-height: 20px;
-    font-size: 14px;
-    font-weight: 600;
-    color: #FFFFFF;
-    text-align: center;
-    span {
-      position: relative;
-      margin-left: 14px;
-      display: inline-block;
-      &::before {
-        content: '';
-        position: absolute;
-        top: 50%;
-        left: -14px;
-        margin-top: -3px;
-        display: inline-block;
-        width: 6px;
-        height: 6px;
-        border-radius: 50%;
-        background: #FFFFFF;
-      }
-    }
-  }
-  .setting-block {
-    margin: 0 15px 50px;
+    margin-bottom: 58px;
     display: flex;
     align-items: center;
+    .child-lock-status {
+      flex: 1;
+      padding-left: 24px;
+      font-weight: 600;
+      font-size: 14px;
+      line-height: 20px;
+      color: #FFFFFF;
+      text-align: center;
+    }
+    .more-btn {
+      width: 24px;
+      height: 24px;
+    }
+  }
+
+  .disk-wrap {
+    display: flex;
+    justify-content: center;
+  }
+
+  .control-wrap {
+    padding: 16px 29px 56px;
+    display: flex;
     justify-content: space-between;
-  
-    &>.setting-button {
-      position: relative;
+    .minus-btn, .plus-btn {
       display: flex;
       align-items: center;
       justify-content: center;
-      flex-direction: column;
-      width: 100px;
-      height: 100px;
+      width: 40px;
+      height: 40px;
       border-radius: 16px;
-      background-color: #2D374D;
-  
-      .button-name {
-        margin-top: 10px;
-        line-height: 20px;
-        font-size: 14px;
+      background: #2D374D;
+    }
+  }
+
+  footer {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    border-radius: 40px 40px 0px 0px;
+    background: #2D374D;
+    .footer-top {
+      margin: 32px 20px 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .footer-bottom {
+      margin: 16px 20px 46px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      .rectangle-button {
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        width: 154px;
+        height: 60px;
+        border-radius: 16px;
         font-weight: 600;
+        font-size: 14px;
         color: #FFFFFF;
+        background: #454F65;
       }
     }
+  }
+  .active {
+    opacity: 1;
+  }
+  .disable {
+    opacity: 0.5;
   }
 }

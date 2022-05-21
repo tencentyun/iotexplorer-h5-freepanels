@@ -1,0 +1,33 @@
+@import url("./Position.less");
+// @import url("./Ticker.less");
+
+// @import url("./LightBright.less");
+// @import url("./Action.less");
+.route-home {
+  display: inherit !important;
+}
+.home {
+  width: 100%;
+  .header{
+    padding:20px 0  0 16px;
+  }
+  .today-info{
+    color:@c1;
+    margin-top: 4px;
+    display: flex;
+    justify-content: space-between;
+    padding:0 40px;
+    > div{
+      width: 100px;
+      height: 100px;
+      >div{
+        display: flex;
+        flex-direction: column;
+        >span{
+          font-weight: 600;
+          font-size: 14px;
+        }
+      }
+    }
+  }
+}

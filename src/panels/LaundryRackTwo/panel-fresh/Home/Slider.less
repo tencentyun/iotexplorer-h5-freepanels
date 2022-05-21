@@ -1,0 +1,103 @@
+.slider {
+  width: 260px;
+  height: 260px;
+  background: radial-gradient(53.3% 53.3% at 50% 50%, rgba(102, 85, 248, 0.253906) 0%, rgba(247, 244, 253, 0.148465) 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .dashboard {
+    width: 210px;
+    height: 210px;
+    border-radius: 50%;
+    margin: 0 auto;
+    margin: 0 auto;
+    background: #FBFBFC;
+    background: #FFFFFF;
+    box-shadow: 0px 2px 6px 2px #DEDAFF;
+    .lr-rack-wrapper {
+      width: 175px;
+      height: 200px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+      margin-top: 110px;
+      .lr-rack-img-up {
+        width: 100%;
+        height: 24.2px;
+        left: 75.92px;
+        top: 161.79px;
+        background: linear-gradient(
+          90deg,
+          #eaeaea 0%,
+          #f7f7f7 11.5%,
+          #f7f7f7 88.94%,
+          #eaeaea 100%
+        );
+        box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.05);
+        border-radius: 20px;
+        &::before {
+          content: " ";
+          height: 7.78px;
+          width: calc(100% - 12px);
+          margin: 0 6px;
+          top: 10px;
+          border-radius: 3px;
+          position: absolute;
+          box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.05);
+          background: #e8e8e8;
+        }
+        &::after {
+          content: " ";
+          height: 8px;
+          width: calc(100% - 46px);
+          margin: 0 23px;
+          background: #ffffff;
+          box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.05);
+          border-radius: 2px;
+          top: 12px;
+          position: absolute;
+        }
+      }
+
+      .lr-rack-div-middle {
+        height: 78px;
+        margin-top: 8px;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        .lr-rack-div-progress {
+          width: 100%;
+          // height: 12%; // 有效范围12%-58%
+          overflow: hidden;
+          margin-top: -8px;
+          .lr-rack-img-middle {
+            width: 100%;
+            background-image: url("../Icon/middle.svg");
+            background-size: contain;
+            background-repeat: no-repeat;
+            min-height: 100px;
+            margin-top: -3px;
+          }
+        }
+      }
+      .lr-rack-img-down {
+        margin-top: -5px;
+        width: 175px;
+        height: 54px;
+        margin-left: 5px;
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-image: url("../Icon/down-pack.svg");
+      }
+    }
+  }
+  > .title {
+    padding: 27px 0 27px;
+    margin-top: 57px;
+
+  }
+}

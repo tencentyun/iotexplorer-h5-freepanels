@@ -87,7 +87,7 @@ export function CameraConfig({ deviceData, templateMap, doControlDeviceData }) {
         ? <Cell
           className="cell-settings-secondary"
           title="灵敏度"
-          value={getDesc('sensitivity', deviceData.sensitivity ? deviceData.sensitivity : 1)}
+          value={getDesc('sensitivity', deviceData.sensitivity !== undefined ? deviceData.sensitivity : 1)}
           valueStyle="set"
           onClick={() => {
             onToggleSensitivity(true);
@@ -96,13 +96,13 @@ export function CameraConfig({ deviceData, templateMap, doControlDeviceData }) {
           <OptionDialog
             visible={sensitivityVisible}
             title="灵敏度"
-            defaultValue={[deviceData.sensitivity ? deviceData.sensitivity?.toString() : '1']}
+            defaultValue={[deviceData.sensitivity !== undefined ? deviceData.sensitivity?.toString() : '1']}
             options={getOptions('sensitivity')}
             onCancel={() => {
               onToggleSensitivity(false);
             }}
             onConfirm={(value) => {
-              doControlDeviceData('sensitivity', value[0]);
+              doControlDeviceData('sensitivity', Number(value[0]));
             }}
           ></OptionDialog>
         </Cell> : null

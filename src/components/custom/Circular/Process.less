@@ -1,0 +1,36 @@
+.process-out {
+  width: 200px;
+  height: 200px;
+  background: #ddd;
+  position: relative;
+  overflow: hidden;
+}
+.p-circular {
+  display: flex;
+  .circle {
+    width: 50%;
+    .process-left {
+      overflow: hidden;
+      background-color: blue;
+    }
+    .process-right {
+      overflow: hidden;
+      background-color: aqua;
+      .circular-process {
+        margin-left: -100%;
+      }
+    }
+    // // 进度
+    .circular-process {
+      width: 200px;
+      height: 200px;
+      border-left: 10px solid red;
+      border-top: 10px solid red;
+      border-right: 10px solid gray;
+      border-bottom: 10px solid gray;
+      border-radius: 50%;
+      box-sizing: border-box;
+    }
+
+  }
+}
