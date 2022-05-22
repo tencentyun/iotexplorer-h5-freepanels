@@ -726,4 +726,26 @@ module.exports = {
       ['panel-house', { enable: true }],
     ],
   },
+  DownLight: {
+    enable: true,
+    viewportWidth: 375,
+    panels: [
+      ['panel-cold', { enable: true }],
+      ['panel-card', { enable: true }],
+      ['panel-brunet', { enable: true }],
+      ['panel-fresh', { enable: true }],
+      ['panel-house', { enable: true }],
+    ],
+  },
+  Spotlights: {
+    enable: true,
+    viewportWidth: 375,
+    panels: [
+      ['panel-cold', { enable: true }],
+      ['panel-card', { enable: true }],
+      ['panel-brunet', { enable: true }],
+      ['panel-fresh', { enable: true }],
+      ['panel-house', { enable: true }],
+    ],
+  },
 };
