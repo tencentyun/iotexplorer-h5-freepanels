@@ -8,6 +8,24 @@
   overflow: hidden;
   width: auto;
 
+  &.second-cls {
+    .rmc-picker {
+      .rmc-picker-content {
+        .rmc-picker-item {
+          padding-left: 0;
+        }
+      }
+    }
+    .rmc-picker:first-child {
+      .rmc-picker-content {
+        .rmc-picker-item {
+          text-align: center;
+          padding-right: 0;
+        }
+      }
+    }
+  }
+
   .picker-view-divider {
     position: absolute;
     top: 50%;
