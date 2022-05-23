@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 import classNames from 'classnames';
 import { FreePanelLayout } from '@components/FreePanelLayout';
 import { PanelMoreBtn } from '@components/PanelMoreBtn';
@@ -6,12 +6,12 @@ import { PanelComponentProps } from '@src/entryWrap';
 import { useHistory } from 'react-router-dom';
 import { SwitchItem } from '@src/panels/MultiSwitch/panel-default/SwitchItem';
 import { ConfirmModal } from '@src/components/Modal';
-import { modifyModalName } from '@src/panels/FiveRoadHub/panel-default/models';
 import { StatusTip } from '@src/components/StatusTip';
-import { useSwitchEditName } from '@src/hooks/useSwitchEditName';
+
 export interface SwitchPanelProps extends PanelComponentProps {
   switchList: any[];
-  onChangeSwitchNames: (names)=> void;
+  switchNames: Record<string, string>;
+  updateSwitchNames: any;
 }
 
 // 多路开关
@@ -22,8 +22,10 @@ export function SwitchPanel({
   powerOff,
   doControlDeviceData,
   onGoDeviceDetail,
+  switchNames,
+  updateSwitchNames,
+  statusTip,
   switchList,
-  onChangeSwitchNames,
 }: SwitchPanelProps) {
   const history = useHistory();
   const [visible, setVisible] = useState(false);
@@ -48,24 +50,13 @@ export function SwitchPanel({
   const onEditName = async () => {
     if (currentEditItem.current) {
       if (inputRef.current?.value) {
-        try {
-          await modifyModalName({
-            DeviceKey: currentEditItem.current?.id,
-            DeviceValue: inputRef.current?.value,
-          });
-        } catch (e) {
-          console.warn(e.msg);
-        }
-        updateAsyncFetch({ id: currentEditItem.current.id });
+        updateSwitchNames({ [currentEditItem.current?.id]: inputRef.current?.value });
       }
     }
     setVisible(false);
   };
   const [currentName, setCurrentName] = useState('');
-  const { switchNames, updateAsyncFetch, statusTip } = useSwitchEditName({
-    onChangeSwitchNames,
-    switchList,
-  });
+
 
   return (
     statusTip
@@ -134,7 +125,7 @@ export function SwitchPanel({
           {switchList.map(item => (
             <SwitchItem
               key={item.id}
-              name={switchNames.data[item.id]}
+              name={switchNames[item.id]}
               switchOn={deviceData[item.id]}
               countdown={deviceData[item.countdownId]}
               onClick={() => onToggleSocket(item)}
@@ -142,7 +133,7 @@ export function SwitchPanel({
                 setVisible(true);
                 currentEditItem.current = item;
                 inputRef.current?.focus();
-                setCurrentName(switchNames.data[currentEditItem.current.id]);
+                setCurrentName(switchNames[currentEditItem.current.id]);
               }}
             />))}
         </div>

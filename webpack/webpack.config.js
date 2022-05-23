@@ -12,6 +12,8 @@ const viewportConfig = require('./pxToViewport.config');
 const argv = require('minimist')(process.argv.slice(2));
 const category = argv.category || process.env.npm_config_category || '';
 
+// 使用 npm run dev --category=xxx --index 统一生成index.js, index.css
+const outputIndex = ((argv.index || process.env.npm_config_index) === 'true');
 class ModifiedMiniCssExtractPlugin extends MiniCssExtractPlugin {
   getCssChunkObject(mainChunk) {
     return {};
@@ -32,6 +34,8 @@ module.exports = (env, argv) => {
 
   const entry = {};
   const viewport = {};
+
+  // 这里可能会影响之前的面板布局，布局乱了可注释掉
   viewportConfig.viewportWidth = 1125;
   Object.keys(panelConfig).forEach((categoryKey) => {
     const { enable, panels, viewportWidth } = panelConfig[categoryKey];
@@ -66,14 +70,19 @@ module.exports = (env, argv) => {
       });
     }
   });
-  console.log('entry list length --->', Object.keys(entry).length);
+  console.log('build panel length:', Object.keys(panelConfig).length, 'build template length --->', Object.keys(entry).length);
+
+  const outputFileName = outputIndex ? 'index' : '[name]';
   return {
     name: 'iotexplorer-h5-freepanels',
     mode,
     entry,
+    cache: {
+      type: 'filesystem',
+    },
     output: {
       path: outputPath,
-      filename: (isDevMode || isPreview) ? '[name].js' : '[name].[contenthash:10].js',
+      filename: (isDevMode || isPreview) ? `${outputFileName}.js` : '[name].[contenthash:10].js',
       libraryTarget: 'umd',
       asyncChunks: true,
       clean: true,
@@ -93,48 +102,48 @@ module.exports = (env, argv) => {
       static: {
         directory: path.join(__dirname, outputPath),
       },
-      open: true,
     },
     module: {
       // 现在的 babel 配置已经很简单了，我们只需要加入默认的配置即可
       rules: [
         {
           test: /\.(j|t)sx?$/,
-          exclude: /node_modules|vendors/,
-          use: {
-            loader: 'babel-loader',
-            options: {
-              sourceType: 'unambiguous',
-              presets: [
-                '@babel/preset-env',
-                '@babel/preset-react',
-                '@babel/preset-typescript',
-              ],
-              plugins: [
-                '@babel/plugin-proposal-class-properties',
-                [
-                  '@babel/plugin-transform-runtime',
-                  {
-                    absoluteRuntime: false,
-                    corejs: false,
-                    helpers: true,
-                    regenerator: false,
-                    useESModules: false,
-                  },
+          exclude: /(node_modules|vendors)/,
+          use: [
+            {
+              loader: 'babel-loader',
+              options: {
+                sourceType: 'unambiguous',
+                presets: [
+                  '@babel/preset-env',
+                  '@babel/preset-react',
+                  '@babel/preset-typescript',
                 ],
-                ['babel-plugin-styled-components-px2vw', viewportConfig],
-                // antd 按需引入
-                [
-                  'import',
-                  {
-                    libraryName: 'antd-mobile',
-                    libraryDirectory: 'es/components',
-                    style: 'false',
-                  },
+                plugins: [
+                  '@babel/plugin-proposal-class-properties',
+                  [
+                    '@babel/plugin-transform-runtime',
+                    {
+                      absoluteRuntime: false,
+                      corejs: false,
+                      helpers: true,
+                      regenerator: false,
+                      useESModules: false,
+                    },
+                  ],
+                  ['babel-plugin-styled-components-px2vw', viewportConfig],
+                  // antd 按需引入
+                  [
+                    'import',
+                    {
+                      libraryName: 'antd-mobile',
+                      libraryDirectory: 'es/components',
+                      style: 'false',
+                    },
+                  ],
                 ],
-              ],
-            },
-          },
+              },
+            }],
         },
         {
           loader: 'ts-loader',
@@ -174,6 +183,7 @@ module.exports = (env, argv) => {
             {
               loader: 'less-loader',
             },
+            { loader: 'thread-loader' },
           ],
         },
         {
@@ -233,6 +243,7 @@ module.exports = (env, argv) => {
       minimize: !isDevMode,
       minimizer: [
         new TerserPlugin({
+          parallel: true,
           extractComments: false,
         }),
         new CssMinimizerPlugin(),
@@ -247,7 +258,7 @@ module.exports = (env, argv) => {
         'process.env.NODE_ENV': JSON.stringify(mode),
       }),
       new ModifiedMiniCssExtractPlugin({
-        filename: (isDevMode || isPreview) ? '[name].css' : '[name].[contenthash:10].css',
+        filename: (isDevMode || isPreview) ? `${outputFileName}.css` : '[name].[contenthash:10].css',
       }),
     ].filter(Boolean),
     // stats: { children: false },

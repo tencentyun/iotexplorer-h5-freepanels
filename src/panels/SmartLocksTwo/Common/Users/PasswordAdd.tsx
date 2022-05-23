@@ -8,29 +8,54 @@ import { Btn } from '@custom/Btn';
 import { Cell } from '@custom/Cell';
 import { TimePicker } from '@custom/TimePicker';
 import { DatePicker } from '@custom/DatePicker';
+import { useUser } from './hooks/useUser';
 import dayjs from 'dayjs';
+import { getTimeArr } from '../utils';
+import { tips } from '@src/libs/wxlib';
 
 const arrWeek = ['星期一', '星期二', '星期三', '星期四', '星期五', '星期六', '星期日'];
 
-export function PasswordAdd({ history: { PATH, push, query } }) {
+export function PasswordAdd({ history: { PATH, goBack, query } }) {
   useTitle('生效时间编辑');
+  const [{ userInfo }, { editUser }] = useUser({ id: query.userid });
+
   // 永久/自定义
-  const [type, setType] = useState(query.effectiveTime);
+  const [type, setType] = useState<0|1>(userInfo.effectiveTime?.type || 0);
   // 有效日期
-  const [beginDate, setBeginDate] = useState(new Date());
-  const [endDate, setEndDate] = useState(new Date());
+  const [beginDate, setBeginDate] = useState(new Date(userInfo.effectiveTime?.beginDate || Date.now()));
+  const [endDate, setEndDate] = useState(new Date(userInfo.effectiveTime?.endDate || Date.now()));
   const [beginVisible, setBeginVisible] = useState(false);
   const [endVisible, setEndVisible] = useState(false);
   // 有效时段
-  const [beginTime, setBeginTime] = useState(['00', '00']);
-  const [endTime, setEndTime] = useState(['23', '59']);
+  const [beginTime, setBeginTime] = useState(getTimeArr(userInfo.effectiveTime?.beginTime) || ['00', '00']);
+  const [endTime, setEndTime] = useState(getTimeArr(userInfo.effectiveTime?.endTime) || ['23', '59']);
   const [beginTimeVisible, setBeginTimeVisible] = useState(false);
   const [endTimeVisible, setEndTimeVisible] = useState(false);
 
-  const [week, setWeek] = useState(arrWeek.map((label, index) => index)); // 默认全选
+  const [week, setWeek] = useState(userInfo.effectiveTime?.week || arrWeek.map((label, index) => index)); // 默认全选
 
   const toggleWeek = (key) => {
     setWeek(week.includes(key) ? week.filter(index => index !== key) : week.slice().concat(key));
+  };
+
+  const changeEffectiveTime = async () => {
+    try {
+      await editUser({
+        userid: userInfo.userid,
+        name: userInfo.name,
+        effectiveTime: JSON.stringify({
+          type,
+          beginDate: dayjs(beginDate).format('YYYY/MM/DD'),
+          endDate: dayjs(endDate).format('YYYY/MM/DD'),
+          beginTime: beginTime.join(':'),
+          endTime: endTime.join(':'),
+          week,
+        }),
+      });
+    } catch (err) {
+      tips.showError('修改失败');
+      console.error('修改生效周期失败', err);
+    }
   };
 
   return (
@@ -38,11 +63,11 @@ export function PasswordAdd({ history: { PATH, push, query } }) {
       <div className="choice-type">
         <span>生效时间</span>
         <div>
-          <Btn btnText="永久" type={type !== '0' ? 'sub' : 'primary'} size="small" onClick={() => setType('0')} />
-          <Btn btnText="自定义" type={type !== '0' ? 'primary' : 'sub'} size="small" onClick={() => setType('1')} />
+          <Btn btnText="永久" type={type !== 0 ? 'sub' : 'primary'} size="small" onClick={() => setType(0)} />
+          <Btn btnText="自定义" type={type !== 0 ? 'primary' : 'sub'} size="small" onClick={() => setType(1)} />
         </div>
       </div>
-      {type !== '0' ? <>
+      {type !== 0 ? <>
         <Cell
           title="有效日期"
           className="cell-settings cell-nest"
@@ -85,6 +110,7 @@ export function PasswordAdd({ history: { PATH, push, query } }) {
             <DatePicker
               visible={endVisible}
               showSemicolon={false}
+              min={beginDate}
               value={endDate}
               showUnit={true}
               mask={false}
@@ -94,6 +120,10 @@ export function PasswordAdd({ history: { PATH, push, query } }) {
               height={175}
               showTwoDigit={true}
               onConfirm={(endDate) => {
+                if (endDate < beginDate) {
+                  tips.showError('结束时间不得小于开始时间');
+                  return;
+                }
                 setEndDate(endDate);
                 setEndVisible(false);
               }}
@@ -175,8 +205,9 @@ export function PasswordAdd({ history: { PATH, push, query } }) {
       <footer className="footer">
         <div
           className="footer-button"
-          onClick={() => {
-            push(PATH.USERS_EDIT, { effectiveTime: type });
+          onClick={async () => {
+            await changeEffectiveTime();
+            goBack();
           }}
         >
           确定

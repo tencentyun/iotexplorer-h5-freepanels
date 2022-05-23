@@ -14,7 +14,7 @@ export declare type Action = {
 
 export interface ListProps {
   data?: HashMap[]; // 渲染的数据
-  render?: (item: HashMap, data: HashMap[], index: number) => React.ReactNode; // 渲染方式
+  render?: (item: any, data: HashMap[], index: number) => React.ReactNode; // 渲染方式
   onDelete?: (item: HashMap) => void; // 删除方法
   className?: string;
   getAction?: (item: HashMap, data: HashMap[], index: number) => Action[] | undefined; // 操作动作 默认是删除

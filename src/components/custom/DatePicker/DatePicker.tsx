@@ -6,6 +6,8 @@ import dayjs from 'dayjs';
 export interface DimePickerProps extends StyledProps {
   visible?: boolean;
   value?: Date;
+  min?: Date;
+  max?: Date;
   title?: string;
   unit?: string;
   showUnit?: boolean;
@@ -48,6 +50,8 @@ export function DatePicker(props: DimePickerProps) {
     onCancel = () => ({}),
     onConfirm = () => ({}),
     isPopUp = true,
+    min,
+    max,
   } = props;
 
   const [pickerValue, setPickerValue] = useState(value);
@@ -88,6 +92,8 @@ export function DatePicker(props: DimePickerProps) {
             value={pickerValue}
             itemHeight={itemHeight}
             height={height}
+            min={min || new Date(0)}
+            max={max || new Date()}
             showTwoDigit={showTwoDigit}
             showSemicolon={showSemicolon}
             onScrollChange={onChangeValue}

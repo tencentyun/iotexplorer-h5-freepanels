@@ -22,51 +22,51 @@ export function SocketPanel({
   const renderPanelStatus = () => {
     if (offline) {
       return (
-				<div className='socket-msg'>
-					设备已离线
-				</div>
+                <div className='socket-msg'>
+                    设备已离线
+                </div>
       );
     }
     if (deviceData.count_down && deviceData.count_down > 0) {
       return (
-				<div className='socket-msg'>
-					{getCountdownStr(deviceData.count_down, powerOff)}
-				</div>
+                <div className='socket-msg'>
+                    {getCountdownStr(deviceData.count_down, powerOff)}
+                </div>
       );
     }
     return (
-			<div className='socket-msg'>插座已{getStatusStr(powerOff)}</div>
+            <div className='socket-msg'>插座已{getStatusStr(powerOff)}</div>
     );
   };
 
   return (
-		<FreePanelLayout
-			className={classNames('free-socket-page', {
-			  'power-off': powerOff,
-			})}
-			title={deviceInfo.displayName}
-			doControlDeviceData={doControlDeviceData}
-			offline={offline}
-			powerOff={powerOff}
-			deviceData={deviceData}
-			onGoTimingProject={onGoTimingProject}
-		>
-			<PanelMoreBtn
-				onClick={onGoDeviceDetail}
-				theme='dark'
-			/>
-			<div className='socket-body'>
-				<RawBtn
-					className='socket-logo-btn'
-					onClick={() => doControlDeviceData('power_switch', powerOff ? 1 : 0)}
-				>
-					<img
-						className={classNames('socket-logo')}
-						src={iconSocket}
-					/>
-				</RawBtn>
-				{renderPanelStatus()}
-			</div>
-		</FreePanelLayout>
+        <FreePanelLayout
+            className={classNames('free-socket-page', {
+              'power-off': powerOff,
+            })}
+            title={deviceInfo.displayName}
+            doControlDeviceData={doControlDeviceData}
+            offline={offline}
+            powerOff={powerOff}
+            deviceData={deviceData}
+            onGoTimingProject={onGoTimingProject}
+        >
+            <PanelMoreBtn
+                onClick={onGoDeviceDetail}
+                theme='dark'
+            />
+            <div className='socket-body'>
+                <RawBtn
+                    className='socket-logo-btn'
+                    onClick={() => doControlDeviceData('power_switch', powerOff ? 1 : 0)}
+                >
+                    <img
+                        className={classNames('socket-logo')}
+                        src={iconSocket}
+                    />
+                </RawBtn>
+                {renderPanelStatus()}
+            </div>
+        </FreePanelLayout>
   );
 }
