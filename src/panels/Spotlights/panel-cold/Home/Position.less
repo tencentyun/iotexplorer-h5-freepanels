@@ -1,6 +1,6 @@
 .position_card {
-  margin-bottom: 60px;
-  padding: 70px 0;
+  padding-top: 68px;
+  padding-bottom: 60px;
   .main-bg {
     width: 260px;
     height: 260px;
@@ -8,8 +8,6 @@
     border: 1px solid #eff3f5;
     border-radius: 50%;
     .bg-img {
-      width: calc(100% - 24px);
-      height: calc(100% - 24px);
       background: #26313d;
       top: 38px;
       left: 38px;
@@ -51,6 +49,21 @@
       }
     }
   }
+  &.colour-type {
+    padding-bottom: 20px;
+    .bg-img {
+      width: calc(100% - 128px);
+      height: calc(100% - 128px);
+      border: 14px solid #F28319;
+      background: #FBFBFC;
+      box-shadow: 0px 0px 10px 2px #D7D9DC;
+    }
+    .bg {
+      .outer {
+        background: conic-gradient(from 226.74deg at 50% 50%, #E500F0 -43.78deg, #2F00FF 9.18deg, #03F7F9 60.44deg, #32FB1D 115.34deg, #A0EF07 156.52deg, #EECD0C 212.88deg, #F90219 267.69deg, #E500F0 316.22deg, #2F00FF 369.18deg);
+      }
+    }
+  }
   &.off-switch {
     .bg {
       .outer {
@@ -58,17 +71,13 @@
       }
     }
     .bg-img {
+      width: calc(100% - 100px);
+      height: calc(100% - 100px);
+      border: none;
       background: @c2 !important;
     }
     .inner {
       opacity: 0.5;
-    }
-  }
-  &.scene-type {
-    .bg {
-      .outer {
-        background: conic-gradient(from 226.74deg at 50% 50%, #E500F0 -43.78deg, #2F00FF 9.18deg, #03F7F9 60.44deg, #32FB1D 115.34deg, #A0EF07 156.52deg, #EECD0C 212.88deg, #F90219 267.69deg, #E500F0 316.22deg, #2F00FF 369.18deg);
-      }
     }
   }
 }

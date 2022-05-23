@@ -15,10 +15,10 @@ export function Position({
     setDeg(deg);
     doControlDeviceData('set_temp', Math.round((deg * 1000) / 360));
   };
-  const cls = isPowerOff ? 'off-switch' : 'on-switch';
-  const sceneCls = color_mode === 1 ? 'scene-type' : '';
+  const powerStatus = isPowerOff ? 'off-switch' : 'on-switch';
+  const colourType = color_mode === 'colour' ? 'colour-type' : '';
   return (
-    <div className={`position_card center ${cls} ${sceneCls}`}>
+    <div className={`position_card center ${powerStatus} ${colourType}`}>
       <div className="main-bg center">
         <div className="circle-ring">
           <div className="bg">
@@ -29,7 +29,7 @@ export function Position({
               <div className="circle inner"></div>
             </div>
             <div className="bg-img center">
-              <Icon name={isPowerOff ? 'light-bg-off' : 'light-bg'}></Icon>
+              <Icon name={isPowerOff ? 'light-bg-off' : `light-bg-${color_mode}` }></Icon>
             </div>
           </div>
           <Circular value={deg} onChange={onChange} />

@@ -14,30 +14,30 @@ export function Home(props) {
     <div className="home">
       <Ticker {...props} />
       <div>
-        { colorMode !== 2
+        { colorMode !== 'scene'
           ? <div className="change-panel">
             <Position {...props}></Position>
-            { (colorMode === 0 && isPowerOpen)
+            { (colorMode === 'white' && isPowerOpen)
               ? <LightBright
-              iconName="brightness"
-              controlName="bright_value"
-              {...props}
-            ></LightBright>
-              : null
-            }
-            { (colorMode === 1 && isPowerOpen)
-              ? <>
-                <LightBright
-                  iconName="temperature"
-                  controlName="temp_value"
-                  {...props}
-                ></LightBright>
-                <LightBright
                   iconName="brightness"
                   controlName="bright_value"
                   {...props}
                 ></LightBright>
-              </>
+              : null
+            }
+            { (colorMode === 'colour' && isPowerOpen)
+              ? <>
+                  <LightBright
+                    iconName="temperature"
+                    controlName="temp_value"
+                    {...props}
+                  ></LightBright>
+                  <LightBright
+                    iconName="brightness"
+                    controlName="bright_value"
+                    {...props}
+                  ></LightBright>
+                </>
               : null
             }
           </div>
