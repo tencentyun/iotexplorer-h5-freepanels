@@ -10,11 +10,11 @@ export function LightPropSlider({
   onChanging,
   templateConfig,
 }: {
-	icon: string;
-	value?: number;
-	onChange: (value: number) => any;
-	onChanging?: (value: number) => any;
-	templateConfig?: any;
+    icon: string;
+    value?: number;
+    onChange: (value: number) => any;
+    onChanging?: (value: number) => any;
+    templateConfig?: any;
 }) {
   const [localValue, setLocalValue] = useState(0);
 
@@ -40,33 +40,33 @@ export function LightPropSlider({
   }, [value, templateConfig]);
 
   return (
-		<div
-			className={classNames('light-slider-container')}
-		>
-			<img
-				src={icon}
-				className='light-slider-icon'
-			/>
-			<Slider
-				className='light-slider'
-				step={step}
-				max={max}
-				min={min}
-				value={localValue}
-				onChangeComplete={() => {
-				  onChange(localValue);
-				}}
-				onChange={(value) => {
-				  setLocalValue(value);
-				  if (typeof onChanging === 'function') {
-				    onChanging(value);
-				  }
-				}}
-			/>
+        <div
+            className={classNames('light-slider-container')}
+        >
+            <img
+                src={icon}
+                className='light-slider-icon'
+            />
+            <Slider
+                className='light-slider'
+                step={step}
+                max={max}
+                min={min}
+                value={localValue}
+                onChangeComplete={() => {
+                  onChange(localValue);
+                }}
+                onChange={(value) => {
+                  setLocalValue(value);
+                  if (typeof onChanging === 'function') {
+                    onChanging(value);
+                  }
+                }}
+            />
 
-			<div className='light-slider-value'>
-				{localValue}{unit}
-			</div>
-		</div>
+            <div className='light-slider-value'>
+                {localValue}{unit}
+            </div>
+        </div>
   );
 }

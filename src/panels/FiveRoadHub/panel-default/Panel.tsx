@@ -14,14 +14,14 @@ import { getCountdownStrWithoutDevice } from '@components/FuncFooter';
 import './Panel.less';
 import { useHistory } from 'react-router-dom';
 import { ConfirmModal } from '@components/Modal';
-import { modifyModalName } from './models';
 import { StatusTip } from '@src/components/StatusTip';
-import { useSwitchEditName } from '@src/hooks/useSwitchEditName';
+
 
 export interface PanelProps extends PanelComponentProps {
   socketList: any[];
   usbList: any[];
-  onChangeSwitchNames: (names) => void;
+  switchNames: Record<string, string>;
+  updateSwitchNames: any;
 }
 // 多路排插
 export function Panel({
@@ -33,7 +33,9 @@ export function Panel({
   onGoDeviceDetail,
   socketList,
   usbList,
-  onChangeSwitchNames,
+  switchNames,
+  updateSwitchNames,
+  statusTip,
 }: PanelProps) {
   const history = useHistory();
   const [visible, setVisible] = useState(false);
@@ -60,22 +62,15 @@ export function Panel({
     if (currentEditItem.current) {
       if (inputRef.current?.value) {
         try {
-          await modifyModalName({
-            DeviceKey: currentEditItem.current?.id,
-            DeviceValue: inputRef.current?.value,
-          });
+          await updateSwitchNames({ [currentEditItem.current?.id]: inputRef.current?.value });
         } catch (e) {
           console.warn(e.msg);
         }
-        updateAsyncFetch({ id: currentEditItem.current.id });
       }
     }
     setVisible(false);
   };
-  const { switchNames, updateAsyncFetch, statusTip } = useSwitchEditName({
-    onChangeSwitchNames,
-    switchList: socketList.concat(usbList),
-  });
+
   const [currentName, setCurrentName] = useState('');
 
   return (
@@ -149,7 +144,7 @@ export function Panel({
             {socketList.map(item => (
               <SocketItem
                 key={item.id}
-                name={switchNames.data[item.id]}
+                name={switchNames[item.id]}
                 powerOn={deviceData[item.id]}
                 countdown={deviceData[item.countdownId]}
                 type='socket'
@@ -158,14 +153,14 @@ export function Panel({
                   setVisible(true);
                   inputRef.current?.focus();
                   currentEditItem.current = item;
-                  setCurrentName(switchNames.data[currentEditItem.current.id]);
+                  setCurrentName(switchNames[currentEditItem.current.id]);
                 }}
               />
             ))}
             {usbList.map(item => (
               <SocketItem
                 key={item.id}
-                name={switchNames.data[item.id]}
+                name={switchNames[item.id]}
                 powerOn={deviceData[item.id]}
                 countdown={deviceData[item.countdownId]}
                 type='usb'
@@ -174,7 +169,7 @@ export function Panel({
                   setVisible(true);
                   currentEditItem.current = item;
                   inputRef.current?.focus();
-                  setCurrentName(switchNames.data[currentEditItem.current.id]);
+                  setCurrentName(switchNames[currentEditItem.current.id]);
                 }}
               />
             ))}

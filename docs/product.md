@@ -2,8 +2,8 @@
 
 | 一级分类         | 二级产品品类      | 现名称       | 文件夹名称                    | 是否提供物模型                                                             | 模版 | 上线状态                               |
 | ---------------- | ----------------- | ------------ | ----------------------------- | -------------------------------------------------------------------------- | ---- | -------------------------------------- |
-| 电工-插座类      | 五孔单插          | 五孔单插     | five-plug                     | [五孔单插.json](./model/五孔单插-five-plug.json)                           | [黑白色](./img/five-plug-normal.jpg) / [蓝白色](./img/five-plug-bluewhite.jpg) / [暗黑色](./img/five-plug-dark.jpg) / [明彩色](./img/five-plug-color.jpg) / [莫兰迪色](./img/five-plug-morandi.jpg)     | 测试中 |
-|                  | 三孔单插          | 三孔单插     | three-plug                    | [三孔单插.json](./model/三孔单插-three-plug.json)                          | [蓝白色](./img/three-plug-blue-white.jpg) / 暗黑色 / 明彩色 / 莫兰迪色 | 待测试 |
+| 电工-插座类      | 五孔单插          | 五孔单插     | five-plug                     | [五孔单插.json](./model/五孔单插-five-plug.json)                           | [黑白色](./img/five-plug-normal.jpg) / [蓝白色](./img/five-plug-bluewhite.jpg) / [暗黑色](./img/five-plug-dark.jpg) / [明彩色](./img/five-plug-color.jpg) / [莫兰迪色](./img/five-plug-morandi.jpg)     | 已上线 |
+|                  | 三孔单插          | 三孔单插     | three-plug                    | [三孔单插.json](./model/三孔单插-three-plug.json)                          | [蓝白色](./img/three-plug-blue-white.jpg) / 暗黑色 / 明彩色 / 莫兰迪色 | 已上线 |
 |                  | 电量统计插座      | 电量统计插座 | electricity-stats-receptacle  | 电量统计插座.json                                                          |  蓝白色 / 暗黑色 / 明彩色 / 莫兰迪色  |  待测试  |
 |                  | 墙壁插座带 USB    | 墙壁插头     | wall-plug                     | [墙壁插座带 USB.json](./model/墙壁插座带USB-wall-plug.json)                | 默认色 / 蓝白色 / 暗黑色 / 明彩色 / 莫兰迪色   |                                        |
 | 电工类-开关类    | 场景开关          | 一路开关     | switch-one                    | [一路开关.json](./model/一路开关-switch-one.json)                          |  [蓝色](./img/switch-one-default.png) / 蓝白色 / 暗黑色 / 明彩色 / 莫兰迪色  | 部分上线   |

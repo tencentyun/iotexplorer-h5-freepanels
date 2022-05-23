@@ -31,7 +31,7 @@ export const App = QuicknessMode(() => {
     basename += '/live';
   }
 
-  const [state, { onDeviceDataChange, onDeviceStatusChange }] =    useDeviceData(sdk);
+  const [state, { onDeviceDataChange, onDeviceStatusChange }] = useDeviceData(sdk);
   console.log(state, 'state===============');
 
   // WebSocket 监听

@@ -2,11 +2,13 @@
  * @Description: 智能锁-表盘
  */
 import React, { useEffect } from 'react';
+import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 import { Icon } from '@custom/Icon';
 export interface DiskProps {
-  deviceData: unknown;
-  doControlDeviceData: unknown;
-  tips: unknown;
+  deviceData: any;
+  doControlDeviceData: (...params: any) => Promise<void>;
+  tips: any;
+  offline: boolean;
 }
 
 // let flag: any = 0;
@@ -14,8 +16,8 @@ let i = 0;
 
 export function Disk({
   deviceData = {},
-  doControlDeviceData,
   tips,
+  offline,
 }: DiskProps) {
   const lockStatus = {
     0: 'unlocked',
@@ -24,9 +26,13 @@ export function Disk({
   };
 
   const currentColor = (): string => {
+    if (offline) {
+      return '#999999';
+    }
     if (deviceData.lock_motor_state === 1) {
       return '#00A884';
     }
+
     return '#DA695C';
   };
 
@@ -69,8 +75,12 @@ export function Disk({
     const perimeter = 2 * Math.PI * radius;
     const circle = document.getElementById('circle') as HTMLUnknownElement;
     const indicator = document.getElementById('indicator') as HTMLUnknownElement;
+    // 3s完成动画
+    const time = 2000;
+    const step = 2;
+    const loop = 100 / step;
     forwardInterval = setInterval(() => {
-      i += 2;
+      i += step;
       const percent = i / 100;
       circle.setAttribute('stroke-dasharray', `${perimeter * percent} ${perimeter * (1 - percent)}`);
       circle.setAttribute('stroke', deviceData.lock_motor_state === 1 ? '#DA695C' : '#00A884');
@@ -83,11 +93,10 @@ export function Disk({
 
       if (i >= 100) {
         clearInterval(forwardInterval);
-        doControlDeviceData('lock_motor_state', Number(!deviceData.lock_motor_state));
-        // 重置
+        sdk.callDeviceAction({}, 'unlock_remote');
         i = 0;
       }
-    }, 100);
+    }, time / loop);
   };
 
   const fallbackAnimation = () => {
@@ -115,23 +124,18 @@ export function Disk({
   };
 
   const handleTouchStart = (e) => {
-    console.log(e, 'handleTouchStart');
     // e.preventDefault();
     // 如果离线之后的操作不执行
-    if (deviceData.lock_motor_state === 2) {
-      tips.showInfo('设备已离线');
+    if (offline) {
+      tips.showError('设备已离线');
       return;
     }
 
-    // if (flag) {
-    //   return;
-    // }
-    // // 设置定时器
-    // flag = setInterval(longPress, 0)
     longPress();
   };
 
   const handleTouchMove = (e) => {
+    e.preventDefault();
     console.log(e, 'handleTouchMove');
   };
   const handleTouchEnd = (e) => {
@@ -144,8 +148,8 @@ export function Disk({
       fallbackAnimation();
     }
     // 如果离线之后的操作不执行
-    if (deviceData.lock_motor_state === 2) {
-      tips.showInfo('设备已离线');
+    if (offline) {
+      tips.showError('设备已离线');
       return;
     }
   };
@@ -153,31 +157,15 @@ export function Disk({
   const longPress = () => {
     // clearInterval(flag)
     // flag = 0;
+
+    // 长按只能解锁
+    if (deviceData.lock_motor_state === 0) {
+      console.log('设备已经解锁');
+      return;
+    }
     clearInterval(fallbackInterval);
     forwardAnimation();
-    // console.log(i);
-    // if (i > 0 && i < 100) {
-    //   clearInterval(forwardInterval);
-    //   fallbackAnimation();
-    // } else {
-    //   // i = 0;
-    //   console.log(i);
-    //   clearInterval(fallbackInterval);
-    //   forwardAnimation();
-    // }
   };
-
-  // const handleClick = (e) => {
-  //   console.log('onClick');
-  //   e.preventDefault();
-  //   e.stopPropagation();
-  //   tips.showInfo(deviceData.lock_motor_state === 1 ? '长按关锁' : '长按开锁');
-  //   if (i > 0 && i < 100) {
-  //     clearInterval(forwardInterval);
-  //     clearInterval(fallbackInterval);
-  //     fallbackAnimation();
-  //   }
-  // };
 
   return (
     <div
@@ -198,7 +186,8 @@ export function Disk({
     >
       <div className="content-wrap">
         <div className="content">
-          <Icon name={lockStatus[deviceData.lock_motor_state || '0']} />
+          <Icon name={offline ? 'offline' : lockStatus[deviceData.lock_motor_state || '0']} />
+          <span>{!offline && deviceData.lock_motor_state === 1 ? '长按远程解锁' : ''}</span>
         </div>
       </div>
       <svg

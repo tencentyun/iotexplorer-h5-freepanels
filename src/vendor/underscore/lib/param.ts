@@ -6,38 +6,38 @@
 // const isPlainObject = require('./is-plain-object');
 
 /* function buildParams(prefix, obj, traditional, add) {
-	var name;
+    var name;
 
-	if (_.isArray(obj)) {
-		obj.forEach((v, i) => {
-			if (traditional || rbracket.test(prefix)) {
+    if (_.isArray(obj)) {
+        obj.forEach((v, i) => {
+            if (traditional || rbracket.test(prefix)) {
 
-				// Treat each array item as a scalar.
-				add(prefix, v);
+                // Treat each array item as a scalar.
+                add(prefix, v);
 
-			} else {
+            } else {
 
-				// Item is non-scalar (array or object), encode its numeric index.
-				buildParams(
-					prefix + "[" + ( typeof v === "object" && v != null ? i : "" ) + "]",
-					v,
-					traditional,
-					add
-				);
-			}
-		});
-	} else if (!traditional && typeof obj === "object") {
+                // Item is non-scalar (array or object), encode its numeric index.
+                buildParams(
+                    prefix + "[" + ( typeof v === "object" && v != null ? i : "" ) + "]",
+                    v,
+                    traditional,
+                    add
+                );
+            }
+        });
+    } else if (!traditional && typeof obj === "object") {
 
-		// Serialize object item.
-		for (name in obj) {
-			buildParams(prefix + "[" + name + "]", obj[name], traditional, add);
-		}
+        // Serialize object item.
+        for (name in obj) {
+            buildParams(prefix + "[" + name + "]", obj[name], traditional, add);
+        }
 
-	} else {
+    } else {
 
-		// Serialize scalar item.
-		add(prefix, obj);
-	}
+        // Serialize scalar item.
+        add(prefix, obj);
+    }
 } */
 
 // Serialize an array of form elements or a set of
@@ -50,41 +50,41 @@
  * @return {Object}
  */
 /* function param(a, traditional) {
-	var prefix,
-		s = {},
-		add = function (key, valueOrFunction) {
+    var prefix,
+        s = {},
+        add = function (key, valueOrFunction) {
 
-			// If value is a function, invoke it and use its return value
-			var value = _.isFunction(valueOrFunction) ?
-				valueOrFunction() :
-				valueOrFunction;
+            // If value is a function, invoke it and use its return value
+            var value = _.isFunction(valueOrFunction) ?
+                valueOrFunction() :
+                valueOrFunction;
 
-			// s[s.length] = encodeURIComponent(key) + "=" +
-			// 	encodeURIComponent(value == null ? "" : value);
-			s[key] = value == null ? '' : value;
-			// s[s.length] = {
-			// 	[key]:
-			// };
-		};
+            // s[s.length] = encodeURIComponent(key) + "=" +
+            //     encodeURIComponent(value == null ? "" : value);
+            s[key] = value == null ? '' : value;
+            // s[s.length] = {
+            //     [key]:
+            // };
+        };
 
-	// If an array was passed in, assume that it is an array of form elements.
-	if (_.isArray(a) || ( a.jquery && !isPlainObject(a) )) {
+    // If an array was passed in, assume that it is an array of form elements.
+    if (_.isArray(a) || ( a.jquery && !isPlainObject(a) )) {
 
-		// Serialize the form elements
-		_.forEach(a, (value, name) => {
-			add(name, value);
-		});
+        // Serialize the form elements
+        _.forEach(a, (value, name) => {
+            add(name, value);
+        });
 
-	} else {
+    } else {
 
-		// If traditional, encode the "old" way (the way 1.3.2 or older
-		// did it), otherwise encode params recursively.
-		for (prefix in a) {
-			buildParams(prefix, a[prefix], traditional, add);
-		}
-	} */
+        // If traditional, encode the "old" way (the way 1.3.2 or older
+        // did it), otherwise encode params recursively.
+        for (prefix in a) {
+            buildParams(prefix, a[prefix], traditional, add);
+        }
+    } */
 
-// 	return s;
+//     return s;
 // }
 /**
  * @see https://www.npmjs.com/package/jquery-param

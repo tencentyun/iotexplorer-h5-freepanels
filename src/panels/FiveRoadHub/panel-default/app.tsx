@@ -5,6 +5,7 @@ import { entryWrap } from '@src/entryWrap';
 import { getCountdownStrWithoutDevice } from '@components/FuncFooter';
 import { PanelPageWithMultiFeatures } from '@components/PanelPageWithMultiFeatures';
 import { StatusTip } from '@components/StatusTip';
+import { useSwitchEditName } from '@src/hooks/useSwitchEditName';
 
 function App() {
   const [{
@@ -50,12 +51,9 @@ function App() {
     () => [...socketList, ...usbList],
     [socketList, usbList],
   );
-
-  const [switchNames, setSwitchNames] = useState<any>({});
-
-  const onChangeSwitchNames = (names) => {
-    setSwitchNames(names);
-  };
+  const { switchNames, updateSwitchNames, statusTip: reqStatus } = useSwitchEditName({
+    switchList: totalSocketList,
+  });
   return (
     statusTip
       ? <StatusTip fillContainer {...statusTip}/>
@@ -86,7 +84,9 @@ function App() {
         doControlDeviceData={doControlDeviceData}
         socketList={socketList}
         usbList={usbList}
-        onChangeSwitchNames={onChangeSwitchNames}
+        {...{
+          switchNames, updateSwitchNames, statusTip: reqStatus,
+        }}
       />
     </PanelPageWithMultiFeatures>
   );

@@ -8,13 +8,10 @@
     width: 100%;
     border-radius: 16px;
     background: #FFFFFF;
-    .cell-title {
-      margin-bottom: 21px;
+    .cell-title-wrapper{
+      flex: 1;
     }
     .cell-subtitle {
-      position: absolute;
-      left: 82px;
-      bottom: 14px;
       margin: 0;
       line-height: 17px;
       font-weight: 400;
@@ -26,16 +23,14 @@
       width: 32px;
       height: 32px;
       overflow: hidden;
-      margin-right: 20px;
+      margin-right: 15px;
     }
   }
-  .no-users-tips {
-    padding-top: 303px;
-    line-height: 20px;
-    font-weight: 600;
-    font-size: 14px;
-    color: rgba(38, 49, 61, 0.5);
-    text-align: center;
+  .no-record-tips {
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
   }
 
   .footer {
@@ -60,4 +55,8 @@
 }
 .no-users {
   margin: 0;
+}
+.auth-item{
+  margin-right: 5px;
+  white-space: nowrap;
 }

@@ -2,7 +2,7 @@ import { useReducer } from 'react';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 
 export interface DeviceDataState {
-  deviceData: unknown;
+  deviceData: any;
   deviceStatus: 0 | 1;
   templateMap: unknown;
   templateList: TemplatePropertyConfig[];
@@ -62,7 +62,7 @@ function initState(sdk: any) {
   };
 }
 
-export function useDeviceData(sdk: any) {
+export function useDeviceData(sdk: any): [DeviceDataState, {onDeviceDataChange: any, onDeviceStatusChange: any}] {
   const [state, dispatch] = useReducer(reducer, sdk, initState);
 
   const onDeviceDataChange = (deviceData: unknown) => {
