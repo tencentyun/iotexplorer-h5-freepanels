@@ -1,9 +1,68 @@
 .scene-page {
-  .theme-item {
-    width: 161px;
-    height: 81px;
-    border-radius: 12px;
+  margin-top: 24px;
+  margin-bottom: 16px;
+  .scene-tab {
+    margin-bottom: 14px;
+    display: flex;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 17px;
+    color: #30414D;
+    .tab-item {
+      margin-right: 32px;
+    }
+    .active {
+      position: relative;
+      &::after {
+        content: '';
+        position: absolute;
+        left: 4px;
+        bottom: -4px;
+        display: inline-block;
+        width: 40px;
+        height: 2px;
+        background: #30414D;
+      }
+    }
   }
+  .scene-content {
+    padding-top: 16px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    max-height: 406px;
+    min-height: 340px;
+    overflow-y: auto;
+    .theme-item {
+      position: relative;
+      flex: 0 0 160px;
+      margin-bottom: 4px;
+      height: 81px;
+      border-radius: 12px;
+      .item-title {
+        position: absolute;
+        top: 12px;
+        left: 16px;
+        font-weight: 500;
+        font-size: 12px;
+        line-height: 17px;
+        color: #FFFFFF;
+      }
+      .item-like {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+        right: 6px;
+        bottom: 7px;
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.5);
+      }
+    }
+  }
+  
   .riotous { //缤纷
     background: linear-gradient(117.03deg, #0BB9FF 0%, #9CC7E7 21.88%, #FFC8CE 48.96%, #E0CBC9 69.27%, #81FFCB 100%);
   }

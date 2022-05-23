@@ -9,7 +9,7 @@ export function Home(props) {
   // 电源开/关
   const isPowerOpen = props.deviceData.power_switch === 1;
   // tab模式
-  const colorMode = props.deviceData.color_mode;
+  const colorMode = props.deviceData.color_mode || 3;
   return (
     <div className="home">
       <Ticker {...props} />
@@ -18,13 +18,25 @@ export function Home(props) {
           ? <div className="change-panel">
             <Position {...props}></Position>
             { (colorMode === 0 && isPowerOpen)
-              ? <LightBright {...props} iconName="temperature"></LightBright>
+              ? <LightBright
+              iconName="brightness"
+              controlName="bright_value"
+              {...props}
+            ></LightBright>
               : null
             }
             { (colorMode === 1 && isPowerOpen)
               ? <>
-                <LightBright {...props} iconName="brightness"></LightBright>
-                <LightBright {...props} iconName="temperature"></LightBright>
+                <LightBright
+                  iconName="temperature"
+                  controlName="temp_value"
+                  {...props}
+                ></LightBright>
+                <LightBright
+                  iconName="brightness"
+                  controlName="bright_value"
+                  {...props}
+                ></LightBright>
               </>
               : null
             }
