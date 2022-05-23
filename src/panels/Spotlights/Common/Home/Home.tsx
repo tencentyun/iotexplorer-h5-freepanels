@@ -9,7 +9,7 @@ export function Home(props) {
   // 电源开/关
   const isPowerOpen = props.deviceData.power_switch === 1;
   // tab模式
-  const colorMode = props.deviceData.color_mode || 3;
+  const colorMode = props.deviceData.color_mode || 'white';
   return (
     <div className="home">
       <Ticker {...props} />
@@ -17,7 +17,7 @@ export function Home(props) {
         { colorMode !== 'scene'
           ? <div className="change-panel">
             <Position {...props}></Position>
-            { (colorMode === 'white' && isPowerOpen)
+            { colorMode === 'white'
               ? <LightBright
                   iconName="brightness"
                   controlName="bright_value"
@@ -25,7 +25,7 @@ export function Home(props) {
                 ></LightBright>
               : null
             }
-            { (colorMode === 'colour' && isPowerOpen)
+            { colorMode === 'colour'
               ? <>
                   <LightBright
                     iconName="temperature"

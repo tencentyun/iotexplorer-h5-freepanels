@@ -33,7 +33,7 @@ export function Position({
               <div className="circle inner"></div>
             </div>
             <div className="bg-img center">
-              <Icon name={isPowerOff ? 'switch' : 'switch-checked'}></Icon>
+              <Icon name={isPowerOff ? 'light-bg-off' : `light-bg-${color_mode || 'white'}` }></Icon>
             </div>
           </div>
           <Circular value={deg} onChange={onChange} />

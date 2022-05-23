@@ -5,11 +5,14 @@
     justify-content: space-around;
     align-items: center;
     .btn {
-      height: 88px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      width: 100px;
+      height: 100px;
       border-radius: 16px;
-      &:last-child {
-        margin-left: 16px;
-      }
+      border: 1px solid #EEEEEE;
       &.btn-reverse {
         background: white;
         color: @c1;
@@ -20,8 +23,9 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      flex-direction: column;
       .title {
-        margin-left: 8px;
+        margin-top: 8px;
       }
     }
   }

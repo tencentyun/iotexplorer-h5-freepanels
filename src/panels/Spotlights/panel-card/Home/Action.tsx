@@ -2,15 +2,11 @@ import React from 'react';
 import { Icon } from '@custom/Icon';
 
 const Action = ({
+  className,
   deviceData: { power_switch },
   history: { PATH, push },
   timer: { isExistTimer },
-  doControlDeviceData,
 }) => {
-  const onSwitchChange = () => {
-    doControlDeviceData({ power_switch: power_switch ? 0 : 1 });
-  };
-
   const isSwitchOff = power_switch !== 1;
   const actionCls = isSwitchOff ? 'action-off' : '';
 
@@ -23,7 +19,7 @@ const Action = ({
     ],
   ];
   return (
-    <div className={`action ${actionCls}`}>
+    <div className={`action ${actionCls} ${className}`}>
       {actions.map(([label, name, onClick, isChecked], index) => (
         <div
           key={name}

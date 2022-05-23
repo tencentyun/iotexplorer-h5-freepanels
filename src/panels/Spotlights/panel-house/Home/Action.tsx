@@ -5,12 +5,7 @@ const Action = ({
   deviceData: { power_switch },
   history: { PATH, push },
   timer: { isExistTimer },
-  doControlDeviceData,
 }) => {
-  const onSwitchChange = () => {
-    doControlDeviceData({ power_switch: power_switch ? 0 : 1 });
-  };
-
   const isSwitchOff = power_switch !== 1;
   const actionCls = isSwitchOff ? 'action-off' : '';
 

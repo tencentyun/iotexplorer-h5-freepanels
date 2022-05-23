@@ -7,21 +7,21 @@
     border: 1px solid #eff3f5;
     border-radius: 50%;
     .bg-img {
+      position: absolute;
       top: 28px;
       left: 28px;
       width: calc(100% - 80px);
       height: calc(100% - 80px);
-      position: absolute;
       margin: 12px;
       border-radius: 50%;
       background: linear-gradient(0deg, #f6f8fa, #f6f8fa),
         radial-gradient(50% 50% at 50% 50%, #f4f7f9 0%, #f1f6f6 100%);
       border: 1px solid #ffffff;
       box-shadow: 0px 0px 10px 2px #eaedf1;
-      .svg-icon {
-        width: 46px;
-        height: 46px;
-      }
+      // .svg-icon {
+      //   width: 46px;
+      //   height: 46px;
+      // }
     }
   }
   .circle-ring {
@@ -35,7 +35,7 @@
       .outer {
         width: 100%;
         height: 100%;
-        background-image: linear-gradient(90deg, #fbed96 0%, #aeecd5 100%);
+        background: linear-gradient(270deg, #ABECD6 0%, #FBED96 100%);
       }
 
       .inner {
@@ -50,24 +50,39 @@
       }
     }
   }
-  &.off-switch {
+  &.colour-type {
+    padding-bottom: 20px;
+    .bg-img {
+      width: calc(100% - 124px);
+      height: calc(100% - 124px);
+      border: 12px solid #37F1E8;
+      background: linear-gradient(0deg, #F6F8FA, #F6F8FA), radial-gradient(50% 50% at 50% 50%, #F4F7F9 0%, #F1F6F6 100%);
+      box-shadow: 0px 0px 10px 2px #EAEDF1;
+    }
     .bg {
       .outer {
-        background: #d8d8d8 !important;
+        background: conic-gradient(from 226.74deg at 50% 50%, #E500F0 -43.78deg, #2F00FF 9.18deg, #03F7F9 60.44deg, #32FB1D 115.34deg, #A0EF07 156.52deg, #EECD0C 212.88deg, #F90219 267.69deg, #E500F0 316.22deg, #2F00FF 369.18deg);
+      }
+    }
+  }
+  &.off-switch {
+    .main-bg {
+      background: #FFFFFF;
+      border: 1px solid #9F9F9F;  
+    }
+    .bg {
+      .outer {
+        background: #979797 !important;
       }
     }
     .bg-img {
-      // background: @c2 !important;
+      background-image: url('../Images/bg-off.svg');
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
     }
     .inner {
       opacity: 0.5;
-    }
-  }
-  &.scene-type {
-    .bg {
-      .outer {
-        background-image: linear-gradient(90deg, #fedf42 0%, #fa7299 100%);
-      }
     }
   }
 }

@@ -4,7 +4,8 @@ import { Btn } from '@custom/Btn';
 
 const CONFIG = [
   ['白光', 0, 'white'],
-  ['情景', 1, 'scene'],
+  ['彩光', 1, 'colour'],
+  ['情景', 2, 'scene'],
 ];
 
 const Ticker = ({
