@@ -1,12 +1,18 @@
 import React from 'react';
 import { LightBright } from '@custom/LightBright';
 
-const LightBrightPage = ({ deviceData: { brightness, power_switch }, doControlDeviceData }) => (
-  <div className={`light-bright ${power_switch ? 'on-switch' : 'off-switch'}`}>
+const LightBrightPage = ({
+  deviceData,
+  doControlDeviceData,
+  iconName,
+  controlName,
+}) => (
+  <div className={`light-bright ${deviceData.power_switch ? 'on-switch' : 'off-switch'}`}>
     <LightBright
-      defaultValue={brightness}
-      status={power_switch}
-      onChange={(brightness, endTouch) => endTouch && doControlDeviceData({ brightness })}
+      defaultValue={deviceData[controlName]}
+      status={deviceData.power_switch}
+      iconName={iconName}
+      onChange={(value, endTouch) => endTouch && doControlDeviceData(controlName, value)}
     />
   </div>
 );

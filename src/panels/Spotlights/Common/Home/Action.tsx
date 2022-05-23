@@ -24,7 +24,7 @@ const Action = ({
     [
       '定时',
       isSwitchOff ? 'timing' : 'timing-checked',
-      push.bind(null, PATH.TIMER_LIST, { isModule: true }),
+      push.bind(null, PATH.TIMER_COUNTDOWN, { isModule: true }),
       isExistTimer,
     ],
   ];

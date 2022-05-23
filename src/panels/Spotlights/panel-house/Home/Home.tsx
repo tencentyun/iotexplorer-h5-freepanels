@@ -1,4 +1,5 @@
 import React from 'react';
+import { Icon } from '@custom/Icon';
 import { Position } from './Position';
 import LightBright from './LightBright';
 import Ticker from './Ticker';
@@ -15,9 +16,9 @@ export function Home(props) {
     <div className="home">
       { colorMode !== 'scene'
         ? <div className="change-panel">
-          {/* <div onClick={onSwitchChange}>
-            <Icon></Icon>
-          </div> */}
+          <div className="power" onClick={onSwitchChange}>
+            <Icon name={props.deviceData.power_switch !== 1 ? 'switch' : 'switch-checked'}></Icon>
+          </div>
           <Position {...props}></Position>
           <Action {...props}></Action>
           { colorMode === 'white'
@@ -46,7 +47,7 @@ export function Home(props) {
         </div>
         : <div className="change-panel">
           <ScenePage {...props}></ScenePage>
-          <Action className="big-action" {...props}></Action>
+          <Action style="big-action" {...props}></Action>
         </div>
       }
       <Ticker {...props} />

@@ -6,17 +6,22 @@ export interface LightColorProps extends StyledProps {
   defaultValue?: number; // 0 - 1000
 }
 export function Position({
-  deviceData: { brightness = 80, color_mode, set_temp = 150, power_switch },
+  deviceData: { bright_value = 80, color_mode, temp_value = 150, power_switch },
   doControlDeviceData,
 }) {
-  const [deg, setDeg] = useState((set_temp * 360) / 1000);
+  const [deg, setDeg] = useState((temp_value * 360) / 1000);
   const isPowerOff = power_switch !== 1;
   const onChange = (deg) => {
     setDeg(deg);
-    doControlDeviceData('set_temp', Math.round((deg * 1000) / 360));
+    doControlDeviceData('temp_value', Math.round((deg * 1000) / 360));
   };
   const powerStatus = isPowerOff ? 'off-switch' : 'on-switch';
   const colourType = color_mode === 'colour' ? 'colour-type' : '';
+
+  const CONFIG = [
+    [150, 180, 270],
+    [254, 303, 35],
+  ];
   return (
     <div className={`position_card center ${powerStatus} ${colourType}`}>
       <div className="main-bg center">
@@ -24,7 +29,7 @@ export function Position({
           <div className="bg">
             <div
               className="circle outer center"
-              style={{ opacity: brightness / 100 }}
+              style={{ opacity: bright_value / 100 }}
             >
               <div className="circle inner"></div>
             </div>
@@ -32,17 +37,23 @@ export function Position({
               <Icon name={isPowerOff ? 'light-bg-off' : `light-bg-${color_mode || 'white'}` }></Icon>
             </div>
           </div>
-          <Circular value={deg} onChange={onChange} />
+          {!isPowerOff ? <Circular value={deg} onChange={onChange} /> : null }
         </div>
       </div>
-      {/* <div
-        className=""
-        style={{ opacity: brightness / 100 }}
-      >
-        <div></div>
-        <div></div>
-        <div></div>
-      </div> */}
+      {!isPowerOff ? <div
+          className="color-value"
+          style={{ opacity: bright_value / 100 }}
+        >
+          {CONFIG[color_mode === 'colour' ? 0 : 1].map((value, index) => (
+            <div
+              className={`color-${index + 1}`}
+              key={index}
+              onClick={() => onChange(value)}
+            >
+            </div>
+          ))}
+        </div> : null
+      }
     </div>
   );
 }

@@ -22,7 +22,11 @@ const Ticker = ({
             className={isSwitchOff && isChecked(value)  ? 'btn-disable' : '' }
             key={index}
             type={!isSwitchOff && isChecked(value) ? 'primary' : 'reverse'}
-            onClick={() => doControlDeviceData({ color_mode: value })}
+            onClick={() => {
+              if (!isSwitchOff) {
+                doControlDeviceData({ color_mode: value });
+              }
+            }}
           >
             <div className="title">{name}</div>
           </Btn>

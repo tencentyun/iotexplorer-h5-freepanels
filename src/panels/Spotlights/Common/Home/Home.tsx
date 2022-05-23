@@ -6,8 +6,6 @@ import Ticker from './Ticker';
 import Action from './Action';
 
 export function Home(props) {
-  // 电源开/关
-  const isPowerOpen = props.deviceData.power_switch === 1;
   // tab模式
   const colorMode = props.deviceData.color_mode || 'white';
   return (

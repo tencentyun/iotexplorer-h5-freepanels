@@ -2,7 +2,7 @@ import React from 'react';
 import { Icon } from '@custom/Icon';
 
 const Action = ({
-  className,
+  style,
   deviceData: { power_switch },
   history: { PATH, push },
   timer: { isExistTimer },
@@ -14,12 +14,12 @@ const Action = ({
     [
       '定时',
       isSwitchOff ? 'timing' : 'timing-checked',
-      push.bind(null, PATH.TIMER_LIST, { isModule: true }),
+      push.bind(null, PATH.TIMER_COUNTDOWN, { isModule: true }),
       isExistTimer,
     ],
   ];
   return (
-    <div className={`action ${actionCls} ${className}`}>
+    <div className={`action ${actionCls} ${style}`}>
       {actions.map(([label, name, onClick, isChecked], index) => (
         <div
           key={name}
