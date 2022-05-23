@@ -21,6 +21,12 @@ import TimingImageDark from './icons/dark/timing.svg';
 import TimingImageMorandi from './icons/morandi/timing.svg';
 const TimingImageColorful = 'https://tencent-1305105198.cos.ap-guangzhou.myqcloud.com/lamp-one/colorful/timing.png';
 
+import SettingImage from './icons/normal/dev-open.svg';
+import SettingImageBlueWhite from './icons/normal/dev-open.svg';
+import SettingImageDark from './icons/normal/dev-open.svg';
+import SettingImageColorful from './icons/normal/dev-open.svg';
+import SettingImageMorandi from './icons/normal/dev-open.svg';
+
 export function White() {
   const themeType = getThemeType();
   const [switchSrc] = useState(SwitchImageDefaule);
@@ -59,6 +65,25 @@ export function White() {
         return TimingImage;
     }
   };
+  const settingImageSrc = () => {
+    switch (themeType) {
+      case 'normal':
+        return SettingImage;
+      case 'blueWhite':
+        return SettingImageBlueWhite;
+      case 'dark':
+        return SettingImageDark;
+      case 'colorful':
+        return SettingImageColorful;
+      case 'morandi':
+        return SettingImageMorandi;
+      default:
+        return SettingImage;
+    }
+  };
+  const handleSetting = () => {
+    sdk.goDeviceDetailPage({});
+  };
   const handleCountdownDefault = (value: number) => {
     const hours: number = (value - value % (60 * 60)) / (60 * 60);
     const minutes: number = (value % (60 * 60)) / (60);
@@ -87,6 +112,13 @@ export function White() {
         sdk.deviceData.power_switch === 1 ? '' : 'power-off',
       )}
     >
+      <div
+        className={classNames(
+          'devSetting', 'dev-setting-open'
+        )}
+      >
+        <img src={settingImageSrc()} alt="" onClick={handleSetting}/>
+      </div>
       {/* 亮度 */}
       <div className="control-light">
         <LightSwitch
