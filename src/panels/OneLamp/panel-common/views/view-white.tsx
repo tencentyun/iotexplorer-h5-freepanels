@@ -22,10 +22,9 @@ import TimingImageMorandi from './icons/morandi/timing.svg';
 const TimingImageColorful = 'https://tencent-1305105198.cos.ap-guangzhou.myqcloud.com/lamp-one/colorful/timing.png';
 
 import SettingImage from './icons/normal/dev-open.svg';
-import SettingImageBlueWhite from './icons/normal/dev-open.svg';
-import SettingImageDark from './icons/normal/dev-open.svg';
-import SettingImageColorful from './icons/normal/dev-open.svg';
-import SettingImageMorandi from './icons/normal/dev-open.svg';
+import SettingImageBlueWhite from './icons/blue-white/dev-open.svg';
+import SettingImageColorful from './icons/colorful/dev-open.svg';
+import SettingImageMorandi from './icons/morandi/dev-open.svg';
 
 export function White() {
   const themeType = getThemeType();
@@ -40,7 +39,7 @@ export function White() {
       case 'blueWhite':
         return SwitchImageBlueWhite;
       case 'dark':
-        return SwitchImageDark;
+        return SwitchImageBlueWhite;
       case 'colorful':
         return SwitchImageColorful;
       case 'morandi':
@@ -116,8 +115,9 @@ export function White() {
         className={classNames(
           'devSetting', 'dev-setting-open'
         )}
+        onClick={handleSetting}
       >
-        <img src={settingImageSrc()} alt="" onClick={handleSetting}/>
+        <img src={settingImageSrc()} alt=""/>
       </div>
       {/* 亮度 */}
       <div className="control-light">

@@ -11,10 +11,8 @@ const handleSelectColor = (mode: string) => {
   onControlDevice('work_mode', mode);
 };
 import SettingImage from '../../icons/normal/dev-open.svg';
-import SettingImageBlueWhite from '../../icons/normal/dev-open.svg';
-import SettingImageDark from '../../icons/normal/dev-open.svg';
-import SettingImageColorful from '../../icons/normal/dev-open.svg';
-import SettingImageMorandi from '../../icons/normal/dev-open.svg';
+import SettingImageBlueWhite from '../../icons/blue-white/dev-open.svg';
+import SettingImageColorful from '../../icons/colorful/dev-open.svg';
 const Ticker = () => {
   const themeType = getThemeType();
   const settingImageSrc = () => {
@@ -24,11 +22,11 @@ const Ticker = () => {
       case 'blueWhite':
         return SettingImageBlueWhite;
       case 'dark':
-        return SettingImageDark;
+        return SettingImageBlueWhite;
       case 'colorful':
         return SettingImageColorful;
       case 'morandi':
-        return SettingImageMorandi;
+        return SettingImageBlueWhite;
       default:
         return SettingImage;
     }
@@ -106,8 +104,9 @@ const Ticker = () => {
           className={classNames(
             'devSetting', 'dev-setting-open'
           )}
+          onClick={handleSetting}
         >
-          <img src={settingImageSrc()} alt="" onClick={handleSetting}/>
+          <img src={settingImageSrc()} alt=""/>
         </div>
         <div className='ticker_top_bottom'>
             <span
