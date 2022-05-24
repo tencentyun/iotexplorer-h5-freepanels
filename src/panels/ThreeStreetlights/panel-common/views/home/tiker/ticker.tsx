@@ -10,9 +10,30 @@ import { rgb } from 'd3';
 const handleSelectColor = (mode: string) => {
   onControlDevice('work_mode', mode);
 };
-
+import SettingImage from '../../icons/normal/dev-open.svg';
+import SettingImageBlueWhite from '../../icons/blue-white/dev-open.svg';
+import SettingImageColorful from '../../icons/colorful/dev-open.svg';
 const Ticker = () => {
   const themeType = getThemeType();
+  const settingImageSrc = () => {
+    switch (themeType) {
+      case 'normal':
+        return SettingImage;
+      case 'blueWhite':
+        return SettingImageBlueWhite;
+      case 'dark':
+        return SettingImageBlueWhite;
+      case 'colorful':
+        return SettingImageColorful;
+      case 'morandi':
+        return SettingImageBlueWhite;
+      default:
+        return SettingImage;
+    }
+  };
+  const handleSetting = () => {
+    sdk.goDeviceDetailPage({});
+  };
   function hsvToRgb(arr) {
     const h = arr[0]; let s = arr[1]; let v = arr[2];
     s = s / 100;
@@ -79,6 +100,14 @@ const Ticker = () => {
   if (themeType == 'colorful') {
     return (
       <article id={'ticker'} className={classNames('ticker_top_colorful')}>
+        <div
+          className={classNames(
+            'devSetting', 'dev-setting-open'
+          )}
+          onClick={handleSetting}
+        >
+          <img src={settingImageSrc()} alt=""/>
+        </div>
         <div className='ticker_top_bottom'>
             <span
               id={'colored_button'}
@@ -115,7 +144,14 @@ const Ticker = () => {
   }
   return (
       <article id={'ticker'} className={classNames('ticker')}>
-          <span
+        <div
+          className={classNames(
+            'devSetting', 'dev-setting-open'
+          )}
+        >
+          <img src={settingImageSrc()} alt="" onClick={handleSetting}/>
+        </div>
+        <span
             id={'colored_button'}
             className={classNames(
               'colored_bottom',
