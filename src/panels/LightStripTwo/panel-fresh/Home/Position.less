@@ -1,0 +1,111 @@
+.position_card {
+  position: relative;
+  padding-top: 68px;
+  padding-bottom: 60px;
+  .main-bg {
+    width: 260px;
+    height: 260px;
+    border-radius: 50%;
+    background: radial-gradient(53.3% 53.3% at 50% 50%, rgba(102, 85, 248, 0.253906) 0%, rgba(247, 244, 253, 0.148465) 100%);
+    .bg-img {
+      position: absolute;
+      top: 38px;
+      left: 38px;
+      width: calc(100% - 100px);
+      height: calc(100% - 100px);
+      margin: 12px;
+      border-radius: 50%;
+      background: #EFED9F;
+      box-shadow: 0px 2px 6px 2px #DEDAFF;
+      .svg-icon {
+        width: 60px;
+        height: 60px;
+      }
+    }
+  }
+  .circle-ring {
+    width: 236px;
+    height: 236px;
+    position: relative;
+    .bg {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      .outer {
+        width: 100%;
+        height: 100%;
+        background-image: linear-gradient(90deg, #fbed96 0%, #aeecd5 100%);
+      }
+
+      .inner {
+        width: 182px;
+        height: 182px;
+        background:   #F7F4FD;
+      }
+      .center {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    }
+  }
+  .color-value {
+    position: absolute;
+    top: 211px;
+    right: -4px;
+    div {
+      width: 24px;
+      height: 24px;
+      border: 1.5px solid #EFF3F5;
+      border-radius: 50%;
+    }
+    .color-1 {
+      margin-bottom: 12px;
+      background: #EFED9F;
+    }
+    .color-2 {
+      margin-bottom: 12px;
+      background: #CBEDBE;
+    }
+    .color-3 {
+      background: #B0EDD3;
+    }
+  }
+  &.colour-type{
+    .bg-img {
+      background: #4411FD;
+      box-shadow: 0px 2px 6px 2px #DEDAFF;
+    }
+    .bg {
+      .outer {
+        background: conic-gradient(from 226.74deg at 50% 50%, #E500F0 -43.78deg, #2F00FF 9.18deg, #03F7F9 60.44deg, #32FB1D 115.34deg, #A0EF07 156.52deg, #EECD0C 212.88deg, #F90219 267.69deg, #E500F0 316.22deg, #2F00FF 369.18deg);
+      }
+    }
+    .color-value {
+      .color-1 {
+        background: #EECE0D;
+      }
+      .color-2 {
+        background: #F56014;
+      }
+      .color-3 {
+        background: #9301F7;
+      }
+    }
+  }
+  &.off-switch {
+    .bg {
+      .outer {
+        background: #A29DDB !important;
+      }
+    }
+    .bg-img {
+      background: #FFFFFF;
+      box-shadow: 0px 2px 6px 2px #DEDAFF;
+    }
+    .inner {
+      // opacity: 0.5;
+    }
+  }
+  
+}
