@@ -6,13 +6,13 @@ import { onControlDevice } from '@hooks/useDeviceData';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 import { LampLargeSvg } from '@components/common/lampsvg/lamplarge';
 import { rgb } from 'd3';
+import SettingImage from '../../icons/normal/dev-open.svg';
+import SettingImageBlueWhite from '../../icons/blue-white/dev-open.svg';
+import SettingImageColorful from '../../icons/colorful/dev-open.svg';
 
 const handleSelectColor = (mode: string) => {
   onControlDevice('work_mode', mode);
 };
-import SettingImage from '../../icons/normal/dev-open.svg';
-import SettingImageBlueWhite from '../../icons/blue-white/dev-open.svg';
-import SettingImageColorful from '../../icons/colorful/dev-open.svg';
 const Ticker = () => {
   const themeType = getThemeType();
   const settingImageSrc = () => {
@@ -101,9 +101,7 @@ const Ticker = () => {
     return (
       <article id={'ticker'} className={classNames('ticker_top_colorful')}>
         <div
-          className={classNames(
-            'devSetting', 'dev-setting-open'
-          )}
+          className={classNames('devSetting', 'dev-setting-open')}
           onClick={handleSetting}
         >
           <img src={settingImageSrc()} alt=""/>
@@ -145,9 +143,7 @@ const Ticker = () => {
   return (
       <article id={'ticker'} className={classNames('ticker')}>
         <div
-          className={classNames(
-            'devSetting', 'dev-setting-open'
-          )}
+          className={classNames('devSetting', 'dev-setting-open')}
         >
           <img src={settingImageSrc()} alt="" onClick={handleSetting}/>
         </div>

@@ -5,16 +5,16 @@ import { getThemeType } from '@libs/theme';
 import { apiControlDeviceData } from '@hooks/useDeviceData';
 import { Detail } from './detail/detail';
 import './home.less';
+
+import SettingImage from '../icons/normal/dev-open.svg';
+import SettingImageBlueWhite from '../icons/blue-white/dev-open.svg';
+import SettingImageColorful from '../icons/colorful/dev-open.svg';
 const KeyImage =  'https://tencent-1305105198.cos.ap-guangzhou.myqcloud.com/insert-key-power/normal/insert-key.svg';
 const KeyImageClose =  'https://tencent-1305105198.cos.ap-guangzhou.myqcloud.com/insert-key-power/normal/insert-key-close.svg';
 const KeyImageBlueWhite =  'https://tencent-1305105198.cos.ap-guangzhou.myqcloud.com/insert-key-power/blue-white/insert-key.svg';
 const KeyImageBlueWhiteClose =  'https://tencent-1305105198.cos.ap-guangzhou.myqcloud.com/insert-key-power/blue-white/insert-key-close.svg';
 const KeyImageMorandi =  'https://tencent-1305105198.cos.ap-guangzhou.myqcloud.com/insert-key-power/morandi/insert-key.svg';
 const KeyImageMorandiClose =  'https://tencent-1305105198.cos.ap-guangzhou.myqcloud.com/insert-key-power/morandi/insert-key-close.svg';
-
-import SettingImage from '../icons/normal/dev-open.svg';
-import SettingImageBlueWhite from '../icons/blue-white/dev-open.svg';
-import SettingImageColorful from '../icons/colorful/dev-open.svg';
 
 export function Home() {
   const themeType = getThemeType();
@@ -68,9 +68,7 @@ export function Home() {
       {/* 仪表盘*/}
       <section className={classNames('dashboard')}>
         <div
-          className={classNames(
-            'devSetting', 'dev-setting-open'
-          )}
+          className={classNames('devSetting', 'dev-setting-open')}
           onClick={handleSetting}
         >
           <img className='dev-setting-img' src={settingImageSrc()} alt="" />
