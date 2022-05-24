@@ -726,7 +726,7 @@ module.exports = {
       ['panel-house', { enable: true }],
     ],
   },
-  DownLight: {
+  DownLightTwo: {
     enable: true,
     viewportWidth: 375,
     panels: [
@@ -737,7 +737,7 @@ module.exports = {
       ['panel-house', { enable: true }],
     ],
   },
-  Spotlights: {
+  SpotlightsTwo: {
     enable: true,
     viewportWidth: 375,
     panels: [
