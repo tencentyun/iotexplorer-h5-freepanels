@@ -34,7 +34,7 @@ export const App = QuicknessMode(() => {
     basename += '/live';
   }
 
-  const [state, { onDeviceDataChange, onDeviceStatusChange }] =    useDeviceData(sdk);
+  const [state, { onDeviceDataChange, onDeviceStatusChange }] = useDeviceData(sdk);
   const { isStandardBleDevice } = sdk;
   console.log(state, 'state===============');
 

@@ -1,0 +1,154 @@
+.scene-page {
+  margin-bottom: 16px;
+  .scene-tab {
+    margin-bottom: 14px;
+    display: flex;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 17px;
+    color: #30414D;
+    .tab-item {
+      margin-right: 32px;
+    }
+    .active {
+      position: relative;
+      &::after {
+        content: '';
+        position: absolute;
+        left: 4px;
+        bottom: -4px;
+        display: inline-block;
+        width: 40px;
+        height: 2px;
+        background: #30414D;
+      }
+    }
+  }
+  .scene-content {
+    padding-top: 16px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    max-height: 406px;
+    min-height: 340px;
+    overflow-y: auto;
+    .theme-item {
+      position: relative;
+      flex: 0 0 160px;
+      margin-bottom: 4px;
+      height: 81px;
+      border-radius: 12px;
+      .item-title {
+        position: absolute;
+        top: 12px;
+        left: 16px;
+        font-weight: 500;
+        font-size: 12px;
+        line-height: 17px;
+        color: #FFFFFF;
+      }
+      .item-like {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+        right: 6px;
+        bottom: 7px;
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.5);
+        &.like-checked {
+          background: #FFFFFF;
+        }
+      }
+    }
+  }
+  &.off-scene {
+    opacity: 0.5;
+  }
+  .riotous { //缤纷
+    background: linear-gradient(117.03deg, #0BB9FF 0%, #9CC7E7 21.88%, #FFC8CE 48.96%, #E0CBC9 69.27%, #81FFCB 100%);
+  }
+  .colorful { //炫彩
+    background: linear-gradient(117.7deg, #FF59DE 0%, #BAD2D3 64.55%, #48FFFF 122.01%);
+  }
+  .multicolored { //斑斓
+    background: linear-gradient(117.03deg, #49BEFF 0%, #9BFDF4 35.94%, #F4FFAD 64.58%, #FFBC8C 100%);
+  }
+  .sky { //蓝天
+    background: linear-gradient(117.03deg, #7ED0FF 0%, #3F7CCD 49.48%, #A8CAF9 96.88%);
+  }
+  .ocean { //海洋
+    background: linear-gradient(90deg, #2193B0 0%, #6DD5ED 100%);
+  }
+  .sunflower { //向日葵
+    background: linear-gradient(117.03deg, #F0F1F3 0%, #FFC815 100%);
+  }
+  .forest { //森林
+    background: linear-gradient(117.03deg, #0F3443 0%, #34E89E 100%);
+  }
+  .kungFu { //功夫
+    background: linear-gradient(117.03deg, #1E130C 0%, #9A8478 100%);
+  }
+  .dream { //梦幻
+    background: linear-gradient(158deg, #E1ADFA 16.75%, #F9AEAE 87.5%);
+  }
+  .med { //地中海
+    background: linear-gradient(93.96deg, #4F73C3 0%, #3C46A2 100%);
+  }
+  .french { //法式
+    background: linear-gradient(117.03deg, #EC9D9D 0%, #B6D304 100%);
+  }
+  .american { //美式
+    background: linear-gradient(115.27deg, #E1467C 10.15%, #205284 79.76%);
+  }
+  .halloween { //万圣节
+    background: linear-gradient(116.31deg, #430E78 2.34%, #B66403 94.17%);
+  }
+  .easter { //复活节
+    background: linear-gradient(117.03deg, #F55DB5 0%, #F4C6D0 52.68%, #C61C1C 100%);
+  }
+  .vDay { //胜利日
+    background: linear-gradient(115.27deg, #C40000 10.15%, #0058AF 79.76%);
+  }
+  .holi { //洒红节
+    background: linear-gradient(158deg, #E1ADFA 16.75%, #F9AEAE 87.5%);
+  }
+  .diwali { //排灯节
+    background: linear-gradient(117.03deg, #FEF3CD 0%, #E1467C 100%);
+  }
+  .independenceDay { //独立日
+    background: linear-gradient(115.27deg, #C40000 10.15%, #FFFFFF 50.39%, #0058AF 79.76%);
+  }
+  .christmas { //圣诞节
+    background: linear-gradient(117.03deg, #9D0303 0%, #117600 100%);
+  }
+  .birthday { //生日
+    background: linear-gradient(117.03deg, #FFA51E 3.13%, #FA5A92 100%);
+  }
+  .reading { //阅读
+    background: linear-gradient(117.03deg, #F0F1F3 0%, #FFC815 100%);
+  }
+  .job { //工作
+    background: linear-gradient(90deg, #06BEB6 0%, #48B1BF 100%);
+  }
+  .leisure { //休闲
+    background: linear-gradient(90deg, #D66768 0%, #EFC655 100%);
+  }
+  .night { //晚安
+    background: linear-gradient(356.82deg, #E1467C -174.04%, #205284 66.94%);
+  }
+  .buds { //春天的嫩芽
+    background: linear-gradient(90deg, #EFEB77 0%, #A8E063 100%);
+  }
+  .brighter { //夏天的清亮
+    background: linear-gradient(117.03deg, #EAFFFE 0%, #32FDF3 100%);
+  }
+  .golden { //秋天的金黄
+    background: linear-gradient(117.03deg, #D55C05 0%, #FABF26 100%);
+  }
+  .warm { //冬天的温暖
+    background: linear-gradient(90deg, #CC2B5E 0%, #753A88 100%);
+  }
+}

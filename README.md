@@ -59,6 +59,9 @@
 |          | 空调        | 空调     | air-conditioner              |
 |          | 热水器       | 热水器    | water-heater                 |
 | 厨电类      | 电烤箱       | 电烤箱    | electric-oven                |
+| 照明设备   | 筒灯       | 筒灯    | down-light-two                |
+|          | 射灯        | 射灯    | spotlights-two                |
+|          | 灯带        | 灯带    | light-strip-two                |
 
 
 

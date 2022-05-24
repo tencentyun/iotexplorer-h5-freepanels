@@ -5,11 +5,42 @@ import { getThemeType } from '@libs/theme';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 import { SvgIcon } from '@components/common/icon';
 
+import SettingImage from '../../icons/normal/dev-open.svg';
+import SettingImageBlueWhite from '../../icons/blueWhite/dev-open.svg';
+import SettingImageDark from '../../icons/dark/dev-open.svg';
+import SettingImageColorful from '../../icons/colorful/dev-open.svg';
 const dashboard = () => {
   const themeType = getThemeType();
-  // const [lampSrc] = useState(lampIcon);
+  const settingImageSrc = () => {
+    switch (themeType) {
+      case 'normal':
+        return SettingImage;
+      case 'blueWhite':
+        return SettingImageBlueWhite;
+      case 'dark':
+        return sdk.deviceData.power_switch === 1 ? SettingImageBlueWhite : SettingImageDark;
+      case 'colorful':
+        return SettingImageColorful;
+      case 'morandi':
+        return SettingImageBlueWhite;
+      default:
+        return SettingImage;
+    }
+  };
+  const handleSetting = () => {
+    sdk.goDeviceDetailPage({});
+  };
   return (
     <article id={'dashboard'} className={classNames('dashboard')}>
+      <div
+        className={classNames(
+          'devSetting',
+          sdk.deviceData.power_switch === 1 ? 'dev-setting-open' : 'dev-setting-close',
+        )}
+        onClick={handleSetting}
+      >
+        <img src={settingImageSrc()} alt=""/>
+      </div>
       <div className={classNames('receptacle_round')}>
         <span className={classNames('receptacle_size1')}></span>
 

@@ -726,4 +726,37 @@ module.exports = {
       ['panel-house', { enable: true }],
     ],
   },
+  DownLightTwo: {
+    enable: true,
+    viewportWidth: 375,
+    panels: [
+      ['panel-cold', { enable: true }],
+      ['panel-card', { enable: true }],
+      ['panel-brunet', { enable: true }],
+      ['panel-fresh', { enable: true }],
+      ['panel-house', { enable: true }],
+    ],
+  },
+  SpotlightsTwo: {
+    enable: true,
+    viewportWidth: 375,
+    panels: [
+      ['panel-cold', { enable: true }],
+      ['panel-card', { enable: true }],
+      ['panel-brunet', { enable: true }],
+      ['panel-fresh', { enable: true }],
+      ['panel-house', { enable: true }],
+    ],
+  },
+  LightStripTwo: {
+    enable: true,
+    viewportWidth: 375,
+    panels: [
+      ['panel-cold', { enable: true }],
+      ['panel-card', { enable: true }],
+      ['panel-brunet', { enable: true }],
+      ['panel-fresh', { enable: true }],
+      ['panel-house', { enable: true }],
+    ],
+  },
 };
