@@ -1,0 +1,37 @@
+.home {
+  .action {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    position: relative;
+    overflow: hidden;
+    padding: 0 8px;
+    color: #ffffff;
+    .action-item {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      background: @c2;
+      border-radius: 16px;
+      width: 100px;
+      height: 100px;
+      .action-ele {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        font-size: 15px;
+        margin-top: 10px;
+        font-weight: 600;
+        margin: inherit;
+        > div:last-child {
+          margin-top: 10px;
+        }
+      }
+    }
+    &.action-off {
+      color: @c6;
+    }
+  }
+}

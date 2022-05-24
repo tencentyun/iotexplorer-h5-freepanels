@@ -27,6 +27,7 @@ export interface TimePickerProps extends StyledProps {
   onSwitchChange?: (value: boolean) => void;
   itemHeight?: number;
   height?: number;
+  isSecond?:boolean;
 }
 
 const Container = ({ children, className, ...props }) => (
@@ -58,6 +59,7 @@ export function TimePicker(props: TimePickerProps) {
     switchIsOpen,
     isTimeRange,
     onSwitchChange,
+    isSecond,
   } = props;
   const getDefaultValue = value => (value.length ? value : defaultValue);
   const [pickerValue, setPickerValue] = useState(getDefaultValue(value));
@@ -106,14 +108,15 @@ export function TimePicker(props: TimePickerProps) {
         <div className="picker-body">
           <TimePickerView
             value={formatValue}
-            itemHeight={itemHeight}
-            height={height}
+            itemHeight={`${itemHeight}`}
+            height={`${height}`}
             isTimeRange={isTimeRange}
             showTwoDigit={showTwoDigit}
             showUnit={showUnit}
             showSemicolon={showSemicolon}
             onScrollChange={onChangeValue}
             onChange={onChangeValue}
+            isSecond={isSecond}
           />
         </div>
         {isShowSwitch ? (

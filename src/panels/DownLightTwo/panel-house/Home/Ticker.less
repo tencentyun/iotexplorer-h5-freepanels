@@ -1,0 +1,33 @@
+.ticker {
+  .content {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    .btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      width: 100px;
+      height: 100px;
+      border-radius: 16px;
+      border: 1px solid #EEEEEE;
+      &.btn-reverse {
+        background: white;
+        color: @c1;
+      }
+    }
+    .btn-text {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      .title {
+        margin-top: 8px;
+      }
+    }
+    .disable {
+      opacity: 0.5;
+    }
+  }
+}

@@ -1,0 +1,51 @@
+.cus-time-picker-list {
+  .empty-title {
+    color: rgba(255, 255, 255, 0.746613);
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+  }
+  .count-page {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #FFFFFF;
+    .count-panel {
+      width: 260px;
+      height: 260px;
+      padding-bottom: 100px;
+    }
+    .count-circle {
+      height: calc(100% - 50px);
+      width: calc(100% - 50px);
+      background: #2D374D;
+      box-shadow: 0px 0px 10px 2px #1F2738;
+      margin-left: 25px;
+      margin-top: 25px;
+      position: absolute;
+      border-radius: 50%;
+      cursor: pointer;
+      .count-down-tips {
+        .num {
+          font-weight: 600;
+          font-size: 28px;
+        }
+        > div:first-child {
+          color: #FFFFFF;
+        }
+        > div:last-child {
+          text-align: center;
+          margin-top: 31px;
+        }
+      }
+    }
+  }
+
+}
