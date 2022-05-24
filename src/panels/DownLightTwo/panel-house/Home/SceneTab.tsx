@@ -25,7 +25,7 @@ const SceneBgMap = [
 
 const SceneNameMap = ['工作', '阅读', '睡眠', '休闲', '柔和', '斑斓', '缤纷', '炫彩'];
 
-export function SceneTab({ deviceData, doControlDeviceData }) {
+export function SceneTab({ deviceData, doControlDeviceData, ...props }) {
   const [value, setValue] = useState(deviceData.scene || 3);
 
   return (
@@ -39,6 +39,7 @@ export function SceneTab({ deviceData, doControlDeviceData }) {
           setValue(value);
           doControlDeviceData('scene', value);
         }}
+        {...props}
       />
     </div>
   );

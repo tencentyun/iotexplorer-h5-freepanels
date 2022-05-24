@@ -47,7 +47,7 @@ export function Position({
           className="color-value"
           style={{ opacity: bright_value / 100 }}
         >
-          {CONFIG[color_mode === 'colour' ? 0 : 1].map((value, index) => (
+          {CONFIG[color_mode === 'colour' ? 1 : 0].map((value, index) => (
             <div
               className={`color-${index + 1}`}
               key={index}

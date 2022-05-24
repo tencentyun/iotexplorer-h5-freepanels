@@ -62,7 +62,6 @@ export function SceneSlider({
           </Swiper>
         </div>
       </div>
-
       <div
         className={classNames(
           'cus-photo-slider',

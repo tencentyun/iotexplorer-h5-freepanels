@@ -3,7 +3,7 @@ import { Position } from './Position';
 import LightBright from './LightBright';
 import Ticker from './Ticker';
 import Action from './Action';
-import { ScenePage } from './Scene';
+import { SceneTab } from './SceneTab';
 
 export function Home(props) {
   // tab模式
@@ -40,7 +40,7 @@ export function Home(props) {
           }
         </div>
         : <div className="change-panel">
-          <ScenePage {...props}></ScenePage>
+          <SceneTab {...props}></SceneTab>
           <Action style="big-action" {...props}></Action>
         </div>
       }
