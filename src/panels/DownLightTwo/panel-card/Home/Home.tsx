@@ -1,5 +1,4 @@
 import React from 'react';
-import { Icon } from '@custom/Icon';
 import { Position } from './Position';
 import LightBright from './LightBright';
 import Ticker from './Ticker';
