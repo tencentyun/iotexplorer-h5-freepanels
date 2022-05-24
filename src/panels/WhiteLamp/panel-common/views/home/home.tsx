@@ -44,9 +44,7 @@ export function Home() {
         >
           <Ticker/>
           <div
-            className={classNames(
-              'devSetting', 'dev-setting-open'
-            )}
+            className={classNames('devSetting', 'dev-setting-open')}
             onClick={handleSetting}
           >
             <img src={settingImageSrc()} alt="" />
@@ -65,9 +63,7 @@ export function Home() {
           )}
         >
           <div
-            className={classNames(
-              'devSetting', 'dev-setting-open'
-            )}
+            className={classNames('devSetting', 'dev-setting-open')}
           >
             <img src={settingImageSrc()} alt="" onClick={handleSetting}/>
           </div>
