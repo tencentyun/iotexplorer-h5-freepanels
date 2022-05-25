@@ -27,7 +27,6 @@
 |          |           | 四路开关   | four-switch                  |
 |          |           | 五路开关   | five-switch                  |
 |          | 调光开关      | 调光开关   | dimmer-switch                |
-|          | 冷暖白光灯     | 冷暖白光灯  | white-lamp                   |
 |          | 四路灯       | 四路灯    | four-streetlights            |
 |          | 五路灯       | 五路灯    | five-streetlights            |
 |          | 智能灯       | 智能灯    | lamp                         |
@@ -61,7 +60,10 @@
 | 厨电类      | 电烤箱       | 电烤箱    | electric-oven                |
 | 照明设备   | 筒灯       | 筒灯    | down-light-two                |
 |          | 射灯        | 射灯    | spotlights-two                |
-|          | 灯带        | 灯带    | light-strip-two                |
+|          | 灯带        | 灯带    | light-strip-two               |
+|           | 冷暖白光灯       |冷暖白光灯     | white-lamp         |
+|           | 冷暖白光灯       |冷暖白光灯     | white-lamp-v2      |
+|           | 冷暖白光灯       |冷暖白光灯     | white-lamp-two     |
 
 
 
