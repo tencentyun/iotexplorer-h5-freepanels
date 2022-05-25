@@ -8,6 +8,7 @@ export function LightBright({
   minValue = 0,
   status = false,
   defaultValue = 80,
+  iconName = 'light',
   onChange = noop,
   isMask = true,
 }) {
@@ -71,14 +72,14 @@ export function LightBright({
       {isMask ? (
         <div className="mark">
           <div className="mark-op-btn" onClick={toggleReduce}>
-            -
+            <Icon name={status ? 'minus-checked' : 'minus'}></Icon>
           </div>
           <div className="value-wrap">
-            <Icon name={status ? 'light-checked' : 'light'}></Icon>
+            <Icon name={status ? `${iconName}-checked` : iconName}></Icon>
             <div className="value-text">{dataInfo.dataUser}</div>
           </div>
           <div className="mark-op-btn" onClick={toggleAdd}>
-            +
+            <Icon name={status ? 'add-checked' : 'add'}></Icon>
           </div>
         </div>
       ) : null}

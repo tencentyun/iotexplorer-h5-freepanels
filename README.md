@@ -5,7 +5,7 @@
 ## 项目简介
 
 腾讯连连免开发面板是腾讯物联网平台为各行业设备制造商、方案商及应用开发商、普通开发者提供的各类物联网设备在腾讯连连小程序中控制的页面组件。
-当前免开发面板提供[42个品类](./docs/product.md)的物联网标准化控制设备，**236** 个标准化模板。
+当前免开发面板提供[45个品类](./docs/product.md)的物联网标准化控制设备，**77**项产品模版类型,**338** 个标准化模板。
 
 通过提供的代码，可以支持两种方式实现智能硬件的快速接入。
 
@@ -27,11 +27,10 @@
 |          |           | 四路开关   | four-switch                  |
 |          |           | 五路开关   | five-switch                  |
 |          | 调光开关      | 调光开关   | dimmer-switch                |
-|          | 冷暖白光灯     | 冷暖白光灯  | white-lamp                   |
 |          | 四路灯       | 四路灯    | four-streetlights            |
 |          | 五路灯       | 五路灯    | five-streetlights            |
-|          | 智能灯       | 智能灯    | lamp                         |
-|          | 一路灯       | 一路灯    | lamp-one                     |
+|          | 智能灯       | 智能灯    | three-streetlights（旧称lamp ）                        |
+|          | 一路灯       | 一路灯    | one-lamp（旧称lamp-one)                   |
 | 网关类      | 网关        | 智能网关   | intelligent-gateway          |
 | 传感类      | 门窗磁传感器    | 门磁     | magnetic-door                |
 |          | 人体运动&存在传感 | 人体传感器  | body-sensor                  |
@@ -59,6 +58,12 @@
 |          | 空调        | 空调     | air-conditioner              |
 |          | 热水器       | 热水器    | water-heater                 |
 | 厨电类      | 电烤箱       | 电烤箱    | electric-oven                |
+| 照明设备   | 筒灯       | 筒灯    | down-light-two                |
+|          | 射灯        | 射灯    | spotlights-two                |
+|          | 灯带        | 灯带    | light-strip-two               |
+|           | 冷暖白光灯       |冷暖白光灯     | white-lamp         |
+|           | 冷暖白光灯       |冷暖白光灯     | white-lamp-v2      |
+|           | 冷暖白光灯       |冷暖白光灯     | white-lamp-two     |
 
 
 

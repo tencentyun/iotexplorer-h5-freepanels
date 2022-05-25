@@ -5,17 +5,48 @@ import { BizSwitch } from '@components/business';
 import { Detail } from './detail/detail';
 import './home.less';
 import { onControlDevice } from '@hooks/useDeviceData';
+import { getThemeType } from '@libs/theme';
+
+import SettingImage from '../icons/normal/dev-open.svg';
+import SettingImageBlueWhite from '../icons/blue-white/dev-open.svg';
+import SettingImageColorful from '../icons/colorful/dev-open.svg';
 
 export function Home() {
+  const themeType = getThemeType();
   const [enterFlag, setEnterFlag] = useState(false);
   const [enterFlagTwo, setEnterFlagTwo] = useState(false);
   const [enterFlagThree, setEnterFlagThree] = useState(false);
   const [enterFlagFour, setEnterFlagFour] = useState(false);
   const [enterFlagFive, setEnterFlagFive] = useState(false);
+  const settingImageSrc = () => {
+    switch (themeType) {
+      case 'normal':
+        return SettingImage;
+      case 'blueWhite':
+        return SettingImageBlueWhite;
+      case 'dark':
+        return SettingImageBlueWhite;
+      case 'colorful':
+        return SettingImageColorful;
+      case 'morandi':
+        return SettingImageBlueWhite;
+      default:
+        return SettingImage;
+    }
+  };
+  const handleSetting = () => {
+    sdk.goDeviceDetailPage({});
+  };
   return (
     <article className={classNames('home')}>
       {/* 开关*/}
       <section className={classNames('dashboard')}>
+        <div
+          className={classNames('devSetting', 'dev-setting-open')}
+          onClick={handleSetting}
+        >
+          <img src={settingImageSrc()} alt="" />
+        </div>
         <div className="switch-top">
           <BizSwitch
             name="开关1"

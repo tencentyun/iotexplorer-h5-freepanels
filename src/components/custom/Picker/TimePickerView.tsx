@@ -5,6 +5,7 @@ import { rpx2rem } from '@utillib';
 const genArr = (count, start = 0) => Array(...new Array(count)).map((a, index) => index + start);
 const getHour = (showTwoDigit = false) => genArr(24).map(h => (h < 10 ? `${showTwoDigit ? '0' : ''}${h}` : String(h)));
 const getMinute = (showTwoDigit = false) => genArr(60).map(m => (m < 10 ? `${showTwoDigit ? '0' : ''}${m}` : String(m)));
+const getSecond = (showTwoDigit = false) => genArr(60).map(m => (m < 10 ? `${showTwoDigit ? '0' : ''}${m}` : String(m)));
 
 export interface TimePickerViewProps
   extends Omit<PickerViewGroupProps, 'options' | 'value' | 'onChange'> {
@@ -20,6 +21,7 @@ export interface TimePickerViewProps
   selectFlag?: string;
   minuteUnit?: string;
   showTwoDigit?: boolean;
+  isSecond?:boolean; // 支持秒选择
 }
 
 export function TimePickerView({
@@ -36,6 +38,7 @@ export function TimePickerView({
   hourUnit,
   minuteUnit,
   showTwoDigit,
+  isSecond,
   showSemicolon,
   onScrollChange,
   className = '',
@@ -45,6 +48,7 @@ export function TimePickerView({
   const options = useMemo(() => {
     const hours = getHour(showTwoDigit);
     const minutes = getMinute(showTwoDigit);
+    const seconds = getSecond(showTwoDigit);
 
     const hourOptions = hours.map(h => ({
       text: `${h}${showUnit ? hourUnit || ' 时' : ''}`,
@@ -54,8 +58,15 @@ export function TimePickerView({
       text: `${m}${showUnit ? minuteUnit || ' 分' : ''}`,
       value: m,
     }));
+    const secondsOptions = seconds.map(m => ({
+      text: `${m}${showUnit ? minuteUnit || ' 秒' : ''}`,
+      value: m,
+    }));
 
     let options = [hourOptions, minuteOptions];
+    if (isSecond) {
+      options.push(secondsOptions);
+    }
 
     if (isTimeRange) {
       options = options.concat([hourOptions, minuteOptions]);
@@ -64,10 +75,11 @@ export function TimePickerView({
     return options;
   }, [showTwoDigit, isTimeRange]);
 
+  const secondCls = isSecond ? 'second-cls' : '';
   // select-flag 箭头表示
   const clsName = `select-flag ${className} ${
     showSemicolon ? ' semicolon' : ''
-  }`;
+  } ${secondCls}`;
 
   let formatValue = value;
   if (showTwoDigit) {

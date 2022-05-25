@@ -1,0 +1,114 @@
+.position_card {
+  padding: 36px 0 24px 0;
+  .main-bg {
+    width: 260px;
+    height: 260px;
+    border-radius: 50%;
+    border: 1px solid rgba(164, 113, 70, 0.299197);
+    background: #FFFFFF;
+    .bg-img {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      width: 192px;
+      height: 192px;
+      margin: 12px;
+      border-radius: 50%;
+      background-image: url('../Images/bg.svg');
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+  }
+  .circle-ring {
+    width: 236px;
+    height: 236px;
+    position: relative;
+    .bg {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      .outer {
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(270deg, #ABECD6 0%, #FBED96 100%);
+      }
+
+      .inner {
+        width: 182px;
+        height: 182px;
+        background: white;
+      }
+      .center {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    }
+  }
+  .color-value {
+    position: absolute;
+    top: 211px;
+    right: -4px;
+    div {
+      width: 24px;
+      height: 24px;
+      border: 1.5px solid #EFF3F5;
+      border-radius: 50%;
+    }
+    .color-1 {
+      margin-bottom: 12px;
+      background: #EFED9F;
+    }
+    .color-2 {
+      margin-bottom: 12px;
+      background: #CBEDBE;
+    }
+    .color-3 {
+      background: #B0EDD3;
+    }
+  }
+  &.colour-type {
+    padding-bottom: 20px;
+    .bg {
+      .outer {
+        background: conic-gradient(from 226.74deg at 50% 50%, #E500F0 -43.78deg, #2F00FF 9.18deg, #03F7F9 60.44deg, #32FB1D 115.34deg, #A0EF07 156.52deg, #EECD0C 212.88deg, #F90219 267.69deg, #E500F0 316.22deg, #2F00FF 369.18deg);
+      }
+    }
+    .color-value {
+      .color-1 {
+        background: #EECE0D;
+      }
+      .color-2 {
+        background: #F56014;
+      }
+      .color-3 {
+        background: #9301F7;
+      }
+    }
+  }
+  &.off-switch {
+    .main-bg {
+      background: #FFFFFF;
+      border: 1px solid #9F9F9F;  
+    }
+    .bg {
+      .outer {
+        background: #979797 !important;
+      }
+    }
+    .bg-img {
+      top: 27px;
+      left: 27px;
+      width: 158px;
+      height: 158px;
+      background-image: url('../Images/bg-off.svg');
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+    .inner {
+      opacity: 0.5;
+    }
+  }
+}

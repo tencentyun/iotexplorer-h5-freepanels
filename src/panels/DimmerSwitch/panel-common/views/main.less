@@ -1,4 +1,5 @@
 .dimmer-switch-main-view {
+  position: relative;
   width: 100vw;
   min-height: 100vh;
   border-top: 1px solid transparent;
@@ -7,6 +8,27 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  .settings {
+    position: absolute;
+    top: 76px;
+    right: 137px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 126px;
+    height: 126px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.20);
+    .icon-more {
+      width: 77px;
+      height: 18px;
+      background-image: url('../images/more-normal.svg');
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: 100% 100%;
+    }
+  }
 
   .router-view {
     width: 100%;
@@ -61,6 +83,9 @@
   }
   &.bright {
     background-color: #F4F8FB;
+    .settings {
+      background: #FFFFFF;
+    }
     .switch-button {
       color: #000000;
     }
@@ -70,6 +95,14 @@
 body.theme_blue_white {
   .dimmer-switch-main-view {
     background-color: #134179;
+    .settings {
+      background: rgba(255,255,255,0.20);
+      border: none;
+      box-shadow: none;
+      .icon-more {
+        background-image: url('../images/more-blue.svg');
+      }
+    }
     .control-buttons {
   
       & > ._component_layout_block_ {
@@ -103,6 +136,12 @@ body.theme_blue_white {
 body.theme_dark {
   .dimmer-switch-main-view {
     background-color: #222532;
+    .settings {
+      background: rgba(255,255,255,0.20);
+      .icon-more {
+        background-image: url('../images/more-dark.svg');
+      }
+    }
     .control-buttons {
   
       & > ._component_layout_block_ {
@@ -132,6 +171,14 @@ body.theme_dark {
 body.theme_colorful {
   .dimmer-switch-main-view {
     background-color: #2D3134;
+    .settings {
+      border: none;
+      background: rgba(255,255,255,0.20);
+      box-shadow: none;
+      .icon-more {
+        background-image: url('../images/more-dark.svg');
+      }
+    }
     .control-buttons {
   
       & > ._component_layout_block_ {
@@ -152,6 +199,14 @@ body.theme_colorful {
   }
   .bright {
     background-color: #F4F8FB;
+    .settings {
+      border: none;
+      background: #FFFFFF;
+      box-shadow: none;
+      .icon-more {
+        background-image: url('../images/more-colorful.svg');
+      }
+    }
     .switch-button, .return-button {
       color: #2D3134;
     }
@@ -161,6 +216,14 @@ body.theme_colorful {
 body.theme_morandi {
   .dimmer-switch-main-view {
     background-image: linear-gradient(180deg, #576273 0%, #414B5B 86%);
+    .settings {
+      border: none;
+      background: rgba(255,255,255,0.20);
+      box-shadow: 0 6px 100px 0 rgba(32,33,33,0.10);
+      .icon-more {
+        background-image: url('../images/more-morandi.svg');
+      }
+    }
     .control-buttons {
   
       & > ._component_layout_block_ {
