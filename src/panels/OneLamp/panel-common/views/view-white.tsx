@@ -39,7 +39,7 @@ export function White() {
       case 'blueWhite':
         return SwitchImageBlueWhite;
       case 'dark':
-        return SwitchImageBlueWhite;
+        return SwitchImageDark;
       case 'colorful':
         return SwitchImageColorful;
       case 'morandi':
@@ -71,7 +71,7 @@ export function White() {
       case 'blueWhite':
         return SettingImageBlueWhite;
       case 'dark':
-        return SettingImageDark;
+        return SettingImageBlueWhite;
       case 'colorful':
         return SettingImageColorful;
       case 'morandi':
