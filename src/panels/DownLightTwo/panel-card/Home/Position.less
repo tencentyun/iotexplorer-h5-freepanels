@@ -1,0 +1,104 @@
+.position_card {
+  padding: 36px 0 24px 0;
+  .main-bg {
+    width: 260px;
+    height: 260px;
+    border: 1px solid #eff3f5;
+    border-radius: 50%;
+    background: #fbfbfc;
+    .bg-img {
+      top: 38px;
+      left: 38px;
+      width: calc(100% - 100px);
+      height: calc(100% - 100px);
+      position: absolute;
+      margin: 12px;
+      border-radius: 50%;
+      border: 1px solid #ffffff;
+      background: linear-gradient(0deg, #f6f8fa, #f6f8fa),
+        radial-gradient(50% 50% at 50% 50%, #f4f7f9 0%, #f1f6f6 100%);
+      box-shadow: 0px 0px 10px 2px #eaedf1;
+    }
+  }
+  .circle-ring {
+    width: 236px;
+    height: 236px;
+    position: relative;
+    .bg {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      .outer {
+        width: 100%;
+        height: 100%;
+        background-image: linear-gradient(90deg, #fbed96 0%, #aeecd5 100%);
+      }
+
+      .inner {
+        width: 182px;
+        height: 182px;
+        background: white;
+      }
+      .center {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    }
+  }
+  .color-value {
+    position: absolute;
+    top: 211px;
+    right: -4px;
+    div {
+      width: 24px;
+      height: 24px;
+      border: 1.5px solid #EFF3F5;
+      border-radius: 50%;
+    }
+    .color-1 {
+      margin-bottom: 12px;
+      background: #EFED9F;
+    }
+    .color-2 {
+      margin-bottom: 12px;
+      background: #CBEDBE;
+    }
+    .color-3 {
+      background: #B0EDD3;
+    }
+  }
+  &.colour-type {
+    padding-bottom: 20px;
+    .bg {
+      .outer {
+        background: conic-gradient(from 226.74deg at 50% 50%, #E500F0 -43.78deg, #2F00FF 9.18deg, #03F7F9 60.44deg, #32FB1D 115.34deg, #A0EF07 156.52deg, #EECD0C 212.88deg, #F90219 267.69deg, #E500F0 316.22deg, #2F00FF 369.18deg);
+      }
+    }
+    .color-value {
+      .color-1 {
+        background: #EECE0D;
+      }
+      .color-2 {
+        background: #F56014;
+      }
+      .color-3 {
+        background: #9301F7;
+      }
+    }
+  }
+  &.off-switch {
+    .bg {
+      .outer {
+        background: linear-gradient(0deg, #EBEDEE, #EBEDEE), linear-gradient(270deg, #FA709A 0%, #FEE140 100%);
+      }
+    }
+    .bg-img {
+      width: calc(100% - 100px);
+      height: calc(100% - 100px);
+      border: 1px solid #FFFFFF;
+      background: linear-gradient(0deg, #F6F8FA, #F6F8FA), radial-gradient(50% 50% at 50% 50%, #F4F7F9 0%, #F1F6F6 100%) /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */;
+      box-shadow: 0px 0px 10px 2px #EAEDF1;
+    }
+  }
+}

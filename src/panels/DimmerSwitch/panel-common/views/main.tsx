@@ -36,6 +36,10 @@ export function Main() {
     return color;
   };
 
+  const handleSetting = () => {
+    sdk.goDeviceDetailPage();
+  };
+
   return (
     <DeviceSateContext.Consumer>
       {({ deviceData }) => (
@@ -46,6 +50,9 @@ export function Main() {
             { dark: brightValue <= 0.3 },
           )}
         >
+          <div className="settings" onClick={handleSetting}>
+            <div className="icon-more"></div>
+          </div>
           {!isOpen ? (
             <Home></Home>
           ) : (

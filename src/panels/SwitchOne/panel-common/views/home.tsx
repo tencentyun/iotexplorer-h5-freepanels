@@ -45,8 +45,15 @@ export function Home() {
     history.push('/timing');
   };
 
+  const handleSetting = () => {
+    sdk.goDeviceDetailPage();
+  };
+
   return (
     <div className="switch-one-home-view">
+      <div className="settings" onClick={handleSetting}>
+        <div className="icon-more"></div>
+      </div>
       <BizSwitch
         className="biz-switch"
         name="开关1"
@@ -80,20 +87,6 @@ export function Home() {
           <p className="button-name">倒计时</p>
         </Block>
       </div>
-
-      {/* <ValuePicker
-        title="倒计时关闭"
-        visible={countDownVisible}
-        value={handleCountdownDefault(sdk.deviceData.count_down)}
-        columns={countDownColumns()}
-        onCancel={() => onToggleCountDown(false)}
-        onConfirm={(value: any) => {
-          const hour: number = Number(value[0].split('时')[0]);
-          const mins: number = Number(value[1].split('分')[0]);
-          const num = hour * 3600 + mins * 60;
-          onControlDevice('count_down', num);
-        }}
-      /> */}
       <TimePicker
         showSemicolon={false}
         value={handleCountdownDefault(sdk.deviceData.count_down)}

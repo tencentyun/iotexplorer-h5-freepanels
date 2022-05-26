@@ -12,7 +12,7 @@ import {
 } from '@icons/device/freePanel';
 import './panel.less';
 import { RawBtn } from '@src/components/Btn';
-import { off } from 'process';
+// import { off } from 'process';
 const wordsList = [
   '今天天气怎么样',
   '我要听青花瓷',

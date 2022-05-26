@@ -15,10 +15,16 @@ const Action = ({
   const actionCls = isSwitchOff ? 'action-off' : '';
 
   const actions = [
+    // [
+    //   '定时',
+    //   isSwitchOff ? 'timing' : 'timing-checked',
+    //   push.bind(null, PATH.TIMER_LIST, { isModule: true }),
+    //   isExistTimer,
+    // ]
     [
-      '定时',
+      '倒计时',
       isSwitchOff ? 'timing' : 'timing-checked',
-      push.bind(null, PATH.TIMER_LIST, { isModule: true }),
+      push.bind(null, PATH.TIMER_COUNTDOWN),
       isExistTimer,
     ],
   ];
