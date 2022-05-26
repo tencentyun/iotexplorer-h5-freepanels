@@ -54,7 +54,9 @@ export function Home({
     if (deviceData.wakeup_state !== 1) {
       await sdk.callDeviceAction({}, 'wake_up');
     }
-    sdk.goDevicePanelPage(context.deviceId || 'II0Q47L8B9/e_69518626_1');
+    sdk.goDevicePanelPage(context.deviceId || 'II0Q47L8B9/e_69518626_1', {
+      passThroughParams: { fullScreen: true },
+    });
   };
 
   useEffect(() => {

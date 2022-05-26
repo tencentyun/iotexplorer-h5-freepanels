@@ -207,6 +207,19 @@ export const useDeviceInfo = (): UseDeviceInfoResult => {
       });
     });
 
+    // 当小程序进入后台后，可能无法及时同步 在线状态，这时要调用 api 同步下在线状态
+    sdk.requestTokenApi('AppGetDeviceStatuses', {
+      DeviceIds: [sdk.deviceId],
+    }).then(({ DeviceStatuses }) => {
+      dispatch({
+        type: UseDeviceInfoAction.UpdateDeviceStatus,
+        payload: DeviceStatuses[0]?.Online,
+      });
+    })
+      .catch((err) => {
+        console.warn('获取设备在线状态失败', err);
+      });
+
     return () => {
       sdk
         .off('wsControl', handleWsReport)

@@ -1,49 +1,83 @@
 module.exports = {
   AirPurifier: {
+    name: '空调',
     enable: true,
-    panels: [['panel-default', { enable: true, entry: 'app.tsx' }]],
+    panels: [
+      ['panel-default', { enable: true, entry: 'app.tsx' }],
+    ],
   },
   FiveRoadHub: {
+    name: '五路集成器',
     enable: true,
-    panels: [['panel-default', { enable: true, entry: 'app.tsx' }]],
+    panels: [
+      ['panel-default', { enable: true, entry: 'app.tsx' }],
+    ],
   },
   FiveRoadLight: {
+    name: '五路灯',
     enable: true,
-    panels: [['panel-default', { enable: true, entry: 'app.tsx' }]],
+    panels: [
+      ['panel-default', { enable: true, entry: 'app.tsx' }],
+    ],
   },
   Locator: {
+    name: '定位器',
     enable: true,
-    panels: [['panel-default', { enable: true, entry: 'app.tsx' }]],
+    panels: [
+      ['panel-default', { enable: true, entry: 'app.tsx' }],
+    ],
   },
   Socket: {
+    name: '插座',
     enable: true,
-    panels: [['panel-default', { enable: true, entry: 'app.tsx' }]],
+    panels: [
+      ['panel-default', { enable: true, entry: 'app.tsx' }],
+    ],
   },
   MultiSwitch: {
+    name: '多路开关',
     enable: true,
-    panels: [['panel-default', { enable: true, entry: 'app.tsx' }]],
+    panels: [
+      ['panel-default', { enable: true, entry: 'app.tsx' }],
+    ],
   },
   VideoCamera: {
+    name: '摄像机',
     enable: true,
-    panels: [['panel-default', { enable: true, entry: 'app.tsx' }]],
+    panels: [
+      ['panel-default', { enable: true, entry: 'app.tsx' }],
+    ],
   },
   Fan: {
+    name: '风扇',
     enable: true,
-    panels: [['panel-default', { enable: true, entry: 'app.tsx' }]],
+    panels: [
+      ['panel-default', { enable: true, entry: 'app.tsx' }],
+    ],
   },
   RuyingMultiSwitch: {
+    name: '如影多功能面板',
     enable: true,
-    panels: [['panel-default', { enable: true, entry: 'app.tsx' }]],
+    panels: [
+      ['panel-default', { enable: true, entry: 'app.tsx' }],
+    ],
   },
   WisdomControl: {
+    name: '智能控制板',
     enable: true,
-    panels: [['panel-default', { enable: true, entry: 'app.tsx' }]],
+    panels: [
+      ['panel-default', { enable: true, entry: 'app.tsx' }],
+    ],
   },
   KugouMusic: {
+    name: '酷狗音乐',
     enable: true,
-    panels: [['panel-default', { enable: true, entry: 'app.tsx' }]],
+    panels: [
+      ['panel-default', { enable: true, entry: 'app.tsx' }],
+    ],
   },
   ElectricFan: {
+    name: '电风扇',
     enable: true,
     viewportWidth: 1125,
     panels: [
@@ -55,6 +89,7 @@ module.exports = {
     ],
   },
   WhiteLamp: {
+    name: '白光灯',
     enable: true,
     viewportWidth: 1125,
     panels: [
@@ -66,6 +101,7 @@ module.exports = {
     ],
   },
   AirConditioner: {
+    name: '空调',
     enable: true,
     viewportWidth: 1125,
     panels: [
@@ -77,6 +113,7 @@ module.exports = {
     ],
   },
   AirCleaner: {
+    name: '空气净化器',
     enable: true,
     viewportWidth: 1125,
     panels: [
@@ -88,6 +125,7 @@ module.exports = {
     ],
   },
   BloodPressureMeter: {
+    name: '血压计',
     enable: true,
     viewportWidth: 1125,
     panels: [
@@ -175,6 +213,18 @@ module.exports = {
       ['panel-morandi', { enable: true, entry: 'app.tsx' }],
     ],
   },
+  FiveSwitch: {
+    name: '五路灯',
+    enable: true,
+    viewportWidth: 1125,
+    panels: [
+      ['panel-default', { enable: true, entry: 'app.tsx' }],
+      ['panel-dark', { enable: true, entry: 'app.tsx' }],
+      ['panel-colorful', { enable: true, entry: 'app.tsx' }],
+      ['panel-blueWhite', { enable: true, entry: 'app.tsx' }],
+      ['panel-morandi', { enable: true, entry: 'app.tsx' }],
+    ],
+  },
   FourSwitch: {
     enable: true,
     viewportWidth: 1125,
@@ -220,6 +270,7 @@ module.exports = {
     ],
   },
   IntelligentGateway: {
+    name: '智能网关',
     enable: true,
     viewportWidth: 1125,
     panels: [
@@ -231,6 +282,7 @@ module.exports = {
     ],
   },
   OneLamp: {
+    name: '一路灯',
     enable: true,
     viewportWidth: 1125,
     panels: [
@@ -473,6 +525,7 @@ module.exports = {
     ],
   },
   TemperatureHumiditySensor: {
+    name: '温湿传感器',
     enable: true,
     viewportWidth: 1125,
     panels: [
@@ -484,6 +537,7 @@ module.exports = {
     ],
   },
   Thermostat: {
+    name: '温控器',
     enable: true,
     viewportWidth: 1125,
     panels: [
@@ -495,6 +549,7 @@ module.exports = {
     ],
   },
   DimmerSwitch: {
+    name: '调光开关',
     enable: true,
     viewportWidth: 1125,
     panels: [
@@ -643,7 +698,7 @@ module.exports = {
     viewportWidth: 375,
     panels: [
       ['panel-cold', { enable: true }],
-      // ['panel-card', { enable: true, entry: 'app.tsx' }],
+      ['panel-card', { enable: true, entry: 'app.tsx' }],
       // ['panel-brunet', { enable: true, entry: 'app.tsx' }],
       // ['panel-fresh', { enable: true, entry: 'app.tsx' }],
       // ['panel-house', { enable: true, entry: 'app.tsx' }],
@@ -738,6 +793,7 @@ module.exports = {
     ],
   },
   SpotlightsTwo: {
+    name: '聚光灯',
     enable: true,
     viewportWidth: 375,
     panels: [
@@ -749,6 +805,7 @@ module.exports = {
     ],
   },
   LightStripTwo: {
+    name: '灯带',
     enable: true,
     viewportWidth: 375,
     panels: [
