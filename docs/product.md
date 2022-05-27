@@ -1,11 +1,21 @@
 # 产品数据列表
 
+预览图所在目录：docs/img/
+
+预览图命名规则，docs/img/[品类名]/[模版名].png ，每个模版预览图分为两张，一个张是开启状态，一个张是离线状态的。
+- [品类名]称参照：[panel-config](../webpack/panel-conf.js) 中的 key 如 `Three`;
+- [模版名]参照：[panel-config](../webpack/panel-conf.js) 中品类的参数 `panels`列表参数，如：`panel-default`,`panel-dark`,`panel-colorful`,`panel-blueWhite`,`panel-morandi`。默认使用的图片是设备在线状态下的图片，如果设备离线图片请加个`-off`
+
+如：./img/ThreePlug/panel-dark.png， 离线状态为：./img/ThreePlug/panel-dark-off.png。如果有设备icon 则为：./img/ThreePlug/icon.png;
+
+当前产品
+
 | 一级分类         | 二级产品品类      | 现名称       | 文件夹名称                    | 是否提供物模型                                                             | 模版 | 上线状态                               |
 | ---------------- | ----------------- | ------------ | ----------------------------- | -------------------------------------------------------------------------- | ---- | -------------------------------------- |
-| 电工-插座类      | 五孔单插          | 五孔单插     | five-plug                     | [五孔单插.json](./model/五孔单插-five-plug.json)                           | [黑白色](./img/five-plug-normal.jpg) / [蓝白色](./img/five-plug-bluewhite.jpg) / [暗黑色](./img/five-plug-dark.jpg) / [明彩色](./img/five-plug-color.jpg) / [莫兰迪色](./img/five-plug-morandi.jpg)     | 已上线 |
-|                  | 三孔单插          | 三孔单插     | three-plug                    | [三孔单插.json](./model/三孔单插-three-plug.json)                          | [默认色](./img/three-plug/three-plug-default-on.jpg) [蓝白色](./img/three-plug/three-plug-blue-white.jpg) / [暗黑色](./img/three-plug/three-plug-dark-on.jpg) / [明彩色](./img/three-plug/three-plug-colorful-on.jpg) / [莫兰迪色](./img/three-plug/three-plug-morandi-on.jpg) | 已上线 |
-|                  | 电量统计插座      | 电量统计插座 | electricity-stats-receptacle  | 电量统计插座.json                                                          |  蓝白色 / 暗黑色 / 明彩色 / 莫兰迪色  |  待测试  |
-|                  | 墙壁插座带 USB    | 墙壁插头     | wall-plug                     | [墙壁插座带 USB.json](./model/墙壁插座带USB-wall-plug.json)                | 默认色 / 蓝白色 / 暗黑色 / 明彩色 / 莫兰迪色   |                                        |
+| 电工-插座类      | 五孔单插          | 五孔单插     | FivePlug                     | [五孔单插.json](./model/五孔单插-five-plug.json)                           | [白色](./img/FivePlug/panel-default.png) / [蓝色](./img/FivePlug/panel-blueWhite.png) / [暗黑色](./img/FivePlug/panel-dark.png) / [明彩色](./img/FivePlug/panel-colorful.png) / [莫兰迪色](./img/FivePlug/panel-morandi.png)     | 已上线 |
+|                  | 三孔单插          | 三孔单插     | ThreePlug                     | [三孔单插.json](./model/三孔单插-three-plug.json)                          | [白色](./img/ThreePlug/panel-default.png) / [蓝色](./img/ThreePlug/panel-blueWhite.png) / [暗黑色](./img/ThreePlug/panel-dark.png) / [明彩色](./img/ThreePlug/panel-colorful.png) / [莫兰迪色](./img/ThreePlug/panel-morandi.png) | 已上线 |
+|                  | 电量统计插座      | 电量统计插座 | ElectricityStatsReceptacle  | 电量统计插座.json                                                          |  [白色](./img/ElectricityStatsReceptacle/panel-default.png) / [蓝色](./img/ElectricityStatsReceptacle/panel-blueWhite.png) / [暗黑色](./img/ElectricityStatsReceptacle/panel-dark.png) / [明彩色](./img/ElectricityStatsReceptacle/panel-colorful.png) / [莫兰迪色](./img/ElectricityStatsReceptacle/panel-morandi.png)   |  待测试  |
+|                  | 墙壁插座带 USB    | 墙壁插头     | WallPlug                     | [墙壁插座带 USB.json](./model/墙壁插座带USB-wall-plug.json)                | [白色](./img/WallPlug/panel-default.png) / [蓝色](./img/WallPlug/panel-blueWhite.png) / [暗黑色](./img/WallPlug/panel-dark.png) / [明彩色](./img/WallPlug/panel-colorful.png) / [莫兰迪色](./img/WallPlug/panel-morandi.png)   |                                        |
 | 电工类-开关类    | 场景开关          | 一路开关     | switch-one                    | [一路开关.json](./model/一路开关-switch-one.json)                          |  [蓝色](./img/switch-one-default.png) / 蓝白色 / 暗黑色 / 明彩色 / 莫兰迪色  | 部分上线   |
 |                 |                  | 一路开关(v2)  | switch                         | [一路开关.json](./model/一路开关-switch-one.json)                         |  [默认色](./img/switch_one_v2_default.png) / [蓝白色](./img/switch_one_v2_dark.png)  / [暗黑色](./img/switch_one_v2_blueWhite.png)  / [明彩色](./img/switch_one_v2_morandi.png)  / [莫兰迪色](./img/switch_one_v2_colorful.png)   | 待测试  |
 |                 |                  | 一路开关(2)  | switch-two                         | [一路开关.json](./model/一路开关-switch-one.json)                         |  [冷淡](./img/switch_one_2_cold.png) / [卡片](./img/switch_one_2_card.png)  / [暗色](./img/switch_one_2_brunet.png)  / [小清晰](./img/switch_one_2_fresh.png)  / [家居](./img/switch_one_2_house.png)   | 待测试  |

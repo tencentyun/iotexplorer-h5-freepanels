@@ -1,13 +1,15 @@
 module.exports = {
   AirPurifier: {
-    name: '空调',
+    name: '空气净化器',
+    categoryKey: 'Airpurifier',
     enable: true,
     panels: [
       ['panel-default', { enable: true, entry: 'app.tsx' }],
     ],
   },
   FiveRoadHub: {
-    name: '五路集成器',
+    categoryKey: 'FiveRoadHub',
+    name: '五路排插',
     enable: true,
     panels: [
       ['panel-default', { enable: true, entry: 'app.tsx' }],
@@ -15,12 +17,14 @@ module.exports = {
   },
   FiveRoadLight: {
     name: '五路灯',
+    categoryKey: 'FiveRoadLight',
     enable: true,
     panels: [
       ['panel-default', { enable: true, entry: 'app.tsx' }],
     ],
   },
   Locator: {
+    categoryKey: 'Locator',
     name: '定位器',
     enable: true,
     panels: [
@@ -28,6 +32,7 @@ module.exports = {
     ],
   },
   Socket: {
+    categoryKey: 'Socket',
     name: '插座',
     enable: true,
     panels: [
@@ -36,6 +41,7 @@ module.exports = {
   },
   MultiSwitch: {
     name: '多路开关',
+    categoryKey: 'Switchpanel',
     enable: true,
     panels: [
       ['panel-default', { enable: true, entry: 'app.tsx' }],
@@ -50,6 +56,7 @@ module.exports = {
   },
   Fan: {
     name: '风扇',
+    categoryKey: 'Fan',
     enable: true,
     panels: [
       ['panel-default', { enable: true, entry: 'app.tsx' }],
@@ -78,6 +85,7 @@ module.exports = {
   },
   ElectricFan: {
     name: '电风扇',
+    categoryKey: 'Fan',
     enable: true,
     viewportWidth: 1125,
     panels: [
@@ -90,6 +98,7 @@ module.exports = {
   },
   WhiteLamp: {
     name: '白光灯',
+    categoryKey: 'WhiteLamp',
     enable: true,
     viewportWidth: 1125,
     panels: [
@@ -102,6 +111,7 @@ module.exports = {
   },
   AirConditioner: {
     name: '空调',
+    categoryKey: 'AirConditioning',
     enable: true,
     viewportWidth: 1125,
     panels: [
@@ -114,6 +124,7 @@ module.exports = {
   },
   AirCleaner: {
     name: '空气净化器',
+    categoryKey: 'Airpurifier',
     enable: true,
     viewportWidth: 1125,
     panels: [
@@ -126,6 +137,7 @@ module.exports = {
   },
   BloodPressureMeter: {
     name: '血压计',
+    categoryKey: 'BloodPressure',
     enable: true,
     viewportWidth: 1125,
     panels: [
@@ -137,6 +149,7 @@ module.exports = {
     ],
   },
   BodyScales: {
+    name: '体脂秤',
     enable: true,
     viewportWidth: 1125,
     panels: [
@@ -148,6 +161,7 @@ module.exports = {
     ],
   },
   BodySensor: {
+    name: '身体传感器',
     enable: true,
     viewportWidth: 1125,
     panels: [
@@ -170,6 +184,8 @@ module.exports = {
     ],
   },
   ElectricCurtains: {
+    categoryKey: 'ElectricCurtains',
+    name: '电动窗帘',
     enable: true,
     viewportWidth: 1125,
     panels: [
@@ -181,6 +197,8 @@ module.exports = {
     ],
   },
   FivePlug: {
+    name: '五孔单插',
+    categoryKey: 'FivePlug',
     enable: true,
     viewportWidth: 1125,
     panels: [
@@ -214,7 +232,8 @@ module.exports = {
     ],
   },
   FiveSwitch: {
-    name: '五路灯',
+    name: '五路开关',
+    categoryKey: 'FiveRoadSwith',
     enable: true,
     viewportWidth: 1125,
     panels: [
@@ -226,6 +245,8 @@ module.exports = {
     ],
   },
   FourSwitch: {
+    name: '四路开关',
+    categoryKey: 'FourRoadSwith',
     enable: true,
     viewportWidth: 1125,
     panels: [
@@ -237,6 +258,8 @@ module.exports = {
     ],
   },
   ThreeSwitch: {
+    name: '三路开关',
+    categoryKey: 'ThreeRoadSwitch',
     enable: true,
     viewportWidth: 1125,
     panels: [
@@ -248,6 +271,8 @@ module.exports = {
     ],
   },
   TwoSwitch: {
+    name: '二路开关',
+    categoryKey: 'TwoRoadSwitch',
     enable: true,
     viewportWidth: 1125,
     panels: [
@@ -338,6 +363,7 @@ module.exports = {
     ],
   },
   ThreePlug: {
+    name: '三孔单插',
     enable: true,
     viewportWidth: 1125,
     panels: [
@@ -349,6 +375,8 @@ module.exports = {
     ],
   },
   WallPlug: {
+    name: '墙壁插头',
+    categoryKey: 'USB-wall-plug',
     enable: true,
     viewportWidth: 1125,
     panels: [
@@ -371,6 +399,8 @@ module.exports = {
     ],
   },
   WaterHeater: {
+    categoryKey: 'IntelligentWaterHeater',
+    name: '热水器',
     enable: true,
     viewportWidth: 1125,
     panels: [
@@ -382,6 +412,8 @@ module.exports = {
     ],
   },
   WaterPurifier: {
+    categoryKey: 'Waterpurifier',
+    name: '净水器',
     enable: true,
     viewportWidth: 1125,
     panels: [
@@ -437,6 +469,8 @@ module.exports = {
     ],
   },
   Heater: {
+    categoryKey: 'Heater',
+    name: '取暖器',
     enable: true,
     viewportWidth: 1125,
     panels: [
@@ -492,6 +526,8 @@ module.exports = {
     ],
   },
   SmartRope: {
+    categoryKey: 'Smart_rope',
+    name: '智能跳绳',
     enable: true,
     viewportWidth: 1125,
     panels: [
@@ -503,6 +539,8 @@ module.exports = {
     ],
   },
   SmokeAlarm: {
+    categoryKey: 'FireGasAlert',
+    name: '烟雾报警器',
     enable: true,
     viewportWidth: 1125,
     panels: [
@@ -514,6 +552,8 @@ module.exports = {
     ],
   },
   SwitchOne: {
+    categoryKey: 'OneRoadSwitch',
+    name: '一路开关',
     enable: true,
     viewportWidth: 1125,
     panels: [
@@ -549,6 +589,7 @@ module.exports = {
     ],
   },
   DimmerSwitch: {
+    categoryKey: 'dimmer-switch',
     name: '调光开关',
     enable: true,
     viewportWidth: 1125,
@@ -561,6 +602,8 @@ module.exports = {
     ],
   },
   ElectricityStatsReceptacle: {
+    categoryKey: 'electricitystatsreceptacle',
+    name: '电量统计插座',
     enable: true,
     viewportWidth: 1125,
     panels: [
@@ -605,6 +648,8 @@ module.exports = {
     ],
   },
   Switch: {
+    categoryKey: 'Switchpanel',
+    categoryName: '开关面板',
     enable: true,
     viewportWidth: 1125,
     panels: [
@@ -616,6 +661,8 @@ module.exports = {
     ],
   },
   WhiteLampV2: {
+    name: '白光灯v2',
+    categoryKey: 'WhiteLamp',
     enable: true,
     viewportWidth: 1125,
     panels: [
@@ -650,6 +697,7 @@ module.exports = {
     ],
   },
   BodySensorsTwo: {
+    name: '身体传感器v2',
     enable: true,
     viewportWidth: 375,
     panels: [
@@ -661,6 +709,8 @@ module.exports = {
     ],
   },
   SmokeAlarmTwo: {
+    categoryKey: 'FireGasAlert',
+    name: '烟雾报警器v2',
     enable: true,
     viewportWidth: 375,
     panels: [
@@ -672,6 +722,8 @@ module.exports = {
     ],
   },
   SwitchTwo: {
+    name: '二路开关v2',
+    categoryKey: 'TwoRoadSwitch',
     enable: true,
     viewportWidth: 375,
     panels: [
@@ -683,6 +735,8 @@ module.exports = {
     ],
   },
   HeaterTwo: {
+    categoryKey: 'Heater',
+    name: '取暖器v2',
     enable: true,
     viewportWidth: 375,
     panels: [
@@ -694,6 +748,8 @@ module.exports = {
     ],
   },
   SmartLocksTwo: {
+    categoryKey: 'DoorLock',
+    name: '智能门锁',
     enable: true,
     viewportWidth: 375,
     panels: [
@@ -716,6 +772,8 @@ module.exports = {
     ],
   },
   AirConditionerTwo: {
+    categoryKey: 'AirConditioning',
+    name: '空调v2',
     enable: true,
     viewportWidth: 375,
     panels: [
@@ -760,6 +818,8 @@ module.exports = {
     ],
   },
   ElectricCurtainsTwo: {
+    categoryKey: 'ElectricCurtains',
+    name: '电动窗帘v2',
     enable: true,
     viewportWidth: 375,
     panels: [
