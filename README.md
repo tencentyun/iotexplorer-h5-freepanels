@@ -77,6 +77,15 @@
 |           |        |冷暖白光灯v3     | WhiteLampTwo     |
 
 
+页面模版所涉及的色系
+```
+panel-default 白/暗色系
+panel-normal  灰白色系
+panel-dark  暗黑色系
+panel-colorful 多彩色系
+panel-blueWhite 蓝白色系
+panel-morandi  莫兰迪色系
+```
 
 ### 2、二次开发
 
