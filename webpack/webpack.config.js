@@ -37,7 +37,9 @@ module.exports = (env, argv) => {
 
   // 这里可能会影响之前的面板布局，布局乱了可注释掉
   viewportConfig.viewportWidth = 1125;
-  Object.keys(panelConfig).forEach((categoryKey) => {
+  const keys = Object.keys(panelConfig);
+  console.log('build length: ', keys.length);
+  keys.forEach((categoryKey) => {
     const { enable, panels, viewportWidth } = panelConfig[categoryKey];
     // console.log('build is DevEnv: ', isDevMode, ', build length:', panels.length);
     if (
