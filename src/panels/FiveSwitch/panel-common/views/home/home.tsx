@@ -5,7 +5,7 @@ import { BizSwitch } from '@components/business';
 import { Detail } from './detail/detail';
 import './home.less';
 import { onControlDevice } from '@hooks/useDeviceData';
-import {getThemeType} from '@libs/theme';
+import { getThemeType } from '@libs/theme';
 
 import SettingImage from '../icons/normal/dev-open.svg';
 import SettingImageBlueWhite from '../icons/blue-white/dev-open.svg';
@@ -42,9 +42,7 @@ export function Home() {
       {/* 开关*/}
       <section className={classNames('dashboard')}>
         <div
-          className={classNames(
-            'devSetting', 'dev-setting-open'
-          )}
+          className={classNames('devSetting', 'dev-setting-open')}
           onClick={handleSetting}
         >
           <img src={settingImageSrc()} alt="" />

@@ -5,7 +5,7 @@
 ## 项目简介
 
 腾讯连连免开发面板是腾讯物联网平台为各行业设备制造商、方案商及应用开发商、普通开发者提供的各类物联网设备在腾讯连连小程序中控制的页面组件。
-当前免开发面板提供[42个品类](./docs/product.md)的物联网标准化控制设备，**236** 个标准化模板。
+当前免开发面板提供[45个品类](./docs/product.md)的物联网标准化控制设备，**77**项产品模版类型,**338** 个标准化模板。
 
 通过提供的代码，可以支持两种方式实现智能硬件的快速接入。
 
@@ -15,55 +15,77 @@
 
 当前已经支持的品类 [更多产品详情](./docs/product.md) , **模板预览效果：[点击跳转预览效果图](./docs/product-preview.md)**
 
-| 一级分类     | 二级产品品类    | 现名称    | 文件名称                        |
-|----------|-----------|--------|------------------------------|
-| 电工-插座类   | 五孔单插      | 五孔单插   | five-plug                    |
-|          | 三孔单插      | 三孔单插   | three-plug                   |
-|          | 电量统计插座    | 电量统计插座 | electricity-stats-receptacle |
-|          | 墙壁插座带USB  | 墙壁插头   | wall-plug                    |
-| 电工类-开关类  | 场景开关      | 一路开关   | switch-one                   |
-|          | 多路开关      | 二路开关   | two-switch                   |
-|          |           | 三路开关   | three-switch                 |
-|          |           | 四路开关   | four-switch                  |
-|          |           | 五路开关   | five-switch                  |
-|          | 调光开关      | 调光开关   | dimmer-switch                |
-|          | 冷暖白光灯     | 冷暖白光灯  | white-lamp                   |
+
+| 一级分类     | 二级产品品类    | 现名称    | 文件名称    | 状态 |
+|----------|-----------|--------|------------------|---|
+| 电工-插座类   | 五孔单插      | 五孔单插   | FivePlug   |  已上架 |
+|          | 三孔单插      | 三孔单插   | ThreePlug         | 已上架 |
+|          | 电量统计插座    | 电量统计插座 | ElectricityStatsReceptacle |
+|          | 墙壁插座带USB  | 墙壁插头   | WallPlug                    |
+| 电工类-开关类 | 场景开关 | 多路开关   | MultiSwitch           |
+|          |           | 开关面板   | switch                   |
+|          |           | 一路开关   | SwitchOne                  |
+|          |           | 二路开关   | TwoSwitch                   |
+|          |           | 三路开关   | ThreeSwitch                |
+|          |           | 四路开关   | FourSwitch                |
+|          |           | 五路开关   | FiveSwitch                  |
+|          | 调光开关      | 调光开关   | DimmerSwitch                |
 |          | 四路灯       | 四路灯    | four-streetlights            |
 |          | 五路灯       | 五路灯    | five-streetlights            |
-|          | 智能灯       | 智能灯    | lamp                         |
-|          | 一路灯       | 一路灯    | lamp-one                     |
-| 网关类      | 网关        | 智能网关   | intelligent-gateway          |
-| 传感类      | 门窗磁传感器    | 门磁     | magnetic-door                |
-|          | 人体运动&存在传感 | 人体传感器  | body-sensor                  |
+|          | 智能灯       | 智能灯    | three-streetlights（旧称lamp ）                        |
+|          | 一路灯       | 一路灯    | one-lamp（旧称lamp-one)                   |
+| 网关类    | 网关        | 智能网关   | intelligent-gateway          |
+|           |         | 路由器    |         |
+| 传感类    | 门窗磁传感器    | 门磁     | magnetic-door                |
+|          | 人体运动&存在传感 | 身体传感器  | BodySensors                  |
+|          |           | 身体传感器v2  | BodySensorsTwo                  |
 |          | 声光报警器     | 声光报警器  | audible-visual-alarm         |
 |          | 温湿度传感器    | 温湿度传感器 | temperature-humidity-sensor  |
 |          | 紧急按钮      | 紧急按钮   | emergency-button             |
 |          | 报警主机      | 多功能报警器 | multifunction-alarm-host     |
 |          | 烟雾报警      | 烟雾传感器  | smoke-alarm                  |
-|          | 燃气报警      | 燃气报警器  | gas-alarm                    |
+|          |       | 烟雾传感器v2  | SmokeAlarmTwo                  |
+|          | 燃气报警      | 燃气报警器  | GasAlarm                    |
 |          | 水浸报警      | 水浸传感器  | immersion-sensor             |
-| 小家电      | 取暖器       | 取暖器    | heater                       |
+|          | 智能门锁       | 智能门锁    | SmartLocksTwo                |
+| 小家电    | 取暖器       | 取暖器    | heater                       |
+|          |               | 取暖器v2    | HeaterTwo                       |
 |          | 加湿器       | 加湿器    | humidifier                   |
 |          | 温控器       | 温控器    | thermostat                   |
 |          | 电动窗帘      | 电动窗帘   | electric-curtains            |
-|          | 空气净化器     | 空气净化器  | air-purifier                 |
-|          | 净水机       | 净水机    | water-purifier               |
-|          | 电扇        | 风扇     | fan                          |
+|          | 空气净化器     | 空气净化器  | AirPurifier                 |
+|          |               | 空气净化器v2  | AirCleaner                 |
+|          | 净水机       | 净水器    | WaterPurifier               |
+|          | 电扇        | 风扇     | Fan                          |
+|          |         | 风扇     | ElectricFan                          |
 |          | 香薰机       | 香薰机    | aromatherapy-machine         |
 |          | 晾衣架       | 晾衣架    | laundry-rack                 |
 |          | 宠物喂养机     | 宠物喂养机  | pet-feeding-device           |
 | 运动健康（蓝牙） | 体脂秤       | 体脂秤    | body-scales                  |
 |          | 血压计       | 血压计    | blood-pressure-meter         |
-|          | 智能跳绳      | 智能跳绳   | smart-rope                   |
-| 大家电      | 新风机       | 新风机    | new-fan                      |
+|          | 智能跳绳      | 智能跳绳   | SmartRope                   |
+| 大家电    | 新风机       | 新风机    | NewFan                      |
 |          | 空调        | 空调     | air-conditioner              |
-|          | 热水器       | 热水器    | water-heater                 |
-| 厨电类      | 电烤箱       | 电烤箱    | electric-oven                |
+|          |         | 空调v2     | AirConditionerTwo              |
+|          | 热水器       | 热水器    | WaterHeater                 |
+| 厨电类    | 电烤箱       | 电烤箱    | electric-oven                |
 | 照明设备   | 筒灯       | 筒灯    | down-light-two                |
 |          | 射灯        | 射灯    | spotlights-two                |
-|          | 灯带        | 灯带    | light-strip-two                |
+|          | 灯带        | 灯带    | light-strip-two               |
+|           | 冷暖白光灯       |冷暖白光灯     | WhiteLamp         |
+|           |        |冷暖白光灯V2     | WhiteLampV2      |
+|           |        |冷暖白光灯v3     | WhiteLampTwo     |
 
 
+页面模版所涉及的色系
+```
+panel-default 白/暗色系
+panel-normal  灰白色系
+panel-dark  暗黑色系
+panel-colorful 多彩色系
+panel-blueWhite 蓝白色系
+panel-morandi  莫兰迪色系
+```
 
 ### 2、二次开发
 
