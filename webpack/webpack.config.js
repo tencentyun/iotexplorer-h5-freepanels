@@ -87,7 +87,7 @@ module.exports = (env, argv) => {
       filename: (isDevMode || isPreview) ? `${outputFileName}.js` : '[name].[contenthash:10].js',
       libraryTarget: 'umd',
       asyncChunks: true,
-      clean: true,
+      clean: false,
     },
     externals: {
       react: 'React',
