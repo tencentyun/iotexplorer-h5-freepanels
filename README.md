@@ -82,9 +82,9 @@
 |          |         | 空调v3     | AirConditionerTwo              |
 |          | 热水器       | 热水器    | WaterHeater                 |
 | 厨电类    | 电烤箱       | 电烤箱    | electric-oven                |
-| 照明设备   | 筒灯       | 筒灯    | down-light-two                |
-|          | 射灯        | 射灯    | spotlights-two                |
-|          | 灯带        | 灯带    | light-strip-two               |
+| 照明设备   | 筒灯       | 筒灯    | DownLightTwo                |
+|          | 射灯        | 射灯    | SpotLightsTwo                |
+|          | 灯带        | 灯带    | LightStripTwo               |
 |           | 冷暖白光灯       |冷暖白光灯     | WhiteLamp         |
 |           |        |冷暖白光灯V2     | WhiteLampV2      |
 |           |        |冷暖白光灯v3     | WhiteLampTwo     |
