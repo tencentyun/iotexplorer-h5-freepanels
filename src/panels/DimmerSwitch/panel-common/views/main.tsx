@@ -1,5 +1,5 @@
 /*
- * @Author: wrq
+ * @Author: xyj
  * @Date: 2021-10-23 16:36:37
  * @Description: 首页
  */
@@ -78,6 +78,7 @@ export function Main() {
             <Block className="button"
               onClick={() => {
                 if (!deviceData.power_switch) return;
+                document.body.style.overflow = 'auto';
                 history.push('/timing');
               }}>
               <SvgIcon
@@ -111,6 +112,7 @@ export function Main() {
               className="button"
               onClick={() => {
                 if (!deviceData.power_switch) return;
+                document.body.style.overflow = 'auto';
                 history.replace('/setting');
               }}
             >
