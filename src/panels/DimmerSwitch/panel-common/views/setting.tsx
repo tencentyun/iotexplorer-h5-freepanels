@@ -33,7 +33,6 @@ export function Setting() {
         <div className="dimmer-switch-setting-view">
           <Block
             className="lamp-type-select"
-            padding="73px 110px"
             onClick={() => onToggleTypeSelect(true)}
           >
             <span className="icon-lamp"></span>

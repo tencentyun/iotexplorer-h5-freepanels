@@ -25,53 +25,66 @@
 | 电工类-开关类 | 场景开关 | 多路开关   | MultiSwitch           |
 |          |           | 开关面板   | switch          |
 |          |           | 一路开关   | SwitchOne                  |
+|          |           | 一路开关v2 | SwitchOneV2                |
+|          |           | 一路开关v3  | SwitchOneTwo                |
 |          |           | 二路开关   | TwoSwitch                   |
+|          |           | 二路开关v2 | SwitchTwoV2                |
+|          |           | 二路开关v3  | SwitchTwoTwo                |
 |          |           | 三路开关   | ThreeSwitch                |
+|          |           | 三路开关v2 | SwitchTwoThree            |
+|          |           | 三路开关v3  | SwitchThreeTwo             |
 |          |           | 四路开关   | FourSwitch                |
+|          |           | 四路开关v2 | SwitchFourV2                |
 |          |           | 五路开关   | FiveSwitch                  |
+|          |           | 五路开关v2 | SwitchFiveV2                |
 |          | 调光开关      | 调光开关   | DimmerSwitch                |
 |          | 四路灯       | 四路灯    | four-streetlights            |
 |          | 五路灯       | 五路灯    | five-streetlights            |
 |          | 智能灯       | 智能灯    | ThreeStreetLights（旧称lamp ）  |  测试中 |
 |          | 一路灯       | 一路灯    | OneLamp（旧称lamp-one)                   | 测试中|
 | 网关类    | 网关        | 智能网关   | intelligent-gateway          |
+|          |           |    智能网关v3 | IntelligentGatewayTwo         |
 |           |         | 路由器    |         |
 | 传感类    | 门窗磁传感器    | 门磁     | magnetic-door                |
 |          | 人体运动&存在传感 | 身体传感器  | BodySensors                  |
-|          |           | 身体传感器v2  | BodySensorsTwo                  |
+|          |           | 身体传感器v3  | BodySensorsTwo                  |
 |          | 声光报警器     | 声光报警器  | audible-visual-alarm         |
 |          | 温湿度传感器    | 温湿度传感器 | temperature-humidity-sensor  |
 |          | 紧急按钮      | 紧急按钮   | emergency-button             |
 |          | 报警主机      | 多功能报警器 | multifunction-alarm-host     |
 |          | 烟雾报警      | 烟雾传感器  | smoke-alarm                  |
-|          |       | 烟雾传感器v2  | SmokeAlarmTwo                  |
+|          |       | 烟雾传感器v3  | SmokeAlarmTwo                  |
 |          | 燃气报警      | 燃气报警器  | GasAlarm                    |
+|          |              | 燃气报警器v3  | GasAlarmTwo                    |
 |          | 水浸报警      | 水浸传感器  | immersion-sensor             |
-|          | 智能门锁       | 智能门锁    | SmartLocksTwo                |
+|          | 智能门锁       | 智能门锁v3   | SmartLocksTwo                |
 | 小家电    | 取暖器       | 取暖器    | heater                       |
-|          |               | 取暖器v2    | HeaterTwo                       |
+|          |               | 取暖器v3    | HeaterTwo                       |
 |          | 加湿器       | 加湿器    | humidifier                   |
 |          | 温控器       | 温控器    | thermostat                   |
 |          | 电动窗帘      | 电动窗帘   | electric-curtains            |
+|          |              | 电动窗帘v3   | ElectricCurtainsTwo            |
 |          | 空气净化器     | 空气净化器  | AirPurifier                 |
-|          |               | 空气净化器v2  | AirCleaner                 |
+|          |               | 空气净化器v3  | AirCleanerTwo                 |
 |          | 净水机       | 净水器    | WaterPurifier               |
 |          | 电扇        | 风扇     | Fan                          |
 |          |         | 风扇     | ElectricFan                          |
 |          | 香薰机       | 香薰机    | aromatherapy-machine         |
 |          | 晾衣架       | 晾衣架    | laundry-rack                 |
+|          |              | 晾衣架v3    | LaundryRackTwo                 |
 |          | 宠物喂养机     | 宠物喂养机  | pet-feeding-device           |
+|          |              | 宠物喂养机2    | PetFeedingDeviceTwo        |
 | 运动健康（蓝牙） | 体脂秤       | 体脂秤    | body-scales                  |
 |          | 血压计       | 血压计    | blood-pressure-meter         |
 |          | 智能跳绳      | 智能跳绳   | SmartRope                   |
 | 大家电    | 新风机       | 新风机    | NewFan                      |
 |          | 空调        | 空调     | air-conditioner              |
-|          |         | 空调v2     | AirConditionerTwo              |
+|          |         | 空调v3     | AirConditionerTwo              |
 |          | 热水器       | 热水器    | WaterHeater                 |
 | 厨电类    | 电烤箱       | 电烤箱    | electric-oven                |
-| 照明设备   | 筒灯       | 筒灯    | down-light-two                |
-|          | 射灯        | 射灯    | spotlights-two                |
-|          | 灯带        | 灯带    | light-strip-two               |
+| 照明设备   | 筒灯       | 筒灯    | DownLightTwo                |
+|          | 射灯        | 射灯    | SpotLightsTwo                |
+|          | 灯带        | 灯带    | LightStripTwo               |
 |           | 冷暖白光灯       |冷暖白光灯     | WhiteLamp         |
 |           |        |冷暖白光灯V2     | WhiteLampV2      |
 |           |        |冷暖白光灯v3     | WhiteLampTwo     |
