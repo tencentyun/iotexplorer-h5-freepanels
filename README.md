@@ -5,7 +5,7 @@
 ## 项目简介
 
 腾讯连连免开发面板是腾讯物联网平台为各行业设备制造商、方案商及应用开发商、普通开发者提供的各类物联网设备在腾讯连连小程序中控制的页面组件。
-当前免开发面板提供[45个品类](./docs/product.md)的物联网标准化控制设备，**77**项产品模版类型,**338** 个标准化模板。
+当前免开发面板提供[45个品类](./docs/product.md)的物联网标准化控制设备，**85**项产品模版类型,**378** 个标准化模板。
 
 通过提供的代码，可以支持两种方式实现智能硬件的快速接入。
 
@@ -21,9 +21,9 @@
 | 电工-插座类   | 五孔单插      | 五孔单插   | FivePlug   |  已上架 |
 |          | 三孔单插      | 三孔单插   | ThreePlug         | 已上架 |
 |          | 电量统计插座    | 电量统计插座 | ElectricityStatsReceptacle |
-|          | 墙壁插座带USB  | 墙壁插头   | WallPlug                    |
+|          | 墙壁插座带USB  | 墙壁插头   | WallPlug     |
 | 电工类-开关类 | 场景开关 | 多路开关   | MultiSwitch           |
-|          |           | 开关面板   | switch                   |
+|          |           | 开关面板   | switch          |
 |          |           | 一路开关   | SwitchOne                  |
 |          |           | 一路开关v2 | SwitchOneV2                |
 |          |           | 一路开关v3  | SwitchOneTwo                |
@@ -40,8 +40,8 @@
 |          | 调光开关      | 调光开关   | DimmerSwitch                |
 |          | 四路灯       | 四路灯    | four-streetlights            |
 |          | 五路灯       | 五路灯    | five-streetlights            |
-|          | 智能灯       | 智能灯    | three-streetlights（旧称lamp ）                        |
-|          | 一路灯       | 一路灯    | one-lamp（旧称lamp-one)                   |
+|          | 智能灯       | 智能灯    | ThreeStreetLights（旧称lamp ）  |  测试中 |
+|          | 一路灯       | 一路灯    | OneLamp（旧称lamp-one)        | 测试中|
 | 网关类    | 网关        | 智能网关   | intelligent-gateway          |
 |          |           |    智能网关v3 | IntelligentGatewayTwo         |
 |           |         | 路由器    |         |
@@ -98,6 +98,11 @@ panel-dark  暗黑色系
 panel-colorful 多彩色系
 panel-blueWhite 蓝白色系
 panel-morandi  莫兰迪色系
+panel-cold  冷色系
+panel-card  白灰卡块系
+panel-brunet 深色系
+panel-fresh  鲜艳色系
+panel-house 
 ```
 
 ### 2、二次开发
