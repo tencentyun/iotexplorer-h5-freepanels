@@ -648,12 +648,77 @@ module.exports = {
     ],
   },
   Switch: {
-    categoryKey: 'Switchpanel',
     categoryName: '开关面板',
+    categoryKey: 'SwitchPanel',
     enable: true,
     viewportWidth: 1125,
     panels: [
       ['panel-normal', { enable: true, entry: 'app.tsx' }],
+      ['panel-dark', { enable: true, entry: 'app.tsx' }],
+      ['panel-colorful', { enable: true, entry: 'app.tsx' }],
+      ['panel-blueWhite', { enable: true, entry: 'app.tsx' }],
+      ['panel-morandi', { enable: true, entry: 'app.tsx' }],
+    ],
+  },
+  SwitchOneV2: {
+    categoryName: '一路开关',
+    categoryKey: 'SwitchOne',
+    enable: true,
+    viewportWidth: 1125,
+    panels: [
+      ['panel-default', { enable: true, entry: 'app.tsx' }],
+      ['panel-dark', { enable: true, entry: 'app.tsx' }],
+      ['panel-colorful', { enable: true, entry: 'app.tsx' }],
+      ['panel-blueWhite', { enable: true, entry: 'app.tsx' }],
+      ['panel-morandi', { enable: true, entry: 'app.tsx' }],
+    ],
+  },
+  SwitchTwoV2: {
+    categoryName: '二路开关',
+    categoryKey: 'SwitchTwo',
+    enable: true,
+    viewportWidth: 1125,
+    panels: [
+      ['panel-default', { enable: true, entry: 'app.tsx' }],
+      ['panel-dark', { enable: true, entry: 'app.tsx' }],
+      ['panel-colorful', { enable: true, entry: 'app.tsx' }],
+      ['panel-blueWhite', { enable: true, entry: 'app.tsx' }],
+      ['panel-morandi', { enable: true, entry: 'app.tsx' }],
+    ],
+  },
+  SwitchThreeV2: {
+    categoryName: '三路开关',
+    categoryKey: 'SwitchThree',
+    enable: true,
+    viewportWidth: 1125,
+    panels: [
+      ['panel-default', { enable: true, entry: 'app.tsx' }],
+      ['panel-dark', { enable: true, entry: 'app.tsx' }],
+      ['panel-colorful', { enable: true, entry: 'app.tsx' }],
+      ['panel-blueWhite', { enable: true, entry: 'app.tsx' }],
+      ['panel-morandi', { enable: true, entry: 'app.tsx' }],
+    ],
+  },
+  SwitchFourV2: {
+    categoryName: '四路开关',
+    categoryKey: 'SwitchFour',
+    enable: true,
+    viewportWidth: 1125,
+    panels: [
+      ['panel-default', { enable: true, entry: 'app.tsx' }],
+      ['panel-dark', { enable: true, entry: 'app.tsx' }],
+      ['panel-colorful', { enable: true, entry: 'app.tsx' }],
+      ['panel-blueWhite', { enable: true, entry: 'app.tsx' }],
+      ['panel-morandi', { enable: true, entry: 'app.tsx' }],
+    ],
+  },
+  SwitchFiveV2: {
+    categoryName: '五路开关',
+    categoryKey: 'SwitchFive',
+    enable: true,
+    viewportWidth: 1125,
+    panels: [
+      ['panel-default', { enable: true, entry: 'app.tsx' }],
       ['panel-dark', { enable: true, entry: 'app.tsx' }],
       ['panel-colorful', { enable: true, entry: 'app.tsx' }],
       ['panel-blueWhite', { enable: true, entry: 'app.tsx' }],
@@ -675,6 +740,8 @@ module.exports = {
   },
   // --------------------two-----product-------------------------------
   GasAlarmTwo: {
+    name: '燃气感应器',
+    categoryKey: 'GasAlarmTwo',
     enable: true,
     viewportWidth: 375,
     panels: [
@@ -686,6 +753,8 @@ module.exports = {
     ],
   },
   MagneticDoorTwo: {
+    name: '门磁感应器',
+    categoryKey: 'MagneticDoor',
     enable: true,
     viewportWidth: 375,
     panels: [
@@ -698,6 +767,7 @@ module.exports = {
   },
   BodySensorsTwo: {
     name: '身体传感器v2',
+    categoryKey: 'BodySensors',
     enable: true,
     viewportWidth: 375,
     panels: [
@@ -709,8 +779,8 @@ module.exports = {
     ],
   },
   SmokeAlarmTwo: {
-    categoryKey: 'FireGasAlert',
     name: '烟雾报警器v2',
+    categoryKey: 'FireGasAlert',
     enable: true,
     viewportWidth: 375,
     panels: [
@@ -722,8 +792,8 @@ module.exports = {
     ],
   },
   SwitchTwo: {
-    name: '二路开关v2',
-    categoryKey: 'TwoRoadSwitch',
+    name: '一二三键开关v2',
+    categoryKey: 'Switch',
     enable: true,
     viewportWidth: 375,
     panels: [
@@ -734,9 +804,49 @@ module.exports = {
       ['panel-house', { enable: true, entry: 'app.tsx' }],
     ],
   },
+  SwitchOneTwo: {
+    name: '一键开关V2',
+    categoryKey: 'SwitchOne',
+    enable: true,
+    viewportWidth: 375,
+    panels: [
+      ['panel-cold', { enable: true, entry: 'app.tsx' }],
+      ['panel-card', { enable: true, entry: 'app.tsx' }],
+      ['panel-brunet', { enable: true, entry: 'app.tsx' }],
+      ['panel-fresh', { enable: true, entry: 'app.tsx' }],
+      ['panel-house', { enable: true, entry: 'app.tsx' }],
+    ],
+  },
+  SwitchTwoTwo: {
+    name: '一键开关V2',
+    categoryKey: 'SwitchTwo',
+    enable: true,
+    viewportWidth: 375,
+    panels: [
+      ['panel-cold', { enable: true, entry: 'app.tsx' }],
+      ['panel-card', { enable: true, entry: 'app.tsx' }],
+      ['panel-brunet', { enable: true, entry: 'app.tsx' }],
+      ['panel-fresh', { enable: true, entry: 'app.tsx' }],
+      ['panel-house', { enable: true, entry: 'app.tsx' }],
+    ],
+  },
+  SwitchThreeTwo: {
+    name: '三键路开关V2',
+    categoryKey: 'SwitchThree',
+    enable: true,
+    viewportWidth: 375,
+    panels: [
+      ['panel-cold', { enable: true, entry: 'app.tsx' }],
+      ['panel-card', { enable: true, entry: 'app.tsx' }],
+      ['panel-brunet', { enable: true, entry: 'app.tsx' }],
+      ['panel-fresh', { enable: true, entry: 'app.tsx' }],
+      ['panel-house', { enable: true, entry: 'app.tsx' }],
+    ],
+  },
+
   HeaterTwo: {
-    categoryKey: 'Heater',
     name: '取暖器v2',
+    categoryKey: 'Heater',
     enable: true,
     viewportWidth: 375,
     panels: [
@@ -748,8 +858,8 @@ module.exports = {
     ],
   },
   SmartLocksTwo: {
-    categoryKey: 'DoorLock',
     name: '智能门锁',
+    categoryKey: 'DoorLock',
     enable: true,
     viewportWidth: 375,
     panels: [
@@ -761,6 +871,8 @@ module.exports = {
     ],
   },
   WhiteLampTwo: {
+    name: '冷暖灯',
+    categoryKey: 'WhiteLamp',
     enable: true,
     viewportWidth: 375,
     panels: [
@@ -772,8 +884,8 @@ module.exports = {
     ],
   },
   AirConditionerTwo: {
-    categoryKey: 'AirConditioning',
     name: '空调v2',
+    categoryKey: 'AirConditioning',
     enable: true,
     viewportWidth: 375,
     panels: [
@@ -785,6 +897,8 @@ module.exports = {
     ],
   },
   PetFeedingDeviceTwo: {
+    name: '宠物喂食器v2',
+    categoryKey: 'PetFeedingDevice',
     enable: true,
     viewportWidth: 375,
     panels: [
@@ -796,6 +910,8 @@ module.exports = {
     ],
   },
   HumidifierTwo: {
+    name: '加湿器',
+    categoryKey: 'Humidifier',
     enable: true,
     viewportWidth: 375,
     panels: [
@@ -807,6 +923,8 @@ module.exports = {
     ],
   },
   IntelligentGatewayTwo: {
+    name: '网关',
+    categoryKey: 'IntelligentGateway',
     enable: true,
     viewportWidth: 375,
     panels: [
@@ -818,8 +936,8 @@ module.exports = {
     ],
   },
   ElectricCurtainsTwo: {
+    name: '窗帘电机v2',
     categoryKey: 'ElectricCurtains',
-    name: '电动窗帘v2',
     enable: true,
     viewportWidth: 375,
     panels: [
@@ -831,6 +949,8 @@ module.exports = {
     ],
   },
   LaundryRackTwo: {
+    name: '智能晾衣架v2',
+    categoryKey: 'LaundryRack',
     enable: true,
     viewportWidth: 375,
     panels: [
@@ -842,6 +962,8 @@ module.exports = {
     ],
   },
   DownLightTwo: {
+    name: '筒灯',
+    categoryKey: 'DownLight',
     enable: true,
     viewportWidth: 375,
     panels: [
