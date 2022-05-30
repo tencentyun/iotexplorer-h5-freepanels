@@ -21,9 +21,9 @@
 | 电工-插座类   | 五孔单插      | 五孔单插   | FivePlug   |  已上架 |
 |          | 三孔单插      | 三孔单插   | ThreePlug         | 已上架 |
 |          | 电量统计插座    | 电量统计插座 | ElectricityStatsReceptacle |
-|          | 墙壁插座带USB  | 墙壁插头   | WallPlug                    |
+|          | 墙壁插座带USB  | 墙壁插头   | WallPlug     |
 | 电工类-开关类 | 场景开关 | 多路开关   | MultiSwitch           |
-|          |           | 开关面板   | switch                   |
+|          |           | 开关面板   | switch          |
 |          |           | 一路开关   | SwitchOne                  |
 |          |           | 二路开关   | TwoSwitch                   |
 |          |           | 三路开关   | ThreeSwitch                |
@@ -32,8 +32,8 @@
 |          | 调光开关      | 调光开关   | DimmerSwitch                |
 |          | 四路灯       | 四路灯    | four-streetlights            |
 |          | 五路灯       | 五路灯    | five-streetlights            |
-|          | 智能灯       | 智能灯    | three-streetlights（旧称lamp ）                        |
-|          | 一路灯       | 一路灯    | one-lamp（旧称lamp-one)                   |
+|          | 智能灯       | 智能灯    | ThreeStreetLights（旧称lamp ）  |  测试中 |
+|          | 一路灯       | 一路灯    | OneLamp（旧称lamp-one)                   | 测试中|
 | 网关类    | 网关        | 智能网关   | intelligent-gateway          |
 |           |         | 路由器    |         |
 | 传感类    | 门窗磁传感器    | 门磁     | magnetic-door                |
@@ -85,6 +85,11 @@ panel-dark  暗黑色系
 panel-colorful 多彩色系
 panel-blueWhite 蓝白色系
 panel-morandi  莫兰迪色系
+panel-cold  冷色系
+panel-card  白灰卡块系
+panel-brunet 深色系
+panel-fresh  鲜艳色系
+panel-house 
 ```
 
 ### 2、二次开发
