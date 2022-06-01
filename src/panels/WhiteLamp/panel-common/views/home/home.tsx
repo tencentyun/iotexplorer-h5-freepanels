@@ -35,43 +35,47 @@ export function Home() {
   const getHomePage = () => {
     if (themeType == 'normal' || themeType == 'colorful') {
       return (
-        <article
-          id={'home'}
-          className={classNames(
-            'home',
-            sdk.deviceData.power_switch != 1 && 'power-off',
-          )}
-        >
-          <Ticker/>
+        <article>
           <div
             className={classNames('devSetting', 'dev-setting-open')}
             onClick={handleSetting}
           >
             <img src={settingImageSrc()} alt="" />
           </div>
-          <Position defaultValue={300}/>
-          <Detail/>
+          <div
+            id={'home'}
+            className={classNames(
+              'home',
+              sdk.deviceData.power_switch != 1 && 'power-off',
+            )}
+          >
+            <Ticker/>
+            <Position defaultValue={300}/>
+            <Detail/>
+          </div>
         </article>
       );
     }
     return (
-        <article
+      <article>
+        <div
+          className={classNames('devSetting', 'dev-setting-open')}
+        >
+          <img src={settingImageSrc()} alt="" onClick={handleSetting}/>
+        </div>
+        <div
           id={'home'}
           className={classNames(
             'home',
             sdk.deviceData.power_switch != 1 && 'power-off',
           )}
         >
-          <div
-            className={classNames('devSetting', 'dev-setting-open')}
-          >
-            <img src={settingImageSrc()} alt="" onClick={handleSetting}/>
-          </div>
           <Position/>
           <Detail/>
           <Ticker/>
 
-        </article>
+        </div>
+      </article>
     );
   };
   return (
