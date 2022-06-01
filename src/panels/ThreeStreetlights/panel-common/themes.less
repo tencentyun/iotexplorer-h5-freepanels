@@ -1,4 +1,3 @@
-
 /*蓝白主题*/
 .color_primary() {
   color: var(--global-color-white);
@@ -7,10 +6,14 @@
   color: #FFFFFF;
 }
 .theme_blue_white {
+  overflow: hidden;
   height: 100%;
   position: relative;
   background-color: #f4f8fb;
 
+  .dev-setting-open{
+    background: rgba(255,255,255,0.20);
+  }
   .ticker{
     text-align: center;
     position: relative;
@@ -18,10 +21,6 @@
     justify-content: center;
     align-items: baseline;
     margin-bottom: 40px;
-
-    .dev-setting-open{
-      background: rgba(255,255,255,0.20);
-    }
   }
   #ticker{
 
@@ -267,9 +266,13 @@
 }
 /*暗色主题*/
 .theme_dark {
+  overflow: hidden;
   position: relative;
   background: #222532;
 
+  .dev-setting-open{
+    background: #4E505B;
+  }
   .scene_img_wraper{
     color: #FFFFFF;
   }
@@ -280,10 +283,6 @@
     justify-content: center;
     align-items: baseline;
     margin-bottom: 40px;
-
-    .dev-setting-open{
-      background: #4E505B;
-    }
   }
 
   #ticker{
@@ -356,9 +355,13 @@
 }
 /*多彩主题*/
 .theme_colorful {
+  overflow: hidden;
   position: relative;
   background-color: #F4F8FB;
 
+  .dev-setting-open{
+    background: #FFFFFF;
+  }
   .ticker_top_colorful{
     height: 800px ;
     display: flex ;
@@ -366,10 +369,6 @@
     align-items: center ;
     justify-content: center ;
     padding: 20px;
-
-    .dev-setting-open{
-      background: #FFFFFF;
-    }
   }
   #ticker{
     height: 900px;
@@ -471,7 +470,11 @@
 /*莫兰迪主题*/
 .theme_morandi {
   position: relative;
+  overflow: hidden;
 
+  .dev-setting-open{
+    background: rgba(255,255,255,0.20);
+  }
   .morandi_background{
     background-image: linear-gradient(180deg, #576273 0%, #414B5B 86%);
   }
@@ -483,10 +486,6 @@
     align-items: baseline;
     margin-bottom: 40px;
     // background-image: linear-gradient(180deg, #576273 0%, #414B5B 86%);
-
-    .dev-setting-open{
-      background: rgba(255,255,255,0.20);
-    }
   }
   .position_card{
     padding-bottom: 70px;
@@ -567,7 +566,11 @@
   background: #f4f8fb;
   height: 100%;
   position: relative;
+  overflow: hidden;
 
+  .dev-setting-open{
+    background: #FFFFFF;
+  }
   .lightbright-value-text{
     color: #0f0f0f;
   }
@@ -587,16 +590,12 @@
   }
   .ticker{
     text-align: center;
-    position: relative;
     display: flex;
     justify-content: center;
     align-items: baseline;
     margin-bottom: 40px;
     // background-image: linear-gradient(180deg, #576273 0%, #414B5B 86%);
 
-    .dev-setting-open{
-      background: #FFFFFF;
-    }
   }
   #ticker{
     section{
