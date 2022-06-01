@@ -25,7 +25,12 @@ export function Home() {
             }}
           ></img>
 
-          <div className="switch-button font_line_3">
+          <div
+            className="switch-button font_line_3"
+            onClick={() => {
+              onControlDevice('power_switch', Number(!deviceData.power_switch));
+            }}
+          >
             {deviceData.power_switch === 1
               ? `亮度: ${parseInt(deviceData.bright_value ? deviceData.bright_value.toString() : '0')}%`
               : '轻触开启'}
