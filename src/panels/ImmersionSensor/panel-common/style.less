@@ -9,8 +9,32 @@ p {
 }
 
 .immersion-sensor {
+  position: relative;
   padding: 60px 69px 120px 78px;
   min-height: calc(~"100vh - 180px");
+  background: #F4F8FB;
+  .settings {
+    position: absolute;
+    top: 254px;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 196px;
+    height: 120px;
+    border-radius: 0 60px 60px 0;
+    background: #FFFFFF;
+    box-shadow: 0 0 40px 0 rgba(106,106,106,0.11);
+    z-index: 1;
+    .icon-more {
+      width: 77px;
+      height: 18px;
+      background-image: url('images/more-normal.svg');
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: 100% 100%;
+    }
+  }
   .sensor-header {
     display: flex;
     align-items: center;
@@ -245,6 +269,13 @@ p {
 body.theme_blue_white {
   .immersion-sensor {
     background-image: linear-gradient(180deg, #45A3FF 6%, #005BFF 100%);
+    .settings {
+      background: rgba(255,255,255,0.20);
+      box-shadow: 0 0 40px 0 rgba(106,106,106,0.11);
+      .icon-more {
+        background-image: url('images/more-blue.svg');
+      }
+    }
   }
   .sensor-header {
     .battery-percent {
@@ -284,6 +315,17 @@ body.theme_blue_white {
 }
 
 body.theme_dark {
+  .immersion-sensor {
+    background: #222532;
+    .settings {
+      background-image: linear-gradient(139deg, #333E4D 0%, #202C3A 100%);
+      border: 3px solid rgba(62,68,84,0.20);
+      box-shadow: 0 6px 100px 0 #242735;
+      .icon-more {
+        background-image: url('images/more-dark.svg');
+      }
+    }
+  }
   .sensor-header {
     .battery-percent {
       color: #FFFFFF;
@@ -365,6 +407,13 @@ body.theme_dark {
 }
 
 body.theme_colorful {
+  .settings {
+    background: #FFFFFF;
+    box-shadow: 0 0 40px 0 rgba(106,106,106,0.11);
+    .icon-more {
+      background-image: url('images/more-colorful.svg');
+    }
+  }
   .sensor-header {
     .battery-percent {
       color: #656565;
@@ -398,6 +447,13 @@ body.theme_colorful {
 body.theme_morandi {
   .immersion-sensor {
     padding: 0 0 60px;
+    .settings {
+      background: rgba(255,255,255,0.20);
+      box-shadow: 0 0 40px 0 rgba(106,106,106,0.11);
+      .icon-more {
+        background-image: url('images/more-morandi.svg');
+      }
+    }
     .sensor-header-morandi{
       padding: 60px 79px 106px 78px;
       background-image: linear-gradient(180deg, #576273 0%, #414B5B 86%);
