@@ -1,5 +1,27 @@
 .home-container {
   position: relative;
+  .settings {
+    position: absolute;
+    top: 110px;
+    right: 52px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 126px;
+    height: 126px;
+    border-radius: 50%;
+    background: #FFFFFF;
+    box-shadow: 0 0 40px 0 rgba(106,106,106,0.11);
+    z-index: 1;
+    .icon-more {
+      width: 77px;
+      height: 18px;
+      background-image: url('../images/more-normal.svg');
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: 100% 100%;
+    }
+  }
   & > header {
     position: absolute;
     left: 0;
@@ -94,6 +116,15 @@ body.theme_blue_white {
 
   .home-container {
     position: relative;
+    .settings {
+      top: 156px;
+      right: 52px;
+      background: #F4F8FB;
+      box-shadow: 0 0 40px 0 rgba(106,106,106,0.11);
+      .icon-more {
+        background-image: url('../images/more-blue.svg');
+      }
+    }
     .home-middle {
       padding: 64px 64px 0;
       margin-bottom: 50px;
@@ -217,6 +248,14 @@ body.theme_dark {
   .home-container {
     position: relative;
     padding-bottom: 415px;
+    .settings {
+      top: 183px;
+      right: 52px;
+      background: rgba(255,255,255,0.20);
+      .icon-more {
+        background-image: url('../images/more-dark.svg');
+      }
+    }
     .home-middle {
       padding: 80px 80px 0;
       margin-bottom: 229px;
@@ -331,6 +370,14 @@ body.theme_dark {
 body.theme_colorful {
   .home-container {
     position: relative;
+    .settings {
+      top: 160px;
+      right: 52px;
+      background: rgba(255,255,255,0.20);
+      .icon-more {
+        background-image: url('../images/more-colorful.svg');
+      }
+    }
     
     .home-middle {
       padding: 80px 64px 0;
@@ -448,6 +495,15 @@ body.theme_colorful {
 body.theme_morandi {
   .home-container {
     position: relative;
+    .settings {
+      top: 110px;
+      left: 17px;
+      background: #FFFFFF;
+      box-shadow: 0 0 40px 0 rgba(106,106,106,0.11);
+      .icon-more {
+        background-image: url('../images/more-morandi.svg');
+      }
+    }
     & > header {
       position: absolute;
       left: 0;

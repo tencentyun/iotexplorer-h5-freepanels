@@ -245,10 +245,17 @@ export function Home() {
     unit == 0 ? onControlDevice('current_temp', value) : onControlDevice('current_fahrenheit', value);
   };
 
+  const handleBaseSetting = () => {
+    sdk.goDeviceDetailPage();
+  };
+
   return (
     <DeviceContext.Consumer>
       {({ deviceData }) => (
         <main className="thermostat-wrap">
+          <div className="settings" onClick={handleBaseSetting}>
+            <div className="icon-more"></div>
+          </div>
           {themeType === 'colorful'
             ? renderContentArea(deviceData.spray_mode, deviceData.level, deviceData.power_switch)
             : null}
