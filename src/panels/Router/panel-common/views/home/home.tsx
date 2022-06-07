@@ -19,6 +19,10 @@ import IconImage from '../icons/normal/icon.svg';
 import IconImageDark from '../icons/dark/icon.svg';
 import IconImageColorful from '../icons/colorful/icon.svg';
 import IconImageMorandi from '../icons/morandi/icon.svg';
+import SettingImage from '../icons/normal/dev-open.svg';
+import SettingImageBlueWhite from '../icons/dark/dev-open.svg';
+import SettingImageColorful from '../icons/colorful/dev-open.svg';
+import SettingImageMorandi from '../icons/morandi/dev-open.svg';
 
 const routerIcon =  'https://tencent-1305105198.cos.ap-guangzhou.myqcloud.com/router/blue-white/router.png';
 export function Home() {
@@ -64,12 +68,36 @@ export function Home() {
     <img className="details-icon" src={url}></img>
   );
   const history = useHistory();
-  const handleSetting = () =>
+  const handleGoSetting = () =>
     // 更多跳转
     history.push('/setting')
   ;
+  const settingImageSrc = () => {
+    switch (themeType) {
+      case 'normal':
+        return SettingImage;
+      case 'blueWhite':
+        return SettingImageBlueWhite;
+      case 'dark':
+        return SettingImageBlueWhite;
+      case 'colorful':
+        return SettingImageColorful;
+      case 'morandi':
+        return SettingImageMorandi;
+      default:
+        return SettingImage;
+    }
+  };
+  const handleSetting = () => {
+    sdk.goDeviceDetailPage({});
+  };
   return (
     <article className={classNames('home')}>
+      <div
+        className={classNames('devSetting', 'dev-setting-open')}
+      >
+        <img className={classNames('dev-img')} src={settingImageSrc()} alt="" onClick={handleSetting}/>
+      </div>
       {/* 仪表盘*/}
       <section className={classNames('dashboard')}>
         <div className="dashboard-info">
@@ -107,7 +135,7 @@ export function Home() {
           prefixIcon={cellIcon(iconImageSrc())}
           value=""
           valueStyle="gray"
-          onClick={handleSetting}
+          onClick={handleGoSetting}
         />
       </div>
       {/* 详情区域*/}

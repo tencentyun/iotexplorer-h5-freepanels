@@ -9,6 +9,9 @@ import { apiControlDeviceData, onControlDevice } from '@hooks/useDeviceData';
 import History from '../history/history';
 import { ListPicker } from '@components/business';
 import './home.less';
+import SettingImage from '../icons/normal/dev-open.svg';
+import SettingImageBlueWhite from '../icons/blue-white/dev-open.svg';
+import SettingImageColorful from '../icons/colorful/dev-open.svg';
 
 export function Home() {
   const themeType = getThemeType();
@@ -29,6 +32,25 @@ export function Home() {
         return '正常';
     }
   };
+  const settingImageSrc = () => {
+    switch (themeType) {
+      case 'normal':
+        return SettingImage;
+      case 'blueWhite':
+        return SettingImageBlueWhite;
+      case 'dark':
+        return SettingImageBlueWhite;
+      case 'colorful':
+        return SettingImageColorful;
+      case 'morandi':
+        return SettingImageBlueWhite;
+      default:
+        return SettingImage;
+    }
+  };
+  const handleSetting = () => {
+    sdk.goDeviceDetailPage({});
+  };
   const onClick = (path: string) => {
     history.push(path);
   };
@@ -44,6 +66,12 @@ export function Home() {
   };
   return (
     <article className={classNames('home')}>
+      <div
+        className={classNames('devSetting', 'dev-setting-open')}
+        onClick={handleSetting}
+      >
+        <img src={settingImageSrc()} alt="" />
+      </div>
       <div className="round_card">
         {/* 电量*/}
         <div className="alarm" onClick={() => onToggleAlarmState(true)}>
