@@ -4,9 +4,9 @@ import { toUnderscores } from './utillib';
 export function withTheme(WrappedComponent: React.ReactNode, theme: string) {
   setThemeType(theme);
   // 给 body 增加主题标识的 className
-  const { body } = document;
+  // const { body } = document;
   console.log('get bodyed....');
-  body.classList.add(`theme_${toUnderscores(theme)}`);
+  document.body.classList.add(`theme_${toUnderscores(theme)}`);
 
   return WrappedComponent;
 }
