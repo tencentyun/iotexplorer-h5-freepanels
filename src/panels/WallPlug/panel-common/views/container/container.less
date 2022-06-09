@@ -5,6 +5,15 @@
   justify-content: space-around;
   border-radius: 60px;
 }
+.devSetting {
+  position: absolute;
+  right: 50px;
+  transform: translate(-50%, 11%);
+  width: 225px;
+  height: 125px;
+  border-radius: 50%;
+  z-index: 100;
+}
 body.theme_normal {
   .component_business_tabs .tabs{
     .is_active{
@@ -21,6 +30,9 @@ body.theme_normal {
         }
       }
     }
+  }
+  .devSetting {
+    top: 55px;
   }
 }
 body.theme_blue_white {
@@ -39,6 +51,9 @@ body.theme_blue_white {
         }
       }
     }
+  }
+  .devSetting {
+    top: 55px;
   }
 }
 body.theme_dark {
@@ -63,6 +78,9 @@ body.theme_dark {
       }
     }
   }
+  .devSetting {
+    bottom: 150px;
+  }
 }
 body.theme_colorful {
   .component_business_tabs .tabs{
@@ -76,6 +94,9 @@ body.theme_colorful {
         color: #1C5CFC;
       }
     }
+  }
+  .devSetting {
+    top: 55px;
   }
 }
 body.theme_morandi {
@@ -107,5 +128,8 @@ body.theme_morandi {
         fill: #FFFFFF !important;
       }
     }
+  }
+  .devSetting {
+    bottom: 150px;
   }
 }

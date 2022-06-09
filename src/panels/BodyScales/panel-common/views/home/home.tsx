@@ -98,6 +98,7 @@ import circleImage from '../icons/blue-white/circle.svg';
 import circleImageDark from '../icons/dark/circle.svg';
 import triangleImage from '../icons/blue-white/triangle.svg';
 import triangleImageDark from '../icons/dark/triangle.svg';
+import {useUserInfo} from "@hooks/useUserInfo";
 
 export function Home() {
   const themeType = getThemeType();
@@ -131,6 +132,7 @@ export function Home() {
     deviceId: sdk.deviceId,
     familyId: sdk.familyId,
   });
+  const [userInfo, { onUpdateUserInfo }] = useUserInfo();
   const circleImageSrc = () => {
     switch (themeType) {
       case 'dark':
@@ -371,6 +373,9 @@ export function Home() {
         return ScoreImage;
     }
   };
+  const handleSetting = () => {
+    sdk.goDeviceDetailPage({});
+  };
   return (
     <article
       className={classNames(
@@ -525,8 +530,8 @@ export function Home() {
 
           <div className="foot_card">
             <div className="left_card">
-              <div className="span_body">
-                <div className="body_font1">朵某某</div>
+              <div className="span_body" onClick={handleSetting}>
+                <div className="body_font1">{userInfo.nickName}</div>
                 <div className="body_font2">成功链接</div>
                 <div className="foot_card_span">
                   <div className="dot1"></div>

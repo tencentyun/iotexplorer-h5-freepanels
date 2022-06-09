@@ -27,6 +27,9 @@ import TimeImageBlueWhite from '../icons/blue-white/time.svg';
 import TimeImageDark from '../icons/dark/time.svg';
 import TimeImageColorful from '../icons/colorful/time.svg';
 import TimeImageMorandi from '../icons/morandi/time.svg';
+import SettingImage from '../icons/normal/dev-open.svg';
+import SettingImageBlueWhite from '../icons/blue-white/dev-open.svg';
+import SettingImageColorful from '../icons/colorful/dev-open.svg';
 
 export function Home() {
   const themeType = getThemeType();
@@ -135,6 +138,25 @@ export function Home() {
         return '';
     }
   };
+  const settingImageSrc = () => {
+    switch (themeType) {
+      case 'normal':
+        return SettingImage;
+      case 'blueWhite':
+        return SettingImageBlueWhite;
+      case 'dark':
+        return SettingImageBlueWhite;
+      case 'colorful':
+        return SettingImageColorful;
+      case 'morandi':
+        return SettingImageBlueWhite;
+      default:
+        return SettingImage;
+    }
+  };
+  const handleSetting = () => {
+    sdk.goDeviceDetailPage({});
+  };
   const cellIcon = (url: string) => (
     <img className="details-icon" src={url}></img>
   );
@@ -145,6 +167,11 @@ export function Home() {
         sdk.deviceData.power_switch === 0 && 'power-off',
       )}
     >
+      <div
+        className={classNames('devSetting', 'dev-setting-open')}
+      >
+        <img className={classNames('dev-img')} src={settingImageSrc()} alt="" onClick={handleSetting}/>
+      </div>
       {/* 电量*/}
       <Battery
         isShowPercent={false}

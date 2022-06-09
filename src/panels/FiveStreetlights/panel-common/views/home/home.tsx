@@ -12,9 +12,31 @@ import { SvgIcon } from '@components/common/icon';
 import { LightBright } from '@components/business/light-bright/light-bright';
 import { Light_temperature } from './temperature/temperature';
 import { Buttom } from './buttom/buttom';
+import SettingImage from '../icons/normal/dev-open.svg';
+import SettingImageBlueWhite from '../icons/blue-white/dev-open.svg';
+import SettingImageColorful from '../icons/colorful/dev-open.svg';
 
 export function Home() {
   const themeType = getThemeType();
+  const settingImageSrc = () => {
+    switch (themeType) {
+      case 'normal':
+        return SettingImage;
+      case 'blueWhite':
+        return SettingImageBlueWhite;
+      case 'dark':
+        return SettingImageBlueWhite;
+      case 'colorful':
+        return SettingImageColorful;
+      case 'morandi':
+        return SettingImageBlueWhite;
+      default:
+        return SettingImage;
+    }
+  };
+  const handleSetting = () => {
+    sdk.goDeviceDetailPage({});
+  };
   const [stateFlag, onToggleStateFlag] = useState(0);
   const onClickLeft = () => {
     onToggleStateFlag(0);
@@ -108,75 +130,93 @@ export function Home() {
   const getHomePage = () => {
     if (themeType == 'normal' || themeType == 'colorful') {
       return (
-        <article id={'home'} className={classNames('home', sdk.deviceData.power_switch != 1 && 'power-off')}>
-          {getMenuOrdinary()}
-          {/* 白光 */}
-          <div className={classNames(stateFlag != 0 && 'vhide' || '')}>
-            <WhiteLightDisplay/>
+        <article>
+          <div
+            className={classNames('devSetting', 'dev-setting-open')}
+          >
+            <img className={classNames('dev-img')} src={settingImageSrc()} alt="" onClick={handleSetting}/>
           </div>
-          {/* 彩光 */}
-          <div className={classNames(stateFlag != 1 && 'vhide' || '')}>
-            <ColoredLightDisplay/>
-          </div>
-          {/* 场景 */}
-          <div className={classNames(stateFlag != 2 && 'vhide' || '')}>
-            <ScenarioDisplay/>
-          </div>
-          <div className={classNames(stateFlag == 2 && 'vhide' || '')}>
-            <article id={'lightbright'} className={classNames('lightbright')}>
-              <LightBright defaultValue={sdk.deviceData.brightness ? sdk.deviceData.brightness : 80}
-                           onChange={changeBrightness}/>
-            </article>
-          </div>
+          <div id={'home'} className={classNames('home', sdk.deviceData.power_switch != 1 && 'power-off')}>
+            {getMenuOrdinary()}
+            {/* 白光 */}
+            <div className={classNames(stateFlag != 0 && 'vhide' || '')}>
+              <WhiteLightDisplay/>
+            </div>
+            {/* 彩光 */}
+            <div className={classNames(stateFlag != 1 && 'vhide' || '')}>
+              <ColoredLightDisplay/>
+            </div>
+            {/* 场景 */}
+            <div className={classNames(stateFlag != 2 && 'vhide' || '')}>
+              <ScenarioDisplay/>
+            </div>
+            <div className={classNames(stateFlag == 2 && 'vhide' || '')}>
+              <article id={'lightbright'} className={classNames('lightbright')}>
+                <LightBright defaultValue={sdk.deviceData.brightness ? sdk.deviceData.brightness : 80}
+                             onChange={changeBrightness}/>
+              </article>
+            </div>
 
-          <div className={classNames(stateFlag != 1 && 'vhide' || '')}>
-            <Light_temperature/>
-          </div>
-          <div className={classNames(stateFlag != 2 && 'vhide' || '')}>
-            <Scenario_progress_bar/>
-          </div>
-          < Buttom/>
+            <div className={classNames(stateFlag != 1 && 'vhide' || '')}>
+              <Light_temperature/>
+            </div>
+            <div className={classNames(stateFlag != 2 && 'vhide' || '')}>
+              <Scenario_progress_bar/>
+            </div>
+            < Buttom/>
 
+          </div>
         </article>
       );
     } if (themeType == 'dark' || themeType == 'morandi') {
       return (
-        <article id={'home'} className={classNames('home', sdk.deviceData.power_switch != 1 && 'power-off')}>
-          {/* 白光 */}
-          <div className={classNames(stateFlag != 0 && 'vhide' || '')}>
-            <WhiteLightDisplay/>
+        <article>
+          <div
+            className={classNames('devSetting', 'dev-setting-open')}
+          >
+            <img className={classNames('dev-img')} src={settingImageSrc()} alt="" onClick={handleSetting}/>
           </div>
-          {/* 彩光 */}
-          <div className={classNames(stateFlag != 1 && 'vhide' || '')}>
-            <ColoredLightDisplay/>
-          </div>
-          {/* 场景 */}
-          <div className={classNames(stateFlag != 2 && 'vhide' || '')}>
-            <ScenarioDisplay/>
-          </div>
-
-          <div className={classNames(stateFlag == 2 && 'vhide' || '')}>
-            <article id={'lightbright'} className={classNames('lightbright')}>
-              <LightBright defaultValue={sdk.deviceData.brightness ? sdk.deviceData.brightness : 80}
-                           onChange={changeBrightness}/>
-            </article>
-          </div>
-
-          <div className={classNames(stateFlag != 1 && 'vhide' || '')}>
-            <Light_temperature/>
-          </div>
-          <div className={classNames(stateFlag != 2 && 'vhide' || '')}>
-            <Scenario_progress_bar/>
-          </div>
-          <div className="botton_card">
-            < Buttom/>
-            {getMenu()}
+          <div id={'home'} className={classNames('home', sdk.deviceData.power_switch != 1 && 'power-off')}>
+            {/* 白光 */}
+            <div className={classNames(stateFlag != 0 && 'vhide' || '')}>
+              <WhiteLightDisplay/>
+            </div>
+            {/* 彩光 */}
+            <div className={classNames(stateFlag != 1 && 'vhide' || '')}>
+              <ColoredLightDisplay/>
+            </div>
+            {/* 场景 */}
+            <div className={classNames(stateFlag != 2 && 'vhide' || '')}>
+              <ScenarioDisplay/>
+            </div>
+            <div className={classNames(stateFlag == 2 && 'vhide' || '')}>
+              <article id={'lightbright'} className={classNames('lightbright')}>
+                <LightBright defaultValue={sdk.deviceData.brightness ? sdk.deviceData.brightness : 80}
+                             onChange={changeBrightness}/>
+              </article>
+            </div>
+            <div className={classNames(stateFlag != 1 && 'vhide' || '')}>
+              <Light_temperature/>
+            </div>
+            <div className={classNames(stateFlag != 2 && 'vhide' || '')}>
+              <Scenario_progress_bar/>
+            </div>
+            <div className="botton_card">
+              < Buttom/>
+              {getMenu()}
+            </div>
           </div>
         </article>
       );
     }
     return (
-        <article id={'home'} className={classNames('home', sdk.deviceData.power_switch != 1 && 'power-off')}>
+      <article>
+        <div
+          className={classNames('devSetting', 'dev-setting-open')}
+        >
+          <img className={classNames('dev-img')} src={settingImageSrc()} alt="" onClick={handleSetting}/>
+        </div>
+        <div id={'home'} className={classNames('home', sdk.deviceData.power_switch != 1 && 'power-off')}>
 
           {/* 白光 */}
           <div className={classNames(stateFlag != 0 && 'vhide' || '')}>
@@ -208,7 +248,8 @@ export function Home() {
             < Buttom/>
             {getMenuOrdinary()}
           </div>
-        </article>
+        </div>
+      </article>
     );
   };
   return (

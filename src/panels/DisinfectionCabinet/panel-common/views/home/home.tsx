@@ -41,9 +41,9 @@ export function Home() {
   const moreImageSrc = () => {
     switch (themeType) {
       case 'normal':
-        return sdk.deviceData.power_switch === 1 ? MoreImage : MoreImageClose;
+        return MoreImage;
       case 'colorful':
-        return sdk.deviceData.power_switch === 1 ? MoreImageColorful : MoreImageColorfulClose;
+        return MoreImageColorful;
       case 'morandi':
         return MoreImageMorandi;
       default:
@@ -59,35 +59,41 @@ export function Home() {
     sdk.goDeviceDetailPage({});
   };
   return (
-    <article
-      className={classNames(
-        'home',
-        sdk.deviceData.power_switch === 1 ? '' : 'power-off',
-      )}
-    >
-      {/* 仪表盘*/}
-      <section className={classNames('dashboard')}>
-        <div className="dashboard-btn">
-          <div className="lock">
-            <img id={'lock'} src={lockImageSrc()} alt="" onClick={handleLock} />
-          </div>
-          <div className="title">
-            童锁{sdk.deviceData.child_lock === 1 ? '开' : '关'}
-          </div>
-          <img id={'more'} src={moreImageSrc()} alt="" onClick={handleSetting} />
-        </div>
-        <div className="disinfection-img">
-          <img src={disinfectionImage} alt="" />
-          <div className="up-state">
-            上层门{sdk.deviceData.up_door_state === 1 ? '开' : '关'}
-          </div>
-          <div className="down-state">
-            下层门{sdk.deviceData.down_door_state === 1 ? '开' : '关'}
-          </div>
-        </div>
-      </section>
-      {/* 详情区域*/}
-      <Detail />
+    <article>
+      <div
+        className={classNames('devSetting', 'dev-setting-open')}
+        onClick={handleSetting}
+      />
+      <div
+         className={classNames(
+           'home',
+           sdk.deviceData.power_switch === 1 ? '' : 'power-off',
+         )}
+       >
+         {/* 仪表盘*/}
+         <section className={classNames('dashboard')}>
+           <div className="dashboard-btn">
+             <div className="lock">
+               <img id={'lock'} src={lockImageSrc()} alt="" onClick={handleLock} />
+             </div>
+             <div className="title">
+               童锁{sdk.deviceData.child_lock === 1 ? '开' : '关'}
+             </div>
+             <img id={'more'} src={moreImageSrc()} alt="" onClick={handleSetting} />
+           </div>
+           <div className="disinfection-img">
+             <img src={disinfectionImage} alt="" />
+             <div className="up-state">
+               上层门{sdk.deviceData.up_door_state === 1 ? '开' : '关'}
+             </div>
+             <div className="down-state">
+               下层门{sdk.deviceData.down_door_state === 1 ? '开' : '关'}
+             </div>
+           </div>
+         </section>
+         {/* 详情区域*/}
+         <Detail />
+       </div>
     </article>
   );
 }
