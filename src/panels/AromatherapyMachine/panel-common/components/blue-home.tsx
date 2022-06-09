@@ -6,6 +6,7 @@ import { Block } from '@components/layout';
 import { Slider } from 'antd-mobile';
 import { onControlDevice } from '@hooks/useDeviceData';
 import { DeviceContext } from '../deviceContext';
+import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 import '../components/blue-home.less';
 
 export function BlueHome() {
@@ -40,6 +41,10 @@ export function BlueHome() {
     history.push('/more');
   };
 
+  const handleBaseSetting = () => {
+    sdk.goDeviceDetailPage();
+  };
+
   return (
     <DeviceContext.Consumer>
       {({ deviceData }) => (
@@ -49,6 +54,9 @@ export function BlueHome() {
             !deviceData.power_switch ? 'close' : '',
           )}
         >
+          <div className="settings" onClick={handleBaseSetting}>
+            <div className="icon-more"></div>
+          </div>
           {/* 产品图 */}
           <div className="product-image-wrap">
             <div className="fumes"></div>

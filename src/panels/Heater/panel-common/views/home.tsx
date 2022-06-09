@@ -6,15 +6,23 @@ import { ControlArea } from '../components/control-area';
 import { ToolsBar } from '../components/tools-bar';
 import { DeviceContext } from '../deviceContext';
 import { getThemeType } from '@libs/theme';
+import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 import './home.less';
 
 export function Home() {
   const themeType = getThemeType();
 
+  const handleBaseSetting = () => {
+    sdk.goDeviceDetailPage();
+  };
+
   return (
     <DeviceContext.Consumer>
       {({ deviceData }) => (
         <main className="home-container">
+          <div className="settings" onClick={handleBaseSetting}>
+            <div className="icon-more"></div>
+          </div>
           {/* 童锁 */}
           <div className="morandi-header">
             <TopNav status={deviceData.child_lock || 0} powerStatus={deviceData.power_switch || 0}/>

@@ -69,10 +69,17 @@ export function Home() {
     history.push('/record');
   };
 
+  const handleBaseSetting = () => {
+    sdk.goDeviceDetailPage();
+  };
+
   return (
     <DeviceContext.Consumer>
       {({ deviceData }) => (
         <main className="immersion-sensor">
+          <div className="settings" onClick={handleBaseSetting}>
+            <div className="icon-more"></div>
+          </div>
           {themeType === 'morandi' ? (
             <div className="sensor-header-morandi">
               <header className="sensor-header">

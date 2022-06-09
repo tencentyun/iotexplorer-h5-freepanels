@@ -171,10 +171,17 @@ export function Home() {
       </div>
   );
 
+  const handleBaseSetting = () => {
+    sdk.goDeviceDetailPage();
+  };
+
   return (
     <DeviceContext.Consumer>
       {({ deviceData }) => (
         <main className="electricity-stats-receptacle">
+          <div className="settings" onClick={handleBaseSetting}>
+            <div className="icon-more"></div>
+          </div>
           {themeType === 'normal' || themeType === 'colorful'
             ? renderHeader(deviceData)
             : null}

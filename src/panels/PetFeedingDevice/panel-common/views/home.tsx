@@ -42,11 +42,18 @@ export function Home() {
     return CurrentSkinProps[key];
   };
 
+  const handleSetting = () => {
+    sdk.goDeviceDetailPage();
+  };
+
   return (
     <DeviceContext.Consumer>
       {({ deviceData }) => (
         <div className="pet-device-view">
           <div className="header-wrap">
+            <div className="settings" onClick={handleSetting}>
+              <div className="icon-more"></div>
+            </div>
             {themeType !== 'morandi' ? (
               <header>
                 <div className="power-switch">

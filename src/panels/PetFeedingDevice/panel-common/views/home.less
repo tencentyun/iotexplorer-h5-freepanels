@@ -5,7 +5,33 @@
   flex-direction: column;
   border-top: 1px solid transparent;
   box-sizing: border-box;
+  background: #F4F8FB;
 
+  .header-wrap {
+    position: relative;
+
+    .settings {
+      position: absolute;
+      top: 231px;
+      right: 75px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 126px;
+      height: 126px;
+      border-radius: 50%;
+      background: #FFFFFF;
+      z-index: 1;
+      .icon-more {
+        width: 77px;
+        height: 18px;
+        background-image: url('../images/more-normal.svg');
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+      }
+    }
+  }
   // 头部样式
   header {
     flex-shrink: 0;
@@ -115,7 +141,7 @@
     box-shadow: 0 6px 100px 0 rgba(32,33,33,0.10);
     border-radius: 120px 120px 0 0;
     margin-top: 0;
-    padding: 153px 62px 0;
+    padding: 153px 62px 120px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -156,6 +182,12 @@ body.theme_blue_white {
     .header-wrap {
       min-height: 1114px;
       background-image: linear-gradient(133deg, #0081FF 0%, #005BFF 100%);
+      .settings {
+        background: rgba(255,255,255,0.20);
+        .icon-more {
+          background-image: url('../images/more-blue.svg');
+        }
+      }
     }
     // 头部样式
     header {
@@ -302,6 +334,18 @@ body.theme_dark {
     height: 100vh;
     display: flex;
     flex-direction: column;
+    background-color: #222532;
+
+    .header-wrap {
+      .settings {
+        top: 231px;
+        right: 75px;
+        background: rgba(255,255,255,0.20);
+        .icon-more {
+          background-image: url('../images/more-dark.svg');
+        }
+      }
+    }
   
     // 头部样式
     header {
@@ -498,10 +542,19 @@ body.theme_colorful {
   .pet-device-view {
     border-top: 1px solid transparent;
     box-sizing: border-box;
-    height: 100vh;
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
   
+    .header-wrap {
+      .settings {
+        background: #fff;
+        .icon-more {
+          background-image: url('../images/more-colorful.svg');
+        }
+      }
+    }
+
     // 头部样式
     header {
       flex-shrink: 0;
@@ -615,7 +668,7 @@ body.theme_colorful {
       .number-selector {
         padding: 146px 20px 38px;
         width: 100%;
-        height: 447px;
+        height: 301px;
         background-color: #FFFFFF;
         box-shadow: 0 6px 100px 0 rgba(32,33,33,0.10);
         border-radius: 60px;
@@ -655,6 +708,16 @@ body.theme_morandi {
     flex-direction: column;
     background-image: linear-gradient(180deg, #576273 0%, #414B5B 86%);
   
+    .header-wrap {
+      .settings {
+        right: 74px;
+        background: rgba(255,255,255,0.20);
+        .icon-more {
+          background-image: url('../images/more-morandi.svg');
+        }
+      }
+    }
+
     // 头部样式
     header {
       flex-shrink: 0;
