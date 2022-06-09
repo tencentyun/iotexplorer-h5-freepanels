@@ -69,10 +69,17 @@ export function Home() {
     history.push('/record');
   };
 
+  const handleBaseSetting = () => {
+    sdk.goDeviceDetailPage();
+  };
+
   return (
     <DeviceContext.Consumer>
       {({ deviceData }) => (
         <main className="smoke-alarm">
+          <div className="settings" onClick={handleBaseSetting}>
+            <div className="icon-more"></div>
+          </div>
           {themeType === 'morandi' ? (
             <div className="alarm-header-morandi">
               <header className="alarm-header">
@@ -138,7 +145,7 @@ export function Home() {
                   ? statusLabel[Number(recordStatus)]
                   : '未知'}
               </span>
-            ) : <span>暂无报警</span>}
+            ) : <span>暂无</span>}
           </div>
           <div className="footer-button">
             <Block className="button-block" onClick={handleMoreRecording}>

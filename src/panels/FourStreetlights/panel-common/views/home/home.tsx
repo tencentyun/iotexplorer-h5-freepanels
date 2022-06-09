@@ -11,11 +11,32 @@ import { Buttom } from './buttom/buttom';
 import { getThemeType } from '@libs/theme';
 import { onControlDevice } from '@hooks/useDeviceData';
 import { LightSwitch } from '@components/business';
+import SettingImage from '../icons/normal/dev-open.svg';
+import SettingImageBlueWhite from '../icons/blue-white/dev-open.svg';
+import SettingImageColorful from '../icons/colorful/dev-open.svg';
 
 export function Home() {
   const themeType = getThemeType();
   const [stateFlag, onToggleStateFlag] = useState(0);
-
+  const settingImageSrc = () => {
+    switch (themeType) {
+      case 'normal':
+        return SettingImage;
+      case 'blueWhite':
+        return SettingImageBlueWhite;
+      case 'dark':
+        return SettingImageBlueWhite;
+      case 'colorful':
+        return SettingImageColorful;
+      case 'morandi':
+        return SettingImageBlueWhite;
+      default:
+        return SettingImage;
+    }
+  };
+  const handleSetting = () => {
+    sdk.goDeviceDetailPage({});
+  };
   const onClickLeft = () => {
     onToggleStateFlag(0);
     onControlDevice('work_mode', '0');
@@ -60,40 +81,18 @@ export function Home() {
   const getHomePage = () => {
     if (themeType == 'normal' || themeType == 'colorful') {
       return (
-        <article id={'home'} className={classNames('home', sdk.deviceData.power_switch != 1 && 'power-off')}>
-          {getMenu()}
-          <div id={'white-light-body'} className={classNames(stateFlag != 0 && 'vhide' || '')}>
-            <LightSwitch
-              defaultValue={sdk.deviceData.brightness ? sdk.deviceData.brightness / 100 : 0.4}
-              disable={sdk.deviceData.power_switch === 1 ? 1 : 0}
-              onChange={(value: any) => {
-                if (sdk.deviceData.power_switch === 1) {
-                  onControlDevice('brightness', value.toFixed(2) * 100);
-                }
-              }}
-            />
+        <article>
+          <div
+            className={classNames('devSetting', 'dev-setting-open')}
+            onClick={handleSetting}
+          >
+            <img src={settingImageSrc()} alt=""/>
           </div>
-          <div id={'colorful-body'} className={classNames(stateFlag != 1 && 'vhide' || '')}>
-            <Content/>
-          </div>
-          <div id={'colorful-progress'} className={classNames(stateFlag != 1 && 'vhide' || '')}>
-            <Progress_bar/>
-          </div>
-          <div id={'scenario-body'} className={classNames(stateFlag != 2 && 'vhide' || '')}>
-            <ScenarioContent/>
-          </div>
-          <div id={'scenario-progress'} className={classNames(stateFlag != 2 && 'vhide' || '')}>
-            <Scenario_progress_bar/>
-          </div>
-          <Buttom/>
-        </article>);
-    } if (themeType == 'morandi') {
-      return (
-        <article id={'home'} className={classNames('home', sdk.deviceData.power_switch != 1 && 'power-off')}>
-          <div className={classNames('body_card')}>
+          <div id={'home'} className={classNames('home', sdk.deviceData.power_switch != 1 && 'power-off')}>
+            {getMenu()}
             <div id={'white-light-body'} className={classNames(stateFlag != 0 && 'vhide' || '')}>
               <LightSwitch
-                defaultValue={sdk.deviceData.brightness ? sdk.deviceData.brightness / 100 : 0.8}
+                defaultValue={sdk.deviceData.brightness ? sdk.deviceData.brightness / 100 : 0.4}
                 disable={sdk.deviceData.power_switch === 1 ? 1 : 0}
                 onChange={(value: any) => {
                   if (sdk.deviceData.power_switch === 1) {
@@ -114,13 +113,60 @@ export function Home() {
             <div id={'scenario-progress'} className={classNames(stateFlag != 2 && 'vhide' || '')}>
               <Scenario_progress_bar/>
             </div>
+            <Buttom/>
           </div>
-          <Buttom/>
-          {getMenu()}
-        </article>);
+        </article>
+          );
+    } if (themeType == 'morandi') {
+      return (
+        <article>
+          <div
+            className={classNames('devSetting', 'dev-setting-open')}
+            onClick={handleSetting}
+          >
+            <img src={settingImageSrc()} alt=""/>
+          </div>
+          <div id={'home'} className={classNames('home', sdk.deviceData.power_switch != 1 && 'power-off')}>
+            <div className={classNames('body_card')}>
+              <div id={'white-light-body'} className={classNames(stateFlag != 0 && 'vhide' || '')}>
+                <LightSwitch
+                  defaultValue={sdk.deviceData.brightness ? sdk.deviceData.brightness / 100 : 0.8}
+                  disable={sdk.deviceData.power_switch === 1 ? 1 : 0}
+                  onChange={(value: any) => {
+                    if (sdk.deviceData.power_switch === 1) {
+                      onControlDevice('brightness', value.toFixed(2) * 100);
+                    }
+                  }}
+                />
+              </div>
+              <div id={'colorful-body'} className={classNames(stateFlag != 1 && 'vhide' || '')}>
+                <Content/>
+              </div>
+              <div id={'colorful-progress'} className={classNames(stateFlag != 1 && 'vhide' || '')}>
+                <Progress_bar/>
+              </div>
+              <div id={'scenario-body'} className={classNames(stateFlag != 2 && 'vhide' || '')}>
+                <ScenarioContent/>
+              </div>
+              <div id={'scenario-progress'} className={classNames(stateFlag != 2 && 'vhide' || '')}>
+                <Scenario_progress_bar/>
+              </div>
+            </div>
+            <Buttom/>
+            {getMenu()}
+          </div>
+        </article>
+          );
     }
     return (
-        <article id={'home'} className={classNames('home', sdk.deviceData.power_switch != 1 && 'power-off')}>
+      <article>
+        <div
+          className={classNames('devSetting', 'dev-setting-open')}
+          onClick={handleSetting}
+        >
+          <img src={settingImageSrc()} alt=""/>
+        </div>
+        <div id={'home'} className={classNames('home', sdk.deviceData.power_switch != 1 && 'power-off')}>
           <div className={classNames('body_card')}>
             <div id={'white-light-body'} className={classNames(stateFlag != 0 && 'vhide' || '')}>
               <LightSwitch
@@ -148,7 +194,9 @@ export function Home() {
           </div>
           <Buttom/>
           {getMenu()}
-        </article>);
+        </div>
+      </article>
+        );
   };
   return (
     getHomePage()

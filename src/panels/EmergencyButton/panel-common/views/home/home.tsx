@@ -6,10 +6,31 @@ import { getThemeType } from '@libs/theme';
 import { SvgIcon } from '@components/common/icon';
 import { Normal_progress_bar } from '../normal-progress-bar/normal_progress_bar';
 import { ProductSetting } from '../product-setting/product-setting';
+import SettingImage from '../icons/normal/dev-open.svg';
+import SettingImageBlueWhite from '../icons/blue-white/dev-open.svg';
+import SettingImageColorful from '../icons/colorful/dev-open.svg';
 
 export function Home() {
   const themeType = getThemeType();
-
+  const settingImageSrc = () => {
+    switch (themeType) {
+      case 'normal':
+        return SettingImage;
+      case 'blueWhite':
+        return SettingImageBlueWhite;
+      case 'dark':
+        return SettingImageBlueWhite;
+      case 'colorful':
+        return SettingImageColorful;
+      case 'morandi':
+        return SettingImageBlueWhite;
+      default:
+        return SettingImage;
+    }
+  };
+  const handleSetting = () => {
+    sdk.goDeviceDetailPage({});
+  };
   const statusSrc = (status: string) => {
     switch (status) {
       case 'low':
@@ -23,7 +44,12 @@ export function Home() {
     }
   };
   return (
-            <article id={'emergency_button_normal'} className={classNames('emergency_button_normal')}>
+        <article id={'emergency_button_normal'} className={classNames('emergency_button_normal')}>
+            <div
+              className={classNames('devSetting', 'dev-setting-open')}
+            >
+              <img className={classNames('dev-img')} src={settingImageSrc()} alt="" onClick={handleSetting}/>
+            </div>
             <div className="emergency_head">
                 <div className="head-icon">
                     <SvgIcon name={`icon-emergency-button-${themeType}`} width={150} height={150}/>

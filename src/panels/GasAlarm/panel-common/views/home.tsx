@@ -66,10 +66,17 @@ export function Home() {
     history.push('/record');
   };
 
+  const handleBaseSetting = () => {
+    sdk.goDeviceDetailPage();
+  };
+
   return (
     <DeviceContext.Consumer>
       {({ deviceData }) => (
         <main className="gas-alarm">
+          <div className="settings" onClick={handleBaseSetting}>
+            <div className="icon-more"></div>
+          </div>
           {themeType === 'morandi' ? (
             <div className="alarm-header-morandi">
               <header className="alarm-header">

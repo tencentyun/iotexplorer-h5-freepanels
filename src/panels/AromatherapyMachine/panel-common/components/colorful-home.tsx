@@ -7,6 +7,7 @@ import { onControlDevice } from '@hooks/useDeviceData';
 import { DeviceContext } from '../deviceContext';
 import { getThemeType } from '@libs/theme';
 import { SkinProps } from '../skinProps';
+import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 import '../components/colorful-home.less';
 
 export function ColorfulHome() {
@@ -46,6 +47,10 @@ export function ColorfulHome() {
     history.push('/more');
   };
 
+  const handleBaseSetting = () => {
+    sdk.goDeviceDetailPage();
+  };
+
   return (
     <DeviceContext.Consumer>
       {({ deviceData }) => (
@@ -55,6 +60,9 @@ export function ColorfulHome() {
             !deviceData.power_switch ? 'close' : '',
           )}
         >
+          <div className="settings" onClick={handleBaseSetting}>
+            <div className="icon-more"></div>
+          </div>
           <div className="decoration-block">
             <ul className="decoration-bottom">
               <li

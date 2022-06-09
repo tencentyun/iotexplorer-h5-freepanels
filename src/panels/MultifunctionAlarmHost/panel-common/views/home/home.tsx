@@ -90,6 +90,9 @@ const homeImageDark =  'https://tencent-1305105198.cos.ap-guangzhou.myqcloud.com
 const instancyImageDark =  'https://tencent-1305105198.cos.ap-guangzhou.myqcloud.com/multifunction-alarm-host/dark/instancy.png';
 const relaxImageDark =  'https://tencent-1305105198.cos.ap-guangzhou.myqcloud.com/multifunction-alarm-host/dark/relax.png';
 const workImageDark =  'https://tencent-1305105198.cos.ap-guangzhou.myqcloud.com/multifunction-alarm-host/dark/work.png';
+import SettingImage from '../icons/normal/dev-open.svg';
+import SettingImageBlueWhite from '../icons/blue-white/dev-open.svg';
+import SettingImageColorful from '../icons/colorful/dev-open.svg';
 
 export function Home() {
   const themeType = getThemeType();
@@ -313,10 +316,34 @@ export function Home() {
   const handleMode = (type: string) => {
     onControlDevice('woke_mode', type);
   };
+  const settingImageSrc = () => {
+    switch (themeType) {
+      case 'normal':
+        return SettingImage;
+      case 'blueWhite':
+        return SettingImageBlueWhite;
+      case 'dark':
+        return SettingImageBlueWhite;
+      case 'colorful':
+        return SettingImageColorful;
+      case 'morandi':
+        return SettingImageBlueWhite;
+      default:
+        return SettingImage;
+    }
+  };
+  const handleSetting = () => {
+    sdk.goDeviceDetailPage({});
+  };
   return (
     <article className={classNames('home')}>
       {/* 仪表盘*/}
       <section className={classNames('dashboard')}>
+        <div
+          className={classNames('devSetting', 'dev-setting-open')}
+        >
+          <img className={classNames('dev-img')} src={settingImageSrc()} alt="" onClick={handleSetting}/>
+        </div>
         <div className="control-panel">
           <div className="panel-head">
             {/* 电量*/}

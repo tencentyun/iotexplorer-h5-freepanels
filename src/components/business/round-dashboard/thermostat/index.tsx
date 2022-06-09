@@ -24,7 +24,10 @@ const ThermostatDashboard: React.FC<dashboardProps> = (props) => {
 
   // 描述信息 关机/开机
   const renderDesWord = (dashboardStatus: string) => (
-      <div className="dashboard-content">
+      <div className={classNames(
+        'dashboard-content',
+        dashboardStatus === 'shutdown' ? 'disable' : 'active',
+      )}>
         {dashboardStatus === 'shutdown' ? (
           <div className="word font_48">已关机</div>
         ) : (

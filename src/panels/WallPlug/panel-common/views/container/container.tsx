@@ -11,7 +11,9 @@ const { TabPane } = Tabs;
 
 export function Container() {
   const [activeKey, setActiveKey] = useState(sdk.deviceData.activeKey ? sdk.deviceData.activeKey : 'training');
-
+  const handleSetting = () => {
+    sdk.goDeviceDetailPage({});
+  };
   return (
     <div className={classNames('app-container')}>
       <Tabs
@@ -37,7 +39,14 @@ export function Container() {
         >
           <Setting />
         </TabPane>
+        <TabPane
+          title=""
+          icon={<SvgIcon name="icon-dev-setting-close" />}
+          key="dev-setting"
+        >
+        </TabPane>
       </Tabs>
+      <div className="devSetting" onClick={handleSetting}/>
     </div>
   );
 }

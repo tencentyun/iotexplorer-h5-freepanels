@@ -76,6 +76,9 @@ export function Oven_head() {
       power_switch: sdk.deviceData.power_switch === 1 ? 0 : 1,
     });
   };
+  const handleSetting = () => {
+    sdk.goDeviceDetailPage({});
+  };
   return (
     <article id={'oven_head'} className={classNames('oven_head')}>
       <div className="head_card">
@@ -87,7 +90,7 @@ export function Oven_head() {
 
             {getStateStr()}
 
-            <div>
+            <div onClick={handleSetting}>
               <SvgIcon name={`icon-electric-oven-equipment-shutdown-${themeType}`} color="#0F0F0F" width={75}
                        height={47.5}/>
 
