@@ -7,7 +7,10 @@ export interface DeviceDataState {
   templateMap: unknown;
   templateList: TemplatePropertyConfig[];
 }
-
+export interface ModuleTemplateData {
+  define: any;
+  id: string;
+}
 function reducer(
   state: DeviceDataState,
   action: {
@@ -100,11 +103,11 @@ export const apiControlDeviceData = (data: any) => {
 };
 
 
-export function formatDeviceData(templateMap: HashMap) {
-  const data: HashMap = {};
+export function formatDeviceData(templateMap) {
+  const data = {};
 
   Object.keys(templateMap).forEach((key: string) => {
-    const templateData: TemplateData = templateMap[key];
+    const templateData: ModuleTemplateData = templateMap[key];
     const { define, id } = templateData;
 
     if (define.type === 'stringenum') {
