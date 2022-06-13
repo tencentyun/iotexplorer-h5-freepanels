@@ -38,7 +38,6 @@ export function useSwitchEditName({
       }
     },
   });
-  console.log({ res, statusTip, deviceKey, deviceId: sdk.deviceId });
 
   useEffect(() => {
     if (res.data[deviceKey]) {
