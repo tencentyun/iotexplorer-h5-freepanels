@@ -6,7 +6,7 @@ export interface LightColorProps extends StyledProps {
   defaultValue?: number; // 0 - 1000
 }
 export function Position({
-  deviceData: { bright_value = 80, color_mode, temp_value = 150, power_switch },
+  deviceData: { bright_value = 80, work_mode, temp_value = 150, power_switch },
   doControlDeviceData,
 }) {
   const [deg, setDeg] = useState((temp_value * 360) / 1000);
@@ -19,7 +19,7 @@ export function Position({
     doControlDeviceData({ power_switch: power_switch ? 0 : 1 });
   };
   const powerStatus = isPowerOff ? 'off-switch' : 'on-switch';
-  const colourType = color_mode === 'colour' ? 'colour-type' : '';
+  const colourType = work_mode === 'colour' ? 'colour-type' : '';
 
   const CONFIG = [
     [150, 180, 270],
@@ -47,7 +47,7 @@ export function Position({
           className="color-value"
           style={{ opacity: bright_value / 100 }}
         >
-          {CONFIG[color_mode === 'colour' ? 1 : 0].map((value, index) => (
+          {CONFIG[work_mode === 'colour' ? 1 : 0].map((value, index) => (
             <div
               className={`color-${index + 1}`}
               key={index}

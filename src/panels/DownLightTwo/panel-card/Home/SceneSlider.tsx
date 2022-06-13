@@ -33,13 +33,16 @@ export function SceneSlider({
     instanceTop && instanceTop.slideTo(value);
   }, []);
 
-
   useMemo(() => {
     onScroll && onScroll(activeIndex);
   }, [activeIndex]);
 
   const onScrollInner = (value) => {
     instanceTop && instanceTop.slideTo && instanceTop.slideTo(value);
+  };
+
+  const onScrollOuter = (value) => {
+    instance && instance.slideTo && instance.slideTo(value);
   };
 
   return (
@@ -87,7 +90,11 @@ export function SceneSlider({
               setActiveIndex(swiper.realIndex + 1);
             }}
           >
-            {options.map((pic, index) => <SwiperSlide key={index}>
+            {options.map((pic, index) => <SwiperSlide key={index} onClick={() => {
+              onScrollOuter(index);
+              onScrollInner(index);
+              setActiveIndex(index + 1);
+            }}>
               <div className="pic" style={{ backgroundImage: `url(${pic})` }}/>
               <p>{optionsName[index]}</p>
             </SwiperSlide>)}

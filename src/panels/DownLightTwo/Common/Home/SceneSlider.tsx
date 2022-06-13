@@ -42,6 +42,10 @@ export function SceneSlider({
     instanceTop && instanceTop.slideTo && instanceTop.slideTo(value);
   };
 
+  const onScrollOuter = (value) => {
+    instance && instance.slideTo && instance.slideTo(value);
+  };
+
   return (
     <div>
       <div className="cus-photo-slider-top">
@@ -50,11 +54,18 @@ export function SceneSlider({
             className="slider"
             modules={[Controller]}
             initialSlide={value - 1}
-            spaceBetween={0}
+            spaceBetween={1}
             slidesPerView={1}
             centeredSlides={true}
             controller={{ control: instanceTop }}
             onSwiper={setInstanceTop}
+            onSlideChange={(swiper) => {
+              onScrollOuter(swiper.realIndex);
+              setActiveIndex(swiper.realIndex);
+            }}
+            onTouchEnd={(e) => {
+              onChange && onChange(e.realIndex);
+            }}
           >
             {options.map((pic, index) => (
               <SwiperSlide key={index}><div className="pic" style={{ backgroundImage: `url(${pic})` }}/></SwiperSlide>
@@ -79,16 +90,21 @@ export function SceneSlider({
             slidesPerView={5}
             centeredSlides={true}
             onTouchEnd={(e) => {
-              onChange && onChange(e.realIndex + 1);
+              onChange && onChange(e.realIndex);
             }}
             controller={{ control: instance }}
             onSwiper={setInstance}
             onSlideChange={(swiper) => {
               onScrollInner(swiper.realIndex);
-              setActiveIndex(swiper.realIndex + 1);
+              setActiveIndex(swiper.realIndex);
             }}
           >
-            {options.map((pic, index) => <SwiperSlide key={index}>
+            {options.map((pic, index) => <SwiperSlide key={index} onClick={() => {
+              onScrollOuter(index);
+              onScrollInner(index);
+              setActiveIndex(index);
+              onChange && onChange(index);
+            }}>
               <div className="pic" style={{ backgroundImage: `url(${pic})` }}/>
               <p>{optionsName[index]}</p>
             </SwiperSlide>)}
