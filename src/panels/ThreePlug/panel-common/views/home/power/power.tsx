@@ -82,9 +82,9 @@ export function Power() {
   const [timingVisible, onToggleTiming] = useState(false);
 
   const handleCountdownDefault = (value: number) => {
-    const hours: number = (value - value % (60 * 60)) / (60 * 60);
+    const hours: number = (value - (value % (60 * 60))) / (60 * 60);
     const minutes: number = (value % (60 * 60)) / (60);
-    const countdownTime: any = [hours.toString(), minutes.toString()];
+    const countdownTime: string[] = [hours.toString(), minutes.toString()];
     return countdownTime;
   };
 
@@ -164,7 +164,7 @@ export function Power() {
         theme={themeType}
         title="倒计时关闭"
         onCancel={onToggleTiming.bind(null, false)}
-        onConfirm={(value: any) => {
+        onConfirm={(value: string[]) => {
           const hour = Number(value[0].split('时')[0]);
           const mins = Number(value[1].split('分')[0]);
           const num = hour * 3600 + mins * 60;
