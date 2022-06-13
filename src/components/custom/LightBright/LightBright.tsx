@@ -13,7 +13,7 @@ export function LightBright({
   isMask = true,
 }) {
   const [dataInfo, setDataInfo] = useState({
-    dataUser: defaultValue,
+    dataUser: defaultValue > maxValue ? maxValue : defaultValue,
     endTouch: false,
   });
   const currentWidth = `${
@@ -37,10 +37,12 @@ export function LightBright({
   }, [dataInfo]);
 
   const toggleReduce = () => {
+    if (!status) return;
     updateBrightVal(dataInfo.dataUser - 1, true);
   };
 
   const toggleAdd = () => {
+    if (!status) return;
     updateBrightVal(dataInfo.dataUser + 1, true);
   };
 
@@ -63,6 +65,7 @@ export function LightBright({
   };
 
   const onTouchStart = () => {
+    if (!status) return;
     document.addEventListener('touchmove', handleMove);
     document.addEventListener('touchend', handleEndMove);
   };

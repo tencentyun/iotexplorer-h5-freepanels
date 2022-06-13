@@ -8,11 +8,11 @@ const CONFIG = [
 ];
 
 const Ticker = ({
-  deviceData: { color_mode = 'white', power_switch },
+  deviceData: { work_mode = 'white', power_switch },
   doControlDeviceData,
 }) => {
   const isSwitchOff = power_switch !== 1;
-  const isChecked = (val: number | string) => color_mode === val;
+  const isChecked = (val: number | string) => work_mode === val;
   const cls = isSwitchOff ? 'ticker-off' : '';
   return (
     <div className={`ticker ${cls}`}>
@@ -24,7 +24,7 @@ const Ticker = ({
             type={!isSwitchOff && isChecked(value) ? 'primary' : 'reverse'}
             onClick={() => {
               if (!isSwitchOff) {
-                doControlDeviceData({ color_mode: value });
+                doControlDeviceData({ work_mode: value });
               }
             }}
           >

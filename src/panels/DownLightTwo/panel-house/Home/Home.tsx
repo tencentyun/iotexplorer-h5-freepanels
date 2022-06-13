@@ -8,7 +8,7 @@ import { SceneTab } from './SceneTab';
 
 export function Home(props) {
   // tab模式
-  const colorMode = props.deviceData.color_mode || 'white';
+  const colorMode = props.deviceData.work_mode || 'white';
   const onSwitchChange = () => {
     props.doControlDeviceData({ power_switch: props.deviceData.power_switch ? 0 : 1 });
   };
