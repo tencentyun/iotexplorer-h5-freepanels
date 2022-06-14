@@ -48,7 +48,6 @@ const THEME = [
   ],
 ];
 
-
 interface themeItem {
   id: number;
   name: string;
@@ -57,7 +56,7 @@ interface themeItem {
 }
 
 export function ScenePage({
-  deviceData: { power_switch },
+  deviceData: { switch_led },
   doControlDeviceData,
 }) {
   // tab切换
@@ -65,15 +64,31 @@ export function ScenePage({
   // 主题数据
   const [themeList, setThemeList] = useState(THEME);
 
+  const favoriteChangeHandle = (newThemeList) => {
+    const list: themeItem[] = [];
+    newThemeList.forEach((item) => {
+      item.forEach((value) => {
+        if (value.isLike) {
+          list.push(value);
+        }
+      });
+    });
+    return list;
+  };
+
   const favoriteHandle = (id: number, isLike: boolean) => {
     const newList = themeList[tabValue].map((value: themeItem) => (value.id === id
       ? { ...value, isLike: !isLike } : value));
-    themeList[tabValue] = [...newList];
+    if (tabValue !== 0) {
+      themeList[tabValue] = [...newList];
+    }
+    themeList[0] = [];
+    themeList[0] = [...favoriteChangeHandle(themeList)];
     setThemeList([...themeList]);
   };
 
   return (
-    <div className={classNames('scene-page', power_switch !== 1 ? 'off-scene' : '')}>
+    <div className={classNames('scene-page', switch_led !== 1 ? 'off-scene' : '')}>
       <div className="scene-tab">
         {CONFIG.map(([name, value], index) => (
           <div
@@ -89,17 +104,20 @@ export function ScenePage({
         {themeList[tabValue].map(({ id, name, value, isLike }) => (
           <div key={id} className={`theme-item ${value}`}>
             <span className="item-title">{name}</span>
-            <span
-              className={`item-like ${isLike ? 'like-checked' : ''}`}
-              onClick={() => {
-                favoriteHandle(id, isLike);
-                doControlDeviceData('like', isLike ? 'like' : 'dislike');
-              }}>
-              <Icon name={isLike ? 'like-checked' : 'like'}></Icon>
-            </span>
+            {tabValue !== 0
+              ? <span
+                className={`item-like ${isLike ? 'like-checked' : ''}`}
+                onClick={() => {
+                  favoriteHandle(id, isLike);
+                  // doControlDeviceData('like', !isLike ? 'like' : 'dislike');
+                  doControlDeviceData(!isLike ? 'like' : 'dislike', id);
+                }}>
+                <Icon name={isLike ? 'like-checked' : 'like'}></Icon>
+              </span> : null
+            }
           </div>
         ))}
-        {themeList[tabValue].length === 0 ? <div>暂无数据</div> : null}
+        {themeList[tabValue].length === 0 ? <div className="empty">暂无数据</div> : null}
       </div>
     </div>
   );
