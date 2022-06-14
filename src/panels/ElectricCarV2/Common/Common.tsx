@@ -7,7 +7,7 @@ const App = () => {
     { path: '/home', Component: Home },
     { path: '/unlock', Component: Unlock },
   ];
-  return <Router route={route} />;
+  return <Router route={route}  detail={false}/>;
 };
 
 export default App;
