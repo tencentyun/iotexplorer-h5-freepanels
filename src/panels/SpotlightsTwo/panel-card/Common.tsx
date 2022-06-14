@@ -13,7 +13,7 @@ const App = () => {
     { path: '/timer/action/repeat', Component: Repeat },
     { path: '/timer/countdown', Component: CountDown },
   ];
-  return <Router route={route} />;
+  return <Router route={route} detail={false}/>;
 };
 
 export default App;
