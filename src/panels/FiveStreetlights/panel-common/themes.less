@@ -4,7 +4,6 @@
 }
 
 .theme_blue_white {
-  overflow: hidden;
   height: 100%;
   position: relative;
 
@@ -64,7 +63,9 @@
       background: #FFFFFF;
     }
   }
-
+  .dev-setting-open{
+    background: rgba(255,255,255,0.20);
+  }
   .home {
     .color_primary;
     // background-image: var(--global-background-color-gradient);
@@ -415,7 +416,6 @@
 .theme_dark {
   // padding-top: 93px;
   position: relative;
-  overflow: hidden;
 
   .scenario-progress-bar-font1 {
     color: #B5C4D1;
@@ -452,7 +452,9 @@
       background: #FFFFFF;
     }
   }
-
+  .dev-setting-open{
+    background: #4E505B;
+  }
   .home {
 
     &.power-off {
@@ -854,7 +856,6 @@
 .theme_colorful {
   // padding-top: 93px;
   position: relative;
-  overflow: hidden;
 
   .scenario-progress-bar-font1 {
     color: #B5C4D1;
@@ -891,7 +892,10 @@
       background: #FFD102;
     }
   }
-
+  .dev-setting-open{
+    background: #FFFFFF;
+    top: 350px;
+  }
   .home {
 
     &.power-off {
@@ -1246,7 +1250,6 @@
 /*莫兰迪主题*/
 .theme_morandi {
   position: relative;
-  overflow: hidden;
   .scenario-progress-bar-tick1 {
     background-color: #FDFDFD;
   }
@@ -1290,7 +1293,9 @@
       background: #FFFFFF;
     }
   }
-
+  .dev-setting-open{
+    background: rgba(255,255,255,0.20);
+  }
   .home {
     &.power-off {
       #menu {
@@ -1659,8 +1664,11 @@
 .theme_normal {
   height: 100%;
   position: relative;
-  overflow: hidden;
 
+  .dev-setting-open{
+    top: 400px;
+    background: #FFFFFF;
+  }
   .home {
     background: #F4F8FB;
     min-height: 100vh;

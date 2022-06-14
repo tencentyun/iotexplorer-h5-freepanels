@@ -6,6 +6,7 @@ import { Block } from '../../../../components/layout';
 import { Slider } from 'antd-mobile';
 import { onControlDevice } from '@hooks/useDeviceData';
 import { DeviceContext } from '../deviceContext';
+import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 import '../components/dark-home.less';
 
 export function DarkHome() {
@@ -33,6 +34,10 @@ export function DarkHome() {
     history.push('/more');
   };
 
+  const handleBaseSetting = () => {
+    sdk.goDeviceDetailPage();
+  };
+
   return (
     <DeviceContext.Consumer>
       {({ deviceData }) => (
@@ -42,6 +47,9 @@ export function DarkHome() {
             !deviceData.power_switch ? 'close' : '',
           )}
         >
+          <div className="settings" onClick={handleBaseSetting}>
+            <div className="icon-more"></div>
+          </div>
           {/* 顶部 */}
           <div className="product-image-wrap">
             {/* 控制区 */}
@@ -112,7 +120,7 @@ export function DarkHome() {
               <ul className="countdown-slider-tips">
                 <li className="item">
                   <span className="label">小雾量</span>
-                  {workMode === 'small' ? (
+                  { workMode === 'small' ? (
                     deviceData.power_switch === 1 ? (
                       <SvgIcon
                         className="icon-arrow-down"

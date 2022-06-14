@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import classNames from 'classnames';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 import './home.less';
+import {getThemeType} from '@libs/theme';
 import { Detail } from './detail/detail';
 import { apiControlDeviceData } from '@hooks/useDeviceData';
 import { useDidMount } from 'beautiful-react-hooks';
@@ -9,8 +10,31 @@ import { useDidMount } from 'beautiful-react-hooks';
 import iconUp from '../icons/normal/lr-rack-up.svg';
 import iconMiddle from '../icons/normal/lr-rack-middle.svg';
 const iconDown =      'https://tencent-1305105198.cos.ap-guangzhou.myqcloud.com/laundry-rack/normal/down.svg';
+import SettingImage from '../icons/normal/dev-open.svg';
+import SettingImageBlueWhite from '../icons/blue-white/dev-open.svg';
+import SettingImageColorful from '../icons/colorful/dev-open.svg';
 
 export function Home() {
+  const themeType = getThemeType();
+  const settingImageSrc = () => {
+    switch (themeType) {
+      case 'normal':
+        return SettingImage;
+      case 'blueWhite':
+        return SettingImageBlueWhite;
+      case 'dark':
+        return SettingImageBlueWhite;
+      case 'colorful':
+        return SettingImageColorful;
+      case 'morandi':
+        return SettingImageBlueWhite;
+      default:
+        return SettingImage;
+    }
+  };
+  const handleSetting = () => {
+    sdk.goDeviceDetailPage({});
+  };
   const [position, setPosition] = useState((sdk.deviceData.position >= 0 && sdk.deviceData.position <= 100)
     ? sdk.deviceData.position : 0);
   const [srcDown] = useState(iconDown);
@@ -84,44 +108,52 @@ export function Home() {
     return times;
   };
   return (
-    <article
-      className={classNames(
-        'home',
-        sdk.deviceData.power_switch === 1 ? '' : 'power-off',
-      )}
-    >
-      <section className={classNames('dashboard')}>
-        <div className={classNames('lr-rack-wrapper')}>
-          <img className={classNames('lr-rack-img-up')} src={iconUp} alt="" />
-          <div className={classNames('lr-rack-div-middle')} >
-            <div onTransitionEnd={onTransitionEnd} ref={progress} className={classNames('lr-rack-div-progress')}>
-              <img className={classNames('lr-rack-img-middle')} src={iconMiddle} alt=""/>
+    <article>
+      <div
+        className={classNames('devSetting', 'dev-setting-open')}
+        onClick={handleSetting}
+      >
+        <img src={settingImageSrc()} alt="" />
+      </div>
+      <div
+        className={classNames(
+          'home',
+          sdk.deviceData.power_switch === 1 ? '' : 'power-off',
+        )}
+      >
+        <section className={classNames('dashboard')}>
+          <div className={classNames('lr-rack-wrapper')}>
+            <img className={classNames('lr-rack-img-up')} src={iconUp} alt="" />
+            <div className={classNames('lr-rack-div-middle')} >
+              <div onTransitionEnd={onTransitionEnd} ref={progress} className={classNames('lr-rack-div-progress')}>
+                <img className={classNames('lr-rack-img-middle')} src={iconMiddle} alt=""/>
+              </div>
+              <img className={classNames('lr-rack-img-down')} src={srcDown} alt="" />
             </div>
-            <img className={classNames('lr-rack-img-down')} src={srcDown} alt="" />
           </div>
-        </div>
-        <div className="title">
-          <div>
-            消毒剩余时间:
-            {sdk.deviceData.disinfect_left
-              ? getTimeToHour(sdk.deviceData.disinfect_left)
-              : '00:00:00'}
+          <div className="title">
+            <div>
+              消毒剩余时间:
+              {sdk.deviceData.disinfect_left
+                ? getTimeToHour(sdk.deviceData.disinfect_left)
+                : '00:00:00'}
+            </div>
+            <div>
+              风干剩余时间:
+              {sdk.deviceData.air_dry_left
+                ? getTimeToHour(sdk.deviceData.air_dry_left)
+                : '00:00:00'}
+            </div>
+            <div>
+              烘干剩余时间:
+              {sdk.deviceData.drying_left
+                ? getTimeToHour(sdk.deviceData.drying_left)
+                : '00:00:00'}
+            </div>
           </div>
-          <div>
-            风干剩余时间:
-            {sdk.deviceData.air_dry_left
-              ? getTimeToHour(sdk.deviceData.air_dry_left)
-              : '00:00:00'}
-          </div>
-          <div>
-            烘干剩余时间:
-            {sdk.deviceData.drying_left
-              ? getTimeToHour(sdk.deviceData.drying_left)
-              : '00:00:00'}
-          </div>
-        </div>
-      </section>
-      <Detail />
+        </section>
+        <Detail />
+      </div>
     </article>
   );
 }

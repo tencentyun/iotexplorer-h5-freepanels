@@ -4,6 +4,7 @@ import { ToolsBar } from './components/tools-bar';
 import { Detail } from './components/detail/detail';
 import { DeviceSateContext } from '../../deviceStateContext';
 import HumidifierDashboard from '@components/business/round-dashboard/humidifier-dashboard';
+import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 import './home.less';
 
 export function Home() {
@@ -11,6 +12,10 @@ export function Home() {
     natural_evaporation: '自然蒸发',
     heating_evaporation: '加热蒸发',
     ultrasonic: '超声波蒸发',
+  };
+
+  const handleBaseSetting = () => {
+    sdk.goDeviceDetailPage();
   };
 
   return (
@@ -22,6 +27,9 @@ export function Home() {
             deviceData.power_switch !== 1 && 'power-off',
           )}
         >
+          <div className="settings" onClick={handleBaseSetting}>
+            <div className="icon-more"></div>
+          </div>
           {/* 工作模式*/}
           <h3 className={classNames('title', 'text-align-center')}>
             <strong className={classNames('font_48')}>

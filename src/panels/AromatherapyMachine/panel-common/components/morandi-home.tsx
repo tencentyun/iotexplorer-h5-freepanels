@@ -29,6 +29,10 @@ export function MorandiHome() {
     history.push('/more');
   };
 
+  // const handleBaseSetting = () => {
+  //   sdk.goDeviceDetailPage();
+  // };
+
   return (
     <DeviceContext.Consumer>
       {({ deviceData }) => (
@@ -38,7 +42,7 @@ export function MorandiHome() {
             !deviceData.power_switch ? 'close' : '',
           )}
         >
-          <ScrollView height="100vh" scrollY>
+          <div>
             <div className="inner">
               {/* 产品图 */}
               <div className="product-image-wrap">
@@ -205,7 +209,7 @@ export function MorandiHome() {
                 </ul>
               </div>
             </div>
-          </ScrollView>
+          </div>
         </div>
       )}
     </DeviceContext.Consumer>

@@ -7,6 +7,7 @@ import { onControlDevice } from '@hooks/useDeviceData';
 import { Cell } from '@components/base';
 
 import addIcon from '../../../icons/normal/add.svg';
+import {useHistory} from "react-router";
 
 const lampIcon =  'https://tencent-1305105198.cos.ap-guangzhou.myqcloud.com/router/normal/lamp.svg';
 const emptyIcon =  'https://tencent-1305105198.cos.ap-guangzhou.myqcloud.com/router/dark/empty-dev.svg';
@@ -45,6 +46,8 @@ const Environment = () => {
   const cellIcon = (url: string) => (
     <img className="details-icon" src={url}></img>
   );
+  const history = useHistory();
+  const handleGetGateway = () => history.push('/getGateway');
   return (
     <article className={classNames('environment')}>
       <div className="dev-title">子设备</div>
@@ -96,7 +99,7 @@ const Environment = () => {
         ) : (
           <div className="dev-list">
             {themeType === 'morandi' ? (
-              <div id={'add-dev'} className="dev-info">
+              <div id={'add-dev'} className="dev-info" onClick={handleGetGateway}>
                 <img src={addIcon} alt=""/>
                 添加电子设备
               </div>

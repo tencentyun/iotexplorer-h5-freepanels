@@ -91,9 +91,15 @@ export function Home() {
     }
   };
 
+  const handleBaseSetting = () => {
+    sdk.goDeviceDetailPage();
+  };
 
   return (
     <main className="home-container">
+      <div className="settings" onClick={handleBaseSetting}>
+        <div className="icon-more"></div>
+      </div>
       {(theme === 'blueWhite' || theme === 'dark' || theme === 'colorful')
 
         && <div className="home-middle">

@@ -10,6 +10,10 @@
     .color_primary;
     background-image: var(--global-background-color-gradient);
     min-height: 100vh;
+
+    .dev-setting-open{
+      background: rgba(255,255,255,0.20);
+    }
     &.power-off {
       #power {
         background: var(--global-color-text-primary) !important;
@@ -115,13 +119,18 @@
   }
 
 }
-/*黑白主题*/
+/*暗色主题*/
 .theme_dark {
   height: 100%;
   .home {
     position: relative;
     height: 2000px;
 
+    .dev-setting-open{
+      background-image: linear-gradient(139deg, #333E4D 0%, #202C3A 100%);
+      border: 3px solid rgba(62,68,84,0.20);
+      box-shadow: 0 6px 100px 0 #242735;
+    }
     &.power-off {
       #power {
         background: var(--global-color-text-primary) !important;
@@ -238,6 +247,12 @@
     height: 1900px;
     background: #F4F8FB;
 
+    .devSetting {
+      top: 300px;
+    }
+    .dev-setting-open{
+      background: #FFFFFF;
+    }
     &.power-off {
       #power {
         background: var(--global-color-text-primary) !important;
@@ -356,6 +371,9 @@
   height: 100%;
   position: relative;
   .home {
+    .dev-setting-open{
+      background: rgba(255,255,255,0.20);
+    }
     .color_primary;
     background-image: var(--global-background-color-gradient);
 
@@ -469,6 +487,9 @@
     height: 2100px;
     background: #F4F8FB;
 
+    .dev-setting-open{
+      background: #FFFFFF;
+    }
     &.power-off {
       #power {
         background: var(--global-color-text-primary) !important;
