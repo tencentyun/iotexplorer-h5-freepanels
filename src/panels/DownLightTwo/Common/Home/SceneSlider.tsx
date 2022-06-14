@@ -33,7 +33,6 @@ export function SceneSlider({
     instanceTop && instanceTop.slideTo(value);
   }, []);
 
-
   useMemo(() => {
     onScroll && onScroll(activeIndex);
   }, [activeIndex]);

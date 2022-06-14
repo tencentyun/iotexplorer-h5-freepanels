@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { StyledProps } from '@libs/global';
 import { Circular } from '@custom/Circular';
 import { Icon } from '@custom/Icon';
@@ -6,17 +6,22 @@ export interface LightColorProps extends StyledProps {
   defaultValue?: number; // 0 - 1000
 }
 export function Position({
-  deviceData: { bright_value = 80, work_mode, temp_value = 150, power_switch },
+  deviceData: { bright_value = 80, work_mode, white_data, colour_data, temp_value = 150, switch_led },
   doControlDeviceData,
 }) {
-  const [deg, setDeg] = useState((temp_value * 360) / 1000);
-  const isPowerOff = power_switch !== 1;
+  useEffect(() => {
+    const degValue = work_mode === 'colour' ? Number(colour_data) : Number(white_data);
+    setDeg((degValue * 360) / 1000);
+  }, [work_mode]);
+  const [deg, setDeg] = useState(0);
+  const isPowerOff = switch_led !== 1;
   const onChange = (deg) => {
     setDeg(deg);
-    doControlDeviceData('temp_value', Math.round((deg * 1000) / 360));
+    const key = work_mode === 'colour' ? 'colour_data' : 'white_data';
+    doControlDeviceData(key, Math.round((deg * 1000) / 360));
   };
   const onSwitchChange = () => {
-    doControlDeviceData({ power_switch: power_switch ? 0 : 1 });
+    doControlDeviceData({ switch_led: switch_led ? 0 : 1 });
   };
   const powerStatus = isPowerOff ? 'off-switch' : 'on-switch';
   const colourType = work_mode === 'colour' ? 'colour-type' : '';
@@ -37,7 +42,7 @@ export function Position({
               <div className="circle inner"></div>
             </div>
             <div className="bg-img center">
-              <Icon name={isPowerOff ? 'switch' : 'switch-checked' }></Icon>
+            <Icon name={isPowerOff ? 'switch' : 'switch-checked' }></Icon>
             </div>
           </div>
           {!isPowerOff ? <Circular value={deg} onChange={onChange} /> : null }

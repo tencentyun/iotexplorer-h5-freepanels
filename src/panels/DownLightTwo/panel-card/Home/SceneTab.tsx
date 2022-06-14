@@ -26,11 +26,21 @@ const SceneBgMap = [
 const SceneNameMap = ['晚安', '阅读', '工作', '休闲', '柔和', '缤纷', '炫彩', '斑斓'];
 const SceneValueMap = ['sleep', 'read', 'work', 'relax', 'soft', 'colorful', 'beautiful', 'riotous'];
 
+const getIndex = (key) => {
+  let index = 2;
+  SceneValueMap.map((item, i) => {
+    if (item === key) {
+      index = i;
+    }
+  });
+  return index + 1;
+};
+
 export function SceneTab({ deviceData, doControlDeviceData }) {
-  const [value, setValue] = useState(deviceData.scene_data || 'work');
+  const [value, setValue] = useState(getIndex(deviceData.scene_data));
 
   return (
-    <div className={classNames('scene-tab', deviceData.power_switch !== 1 ?  'off-scene' : '')}>
+    <div className={classNames('scene-tab', deviceData.switch_led !== 1 ?  'off-scene' : '')}>
       <SceneSlider
         options={SceneBgMap}
         optionsName={SceneNameMap}

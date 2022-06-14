@@ -10,10 +10,10 @@ const CONFIG = [
 ];
 
 const Ticker = ({
-  deviceData: { work_mode = 'white', power_switch },
+  deviceData: { work_mode = 'white', switch_led },
   doControlDeviceData,
 }) => {
-  const isSwitchOff = power_switch !== 1;
+  const isSwitchOff = switch_led !== 1;
   const isChecked = (val: number | string) => !isSwitchOff && work_mode === val;
   const cls = isSwitchOff ? 'ticker-off' : '';
   return (
