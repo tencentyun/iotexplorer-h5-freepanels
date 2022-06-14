@@ -12,7 +12,7 @@ const App = () => {
     { path: '/timer/action/switch', Component: MainSwitch },
     { path: '/timer/action/repeat', Component: Repeat },
   ];
-  // TODO µ±Ç°²úÆ·µÄÉè¼ÆÅäÖÃ Óë²é¿´Éè±¸³åÍ»--µÈUCDÉè¼ÆÍê³Éºóµ÷Õû
+  // TODO å½“å‰äº§å“çš„è®¾è®¡é…ç½® ä¸æŸ¥çœ‹è®¾å¤‡å†²çª--ç­‰UCDè®¾è®¡å®Œæˆåè°ƒæ•´
   return <Router route={route} detail={false} />;
 };
 
