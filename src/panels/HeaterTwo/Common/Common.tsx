@@ -12,7 +12,8 @@ const App = () => {
     { path: '/timer/action/switch', Component: MainSwitch },
     { path: '/timer/action/repeat', Component: Repeat },
   ];
-  return <Router route={route} />;
+  // TODO 当前产品的设计配置 与查看设备冲突--等UCD设计完成后调整
+  return <Router route={route} detail={false} />;
 };
 
 export default App;
