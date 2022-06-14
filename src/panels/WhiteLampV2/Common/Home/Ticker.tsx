@@ -2,12 +2,12 @@ import React from 'react';
 import { Icon } from '@custom/Icon';
 
 const CONFIG = [
-  ['白光', 0, 'white'],
-  ['情景', 1, 'scene'],
+  ['白光', 'white', 'white'],
+  ['情景', 'scene', 'scene'],
 ];
 
-const Ticker = ({ deviceData: { color_mode = 0, power_switch }, doControlDeviceData }) => {
-  const isChecked = (val: number) => power_switch === 1 && color_mode === val;
+const Ticker = ({ deviceData: { work_mode = 'white', switch_led }, doControlDeviceData }) => {
+  const isChecked = (val: string) => switch_led === 1 && work_mode === val;
   return (
     <div className="ticker">
       <div className="content">
@@ -15,7 +15,7 @@ const Ticker = ({ deviceData: { color_mode = 0, power_switch }, doControlDeviceD
           <div
             key={value}
             className={`item ${isChecked(value) ? 'checked' : ''}`}
-            onClick={() => doControlDeviceData({ color_mode: value })}
+            onClick={() => doControlDeviceData({ work_mode: value })}
           >
             <Icon name={`${icon}${isChecked(value) ? '-checked' : ''}`} />
             <div className="title">{name}</div>

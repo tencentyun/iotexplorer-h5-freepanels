@@ -2,17 +2,17 @@ import React from 'react';
 import { Icon } from '@custom/Icon';
 
 const Action = ({
-  deviceData: { power_switch },
+  deviceData: { switch_led },
   history: { PATH, push },
   timer: { isExistTimer },
   doControlDeviceData,
 }) => {
   const onSwitchChange = () => {
-    doControlDeviceData({ power_switch: power_switch ? 0 : 1 });
+    doControlDeviceData({ switch_led: switch_led ? 0 : 1 });
   };
 
   const actions = [
-    ['开关', power_switch ? 'switch-checked' : 'switch', onSwitchChange, !!power_switch],
+    ['开关', switch_led ? 'switch-checked' : 'switch', onSwitchChange, !!switch_led],
     ['定时', isExistTimer ? 'timing-checked' : 'timing', push.bind(null, PATH.TIMER_LIST), isExistTimer],
   ];
   return (
