@@ -31,7 +31,10 @@ export function useSwitchEditName({
         });
         return Configs;
       } catch (err) {
-        console.error(err);
+        console.error('请求device config出错', err);
+        return {
+          [deviceKey]: JSON.stringify([]),
+        };
       }
     },
   });
@@ -52,16 +55,20 @@ export function useSwitchEditName({
       ...switchNames,
       ...nameConfig,
     };
-    modifyModalName({
-      DeviceKey: deviceKey,
-      DeviceValue: JSON.stringify(newSwitchNames),
-    }).then(() => {
+    if (sdk.isMock) {
       setSwitchNames(newSwitchNames);
-    })
-      .catch((err) => {
-        console.error('修改失败', err);
-        sdk.tips.showError('修改失败');
-      });
+    } else {
+      modifyModalName({
+        DeviceKey: deviceKey,
+        DeviceValue: JSON.stringify(newSwitchNames),
+      }).then(() => {
+        setSwitchNames(newSwitchNames);
+      })
+        .catch((err) => {
+          console.error('修改失败', err);
+          sdk.tips.showError('修改失败');
+        });
+    }
   };
   return {
     switchNames,
