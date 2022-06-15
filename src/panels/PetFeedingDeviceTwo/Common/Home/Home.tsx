@@ -3,12 +3,14 @@ import { Battery } from '@custom/Battery';
 import { Position } from './Position';
 import { Action } from './Action';
 import { Feed } from './Feed';
+import { DeviceDetail } from '@custom/DeviceDetail';
 export function Home(props) {
   const {
     deviceData: { battery_percentage },
   } = props;
   return (
     <div className="home">
+      <DeviceDetail></DeviceDetail>
       <div className="header">
         <Battery
           value={battery_percentage || 50}

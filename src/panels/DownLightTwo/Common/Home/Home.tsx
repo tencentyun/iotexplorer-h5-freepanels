@@ -7,7 +7,7 @@ import Action from './Action';
 
 export function Home(props) {
   // tab模式
-  const colorMode = props.deviceData.color_mode || 'white';
+  const colorMode = props.deviceData.work_mode || 'white';
   return (
     <div className="home">
       <Ticker {...props} />

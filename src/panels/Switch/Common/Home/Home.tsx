@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { BizSwitch } from '@src/components/custom/BizSwitch/BizSwitch';
 import { Detail } from './Detail';
+import { DeviceDetail } from '@custom/DeviceDetail';
 
 const allSwitch = [
   ['switch_1', '开关1'],
@@ -13,7 +14,12 @@ const allSwitch = [
 const getSwitchNum = (templateMap = {}) => Object.keys(templateMap).filter(v => /^switch/.test(v)).length || 1;
 
 export function Home(props) {
-  const { doControlDeviceData, templateMap, setContext, deviceData = {} } = props;
+  const {
+    doControlDeviceData,
+    templateMap,
+    setContext,
+    deviceData = {},
+  } = props;
   const switchNum = getSwitchNum(templateMap);
   const currentSwitch = allSwitch.slice(0, switchNum);
   const onChange = (key, value) => doControlDeviceData(key, value ? 1 : 0);
@@ -23,6 +29,7 @@ export function Home(props) {
   return (
     <div className="home">
       <div className={`dashboard switch-${switchNum}`}>
+        <DeviceDetail></DeviceDetail>
         {currentSwitch.map(([key, name], index) => (
           <BizSwitch
             key={key}

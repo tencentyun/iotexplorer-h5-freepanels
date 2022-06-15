@@ -1,6 +1,8 @@
 .scene-page {
   margin-top: 24px;
   margin-bottom: 16px;
+  max-height: 453px;
+  min-height: 302px;
   .scene-tab {
     margin-bottom: 14px;
     display: flex;
@@ -31,8 +33,6 @@
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
-    max-height: 406px;
-    min-height: 340px;
     overflow-y: auto;
     .theme-item {
       position: relative;
@@ -65,6 +65,13 @@
         }
       }
     }
+    .empty {
+      margin-top: 100px;
+      width: 100%;
+      font-weight: 500;
+      text-align: center;
+      color: #A29DDF;
+    }
   }
   &.off-scene {
     opacity: 0.5;
@@ -84,47 +91,17 @@
   .ocean { //海洋
     background: linear-gradient(90deg, #2193B0 0%, #6DD5ED 100%);
   }
-  .sunflower { //向日葵
-    background: linear-gradient(117.03deg, #F0F1F3 0%, #FFC815 100%);
-  }
-  .forest { //森林
-    background: linear-gradient(117.03deg, #0F3443 0%, #34E89E 100%);
-  }
-  .kungFu { //功夫
-    background: linear-gradient(117.03deg, #1E130C 0%, #9A8478 100%);
-  }
-  .dream { //梦幻
-    background: linear-gradient(158deg, #E1ADFA 16.75%, #F9AEAE 87.5%);
-  }
-  .med { //地中海
-    background: linear-gradient(93.96deg, #4F73C3 0%, #3C46A2 100%);
-  }
-  .french { //法式
-    background: linear-gradient(117.03deg, #EC9D9D 0%, #B6D304 100%);
-  }
-  .american { //美式
-    background: linear-gradient(115.27deg, #E1467C 10.15%, #205284 79.76%);
-  }
-  .halloween { //万圣节
+  .qixi_festival { //七夕节
     background: linear-gradient(116.31deg, #430E78 2.34%, #B66403 94.17%);
   }
-  .easter { //复活节
+  .dragon_boat_festival { //端午节
     background: linear-gradient(117.03deg, #F55DB5 0%, #F4C6D0 52.68%, #C61C1C 100%);
   }
-  .vDay { //胜利日
+  .mid_autumn_festival { //中秋节
     background: linear-gradient(115.27deg, #C40000 10.15%, #0058AF 79.76%);
   }
-  .holi { //洒红节
+  .national_day { //国庆节
     background: linear-gradient(158deg, #E1ADFA 16.75%, #F9AEAE 87.5%);
-  }
-  .diwali { //排灯节
-    background: linear-gradient(117.03deg, #FEF3CD 0%, #E1467C 100%);
-  }
-  .independenceDay { //独立日
-    background: linear-gradient(115.27deg, #C40000 10.15%, #FFFFFF 50.39%, #0058AF 79.76%);
-  }
-  .christmas { //圣诞节
-    background: linear-gradient(117.03deg, #9D0303 0%, #117600 100%);
   }
   .birthday { //生日
     background: linear-gradient(117.03deg, #FFA51E 3.13%, #FA5A92 100%);
@@ -132,25 +109,17 @@
   .reading { //阅读
     background: linear-gradient(117.03deg, #F0F1F3 0%, #FFC815 100%);
   }
-  .job { //工作
+  .working { //工作
     background: linear-gradient(90deg, #06BEB6 0%, #48B1BF 100%);
   }
-  .leisure { //休闲
+  .relaxation { //休闲
     background: linear-gradient(90deg, #D66768 0%, #EFC655 100%);
   }
   .night { //晚安
     background: linear-gradient(356.82deg, #E1467C -174.04%, #205284 66.94%);
   }
-  .buds { //春天的嫩芽
-    background: linear-gradient(90deg, #EFEB77 0%, #A8E063 100%);
-  }
-  .brighter { //夏天的清亮
-    background: linear-gradient(117.03deg, #EAFFFE 0%, #32FDF3 100%);
-  }
-  .golden { //秋天的金黄
+  .cozy { //柔和
     background: linear-gradient(117.03deg, #D55C05 0%, #FABF26 100%);
   }
-  .warm { //冬天的温暖
-    background: linear-gradient(90deg, #CC2B5E 0%, #753A88 100%);
-  }
 }
+

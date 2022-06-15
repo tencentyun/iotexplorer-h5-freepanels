@@ -9,11 +9,11 @@ const CONFIG = [
 ];
 
 const Ticker = ({
-  deviceData: { color_mode = 'white', power_switch },
+  deviceData: { work_mode = 'white', switch_led },
   doControlDeviceData,
 }) => {
-  const isSwitchOff = power_switch !== 1;
-  const isChecked = (val: number | string) => !isSwitchOff && color_mode === val;
+  const isSwitchOff = switch_led !== 1;
+  const isChecked = (val: number | string) => !isSwitchOff && work_mode === val;
   const cls = isSwitchOff ? 'ticker-off' : '';
   return (
     <div className={`ticker ${cls}`}>
@@ -22,7 +22,7 @@ const Ticker = ({
           <Btn
             key={value}
             type={isChecked(icon) ? 'primary' : 'reverse'}
-            onClick={() => doControlDeviceData({ color_mode: icon })}
+            onClick={() => doControlDeviceData({ work_mode: icon })}
           >
             <Icon name={`${icon}${isChecked(icon) ? '-checked' : ''}`} />
             <div className="title">{name}</div>
