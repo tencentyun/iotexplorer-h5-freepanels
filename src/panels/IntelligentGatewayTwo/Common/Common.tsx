@@ -9,7 +9,7 @@ const App = () => {
     { path: '/home', Component: Home },
     { path: '/add', Component: Add },
   ];
-  return <Router route={route} />;
+  return <Router route={route}/>;
 };
 
 export default App;

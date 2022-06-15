@@ -5,6 +5,7 @@ import LightBright from './LightBright';
 import Ticker from './Ticker';
 import Action from './Action';
 import { ScenePage } from './Scene';
+import { DeviceDetail } from '@custom/DeviceDetail';
 
 export function Home(props) {
   // tab模式
@@ -13,7 +14,8 @@ export function Home(props) {
     props.doControlDeviceData({ power_switch: props.deviceData.power_switch ? 0 : 1 });
   };
   return (
-    <div className="home">
+    <div className={`home ${colorMode}`}>
+      <DeviceDetail></DeviceDetail>
       { colorMode !== 'scene'
         ? <div className="change-panel">
           <div className="power" onClick={onSwitchChange}>

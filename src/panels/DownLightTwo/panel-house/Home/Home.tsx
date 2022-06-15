@@ -8,16 +8,16 @@ import { SceneTab } from './SceneTab';
 
 export function Home(props) {
   // tab模式
-  const colorMode = props.deviceData.color_mode || 'white';
+  const colorMode = props.deviceData.work_mode || 'white';
   const onSwitchChange = () => {
-    props.doControlDeviceData({ power_switch: props.deviceData.power_switch ? 0 : 1 });
+    props.doControlDeviceData({ switch_led: props.deviceData.switch_led ? 0 : 1 });
   };
   return (
     <div className="home">
       { colorMode !== 'scene'
         ? <div className="change-panel">
           <div className="power" onClick={onSwitchChange}>
-            <Icon name={props.deviceData.power_switch !== 1 ? 'switch' : 'switch-checked'}></Icon>
+            <Icon name={props.deviceData.switch_led !== 1 ? 'switch' : 'switch-checked'}></Icon>
           </div>
           <Position {...props}></Position>
           <Action {...props}></Action>

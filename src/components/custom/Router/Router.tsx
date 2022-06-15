@@ -3,9 +3,16 @@ import React, { useState } from 'react';
 import { toLineObj, getEnv } from '@utils';
 import { useTimer } from '@src/hooks/useDevice';
 import { StatusTip } from '@custom/StatusTip';
+import { DeviceDetail } from '@custom/DeviceDetail';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 import { useDeviceInfo } from '@hooks/useDeviceInfo';
-import { HashRouter, Switch, Route, Redirect, useHistory } from 'react-router-dom';
+import {
+  HashRouter,
+  Switch,
+  Route,
+  Redirect,
+  useHistory,
+} from 'react-router-dom';
 
 const env = getEnv();
 
@@ -19,7 +26,9 @@ const parse = (url = '', { code = '' } = {}) => {
     const keyValue = qs.split('=');
     let value = keyValue[1];
     if (code) {
-      value = code === 'encode' ? encodeURIComponent(value) : decodeURIComponent(value);
+      value =        code === 'encode'
+        ? encodeURIComponent(value)
+        : decodeURIComponent(value);
     }
     qsObj[keyValue[0]] = value;
   });
@@ -30,13 +39,22 @@ const stringify = (obj = {}, { code = '' } = {}) => Object.keys(obj)
   .map((key) => {
     let value = obj[key];
     if (code) {
-      value = code === 'encode' ? encodeURIComponent(value) : decodeURIComponent(value);
+      value =          code === 'encode'
+        ? encodeURIComponent(value)
+        : decodeURIComponent(value);
     }
     return `${key}=${value}`;
   })
   .join('&');
 
-const PageComponent = ({ Component, PATH, className, ...props }) => {
+const PageComponent = ({
+  Component,
+  PATH,
+  className,
+  path,
+  detail,
+  ...props
+}) => {
   const reactDomHistory = useHistory();
   const [timerState, TimerAction] = useTimer();
   const history = {
@@ -55,11 +73,23 @@ const PageComponent = ({ Component, PATH, className, ...props }) => {
   // tips功能
   const { tips } = sdk;
 
-  const allProps = { history, ...props, timer: { ...timerState, ...TimerAction }, tips };
+  const allProps = {
+    history,
+    ...props,
+    timer: { ...timerState, ...TimerAction },
+    tips,
+  };
 
   log.mi('', allProps);
   return (
-    <div className={`route-root route-${getPathName(className, '-', false)}`}>
+    <div
+      className={`route-root  route-${getPathName(
+        className,
+        '-',
+        false,
+      )}`}
+    >
+      {detail && path === '/home' ? <DeviceDetail /> : null}
       <Component className={'HOME'} {...allProps} />
     </div>
   );
@@ -67,10 +97,12 @@ const PageComponent = ({ Component, PATH, className, ...props }) => {
 
 const getPathName = (path: string, split = '_', isUpperCase = true) => {
   const pathName = path.replace(/^\//, '').replace(/\//g, split);
-  return isUpperCase ? pathName.toLocaleUpperCase() : pathName.toLocaleLowerCase();
+  return isUpperCase
+    ? pathName.toLocaleUpperCase()
+    : pathName.toLocaleLowerCase();
 };
 
-export const Router = ({ route = [] as HashMap[] }) => {
+export const Router = ({ route = [] as HashMap[], detail = true }) => {
   const [state, action] = useDeviceInfo();
   const [context, setContextData] = useState({});
   const setContext = (key, val = true, isAppend = true) => {
@@ -94,7 +126,9 @@ export const Router = ({ route = [] as HashMap[] }) => {
   const { statusTip } = state;
   const isBluetoothDevice = true;
   const hasScf = /\/scf\//.test(location.href);
-  let basename = env.isDev ? `${hasScf ? '/scf' : ''}/h5panel/developing` : `${hasScf ? '/scf' : ''}/h5panel`;
+  let basename = env.isDev
+    ? `${hasScf ? '/scf' : ''}/h5panel/developing`
+    : `${hasScf ? '/scf' : ''}/h5panel`;
   if (isBluetoothDevice && env.isDev) {
     basename += '/live';
   }
@@ -125,8 +159,10 @@ export const Router = ({ route = [] as HashMap[] }) => {
                   setContext={setContext}
                   autoDoControlDeviceData={autoDoControlDeviceData}
                   PATH={PATH}
+                  path={path}
                   log={log}
                   env={env}
+                  detail={detail}
                 />
               </div>
             )}

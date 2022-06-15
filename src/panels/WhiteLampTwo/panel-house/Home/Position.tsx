@@ -6,20 +6,20 @@ export interface LightColorProps extends StyledProps {
   defaultValue?: number; // 0 - 1000
 }
 export function Position({
-  deviceData: { brightness = 80, color_mode, set_temp = 150, power_switch },
+  deviceData: { bright_value = 80, work_mode, temp_value = 150, switch_led },
   doControlDeviceData,
 }) {
-  const [deg, setDeg] = useState((set_temp * 360) / 1000);
-  const isPowerOff = power_switch !== 1;
+  const [deg, setDeg] = useState((temp_value * 360) / 1000);
+  const isPowerOff = switch_led !== 1;
   const onChange = (deg) => {
     setDeg(deg);
-    doControlDeviceData('set_temp', Math.round((deg * 1000) / 360));
+    doControlDeviceData('temp_value', Math.round((deg * 1000) / 360));
   };
   const onSwitchChange = () => {
-    doControlDeviceData({ power_switch: power_switch ? 0 : 1 });
+    doControlDeviceData({ switch_led: switch_led ? 0 : 1 });
   };
   const cls = isPowerOff ? 'off-switch' : 'on-switch';
-  const sceneCls = color_mode === 1 ? 'scene-type' : '';
+  const sceneCls = work_mode === 'scene' ? 'scene-type' : '';
   // TODO 需要找设计给图
   return (
     <div className={`position_card  center ${cls} ${sceneCls}`}>
@@ -28,7 +28,7 @@ export function Position({
           <div className="bg">
             <div
               className="circle outer center"
-              style={{ opacity: brightness / 100 }}
+              style={{ opacity: bright_value / 100 }}
             >
               <div className="circle inner"></div>
             </div>

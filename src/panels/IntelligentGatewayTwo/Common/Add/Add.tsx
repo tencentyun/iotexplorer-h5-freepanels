@@ -40,10 +40,25 @@ export function Add({ history: { PATH, push }, tips }) {
     // 获取网关子设备
     const getDeviceDataGateway = async () => {
       try {
+        // const recordListInfo = await sdk.requestTokenApi(
+        //   'AppGetGatewayBindDeviceList',
+        //   {
+        //     Action: 'AppGetGatewayBindDeviceList',
+        //     AccessToken: 'AccessToken',
+        //     RequestId: sdk.requestId,
+        //     GatewayProductId: sdk.gatewayProductId,
+        //     GatewayDeviceName: sdk.GatewayDeviceName,
+        //     ProductId: sdk.productId,
+        //     DeviceName: sdk.deviceName,
+        //     Offset: 0,
+        //     Limit: 10,
+        //   },
+        // );
+        // 获取已绑定到家庭下的指定网关的子设备列表
         const recordListInfo = await sdk.requestTokenApi(
-          'AppGetGatewayBindDeviceList',
+          'AppGetFamilySubDeviceList',
           {
-            Action: 'AppGetGatewayBindDeviceList',
+            Action: 'AppGetFamilySubDeviceList',
             AccessToken: 'AccessToken',
             RequestId: sdk.requestId,
             GatewayProductId: sdk.gatewayProductId,
@@ -131,7 +146,7 @@ export function Add({ history: { PATH, push }, tips }) {
               ))
           ) : (
             <div className="dev-empty center">
-              <div className="info">没有电子设备</div>
+              <div className="info">没有子设备</div>
             </div>
           )}
         </div>

@@ -23,7 +23,7 @@ const App = () => {
     { path: '/video/history', Component: VideoHistory },
     { path: '/event/preview', Component: EventPreview },
   ];
-  return <Router route={route} />;
+  return <Router route={route} detail={false} />;
 };
 
 export default App;

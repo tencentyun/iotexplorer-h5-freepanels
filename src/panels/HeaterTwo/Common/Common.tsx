@@ -12,7 +12,7 @@ const App = () => {
     { path: '/timer/action/switch', Component: MainSwitch },
     { path: '/timer/action/repeat', Component: Repeat },
   ];
-  return <Router route={route} />;
+  return <Router route={route} detail={false} />;
 };
 
 export default App;
