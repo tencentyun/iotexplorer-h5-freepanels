@@ -7,7 +7,7 @@ export interface LightColorProps extends StyledProps {
   defaultValue?: number; // 0 - 1000
 }
 export function Position({
-  deviceData: { brightness = 80, color_mode },
+  deviceData: { bright_value = 80, work_mode },
   doControlDeviceData,
 }) {
   const min_value = 0;
@@ -45,7 +45,7 @@ export function Position({
       newVal = max_value;
     }
     setDataUser(newVal);
-    doControlDeviceData('set_temp', newVal);
+    doControlDeviceData('temp_value', newVal);
   };
 
   const onTouchMove = (e: React.MouseEvent) => {
@@ -87,9 +87,9 @@ export function Position({
     <div className="position_card">
       <div
         ref={wrapper}
-        className={classNames('position-wrap', color_mode === 1 && 'scene-bar')}
+        className={classNames('position-wrap', work_mode === 'scene' && 'scene-bar')}
         onTouchMove={onTouchMove}
-        style={{ opacity: brightness / 100 }}
+        style={{ opacity: bright_value / 100 }}
       >
         <div className="position-mask"></div>
         <div className="position-trangle"></div>

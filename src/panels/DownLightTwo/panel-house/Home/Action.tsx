@@ -3,11 +3,11 @@ import { Icon } from '@custom/Icon';
 
 const Action = ({
   style,
-  deviceData: { power_switch },
+  deviceData: { switch_led },
   history: { PATH, push },
   timer: { isExistTimer },
 }) => {
-  const isSwitchOff = power_switch !== 1;
+  const isSwitchOff = switch_led !== 1;
   const actionCls = isSwitchOff ? 'action-off' : '';
 
   const actions = [

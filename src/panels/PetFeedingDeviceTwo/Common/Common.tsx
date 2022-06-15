@@ -13,7 +13,7 @@ const App = () => {
     { path: '/timer/action/repeat', Component: Repeat },
     { path: '/setting', Component: Setting },
   ];
-  return <Router route={route} />;
+  return <Router route={route} detail={false} />;
 };
 
 export default App;

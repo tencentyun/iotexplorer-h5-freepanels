@@ -2,9 +2,9 @@ import React from 'react';
 import { List, Radio } from 'antd-mobile';
 import { Icon } from '@custom/Icon';
 
-export const MainSwitch = ({ context: { power_switch = 0 }, setContext }) => {
+export const MainSwitch = ({ context: { switch_led = 0 }, setContext }) => {
   const getSwitchNumData = (powerSwitch) => {
-    const changeData = { power_switch: powerSwitch };
+    const changeData = { switch_led: powerSwitch };
     return changeData;
   };
 
@@ -15,7 +15,7 @@ export const MainSwitch = ({ context: { power_switch = 0 }, setContext }) => {
 
   return (
     <div className="timer-action switch-modal">
-      <Radio.Group onChange={onAllSwitchChange} value={power_switch}>
+      <Radio.Group onChange={onAllSwitchChange} value={switch_led}>
         <List>
           <List.Item
             prefix={'打开'}

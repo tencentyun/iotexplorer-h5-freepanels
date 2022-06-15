@@ -3,33 +3,44 @@ import classNames from 'classnames';
 import { SceneSlider } from './SceneSlider';
 
 /**
- * 0 - 工作
+ * 0 - 晚安
  * 1 - 阅读
- * 2 - 睡眠
+ * 2 - 工作
  * 3 - 休闲
  * 4 - 柔和
- * 5 - 斑斓
- * 6 - 缤纷
- * 7 - 炫彩
+ * 5 - 缤纷
+ * 6 - 炫彩
+ * 7 - 斑斓
  */
 const SceneBgMap = [
-  'https://tencent-1305105198.cos.ap-guangzhou.myqcloud.com/scene_bg_map%2Fscene%2Fwork.png',
-  'https://tencent-1305105198.cos.ap-guangzhou.myqcloud.com/scene_bg_map%2Fscene%2Fread.png',
   'https://tencent-1305105198.cos.ap-guangzhou.myqcloud.com/scene_bg_map%2Fscene%2Fsleep.png',
+  'https://tencent-1305105198.cos.ap-guangzhou.myqcloud.com/scene_bg_map%2Fscene%2Fread.png',
+  'https://tencent-1305105198.cos.ap-guangzhou.myqcloud.com/scene_bg_map%2Fscene%2Fwork.png',
   'https://tencent-1305105198.cos.ap-guangzhou.myqcloud.com/scene_bg_map%2Fscene%2Frelax.png',
   'https://tencent-1305105198.cos.ap-guangzhou.myqcloud.com/scene_bg_map%2Fscene%2Fsoft.png',
+  'https://tencent-1305105198.cos.ap-guangzhou.myqcloud.com/scene_bg_map%2Fscene%2Fcolorful.png',
   'https://tencent-1305105198.cos.ap-guangzhou.myqcloud.com/scene_bg_map%2Fscene%2Fbeautiful.png',
   'https://tencent-1305105198.cos.ap-guangzhou.myqcloud.com/scene_bg_map%2Fscene%2Friotous.png',
-  'https://tencent-1305105198.cos.ap-guangzhou.myqcloud.com/scene_bg_map%2Fscene%2Fcolorful.png',
 ];
+// 晚安、阅读、工作、休闲、柔和、缤纷、炫彩、斑斓
+const SceneNameMap = ['晚安', '阅读', '工作', '休闲', '柔和', '缤纷', '炫彩', '斑斓'];
+const SceneValueMap = ['sleep', 'read', 'work', 'relax', 'soft', 'colorful', 'beautiful', 'riotous'];
 
-const SceneNameMap = ['工作', '阅读', '睡眠', '休闲', '柔和', '斑斓', '缤纷', '炫彩'];
+const getIndex = (key) => {
+  let index = 2;
+  SceneValueMap.map((item, i) => {
+    if (item === key) {
+      index = i;
+    }
+  });
+  return index + 1;
+};
 
-export function SceneTab({ deviceData, doControlDeviceData, ...props }) {
-  const [value, setValue] = useState(deviceData.scene || 3);
+export function SceneTab({ deviceData, doControlDeviceData }) {
+  const [value, setValue] = useState(getIndex(deviceData.scene_data));
 
   return (
-    <div className={classNames('scene-tab', deviceData.power_switch !== 1 ?  'off-scene' : '')}>
+    <div className={classNames('scene-tab', deviceData.switch_led !== 1 ?  'off-scene' : '')}>
       <SceneSlider
         options={SceneBgMap}
         optionsName={SceneNameMap}
@@ -37,9 +48,8 @@ export function SceneTab({ deviceData, doControlDeviceData, ...props }) {
         onChange={(value) => {
           console.log('外部值的变化:', value);
           setValue(value);
-          doControlDeviceData('scene', value);
+          doControlDeviceData('scene_data', SceneValueMap[value]);
         }}
-        {...props}
       />
     </div>
   );

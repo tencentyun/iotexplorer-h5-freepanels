@@ -7,7 +7,7 @@ import { SceneTab } from './SceneTab';
 
 export function Home(props) {
   // tab模式
-  const colorMode = props.deviceData.color_mode || 'white';
+  const colorMode = props.deviceData.work_mode || 'white';
 
   return (
     <div className="home">
@@ -27,7 +27,7 @@ export function Home(props) {
             ? <>
                 <LightBright
                   iconName="temperature"
-                  controlName="temp_value"
+                  controlName="colour_data"
                   {...props}
                 ></LightBright>
                 <LightBright

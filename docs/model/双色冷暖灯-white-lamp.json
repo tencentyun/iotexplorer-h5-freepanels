@@ -2,7 +2,7 @@
   "version": "1.0",
   "properties": [
     {
-      "id": "power_switch",
+      "id": "switch_led",
       "name": "电源开关",
       "desc": "",
       "mode": "rw",
@@ -31,7 +31,7 @@
       "required": false
     },
     {
-      "id": "brightness",
+      "id": "bright_value",
       "name": "亮度",
       "desc": "",
       "mode": "rw",
@@ -46,7 +46,31 @@
       "required": false
     },
     {
-      "id": "set_temp",
+      "id": "colour_data",
+      "name": "彩光",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "string",
+        "min": "0",
+        "max": "2048"
+      },
+      "required": false
+    },
+    {
+      "id": "white_data",
+      "name": "白光",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "string",
+        "min": "0",
+        "max": "2048"
+      },
+      "required": false
+    },
+    {
+      "id": "temp_value",
       "name": "冷暖值",
       "desc": "",
       "mode": "rw",
@@ -61,27 +85,50 @@
       "required": false
     },
     {
-      "id": "scene",
+      "id": "work_mode",
+      "name": "模式",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "stringenum",
+        "mapping": {
+          "white": "白光",
+          "colour": "彩光",
+          "scene": "场景",
+          "timing": "定时"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "scene_data",
       "name": "场景",
       "desc": "",
       "mode": "rw",
       "define": {
         "type": "stringenum",
         "mapping": {
-          "0": "工作",
-          "1": "阅读",
-          "2": "睡眠",
-          "3": "休闲",
-          "4": "柔和"
+          "night": "工作",
+          "read": "阅读",
+          "work": "睡眠",
+          "relaxtion": "休闲",
+          "colorful": "阅读",
+          "dazzling": "睡眠",
+          "gorgeous": "休闲",
+          "soft": "柔和"
         }
       },
       "required": false
     }
   ],
-  "events": [],
-  "actions": [],
+  "events": [
+
+  ],
+  "actions": [
+
+  ],
   "profile": {
-    "ProductId": "P9FCB4V9V1",
-    "CategoryId": "1"
+    "ProductId": "48JLS2U04F",
+    "CategoryId": "582"
   }
 }

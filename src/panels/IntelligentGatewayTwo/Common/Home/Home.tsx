@@ -44,8 +44,6 @@ export function Home(props) {
     // 获取网关子设备
     const getDeviceDataGateway = async () => {
       try {
-        // TODO 确认设备未绑定家庭的错误处理方式  同时确定AccessToken的来源
-        // TODO 设备列表上没有BindStatus 如何获取
         const recordListInfo = await sdk.requestTokenApi(
           'AppGetGatewayBindDeviceList',
           {
@@ -117,7 +115,7 @@ export function Home(props) {
               ))
           ) : (
             <div className="dev-empty center">
-              <div className="info">没有电子设备</div>
+              <div className="info">没有子设备</div>
             </div>
           )}
         </div>
