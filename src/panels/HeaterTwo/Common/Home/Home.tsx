@@ -35,18 +35,19 @@ export function Home({
     <main className="home">
       {/* 顶部 */}
       <header>
+        {/* 更多 */}
+        <div className={classNames('more-btn', deviceData.power_switch === 1 ? 'active' : 'disable')}
+          onClick={() => {
+            push(PATH.SETTINGS);
+          }}>
+          <Icon name='more'></Icon>
+        </div>
         {/* 童锁 */}
         <div
           className={classNames(
             'child-lock-status',
             deviceData.power_switch === 1 ? 'active' : 'disable',
           )}>{deviceData.child_lock ? '童锁开' : '童锁关'}</div>
-        {/* 更多 */}
-        <div className="more-btn" onClick={() => {
-          push(PATH.SETTINGS);
-        }}>
-          <Icon name='more'></Icon>
-        </div>
       </header>
       {/* 表盘 */}
       <div className="disk-wrap">
