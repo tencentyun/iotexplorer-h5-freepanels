@@ -45,9 +45,12 @@ export function Position({
       newVal = max_value;
     }
     setDataUser(newVal);
-    doControlDeviceData('temp_value', newVal);
+    // doControlDeviceData('temp_value', newVal);
   };
 
+  const onTouchEnd = (e: React.MouseEvent) => {
+    doControlDeviceData('temp_value', dataUser);
+  };
   const onTouchMove = (e: React.MouseEvent) => {
     const wrap = wrapper.current;
     const point = circle.current;
@@ -87,8 +90,12 @@ export function Position({
     <div className="position_card">
       <div
         ref={wrapper}
-        className={classNames('position-wrap', work_mode === 'scene' && 'scene-bar')}
+        className={classNames(
+          'position-wrap',
+          work_mode === 'scene' && 'scene-bar',
+        )}
         onTouchMove={onTouchMove}
+        onTouchEnd={onTouchEnd}
         style={{ opacity: bright_value / 100 }}
       >
         <div className="position-mask"></div>

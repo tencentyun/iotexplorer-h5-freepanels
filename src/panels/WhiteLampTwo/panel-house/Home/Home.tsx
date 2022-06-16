@@ -1,7 +1,7 @@
 import React from 'react';
 import { Position } from './Position';
 import LightBright from './LightBright';
-import Ticker from './Ticker';
+// import Ticker from './Ticker';
 import Action from './Action';
 
 export function Home(props) {
@@ -13,7 +13,7 @@ export function Home(props) {
           <Action {...props}></Action>
           <LightBright {...props}></LightBright>
         </div>
-        <Ticker {...props} />
+        {/* <Ticker {...props} /> */}
       </div>
     </div>
   );
