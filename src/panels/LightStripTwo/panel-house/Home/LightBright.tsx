@@ -7,11 +7,13 @@ const LightBrightPage = ({
   iconName,
   controlName,
 }) => (
-  <div className={`light-bright ${deviceData.power_switch ? 'on-switch' : 'off-switch'}`}>
+  <div className={`light-bright ${deviceData.switch_led ? 'on-switch' : 'off-switch'}`}>
     <LightBright
       defaultValue={deviceData[controlName]}
-      status={deviceData.power_switch}
+      status={deviceData.switch_led === 1}
       iconName={iconName}
+      minValue={0}
+      maxValue={100}
       onChange={(value, endTouch) => endTouch && doControlDeviceData(controlName, value)}
     />
   </div>

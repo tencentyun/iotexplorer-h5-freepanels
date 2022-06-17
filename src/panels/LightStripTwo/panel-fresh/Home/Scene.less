@@ -1,6 +1,8 @@
 .scene-page {
   margin-top: 24px;
   margin-bottom: 16px;
+  max-height: 453px;
+  min-height: 302px;
   .scene-tab {
     margin-bottom: 14px;
     display: flex;
@@ -32,7 +34,6 @@
     justify-content: space-between;
     flex-wrap: wrap;
     max-height: 406px;
-    min-height: 340px;
     overflow-y: auto;
     .theme-item {
       position: relative;
@@ -64,6 +65,13 @@
           background: #FFFFFF;
         }
       }
+    }
+    .empty {
+      margin-top: 100px;
+      width: 100%;
+      font-weight: 500;
+      text-align: center;
+      color: #A29DDF;
     }
   }
   &.off-scene {

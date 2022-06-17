@@ -3,10 +3,12 @@
 @import url("./LightBright.less");
 @import url('./Scene.less');
 @import url("./Action.less");
+
 .route-home {
   display: inherit !important;
 }
 .home {
+  position: relative;
   display: flex;
   flex-direction: column;
   padding: 24px;
@@ -19,8 +21,8 @@
   }
   &.scene{
     .cus-dev-detail{
-      top:82px;
-      right:24px;
+      display: none;
     }
   }
 }
+
