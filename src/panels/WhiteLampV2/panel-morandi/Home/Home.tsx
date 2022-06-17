@@ -14,7 +14,7 @@ export function Home(props) {
         </div>
         <div className="action-pop">
           <Action {...props}></Action>
-          <Ticker {...props} />
+          {/* <Ticker {...props} /> */}
         </div>
       </div>
     </div>

@@ -16,7 +16,6 @@ export function Position({
     doControlDeviceData('temp_value', Math.round((deg * 1000) / 360));
   };
   const onSwitchChange = () => {
-    debugger;
     doControlDeviceData({ switch_led: switch_led ? 0 : 1 });
   };
   const cls = isPowerOff ? 'off-switch' : 'on-switch';
