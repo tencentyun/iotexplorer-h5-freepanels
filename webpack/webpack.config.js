@@ -11,6 +11,7 @@ const plugin = require('./plugin');
 const viewportConfig = require('./pxToViewport.config');
 const argv = require('minimist')(process.argv.slice(2));
 const category = argv.category || process.env.npm_config_category || '';
+const panelTheme = argv.panel || process.env.npm_config_panel || '';
 
 // 使用 npm run dev --category=xxx --index 统一生成index.js, index.css
 const outputIndex = ((argv.index || process.env.npm_config_index) === 'true');
@@ -66,7 +67,14 @@ module.exports = (env, argv) => {
             `${categoryKey}/${panelName}`,
             options.entry,
           );
-          entry[`${categoryKey}_${panelName}`] = entryPath;
+          if (panelTheme) {
+            console.log(panelTheme, panelName);
+            if (panelName === panelTheme) {
+              entry[`${categoryKey}_${panelName}`] = entryPath;
+            }
+          } else {
+            entry[`${categoryKey}_${panelName}`] = entryPath;
+          }
           viewport[entryPath.replace(/\\/g, '/')] = viewportWidth;
         }
       });
@@ -100,7 +108,8 @@ module.exports = (env, argv) => {
       port: 9000,
       // disableHostCheck: true, //  新增该配置项
       // hot: true,
-      https: true,
+      https: false,
+      headers: { 'Access-Control-Allow-Origin': '*' },
       static: {
         directory: path.join(__dirname, outputPath),
       },
