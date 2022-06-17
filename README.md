@@ -20,8 +20,8 @@
 |----------|-----------|--------|------------------|---|
 | 电工-插座类   | 五孔单插      | 五孔单插   | FivePlug   |  已上架 |
 |          | 三孔单插      | 三孔单插   | ThreePlug         | 已上架 |
-|          | 电量统计插座    | 电量统计插座 | ElectricityStatsReceptacle |
-|          | 墙壁插座带USB  | 墙壁插头   | WallPlug     |
+|          | 电量统计插座    | 电量统计插座 | ElectricityStatsReceptacle |   |
+|          | 墙壁插座带USB  | 墙壁插头   | WallPlug     |   |
 | 电工类-开关类 | 场景开关 | 多路开关   | MultiSwitch           |
 |          |           | 开关面板   | switch          |
 |          |           | 一路开关   | SwitchOne                  |
@@ -82,10 +82,10 @@
 |          |         | 空调v3     | AirConditionerTwo              |
 |          | 热水器       | 热水器    | WaterHeater                 |
 | 厨电类    | 电烤箱       | 电烤箱    | electric-oven                |
-| 照明设备   | 筒灯       | 筒灯    | DownLightTwo                |
-|          | 射灯        | 射灯    | SpotLightsTwo                |
-|          | 灯带        | 灯带    | LightStripTwo               |
-|           | 冷暖白光灯       |冷暖白光灯     | WhiteLamp         |
+| 照明设备   | 筒灯       | 筒灯    | DownLightTwo                |  已上架 |
+|          | 射灯        | 射灯    | SpotLightsTwo                |  已上架 |
+|          | 灯带        | 灯带    | LightStripTwo               | 已上架 |
+|           | 冷暖白光灯       |冷暖白光灯     | WhiteLamp         | 已上架 |
 |           |        |冷暖白光灯V2     | WhiteLampV2      |
 |           |        |冷暖白光灯v3     | WhiteLampTwo     |
 
