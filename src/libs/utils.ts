@@ -137,3 +137,58 @@ export function mapsToOptions(templateMap, name: string): string[] {
   }
   return result;
 }
+
+const parseColor = hexStr => (hexStr.length === 4 ? hexStr.substr(1).split('')
+  .map(s => 0x11 * parseInt(s, 16)) : [hexStr.substr(1, 2),
+  hexStr.substr(3, 2), hexStr.substr(5, 2)].map(s => parseInt(s, 16))
+);
+
+// zero-pad 1 digit to 2
+const pad = s => ((s.length === 1) ? `0${s}` : s);
+
+const gradientColors = (start: string, end: string, steps: number, gamma: number) => {
+  let i; let j; let ms; let me; const output = []; const so = [];
+  gamma = gamma || 1;
+  const normalize = function (channel) {
+    return Math.pow(channel / 255, gamma);
+  };
+  start = parseColor(start).map(normalize);
+  end = parseColor(end).map(normalize);
+  for (i = 0; i < steps; i++) {
+    ms = i / (steps - 1);
+    me = 1 - ms;
+    for (j = 0; j < 3; j++) {
+      so[j] = pad(Math.round(Math.pow(start[j] * me + end[j] * ms, 1 / gamma) * 255).toString(16));
+    }
+    output.push(`#${so.join('')}`);
+  }
+  return output;
+};
+
+const colorListBymode = (mode) => {
+  let colorList = [];
+  const whiteConfig = ['#fbed96', '#aeecd5'];
+  const colorConfig = [['#E500F0', '#2F00FF'], ['#03F7F9', '#32FB1D'], ['#A0EF07', '#EECD0C'], ['#F90219', '#E500F0'], ['#2F00FF', '#E500F0']];
+  if (mode === 'colour') {
+    colorConfig.forEach((item) => {
+      const arr = gradientColors(item[0], item[1], 72, 1);
+      colorList.push(...arr);
+    });
+  } else {
+    colorList = [...gradientColors(whiteConfig[0], whiteConfig[1], 360, 1)];
+  }
+  console.log(colorList, 'colorList');
+
+  return colorList;
+};
+
+export const getColorValue = (mode, deg) => {
+  const colorList = colorListBymode(mode);
+  return colorList[deg];
+};
+
+export const getDegValue = (mode, color) => {
+  const colorList = colorListBymode(mode);
+  return colorList.findIndex(value => value === color);
+};
+
