@@ -46,7 +46,9 @@ export function ScenePage({
   const [tabValue, setTabValue] = useState(1);
   // 主题数据
   const [themeList, setThemeList] = useState(THEME);
-
+  const changeScene = (id) => {
+    doControlDeviceData('scene_data', id);
+  }
   useEffect(() => {
     likeInit();
   }, []);
@@ -103,12 +105,13 @@ export function ScenePage({
       </div>
       <div className="scene-content">
         {themeList[tabValue].map(({ id, name, value, isLike }) => (
-          <div key={id} className={`theme-item ${value}`}>
+          <div key={id} className={`theme-item ${value}`} onClick={() => changeScene(id)}>
             <span className="item-title">{name}</span>
             {tabValue !== 0
               ? <span
                 className={`item-like ${isLike ? 'like-checked' : ''}`}
-                onClick={() => {
+                onClick={(e) => {
+                  e.stopPropagation();
                   favoriteHandle(id, isLike);
                 }}>
                 <Icon name={isLike ? 'like-checked' : 'like'}></Icon>
