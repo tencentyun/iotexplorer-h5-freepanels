@@ -46,6 +46,7 @@ export function Log(props) {
             itemHeight={58}
             height={175}
             showTwoDigit={true}
+            max={new Date}
             onConfirm={(startDate) => {
               setDateTime([startDate, new Date()]);
               setVisible(false);
