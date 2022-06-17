@@ -106,11 +106,7 @@ export function ScenePage({
             key={id}
             className={`theme-item ${value} ${scene_data === id ? 'selected' : ''}`}
             onClick={() => {
-              if (scene_data === id) {
-                doControlDeviceData('scene_data', 0);
-              } else {
-                doControlDeviceData('scene_data', id);
-              }
+              doControlDeviceData('scene_data', id);
             }}>
             <span className="item-title">{name}</span>
             {tabValue !== 0

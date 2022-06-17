@@ -47,7 +47,7 @@ export function ScenePage({
   const [themeList, setThemeList] = useState(THEME);
   const changeScene = (id) => {
     doControlDeviceData('scene_data', id);
-  }
+  };
   useEffect(() => {
     likeInit();
   }, []);
