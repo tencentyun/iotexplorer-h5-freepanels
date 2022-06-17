@@ -24,6 +24,17 @@ const eventMap = {
   unlock_remote_result: '远程解锁',
 };
 
+const alarmTipMap = {
+  0: '错误指纹',
+  1: '错误密码',
+  2: '错误卡',
+  3: '低电量',
+  4: '门未锁好',
+  5: '门未关',
+  6: '锁被撬',
+  7: '布防模式被打破',
+};
+
 interface Log{
   groupDate: number,
   children: {label: string, time: string}[]
@@ -74,6 +85,7 @@ export function LogList({ logType, activeKey, dateTime }) {
         groupDate: date[0].getTime(), // 分组时间
         children: logList.map(log => ({
           label: eventMap[log.EventId],
+          data: JSON.parse(log.Data),
           time: dayjs(log.TimeStamp).format('YYYY-MM-DD HH:mm'),
         })),
       },
@@ -109,15 +121,24 @@ export function LogList({ logType, activeKey, dateTime }) {
               <div className="group">{dayjs(groupDate).format('YYYY年MM月DD日') || ''}</div>
               <div className="list">
                 <Steps direction="vertical">
-                  {children.map(({ label, time }, index) => (
-                    <Step
+                  {children.map(({ label, time, data }, index) => {
+                    let labelNode: React.ReactNode = label;
+                    if (label === '门锁告警') {
+                      labelNode = (
+                        <div>{label}: <span className='adm-step-description' style={{color: 'var(--adm-color-danger)!important'}}>
+                          {alarmTipMap[data.alarm_tip]}
+                          </span>
+                        </div>
+                      );
+                    }
+                    return <Step
                       key={index}
                       // icon={<div>aaa</div>}
-                      title={label}
+                      title={labelNode}
                       status={index ? 'wait' : 'finish'}
                       description={time}
                     />
-                  ))}
+                  })}
                 </Steps>
               </div>
             </div>
