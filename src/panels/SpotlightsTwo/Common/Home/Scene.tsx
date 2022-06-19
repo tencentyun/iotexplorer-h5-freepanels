@@ -37,9 +37,8 @@ interface themeItem {
   value: string;
   isLike: boolean;
 }
-
 export function ScenePage({
-  deviceData: { switch_led, like },
+  deviceData: { switch_led, scene_data, like },
   doControlDeviceData,
 }) {
   // tab切换
@@ -48,7 +47,7 @@ export function ScenePage({
   const [themeList, setThemeList] = useState(THEME);
   const changeScene = (id) => {
     doControlDeviceData('scene_data', id);
-  }
+  };
   useEffect(() => {
     likeInit();
   }, []);
@@ -105,7 +104,7 @@ export function ScenePage({
       </div>
       <div className="scene-content">
         {themeList[tabValue].map(({ id, name, value, isLike }) => (
-          <div key={id} className={`theme-item ${value}`} onClick={() => changeScene(id)}>
+          <div key={id} className={`theme-item ${value} ${scene_data === id ? 'selected' : ''}`} onClick={() => changeScene(id)}>
             <span className="item-title">{name}</span>
             {tabValue !== 0
               ? <span
