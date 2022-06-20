@@ -36,31 +36,49 @@ import { Btn } from '@custom/Btn';
 // ];
 
 export function Home(props) {
-  const {
-    history: { PATH, push },
-  } = props;
+  // const {
+  //   history: { PATH, push },
+  // } = props;
   const [gatewayList, setGatewayList] = useState([]);
   useEffect(() => {
     // 获取网关子设备
     const getDeviceDataGateway = async () => {
+      const { h5PanelSdk } = window;
+      const { subDeviceList } = await h5PanelSdk.getSubDeviceList();
       try {
-        const recordListInfo = await sdk.requestTokenApi(
-          'AppGetGatewayBindDeviceList',
-          {
-            Action: 'AppGetGatewayBindDeviceList',
-            // AccessToken: 'AccessToken',
-            RequestId: sdk.requestId,
-            GatewayProductId: sdk.gatewayProductId,
-            GatewayDeviceName: sdk.GatewayDeviceName,
-            ProductId: sdk.productId,
-            DeviceName: sdk.deviceName,
-            Offset: 0,
-            Limit: 10,
-          },
-        );
-        console.log('get info', recordListInfo);
+        // const recordListInfo = await sdk.requestTokenApi(
+        //   'AppGetFamilySubDeviceList',
+        //   {
+        //     Action: 'AppGetFamilySubDeviceList',
+        //     // AccessToken: 'AccessToken',
+        //     RequestId: sdk.requestId,
+        //     GatewayProductId: sdk.gatewayProductId,
+        //     GatewayDeviceName: sdk.GatewayDeviceName,
+        //     ProductId: sdk.productId,
+        //     DeviceName: sdk.deviceName,
+        //     Offset: 0,
+        //     Limit: 10,
+        //   },
+        // );
+
+        // const recordListInfo = await sdk.requestTokenApi(
+        //   'AppGetFamilySubDeviceList',
+        //   {
+        //     Action: 'AppGetFamilySubDeviceList',
+        //     // AccessToken: 'AccessToken',
+        //     RequestId: sdk.requestId,
+        //     GatewayProductId: sdk.gatewayProductId,
+        //     GatewayDeviceName: sdk.GatewayDeviceName,
+        //     ProductId: sdk.productId,
+        //     DeviceName: sdk.deviceName,
+        //     Offset: 0,
+        //     Limit: 10,
+        //   },
+        // );
+
+        console.log('get info', subDeviceList);
         // 获取设备状态
-        const deviceIds = recordListInfo.DeviceList.map(({ DeviceId }) => DeviceId);
+        const deviceIds = subDeviceList.map(({ DeviceId }) => DeviceId);
         const devicesStatus = await sdk.requestTokenApi(
           'AppGetDeviceStatuses',
           {
@@ -71,13 +89,10 @@ export function Home(props) {
           },
         );
         // "Online": 0 //0 在线；1：离线
-        const data = recordListInfo.DeviceList.map((item, index) => ({
+        const data = subDeviceList.map(item => ({
           ...item,
-          Online: devicesStatus.DeviceStatuses.filter(({ DeviceId }) => {
-            DeviceId === item.DeviceId;
-          })[0]?.Online,
+          Online: devicesStatus.DeviceStatuses.filter(({ DeviceId }) => DeviceId === item.DeviceId)[0]?.Online,
         }));
-
         setGatewayList(data);
       } catch (err) {
         console.error('get info fail', err);
@@ -86,6 +101,7 @@ export function Home(props) {
     getDeviceDataGateway();
   }, []);
   const onLineNum = gatewayList.filter(({ Online }) => !!Online).length;
+  console.log('获取到的网关数量:', gatewayList);
   return (
     <div className="home">
       <Position {...props} onLine={onLineNum}></Position>
@@ -97,7 +113,7 @@ export function Home(props) {
         <div className="dev-list">
           {gatewayList.length ? (
             gatewayList
-              .filter(({ BindStatus }) => BindStatus === 0)
+              // .filter(({ BindStatus }) => BindStatus === 0)
               .map((value: HashMap, index) => (
                 <div key={index} className="dev-info">
                   <Icon name="switch" />
@@ -121,10 +137,15 @@ export function Home(props) {
         </div>
       </div>
       <div className="fix-bottom-btn">
-        <Btn
+        {/* <Btn
           btnText="添加子设备"
           type="primary"
           onClick={() => push(PATH.ADD)}
+        /> */}
+        <Btn
+          btnText="添加子设备"
+          type="primary"
+          onClick={() => sdk.goGatewayAddSubDevicePage(sdk.deviceId)}
         />
       </div>
     </div>
