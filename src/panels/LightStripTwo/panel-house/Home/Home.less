@@ -7,12 +7,13 @@
   display: inherit !important;
 }
 .home {
+  position: relative;
   display: flex;
   flex-direction: column;
   padding: 24px;
   .change-panel {
     position: relative;
-    min-height: 542px;
+    min-height: 382px;
   }
   .power {
     position: absolute;
@@ -23,10 +24,16 @@
     top:350px;
     right:20px;
   }
-  &.scene{
-    .cus-dev-detail{
-      top:23px;
-      right:24px;
+  &.scene {
+    .cus-dev-detail {
+      display: none;
+      // top:10px;
+      // right:24px;
+    }
+    .action {
+      position: fixed;
+      bottom:200px;
+      left:0;
     }
   }
 }
