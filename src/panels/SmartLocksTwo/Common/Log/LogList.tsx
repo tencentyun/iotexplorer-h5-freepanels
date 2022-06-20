@@ -125,7 +125,7 @@ export function LogList({ logType, activeKey, dateTime }) {
                     let labelNode: React.ReactNode = label;
                     if (label === '门锁告警') {
                       labelNode = (
-                        <div>{label}: <span className='adm-step-description' style={{color: 'var(--adm-color-danger)!important'}}>
+                        <div>{label}: <span className='adm-step-description'>
                           {alarmTipMap[data.alarm_tip]}
                           </span>
                         </div>
