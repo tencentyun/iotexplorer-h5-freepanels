@@ -213,7 +213,7 @@ export const useDeviceInfo = (): UseDeviceInfoResult => {
       });
     };
 
-    Promise.all([getDeviceStatus, sdk.sdkReady()])
+    Promise.all([getDeviceStatus(), sdk.sdkReady()])
       .then(([deviceStatus]) => {
         dispatch({
           type: UseDeviceInfoAction.Init,
@@ -227,7 +227,7 @@ export const useDeviceInfo = (): UseDeviceInfoResult => {
     }).then(({ DeviceStatuses }) => {
       dispatch({
         type: UseDeviceInfoAction.UpdateDeviceStatus,
-        payload: DeviceStatuses[0]?.Online,
+        payload: { deviceStatus: DeviceStatuses[0]?.Online },
       });
     })
       .catch((err) => {
