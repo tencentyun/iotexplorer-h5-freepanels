@@ -90,7 +90,7 @@ function reducer(state: UseDeviceInfoState, action: ReducerAction<UseDeviceInfoA
 }
 
 // 初始化sdk状态
-function initState(sdk): UseDeviceInfoState {
+function initState(sdk, online): UseDeviceInfoState {
   const { deviceInfo, productInfo, dataTemplate, deviceData, deviceStatus } = sdk;
 
   const result = {
@@ -109,7 +109,7 @@ function initState(sdk): UseDeviceInfoState {
     }
   });
 
-  result.deviceInfo.Status = deviceStatus;
+  result.deviceInfo.Status = online !== undefined ? online : deviceStatus;
   result.deviceInfo.isVirtualDevice = deviceInfo.DeviceName === '~virtualDev';
 
   return result;
@@ -200,12 +200,26 @@ export const useDeviceInfo = (): UseDeviceInfoResult => {
     //   .on('wsReport', handleWsReport)
     //   .on('wsStatusChange', handleWsStatusChange);
 
-    sdk.sdkReady().then(() => {
-      dispatch({
-        type: UseDeviceInfoAction.Init,
-        payload: initState(sdk),
+    // 当小程序进入后台后，可能无法及时同步 在线状态，这时要调用 api 同步下在线状态
+    const getDeviceStatus = () => {
+      if (sdk.isMock) {
+        return Promise.resolve(1);
+      }
+      return sdk.requestTokenApi('AppGetDeviceStatuses', {
+        DeviceIds: [sdk.deviceId],
+      }).then(({ DeviceStatuses }) => {
+        console.log({ DeviceStatuses });
+        return DeviceStatuses[0]?.Online;
       });
-    });
+    };
+
+    Promise.all([getDeviceStatus(), sdk.sdkReady()])
+      .then(([deviceStatus]) => {
+        dispatch({
+          type: UseDeviceInfoAction.Init,
+          payload: initState(sdk, deviceStatus),
+        });
+      });
 
     // 当小程序进入后台后，可能无法及时同步 在线状态，这时要调用 api 同步下在线状态
     sdk.requestTokenApi('AppGetDeviceStatuses', {
@@ -213,7 +227,7 @@ export const useDeviceInfo = (): UseDeviceInfoResult => {
     }).then(({ DeviceStatuses }) => {
       dispatch({
         type: UseDeviceInfoAction.UpdateDeviceStatus,
-        payload: DeviceStatuses[0]?.Online,
+        payload: { deviceStatus: DeviceStatuses[0]?.Online },
       });
     })
       .catch((err) => {
