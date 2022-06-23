@@ -7,36 +7,40 @@ import { Btn } from '@custom/Btn';
 export function Home(props) {
   // 其他页面返回也刷新
   const [gatewayList, setGatewayList] = useState([]);
+  const getDeviceDataGateway = async () => {
+    const { h5PanelSdk } = window;
+    const { subDeviceList } = await h5PanelSdk.getSubDeviceList();
+    try {
+      // 获取设备状态
+      const deviceIds = subDeviceList.map(({ DeviceId }) => DeviceId);
+      const devicesStatus = await sdk.requestTokenApi('AppGetDeviceStatuses', {
+        Action: 'AppGetDeviceStatuses',
+        // AccessToken: 'AccessToken',
+        RequestId: sdk.requestId,
+        DeviceIds: deviceIds,
+      });
+      // "Online": 0 //0 在线；1：离线
+      const data = subDeviceList.map(item => ({
+        ...item,
+        Online: devicesStatus.DeviceStatuses.filter(({ DeviceId }) => DeviceId === item.DeviceId)[0]?.Online,
+      }));
+      setGatewayList(data);
+    } catch (err) {
+      console.error('get info fail', err);
+    }
+  };
   useEffect(() => {
     // 获取网关子设备
-    const getDeviceDataGateway = async () => {
-      const { h5PanelSdk } = window;
-      const { subDeviceList } = await h5PanelSdk.getSubDeviceList();
-      try {
-        // 获取设备状态
-        const deviceIds = subDeviceList.map(({ DeviceId }) => DeviceId);
-        const devicesStatus = await sdk.requestTokenApi(
-          'AppGetDeviceStatuses',
-          {
-            Action: 'AppGetDeviceStatuses',
-            // AccessToken: 'AccessToken',
-            RequestId: sdk.requestId,
-            DeviceIds: deviceIds,
-          },
-        );
-        // "Online": 0 //0 在线；1：离线
-        const data = subDeviceList.map(item => ({
-          ...item,
-          Online: devicesStatus.DeviceStatuses.filter(({ DeviceId }) => DeviceId === item.DeviceId)[0]?.Online,
-        }));
-        setGatewayList(data);
-      } catch (err) {
-        console.error('get info fail', err);
-      }
-    };
+    sdk.on('pageShow', () => {
+      getDeviceDataGateway();
+    });
     getDeviceDataGateway();
+    return () => {
+      sdk.off('pageShow');
+    };
   }, []);
   const onLineNum = gatewayList.filter(({ Online }) => !!Online).length;
+
 
   return (
     <div className="home">
