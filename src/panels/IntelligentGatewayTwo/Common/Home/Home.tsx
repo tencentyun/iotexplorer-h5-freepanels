@@ -4,41 +4,8 @@ import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 import { Icon } from '@custom/Icon';
 import { Btn } from '@custom/Btn';
 
-// const defaultData = [
-//   {
-//     BindStatus: 0,
-//     ProductId: '1',
-//     DeviceName: '啊啊啊',
-//     DeviceId: '1',
-//     Online: 0,
-//   },
-//   {
-//     BindStatus: 0,
-//     ProductId: '1',
-//     DeviceName: '啊啊啊',
-//     DeviceId: '1',
-//     Online: 1,
-//   },
-//   {
-//     BindStatus: 0,
-//     ProductId: '1',
-//     DeviceName: '啊啊啊',
-//     DeviceId: '1',
-//     Online: 0,
-//   },
-//   {
-//     BindStatus: 0,
-//     ProductId: '1',
-//     DeviceName: '啊啊啊',
-//     DeviceId: '1',
-//     Online: 1,
-//   },
-// ];
-
 export function Home(props) {
-  // const {
-  //   history: { PATH, push },
-  // } = props;
+  // 其他页面返回也刷新
   const [gatewayList, setGatewayList] = useState([]);
   useEffect(() => {
     // 获取网关子设备
@@ -46,37 +13,6 @@ export function Home(props) {
       const { h5PanelSdk } = window;
       const { subDeviceList } = await h5PanelSdk.getSubDeviceList();
       try {
-        // const recordListInfo = await sdk.requestTokenApi(
-        //   'AppGetFamilySubDeviceList',
-        //   {
-        //     Action: 'AppGetFamilySubDeviceList',
-        //     // AccessToken: 'AccessToken',
-        //     RequestId: sdk.requestId,
-        //     GatewayProductId: sdk.gatewayProductId,
-        //     GatewayDeviceName: sdk.GatewayDeviceName,
-        //     ProductId: sdk.productId,
-        //     DeviceName: sdk.deviceName,
-        //     Offset: 0,
-        //     Limit: 10,
-        //   },
-        // );
-
-        // const recordListInfo = await sdk.requestTokenApi(
-        //   'AppGetFamilySubDeviceList',
-        //   {
-        //     Action: 'AppGetFamilySubDeviceList',
-        //     // AccessToken: 'AccessToken',
-        //     RequestId: sdk.requestId,
-        //     GatewayProductId: sdk.gatewayProductId,
-        //     GatewayDeviceName: sdk.GatewayDeviceName,
-        //     ProductId: sdk.productId,
-        //     DeviceName: sdk.deviceName,
-        //     Offset: 0,
-        //     Limit: 10,
-        //   },
-        // );
-
-        console.log('get info', subDeviceList);
         // 获取设备状态
         const deviceIds = subDeviceList.map(({ DeviceId }) => DeviceId);
         const devicesStatus = await sdk.requestTokenApi(
@@ -101,7 +37,7 @@ export function Home(props) {
     getDeviceDataGateway();
   }, []);
   const onLineNum = gatewayList.filter(({ Online }) => !!Online).length;
-  console.log('获取到的网关数量:', gatewayList);
+
   return (
     <div className="home">
       <Position {...props} onLine={onLineNum}></Position>
@@ -115,9 +51,20 @@ export function Home(props) {
             gatewayList
               // .filter(({ BindStatus }) => BindStatus === 0)
               .map((value: HashMap, index) => (
-                <div key={index} className="dev-info">
-                  <Icon name="switch" />
-                  {value?.DeviceName || ''}
+                <div
+                  key={index}
+                  className="dev-info"
+                  onClick={() => sdk.goDevicePanelPage(value.DeviceId)}
+                >
+                  {value.IconUrl ? (
+                    <div
+                      className="switch-icon"
+                      style={{ backgroundImage: `url(${value.IconUrl})` }}
+                    ></div>
+                  ) : (
+                    <Icon name="switch" />
+                  )}
+                  {value?.AliasName || value?.DeviceName || ''}
                   <div className="status">
                     <div
                       className={`dot dot-${
