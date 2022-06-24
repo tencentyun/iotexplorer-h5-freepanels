@@ -136,54 +136,59 @@ export function Mountings() {
     }
   };
   const [gatewayList, setGatewayList] = useState([]);
+  const getDeviceDataGateway = async () => {
+    const { h5PanelSdk } = window;
+    const { subDeviceList } = await h5PanelSdk.getSubDeviceList();
+    try {
+      // 获取设备状态
+      const deviceIds = subDeviceList.map(({ DeviceId }) => DeviceId);
+      const devicesStatus = await sdk.requestTokenApi('AppGetDeviceStatuses', {
+        Action: 'AppGetDeviceStatuses',
+        // AccessToken: 'AccessToken',
+        RequestId: sdk.requestId,
+        DeviceIds: deviceIds,
+      });
+      // "Online": 0 //0 在线；1：离线
+      const data = subDeviceList.map(item => ({
+        ...item,
+        Online: devicesStatus.DeviceStatuses.filter(({ DeviceId }) => DeviceId === item.DeviceId)[0]?.Online,
+      }));
+      setGatewayList(data);
+    } catch (err) {
+      console.error('get info fail', err);
+    }
+  };
   useEffect(() => {
     // 获取网关子设备
-    const getDeviceDataGateway = async () => {
-      try {
-        const recordListInfo = await sdk.requestTokenApi('AppGetGatewayBindDeviceList', {
-          Action: 'AppGetGatewayBindDeviceList',
-          AccessToken: 'AccessToken',
-          RequestId: sdk.requestId,
-          GatewayProductId: sdk.gatewayProductId,
-          GatewayDeviceName: sdk.GatewayDeviceName,
-          ProductId: sdk.productId,
-          DeviceName: sdk.deviceName,
-          Offset: 0,
-          Limit: 10,
-        });
-        console.log('get info', recordListInfo);
-        setGatewayList(recordListInfo.DeviceList);
-      } catch (err) {
-        console.error('get info fail', err);
-      }
-    };
+    sdk.on('pageShow', () => {
+      getDeviceDataGateway();
+    });
     getDeviceDataGateway();
+    return () => {
+      sdk.off('pageShow');
+    };
   }, []);
   const history = useHistory();
   const handleAdd = () => history.push('/addDevExplanatory');
-  const handleGetGateway = () => history.push('/getGateway');
-  const cellIcon = (url: string) => (
+  const cellIcon = (url: number | string | any[]) => (
     <img className="details-icon" src={url}></img>
   );
   return (
     <article className={classNames('dev-list')}>
       {gatewayList.length > 0 ? (
       <ul>
-        {gatewayList.map((value, index) => (
-          value.BindStatus == 1 ? (
+        {gatewayList.map((value: HashMap, index) => (
             <li className="list-item" id={'light-sensor'}>
               <Cell
+                key={index}
                 size="medium"
-                title={value.DeviceName}
-                prefixIcon={cellIcon(value.IconUrl)}
+                title={value?.AliasName || value?.DeviceName || ''}
+                prefixIcon={value.IconUrl ? cellIcon(value.IconUrl) : ''}
                 value={value.DeviceId}
                 valueStyle="gray"
-                onClick={() => {}}
+                onClick={() => sdk.goDevicePanelPage(value.DeviceId)}
               />
             </li>
-          ) : (
-            ''
-          )
         ))}
         {/* <li className="list-item" id={'exigency-btn'}>
           <Cell
@@ -245,7 +250,12 @@ export function Mountings() {
         <div className="addDev" onClick={handleAdd}>
           如何添加设备
         </div>
-        <div className="fastAdd" onClick={handleGetGateway}>快速添加</div>
+        <div
+          className="fastAdd"
+          onClick={() => sdk.goGatewayAddSubDevicePage(sdk.deviceId)}
+        >
+          快速添加
+        </div>
       </div>
     </article>
   );

@@ -4,6 +4,9 @@ import { Dialog } from 'antd-mobile';
 import './getGateway.less';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 
+/**
+ * 页面暂不使用
+ */
 const lampIcon =  'https://tencent-1305105198.cos.ap-guangzhou.myqcloud.com/router/normal/lamp.svg';
 export function GetGateway() {
   const [gatewayList, setGatewayList] = useState([]);
