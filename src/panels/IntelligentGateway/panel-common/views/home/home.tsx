@@ -59,7 +59,7 @@ export function Home() {
         </div>
         <div className={classNames('dashboard-detail')}>
           <img src={sleepImageSrc()} alt="" />
-          <div className="equipment_num">在线设备：0</div>
+          <div className="equipment_num">在线设备：{sdk.deviceData.deviceNum ? sdk.deviceData.deviceNum : 0}</div>
         </div>
       </section>
       {/* 详情区域*/}
