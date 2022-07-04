@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import dayjs from 'dayjs';
 import { Steps } from '@custom/Step';
 import { Empty } from '@custom/Empty';
+import { StatusTip } from '@src/components/StatusTip';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 import { tips } from '@src/libs/wxlib';
 const { Step } = Steps;
@@ -24,26 +25,16 @@ const eventMap = {
   unlock_remote_result: '远程解锁',
 };
 
-const alarmTipMap = {
-  0: '错误指纹',
-  1: '错误密码',
-  2: '错误卡',
-  3: '低电量',
-  4: '门未锁好',
-  5: '门未关',
-  6: '锁被撬',
-  7: '布防模式被打破',
-};
-
 interface Log{
   groupDate: number,
-  children: {label: string, time: string}[]
+  children: {label: string, time: string, data: any}[]
 }
 
 type LogGroup = Log[];
 
-export function LogList({ logType, activeKey, dateTime }) {
+export function LogList({ logType, activeKey, dateTime, templateMap }) {
   // 默认显示最近一个月的数据
+  const alarmTipMap = templateMap?.alarm_lock.params[0].define.mapping;
 
   const [data, setData] = useState<LogGroup>([]);
   const [isLoaded, setLoaded] = useState(false);
@@ -113,7 +104,9 @@ export function LogList({ logType, activeKey, dateTime }) {
   return (
     <div className="log-list">
       {isEmpty ? (
-        <Empty />
+        <Empty>
+          暂无记录
+        </Empty>
       ) : (
         <>
           {data.map(({ groupDate, children }, index) => (
@@ -137,8 +130,13 @@ export function LogList({ logType, activeKey, dateTime }) {
                       title={labelNode}
                       status={index ? 'wait' : 'finish'}
                       description={time}
-                    />
+                    />;
                   })}
+                  {children.length === 0 && (
+                    <div className="no-record-tips">
+                      <StatusTip emptyMessage='暂无数据' status='empty' className='empty'/>
+                    </div>
+                  )}
                 </Steps>
               </div>
             </div>
