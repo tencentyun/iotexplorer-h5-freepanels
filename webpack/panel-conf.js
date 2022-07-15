@@ -859,7 +859,7 @@ module.exports = {
   },
   SmartLocksTwo: {
     name: '智能门锁',
-    categoryKey: 'DoorLock',
+    categoryKey: 'VisualLock',
     enable: true,
     viewportWidth: 375,
     panels: [
