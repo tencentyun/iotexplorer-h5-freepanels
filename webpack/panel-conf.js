@@ -62,7 +62,7 @@ module.exports = {
       ['panel-default', { enable: true, entry: 'app.tsx' }],
     ],
   },
-  RuyingMultiSwitch: {
+  RuYingMultiSwitch: {
     name: '如影多功能面板',
     enable: true,
     panels: [
