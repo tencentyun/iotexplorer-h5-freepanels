@@ -144,7 +144,7 @@ export function Home({
         ></Cell>
         <Cell
           className={classNames('cell-border', { disabled: offline })}
-          title="视频监控"
+          title="实时画面"
           prefixIcon={<Icon name="monitor"/>}
           size="medium"
           onClick={() => {
