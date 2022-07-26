@@ -42,6 +42,7 @@
     "history": "^5.0.0",
     "js-base64": "^3.7.2",
     "jsonp": "^0.2.1",
+    "lottie-web": "^5.9.6",
     "minimist": "^1.2.5",
     "moment": "^2.29.1",
     "normalize.css": "^8.0.1",

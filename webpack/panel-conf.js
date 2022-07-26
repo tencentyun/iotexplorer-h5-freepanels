@@ -870,6 +870,16 @@ module.exports = {
       // ['panel-house', { enable: true, entry: 'app.tsx' }],
     ],
   },
+  PeepHole: {
+    name: '猫眼门锁',
+    categoryKey: 'VisualLock',
+    enable: true,
+    viewportWidth: 375,
+    panels: [
+      ['panel-cold', { enable: true }],
+      ['panel-card', { enable: true, entry: 'app.tsx' }],
+    ],
+  },
   WhiteLampTwo: {
     name: '冷暖灯',
     categoryKey: 'WhiteLamp',
