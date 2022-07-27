@@ -7,6 +7,7 @@ import { Disk } from './Disk';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 import { useTitle } from '@hooks/useTitle';
 import { Popup } from '@custom/Popup';
+import { LogList } from '../Log/LogList';
 
 const lockStatusWord = {
   0: '未上锁',
@@ -25,8 +26,7 @@ export function Home({
   productInfo,
   doControlDeviceData,
   offline,
-  context,
-  setContext,
+  templateMap,
   history: { PATH, push },
   tips,
 }) {
@@ -69,9 +69,12 @@ export function Home({
         </div>
 
         {/* 更多 */}
-        <div className="header-right" onClick={() => {
-          sdk.goDeviceDetailPage();
-        }}>
+        <div
+          className="header-right"
+          onClick={() => {
+            push(PATH.SETTINGS_INDEX);
+          }
+        }>
           <Icon name='more'></Icon>
         </div>
       </header>
@@ -83,40 +86,41 @@ export function Home({
         tips={tips}
       ></Disk>
 
-      <div className="middle-wrap">
-        <div className="log" onClick={() => {
-          push(PATH.LOG);
-        }}>
-          <Icon name="log"></Icon>
-        </div>
-
-        <div className="config" onClick={() => {
-          push(PATH.SETTINGS_INDEX);
-        }}>
-          <Icon name="config"></Icon>
-        </div>
-      </div>
-
       {/* 设置按钮 */}
       <div className="setting-block">
         <Cell
           className="cell-border"
-          title="用户管理"
-          prefixIcon={<Icon name="time"/>}
+          title="日志"
+          prefixIcon={<Icon name="log"/>}
           size="medium"
           onClick={() => {
-            push(PATH.USERS_INDEX);
+            push(PATH.LOG);
           }}
-        ></Cell>
-        <Cell
-          className="cell-border"
-          title="临时密码"
-          prefixIcon={<Icon name="hourglass"/>}
-          size="medium"
-          onClick={() => {
-            push(PATH.TEMP_PASSWORD_INDEX);
-          }}
-        ></Cell>
+        >
+          <LogList
+            style={{ paddingTop: '20px' }}
+            hideTitle
+            logType={'action'}
+            activeKey="action"
+            limit={3}
+            dateTime={[new Date(), new Date]}
+            templateMap={templateMap}
+          />
+        </Cell>
+
+        <footer className='footer'>
+          <div
+            onClick={() => {
+              push(PATH.USERS_INDEX);
+            }}
+          >用户管理</div>
+          <div className='split-line'></div>
+          <div
+            onClick={() => {
+              push(PATH.TEMP_PASSWORD_INDEX);
+            }}
+          >临时密码</div>
+        </footer>
       </div>
       <Popup
         visible={visible}

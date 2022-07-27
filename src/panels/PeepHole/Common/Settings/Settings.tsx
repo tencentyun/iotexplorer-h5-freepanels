@@ -9,6 +9,7 @@ import { Switch } from '@custom/Switch';
 import { OptionDialog } from '@custom/OptionDialog';
 import { TimePicker } from '@custom/TimePicker';
 import { getTimeArr } from '../utils';
+import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 
 interface OptionProps {
   label: string;
@@ -79,7 +80,15 @@ export function Settings({
   return (
     <main className={classNames('settings')}>
       <Cell
-        className="cell-settings mb"
+        className="cell-settings"
+        title="设备详情"
+        isLink={true}
+        onClick={() => {
+          sdk.goDeviceDetailPage();
+        }}
+      ></Cell>
+      <Cell
+        className="cell-settings"
         title="摄像头设置"
         isLink={true}
         onClick={() => {
@@ -101,7 +110,7 @@ export function Settings({
       >
       </Cell>
       {deviceData.stay_alarm_mode === 1
-        ? <div className="cell-settings-secondary-wrap mb">
+        ? <div className="cell-settings-secondary-wrap">
           <Cell
             className="cell-settings-secondary"
             title="抓拍模式"
@@ -183,30 +192,8 @@ export function Settings({
           ></Cell>
         </div> : null
       }
-      {/* <Cell
-        className="cell-settings-high mb"
-        title="门铃可视对讲"
-        subTitle={'开启后，微信将接收到门铃可视呼叫'}
-        isLink={false}
-        value={
-          <Switch
-            checked={deviceData.doorbell_switch === 1}
-            onChange={(value: boolean) => {
-              doControlDeviceData('doorbell_switch', Number(value));
-            }}
-          />
-        }
-      ></Cell> */}
-      {/* <Cell
-        className="cell-settings mb"
-        title="录像设置"
-        isLink={true}
-        onClick={() => {
-          push(PATH.SETTINGS_VIDEO);
-        }}
-      ></Cell> */}
       <Cell
-        className="cell-settings mb"
+        className="cell-settings"
         title="多重验证"
         value={getDesc('unlock_switch', deviceData.unlock_switch ? deviceData.unlock_switch : 0)}
         valueStyle="set"
@@ -228,7 +215,7 @@ export function Settings({
         ></OptionDialog>
       </Cell>
       <Cell
-        className="cell-settings-high mb"
+        className="cell-settings-high"
         title="离家布防"
         subTitle={'开启后，从内面板开门将触发报警提醒'}
         isLink={false}
@@ -264,7 +251,7 @@ export function Settings({
         ></OptionDialog>
       </Cell>
       <Cell
-        className="cell-settings mb"
+        className="cell-settings"
         title="音量"
         value={getDesc('volume', deviceData.volume !== undefined ? deviceData.volume : 2)}
         valueStyle="set"
@@ -367,13 +354,6 @@ export function Settings({
         valueStyle="set"
         isLink={false}
       ></Cell>
-      {/* <Cell
-        className="cell-settings"
-        title="摄像头电池电量"
-        value={`${deviceData.ipc_battery_percentage || 0}%`}
-        valueStyle="set"
-        isLink={false}
-      ></Cell> */}
     </main>
   );
 }

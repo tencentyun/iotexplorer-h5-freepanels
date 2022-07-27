@@ -5,6 +5,8 @@ import { Empty } from '@custom/Empty';
 import { StatusTip } from '@src/components/StatusTip';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 import { tips } from '@src/libs/wxlib';
+import { StyledProps } from '@src/libs/global';
+import classNames from 'classnames';
 const { Step } = Steps;
 
 const eventMap = {
@@ -30,12 +32,30 @@ interface Log{
   children: {label: string, time: string, data: any}[]
 }
 
+interface LogListProps extends StyledProps{
+  logType: 'action' | 'event';
+  activeKey: 'action' | 'event';
+  limit?: number
+  dateTime: [Date, Date];
+  templateMap: any;
+  hideTitle?: boolean;
+}
+
 type LogGroup = Log[];
 
-export function LogList({ logType, activeKey, dateTime, templateMap }) {
+export function LogList({
+  logType,
+  activeKey,
+  dateTime,
+  templateMap,
+  limit = 500,
+  hideTitle = false,
+  className,
+  style,
+}: LogListProps) {
   // 默认显示最近一个月的数据
   const alarmTipMap = templateMap?.alarm_lock.params[0].define.mapping;
-
+  console.log({ templateMap });
   const [data, setData] = useState<LogGroup>([]);
   const [isLoaded, setLoaded] = useState(false);
   const isEmpty = isLoaded && !data.length;
@@ -46,7 +66,7 @@ export function LogList({ logType, activeKey, dateTime, templateMap }) {
       DeviceId: sdk.deviceId,
       MinTime: +dayjs(date[0]).startOf('day'),
       MaxTime: +dayjs(date[0]).endOf('day'),
-      Limit: 500,
+      Limit: limit,
       ActionIds: ['unlock_remote', 'add_fingerprint', 'add_card', 'add_face'],
     });
     // tips.hide();
@@ -67,7 +87,7 @@ export function LogList({ logType, activeKey, dateTime, templateMap }) {
       DeviceId: sdk.deviceId,
       StartTime: Math.floor(+dayjs(date[0]).startOf('day') / 1000),
       EndTime: Math.floor(+dayjs(date[0]).endOf('day') / 1000),
-      Limit: 500,
+      Limit: limit,
     });
     // tips.hide();
     const logList = res.EventHistory;
@@ -102,7 +122,7 @@ export function LogList({ logType, activeKey, dateTime, templateMap }) {
   }, [dateTime, activeKey]);
 
   return (
-    <div className="log-list">
+    <div className={classNames('log-list', className)} style={style}>
       {isEmpty ? (
         <Empty>
           暂无记录
@@ -111,7 +131,7 @@ export function LogList({ logType, activeKey, dateTime, templateMap }) {
         <>
           {data.map(({ groupDate, children }, index) => (
             <div key={index}>
-              <div className="group">{dayjs(groupDate).format('YYYY年MM月DD日') || ''}</div>
+              {!hideTitle && <div className="group">{dayjs(groupDate).format('YYYY年MM月DD日') || ''}</div>}
               <div className="list">
                 <Steps direction="vertical">
                   {children.map(({ label, time, data }, index) => {
