@@ -34,25 +34,25 @@ export function Log(props) {
       </Tabs>
       <div className="date-pick" onClick={setVisible.bind(null, true)}>
         <Icon name="date" size="large"></Icon>
-          </div>
+      </div>
 
-          <DatePicker
-            visible={visible}
-            showSemicolon={false}
-            value={dateTime[0]}
-            showUnit={true}
-            mask={false}
-            showTime={false}
-            itemHeight={58}
-            height={175}
-            showTwoDigit={true}
-            max={new Date}
-            onConfirm={(startDate) => {
-              setDateTime([startDate, new Date()]);
-              setVisible(false);
-            }}
-            onCancel={setVisible.bind(null, false)}
-          />
+      <DatePicker
+        visible={visible}
+        showSemicolon={false}
+        value={dateTime[0]}
+        showUnit={true}
+        mask={false}
+        showTime={false}
+        itemHeight={58}
+        height={175}
+        showTwoDigit={true}
+        max={new Date}
+        onConfirm={(startDate) => {
+          setDateTime([startDate, new Date()]);
+          setVisible(false);
+        }}
+        onCancel={setVisible.bind(null, false)}
+      />
     </div>
   );
 }

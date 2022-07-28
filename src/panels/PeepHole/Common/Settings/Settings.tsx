@@ -346,7 +346,6 @@ export function Settings({
           />
         </Cell>
       </div> : null }
-
       <Cell
         className="cell-settings"
         title="门锁电池电量"

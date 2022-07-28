@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { ReactNode, useEffect, useState } from 'react';
 import dayjs from 'dayjs';
 import { Steps } from '@custom/Step';
 import { Empty } from '@custom/Empty';
@@ -39,6 +39,7 @@ interface LogListProps extends StyledProps{
   dateTime: [Date, Date];
   templateMap: any;
   hideTitle?: boolean;
+  emptyTip?: ReactNode;
 }
 
 type LogGroup = Log[];
@@ -52,6 +53,7 @@ export function LogList({
   hideTitle = false,
   className,
   style,
+  emptyTip,
 }: LogListProps) {
   // 默认显示最近一个月的数据
   const alarmTipMap = templateMap?.alarm_lock.params[0].define.mapping;
@@ -152,11 +154,15 @@ export function LogList({
                       description={time}
                     />;
                   })}
-                  {children.length === 0 && (
-                    <div className="no-record-tips">
-                      <StatusTip emptyMessage='暂无数据' status='empty' className='empty'/>
-                    </div>
-                  )}
+                  {children.length === 0
+                    && (<>{
+                      emptyTip || <div className="no-record-tips">
+                        <StatusTip emptyMessage='暂无数据' status='empty' className='empty'/>
+                      </div>
+                    }
+                    </>
+                    )
+                  }
                 </Steps>
               </div>
             </div>

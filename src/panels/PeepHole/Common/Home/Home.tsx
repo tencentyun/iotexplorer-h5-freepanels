@@ -8,6 +8,7 @@ import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 import { useTitle } from '@hooks/useTitle';
 import { Popup } from '@custom/Popup';
 import { LogList } from '../Log/LogList';
+import { StatusTip } from '@src/components/StatusTip';
 
 const lockStatusWord = {
   0: '未上锁',
@@ -99,6 +100,9 @@ export function Home({
         >
           <LogList
             style={{ paddingTop: '20px' }}
+            emptyTip={
+              <div className="empty-tip">暂无数据</div>
+            }
             hideTitle
             logType={'action'}
             activeKey="action"
@@ -107,21 +111,20 @@ export function Home({
             templateMap={templateMap}
           />
         </Cell>
-
-        <footer className='footer'>
-          <div
-            onClick={() => {
-              push(PATH.USERS_INDEX);
-            }}
-          >用户管理</div>
-          <div className='split-line'></div>
-          <div
-            onClick={() => {
-              push(PATH.TEMP_PASSWORD_INDEX);
-            }}
-          >临时密码</div>
-        </footer>
       </div>
+      <footer className='footer'>
+        <div
+          onClick={() => {
+            push(PATH.USERS_INDEX);
+          }}
+        >用户管理</div>
+        <div className='split-line'></div>
+        <div
+          onClick={() => {
+            push(PATH.TEMP_PASSWORD_INDEX);
+          }}
+        >临时密码</div>
+      </footer>
       <Popup
         visible={visible}
         onMaskClick={() => setVisible(false)}
