@@ -8,7 +8,6 @@ import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 import { useTitle } from '@hooks/useTitle';
 import { Popup } from '@custom/Popup';
 import { LogList } from '../Log/LogList';
-import { StatusTip } from '@src/components/StatusTip';
 
 const lockStatusWord = {
   0: '未上锁',
@@ -32,7 +31,7 @@ export function Home({
   tips,
 }) {
   useTitle(productInfo.Name ? productInfo.Name : '首页');
-  const [visible, setVisible] = useState(false);
+  const [visible, setVisible] = useState(true);
   useEffect(() => {
     if (offline) {
       sdk.offlineTip.show();
@@ -41,11 +40,23 @@ export function Home({
     }
   }, [offline]);
 
+  useEffect(() => {
+    const alramHandler = ({ deviceId, Payload }) => {
+      console.log('alarm', deviceId, Payload);
+    };
+    sdk.on('wsEventReport', alramHandler);
+    return () => sdk.off('wsEventReport', alramHandler);
+  }, []);
+
   // 门锁状态
   const status = useMemo(() => {
     if (offline) return 2;
     return deviceData.lock_motor_state || 0;
   }, [offline, deviceData]);
+
+  const handleClose = () => {
+    setVisible(false);
+  };
 
   return (
     <main className="home">
@@ -127,10 +138,27 @@ export function Home({
       </footer>
       <Popup
         visible={visible}
-        onMaskClick={() => setVisible(false)}
+        className="alarm-popup"
+        onMaskClick={handleClose}
       >
+        <div className="pop-title">
+          <div className='title'>
+            门铃呼叫
+          </div>
+          <div className="close" onClick={handleClose}>关闭</div>
+        </div>
         <div className="pop-content">
-          内容
+          图片
+        </div>
+        <div className="disk-wrapper">
+          <Disk
+            deviceData={deviceData}
+            offline={offline}
+            doControlDeviceData={doControlDeviceData}
+            className="unlock-btn"
+            unlockTip=''
+            tips={tips}
+          ></Disk>
         </div>
       </Popup>
     </main>

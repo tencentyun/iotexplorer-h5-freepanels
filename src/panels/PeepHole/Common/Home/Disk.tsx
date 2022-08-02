@@ -7,11 +7,14 @@ import lottie from 'lottie-web';
 import { Icon } from '@custom/Icon';
 import successJSON from '@src/assets/lottie/check.json';
 import unlockJSON from '@src/assets/lottie/unlock.json';
-export interface DiskProps {
+import { StyledProps } from '@src/libs/global';
+import classNames from 'classnames';
+export interface DiskProps extends StyledProps {
   deviceData: any;
   doControlDeviceData: (...params: any) => Promise<void>;
   tips: any;
   offline: boolean;
+  unlockTip?: string;
 }
 
 let i = 0;
@@ -25,6 +28,8 @@ export function Disk({
   deviceData = {},
   tips,
   offline,
+  className,
+  unlockTip = '长按远程解锁',
 }: DiskProps) {
   const [unlockSuccess, setUnlockSuccess] = useState(false);
   const animatingRef = useCallback((node) => {
@@ -39,7 +44,8 @@ export function Disk({
       });
     }
   }, []);
-
+  const circleRef = useRef<Element>(null);
+  const indicatorRef = useRef<Element>(null);
   const unlockAnimationRef = useCallback((node) => {
     if (node !== null) {
       lottie.loadAnimation({
@@ -81,8 +87,8 @@ export function Disk({
   let fallbackInterval: NodeJS.Timer;
 
   const drawPercent = (percent) => {
-    const circle = document.getElementById('circle') as HTMLUnknownElement;
-    const indicator = document.getElementById('indicator') as HTMLUnknownElement;
+    const circle = circleRef.current as Element;
+    const indicator = indicatorRef.current as Element;
     circle.setAttribute('stroke-dasharray', `${perimeter * percent} ${perimeter * (1 - percent)}`);
     circle.setAttribute('stroke', currentColor);
     const currentAngle = 360 * percent + 270;
@@ -187,7 +193,7 @@ export function Disk({
 
   return (
     <div
-      className="disk"
+      className={classNames('disk', className)}
       onTouchStart={(e) => {
         handleTouchStart(e);
       }}
@@ -216,7 +222,7 @@ export function Disk({
             ) : (
               <Icon name={offline ? 'offline' : lockStatus[deviceData.lock_motor_state || '0']} />
             )}
-            <span>{!offline && deviceData.lock_motor_state === 1 ? '长按远程解锁' : ''}</span>
+            <span>{!offline && deviceData.lock_motor_state === 1 ? unlockTip : ''}</span>
           </div>
         )
         }
@@ -246,6 +252,7 @@ export function Disk({
           ? <>
             <circle
               id='circle'
+              ref={circleRef}
               cx={120}
               cy={120}
               r={120}
@@ -260,6 +267,7 @@ export function Disk({
             </circle>
             <circle
               id='indicator'
+              ref={indicatorRef}
               cx={120}
               cy={0}
               r={5}
