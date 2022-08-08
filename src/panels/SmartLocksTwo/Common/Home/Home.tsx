@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo } from 'react';
+import React, { useEffect, useMemo, useRef } from 'react';
 import classNames from 'classnames';
 import { Battery } from '@custom/Battery';
 import { Cell } from '@custom/Cell';
@@ -30,7 +30,7 @@ export function Home({
   tips,
 }) {
   useTitle(productInfo.Name ? productInfo.Name : '首页');
-
+  const disabledRef = useRef(false);
   useEffect(() => {
     if (offline) {
       sdk.offlineTip.show();
@@ -51,12 +51,24 @@ export function Home({
       sdk.tips.showError('设备已离线');
       return;
     }
-    if (deviceData.wakeup_state !== 1) {
-      await sdk.callDeviceAction({}, 'wake_up');
+    if (disabledRef.current) {
+      return;
     }
-    sdk.goDevicePanelPage(context.deviceId || 'II0Q47L8B9/e_69518626_1', {
-      passThroughParams: { fullScreen: true },
-    });
+    disabledRef.current = true;
+    try {
+      if (deviceData.wakeup_state !== 1) {
+        await sdk.callDeviceAction({}, 'wake_up');
+      }
+      await sdk.goDevicePanelPage(context.deviceId || 'II0Q47L8B9/e_69518626_1', {
+        passThroughParams: { fullScreen: true },
+      });
+      disabledRef.current = false;
+    } catch (err) {
+      console.warn('跳转 video 设备出错', err);
+      sdk.insightReportor.error('LOCK_GOTO_VIDEO_ERROR', { message: err.message || err.msg });
+      disabledRef.current = false;
+      return;
+    }
   };
 
   useEffect(() => {
