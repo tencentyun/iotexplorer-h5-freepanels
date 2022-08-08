@@ -32,6 +32,7 @@ export function Home({
 }) {
   useTitle(productInfo.Name ? productInfo.Name : '首页');
   const [visible, setVisible] = useState(true);
+  const [doorbellInfo, setDoorbellInfo] = useState<{time?: string, url?: string, type?: 'image'}>({});
   useEffect(() => {
     if (offline) {
       sdk.offlineTip.show();
@@ -139,26 +140,31 @@ export function Home({
       <Popup
         visible={visible}
         className="alarm-popup"
-        onMaskClick={handleClose}
       >
-        <div className="pop-title">
-          <div className='title'>
-            门铃呼叫
+        <div className="popup-wrapper">
+          <div className="pop-title">
+            <div className='title'>
+              门铃呼叫
+            </div>
+            <div className="close" onClick={handleClose}>关闭</div>
           </div>
-          <div className="close" onClick={handleClose}>关闭</div>
-        </div>
-        <div className="pop-content">
-          图片
-        </div>
-        <div className="disk-wrapper">
-          <Disk
-            deviceData={deviceData}
-            offline={offline}
-            doControlDeviceData={doControlDeviceData}
-            className="unlock-btn"
-            unlockTip=''
-            tips={tips}
-          ></Disk>
+          <div className="pop-content">
+            <img src={doorbellInfo.url} alt="拍摄画面" />
+          </div>
+          <div className="alarm-tip">
+            <div>有人在{doorbellInfo.time}按门铃</div>
+            <div>重新拍摄</div>
+          </div>
+          <div className="disk-wrapper">
+            <Disk
+              deviceData={deviceData}
+              offline={offline}
+              doControlDeviceData={doControlDeviceData}
+              className="unlock-btn"
+              unlockTip=''
+              tips={tips}
+            ></Disk>
+          </div>
         </div>
       </Popup>
     </main>
