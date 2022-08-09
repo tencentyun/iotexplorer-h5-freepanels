@@ -8,6 +8,7 @@ import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 import { useTitle } from '@hooks/useTitle';
 import { Popup } from '@custom/Popup';
 import { LogList, getEventDetail } from '../Log/LogList';
+import { useParams } from '@hooks/useParams';
 import dayjs from 'dayjs';
 
 const lockStatusWord = {
@@ -44,7 +45,20 @@ export function Home({
 }) {
   useTitle(productInfo.Name ? productInfo.Name : '首页');
   const [visible, setVisible] = useState(false);
+  const params = useParams();
+  const { from: fromScene } = JSON.parse(params.passthrough);
   const [doorbellInfo, setDoorbellInfo] = useState<{time?: string, url?: string, type?: 'image'}>({});
+
+  const showDoorbellModal = async () => {
+    // 是否在3分钟内
+    const isIn3min = (time: number) => time - Date.now() < 3 * 60 * 1000;
+    const eventDetail = await getDoorbellDetail();
+    if (eventDetail && isIn3min(eventDetail.time)) {
+      setVisible(true);
+      setDoorbellInfo(eventDetail);
+    }
+  };
+
   useEffect(() => {
     if (offline) {
       sdk.offlineTip.show();
@@ -54,17 +68,17 @@ export function Home({
   }, [offline]);
 
   useEffect(() => {
+    if (fromScene === 'template-message') {
+      showDoorbellModal();
+    }
+  }, []);
+
+  useEffect(() => {
     const doorbellHandler = async ({ deviceId, Payload }) => {
       const { eventId } = Payload;
       if (eventId === 'doorbell') {
         console.log('doorbell', deviceId, Payload);
-        // 是否在3分钟内
-        const isIn3min = (time) => time - Date.now() < 3 * 60 * 1000;
-        const eventDetail = await getDoorbellDetail();
-        if (eventDetail && isIn3min(eventDetail.time)) {
-          setVisible(true);
-          setDoorbellInfo(eventDetail);
-        }
+        showDoorbellModal();
       }
     };
     sdk.on('wsEventReport', doorbellHandler);
