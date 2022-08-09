@@ -44,6 +44,17 @@ interface LogListProps extends StyledProps{
 
 type LogGroup = Log[];
 
+export async function getEventDetail(date, limit = 100) {
+  const res = await sdk.requestTokenApi('AppListEventHistory', {
+    DeviceId: sdk.deviceId,
+    StartTime: Math.floor(+dayjs(date).startOf('day') / 1000),
+    EndTime: Math.floor(+dayjs(date).endOf('day') / 1000),
+    Limit: limit,
+  });
+  return res;
+}
+
+
 export function LogList({
   logType,
   activeKey,
@@ -85,12 +96,7 @@ export function LogList({
   };
   const getEventlog = async (date) => {
     // tips.showLoading();
-    const res = await sdk.requestTokenApi('AppListEventHistory', {
-      DeviceId: sdk.deviceId,
-      StartTime: Math.floor(+dayjs(date[0]).startOf('day') / 1000),
-      EndTime: Math.floor(+dayjs(date[0]).endOf('day') / 1000),
-      Limit: limit,
-    });
+    const res = await getEventDetail(date[0], limit);
     // tips.hide();
     const logList = res.EventHistory;
     return [

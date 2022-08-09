@@ -7,7 +7,8 @@ import { Disk } from './Disk';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 import { useTitle } from '@hooks/useTitle';
 import { Popup } from '@custom/Popup';
-import { LogList } from '../Log/LogList';
+import { LogList, getEventDetail } from '../Log/LogList';
+import dayjs from 'dayjs';
 
 const lockStatusWord = {
   0: '未上锁',
@@ -21,6 +22,17 @@ const lockStatus = {
   2: 'offline',
 };
 
+async function getDoorbellDetail() {
+  const res = await getEventDetail(new Date(), 100);
+  console.log(res.EventHistory);
+  const events = res.EventHistory;
+  const doorbellEvent = events.find(event => event.EventId === 'doorbell');
+  if (doorbellEvent) {
+    return { time: doorbellEvent.TimeStamp, ...JSON.parse(doorbellEvent.Data) };
+  }
+  return doorbellEvent;
+}
+
 export function Home({
   deviceData,
   productInfo,
@@ -31,7 +43,7 @@ export function Home({
   tips,
 }) {
   useTitle(productInfo.Name ? productInfo.Name : '首页');
-  const [visible, setVisible] = useState(true);
+  const [visible, setVisible] = useState(false);
   const [doorbellInfo, setDoorbellInfo] = useState<{time?: string, url?: string, type?: 'image'}>({});
   useEffect(() => {
     if (offline) {
@@ -42,11 +54,21 @@ export function Home({
   }, [offline]);
 
   useEffect(() => {
-    const alramHandler = ({ deviceId, Payload }) => {
-      console.log('alarm', deviceId, Payload);
+    const doorbellHandler = async ({ deviceId, Payload }) => {
+      const { eventId } = Payload;
+      if (eventId === 'doorbell') {
+        console.log('doorbell', deviceId, Payload);
+        // 是否在3分钟内
+        const isIn3min = (time) => time - Date.now() < 3 * 60 * 1000;
+        const eventDetail = await getDoorbellDetail();
+        if (eventDetail && isIn3min(eventDetail.time)) {
+          setVisible(true);
+          setDoorbellInfo(eventDetail);
+        }
+      }
     };
-    sdk.on('wsEventReport', alramHandler);
-    return () => sdk.off('wsEventReport', alramHandler);
+    sdk.on('wsEventReport', doorbellHandler);
+    return () => sdk.off('wsEventReport', doorbellHandler);
   }, []);
 
   // 门锁状态
@@ -152,7 +174,7 @@ export function Home({
             <img src={doorbellInfo.url} alt="拍摄画面" />
           </div>
           <div className="alarm-tip">
-            <div>有人在{doorbellInfo.time}按门铃</div>
+            <div>有人在{dayjs(doorbellInfo.time).format('HH:mm:ss')}按门铃</div>
             <div>重新拍摄</div>
           </div>
           <div className="disk-wrapper">
