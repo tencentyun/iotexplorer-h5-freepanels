@@ -46,12 +46,12 @@ export function Home({
   useTitle(productInfo.Name ? productInfo.Name : '首页');
   const [visible, setVisible] = useState(false);
   const params = useParams();
-  const { from: fromScene } = JSON.parse(params.passthrough);
+  const { from: fromScene } = JSON.parse(params.passthrough || '{}');
   const [doorbellInfo, setDoorbellInfo] = useState<{time?: string, url?: string, type?: 'image'}>({});
 
   const showDoorbellModal = async () => {
     // 是否在3分钟内
-    const isIn3min = (time: number) => time - Date.now() < 3 * 60 * 1000;
+    const isIn3min = (time: number) => Date.now() - time < 3 * 60 * 1000;
     const eventDetail = await getDoorbellDetail();
     if (eventDetail && isIn3min(eventDetail.time)) {
       setVisible(true);
@@ -93,6 +93,23 @@ export function Home({
 
   const handleClose = () => {
     setVisible(false);
+  };
+
+  // 重新拍摄
+  const reshoot = () => {
+    sdk.callDeviceAction({}, 'reshoot')
+      .then((res) => {
+        console.log(res);
+        const { url } = JSON.parse(res.OutputParams);
+        setDoorbellInfo({
+          ...doorbellInfo,
+          url,
+        });
+      })
+      .catch((err) => {
+        console.warn('重新拍摄出错', err);
+        sdk.tips.showError(err.msg || '重新拍摄出错');
+      });
   };
 
   return (
@@ -185,11 +202,13 @@ export function Home({
             <div className="close" onClick={handleClose}>关闭</div>
           </div>
           <div className="pop-content">
-            <img src={doorbellInfo.url} alt="拍摄画面" />
+            <img src={doorbellInfo.url} />
           </div>
           <div className="alarm-tip">
             <div>有人在{dayjs(doorbellInfo.time).format('HH:mm:ss')}按门铃</div>
-            <div>重新拍摄</div>
+            <div onClick={reshoot} className="reshoot">
+              <Icon name="camera"></Icon>&nbsp;重新拍摄
+            </div>
           </div>
           <div className="disk-wrapper">
             <Disk
@@ -198,7 +217,7 @@ export function Home({
               doControlDeviceData={doControlDeviceData}
               className="unlock-btn"
               unlockTip=''
-              tips={tips}
+              tips={tips}reshoot
             ></Disk>
           </div>
         </div>
