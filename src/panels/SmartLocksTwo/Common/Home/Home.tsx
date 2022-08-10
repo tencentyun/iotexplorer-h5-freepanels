@@ -46,7 +46,6 @@ export function Home({
   }, [offline, deviceData]);
 
   const goVideoPanel = async () => {
-    console.log('IPC deviceId:', context.deviceId);
     if (offline) {
       sdk.tips.showError('设备已离线');
       return;
@@ -59,7 +58,7 @@ export function Home({
       if (deviceData.wakeup_state !== 1) {
         await sdk.callDeviceAction({}, 'wake_up');
       }
-      await sdk.goDevicePanelPage(context.deviceId || 'II0Q47L8B9/e_69518626_1', {
+      await sdk.goDevicePanelPage(sdk.deviceId || 'II0Q47L8B9/e_69518626_1', {
         passThroughParams: { fullScreen: true },
       });
       disabledRef.current = false;
@@ -70,21 +69,6 @@ export function Home({
       return;
     }
   };
-
-  useEffect(() => {
-    sdk.callDeviceAction({}, 'get_ipc_device_id')
-      .then((res) => {
-        console.log('门锁信息：', res);
-        const { OutputParams } = res;
-        const { productId, deviceName } = JSON.parse(OutputParams);
-        setContext({
-          deviceId: `${productId}/${deviceName}`,
-        });
-      })
-      .catch((err) => {
-        console.log('获取门锁IPC信息失败', err);
-      });
-  }, []);
 
   return (
     <main className="home">
