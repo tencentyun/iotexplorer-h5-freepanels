@@ -197,6 +197,9 @@ export function Home({
         <div className="popup-wrapper">
           <div className="pop-title">
             <div className='title'>
+              <div className="icon-bell">
+                <div></div>
+              </div>
               门铃呼叫
             </div>
             <div className="close" onClick={handleClose}>关闭</div>

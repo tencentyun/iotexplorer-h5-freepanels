@@ -129,10 +129,53 @@
     text-align: center;
     display: flex;
     padding: 20px;
+    .icon-bell{
+      width: 22px;
+      height: 17px;
+      position: relative;
+      margin-right: 6px;
+      &:before,&:after{
+        content: '';
+        position: absolute;
+        top: 0;
+        border-radius: 4px;
+        display: block;
+        width: 2px;
+        height: 7px;
+        background-color: #000;
+        transform: translateX(20px) translateY(5px);
+      }
+      &:after{
+        transform: translate(0, 5px);
+      }
+      >div{
+        width: 2px;
+        height: 17px;
+        background-color: #000;
+        border-radius: 4px;
+        margin: 0 auto;
+        position: relative;
+        &:before,&:after{
+          content: '';
+          position: absolute;
+          border-radius: 4px;
+          display: block;
+          width: 2px;
+          height: 11px;
+          background-color: #000;
+          transform: translateX(5px) translateY(3px);
+        }
+        &:after{
+          transform: translateX(-5px) translateY(3px);
+        }
+      }
+    }
     .title{
       padding-left: 2em;
       font-weight: bolder;
       flex: 1;
+      display: flex;
+      justify-content: center;
     }
     .close{
       width: 2em;
