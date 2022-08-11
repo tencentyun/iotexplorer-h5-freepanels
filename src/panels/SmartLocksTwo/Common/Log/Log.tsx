@@ -38,14 +38,11 @@ export function Log(props) {
 
       <DatePicker
         visible={visible}
-        showSemicolon={false}
         value={dateTime[0]}
         showUnit={true}
         mask={false}
-        showTime={false}
         itemHeight={58}
         height={175}
-        showTwoDigit={true}
         max={new Date}
         onConfirm={(startDate) => {
           setDateTime([startDate, new Date()]);
