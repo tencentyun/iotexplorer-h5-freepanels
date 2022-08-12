@@ -6,7 +6,6 @@ import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 import lottie from 'lottie-web';
 import { Icon } from '@custom/Icon';
 import successJSON from '@src/assets/lottie/check.json';
-import unlockJSON from '@src/assets/lottie/unlock.json';
 import { StyledProps } from '@src/libs/global';
 import classNames from 'classnames';
 export interface DiskProps extends StyledProps {
@@ -44,19 +43,8 @@ export function Disk({
       });
     }
   }, []);
-  const circleRef = useRef<Element>(null);
-  const indicatorRef = useRef<Element>(null);
-  const unlockAnimationRef = useCallback((node) => {
-    if (node !== null) {
-      lottie.loadAnimation({
-        container: node as Element,
-        renderer: 'svg',
-        loop: false,
-        autoplay: true,
-        animationData: unlockJSON,
-      });
-    }
-  }, []);
+  const circleRef = useRef<SVGCircleElement>(null);
+  const indicatorRef = useRef<SVGCircleElement>(null);
 
   // 远程解锁成功1s后可以再次解锁
   useEffect(() => {
@@ -215,13 +203,7 @@ export function Disk({
           </div>
         ) : (
           <div className="content" key="status">
-            {!offline && deviceData.lock_motor_state === 0 ? (
-              <div>
-                <div className="unlock-icon" ref={unlockAnimationRef}></div>
-              </div>
-            ) : (
-              <Icon name={offline ? 'offline' : lockStatus[deviceData.lock_motor_state || '0']} />
-            )}
+            <Icon name={offline ? 'offline' : 'locked'} />
             <span>{!offline && deviceData.lock_motor_state === 1 ? unlockTip : ''}</span>
           </div>
         )

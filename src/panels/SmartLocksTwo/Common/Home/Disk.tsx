@@ -1,12 +1,11 @@
 /*
  * @Description: 智能锁-表盘
  */
-import React, { useEffect, useState, useMemo, useCallback, useRef } from 'react';
+import React, { useEffect, useState, useMemo, useCallback } from 'react';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 import lottie from 'lottie-web';
 import { Icon } from '@custom/Icon';
 import successJSON from '@src/assets/lottie/check.json';
-import unlockJSON from '@src/assets/lottie/unlock.json';
 export interface DiskProps {
   deviceData: any;
   doControlDeviceData: (...params: any) => Promise<void>;
@@ -36,18 +35,6 @@ export function Disk({
         loop: false,
         autoplay: true,
         animationData: successJSON,
-      });
-    }
-  }, []);
-
-  const unlockAnimationRef = useCallback((node) => {
-    if (node !== null) {
-      lottie.loadAnimation({
-        container: node as Element,
-        renderer: 'svg',
-        loop: false,
-        autoplay: true,
-        animationData: unlockJSON,
       });
     }
   }, []);
@@ -209,13 +196,7 @@ export function Disk({
           </div>
         ) : (
           <div className="content" key="status">
-            {!offline && deviceData.lock_motor_state === 0 ? (
-              <div>
-                <div className="unlock-icon" ref={unlockAnimationRef}></div>
-              </div>
-            ) : (
-              <Icon name={offline ? 'offline' : lockStatus[deviceData.lock_motor_state || '0']} />
-            )}
+            <Icon name={offline ? 'offline' : lockStatus[deviceData.lock_motor_state || '0']} />
             <span>{!offline && deviceData.lock_motor_state === 1 ? '长按远程解锁' : ''}</span>
           </div>
         )

@@ -220,7 +220,7 @@ export function Home({
               doControlDeviceData={doControlDeviceData}
               className="unlock-btn"
               unlockTip=''
-              tips={tips}reshoot
+              tips={tips}
             ></Disk>
           </div>
         </div>
