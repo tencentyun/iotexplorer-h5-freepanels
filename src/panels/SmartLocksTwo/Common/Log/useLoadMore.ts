@@ -4,9 +4,13 @@ export function useLoadMore(request) {
   const [context, setContext] = useState(undefined);
   const loadMore = async () => {
     console.log(context);
-    const { hasMore, context: label } = await request(context);
-    setHasMore(hasMore);
-    setContext(label);
+    try {
+      const { hasMore, context: label } = await request(context);
+      setHasMore(hasMore);
+      setContext(label);
+    } catch (err) {
+      setHasMore(false);
+    }
   };
   const reset = () => {
     setContext(undefined);

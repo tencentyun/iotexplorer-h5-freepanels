@@ -102,6 +102,7 @@ export function LogList({ logType, activeKey, dateTime, templateMap }: LogListPr
     } catch (err) {
       console.error('get log err', err);
       tips.showError('获取日志信息出错');
+      throw err;
     }
   };
   const { loadMore, hasMore, reset } = useLoadMore(loadLog);

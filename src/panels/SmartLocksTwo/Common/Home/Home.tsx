@@ -55,10 +55,10 @@ export function Home({
     }
     disabledRef.current = true;
     try {
-      if (deviceData.wakeup_state !== 1) {
-        await sdk.callDeviceAction({}, 'wake_up');
-      }
-      await sdk.goDevicePanelPage(sdk.deviceId || 'II0Q47L8B9/e_69518626_1', {
+      // if (deviceData.wakeup_state !== 1) {
+      //   await sdk.callDeviceAction({}, 'wake_up');
+      // }
+      await sdk.goDevicePanelPage(sdk.deviceId, {
         passThroughParams: { fullScreen: true },
       });
       disabledRef.current = false;
