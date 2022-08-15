@@ -872,11 +872,11 @@ module.exports = {
   },
   PeepHole: {
     name: '猫眼门锁',
-    categoryKey: 'VisualLock',
+    categoryKey: 'PeepholeLock',
     enable: true,
     viewportWidth: 375,
     panels: [
-      ['panel-cold', { enable: true }],
+      // ['panel-cold', { enable: true }],
       ['panel-card', { enable: true, entry: 'app.tsx' }],
     ],
   },

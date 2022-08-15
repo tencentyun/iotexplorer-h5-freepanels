@@ -19,7 +19,8 @@ export function UserEdit({
   // 用户姓名
   const [{ userInfo }, { deleteUser, editUser }] = useUser({ id: query.userid, name: query.userName });
   const nameValue = userInfo.name;
-
+  // 判断门锁有没有摄像头
+  const HAS_CAMERA = false;
   const [nameEditVisible, setNameEdit] = useState(false);
   const [images, setImages] = useState([]);
 
@@ -168,13 +169,13 @@ export function UserEdit({
           </div>
         </div>
       ))}
-      <div className="unlock-method">
+      { HAS_CAMERA && <div className="unlock-method">
         <div>脸部</div>
         <div onClick={async () => {
           await addAuth('face');
         }}>+添加</div>
-      </div>
-      {faceList.map((item, index) => (
+      </div>}
+      {HAS_CAMERA && faceList.map((item, index) => (
         <div className="method-item" key={index}>
           <div>面容{ index + 1 }</div>
           <div onClick={async () => {
@@ -186,7 +187,8 @@ export function UserEdit({
             <Icon name="delete"></Icon>
           </div>
         </div>
-      ))}
+      ))
+      }
       <Cell
         className="cell-settings pd"
         title="生效时间"

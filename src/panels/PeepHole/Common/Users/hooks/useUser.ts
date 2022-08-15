@@ -26,7 +26,7 @@ interface UserInfo {
 type UserResult = [
   { userInfo: UserInfo, userIndex: number },
   {
-    deleteUser: () => Promise<void>,
+    deleteUser: (userid) => Promise<void>,
     editUser: (userInfo: Partial<UserInfo>, index?: number) => Promise<void>,
   }
 ];
