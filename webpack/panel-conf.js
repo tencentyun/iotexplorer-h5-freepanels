@@ -858,7 +858,7 @@ module.exports = {
     ],
   },
   SmartLocksTwo: {
-    name: '智能门锁',
+    name: '可视对讲门锁',
     categoryKey: 'VisualLock',
     enable: true,
     viewportWidth: 375,
@@ -876,7 +876,16 @@ module.exports = {
     enable: true,
     viewportWidth: 375,
     panels: [
-      // ['panel-cold', { enable: true }],
+      ['panel-card', { enable: true, entry: 'app.tsx' }],
+    ],
+  },
+  DoorLock: {
+    name: '智能门锁',
+    categoryKey: 'DoorLock',
+    as: 'PeepHole', // 智能门锁和猫眼门锁共用一套面板
+    enable: true,
+    viewportWidth: 375,
+    panels: [
       ['panel-card', { enable: true, entry: 'app.tsx' }],
     ],
   },

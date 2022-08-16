@@ -12,3 +12,6 @@ export const shortid = () => {
   return sdk.appDevSdk.utils.shortid();
 };
 
+// 猫眼有摄像头，普通门锁没有摄像头，不支持摄像头相关设置
+export const isPeepHole = process.env.CATEGORY === 'PeepHole';
+

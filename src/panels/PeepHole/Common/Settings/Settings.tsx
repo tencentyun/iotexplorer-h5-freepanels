@@ -8,9 +8,8 @@ import { Cell } from '@custom/Cell';
 import { Switch } from '@custom/Switch';
 import { OptionDialog } from '@custom/OptionDialog';
 import { TimePicker } from '@custom/TimePicker';
-import { getTimeArr } from '../utils';
+import { getTimeArr, isPeepHole } from '../utils';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
-
 interface OptionProps {
   label: string;
   value: string | number;
@@ -23,6 +22,8 @@ export function Settings({
   history: { PATH, push },
 }) {
   useTitle('设置');
+  console.log(process.env.CATEGORY);
+
   // 抓拍模式
   const [stayCaptureModeVisible, onToggleStayCaptureMode] = useState(false);
   // 逗留距离
@@ -87,14 +88,15 @@ export function Settings({
           sdk.goDeviceDetailPage();
         }}
       ></Cell>
-      <Cell
+      {isPeepHole && <Cell
         className="cell-settings"
         title="摄像头设置"
         isLink={true}
         onClick={() => {
           push(PATH.SETTINGS_CAMERA);
         }}
-      ></Cell>
+      />
+      }
       <Cell
         className={classNames('cell-settings', { 'no-border': deviceData.stay_alarm_mode === 1 })}
         title="逗留侦测"
@@ -111,7 +113,7 @@ export function Settings({
       </Cell>
       {deviceData.stay_alarm_mode === 1
         ? <div className="cell-settings-secondary-wrap">
-          <Cell
+          {isPeepHole && <Cell
             className="cell-settings-secondary"
             title="抓拍模式"
             value={getDesc('stay_capture_mode', deviceData.stay_capture_mode ? deviceData.stay_capture_mode : 2)}
@@ -131,8 +133,9 @@ export function Settings({
               onConfirm={(value) => {
                 doControlDeviceData('stay_capture_mode', Number(value[0]));
               }}
-            ></OptionDialog>
+            />
           </Cell>
+          }
           <Cell
             className="cell-settings-secondary"
             title="逗留距离"

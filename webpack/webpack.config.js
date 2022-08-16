@@ -41,7 +41,7 @@ module.exports = (env, argv) => {
   const keys = Object.keys(panelConfig);
   console.log('build length: ', keys.length);
   keys.forEach((categoryKey) => {
-    const { enable, panels, viewportWidth } = panelConfig[categoryKey];
+    const { enable, panels, viewportWidth, as } = panelConfig[categoryKey];
     // console.log('build is DevEnv: ', isDevMode, ', build length:', panels.length);
     if (
       enable
@@ -64,7 +64,7 @@ module.exports = (env, argv) => {
           const entryPath = path.join(
             srcPath,
             'panels',
-            `${categoryKey}/${panelName}`,
+            `${as || categoryKey}/${panelName}`,
             options.entry,
           );
           if (panelTheme) {
@@ -267,6 +267,7 @@ module.exports = (env, argv) => {
       new webpack.DefinePlugin({ _env_: JSON.stringify(plugin.env) }),
       new webpack.DefinePlugin({
         'process.env.NODE_ENV': JSON.stringify(mode),
+        'process.env.CATEGORY': JSON.stringify(category),
       }),
       new ModifiedMiniCssExtractPlugin({
         filename: (isDevMode || isPreview) ? `${outputFileName}.css` : '[name].[contenthash:10].css',

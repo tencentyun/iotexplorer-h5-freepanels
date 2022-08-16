@@ -6,10 +6,10 @@ import classNames from 'classnames';
 import { useTitle } from '@hooks/useTitle';
 import { Icon } from '@custom/Icon';
 import { InputDialog } from './InputDialog';
-import { getLocalImgData, chooseImage } from '@utils';
 import { Cell } from '@custom/Cell';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 import { useUser } from './hooks/useUser';
+import { isPeepHole } from '../utils';
 
 export function UserEdit({
   history: { PATH, push, query, goBack },
@@ -19,25 +19,12 @@ export function UserEdit({
   // 用户姓名
   const [{ userInfo }, { deleteUser, editUser }] = useUser({ id: query.userid, name: query.userName });
   const nameValue = userInfo.name;
-  // 判断门锁有没有摄像头
-  const HAS_CAMERA = false;
   const [nameEditVisible, setNameEdit] = useState(false);
-  const [images, setImages] = useState([]);
 
   const fingerprintList = userInfo.fingerprints || [];
   const passwordList = userInfo.passwords || [];
   const cardList = userInfo.cards || [];
   const faceList = userInfo.faces || [];
-
-  // 暂时不支持上传头像
-  const openPhotoSdk = async () => {
-    const imagePaths: any = await chooseImage();
-    setImages(imagePaths);
-    console.log('图片路径:', imagePaths);
-    // 读取图片base64数据
-    const base64Data = await getLocalImgData(imagePaths[0]);
-    console.log('base64数据:', base64Data);
-  };
 
   const handleUserDelete = async () => {
     const isDelete = await tips.confirm('确认删除');
@@ -84,8 +71,7 @@ export function UserEdit({
     <main className={classNames('user-edit')}>
       <div className="user-edit-header">
         <div className="user-avatar">
-          {images.length === 0 && <Icon name="default-avatar"></Icon>}
-          {images.map((src, index) => <img className="avatar" key={index} src={src} />)}
+          <Icon name="default-avatar"></Icon>
         </div>
         <div className="user-name">
           <span className="name">{nameValue}</span>
@@ -169,13 +155,13 @@ export function UserEdit({
           </div>
         </div>
       ))}
-      { HAS_CAMERA && <div className="unlock-method">
+      { isPeepHole && <div className="unlock-method">
         <div>脸部</div>
         <div onClick={async () => {
           await addAuth('face');
         }}>+添加</div>
       </div>}
-      {HAS_CAMERA && faceList.map((item, index) => (
+      {isPeepHole && faceList.map((item, index) => (
         <div className="method-item" key={index}>
           <div>面容{ index + 1 }</div>
           <div onClick={async () => {
