@@ -24,8 +24,6 @@ export function Home({
   productInfo,
   doControlDeviceData,
   offline,
-  context,
-  setContext,
   history: { PATH, push },
   tips,
 }) {
@@ -50,10 +48,20 @@ export function Home({
       sdk.tips.showError('设备已离线');
       return;
     }
+    console.warn('开始跳转', Date.now());
     if (disabledRef.current) {
+      console.warn('重复点击');
       return;
     }
     disabledRef.current = true;
+    sdk.once('pageHide', () => {
+      // 页面隐藏后恢复可点击态
+      setTimeout(() => {
+        disabledRef.current = false;
+      }, 100);
+    }).once('pageShow', () => {
+      disabledRef.current = false;
+    });
     try {
       // if (deviceData.wakeup_state !== 1) {
       //   await sdk.callDeviceAction({}, 'wake_up');
@@ -61,7 +69,6 @@ export function Home({
       await sdk.goDevicePanelPage(sdk.deviceId, {
         passThroughParams: { fullScreen: true },
       });
-      disabledRef.current = false;
     } catch (err) {
       console.warn('跳转 video 设备出错', err);
       sdk.insightReportor.error('LOCK_GOTO_VIDEO_ERROR', { message: err.message || err.msg });
