@@ -7,6 +7,9 @@ import { Disk } from './Disk';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 import { useTitle } from '@hooks/useTitle';
 
+// 一个三元组还是两个三元组
+const isOneProductId =  true;
+
 const lockStatusWord = {
   0: '未上锁',
   1: '已上锁',
@@ -23,6 +26,8 @@ export function Home({
   deviceData,
   productInfo,
   doControlDeviceData,
+  context,
+  setContext,
   offline,
   history: { PATH, push },
   tips,
@@ -37,6 +42,23 @@ export function Home({
     }
   }, [offline]);
 
+  useEffect(() => {
+    if (!isOneProductId) {
+      sdk.callDeviceAction({}, 'get_ipc_device_id')
+        .then((res) => {
+          console.log('门锁信息：', res);
+          const { OutputParams } = res;
+          const { productId, deviceName } = JSON.parse(OutputParams);
+          setContext({
+            deviceId: `${productId}/${deviceName}`,
+          });
+        })
+        .catch((err) => {
+          console.log('获取门锁IPC信息失败', err);
+        });
+    }
+  }, []);
+
   // 门锁状态
   const status = useMemo(() => {
     if (offline) return 2;
@@ -48,30 +70,28 @@ export function Home({
       sdk.tips.showError('设备已离线');
       return;
     }
-    console.warn('开始跳转', Date.now());
+    console.warn('开始跳转', Date.now(), context.deviceId);
     if (disabledRef.current) {
       console.warn('重复点击');
       return;
     }
     disabledRef.current = true;
-    sdk.once('pageHide', () => {
-      // 页面隐藏后恢复可点击态
-      setTimeout(() => {
-        disabledRef.current = false;
-      }, 100);
-    }).once('pageShow', () => {
+    sdk.once('pageShow', () => {
+      sdk.insightReportor.error('LOCK_GOTO_VIDEO_ENABLE');
       disabledRef.current = false;
     });
+
     try {
-      // if (deviceData.wakeup_state !== 1) {
-      //   await sdk.callDeviceAction({}, 'wake_up');
-      // }
-      await sdk.goDevicePanelPage(sdk.deviceId, {
+      if (!isOneProductId && deviceData.wakeup_state !== 1) {
+        await sdk.callDeviceAction({}, 'wake_up');
+      }
+      await sdk.goDevicePanelPage(isOneProductId ? sdk.deviceId : context.deviceId, {
         passThroughParams: { fullScreen: true },
       });
     } catch (err) {
       console.warn('跳转 video 设备出错', err);
-      sdk.insightReportor.error('LOCK_GOTO_VIDEO_ERROR', { message: err.message || err.msg });
+      sdk.tips.showError('跳转实时画面出错，请重试');
+      sdk.insightReportor.error('LOCK_GOTO_VIDEO_ERROR', { message: err });
       disabledRef.current = false;
       return;
     }
