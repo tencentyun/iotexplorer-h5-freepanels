@@ -82,7 +82,7 @@ export function Home({
     });
 
     try {
-      if (!isOneProductId && deviceData.wakeup_state !== 1) {
+      if (deviceData.wakeup_state !== 1) {
         await sdk.callDeviceAction({}, 'wake_up');
       }
       await sdk.goDevicePanelPage(isOneProductId ? sdk.deviceId : context.deviceId, {

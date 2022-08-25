@@ -196,8 +196,8 @@ export function Disk({
           </div>
         ) : (
           <div className="content" key="status">
-            <Icon name={offline ? 'offline' : lockStatus[deviceData.lock_motor_state || '0']} />
-            <span>{!offline && deviceData.lock_motor_state === 1 ? '长按远程解锁' : ''}</span>
+            <Icon name={offline ? 'offline' : 'locked'} />
+            <span>{!offline && '长按远程解锁'}</span>
           </div>
         )
         }
