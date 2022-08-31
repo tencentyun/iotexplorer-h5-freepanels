@@ -1,1 +1,22 @@
-[{"key":"./img/SmartRope/panel-blueWhite.png","url":"https://iot-cdn-1258344699.cos.ap-guangzhou.myqcloud.com/freepanel/img/SmartRope/panel-blueWhite.png"},{"key":"./img/SmartRope/panel-colorful.png","url":"https://iot-cdn-1258344699.cos.ap-guangzhou.myqcloud.com/freepanel/img/SmartRope/panel-colorful.png"},{"key":"./img/SmartRope/panel-dark.png","url":"https://iot-cdn-1258344699.cos.ap-guangzhou.myqcloud.com/freepanel/img/SmartRope/panel-dark.png"},{"key":"./img/SmartRope/panel-default.png","url":"https://iot-cdn-1258344699.cos.ap-guangzhou.myqcloud.com/freepanel/img/SmartRope/panel-default.png"},{"key":"./img/SmartRope/panel-morandi.png","url":"https://iot-cdn-1258344699.cos.ap-guangzhou.myqcloud.com/freepanel/img/SmartRope/panel-morandi.png"},{"key":"./img/SmartRope/training-rope-map-blueWhite.svg","url":"https://iot-cdn-1258344699.cos.ap-guangzhou.myqcloud.com/freepanel/img/SmartRope/training-rope-map-blueWhite.svg"},{"key":"./img/SmartRope/training-rope-map-colorful.svg","url":"https://iot-cdn-1258344699.cos.ap-guangzhou.myqcloud.com/freepanel/img/SmartRope/training-rope-map-colorful.svg"},{"key":"./img/SmartRope/training-rope-map-dark.svg","url":"https://iot-cdn-1258344699.cos.ap-guangzhou.myqcloud.com/freepanel/img/SmartRope/training-rope-map-dark.svg"},{"key":"./img/SmartRope/training-rope-map-morandi.svg","url":"https://iot-cdn-1258344699.cos.ap-guangzhou.myqcloud.com/freepanel/img/SmartRope/training-rope-map-morandi.svg"},{"key":"./img/SmartRope/training-rope-map-normal.svg","url":"https://iot-cdn-1258344699.cos.ap-guangzhou.myqcloud.com/freepanel/img/SmartRope/training-rope-map-normal.svg"}]
+[
+    {
+        "key": "./img/SmartRope/panel-blueWhite.png",
+        "url": "https://iot-cdn-1258344699.cos.ap-guangzhou.myqcloud.com/freepanel/img/SmartRope/panel-blueWhite.png"
+    },
+    {
+        "key": "./img/SmartRope/panel-colorful.png",
+        "url": "https://iot-cdn-1258344699.cos.ap-guangzhou.myqcloud.com/freepanel/img/SmartRope/panel-colorful.png"
+    },
+    {
+        "key": "./img/SmartRope/panel-dark.png",
+        "url": "https://iot-cdn-1258344699.cos.ap-guangzhou.myqcloud.com/freepanel/img/SmartRope/panel-dark.png"
+    },
+    {
+        "key": "./img/SmartRope/panel-default.png",
+        "url": "https://iot-cdn-1258344699.cos.ap-guangzhou.myqcloud.com/freepanel/img/SmartRope/panel-default.png"
+    },
+    {
+        "key": "./img/SmartRope/panel-morandi.png",
+        "url": "https://iot-cdn-1258344699.cos.ap-guangzhou.myqcloud.com/freepanel/img/SmartRope/panel-morandi.png"
+    }
+]
