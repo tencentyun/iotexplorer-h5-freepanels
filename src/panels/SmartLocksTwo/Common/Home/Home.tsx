@@ -7,8 +7,8 @@ import { Disk } from './Disk';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 import { useTitle } from '@hooks/useTitle';
 
-// 一个三元组还是两个三元组
-const isOneProductId =  true;
+// 一个三元组（SmartLocksOne）还是两个三元组（SmartLocksTwo）
+const isOneProductId = process.env.CATEGORY === 'SmartLocksOne';
 
 const lockStatusWord = {
   0: '未上锁',
@@ -32,8 +32,10 @@ export function Home({
   history: { PATH, push },
   tips,
 }) {
-  useTitle(productInfo.Name ? productInfo.Name : '首页');
+  const title = sdk.deviceDisplayName || productInfo.Name || '首页';
+  useTitle(title);
   const disabledRef = useRef(false);
+  const videoDeviceId = isOneProductId ? sdk.deviceId : context.deviceId;
   useEffect(() => {
     if (offline) {
       sdk.offlineTip.show();
@@ -70,7 +72,11 @@ export function Home({
       sdk.tips.showError('设备已离线');
       return;
     }
-    console.warn('开始跳转', Date.now(), context.deviceId);
+    if (!videoDeviceId) {
+      console.warn('video device Id 为空');
+      return;
+    }
+    console.warn('开始跳转', Date.now(), videoDeviceId);
     if (disabledRef.current) {
       console.warn('重复点击');
       return;
@@ -81,12 +87,17 @@ export function Home({
       disabledRef.current = false;
     });
 
+    // 如果发送了 wake_up 指令，就会有时间戳
+    let wakeupTimestamp;
     try {
       if (deviceData.wakeup_state !== 1) {
         await sdk.callDeviceAction({}, 'wake_up');
+        wakeupTimestamp = Date.now();
       }
-      await sdk.goDevicePanelPage(isOneProductId ? sdk.deviceId : context.deviceId, {
-        passThroughParams: { fullScreen: true },
+
+      sdk.insightReportor.info('LOCK_VIDEO_ID', { videoDeviceId, isOneProductId });
+      await sdk.goDevicePanelPage(videoDeviceId, {
+        passThroughParams: { fullScreen: true, wakeupTimestamp },
       });
     } catch (err) {
       console.warn('跳转 video 设备出错', err);
@@ -166,7 +177,7 @@ export function Home({
           }}
         ></Cell>
         <Cell
-          className={classNames('cell-border', { disabled: offline })}
+          className={classNames('cell-border', { disabled: offline || !videoDeviceId })}
           title="实时画面"
           prefixIcon={<Icon name="monitor"/>}
           size="medium"
