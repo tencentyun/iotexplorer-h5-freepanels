@@ -90,12 +90,13 @@ export function Home({
     // 如果发送了 wake_up 指令，就会有时间戳
     let wakeupTimestamp;
     try {
-      if (deviceData.wakeup_state !== 1) {
+      const { wakeup_state } = await sdk.getDeviceData();
+      sdk.insightReportor.info('LOCK_VIDEO_INFO', { videoDeviceId, isOneProductId, wakeup_state: deviceData.wakeup_state, httpWakeupState: wakeup_state });
+      if (wakeup_state.Value !== 1) {
         await sdk.callDeviceAction({}, 'wake_up');
         wakeupTimestamp = Date.now();
       }
 
-      sdk.insightReportor.info('LOCK_VIDEO_ID', { videoDeviceId, isOneProductId });
       await sdk.goDevicePanelPage(videoDeviceId, {
         passThroughParams: { fullScreen: true, wakeupTimestamp },
       });
