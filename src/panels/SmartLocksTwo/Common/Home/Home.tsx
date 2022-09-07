@@ -45,10 +45,19 @@ export function Home({
   }, [offline]);
 
   useEffect(() => {
+    const listener = function () {
+      if (document.visibilityState === 'visible') {
+        disabledRef.current = false;
+      }
+    };
+    document.addEventListener('visibilitychange', listener);
+    return () => document.removeEventListener('visibilitychange', listener);
+  }, []);
+
+  useEffect(() => {
     if (!isOneProductId) {
       sdk.callDeviceAction({}, 'get_ipc_device_id')
         .then((res) => {
-          console.log('门锁信息：', res);
           const { OutputParams } = res;
           const { productId, deviceName } = JSON.parse(OutputParams);
           setContext({
