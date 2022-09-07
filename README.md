@@ -11,7 +11,7 @@
 
 ### 1、直接使用
 
-通过 [腾讯云物联网开发平台](https://console.cloud.tencent.com/iotexplorer) 提供的标准方案，可以实现快速配置。通过 [快速配置方案](./docs/explorer.md) 配置成功后，通过手机微信扫一扫，调试或验证物联网王设备智能控制的免开发面板效果。
+通过 [腾讯云物联网开发平台](https://console.cloud.tencent.com/iotexplorer) 提供的标准方案，可以实现快速配置。通过 [快速配置方案](./docs/explorer.md) 配置成功后，通过手机微信扫一扫，调试或验证物联网设备智能控制的免开发面板效果。
 
 当前已经支持的品类 [更多产品详情](./docs/product.md) , **模板预览效果：[点击跳转预览效果图](./docs/product-preview.md)**
 
