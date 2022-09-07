@@ -97,7 +97,8 @@ export function Home({
         wakeupTimestamp = Date.now();
       }
 
-      await sdk.goDevicePanelPage(videoDeviceId, {
+      await sdk.goVideoPanelPage({
+        deviceId: videoDeviceId,
         passThroughParams: { fullScreen: true, wakeupTimestamp },
       });
     } catch (err) {
