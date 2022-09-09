@@ -99,6 +99,7 @@ export function Home({
     // 如果发送了 wake_up 指令，就会有时间戳
     let wakeupTimestamp;
     try {
+      sdk.tips.showLoading('正在跳转');
       const { wakeup_state } = await sdk.getDeviceData();
       sdk.insightReportor.info('LOCK_VIDEO_INFO', { videoDeviceId, isOneProductId, wakeup_state: deviceData.wakeup_state, httpWakeupState: wakeup_state });
       if (wakeup_state.Value !== 1) {
@@ -110,6 +111,7 @@ export function Home({
         deviceId: videoDeviceId,
         passThroughParams: { fullScreen: true, wakeupTimestamp },
       });
+      sdk.tips.hideLoading();
     } catch (err) {
       console.warn('跳转 video 设备出错', err);
       sdk.tips.showError('跳转实时画面出错，请重试');

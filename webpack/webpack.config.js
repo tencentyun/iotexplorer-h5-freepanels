@@ -5,6 +5,8 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const panelConfig = require('./panel-conf');
 const TerserPlugin = require('terser-webpack-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+
 const autoPreFixer = require('autoprefixer');
 const postcss = require('postcss-pxtorem');
 const plugin = require('./plugin');
@@ -269,6 +271,7 @@ module.exports = (env, argv) => {
         'process.env.NODE_ENV': JSON.stringify(mode),
         'process.env.CATEGORY': JSON.stringify(category),
       }),
+      // new BundleAnalyzerPlugin(),
       new ModifiedMiniCssExtractPlugin({
         filename: (isDevMode || isPreview) ? `${outputFileName}.css` : '[name].[contenthash:10].css',
       }),
