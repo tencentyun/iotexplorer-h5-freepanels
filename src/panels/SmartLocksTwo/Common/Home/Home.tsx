@@ -102,8 +102,22 @@ export function Home({
       sdk.tips.showLoading('正在跳转');
       const { wakeup_state } = await sdk.getDeviceData();
       sdk.insightReportor.info('LOCK_VIDEO_INFO', { videoDeviceId, isOneProductId, wakeup_state: deviceData.wakeup_state, httpWakeupState: wakeup_state });
+
       if (wakeup_state.Value !== 1) {
-        await sdk.callDeviceAction({}, 'wake_up');
+        try {
+          await sdk.callDeviceAction({}, 'wake_up');
+        } catch (err) {
+          // action有响应 和 wakeup_state 变成1 有一项OK 就能跳转
+          await new Promise((resolve, reject) => {
+            setTimeout(() => {
+              if (deviceData.wakeup_state === 1) {
+                resolve(1);
+              } else {
+                reject(`唤醒设备超时:${err.code}`);
+              }
+            }, 1000);
+          });
+        }
         wakeupTimestamp = Date.now();
       }
 
