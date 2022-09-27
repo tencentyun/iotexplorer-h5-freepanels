@@ -1,9 +1,7 @@
 import React, { useState, useRef } from 'react';
 import classNames from 'classnames';
 import { Popup } from '@custom/Popup';
-import { DatePickerView } from 'antd-mobile';
-import { Precision } from 'antd-mobile/es/components/date-picker/date-picker-utils';
-import './DatePicker.less';
+import { DatePickerView } from '@custom/Picker';
 import dayjs from 'dayjs';
 export interface DimePickerProps extends StyledProps {
   visible?: boolean;
@@ -20,14 +18,13 @@ export interface DimePickerProps extends StyledProps {
   selectFlag?: string;
   confirmText?: string;
   onCancel?: () => void;
-  precision?: Precision;
+  showTwoDigit?: boolean;
   mask?: boolean;
   onConfirm?: (value: Date, date: string) => void;
   onChange?: (value: string[]) => void;
   isPopUp?: boolean;
   itemHeight?: number;
   height?: number;
-  showTwoDigit?: boolean; //
 }
 
 const Container = ({ children, className, ...props }) => (
@@ -40,12 +37,15 @@ export function DatePicker(props: DimePickerProps) {
   const {
     cancelText = '取消',
     confirmText = '确认',
-    precision,
     className,
     visible,
     title,
+    showSemicolon, // 是否显示分号
     value = defaultValue,
     mask = true,
+    showTwoDigit = true,
+    itemHeight = 58,
+    height = 175,
     onChange,
     onCancel = () => ({}),
     onConfirm = () => ({}),
@@ -66,8 +66,9 @@ export function DatePicker(props: DimePickerProps) {
 
   // 跟流畅的动画
   const onChangeValue = (val) => {
-    setPickerValue(val);
-    onChange && onChange(val);
+    const date = dayjs(val.join('-')).$d;
+    setPickerValue(date);
+    onChange && onChange(date);
   };
 
   const onCancelClick = () => {
@@ -88,12 +89,14 @@ export function DatePicker(props: DimePickerProps) {
         {title ? <div className="picker-header center">{title}</div> : null}
         <div className="picker-body">
           <DatePickerView
-            className='date-picker-view'
-            precision={precision}
             value={pickerValue}
-            defaultValue={new Date}
-            min={min}
-            max={max}
+            itemHeight={itemHeight}
+            height={height}
+            min={min || new Date(0)}
+            max={max || new Date()}
+            showTwoDigit={showTwoDigit}
+            showSemicolon={showSemicolon}
+            onScrollChange={onChangeValue}
             onChange={onChangeValue}
           />
         </div>

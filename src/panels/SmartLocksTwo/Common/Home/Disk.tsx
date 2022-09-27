@@ -1,11 +1,9 @@
 /*
  * @Description: 智能锁-表盘
  */
-import React, { useEffect, useState, useMemo, useCallback } from 'react';
+import React, { useEffect } from 'react';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
-import lottie from 'lottie-web';
 import { Icon } from '@custom/Icon';
-import successJSON from '@src/assets/lottie/check.json';
 export interface DiskProps {
   deviceData: any;
   doControlDeviceData: (...params: any) => Promise<void>;
@@ -13,53 +11,34 @@ export interface DiskProps {
   offline: boolean;
 }
 
+// let flag: any = 0;
 let i = 0;
-const lockStatus = {
-  0: 'unlocked',
-  1: 'locked',
-  offline: 'offline',
-};
 
 export function Disk({
   deviceData = {},
   tips,
   offline,
 }: DiskProps) {
-  const [unlockSuccess, setUnlockSuccess] = useState(false);
-  const animatingRef = useCallback((node) => {
-    console.log(node);
-    if (node !== null) {
-      lottie.loadAnimation({
-        container: document.getElementById('lottie-container') as Element,
-        renderer: 'svg',
-        loop: false,
-        autoplay: true,
-        animationData: successJSON,
-      });
-    }
-  }, []);
+  const lockStatus = {
+    0: 'unlocked',
+    1: 'locked',
+    offline: 'offline',
+  };
 
-  // 远程解锁成功1s后可以再次解锁
-  useEffect(() => {
-    if (unlockSuccess === true) {
-      setTimeout(() => {
-        setUnlockSuccess(false);
-      }, 1000);
-    }
-  }, [unlockSuccess]);
-
-  const currentColor = useMemo(() => {
+  const currentColor = (): string => {
     if (offline) {
       return '#999999';
     }
-    return '#00A884';
+    if (deviceData.lock_motor_state === 1) {
+      return '#00A884';
+    }
 
-    // return '#DA695C';
-  }, [offline, deviceData.lock_motor_state]);
+    return '#DA695C';
+  };
 
   const radius = 120;
   // 周长
-  const perimeter = 2 * Math.PI * radius;
+  const getPerimeter = 2 * Math.PI * radius;
   // 开屏动画定时器
   let interval: NodeJS.Timer;
   // 前进计时器
@@ -67,30 +46,24 @@ export function Disk({
   // 后退计时器
   let fallbackInterval: NodeJS.Timer;
 
-  const drawPercent = (percent) => {
-    const circle = document.getElementById('circle') as HTMLUnknownElement;
-    const indicator = document.getElementById('indicator') as HTMLUnknownElement;
-    circle.setAttribute('stroke-dasharray', `${perimeter * percent} ${perimeter * (1 - percent)}`);
-    circle.setAttribute('stroke', currentColor);
-    const currentAngle = 360 * percent + 270;
-    const x = 120 + 120 * Math.cos((currentAngle * Math.PI) / 180);
-    const y = 120 + 120 * Math.sin((currentAngle * Math.PI) / 180);
-    indicator.setAttribute('cx', `${x}`);
-    indicator.setAttribute('cy', `${y}`);
-    indicator.setAttribute('fill', currentColor);
-  };
-
   useEffect(() => {
     // 开屏动画
     tickAnimation();
   }, []);
-
   const tickAnimation = () => {
+    const perimeter = 2 * Math.PI * radius;
+    const circle = document.getElementById('circle') as HTMLUnknownElement;
+    const indicator = document.getElementById('indicator') as HTMLUnknownElement;
     let startIndex = 0;
     interval = setInterval(() => {
       startIndex += 5;
       const percent = startIndex / 100;
-      drawPercent(percent);
+      circle.setAttribute('stroke-dasharray', `${perimeter * percent} ${perimeter * (1 - percent)}`);
+      const currentAngle = 360 * percent + 270;
+      const x = 120 + 120 * Math.cos((currentAngle * Math.PI) / 180);
+      const y = 120 + 120 * Math.sin((currentAngle * Math.PI) / 180);
+      indicator.setAttribute('cx', x);
+      indicator.setAttribute('cy', y);
 
       if (startIndex >= 100) {
         clearInterval(interval);
@@ -99,6 +72,9 @@ export function Disk({
   };
 
   const forwardAnimation = () => {
+    const perimeter = 2 * Math.PI * radius;
+    const circle = document.getElementById('circle') as HTMLUnknownElement;
+    const indicator = document.getElementById('indicator') as HTMLUnknownElement;
     // 3s完成动画
     const time = 2000;
     const step = 2;
@@ -106,36 +82,44 @@ export function Disk({
     forwardInterval = setInterval(() => {
       i += step;
       const percent = i / 100;
-      drawPercent(percent);
+      circle.setAttribute('stroke-dasharray', `${perimeter * percent} ${perimeter * (1 - percent)}`);
+      circle.setAttribute('stroke', deviceData.lock_motor_state === 1 ? '#DA695C' : '#00A884');
+      const currentAngle = 360 * percent + 270;
+      const x = 120 + 120 * Math.cos((currentAngle * Math.PI) / 180);
+      const y = 120 + 120 * Math.sin((currentAngle * Math.PI) / 180);
+      indicator.setAttribute('cx', x);
+      indicator.setAttribute('cy', y);
+      indicator.setAttribute('fill', deviceData.lock_motor_state === 1 ? '#DA695C' : '#00A884');
 
       if (i >= 100) {
         clearInterval(forwardInterval);
-        sdk.callDeviceAction({}, 'unlock_remote')
-          .then((res) => {
-            console.log(res);
-            setUnlockSuccess(true);
-          })
-          .catch((err) => {
-            console.log('解锁失败', err);
-            tips.showError('解锁失败');
-          });
+        sdk.callDeviceAction({}, 'unlock_remote');
         i = 0;
       }
     }, time / loop);
   };
 
   const fallbackAnimation = () => {
+    const perimeter = 2 * Math.PI * radius;
+    const circle = document.getElementById('circle') as HTMLUnknownElement;
     const indicator = document.getElementById('indicator') as HTMLUnknownElement;
     fallbackInterval = setInterval(() => {
       if (i <= 0) {
         clearInterval(fallbackInterval);
-        indicator.setAttribute('fill', currentColor);
+        indicator.setAttribute('fill', currentColor());
         i = 0;
         return;
       }
       i -= 2;
       const percent = i / 100;
-      drawPercent(percent);
+      circle.setAttribute('stroke-dasharray', `${perimeter * percent} ${perimeter * (1 - percent)}`);
+      circle.setAttribute('stroke', deviceData.lock_motor_state === 1 ? '#DA695C' : '#00A884');
+      const currentAngle = 360 * percent + 270;
+      const x = 120 + 120 * Math.cos((currentAngle * Math.PI) / 180);
+      const y = 120 + 120 * Math.sin((currentAngle * Math.PI) / 180);
+      indicator.setAttribute('cx', x);
+      indicator.setAttribute('cy', y);
+      indicator.setAttribute('fill', deviceData.lock_motor_state === 1 ? '#DA695C' : '#00A884');
     }, 50);
   };
 
@@ -152,10 +136,13 @@ export function Disk({
 
   const handleTouchMove = (e) => {
     e.preventDefault();
+    console.log(e, 'handleTouchMove');
   };
   const handleTouchEnd = (e) => {
     console.log('handleTouchEnd');
     e.preventDefault();
+    // clearInterval(flag);
+    // flag = 0;
     clearInterval(forwardInterval);
     if (i > 0 && i < 100) {
       fallbackAnimation();
@@ -168,6 +155,14 @@ export function Disk({
   };
 
   const longPress = () => {
+    // clearInterval(flag)
+    // flag = 0;
+
+    // 长按只能解锁
+    if (deviceData.lock_motor_state === 0) {
+      console.log('设备已经解锁');
+      return;
+    }
     clearInterval(fallbackInterval);
     forwardAnimation();
   };
@@ -187,22 +182,14 @@ export function Disk({
       onTouchCancel={(e) => {
         console.log('onTouchCancel');handleTouchEnd(e);
       }}
+      // onClick={(e) => {handleClick(e)}}
     >
       <div className="content-wrap">
-        { unlockSuccess ? (
-          <div key="check-animation">
-            <div id="lottie-container" ref={animatingRef}></div>
-            <div className='unlock-tip'>解锁成功</div>
-          </div>
-        ) : (
-          <div className="content" key="status">
-            <Icon name={offline ? 'offline' : 'locked'} />
-            <span>{!offline && '长按远程解锁'}</span>
-          </div>
-        )
-        }
+        <div className="content">
+          <Icon name={offline ? 'offline' : lockStatus[deviceData.lock_motor_state || '0']} />
+          <span>{!offline && deviceData.lock_motor_state === 1 ? '长按远程解锁' : ''}</span>
+        </div>
       </div>
-
       <svg
         className="circle"
         xmlns="http://www.w3.org/2000/svg"
@@ -210,8 +197,8 @@ export function Disk({
       >
         <defs>
           <linearGradient id="grad1" x1="1" y1="1" x2="0" y2="0">
-            <stop offset="0%" stopColor={currentColor} stopOpacity="0" />
-            <stop offset="100%" stopColor={currentColor} stopOpacity="1" />
+            <stop offset="0%" stopColor={currentColor()} stopOpacity="0" />
+            <stop offset="100%" stopColor={currentColor()} stopOpacity="1" />
           </linearGradient>
         </defs>
         <circle
@@ -230,11 +217,11 @@ export function Disk({
               cx={120}
               cy={120}
               r={120}
-              stroke={currentColor}
+              stroke={currentColor()}
               strokeWidth={5}
-              fill={unlockSuccess ? 'rgba(0, 168, 132, 0.1)' : 'none'}
-              strokeDasharray={`${0},${perimeter}`}
-              strokeDashoffset={perimeter}
+              fill="none"
+              strokeDasharray={`${0},${getPerimeter}`}
+              strokeDashoffset={getPerimeter}
               strokeLinecap="round"
               transform="matrix(0, -1, 1, 0, 0, 240)"
             >
@@ -244,7 +231,7 @@ export function Disk({
               cx={120}
               cy={0}
               r={5}
-              fill={currentColor}
+              fill={currentColor()}
               stroke="none"
             />
           </> : null

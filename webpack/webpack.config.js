@@ -5,8 +5,6 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const panelConfig = require('./panel-conf');
 const TerserPlugin = require('terser-webpack-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
-
 const autoPreFixer = require('autoprefixer');
 const postcss = require('postcss-pxtorem');
 const plugin = require('./plugin');
@@ -43,7 +41,7 @@ module.exports = (env, argv) => {
   const keys = Object.keys(panelConfig);
   console.log('build length: ', keys.length);
   keys.forEach((categoryKey) => {
-    const { enable, panels, viewportWidth, as } = panelConfig[categoryKey];
+    const { enable, panels, viewportWidth } = panelConfig[categoryKey];
     // console.log('build is DevEnv: ', isDevMode, ', build length:', panels.length);
     if (
       enable
@@ -66,7 +64,7 @@ module.exports = (env, argv) => {
           const entryPath = path.join(
             srcPath,
             'panels',
-            `${as || categoryKey}/${panelName}`,
+            `${categoryKey}/${panelName}`,
             options.entry,
           );
           if (panelTheme) {
@@ -269,9 +267,7 @@ module.exports = (env, argv) => {
       new webpack.DefinePlugin({ _env_: JSON.stringify(plugin.env) }),
       new webpack.DefinePlugin({
         'process.env.NODE_ENV': JSON.stringify(mode),
-        'process.env.CATEGORY': JSON.stringify(category),
       }),
-      // new BundleAnalyzerPlugin(),
       new ModifiedMiniCssExtractPlugin({
         filename: (isDevMode || isPreview) ? `${outputFileName}.css` : '[name].[contenthash:10].css',
       }),

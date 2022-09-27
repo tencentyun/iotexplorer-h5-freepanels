@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useRef } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import classNames from 'classnames';
 import { Battery } from '@custom/Battery';
 import { Cell } from '@custom/Cell';
@@ -6,9 +6,6 @@ import { Icon } from '@custom/Icon';
 import { Disk } from './Disk';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 import { useTitle } from '@hooks/useTitle';
-
-// 一个三元组（SmartLocksOne）还是两个三元组（SmartLocksTwo）
-const isOneProductId = process.env.CATEGORY === 'SmartLocksOne';
 
 const lockStatusWord = {
   0: '未上锁',
@@ -26,16 +23,14 @@ export function Home({
   deviceData,
   productInfo,
   doControlDeviceData,
+  offline,
   context,
   setContext,
-  offline,
   history: { PATH, push },
   tips,
 }) {
-  const title = sdk.deviceDisplayName || productInfo.Name || '首页';
-  useTitle(title);
-  const disabledRef = useRef(false);
-  const videoDeviceId = isOneProductId ? sdk.deviceId : context.deviceId;
+  useTitle(productInfo.Name ? productInfo.Name : '首页');
+
   useEffect(() => {
     if (offline) {
       sdk.offlineTip.show();
@@ -44,32 +39,6 @@ export function Home({
     }
   }, [offline]);
 
-  useEffect(() => {
-    const listener = function () {
-      if (document.visibilityState === 'visible') {
-        disabledRef.current = false;
-      }
-    };
-    document.addEventListener('visibilitychange', listener);
-    return () => document.removeEventListener('visibilitychange', listener);
-  }, []);
-
-  useEffect(() => {
-    if (!isOneProductId) {
-      sdk.callDeviceAction({}, 'get_ipc_device_id')
-        .then((res) => {
-          const { OutputParams } = res;
-          const { productId, deviceName } = JSON.parse(OutputParams);
-          setContext({
-            deviceId: `${productId}/${deviceName}`,
-          });
-        })
-        .catch((err) => {
-          console.log('获取门锁IPC信息失败', err);
-        });
-    }
-  }, []);
-
   // 门锁状态
   const status = useMemo(() => {
     if (offline) return 2;
@@ -77,63 +46,33 @@ export function Home({
   }, [offline, deviceData]);
 
   const goVideoPanel = async () => {
+    console.log('IPC deviceId:', context.deviceId);
     if (offline) {
       sdk.tips.showError('设备已离线');
       return;
     }
-    if (!videoDeviceId) {
-      console.warn('video device Id 为空');
-      return;
+    if (deviceData.wakeup_state !== 1) {
+      await sdk.callDeviceAction({}, 'wake_up');
     }
-    console.warn('开始跳转', Date.now(), videoDeviceId);
-    if (disabledRef.current) {
-      console.warn('重复点击');
-      return;
-    }
-    disabledRef.current = true;
-    sdk.once('pageShow', () => {
-      sdk.insightReportor.error('LOCK_GOTO_VIDEO_ENABLE');
-      disabledRef.current = false;
+    sdk.goDevicePanelPage(context.deviceId || 'II0Q47L8B9/e_69518626_1', {
+      passThroughParams: { fullScreen: true },
     });
-
-    // 如果发送了 wake_up 指令，就会有时间戳
-    let wakeupTimestamp;
-    try {
-      sdk.tips.showLoading('正在跳转');
-      const { wakeup_state } = await sdk.getDeviceData();
-      sdk.insightReportor.info('LOCK_VIDEO_INFO', { videoDeviceId, isOneProductId, wakeup_state: deviceData.wakeup_state, httpWakeupState: wakeup_state });
-
-      if (wakeup_state.Value !== 1) {
-        try {
-          await sdk.callDeviceAction({}, 'wake_up');
-        } catch (err) {
-          // action有响应 和 wakeup_state 变成1 有一项OK 就能跳转
-          await new Promise((resolve, reject) => {
-            setTimeout(() => {
-              if (deviceData.wakeup_state === 1) {
-                resolve(1);
-              } else {
-                reject(`唤醒设备超时:${err.code}`);
-              }
-            }, 1000);
-          });
-        }
-        wakeupTimestamp = Date.now();
-      }
-
-      await sdk.goVideoPanelPage({
-        deviceId: videoDeviceId,
-        passThroughParams: { fullScreen: true, wakeupTimestamp },
-      });
-      sdk.tips.hideLoading();
-    } catch (err) {
-      console.warn('跳转 video 设备出错', err);
-      sdk.tips.showError('跳转实时画面出错，请重试');
-      sdk.insightReportor.error('LOCK_GOTO_VIDEO_ERROR', { message: err });
-      disabledRef.current = false;
-      return;
-    }
   };
+
+  useEffect(() => {
+    sdk.callDeviceAction({}, 'get_ipc_device_id')
+      .then((res) => {
+        console.log('门锁信息：', res);
+        const { OutputParams } = res;
+        const { productId, deviceName } = JSON.parse(OutputParams);
+        setContext({
+          deviceId: `${productId}/${deviceName}`,
+        });
+      })
+      .catch((err) => {
+        console.log('获取门锁IPC信息失败', err);
+      });
+  }, []);
 
   return (
     <main className="home">
@@ -204,8 +143,8 @@ export function Home({
           }}
         ></Cell>
         <Cell
-          className={classNames('cell-border', { disabled: offline || !videoDeviceId })}
-          title="实时画面"
+          className={classNames('cell-border', { disabled: offline })}
+          title="视频监控"
           prefixIcon={<Icon name="monitor"/>}
           size="medium"
           onClick={() => {
