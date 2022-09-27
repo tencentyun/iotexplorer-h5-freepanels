@@ -2,7 +2,7 @@ import _ from '@underscore';
 import { RefAttributes, ForwardRefExoticComponent } from 'react';
 import urlParse from 'url-parse';
 import querystring from 'query-string';
-import { rgb } from 'd3';
+import { rgb } from 'd3-color';
 import viewportConfig from '../../webpack/pxToViewport.config';
 import { EventEmitter } from 'events';
 
