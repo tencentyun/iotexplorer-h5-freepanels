@@ -57,7 +57,9 @@
 |          | 燃气报警      | 燃气报警器  | GasAlarm                    |
 |          |              | 燃气报警器v3  | GasAlarmTwo                    |
 |          | 水浸报警      | 水浸传感器  | immersion-sensor             |
-|          | 智能门锁       | 智能门锁v3   | SmartLocksTwo                | 已上线 |
+|          | 智能门锁       | 智能门锁v2(可视对讲)   | SmartLocksOne    | 已上线 |
+|          |               | 智能门锁v3(可视对讲)   | SmartLocksTwo     | 已上线 |
+|          |                | 智能门锁    | DoorLock                | 已上线 |
 |          |                | 猫眼门锁    | PeepHole                | 已上线 |
 | 小家电    | 取暖器       | 取暖器    | heater                       |
 |          |               | 取暖器v3    | HeaterTwo                       |

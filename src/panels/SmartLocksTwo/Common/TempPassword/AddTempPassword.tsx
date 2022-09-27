@@ -86,7 +86,28 @@ export function AddTempPassword({ history: { goBack } }) {
       tips.showError('保存周期密码出错');
     }
   };
-
+  // 弹出面板只能留存一个
+  const toggleTimePanel = (type: string, isVisible: boolean) => {
+    const list = ['begin', 'end', 'beginTime', 'endTime'];
+    if (type === 'begin' && beginVisible !== isVisible) {
+      setBeginVisible(isVisible);
+    }
+    if (type === 'end'  && endVisible !== isVisible) {
+      setEndVisible(isVisible);
+    }
+    if (type === 'beginTime'  && beginTimeVisible !== isVisible) {
+      setBeginTimeVisible(isVisible);
+    }
+    if (type === 'endTime'  && endTimeVisible !== isVisible) {
+      setEndTimeVisible(isVisible);
+    }
+    // 开启一个需要关闭其他面板
+    if (isVisible) {
+      list.filter(item => item !== type).forEach((idType) => {
+        toggleTimePanel(idType, false);
+      });
+    }
+  };
   const onSubmit = () => {
     if (type === PASSWORD_TYPE.SINGLE) {
       if (singlePassword.password) {
@@ -146,7 +167,7 @@ export function AddTempPassword({ history: { goBack } }) {
                 title="开始日期"
                 value={beginDate ? dayjs(beginDate).format('YYYY-MM-DD') : ''}
                 valueStyle="set"
-                onClick={() => setBeginVisible(true)}
+                onClick={() => toggleTimePanel('begin', true)}
               >
                 <DatePicker
                   visible={beginVisible}
@@ -161,9 +182,9 @@ export function AddTempPassword({ history: { goBack } }) {
                   title="开始日期"
                   onConfirm={(beginDate) => {
                     setBeginDate(beginDate);
-                    setBeginVisible(false);
+                    toggleTimePanel('begin', false);
                   }}
-                  onCancel={setBeginVisible.bind(null, false)}
+                  onCancel={() => toggleTimePanel('begin', false)}
                 />
               </Cell>
 
@@ -172,13 +193,14 @@ export function AddTempPassword({ history: { goBack } }) {
                 title="结束日期"
                 value={endDate ? dayjs(endDate).format('YYYY-MM-DD') : ''}
                 valueStyle="set"
-                onClick={() => setEndVisible(true)}
+                onClick={() => toggleTimePanel('end', true)}
               >
                 <DatePicker
                   visible={endVisible}
                   showSemicolon={false}
                   value={endDate}
                   showUnit={true}
+                  min={beginDate}
                   mask={false}
                   showTime={false}
                   title="结束日期"
@@ -187,9 +209,9 @@ export function AddTempPassword({ history: { goBack } }) {
                   showTwoDigit={true}
                   onConfirm={(endDate) => {
                     setEndDate(endDate);
-                    setEndVisible(false);
+                    toggleTimePanel('end', false);
                   }}
-                  onCancel={setEndVisible.bind(null, false)}
+                  onCancel={() => toggleTimePanel('end', false)}
                 />
               </Cell>
             </Cell>
@@ -205,7 +227,7 @@ export function AddTempPassword({ history: { goBack } }) {
                 title="开始时间"
                 value={beginTime.join(':')}
                 valueStyle="set"
-                onClick={() => setBeginTimeVisible(true)}
+                onClick={() => toggleTimePanel('beginTime', true)}
               >
                 <TimePicker
                   showSemicolon={false}
@@ -217,10 +239,10 @@ export function AddTempPassword({ history: { goBack } }) {
                   height={175}
                   showTwoDigit={true}
                   title="开始时间"
-                  onCancel={() => setBeginTimeVisible(false)}
+                  onCancel={() => toggleTimePanel('beginTime', false)}
                   onConfirm={(val) => {
                     setBeginTime(val);
-                    setBeginTimeVisible(false);
+                    toggleTimePanel('beginTime', false);
                   }}
                   confirmText="确认"
                   visible={beginTimeVisible}
@@ -232,7 +254,7 @@ export function AddTempPassword({ history: { goBack } }) {
                 title="结束时间"
                 value={endTime.join(':')}
                 valueStyle="set"
-                onClick={() => setEndTimeVisible(true)}
+                onClick={() => toggleTimePanel('endTime', true)}
               >
                 <TimePicker
                   showSemicolon={false}
@@ -244,10 +266,10 @@ export function AddTempPassword({ history: { goBack } }) {
                   height={175}
                   showTwoDigit={true}
                   title="结束时间"
-                  onCancel={() => setEndTimeVisible(false)}
+                  onCancel={() => toggleTimePanel('endTime', false)}
                   onConfirm={(val) => {
                     setEndTime(val);
-                    setEndTimeVisible(false);
+                    toggleTimePanel('endTime', false);
                   }}
                   confirmText="确认"
                   visible={endTimeVisible}
