@@ -74,8 +74,8 @@ export function Cell({
   const EleComponent = supportEle[ele];
 
   return (
-    <div className={`cell ${className ? className : ''}`} ref={target}>
-      <div className="cell-wrapper" onClick={handleClick}>
+    <div className={`cell ${className ? className : ''}`} ref={target} onClick={handleClick}>
+      <div className="cell-wrapper">
         {/* 左侧图标 */}
         {prefixIcon ? (
           <span className="cell-prefix-icon">{prefixIcon}</span>

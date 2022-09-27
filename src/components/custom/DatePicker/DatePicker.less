@@ -1,10 +1,12 @@
 @column_height: 143px;
 @column_max_count: 3;
 .cus-date-picker {
+  .date-picker-view {
+    --item-font-size: 18px;
+  }
   .picker-header {
     font-size: 48px;
     line-height: 67px;
-    color: #0f0f0f;
     text-align: center;
     padding: 71px 0 20px;
   }
@@ -53,16 +55,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
-
-    button {
-      flex: 1;
-      background-color: transparent;
-      border: none;
-      outline: none;
-      &:first-child {
-        color: rgba(38, 61, 77, 0.4);
-      }
-    }
   }
   &.un-pop {
     background: white;
@@ -73,4 +65,19 @@
     border-top-right-radius: 120px;
     border-top-left-radius: 120px;
   }
+  .adm-popup-body.adm-popup-body-position-bottom {
+    color: #fff;
+  }
+  .adm-picker-view-mask-top {
+  background: linear-gradient(0deg, rgba(38, 49, 61, 0.7) 50%, #26313D);
+  }
+  .adm-picker-view-mask-bottom {
+  background: linear-gradient(0deg, rgba(38, 49, 61, 0.7) 50%, #26313D);
+  }
+
+
+  .adm-picker-view {
+    background: #26313D;
+  }
 }
+
