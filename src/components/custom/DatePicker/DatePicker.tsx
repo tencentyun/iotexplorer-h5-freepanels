@@ -27,6 +27,7 @@ export interface DimePickerProps extends StyledProps {
   isPopUp?: boolean;
   itemHeight?: number;
   height?: number;
+  showTwoDigit?: boolean; //
 }
 
 const Container = ({ children, className, ...props }) => (
@@ -92,7 +93,7 @@ export function DatePicker(props: DimePickerProps) {
             value={pickerValue}
             defaultValue={new Date}
             min={min}
-            max={max || new Date()}
+            max={max}
             onChange={onChangeValue}
           />
         </div>
