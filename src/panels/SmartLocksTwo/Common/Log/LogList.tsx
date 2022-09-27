@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import dayjs from 'dayjs';
 import { Steps } from '@custom/Step';
+import { Empty } from '@custom/Empty';
 import { StatusTip } from '@src/components/StatusTip';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 import { tips } from '@src/libs/wxlib';
-import { useLoadMore } from './useLoadMore';
-import { InfiniteScroll } from 'antd-mobile';
-
 const { Step } = Steps;
 
 const eventMap = {
@@ -27,103 +25,96 @@ const eventMap = {
   unlock_remote_result: '远程解锁',
 };
 
-type LogItem = {label: string, time: string, data: any};
 interface Log{
-  hasMore: boolean,
-  context: string;
-  children: LogItem[]
+  groupDate: number,
+  children: {label: string, time: string, data: any}[]
 }
 
-interface LogListProps {
-  logType: 'action' | 'event';
-  activeKey: 'action' | 'event';
-  dateTime: [Date, Date];
-  templateMap: any;
-}
+type LogGroup = Log[];
 
-export function LogList({ logType, activeKey, dateTime, templateMap }: LogListProps) {
+export function LogList({ logType, activeKey, dateTime, templateMap }) {
   // 默认显示最近一个月的数据
   const alarmTipMap = templateMap?.alarm_lock.params[0].define.mapping;
 
-  const [data, setData] = useState<LogItem[]>([]);
+  const [data, setData] = useState<LogGroup>([]);
   const [isLoaded, setLoaded] = useState(false);
   const isEmpty = isLoaded && !data.length;
-  const getActionLog = async (context): Promise<Log> => {
+  const getActionLog = async (date: [Date, Date]) => {
     // tips.showLoading();
-    const date = dateTime;
+    console.log('date:', date);
     const res = await sdk.requestTokenApi('AppGetDeviceMultiActionHistories', {
       DeviceId: sdk.deviceId,
-      Context: context,
       MinTime: +dayjs(date[0]).startOf('day'),
       MaxTime: +dayjs(date[0]).endOf('day'),
-      Limit: 20,
+      Limit: 500,
       ActionIds: ['unlock_remote', 'add_fingerprint', 'add_card', 'add_face'],
     });
     // tips.hide();
     const logList = res.ActionHistories.filter(log => log.ActionId !== 'get_ipc_device_id');
-    return {
-      hasMore: !res.Listover,
-      context: res.Context,
-      children: logList.map(log => ({
-        label: log.ActionName,
-        time: dayjs.unix(log.RspTime).format('YYYY-MM-DD HH:mm'),
-      })),
-    };
+    return [
+      {
+        groupDate: date[0].getTime(), // 分组时间
+        children: logList.map(log => ({
+          label: log.ActionName,
+          time: dayjs.unix(log.RspTime).format('YYYY-MM-DD HH:mm'),
+        })),
+      },
+    ];
   };
-  const getEventlog = async (context): Promise<Log> => {
+  const getEventlog = async (date) => {
     // tips.showLoading();
-    const date = dateTime;
     const res = await sdk.requestTokenApi('AppListEventHistory', {
       DeviceId: sdk.deviceId,
-      Context: context,
       StartTime: Math.floor(+dayjs(date[0]).startOf('day') / 1000),
       EndTime: Math.floor(+dayjs(date[0]).endOf('day') / 1000),
-      Size: 20,
+      Limit: 500,
     });
     // tips.hide();
     const logList = res.EventHistory;
-    return {
-      hasMore: !res.Listover,
-      context: res.Context,
-      children: logList.map(log => ({
-        label: eventMap[log.EventId],
-        data: JSON.parse(log.Data),
-        time: dayjs(log.TimeStamp).format('YYYY-MM-DD HH:mm'),
-      })),
-    };
+    return [
+      {
+        groupDate: date[0].getTime(), // 分组时间
+        children: logList.map(log => ({
+          label: eventMap[log.EventId],
+          data: JSON.parse(log.Data),
+          time: dayjs(log.TimeStamp).format('YYYY-MM-DD HH:mm'),
+        })),
+      },
+    ];
   };
   // 后端加载日志数据
-  const loadLog = async (context) => {
+  const loadLog = async (dateTime, logType) => {
     try {
-      const logList = await (logType === 'action' ? getActionLog(context) : getEventlog(context));
+      const logList = await (logType === 'action' ? getActionLog(dateTime) : getEventlog(dateTime));
+      console.log({ logList });
       setLoaded(true);
-      setData([...data, ...logList.children]);
-      return logList;
+      setData(logList);
     } catch (err) {
       console.error('get log err', err);
       tips.showError('获取日志信息出错');
-      throw err;
     }
   };
-  const { loadMore, hasMore, reset } = useLoadMore(loadLog);
+
   useEffect(() => {
-    reset();
-    setLoaded(false);
+    if (logType === activeKey) {
+      loadLog(dateTime, logType);
+    }
   }, [dateTime, activeKey]);
 
   return (
     <div className="log-list">
       {isEmpty ? (
-        <div className="no-record-tips">
-          <StatusTip emptyMessage='暂无数据' status='empty' className='empty'/>
-        </div>
+        <Empty>
+          暂无记录
+        </Empty>
       ) : (
         <>
-          <div className="group">{dayjs(dateTime[0]).format('YYYY年MM月DD日') || ''}</div>
-            <div>
+          {data.map(({ groupDate, children }, index) => (
+            <div key={index}>
+              <div className="group">{dayjs(groupDate).format('YYYY年MM月DD日') || ''}</div>
               <div className="list">
                 <Steps direction="vertical">
-                  {data.map(({ label, time, data }, index) => {
+                  {children.map(({ label, time, data }, index) => {
                     let labelNode: React.ReactNode = label;
                     if (label === '门锁告警') {
                       labelNode = (
@@ -141,10 +132,15 @@ export function LogList({ logType, activeKey, dateTime, templateMap }: LogListPr
                       description={time}
                     />;
                   })}
+                  {children.length === 0 && (
+                    <div className="no-record-tips">
+                      <StatusTip emptyMessage='暂无数据' status='empty' className='empty'/>
+                    </div>
+                  )}
                 </Steps>
-                <InfiniteScroll loadMore={loadMore} hasMore={hasMore} />
               </div>
             </div>
+          ))}
         </>
       )}
     </div>

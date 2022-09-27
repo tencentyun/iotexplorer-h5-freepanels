@@ -4,24 +4,7 @@
   font-weight: 500;
   color: #333333;
   padding: 60px 0;
-  position: relative;
-  overflow: hidden;
-  &:before{
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: -1;
-    user-select: none;
-    width: 100%;
-    height: 100%;
-    background: #000;
-    opacity: 0;
-    box-sizing: content-box;
-  }
-  &:active::before{
-    opacity: 0.08;
-  }
+
   .cell-wrapper {
     display: flex;
     align-items: center;

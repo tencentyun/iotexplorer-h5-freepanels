@@ -858,49 +858,16 @@ module.exports = {
     ],
   },
   SmartLocksTwo: {
-    name: '可视对讲门锁',
-    categoryKey: 'VisualLock',
-    enable: true,
-    viewportWidth: 375,
-    panels: [
-      ['panel-cold', { enable: true }],
-      ['panel-card', { enable: true, entry: 'app.tsx' }],
-      // ['panel-brunet', { enable: true, entry: 'app.tsx' }],
-      // ['panel-fresh', { enable: true, entry: 'app.tsx' }],
-      // ['panel-house', { enable: true, entry: 'app.tsx' }],
-    ],
-  },
-  SmartLocksOne: { // 一个三元组的版本
-    name: '可视对讲门锁',
-    categoryKey: 'VisualLock',
-    as: 'SmartLocksTwo',
-    enable: true,
-    viewportWidth: 375,
-    panels: [
-      ['panel-cold', { enable: true }],
-      ['panel-card', { enable: true, entry: 'app.tsx' }],
-      // ['panel-brunet', { enable: true, entry: 'app.tsx' }],
-      // ['panel-fresh', { enable: true, entry: 'app.tsx' }],
-      // ['panel-house', { enable: true, entry: 'app.tsx' }],
-    ],
-  },
-  PeepHole: {
-    name: '猫眼门锁',
-    categoryKey: 'PeepholeLock',
-    enable: true,
-    viewportWidth: 375,
-    panels: [
-      ['panel-card', { enable: true, entry: 'app.tsx' }],
-    ],
-  },
-  DoorLock: {
     name: '智能门锁',
-    categoryKey: 'DoorLock',
-    as: 'PeepHole', // 智能门锁和猫眼门锁共用一套面板
+    categoryKey: 'VisualLock',
     enable: true,
     viewportWidth: 375,
     panels: [
+      ['panel-cold', { enable: true }],
       ['panel-card', { enable: true, entry: 'app.tsx' }],
+      // ['panel-brunet', { enable: true, entry: 'app.tsx' }],
+      // ['panel-fresh', { enable: true, entry: 'app.tsx' }],
+      // ['panel-house', { enable: true, entry: 'app.tsx' }],
     ],
   },
   WhiteLampTwo: {

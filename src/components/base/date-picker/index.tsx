@@ -15,6 +15,8 @@ export interface DatePickerProps extends AntdDatePickerProps {
 }
 
 export function DatePicker(props: DatePickerProps) {
+  console.log(props, 1111);
+
   return (
     <div className="_component_base_date_picker_">
       <div className="picker-title"></div>

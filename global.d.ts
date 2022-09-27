@@ -33,10 +33,6 @@ declare interface SelectorOption {
   value: string;
 }
 
-interface Window {
-  h5PanelSdk: any;
-}
-
 declare interface ListResponse<T> {
   list: T[];
   total: number;
