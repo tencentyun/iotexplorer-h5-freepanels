@@ -1,0 +1,22 @@
+[
+    {
+        "key": "./img/switch-five-default.png",
+        "url": "https://iot-cdn-1258344699.cos.ap-guangzhou.myqcloud.com/freepanel/img/switch-five-default.png"
+    },
+    {
+        "key": "./img/switch-four-default.png",
+        "url": "https://iot-cdn-1258344699.cos.ap-guangzhou.myqcloud.com/freepanel/img/switch-four-default.png"
+    },
+    {
+        "key": "./img/switch-one-normal.png",
+        "url": "https://iot-cdn-1258344699.cos.ap-guangzhou.myqcloud.com/freepanel/img/switch-one-normal.png"
+    },
+    {
+        "key": "./img/switch-three-default.png",
+        "url": "https://iot-cdn-1258344699.cos.ap-guangzhou.myqcloud.com/freepanel/img/switch-three-default.png"
+    },
+    {
+        "key": "./img/switch-two-default.png",
+        "url": "https://iot-cdn-1258344699.cos.ap-guangzhou.myqcloud.com/freepanel/img/switch-two-default.png"
+    }
+]

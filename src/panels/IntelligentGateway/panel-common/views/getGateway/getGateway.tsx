@@ -3,51 +3,47 @@ import classNames from 'classnames';
 import { Dialog } from 'antd-mobile';
 import './getGateway.less';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
-
+import { onControlDevice } from '@hooks/useDeviceData';
+/**
+ * 页面暂不使用
+ */
 const lampIcon =  'https://tencent-1305105198.cos.ap-guangzhou.myqcloud.com/router/normal/lamp.svg';
 export function GetGateway() {
   const [gatewayList, setGatewayList] = useState([]);
-  useEffect(() => {
-    // 获取网关子设备
-    const getDeviceDataGateway = async () => {
-      try {
-        const recordListInfo = await sdk.requestTokenApi('AppGetGatewayBindDeviceList', {
-          Action: 'AppGetGatewayBindDeviceList',
-          AccessToken: 'AccessToken',
-          RequestId: sdk.requestId,
-          GatewayProductId: sdk.gatewayProductId,
-          GatewayDeviceName: sdk.GatewayDeviceName,
-          ProductId: sdk.productId,
-          DeviceName: sdk.deviceName,
-          Offset: 0,
-          Limit: 10,
-        });
-        console.log('get info', recordListInfo);
-        setGatewayList(recordListInfo.DeviceList);
-      } catch (err) {
-        console.error('get info fail', err);
-      }
-    };
-    getDeviceDataGateway();
-  }, []);
-  // 添加网关子设备
-  const addDeviceDataGateway = async (productId: string, deviceName:string) => {
+  const getDeviceDataGateway = async () => {
+    const { h5PanelSdk } = window;
+    const { subDeviceList } = await h5PanelSdk.getSubDeviceList();
     try {
-      const recordListInfo = await sdk.requestTokenApi('AppBindSubDeviceInFamily', {
-        Action: 'AppBindSubDeviceInFamily',
-        AccessToken: 'AccessToken',
+      // 获取设备状态
+      const deviceIds = subDeviceList.map(({ DeviceId }) => DeviceId);
+      const devicesStatus = await sdk.requestTokenApi('AppGetDeviceStatuses', {
+        Action: 'AppGetDeviceStatuses',
+        // AccessToken: 'AccessToken',
         RequestId: sdk.requestId,
-        GatewayProductId: sdk.GatewayProductId,
-        GatewayDeviceName: sdk.GatewayDeviceName,
-        ProductId: productId,
-        DeviceName: deviceName,
+        DeviceIds: deviceIds,
       });
-      console.log('get info', recordListInfo);
-      sdk.tips.show('添加成功');
+      // "Online": 0 //0 在线；1：离线
+      const data = subDeviceList.map(item => ({
+        ...item,
+        Online: devicesStatus.DeviceStatuses.filter(({ DeviceId }) => DeviceId === item.DeviceId)[0]?.Online,
+      }));
+      setGatewayList(data);
     } catch (err) {
       console.error('get info fail', err);
     }
   };
+  useEffect(() => {
+    // 获取网关子设备
+    sdk.on('pageShow', () => {
+      getDeviceDataGateway();
+    });
+    getDeviceDataGateway();
+    return () => {
+      sdk.off('pageShow');
+    };
+  }, []);
+  const onLineNum = gatewayList.filter(({ Online }) => !!Online).length;
+  onControlDevice('deviceNum', onLineNum);
   const [lampSrc] = useState(lampIcon);
   const handleMode = async (productId: string, deviceName:string) => {
     const result = await Dialog.confirm({

@@ -1,5 +1,5 @@
 import { useDeviceInfo } from '@hooks/useDeviceInfo';
-import { sdk } from '@src/models/kugou';
+const sdk = window.h5PanelSdk;
 type Auth = {
   name?: string;
   id: string;

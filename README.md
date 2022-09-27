@@ -11,7 +11,7 @@
 
 ### 1、直接使用
 
-通过 [腾讯云物联网开发平台](https://console.cloud.tencent.com/iotexplorer) 提供的标准方案，可以实现快速配置。通过 [快速配置方案](./docs/explorer.md) 配置成功后，通过手机微信扫一扫，调试或验证物联网王设备智能控制的免开发面板效果。
+通过 [腾讯云物联网开发平台](https://console.cloud.tencent.com/iotexplorer) 提供的标准方案，可以实现快速配置。通过 [快速配置方案](./docs/explorer.md) 配置成功后，通过手机微信扫一扫，调试或验证物联网设备智能控制的免开发面板效果。
 
 当前已经支持的品类 [更多产品详情](./docs/product.md) , **模板预览效果：[点击跳转预览效果图](./docs/product-preview.md)**
 
@@ -57,7 +57,8 @@
 |          | 燃气报警      | 燃气报警器  | GasAlarm                    |
 |          |              | 燃气报警器v3  | GasAlarmTwo                    |
 |          | 水浸报警      | 水浸传感器  | immersion-sensor             |
-|          | 智能门锁       | 智能门锁v3   | SmartLocksTwo                |
+|          | 智能门锁       | 智能门锁v3   | SmartLocksTwo                | 已上线 |
+|          |                | 猫眼门锁    | PeepHole                | 已上线 |
 | 小家电    | 取暖器       | 取暖器    | heater                       |
 |          |               | 取暖器v3    | HeaterTwo                       |
 |          | 加湿器       | 加湿器    | humidifier                   |
@@ -108,8 +109,6 @@ panel-house
 ### 2、二次开发
 
 通过提供的免开发面板的示例代码，基于此进行二次定制开发，可以参考[Demo](https://github.com/tencentyun/iotexplorer-h5-panel-demo)开发出自己产品匹配的效果。
-
-
 
 
 ## 开发说明

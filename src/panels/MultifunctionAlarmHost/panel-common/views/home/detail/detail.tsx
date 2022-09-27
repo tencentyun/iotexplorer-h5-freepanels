@@ -17,7 +17,6 @@ import ArmingImageMorandi from '../../icons/morandi/trigger-alarm.svg';
 import HistoryImage from '../../icons/normal/history.svg';
 import HistoryImageBlueWhite from '../../icons/blue-white/history.svg';
 import HistoryImageDark from '../../icons/dark/history.svg';
-import HistoryImageColorful from '../../icons/blue-white/history.svg';
 import HistoryImageMorandi from '../../icons/morandi/history.svg';
 
 import MountingsImage from '../../icons/normal/mountings.svg';
@@ -33,10 +32,32 @@ import SettingImageColorful from '../../icons/colorful/setting.svg';
 import SettingImageMorandi from '../../icons/morandi/setting.svg';
 import dayjs from 'dayjs';
 
-
 export function Detail() {
   const themeType = getThemeType();
   const [recordList, setRecordList] = useState([]);
+  const [gatewayList, setGatewayList] = useState([]);
+  const getDeviceDataGateway = async () => {
+    const { h5PanelSdk } = window;
+    const { subDeviceList } = await h5PanelSdk.getSubDeviceList();
+    try {
+      // 获取设备状态
+      const deviceIds = subDeviceList.map(({ DeviceId }) => DeviceId);
+      const devicesStatus = await sdk.requestTokenApi('AppGetDeviceStatuses', {
+        Action: 'AppGetDeviceStatuses',
+        // AccessToken: 'AccessToken',
+        RequestId: sdk.requestId,
+        DeviceIds: deviceIds,
+      });
+      // "Online": 0 //0 在线；1：离线
+      const data = subDeviceList.map(item => ({
+        ...item,
+        Online: devicesStatus.DeviceStatuses.filter(({ DeviceId }) => DeviceId === item.DeviceId)[0]?.Online,
+      }));
+      setGatewayList(data);
+    } catch (err) {
+      console.error('get info fail', err);
+    }
+  };
   useEffect(() => {
     // 获取历史记录
     const getDeviceDataHistory = async () => {
@@ -61,7 +82,17 @@ export function Detail() {
       }
     };
     getDeviceDataHistory();
+    // 获取网关子设备
+    sdk.on('pageShow', () => {
+      getDeviceDataGateway();
+    });
+    getDeviceDataGateway();
+    return () => {
+      sdk.off('pageShow');
+    };
   }, []);
+  const onLineNum = gatewayList.length;
+
   const statusLabel: any = {
     disarmed: '撤防',
     arm: '布防',
@@ -95,7 +126,7 @@ export function Detail() {
       case 'dark':
         return HistoryImageDark;
       case 'colorful':
-        return HistoryImageColorful;
+        return HistoryImageBlueWhite;
       case 'morandi':
         return HistoryImageMorandi;
       default:
@@ -136,7 +167,6 @@ export function Detail() {
   };
   const [alarmStateVisible, onToggleAlarmState] = useState(false);
   const history = useHistory();
-
   const handleRecord = () => history.push('/record');
   const handleMountings = () => history.push('/mountings');
   const handleSetting = () => history.push('/setting');
@@ -194,13 +224,15 @@ export function Detail() {
             <ul>
               {recordList != null
                 ? recordList.map((value, index) => (index === 0 ? (
-                      <li className="history-title active">
-                        <span className="label">{`${dayjs(Number(value.Time)).format('YYYY-MM-DD')} ${statusLabel[Number(value.Value)]}`}</span>
-                      </li>
+                  <li className="history-title active">
+                    <span
+                      className="label">{`${dayjs(Number(value.Time)).format('YYYY-MM-DD')} ${statusLabel[Number(value.Value)]}`}</span>
+                  </li>
                 ) : (
-                      <li className="history-title">
-                        <span className="label">{`${dayjs(Number(value.Time)).format('YYYY-MM-DD')} ${statusLabel[Number(value.Value)]}`}</span>
-                      </li>
+                  <li className="history-title">
+                    <span
+                      className="label">{`${dayjs(Number(value.Time)).format('YYYY-MM-DD')} ${statusLabel[Number(value.Value)]}`}</span>
+                  </li>
                 )))
                 : ''}
             </ul>
@@ -210,7 +242,7 @@ export function Detail() {
           <Cell
             size="medium"
             title="配件"
-            value={'有0个设备'}
+            value={`有个${onLineNum ? onLineNum : 0}设备`}
             prefixIcon={cellIcon(mountingsImageSrc())}
             valueStyle="gray"
             onClick={handleMountings}

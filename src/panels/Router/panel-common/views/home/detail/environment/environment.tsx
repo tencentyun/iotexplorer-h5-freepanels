@@ -6,48 +6,52 @@ import { getThemeType } from '@libs/theme';
 import { onControlDevice } from '@hooks/useDeviceData';
 import { Cell } from '@components/base';
 
-import addIcon from '../../../icons/normal/add.svg';
-import {useHistory} from "react-router";
-
 const lampIcon =  'https://tencent-1305105198.cos.ap-guangzhou.myqcloud.com/router/normal/lamp.svg';
 const emptyIcon =  'https://tencent-1305105198.cos.ap-guangzhou.myqcloud.com/router/dark/empty-dev.svg';
 
 const Environment = () => {
   const themeType = getThemeType();
   const [gatewayList, setGatewayList] = useState([]);
+  const getDeviceDataGateway = async () => {
+    const { h5PanelSdk } = window;
+    const { subDeviceList } = await h5PanelSdk.getSubDeviceList();
+    try {
+      // 获取设备状态
+      const deviceIds = subDeviceList.map(({ DeviceId }) => DeviceId);
+      const devicesStatus = await sdk.requestTokenApi('AppGetDeviceStatuses', {
+        Action: 'AppGetDeviceStatuses',
+        // AccessToken: 'AccessToken',
+        RequestId: sdk.requestId,
+        DeviceIds: deviceIds,
+      });
+      // "Online": 0 //0 在线；1：离线
+      const data = subDeviceList.map(item => ({
+        ...item,
+        Online: devicesStatus.DeviceStatuses.filter(({ DeviceId }) => DeviceId === item.DeviceId)[0]?.Online,
+      }));
+      setGatewayList(data);
+    } catch (err) {
+      console.error('get info fail', err);
+    }
+  };
   useEffect(() => {
     // 获取网关子设备
-    const getDeviceDataGateway = async () => {
-      try {
-        const recordListInfo = await sdk.requestTokenApi('AppGetGatewayBindDeviceList', {
-          Action: 'AppGetGatewayBindDeviceList',
-          AccessToken: 'AccessToken',
-          RequestId: sdk.requestId,
-          GatewayProductId: sdk.gatewayProductId,
-          GatewayDeviceName: sdk.GatewayDeviceName,
-          ProductId: sdk.productId,
-          DeviceName: sdk.deviceName,
-          Offset: 0,
-          Limit: 10,
-        });
-        console.log('get info', recordListInfo);
-        setGatewayList(recordListInfo.DeviceList);
-      } catch (err) {
-        console.error('get info fail', err);
-      }
-    };
+    sdk.on('pageShow', () => {
+      getDeviceDataGateway();
+    });
     getDeviceDataGateway();
+    return () => {
+      sdk.off('pageShow');
+    };
   }, []);
   const [lampSrc] = useState(lampIcon);
   const [emptySrc] = useState(emptyIcon);
   const handleMode = (type: string) => {
     onControlDevice('mode', type);
   };
-  const cellIcon = (url: string) => (
-    <img className="details-icon" src={url}></img>
+  const cellIcon = (url: number | string | any[]) => (
+    <img className="details-icon" src={url}/>
   );
-  const history = useHistory();
-  const handleGetGateway = () => history.push('/getGateway');
   return (
     <article className={classNames('environment')}>
       <div className="dev-title">子设备</div>
@@ -66,18 +70,16 @@ const Environment = () => {
         {themeType === 'colorful' || themeType === 'blueWhite' ? (
             <div className="dev-list">
               {gatewayList.length > 0 ? (
-                gatewayList.map((value, index) => (
-                  value.BindStatus == 1 ? (
-                        <Cell
-                          size="normal"
-                          title={value.DeviceName}
-                          prefixIcon={cellIcon(lampSrc)}
-                          value={value.DeviceId}
-                          valueStyle="gray"
-                        />
-                  ) : (
-                    ''
-                  )
+                gatewayList.map((value: HashMap, index) => (
+                    <Cell
+                      key={index}
+                      size="normal"
+                      title={value?.AliasName || value?.DeviceName || ''}
+                      prefixIcon={value.IconUrl ? cellIcon(value.IconUrl) : cellIcon(lampSrc)}
+                      value={value.DeviceId}
+                      valueStyle="gray"
+                      onClick={() => sdk.goDevicePanelPage(value.DeviceId)}
+                    />
                 ))
               ) : (
                 <div className="dev-list">
@@ -98,20 +100,16 @@ const Environment = () => {
             </div>
         ) : (
           <div className="dev-list">
-            {themeType === 'morandi' ? (
-              <div id={'add-dev'} className="dev-info" onClick={handleGetGateway}>
-                <img src={addIcon} alt=""/>
-                添加电子设备
-              </div>
-            ) : (
-              ''
-            )}
             {gatewayList.length > 0 ? (
               <div>
-                {gatewayList.map((value, index) => (
-                  <div className="dev-info" id={value.DeviceId}>
-                    <img src={lampSrc} alt=""/>
-                    {value.DeviceName}
+                {gatewayList.map((value: HashMap, index) => (
+                  <div
+                    className="dev-info"
+                    key={index}
+                    onClick={() => sdk.goDevicePanelPage(value.DeviceId)}
+                  >
+                    <img src={value.IconUrl} alt=""/>
+                    {value?.AliasName || value?.DeviceName || ''}
                   </div>
                 ))}
               </div>

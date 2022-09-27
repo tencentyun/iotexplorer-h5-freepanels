@@ -1,0 +1,22 @@
+[
+    {
+        "key": "./img/ThreeSwitch/panel-blueWhite.png",
+        "url": "https://iot-cdn-1258344699.cos.ap-guangzhou.myqcloud.com/freepanel/img/ThreeSwitch/panel-blueWhite.png"
+    },
+    {
+        "key": "./img/ThreeSwitch/panel-colorful.png",
+        "url": "https://iot-cdn-1258344699.cos.ap-guangzhou.myqcloud.com/freepanel/img/ThreeSwitch/panel-colorful.png"
+    },
+    {
+        "key": "./img/ThreeSwitch/panel-dark.png",
+        "url": "https://iot-cdn-1258344699.cos.ap-guangzhou.myqcloud.com/freepanel/img/ThreeSwitch/panel-dark.png"
+    },
+    {
+        "key": "./img/ThreeSwitch/panel-default.png",
+        "url": "https://iot-cdn-1258344699.cos.ap-guangzhou.myqcloud.com/freepanel/img/ThreeSwitch/panel-default.png"
+    },
+    {
+        "key": "./img/ThreeSwitch/panel-morandi.png",
+        "url": "https://iot-cdn-1258344699.cos.ap-guangzhou.myqcloud.com/freepanel/img/ThreeSwitch/panel-morandi.png"
+    }
+]
