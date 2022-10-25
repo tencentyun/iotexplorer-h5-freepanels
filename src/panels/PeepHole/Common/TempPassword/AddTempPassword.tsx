@@ -19,7 +19,7 @@ const PASSWORD_TYPE = {
 };
 
 // 随机生成num为数字
-const randomCreatePassword = num => Math.floor(Math.random() * (10 ** num));
+const randomCreatePassword = num => Math.floor(Math.random() * (10 ** num)).toString().padStart(6, '0');
 
 export function AddTempPassword({ history: { goBack } }) {
   useTitle('添加临时密码');
@@ -50,7 +50,7 @@ export function AddTempPassword({ history: { goBack } }) {
   const onRandomGenerator = () => {
     // 周期性密码由前端生成随机6位数，并加密后发给设备
     console.log('随机生成密码');
-    setPassword(randomCreatePassword(6).toString());
+    setPassword(randomCreatePassword(6));
   };
   // 获取单次密码
   const getSinglePassword = () => {
