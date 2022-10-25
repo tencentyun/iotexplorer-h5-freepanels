@@ -7,8 +7,8 @@ import { Disk } from './Disk';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 import { useTitle } from '@hooks/useTitle';
 
-// 一个三元组（SmartLocksOne）还是两个三元组（SmartLocksTwo）
-const isOneProductId = process.env.CATEGORY === 'SmartLocksOne';
+// 只有一个三元组的版本
+const isOneProductId = true;
 
 const lockStatusWord = {
   0: '未上锁',
