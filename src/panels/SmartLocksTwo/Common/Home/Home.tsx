@@ -128,7 +128,7 @@ export function Home({
       sdk.tips.hideLoading();
     } catch (err) {
       console.warn('跳转 video 设备出错', err);
-      sdk.tips.showError('跳转实时画面出错，请重试');
+      sdk.tips.showError('设备唤醒失败，请重试');
       sdk.insightReportor.error('LOCK_GOTO_VIDEO_ERROR', { message: err });
       disabledRef.current = false;
       return;
