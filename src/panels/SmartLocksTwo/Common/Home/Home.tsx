@@ -64,19 +64,23 @@ export function Home({
       ProductId: sdk.productId,
     }).then(({ AppWechatSubscribeableProperty: describeInfo }) => {
       console.log({ describeInfo });
+      // 当前产品可以订阅消息
       if (describeInfo.IsSubscribeable) {
-        sdk.tips.showModal({
-          title: '温馨提示',
-          content: '检测到您尚未订阅微信消息，将无法接收门铃呼叫，请前去订阅',
-          confirmText: '去订阅',
-        }).then((isConfirm) => {
-          console.log({ isConfirm });
-          if (isConfirm) {
-            sdk._appBridge.callMpApi('navigateTo', {
-              url: `/pages/Device/ConfigWXNotify/ConfigWXNotify?deviceId=${sdk.deviceId}`,
-            });
-          }
-        });
+        const bellSubscribeInfo = describeInfo.Templates.find(tpl => tpl.Title === '门铃呼叫提醒');
+        if (bellSubscribeInfo && bellSubscribeInfo.Status === 0) {
+          sdk.tips.showModal({
+            title: '温馨提示',
+            content: '检测到您尚未订阅微信消息，将无法接收门铃呼叫，请前去订阅',
+            confirmText: '去订阅',
+          }).then((isConfirm) => {
+            console.log({ isConfirm });
+            if (isConfirm) {
+              sdk._appBridge.callMpApi('navigateTo', {
+                url: `/pages/Device/ConfigWXNotify/ConfigWXNotify?deviceId=${sdk.deviceId}`,
+              });
+            }
+          });
+        }
       }
     });
   }, []);
