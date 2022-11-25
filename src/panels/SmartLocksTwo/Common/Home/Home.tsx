@@ -54,20 +54,35 @@ export function Home({
     return () => document.removeEventListener('visibilitychange', listener);
   }, []);
 
+  // 检测用户是否订阅门铃强提醒
   useEffect(() => {
-    if (!isOneProductId) {
-      sdk.callDeviceAction({}, 'get_ipc_device_id')
-        .then((res) => {
-          const { OutputParams } = res;
-          const { productId, deviceName } = JSON.parse(OutputParams);
-          setContext({
-            deviceId: `${productId}/${deviceName}`,
-          });
-        })
-        .catch((err) => {
-          console.log('获取门锁IPC信息失败', err);
-        });
+    if (sdk.deviceStatus === 0) {
+      return;
     }
+    sdk.requestTokenApi('AppIsWechatSubscribeable', {
+      DeviceName: sdk.deviceName,
+      ProductId: sdk.productId,
+    }).then(({ AppWechatSubscribeableProperty: describeInfo }) => {
+      console.log({ describeInfo });
+      // 当前产品可以订阅消息
+      if (describeInfo.IsSubscribeable) {
+        const bellSubscribeInfo = describeInfo.Templates.find(tpl => tpl.Title === '门铃呼叫提醒');
+        if (bellSubscribeInfo && bellSubscribeInfo.Status === 0) {
+          sdk.tips.showModal({
+            title: '温馨提示',
+            content: '检测到您尚未订阅微信消息，将无法接收门铃呼叫，请前去订阅',
+            confirmText: '去订阅',
+          }).then((isConfirm) => {
+            console.log({ isConfirm });
+            if (isConfirm) {
+              sdk._appBridge.callMpApi('navigateTo', {
+                url: `/pages/Device/ConfigWXNotify/ConfigWXNotify?deviceId=${sdk.deviceId}`,
+              });
+            }
+          });
+        }
+      }
+    });
   }, []);
 
   // 门锁状态
