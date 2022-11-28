@@ -2,7 +2,7 @@ import { useEffect, useReducer, useRef, Reducer } from 'react';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 import { tips } from '@wxlib';
 import { StatusTipProps } from '@components/StatusTip';
-
+import { retry } from '@utils';
 export interface UseDeviceInfoState {
   deviceInfo: any;
   productInfo: any;
@@ -212,26 +212,21 @@ export const useDeviceInfo = (): UseDeviceInfoResult => {
         return DeviceStatuses[0]?.Online;
       });
     };
-
-    Promise.all([getDeviceStatus(), sdk.sdkReady()])
+    const  getInitData = () => Promise.all([getDeviceStatus(), sdk.sdkReady()])
       .then(([deviceStatus]) => {
         dispatch({
           type: UseDeviceInfoAction.Init,
           payload: initState(sdk, deviceStatus),
         });
+        dispatch({
+          type: UseDeviceInfoAction.UpdateDeviceStatus,
+          payload: { deviceStatus },
+        });
       });
-
-    // 当小程序进入后台后，可能无法及时同步 在线状态，这时要调用 api 同步下在线状态
-    sdk.requestTokenApi('AppGetDeviceStatuses', {
-      DeviceIds: [sdk.deviceId],
-    }).then(({ DeviceStatuses }) => {
-      dispatch({
-        type: UseDeviceInfoAction.UpdateDeviceStatus,
-        payload: { deviceStatus: DeviceStatuses[0]?.Online },
-      });
-    })
+    retry(getInitData, { times: 3 })
       .catch((err) => {
-        console.warn('获取设备在线状态失败', err);
+        console.warn('sdk ready fail', err);
+        sdk.insightReportor.error('SDK-INIT-ERROR', err.message);
       });
 
     return () => {

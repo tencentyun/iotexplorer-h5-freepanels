@@ -11,7 +11,7 @@
 
 ### 1、直接使用
 
-通过 [腾讯云物联网开发平台](https://console.cloud.tencent.com/iotexplorer) 提供的标准方案，可以实现快速配置。通过 [快速配置方案](./docs/explorer.md) 配置成功后，通过手机微信扫一扫，调试或验证物联网王设备智能控制的免开发面板效果。
+通过 [腾讯云物联网开发平台](https://console.cloud.tencent.com/iotexplorer) 提供的标准方案，可以实现快速配置。通过 [快速配置方案](./docs/explorer.md) 配置成功后，通过手机微信扫一扫，调试或验证物联网设备智能控制的免开发面板效果。
 
 当前已经支持的品类 [更多产品详情](./docs/product.md) , **模板预览效果：[点击跳转预览效果图](./docs/product-preview.md)**
 
@@ -20,8 +20,8 @@
 |----------|-----------|--------|------------------|---|
 | 电工-插座类   | 五孔单插      | 五孔单插   | FivePlug   |  已上架 |
 |          | 三孔单插      | 三孔单插   | ThreePlug         | 已上架 |
-|          | 电量统计插座    | 电量统计插座 | ElectricityStatsReceptacle |
-|          | 墙壁插座带USB  | 墙壁插头   | WallPlug     |
+|          | 电量统计插座    | 电量统计插座 | ElectricityStatsReceptacle |   |
+|          | 墙壁插座带USB  | 墙壁插头   | WallPlug     |   |
 | 电工类-开关类 | 场景开关 | 多路开关   | MultiSwitch           |
 |          |           | 开关面板   | switch          |
 |          |           | 一路开关   | SwitchOne                  |
@@ -57,7 +57,10 @@
 |          | 燃气报警      | 燃气报警器  | GasAlarm                    |
 |          |              | 燃气报警器v3  | GasAlarmTwo                    |
 |          | 水浸报警      | 水浸传感器  | immersion-sensor             |
-|          | 智能门锁       | 智能门锁v3   | SmartLocksTwo                |
+|          | 智能门锁       | 智能门锁v2(可视对讲)   | SmartLocksOne    | 已上线 |
+|          |               | 智能门锁v3(可视对讲)   | SmartLocksTwo     | 已上线 |
+|          |                | 智能门锁    | DoorLock                | 已上线 |
+|          |                | 猫眼门锁    | PeepHole                | 已上线 |
 | 小家电    | 取暖器       | 取暖器    | heater                       |
 |          |               | 取暖器v3    | HeaterTwo                       |
 |          | 加湿器       | 加湿器    | humidifier                   |
@@ -82,10 +85,10 @@
 |          |         | 空调v3     | AirConditionerTwo              |
 |          | 热水器       | 热水器    | WaterHeater                 |
 | 厨电类    | 电烤箱       | 电烤箱    | electric-oven                |
-| 照明设备   | 筒灯       | 筒灯    | DownLightTwo                |
-|          | 射灯        | 射灯    | SpotLightsTwo                |
-|          | 灯带        | 灯带    | LightStripTwo               |
-|           | 冷暖白光灯       |冷暖白光灯     | WhiteLamp         |
+| 照明设备   | 筒灯       | 筒灯    | DownLightTwo                |  已上架 |
+|          | 射灯        | 射灯    | SpotLightsTwo                |  已上架 |
+|          | 灯带        | 灯带    | LightStripTwo               | 已上架 |
+|           | 冷暖白光灯       |冷暖白光灯     | WhiteLamp         | 已上架 |
 |           |        |冷暖白光灯V2     | WhiteLampV2      |
 |           |        |冷暖白光灯v3     | WhiteLampTwo     |
 
@@ -108,8 +111,6 @@ panel-house
 ### 2、二次开发
 
 通过提供的免开发面板的示例代码，基于此进行二次定制开发，可以参考[Demo](https://github.com/tencentyun/iotexplorer-h5-panel-demo)开发出自己产品匹配的效果。
-
-
 
 
 ## 开发说明

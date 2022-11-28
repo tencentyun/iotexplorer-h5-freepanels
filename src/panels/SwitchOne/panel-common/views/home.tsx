@@ -89,7 +89,7 @@ export function Home() {
       </div>
       <TimePicker
         showSemicolon={false}
-        value={handleCountdownDefault(sdk.deviceData.count_down)}
+        value={handleCountdownDefault(sdk.deviceData.count_down1)}
         showUnit={true}
         showTime={false}
         showTwoDigit={false}
@@ -100,7 +100,7 @@ export function Home() {
           const hour = Number(value[0].split('时')[0]);
           const mins = Number(value[1].split('分')[0]);
           const num = hour * 3600 + mins * 60;
-          onControlDevice('count_down', num);
+          onControlDevice('count_down1', num);
         }}
         visible={countDownVisible}
       />
