@@ -1,0 +1,115 @@
+.rmc-multi-picker {
+  display: flex;
+  align-items: center;
+  background: transparent;
+  color: @c1;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  width: auto;
+
+  &.second-cls {
+    .rmc-picker {
+      .rmc-picker-content {
+        .rmc-picker-item {
+          padding-left: 0;
+        }
+      }
+    }
+    .rmc-picker:first-child {
+      .rmc-picker-content {
+        .rmc-picker-item {
+          text-align: center;
+          padding-right: 0;
+        }
+      }
+    }
+  }
+
+  .picker-view-divider {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    font-size: 12px;
+  }
+
+  .rmc-picker {
+    display: block;
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    flex: 1;
+    text-align: center;
+    &:first-child {
+      .rmc-picker-content {
+        .rmc-picker-item {
+          text-align: center;
+          padding-right: 57px;
+        }
+      }
+    }
+
+    .rmc-picker-mask {
+      position: absolute;
+      left: 0;
+      top: 0;
+      height: 100%;
+      margin: 0 auto;
+      width: 100%;
+      z-index: 3;
+      background-position: top, bottom;
+      background-size: 100% 204px;
+      background-repeat: no-repeat;
+    }
+
+    .rmc-picker-indicator {
+      box-sizing: border-box;
+      width: 100%;
+      height: 34px;
+      position: absolute;
+      left: 0;
+      top: 102px;
+      &::after {
+        content: ' ';
+        width: 100%;
+        height: 34px;
+        position: absolute;
+        background: @c1;
+        top: 6px;
+        left: 0;
+      }
+    }
+
+    .rmc-picker-content {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      z-index: 1;
+
+      .rmc-picker-item {
+        height: 34px;
+        line-height: 34px;
+        white-space: nowrap;
+        position: relative;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        width: 100%;
+        box-sizing: border-box;
+        text-align: center;
+        padding-left: 57px;
+        font-weight: 400;
+        font-size: 16px;
+        // color: #30414d;
+      }
+
+      .rmc-picker-item-selected {
+        font-weight: 500;
+        font-size: 24px;
+        color: #FFFFFF;
+      }
+    }
+  }
+}

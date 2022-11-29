@@ -1,0 +1,35 @@
+.light-switch {
+  background: @c7;
+  width: 100%;
+  height: 100%;
+  border-radius: 16px;
+  display: flex;
+  .wrapper {
+    background: @c-bg;
+    // margin: 8px 8px 16px 8px;
+    border: 2px solid rgba(164, 113, 70, 0.29835);
+    border-radius: 16px;
+    width: 100%;
+    height: 100%;
+    .light-icon {
+      margin-top: 40px;
+    }
+    .flag {
+      width: 6px;
+      height: 20px;
+      background: @c-main;
+      margin-top: 107px;
+      border-radius: 2px;
+    }
+    .name {
+      margin: 20px 0 25px 0;
+      font-weight: 600;
+      font-size: 14px;
+    }
+  }
+  &.is-checked {
+    .flag {
+      background: @c2;
+    }
+  }
+}

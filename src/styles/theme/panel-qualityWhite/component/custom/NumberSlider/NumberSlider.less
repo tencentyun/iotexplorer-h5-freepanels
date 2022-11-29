@@ -1,0 +1,98 @@
+@import url("./icon/style.less");
+.cus-number-slider {
+  position: relative;
+  display: flex;
+  align-items: center;
+
+  .slider-wrap {
+    position: relative;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    z-index: 2;
+  }
+  .slider-button {
+    flex-shrink: 0;
+    display: block;
+    width: 20px;
+    height: 20px;
+    fill: #b5c4d1;
+    cursor: pointer;
+  }
+  .prev {
+    transform: rotate(-180deg);
+  }
+
+  .slider {
+    width: 300px; // 控制显示宽度
+    height: 50px;
+  }
+
+  ul,
+  li {
+    margin: 0;
+    padding: 0;
+  }
+  ul li {
+    list-style: none;
+  }
+
+  ul {
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+  }
+
+  .swiper-slide {
+    flex-shrink: 0;
+    // width: 48px !important;
+    height: 48px;
+    border-radius: 16px;
+    box-sizing: border-box;
+    font-size: 28px;
+    color: #FFFFFF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    // background:#30414D;
+    & + li {
+      margin-left: 8px;
+    }
+
+    &.is_current {
+      border: none;
+      color: #ffffff;
+    }
+    &.swiper-slide-active {
+      // border: 1px solid #eff3f5;
+      // background: transparent;
+    }
+  }
+
+  .current-block {
+    position: absolute;
+    left: 49%;
+    top: 42%;
+    margin-left: -25px;
+    margin-top: -25px;
+    width: 57px;
+    height: 52px;
+    border-radius: 16px;
+    border: none;
+    color: #fff;
+    background-color: transparent;
+    z-index: 1;
+    border: 1px solid #eff3f5;
+
+    .icon-up{
+      position: absolute;
+      bottom: -20px;
+      left: 41%;
+      .up{
+        width: 12px;
+        height: 8px;
+      }
+    }
+  }
+}
