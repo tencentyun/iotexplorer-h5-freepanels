@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Icon } from '@custom/Icon';
 import { TimePicker } from '@custom/TimePicker';
 import { Cell } from '@custom/Cell';
+import { Switch } from '@custom/Switch'
 
 export const Detail = ({
   deviceData,
@@ -79,24 +80,51 @@ export const Detail = ({
     ['倒计时', 'count-down', setVisible.bind(null, true)],
   ].filter(v => v);
 
+  const switchs = [
+    ['模式', '常规', () => { }, (checked) => { doControlDeviceData({ mode_swtch1: { mode: checked ? 1 : 0 } }) }, deviceData?.mode_swtch1?.mode],
+    ['模式', '转无线开关', () => { }, (checked) => { doControlDeviceData({ mode_swtch1: { mode: checked ? 1 : 0 } }) }, !deviceData?.mode_swtch1?.mode]
+  ].filter(v => v);
+
   return (
     <div className={`detail  action action-${switchNum}`}>
       <div className="environment">
+        {switchs.map(([title, subTitle, onClick, onChange, isSwitch], index) => (
+          <div className="box" key={index}>
+            <div className="content">
+              <div className="box-content">
+                <div className="title">{title}</div>
+                <div className="switch">
+                  <div className="switch-title">{subTitle}</div>
+                  <Switch className="custom-switch" checked={isSwitch} onChange={onChange}></Switch>
+                </div>
+              </div>
+            </div>
+          </div>
+        ))}
         {actions.map(([title, name, onClick, isChecked, onChange], index) => (
-          <Cell
-            key={index}
-            prefixIcon={<Icon name={name} />}
-            title={title}
-            onClick={onClick}
-            ele={onChange ? 'switch' : ''}
-            eleValue={isChecked}
-            onChange={onChange}
-            isLink={!onChange}
-            className="border"
-          ></Cell>
+          <div className="box" key={index}>
+            <div className="content">
+              <div className="box-content">
+                <Icon name={name} />
+                {/* <div className="link">
+                  <div className="link-title">{title}</div>
+                </div> */}
+                <Cell
+                  title={title}
+                  onClick={onClick}
+                  ele={onChange ? 'switch' : ''}
+                  eleValue={isChecked}
+                  onChange={onChange}
+                  isLink={!onChange}
+                  className="border"
+                ></Cell>
+              </div>
+            </div>
+          </div>
         ))}
 
         <TimePicker
+          className="switch-timer-cloud"
           showSemicolon={false}
           value={countdownTime}
           showUnit={true}
@@ -111,7 +139,7 @@ export const Detail = ({
           onConfirm={submitCountDown}
           confirmText="确认"
           visible={visible}
-          // visible={true}
+        // visible={true}
         />
       </div>
     </div>
