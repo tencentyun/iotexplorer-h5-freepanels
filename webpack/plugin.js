@@ -6,7 +6,8 @@ const underLine = str => str.replace(/([A-Z])/g, '-$1').replace(/^-/, '')
   .toLowerCase();
 const isDev = mode === 'development';
 
-const themePaths = ['panel-card', 'panel-cold', 'panel-fresh', 'panel-house', 'panel-brunet'];
+const themePaths = ['panel-card', 'panel-cold', 'panel-fresh', 'panel-house', 'panel-brunet',
+                    'panel-qualityDark','panel-qualityWhite','panel-qualityBlue','panel-qualityPurple','panel-qualityYellow'];
 
 const isRemPath = (filePath, remPaths) => {
   for (let i = 0; i < remPaths.length; i++) {
