@@ -1,0 +1,121 @@
+.detail {
+  .environment {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 10px;
+
+    // .cell {
+    //   background: #454f65;
+    // }
+    div[class*="theme-"] {
+      display: none;
+    }
+
+    .theme-qualityBlue {
+      width: 100%;
+      height: 100%;
+      display: flex !important;
+      align-items: center;
+      justify-content: space-between;
+
+      .switch-btn {
+        position: absolute;
+        left: calc(50% - 30px);
+        width: 60px;
+        height: 60px;
+
+        .icon .svg-icon-normal {
+          width: 60px;
+          height: 60px;
+        }
+      }
+
+    }
+
+    .box {
+      width: 120px;
+      height: 92px;
+      background: #FFFFFF;
+      border: 1px solid #EFF3F5;
+      border-radius: 8px;
+
+      .content {
+        width: 100%;
+        height: 100%;
+
+        .box-content {
+          display: flex;
+          flex-direction: column;
+          width: 100%;
+          height: calc(100% - 20px);
+          align-items: center;
+          padding-top: 20px;
+
+          .icon .svg-icon-normal {
+            width: 24px;
+            height: 24px;
+          }
+
+          .cell.border {
+            padding: 0 !important;
+            border: 0 !important;
+            margin: 0 !important;
+            height: auto !important;
+            padding-left: 2px !important;
+            margin-top: 16px !important;
+
+            .cell-title-wrapper {
+              width: 100%;
+              text-align: center;
+            }
+
+            .icon-arrow-right {
+              display: none;
+            }
+          }
+
+          .title {
+            font-style: normal;
+            font-size: 12px;
+            line-height: 17px;
+            color: rgba(255, 255, 255, 0.75);
+          }
+
+          .switch {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 8px;
+
+            .switch-title {
+              font-style: normal;
+              font-size: 16px;
+              line-height: 22px;
+              text-align: right;
+              color: #FFFFFF;
+            }
+
+            .custom-switch {
+              width: 40px;
+              height: 20px;
+
+              .adm-switch-checkbox,
+              .adm-switch-checkbox:before {
+                background: #1D202D !important;
+              }
+
+              .adm-switch-handle {
+                background: linear-gradient(90deg, #354269 0%, #3B3163 100%);
+              }
+            }
+          }
+
+          .adm-switch-checked {
+            .adm-switch-handle {
+              background: linear-gradient(90deg, #3161FE 0%, #5A31FE 100%) !important;
+            }
+          }
+        }
+      }
+    }
+  }
+}

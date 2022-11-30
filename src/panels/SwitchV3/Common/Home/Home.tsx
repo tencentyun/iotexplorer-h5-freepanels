@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { LightSwitch } from './LightSwitch';
 import { Detail } from './Detail';
-import { ConfirmModal } from '@components/Modal'
+import { ConfirmModal } from '@components/Modal';
+import { Icon } from '@custom/Icon';
+
 
 const allSwitch = [
   ['switch_1', '开关一'],
@@ -28,7 +30,9 @@ export function Home(props) {
     <div className="home">
       <div className={`dashboard switch-${switchNum}`}>
         <div className="operator">
-          <div className="operator-btn editor" onClick={() => setModalVisible(true)}></div>
+          <div className="operator-btn editor" onClick={() => setModalVisible(true)}>
+            <Icon className="operator-icon"  name="editor" size="large" />
+          </div>
           <div className="operator-btn setting"></div>
         </div>
         {currentSwitch.map(([key, name], index) => (
