@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Icon } from '@custom/Icon';
 import { TimePicker } from '@custom/TimePicker';
 import { Cell } from '@custom/Cell';
-import { Switch } from '@custom/Switch'
+import { Switch } from '@custom/Switch';
 
 export const Detail = ({
   deviceData,
@@ -81,21 +81,23 @@ export const Detail = ({
   ].filter(v => v);
 
   const switchs = [
-    ['模式', '常规', () => { }, (checked) => { doControlDeviceData({ mode_swtch1: { mode: checked ? 1 : 0 } }) }, deviceData?.mode_swtch1?.mode],
-    ['模式', '转无线开关', () => { }, (checked) => { doControlDeviceData({ mode_swtch1: { mode: checked ? 1 : 0 } }) }, !deviceData?.mode_swtch1?.mode]
+    ['模式', '常规', deviceData?.mode_swtch1?.mode],
+    ['模式', '转无线开关', !deviceData?.mode_swtch1?.mode],
   ].filter(v => v);
 
   return (
     <div className={`detail  action action-${switchNum}`}>
       <div className="environment">
-        {switchs.map(([title, subTitle, onClick, onChange, isSwitch], index) => (
+        {switchs.map(([title, subTitle, isSwitch], index) => (
           <div className="box" key={index}>
             <div className="content">
               <div className="box-content">
                 <div className="title">{title}</div>
                 <div className="switch">
                   <div className="switch-title">{subTitle}</div>
-                  <Switch className="custom-switch" checked={isSwitch} onChange={onChange}></Switch>
+                  <Switch className="custom-switch" checked={isSwitch} onChange={(checked) => {
+                    doControlDeviceData({ mode_swtch1: { mode: checked ? 1 : 0 } });
+                  }}></Switch>
                 </div>
               </div>
             </div>
@@ -122,7 +124,7 @@ export const Detail = ({
             </div>
           </div>
         ))}
-        
+
         {/* <div className='theme-qualityBlue'>
           {actions.map(([title, name, onClick, isChecked, onChange], index) => (
             <div className="box" key={index}>

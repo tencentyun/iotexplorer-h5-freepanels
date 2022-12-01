@@ -6,7 +6,7 @@ export function LightSwitch({ value, name, className, onChange }) {
     <div className={classNames('light-switch', className, { 'is-checked': value }, 'border-bg')} onClick={() => onChange(!value)}>
       <div className="content">
         <div className="wrapper">
-          <Icon className="light-icon" name={value ? "light-on" : "light"} size="large" />
+          <Icon className="light-icon" name={value ? 'light-on' : 'light'} size="large" />
           <div className="flag"></div>
           {name ? <div className="name">{name}</div> : null}
         </div>

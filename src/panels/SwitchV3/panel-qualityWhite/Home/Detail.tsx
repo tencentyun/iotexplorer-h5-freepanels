@@ -4,7 +4,7 @@ import { TimePicker } from '@custom/TimePicker';
 import { Cell } from '@custom/Cell';
 import { Modal } from '@components/Modal';
 import { Button } from '@components/base';
-import { Input } from '@custom/Input'
+// import { Input } from '@custom/Input';
 
 export const Detail = ({
   deviceData,
@@ -34,11 +34,11 @@ export const Detail = ({
 
   useEffect(() => {
     setRadioData(!deviceData?.mode_swtch1?.mode ? 0 : 1);
-  }, [deviceData?.mode_swtch1?.mode])
+  }, [deviceData?.mode_swtch1?.mode]);
 
   useEffect(() => {
     setCurrentName(deviceData?.name_button1);
-  }, [deviceData?.name_button1])
+  }, [deviceData?.name_button1]);
 
   const isOneSwitch = switchNum === 1;
 
@@ -97,7 +97,7 @@ export const Detail = ({
 
   const onRadioClick = (value) => {
     setRadioData(value);
-  }
+  };
 
   const modeList = [{
     label: '常规模式',
@@ -130,13 +130,13 @@ export const Detail = ({
                 </div>
               </div>
             </div>
-          )
+          );
         })}
         <div className="switch-btn" onClick={() => {
-          currentSwitch.forEach(item => {
+          currentSwitch.forEach((item) => {
             const [key] = [...item];
             !deviceData[key] ? onClick() : offClick();
-          })
+          });
         }}>
           <Icon name="switch" />
         </div>
@@ -209,13 +209,14 @@ export const Detail = ({
           title='模式'
         >
           <div className="custom-radio">
-            {modeList.map((item, index) => {
-              return (
+            {modeList.map((item, index) => (
                 <label
                   className="radio-item"
                   htmlFor={`label-${item.value}`}
                   key={index}
-                  onClick={() => { onRadioClick(item.value) }}>
+                  onClick={() => {
+                    onRadioClick(item.value);
+                  }}>
                   <input
                     className="radio-item-radio"
                     type="radio"
@@ -225,8 +226,7 @@ export const Detail = ({
                   />
                   <span className="radio-item-label">{item.label}</span>
                 </label>
-              )
-            })}
+            ))}
           </div>
 
           <div className='footer'>
@@ -234,7 +234,7 @@ export const Detail = ({
               className="btn cancel"
               onClick={() => {
                 setRadioData(!deviceData?.mode_swtch1?.mode ? 0 : 1);
-                setModeVisible(false)
+                setModeVisible(false);
               }}
             >
               取消

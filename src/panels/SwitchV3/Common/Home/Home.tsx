@@ -61,8 +61,8 @@ export function Home(props) {
             }}
           />}
           onCancel={() => setModalVisible(false)}
-          onConfirm={() => { 
-            doControlDeviceData('name_button1', currentName)
+          onConfirm={() => {
+            doControlDeviceData('name_button1', currentName);
             setModalVisible(false);
           }} />
       </div>

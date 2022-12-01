@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { LightSwitch } from '../../Common/Home/LightSwitch';
 import { Detail } from './Detail';
 
@@ -18,7 +18,7 @@ export function Home(props) {
   const switchNum = getSwitchNum(templateMap);
   const currentSwitch = allSwitch.slice(0, switchNum);
   const onChange = (key, value) => doControlDeviceData(key, value ? 1 : 0);
-  
+
   useEffect(() => {
     setContext({ switchNum });
     // setCurrentName(deviceData['name_button1'])
