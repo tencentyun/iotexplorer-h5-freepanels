@@ -92,7 +92,7 @@ const Environment = () => {
         <div className={classNames('card')}>
           <img src={cardImageSrc()}></img>
           <div className="value">
-            {sdk.deviceData.card_status_report === '1' ? '已插卡' : '已取卡'}
+            {sdk.deviceData.card_status_report === 1 ? '已插卡' : '已取卡'}
           </div>
           <div className="label">卡状态</div>
         </div>
