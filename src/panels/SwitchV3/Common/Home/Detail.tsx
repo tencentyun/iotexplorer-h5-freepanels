@@ -88,44 +88,42 @@ export const Detail = ({
   return (
     <div className={`detail  action action-${switchNum}`}>
       <div className="environment">
-        <div className="theme-qualityDark">
-          {switchs.map(([title, subTitle, onClick, onChange, isSwitch], index) => (
-            <div className="box" key={index}>
-              <div className="content">
-                <div className="box-content">
-                  <div className="title">{title}</div>
-                  <div className="switch">
-                    <div className="switch-title">{subTitle}</div>
-                    <Switch className="custom-switch" checked={isSwitch} onChange={onChange}></Switch>
-                  </div>
+        {switchs.map(([title, subTitle, onClick, onChange, isSwitch], index) => (
+          <div className="box" key={index}>
+            <div className="content">
+              <div className="box-content">
+                <div className="title">{title}</div>
+                <div className="switch">
+                  <div className="switch-title">{subTitle}</div>
+                  <Switch className="custom-switch" checked={isSwitch} onChange={onChange}></Switch>
                 </div>
               </div>
             </div>
-          ))}
-          {actions.map(([title, name, onClick, isChecked, onChange], index) => (
-            <div className="box" key={index}>
-              <div className="content">
-                <div className="box-content">
-                  <Icon name={name} />
-                  {/* <div className="link">
+          </div>
+        ))}
+        {actions.map(([title, name, onClick, isChecked, onChange], index) => (
+          <div className="box" key={index}>
+            <div className="content">
+              <div className="box-content">
+                <Icon name={name} />
+                {/* <div className="link">
                   <div className="link-title">{title}</div>
                 </div> */}
-                  <Cell
-                    title={title}
-                    onClick={onClick}
-                    ele={onChange ? 'switch' : ''}
-                    eleValue={isChecked}
-                    onChange={onChange}
-                    isLink={!onChange}
-                    className="border"
-                  ></Cell>
-                </div>
+                <Cell
+                  title={title}
+                  onClick={onClick}
+                  ele={onChange ? 'switch' : ''}
+                  eleValue={isChecked}
+                  onChange={onChange}
+                  isLink={!onChange}
+                  className="border"
+                ></Cell>
               </div>
             </div>
-          ))}
-        </div>
-
-        <div className='theme-qualityBlue'>
+          </div>
+        ))}
+        
+        {/* <div className='theme-qualityBlue'>
           {actions.map(([title, name, onClick, isChecked, onChange], index) => (
             <div className="box" key={index}>
               <div className="content">
@@ -147,7 +145,7 @@ export const Detail = ({
           <div className="switch-btn" >
             <Icon name="switch" />
           </div>
-        </div>
+        </div> */}
 
         <TimePicker
           className="switch-timer-cloud"
