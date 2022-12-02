@@ -81,23 +81,25 @@ export const Detail = ({
   ].filter(v => v);
 
   const switchs = [
-    ['模式', '常规', deviceData?.mode_swtch1?.mode],
-    ['模式', '转无线开关', !deviceData?.mode_swtch1?.mode],
+    ['模式', '常规', !deviceData?.mode_swtch1?.mode, (checked) => { onSwitchChange(checked ? 0 : 1) }],
+    ['模式', '转无线开关', !!deviceData?.mode_swtch1?.mode, (checked) => { onSwitchChange(checked ? 1 : 0) }],
   ].filter(v => v);
+
+  const onSwitchChange = (value) => {
+    doControlDeviceData({ mode_swtch1: { mode: value } })
+  }
 
   return (
     <div className={`detail  action action-${switchNum}`}>
       <div className="environment">
-        {switchs.map(([title, subTitle, isSwitch], index) => (
+        {switchs.map(([title, subTitle, checked, onChange], index) => (
           <div className="box" key={index}>
             <div className="content">
               <div className="box-content">
                 <div className="title">{title}</div>
                 <div className="switch">
                   <div className="switch-title">{subTitle}</div>
-                  <Switch className="custom-switch" checked={isSwitch} onChange={(checked) => {
-                    doControlDeviceData({ mode_swtch1: { mode: checked ? 1 : 0 } });
-                  }}></Switch>
+                  <Switch className="custom-switch" checked={checked} onChange={onChange}></Switch>
                 </div>
               </div>
             </div>
