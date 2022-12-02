@@ -30,8 +30,9 @@
     }
 
     .modal-footer-btn {
-      border-top-color: #000 !important;
-      border-right-color: #000 !important;
+      border-top: 1px solid #000 !important;
+      border-right: 1px solid#000 !important;
+      border-width: 1px 1px 0 0 !important;
       font-family: 'PingFang SC';
       font-style: normal;
       font-weight: 600;
@@ -42,6 +43,7 @@
 
       color: #FFFFFF !important;
     }
+
     .modal-message {
       width: auto;
       margin: 0;
@@ -51,18 +53,25 @@
       font-size: 18px;
       line-height: 25px;
     }
+
     .edit-name-modal {
       background: transparent;
       border: 0;
       border-bottom: 1px solid #fff;
+      border-radius: 0;
       width: 100%;
       padding-bottom: 12px;
       color: #fff;
+
       &::placeholder {
-        color:rgba(255, 255, 255, 0.5)
+        color: rgba(255, 255, 255, 0.5)
+      }
+
+      &:focus {
+        outline: 0;
       }
       &:focus-visible {
-        outline-width: 0;
+        outline: 0;
       }
     }
   }
@@ -84,9 +93,10 @@
         height: 46px;
         background: rgba(0, 0, 0, 0.3);
         border-radius: 8px;
-        display:  flex;
+        display: flex;
         align-items: center;
         justify-content: center;
+
         .operator-icon {
           width: 20px;
           height: 20px;

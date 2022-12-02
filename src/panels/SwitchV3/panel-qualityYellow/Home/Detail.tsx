@@ -104,7 +104,7 @@ export const Detail = ({
     ],
     ['倒计时', 'count-down', setVisible.bind(null, true)],
     ['模式', 'mode', setModeVisible.bind(null, true)],
-    ['设置', 'setting', setModeVisible.bind(null, true)],
+    ['设置', 'setting', () => {console.log('setting')}],
   ].filter(v => v);
 
   const onRadioClick = (value) => {
@@ -143,6 +143,7 @@ export const Detail = ({
                   <Cell
                     title={title}
                     className="border"
+                    onClick={onClick}
                   ></Cell>
                 </div>
               </div>

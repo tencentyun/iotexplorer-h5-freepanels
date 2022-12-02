@@ -126,6 +126,7 @@ export const Detail = ({
                   <Cell
                     title={title}
                     className="border"
+                    onClick={onClick}
                   ></Cell>
                 </div>
               </div>

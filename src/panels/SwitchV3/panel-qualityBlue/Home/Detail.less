@@ -191,6 +191,7 @@
       background: transparent;
       border: 0;
       border-bottom: 1px solid #EFF3F5;
+      border-radius: 0;
       width: calc(100% - 52px);
       margin-top: 50px;
       margin: 50px 24px 42px 24px;
@@ -206,9 +207,13 @@
         color: rgba(48, 65, 77, 0.5);
       }
 
-      &:focus-visible {
-        outline-width: 0;
+      &:focus {
+        outline: 0;
       }
+      &:focus-visible {
+        outline: 0;
+      }
+
     }
   }
 
