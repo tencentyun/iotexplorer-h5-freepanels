@@ -39,14 +39,49 @@
         background: #FFFFFF;
       }
     }
+
+    .adm-switch-checked {
+      .adm-switch-handle {
+        left: 40px !important;
+        width: 32px !important;
+        height: 32px !important;
+        background: #F2A56B !important;
+      }
+    }
   }
 
-  .adm-switch-checked {
-    .adm-switch-handle {
-      left: 40px !important;
-      width: 32px !important;
-      height: 32px !important;
-      background: #F2A56B !important;
+  >#current-time {
+    >.modal-container {
+      zoom: 1;
+
+      .modal-mask {
+        display: none;
+      }
+
+      .modal {
+        width: 311px;
+        top: 506px;
+        height: 332px;
+        border-radius: 24px;
+
+        .modal-body {
+          margin-bottom: 12px;
+
+          .picker-header {
+            font-weight: 600;
+            font-size: 20px;
+            margin-top: 0px;
+            margin-bottom: 40px;
+            justify-content: start;
+            margin-left: 8px;
+          }
+        }
+
+        .modal-footer {
+          padding: 16px 24px;
+        }
+
+      }
     }
   }
 
@@ -262,6 +297,7 @@
       &:focus {
         outline: 0;
       }
+
       &:focus-visible {
         outline: 0;
       }
@@ -283,6 +319,7 @@
       margin: 0 12px;
     }
   }
+
 
   .environment {
     display: flex;

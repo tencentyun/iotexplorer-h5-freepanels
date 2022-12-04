@@ -6,8 +6,10 @@
   width: 320px;
   height: auto;
   border-radius: 16px;
-  background: #FFFFFF;
-  box-shadow: 0 6px 50px 0 rgba(32,33,33,0.10);
+  background: @c1;
+  box-shadow: 0px 3px 34px rgba(0, 0, 0, 0.85);
+  color: @c3;
+
   .dialog-header {
     display: flex;
     align-items: center;
@@ -17,26 +19,29 @@
     line-height: 25px;
     font-weight: 600;
     font-size: 18px;
-    color: #1F2738;
+
     text-align: center;
   }
+
   .dialog-content {
     padding: 0 24px;
     line-height: 25px;
     font-size: 18px;
     font-weight: 600;
-    color: #1F2738;
+
     .item-block {
       display: flex;
       align-items: center;
       justify-content: space-between;
       margin-bottom: 24px;
+
       .item-icon-selected {
         position: relative;
         width: 16px;
         height: 16px;
-        border: 2px solid #1F2738;
+        border: 2px solid @c3;
         border-radius: 10px;
+
         &::before {
           content: '';
           position: absolute;
@@ -47,22 +52,25 @@
           width: 8px;
           height: 8px;
           border-radius: 50%;
-          background: #1F2738;
+          background: @c3;
         }
       }
+
       .item-icon-unselected {
         width: 16px;
         height: 16px;
-        border: 2px solid #1F2738;
+        border: 2px solid @c3;
         border-radius: 10px;
       }
     }
   }
+
   footer {
     position: relative;
     display: flex;
     justify-content: space-between;
-    border-top: 1px solid #EFF3F5;
+    border-top: 1px solid #000000;
+
     &::before {
       content: '';
       position: absolute;
@@ -71,15 +79,15 @@
       transform: translateX(-50%);
       width: 1px;
       height: 100%;
-      background-color: #EFF3F5;
+      background-color:#000000;
     }
+
     .dialog-btn {
       flex: 1;
       padding: 20px 0;
       line-height: 25px;
       font-size: 18px;
       font-weight: 600;
-      color: #1F2738;
       text-align: center;
       cursor: pointer;
     }

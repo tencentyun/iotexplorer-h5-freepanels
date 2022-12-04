@@ -44,7 +44,7 @@ button.pure-btn {
   width: 100%;
   text-align: center;
   box-sizing: border-box;
-  border-radius: 8px;
+  border-radius: 100px;
   overflow: hidden;
   border-style: none;
   outline: none;
@@ -135,16 +135,17 @@ button.pure-btn {
   }
 
   &.btn-cancel {
-    background: #f3f3f5;
-    color: #0066ff;
-
+    background: white;
+    color:@c1;
+    border: 1px solid rgba(48, 65, 77, 0.3);
     &.disabled {
       .disabled;
     }
+
   }
 
   &.btn-reverse {
-    border: 1px solid @c7;
+    border: 1px solid #EFF3F5;
   }
 
   &.btn-link {

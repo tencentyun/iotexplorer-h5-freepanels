@@ -10,7 +10,11 @@ export const Detail = ({
   context: { switchNum },
   currentSwitch,
   history: { PATH, push },
+  timerHeight,
+  isModal,
+  isPopUp
 }) => {
+
   const SWITCH = { OPEN: 1, CLOSE: 0 };
   const getStatusData = status => currentSwitch.filter(([key]) => deviceData[key] !== status);
   const [isChecked, setChecked] = useState(false);
@@ -89,6 +93,7 @@ export const Detail = ({
     doControlDeviceData({ mode_swtch1: { mode: value } })
   }
 
+
   return (
     <div className={`detail  action action-${switchNum}`}>
       <div className="environment">
@@ -156,10 +161,12 @@ export const Detail = ({
           showSemicolon={false}
           value={countdownTime}
           showUnit={true}
+          isModal={isModal}
           mask={false}
           showTime={false}
           itemHeight={58}
-          height={175}
+          isPopUp={isPopUp}
+          height={timerHeight ? timerHeight:175}
           showTwoDigit={true}
           title={`倒计时${isChecked ? '开启' : '关闭'}`}
           switchIsOpen={countdownTime.length ? isChecked : false}

@@ -2,19 +2,24 @@ import React, { useState } from 'react';
 import { TimerAdd as CloudTimerAdd } from '@custom/TimerCloud';
 import { List } from 'antd-mobile';
 import { OptionDialog } from '@custom/OptionDialog';
+import { Switch } from '@custom/Switch';
 
-const labelEnum = {
-  power_switch: {
-    label: '总开关',
-    value: ['关闭', '开启'],
-  },
-};
+
 
 export const TimerAdd = (props) => {
   const {
     context: { power_switch = 0, switchNum = 4 },
     setContext,
   } = props;
+  let labelName = switchNum == 1 ? '开关' : '总开关';
+
+  const labelEnum = {
+    power_switch: {
+      label: labelName,
+      value: ['关闭', '开启'],
+    },
+  };
+
   const [visible, setVisible] = useState(false);
   const getSwitchNumData = (powerSwitch, num) => {
     const value = 5 * powerSwitch;
@@ -34,16 +39,24 @@ export const TimerAdd = (props) => {
     <>
       <CloudTimerAdd labelEnum={labelEnum} {...props}>
         <List.Item
-          prefix={'总开关'}
-          extra={labelEnum.power_switch.value[power_switch]}
+          className="no-arrow"
+          prefix={labelName}
+          extra={<Switch
+            className="reverse"
+            checked={power_switch}
+            onChange={val => {
+              onAllSwitchChange(val ? 1 : 0)
+            }}
+          />}
           onClick={() => {
-            // push(PATH.TIMER_ACTION_SWITCH)
-            setVisible(true);
+
+            // // push(PATH.TIMER_ACTION_SWITCH)
+            // setVisible(true);
           }}
         />
       </CloudTimerAdd>
       <OptionDialog
-        title="总开关"
+        title={labelName}
         visible={visible}
         value={[power_switch]}
         onCancel={() => setVisible(false)}

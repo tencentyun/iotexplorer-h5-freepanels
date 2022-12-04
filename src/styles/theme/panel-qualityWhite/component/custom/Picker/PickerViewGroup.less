@@ -1,13 +1,17 @@
 .rmc-multi-picker {
+
   display: flex;
   align-items: center;
   background: transparent;
-  color: #fff;
+  color: rgba(48, 65, 77, 0.5);
   width: 100%;
   position: relative;
   overflow: hidden;
   width: auto;
 
+  .rmc-picker-item {
+    // border-bottom: 1px solid #EFF3F5;
+  }
 
   &.second-cls {
     .rmc-picker {
@@ -17,6 +21,7 @@
         }
       }
     }
+
     .rmc-picker:first-child {
       .rmc-picker-content {
         .rmc-picker-item {
@@ -25,7 +30,7 @@
         }
       }
     }
-  }
+  } 
 
   .picker-view-divider {
     position: absolute;
@@ -43,14 +48,66 @@
     width: 100%;
     flex: 1;
     text-align: center;
+
+    .rmc-picker-indicator {
+      box-sizing: border-box;
+      width: 100%;
+      height: 34px;
+      position: absolute;
+      left: 0;
+      top: 102px;
+    }
+
     &:first-child {
       .rmc-picker-content {
         .rmc-picker-item {
           text-align: center;
-          padding-right: 57px;
+          padding-right: 10px;
+        }
+      }
+
+      .rmc-picker-indicator {
+        &::after {
+          content: ' ';
+          width: 90%;
+          height: 34px;
+          position: absolute;
+          top: 6px;
+          right: -1px;
+          border-radius: 16px 0 0 16px;
+          border: 1px solid;
+          border-color: transparent #141620 transparent transparent;
+          // 使用该border 不需要设置background
+          background-clip: padding-box, border-box;
+          background-origin: padding-box, border-box;
+          // background-image: linear-gradient(to right, #141620, #141620), linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(156, 140, 255, 0.24));
         }
       }
     }
+
+
+    &:nth-child(2) {
+      .rmc-picker-indicator {
+        &::after {
+          content: ' ';
+          width: 90%;
+          height: 34px;
+          position: absolute;
+          top: 6px;
+          left: -1px;
+          right: 10px;
+          border-radius: 0 16px 16px 0;
+          border: 1px solid;
+          border-color: transparent transparent transparent #141620;
+          // 使用该border 不需要设置background
+          // background-clip: padding-box, border-box;
+          // background-origin: padding-box, border-box;
+          // background-image: linear-gradient(to right, #141620, #141620), linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(156, 140, 255, 0.24));
+        }
+      }
+
+    }
+
 
     .rmc-picker-mask {
       position: absolute;
@@ -65,23 +122,6 @@
       background-repeat: no-repeat;
     }
 
-    .rmc-picker-indicator {
-      box-sizing: border-box;
-      width: 100%;
-      height: 34px;
-      position: absolute;
-      left: 0;
-      top: 102px;
-      &::after {
-        content: ' ';
-        width: 100%;
-        height: 34px;
-        position: absolute;
-        background: @c4;
-        top: 6px;
-        left: 0;
-      }
-    }
 
     .rmc-picker-content {
       position: absolute;
@@ -98,19 +138,66 @@
         overflow: hidden;
         text-overflow: ellipsis;
         width: 100%;
+        // opacity: 0.5;
         box-sizing: border-box;
+        // text-align: center;
+        // padding-left: 2px;
+        text-align: left;
+        // padding-left: 76px;
         text-align: center;
-        padding-left: 57px;
         font-weight: 400;
         font-size: 16px;
-        color: #30414d;
       }
 
       .rmc-picker-item-selected {
         font-weight: 500;
-        font-size: 24px;
-        color: #00A884;
+        font-size: 20px;
+        color: @c1;
+        // color: rgba(51, 95, 255, 1);
       }
     }
   }
+}
+
+// 显示分号
+.semicolon {
+  .rmc-picker {
+    &:nth-child(2) {
+      .rmc-picker-indicator {
+        &::before {
+          position: absolute;
+          display: inline-block;
+          z-index: 5;
+          content: ':';
+          width: 30px;
+          height: 100%;
+          font-size: 19px;
+          display: flex;
+          align-items: center;
+          left: -8px;
+          top: -2px;
+          justify-content: center;
+          color: @c1;
+        }
+      }
+    }
+
+  }
+}
+
+// 显示横线
+.semicolon {
+
+  &::before {
+    position: absolute;
+    display: inline-block;
+    z-index: 1;
+    content: ' ';
+    border: 1px solid;
+    border-color: #EFF3F5 transparent #EFF3F5 transparent;
+    width: 30px;
+    height: 33%;
+    width: 100%;
+  }
+
 }

@@ -21,6 +21,9 @@ export const Detail = ({
   context: { switchNum },
   currentSwitch,
   history: { PATH, push },
+  goMore,
+  isModal,
+  isPopUp
 }) => {
   const SWITCH = { OPEN: 1, CLOSE: 0 };
   const getStatusData = status => currentSwitch.filter(([key]) => deviceData[key] !== status);
@@ -104,7 +107,7 @@ export const Detail = ({
     ],
     ['倒计时', 'count-down', setVisible.bind(null, true)],
     ['模式', 'mode', setModeVisible.bind(null, true)],
-    ['设置', 'setting', () => {console.log('setting')}],
+    ['设置', 'setting', () => goMore],
   ].filter(v => v);
 
   const onRadioClick = (value) => {
@@ -124,7 +127,7 @@ export const Detail = ({
       <div className="switch">
         <div className="switch-title">开关</div>
         <Switch
-          className="custom-switch"
+          className=" reverse custom-switch"
           checked={!!deviceData.switch_1}
           onChange={checked => (checked ? onClick() : offClick())}
         />
@@ -175,6 +178,8 @@ export const Detail = ({
         showTime={false}
         itemHeight={58}
         height={175}
+        isModal={isModal}
+        isPopUp={isPopUp}
         showTwoDigit={true}
         title={`倒计时${isChecked ? '开启' : '关闭'}`}
         switchIsOpen={countdownTime.length ? isChecked : false}
@@ -215,7 +220,7 @@ export const Detail = ({
                 setModalVisible(false);
               }}
             >
-              确定
+              保存
             </Button>
           </div>
         </Modal>

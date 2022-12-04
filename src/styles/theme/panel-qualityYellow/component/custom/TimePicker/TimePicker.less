@@ -1,26 +1,31 @@
 @column_height: 143px;
 @column_max_count: 3;
+
 .cus-time-picker {
-  color:#30414D;
+  color: #30414D;
+
   .adm-popup-body {
-    background:#ffffff;
-    border-top: 1px solid #EEEEEE;
+    background: #ffffff;
   }
+
   .picker-header {
     font-weight: 600;
     font-size: 20px;
     margin-top: 24px;
   }
+
   .picker-show-time {
     text-align: center;
-    padding-top:24px;
+    padding-top: 24px;
     font-weight: 600;
     font-size: 24px;
   }
+
   .picker-body {
-    margin-top: 32px;
-    margin-bottom: 53px;
+    width: 217px;
+    margin-left: 50px;
   }
+
   .picker-action {
     font-size: 48px;
     line-height: 67px;
@@ -30,6 +35,7 @@
     align-items: center;
     justify-content: space-between;
   }
+
   .picker-footer {
     font-size: 16px;
     color: #30414D;
@@ -40,6 +46,7 @@
     top: 24px;
     width: 87%;
     padding: 0 24px;
+
     button {
       background-color: transparent;
       border: none;
@@ -48,8 +55,8 @@
       background: transparent;
     }
   }
+
   &.un-pop {
-    border-top: 1px solid @c7;
     background: #ffffff;
     position: absolute;
     width: 100%;
@@ -57,5 +64,28 @@
     left: 0;
     border-top-right-radius: 40px;
     border-top-left-radius: 40px;
+  }
+
+  // 弹出模态框形式
+  &.timer-modal-content {
+    .picker-show-time {
+      display: none;
+    }
+
+    .picker-footer {
+      display: none;
+    }
+  }
+
+  .timer-modal {
+    zoom: 1;
+
+    .modal-body {
+
+      .picker-footer {
+        display: none;
+      }
+    }
+
   }
 }

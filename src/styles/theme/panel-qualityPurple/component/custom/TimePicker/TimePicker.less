@@ -1,25 +1,31 @@
 @column_height: 143px;
 @column_max_count: 3;
+
 .cus-time-picker {
-  color: #342A73;
+  color: @c1;
+
   .adm-popup-body {
-    background: #F7F4FD;
+    background: #ffffff;
   }
+
   .picker-header {
     font-weight: 600;
     font-size: 20px;
     margin-top: 24px;
   }
+
   .picker-show-time {
     text-align: center;
-    padding-top:24px;
+    padding-top: 24px;
     font-weight: 600;
     font-size: 24px;
   }
+
   .picker-body {
-    margin-top: 32px;
-    margin-bottom: 53px;
+    width: 217px;
+    // margin-left: 50px;
   }
+
   .picker-action {
     font-size: 48px;
     line-height: 67px;
@@ -29,9 +35,10 @@
     align-items: center;
     justify-content: space-between;
   }
+
   .picker-footer {
     font-size: 16px;
-    color:#342A73;
+    color: #30414D;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -39,6 +46,7 @@
     top: 24px;
     width: 87%;
     padding: 0 24px;
+
     button {
       background-color: transparent;
       border: none;
@@ -47,32 +55,37 @@
       background: transparent;
     }
   }
+
   &.un-pop {
-    background: #F7F4FD;
+    background: #ffffff;
     position: absolute;
     width: 100%;
     bottom: 0;
     left: 0;
-    border-top-right-radius: 40px;
-    border-top-left-radius: 40px;
+    // border-top-right-radius: 40px;
+    // border-top-left-radius: 40px;
   }
 
-  &.cus-time-picker-range {
-    .rmc-picker-content {
-      .rmc-picker-item {
-        text-align: center;
-        padding: 0;
+
+  &.timer-modal-content {
+    .picker-show-time {
+      display: none;
+    }
+
+    .picker-footer {
+      display: none;
+    }
+  }
+
+  .timer-modal {
+    zoom: 1;
+
+    .modal-body {
+
+      .picker-footer {
+        display: none;
       }
     }
-    .rmc-picker {
-      &:first-child {
-        .rmc-picker-content {
-          .rmc-picker-item {
-            text-align: center;
-            padding-right: 0;
-          }
-        }
-      }
-    }
+
   }
 }

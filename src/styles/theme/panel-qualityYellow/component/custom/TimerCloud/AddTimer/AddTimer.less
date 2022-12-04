@@ -11,6 +11,7 @@
     left: 0;
     background: @c0;
     box-sizing: border-box;
+
     .pick-time-view {
       .timer-cloud-picker {
         height: 380px;
@@ -31,20 +32,24 @@
           color: #ffffff;
           height: 120px;
         }
+
         .adm-picker-view-column-item {
           margin-top: -35px;
         }
+
         .adm-picker-view-mask {
           &.adm-picker-view-mask-top {
             background: linear-gradient(rgba(68, 78, 94), rgba(68, 78, 94, 0.7));
             top: -35px;
           }
+
           &.adm-picker-view-mask-bottom {
             background: linear-gradient(rgba(68, 78, 94, 0.7), rgba(68, 78, 94));
             bottom: -35px;
           }
         }
       }
+
       .timer-cloud-picker-header {
         height: 150px;
         border-bottom: 1px solid #697584;
@@ -58,18 +63,38 @@
       }
     }
   }
+
   .week-small {
     .adm-list-item-content-extra {
       font-size: 12px;
     }
   }
+
   .week-repeat-desc {
     display: flex;
     align-items: center;
     justify-content: center;
     font-weight: 400;
-    color: @c1;
-    opacity: 0.3;
+    color: rgba(103, 97, 90, 1);
+    opacity: 0.5;
     margin-bottom: 24px;
   }
+
+  .add-timer-btn-dialog {
+    position: fixed;
+    background: linear-gradient(90deg, #FFBD79 0%, #FFB86C 100%), #FFFFFF;
+    width: calc(100% - 32px);
+    bottom: 33px;
+    left: 16px;
+    height: 72px;
+    border: none;
+    color:white ;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 100px;
+  }
+
+
+
+
 }

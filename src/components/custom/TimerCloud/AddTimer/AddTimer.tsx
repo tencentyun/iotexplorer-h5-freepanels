@@ -5,6 +5,7 @@ import { List } from 'antd-mobile';
 import { OptionDialog } from '@custom/OptionDialog';
 import { TimePicker } from '@custom/TimePicker';
 import { useTitle } from '@hooks/useTitle';
+
 export const arrWeek = ['周日', '周一', '周二', '周三', '周四', '周五', '周六'];
 
 const AddTimer = ({
@@ -13,9 +14,19 @@ const AddTimer = ({
   history: { PATH, goBack, push, query },
   setContext,
   context: { Days = [0, 0, 0, 0, 0, 0, 0], TimePoint = '00:00', ...timerData },
+  timerHeight,
+  isModuleTimer = false
 }) => {
+
+  console.log("接受到的高度", timerHeight);
   useTitle('添加定时');
   const [visible, setVisible] = useState(false);
+  const [timerVisible, setTimerVisible] = useState(false);
+  // 模态框记录
+  const [timePoint, setTimePoint] = useState(TimePoint)
+
+  // 设置显示滚动的个数 
+  // 7 个 408
   const { isModule } = query || {}; // 是否为模态框弹出三级配置
   const timer = TimePoint.split(':');
 
@@ -72,6 +83,13 @@ const AddTimer = ({
     setContext({}, false);
   };
   const weeks = getWeeks(Days);
+
+  const onTimeDialogConfirm = (TimePoint) => {
+    setTimerVisible(false)
+    setContext({ TimePoint: TimePoint.join(':') })
+  }
+
+
   return (
     <div className="cus-add-timer">
       <div className="time-picker-body">
@@ -86,35 +104,61 @@ const AddTimer = ({
                 isModule ? setVisible(true) : push(PATH.TIMER_ACTION_REPEAT);
               }}
             />
+            {
+              isModuleTimer ?
+                <List.Item
+                  prefix={'时间'}
+                  extra={TimePoint}
+                  onClick={() => { setTimerVisible(true); }}
+                /> : null
+            }
           </List>
         </div>
-        {isPopup ? (
-          <TimePicker
-            showSemicolon={true}
-            value={timer}
-            mask={false}
-            onCancel={onClose}
-            onChange={TimePoint => setContext({ TimePoint: TimePoint.join(':') })}
-            onConfirm={handleSubmit}
-            visible={true}
-            showTwoDigit={true}
-            isPopUp={false}
-            itemHeight={58}
-            height={175}
-            confirmText="确认"
-          />
-        ) : (
-          <div className="pick-time-view">
-            <div className="timer-cloud-picker-header">{timer.join(':')}</div>
-            <TimePicker
-              value={timer}
-              onCancel={onClose}
-              showTwoDigit={true}
-              onConfirm={handleSubmit}
-              className="timer-cloud-picker"
-            />
-          </div>
-        )}
+
+
+
+        {isModuleTimer ?
+          <button
+            className="add-timer-btn-dialog gra-border"
+            onClick={() => {
+              handleSubmit(TimePoint.split(':'))
+            }}
+          >
+            确定
+          </button> :
+          <>
+            {isPopup ? (
+              <TimePicker
+                showSemicolon={true}
+                value={timer}
+                mask={false}
+                onCancel={onClose}
+                onChange={TimePoint => setContext({ TimePoint: TimePoint.join(':') })}
+                onConfirm={handleSubmit}
+                visible={true}
+                showTwoDigit={true}
+                isPopUp={false}
+                itemHeight={58}
+                // 留意后续的问题 编译后可能没有该变量 最好统一为一个高度目前都是三个高度
+                // 单个主题没有问题 多个就有问题
+                // height={isSevenCheck ? 408 : 175}
+                height={timerHeight ? timerHeight : 175}
+                confirmText="确认"
+              />
+            )
+              : (<div className="pick-time-view">
+                <div className="timer-cloud-picker-header">{timer.join(':')}</div>
+                <TimePicker
+                  value={timer}
+                  onCancel={onClose}
+                  showTwoDigit={true}
+                  onConfirm={handleSubmit}
+                  className="timer-cloud-picker"
+                />
+              </div>)
+            }
+          </>
+        }
       </div>
       <OptionDialog
         title="重复"
@@ -129,6 +173,58 @@ const AddTimer = ({
       >
         <p className="week-repeat-desc">不勾选将默认只执行一次</p>
       </OptionDialog>
+
+
+      <TimePicker
+        showSemicolon={true}
+        value={timer}
+        mask={false}
+        onCancel={() => {
+          setTimerVisible(false)
+        }}
+        // onChange={TimePoint => setContext(TimePoint.join(':'))}
+        onConfirm={onTimeDialogConfirm}
+        // onChange={TimePoint => setContext({ TimePoint: TimePoint.join(':') })}
+        // onConfirm={handleSubmit}
+        visible={timerVisible}
+        modalTitle="定时"
+        showTwoDigit={true}
+        isPopUp={false}
+        isModal={true}
+        itemHeight={58}
+        // 留意后续的问题 编译后可能没有该变量 最好统一为一个高度目前都是三个高度
+        // 单个主题没有问题 多个就有问题
+        // height={isSevenCheck ? 408 : 175}
+        height={timerHeight ? timerHeight : 175}
+        confirmText="确认"
+      />
+
+      {/* 
+      <TimePicker
+        showSemicolon={true}
+        value={TimePoint.split(':')}
+        mask={false}
+        onCancel={() => {
+          setTimerVisible(false)
+        }}
+        onChange={TimePoint => setTimePoint(TimePoint.join(':'))}
+        onConfirm={onTimeDialogConfirm}
+        // onChange={TimePoint => setContext({ TimePoint: TimePoint.join(':') })}
+        // onConfirm={handleSubmit}
+        visible={timerVisible}
+        modalTitle="定时"
+        showTwoDigit={true}
+        isPopUp={false}
+        isModal={true}
+        itemHeight={58}
+        // 留意后续的问题 编译后可能没有该变量 最好统一为一个高度目前都是三个高度
+        // 单个主题没有问题 多个就有问题
+        // height={isSevenCheck ? 408 : 175}
+        height={timerHeight ? timerHeight : 175}
+        confirmText="确认"
+      /> */}
+
+
     </div>
   );
 };

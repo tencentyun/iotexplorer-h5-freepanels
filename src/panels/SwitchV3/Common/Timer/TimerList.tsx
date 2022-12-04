@@ -1,11 +1,6 @@
 import React from 'react';
 import { ListTimer as CloudTimerList } from '@custom/TimerCloud';
-const labelEnum = {
-  power_switch: {
-    label: '总开关',
-    value: ['关闭', '开启'],
-  },
-};
+
 
 const getSwitchNumData = (powerSwitch, num) => {
   const value = 1 * powerSwitch;
@@ -17,6 +12,14 @@ const getSwitchNumData = (powerSwitch, num) => {
 };
 
 export const TimerList = (props) => {
+  let switchNum = props.context.switchNum;
+  let labelName = switchNum == 1 ? '开关' : '总开关';
+  const labelEnum = {
+    power_switch: {
+      label: labelName,
+      value: ['关闭', '开启'],
+    },
+  };
   const defaultValue = getSwitchNumData(0, props.context.switchNum);
   return (
     <CloudTimerList

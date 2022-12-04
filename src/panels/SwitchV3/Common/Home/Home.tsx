@@ -51,6 +51,7 @@ export function Home(props) {
           btnFootClass='no-outline' // 底部按钮class
           visible={modalVisible}
           title='修改名称'
+          confirmText="保存"
           content={<input
             value={currentName}
             autoFocus

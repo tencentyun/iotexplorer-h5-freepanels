@@ -1,61 +1,63 @@
 .modal-container {
-  // 临时一期样式
-  .modal-mask {
-    left: -1px;
-  }
-  .switch-modal {
-    width: calc(100% - 152px);
-    border-radius: 60px;
-    .modal-header {
-      font-weight: 500;
-      font-size: 48px;
-      color: #0f0f0f;
-      padding-top: 60px;
-      .modal-title {
-        font-size: 48px;
-      }
-    }
-    .modal-body {
-      position: relative;
-      padding: 0 80px;
-      .adm-list-item {
-        border-bottom: none;
-      }
+  bottom: 0;
+  left: 0;
+  z-index: 1;
+  height: initial;
+  box-shadow: 0px -4px 20px rgba(246, 244, 252, 0.9);
 
-      .icon {
-        width: 90px;
-        height: 90px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border-radius: 50%;
-      }
-      .icon-select {
-        background: #36A6EB;
-      }
-      &::after {
-        content: ' ';
-        width: calc(100% - 200px);
-        border-top: solid 3px #edeef2;
-        position: absolute;
-        top: 0;
-        left: 100px;
+  .modal {
+    width: 100vw;
+    // height: 100vh;
+    top: 83%;
+
+    .modal-header {
+      padding: 16px;
+
+      .modal-title {
+        color: @c1;
+        font-weight: 600;
+        font-size: 16px;
+        text-align: center;
+        padding-left: 8px;
+        padding-top: 0;
+        padding-bottom: 0;
       }
     }
+
+    .modal-body {
+      padding: 16px;
+      margin-bottom: 34px;
+      .picker-body{
+        width: 100%;
+      }
+    }
+
     .modal-footer {
-      border-top: 3px solid #edeef2;
-      padding: 60px 0;
-      .footer-confirm-btn-group {
-        button {
-          border: none;
-          font-size: 48px;
+      position: absolute;
+      top: 0;
+      width: calc(100vw - 32px);
+      left: 16px;
+      >.btn-group{
+        > .btn{
+          flex: 1 ;
+          border: none ;
+          background: transparent ;
+          color: @c1 ;
+          font-weight: 600 ;
+          font-size: 16px ;
+          text-align: left;
           &:last-child{
-            font-weight: 500;
-            font-size: 48px;
-            color: #263D4D !important; // 二期采用组件内部设置即可
+            text-align: right ;
           }
         }
       }
     }
   }
+
+
+  
+  .modal-mask {
+    display: none;
+  }
+
 }

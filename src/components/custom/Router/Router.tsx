@@ -73,11 +73,17 @@ const PageComponent = ({
   // tips功能
   const { tips } = sdk;
 
+  // 查看更多 设备详情
+  const goMore = ()=>{
+    !sdk.disable && sdk?.goDeviceDetailPage()
+  }
+
   const allProps = {
     history,
     ...props,
     timer: { ...timerState, ...TimerAction },
     tips,
+    goMore
   };
 
   log.mi('', allProps);
@@ -102,7 +108,7 @@ const getPathName = (path: string, split = '_', isUpperCase = true) => {
     : pathName.toLocaleLowerCase();
 };
 
-export const Router = ({ route = [] as HashMap[], detail = true }) => {
+export const Router = ({ route = [] as HashMap[], detail = true,...routerProps }) => {
   const [state, action] = useDeviceInfo();
   const [context, setContextData] = useState({});
   const setContext = (key, val = true, isAppend = true) => {
@@ -153,6 +159,7 @@ export const Router = ({ route = [] as HashMap[], detail = true }) => {
                 <PageComponent
                   className={path}
                   Component={Component}
+                  {...routerProps}
                   {...state}
                   {...action}
                   context={context}

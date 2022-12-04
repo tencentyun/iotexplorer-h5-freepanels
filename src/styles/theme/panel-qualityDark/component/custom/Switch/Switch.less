@@ -1,32 +1,79 @@
 .adm-switch {
-  width: 32px;
-  --width: 32px;
-  --checked-color: #FFFFFF !important;
+  width: 40px;
+  --width: 40px;
+  --checked-color: #1D202D !important;
+
   .adm-switch-checkbox {
-    min-width: 32px !important;
-    height: 18px !important;
-    background: #FFFFFF !important;
+    min-width: 40px !important;
+    height: 20px !important;
+    background: #1D202D !important;
+
     .adm-switch-handle {
       top: 2px !important;
-      width: 14px !important;
-      height: 14px !important;
+      width: 16px !important;
+      height: 16px !important;
       left: 2px !important;
       border-radius: 50% !important;
-      background-color: #2D374D;
+      background: linear-gradient(90deg, #354269 0%, #3B3163 100%);
     }
+
     &::before {
       top: 0;
       height: 18px;
-      background: #FFFFFF !important;
+      background: #1D202D !important;
     }
   }
+
   &.adm-switch-checked {
     .adm-switch-checkbox {
-      background: #00BB96 !important;
+      background: #1D202D !important;
     }
+
     .adm-switch-handle {
       left: calc(100% - 16px) !important;
-      background-color: #FFFFFF;
+      // background-color: #FFFFFF;
+      background: linear-gradient(90deg, #3161FE 0%, #5A31FE 100%);
+    }
+  }
+
+  &.reverse {
+    width: 40px;
+    --width: 40px;
+    --checked-color: #232532 !important;
+
+
+    .adm-switch-checkbox {
+      min-width: 40px !important;
+      height: 20px !important;
+      background: #232532 !important;
+
+      .adm-switch-handle {
+        top: 2px !important;
+        width: 16px !important;
+        height: 16px !important;
+        left: 2px !important;
+        border-radius: 50% !important;
+        background: linear-gradient(90deg, #354269 0%, #3B3163 100%) !important;
+      }
+
+      &::before {
+        top: 0;
+        height: 18px;
+        background: #232532 !important;
+      }
+    }
+
+ 
+    &.adm-switch-checked {
+      .adm-switch-checkbox {
+        background: #232532;
+      }
+
+      .adm-switch-handle {
+        left: calc(100% - 16px) !important;
+        // background-color: #FFFFFF;
+        background: linear-gradient(90deg, #3161FE 0%, #5A31FE 100%) !important;
+      }
     }
   }
 }

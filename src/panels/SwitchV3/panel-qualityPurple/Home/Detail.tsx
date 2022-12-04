@@ -28,6 +28,9 @@ export const Detail = ({
   context: { switchNum },
   currentSwitch,
   history: { PATH, push },
+  isModal,
+  isPopUp,
+  goMore
 }) => {
   const SWITCH = { OPEN: 1, CLOSE: 0 };
   const getStatusData = status => currentSwitch.filter(([key]) => deviceData[key] !== status);
@@ -136,7 +139,7 @@ export const Detail = ({
           <Icon className="operator-icon" name={iconName.editor} size="large" />
           <div className="operator-label">修改名称</div>
         </div>
-        <div className="operator-btn setting">
+        <div className="operator-btn setting" onClick={goMore}>
           <Icon className="operator-icon" name={iconName.setting} size="large" />
           <div className="operator-label">设置</div>
         </div>
@@ -184,6 +187,8 @@ export const Detail = ({
         showTime={false}
         itemHeight={58}
         height={175}
+        isModal={isModal}
+        isPopUp={isPopUp}
         showTwoDigit={true}
         title={`倒计时${isChecked ? '开启' : '关闭'}`}
         switchIsOpen={countdownTime.length ? isChecked : false}
@@ -224,7 +229,7 @@ export const Detail = ({
                 setModalVisible(false);
               }}
             >
-              确定
+              保存
             </Button>
           </div>
         </Modal>

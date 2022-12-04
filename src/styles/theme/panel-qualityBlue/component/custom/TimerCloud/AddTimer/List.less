@@ -11,28 +11,34 @@
   .adm-list {
     color: @c1;
     font-size: 14px;
+    background: transparent;
     .adm-list-body-inner {
       margin-bottom: 0;
       .adm-list-item {
         border-bottom: 0.5px solid @c7;
-        font-size: 14px;
         font-weight: 500;
+        font-size: 14px;
         padding-left: 0;
       }
       .adm-list-item:active {
         background-color: transparent;
       }
-    }
-    .adm-list-item-content {
-      border: none;
-      padding: 12px 0;
-
-      .adm-list-item-content-arrow {
-        color: @c1;
+      .no-arrow{
+        .adm-list-item-content-arrow{
+          display: none;
+        }
       }
     }
 
+    .adm-list-item-content {
+      border: none;
+      padding: 12px 0;
+      .adm-list-item-content-arrow {
+        color: #30414D;
+      }
+    }
     .adm-list-body {
+      background: transparent;
       border-top: none;
       border-bottom: none;
     }

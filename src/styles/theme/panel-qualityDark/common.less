@@ -1,7 +1,16 @@
 // 产品级公共样式类
 .border {
-  border: 1px solid @c7;
+  border: 1px solid transparent;
 }
+
+.gra-border{
+  border: 1px solid transparent;
+  // 使用该border 不需要设置background
+  background-clip: padding-box, border-box ;
+  background-origin: padding-box, border-box;
+  background-image: linear-gradient(to right, #141620, #141620), linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(156, 140, 255, 0.24));
+}
+
 // 方块按钮 图标+文字（每个图标大小不一致，图标的margin-bottom,放在icon设置）
 .block-button-icon {
   display: flex;
