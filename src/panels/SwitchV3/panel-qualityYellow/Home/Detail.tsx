@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { Icon } from '@custom/Icon';
 import { TimePicker } from '@custom/TimePicker';
 import { Cell } from '@custom/Cell';
-import { Modal } from '@components/Modal';
-import { Button } from '@components/base';
+import { Modal } from '@custom/Modal';
+import { Btn as Button, BtnGroup } from '@custom/Btn';
 // import { Input } from '@custom/Input';
 import { Switch } from '@custom/Switch';
 
@@ -226,7 +226,7 @@ export const Detail = ({
         </Modal>
       </div>
 
-      <div className='socket-container-modal mode-modal'>
+      <div className="custom-modal">
         <Modal
           visible={modeVisible}
           title='模式'
@@ -252,25 +252,30 @@ export const Detail = ({
             ))}
           </div>
 
-          <div className='footer'>
-            <Button
-              className="btn cancel"
-              onClick={() => {
-                setRadioData(!deviceData?.mode_swtch1?.mode ? 0 : 1);
-                setModeVisible(false);
-              }}
+          <div className='modal-footer'>
+            <BtnGroup
+              layout='flex'
             >
-              取消
-            </Button>
-            <Button
-              className="btn save"
-              onClick={() => {
-                doControlDeviceData({ mode_swtch1: { mode: radioData } });
-                setModeVisible(false);
-              }}
-            >
-              确定
-            </Button>
+              <Button
+                className="btn-cancel"
+                onClick={() => {
+                  setRadioData(!deviceData?.mode_swtch1?.mode ? 0 : 1);
+                  setModeVisible(false);
+                }}
+              >
+                取消
+              </Button>
+              <Button
+                className="btn-save"
+                onClick={() => {
+                  doControlDeviceData({ mode_swtch1: { mode: radioData } });
+                  setModeVisible(false);
+                }}
+              >
+                确定
+              </Button>
+
+            </BtnGroup>
           </div>
         </Modal>
       </div>

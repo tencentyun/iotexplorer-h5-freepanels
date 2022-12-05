@@ -2,9 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { Icon } from '@custom/Icon';
 import { TimePicker } from '@custom/TimePicker';
 import { Cell } from '@custom/Cell';
-import { Modal } from '@components/Modal';
-import { Button } from '@components/base';
-// import { Input } from '@custom/Input';
+import { Modal } from '@custom/Modal';
+import { Btn as Button, BtnGroup } from '@custom/Btn';
 
 const defaultIconName = {
   editor: 'editor',
@@ -198,7 +197,7 @@ export const Detail = ({
         visible={visible}
       // visible={true}
       />
-      <div className='socket-container-modal'>
+      <div className='custom-modal'>
         <Modal
           visible={modalVisible}
           title='修改名称'
@@ -212,30 +211,35 @@ export const Detail = ({
               setCurrentName(event.currentTarget.value);
             }}
           />
-          <div className='footer'>
-            <Button
-              className="btn cancel"
-              onClick={() => {
-                setCurrentName(deviceData?.name_button1 || '');
-                setModalVisible(false);
-              }}
+           <div className='modal-footer'>
+            <BtnGroup
+              layout='flex'
             >
-              取消
-            </Button>
-            <Button
-              className="btn save"
-              onClick={() => {
-                currentName && doControlDeviceData('name_button1', currentName);
-                setModalVisible(false);
-              }}
-            >
-              保存
-            </Button>
+              <Button
+                className="btn-cancel"
+                onClick={() => {
+                  setCurrentName(deviceData?.name_button1 || '');
+                  setModalVisible(false);
+                }}
+              >
+                取消
+              </Button>
+              <Button
+                className="btn-save"
+                onClick={() => {
+                  currentName && doControlDeviceData('name_button1', currentName);
+                  setModalVisible(false);
+                }}
+              >
+                确定
+              </Button>
+
+            </BtnGroup>
           </div>
         </Modal>
       </div>
 
-      <div className='socket-container-modal'>
+      <div className='custom-modal'>
         <Modal
           visible={modeVisible}
           title='模式'
@@ -261,25 +265,30 @@ export const Detail = ({
             ))}
           </div>
 
-          <div className='footer'>
-            <Button
-              className="btn cancel"
-              onClick={() => {
-                setRadioData(!deviceData?.mode_swtch1?.mode ? 0 : 1);
-                setModeVisible(false);
-              }}
+          <div className='modal-footer'>
+            <BtnGroup
+              layout='flex'
             >
-              取消
-            </Button>
-            <Button
-              className="btn save"
-              onClick={() => {
-                doControlDeviceData({ mode_swtch1: { mode: radioData } });
-                setModeVisible(false);
-              }}
-            >
-              确定
-            </Button>
+              <Button
+                className="btn-cancel"
+                onClick={() => {
+                  setRadioData(!deviceData?.mode_swtch1?.mode ? 0 : 1);
+                  setModeVisible(false);
+                }}
+              >
+                取消
+              </Button>
+              <Button
+                className="btn-save"
+                onClick={() => {
+                  doControlDeviceData({ mode_swtch1: { mode: radioData } });
+                  setModeVisible(false);
+                }}
+              >
+                确定
+              </Button>
+
+            </BtnGroup>
           </div>
         </Modal>
       </div>

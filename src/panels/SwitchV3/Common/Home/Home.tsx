@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { LightSwitch } from './LightSwitch';
 import { Detail } from './Detail';
-import { ConfirmModal } from '@components/Modal';
+import { Modal } from '@custom/Modal';
 import { Icon } from '@custom/Icon';
+import { Btn as Button, BtnGroup } from '@custom/Btn';
 
 
 const allSwitch = [
@@ -47,7 +48,7 @@ export function Home(props) {
       </div>
       <Detail {...props} currentSwitch={currentSwitch} />
       <div className='socket-container-modal'>
-        <ConfirmModal
+        {/* <ConfirmModal
           btnFootClass='no-outline' // 底部按钮class
           visible={modalVisible}
           title='修改名称'
@@ -65,7 +66,50 @@ export function Home(props) {
           onConfirm={() => {
             doControlDeviceData('name_button1', currentName);
             setModalVisible(false);
-          }} />
+          }} /> */}
+      </div>
+
+      <div className='custom-modal'>
+        <Modal
+          visible={modalVisible}
+          title='修改名称'
+        >
+          <input
+            value={currentName}
+            autoFocus
+            className='edit-name-modal'
+            placeholder='请输入名称'
+
+            onChange={(event) => {
+              setCurrentName(event.currentTarget.value);
+            }}
+          />
+          <div className='modal-footer'>
+            <BtnGroup
+              layout='flex'
+            >
+              <Button
+                className="btn-cancel"
+                onClick={() => {
+                  setCurrentName(deviceData?.name_button1 || '');
+                  setModalVisible(false);
+                }}
+              >
+                取消
+              </Button>
+              <Button
+                className="btn-save"
+                onClick={() => {
+                  currentName && doControlDeviceData('name_button1', currentName);
+                  setModalVisible(false);
+                }}
+              >
+                确定
+              </Button>
+
+            </BtnGroup>
+          </div>
+        </Modal>
       </div>
     </div>
   );

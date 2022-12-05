@@ -11,77 +11,6 @@
   display: flex;
   flex-direction: column;
 
-  .socket-container-modal {
-    .modal {
-      background: #151D3C;
-      box-shadow: 0px 3px 34px rgba(0, 0, 0, 0.85);
-      border-radius: 16px;
-      width: calc(100% - 56px);
-    }
-
-    .modal-mask {
-      background: transparent;
-    }
-
-    .modal-title {
-      font-family: 'PingFang SC';
-      font-style: normal;
-      font-weight: 600;
-      font-size: 18px;
-      line-height: 25px;
-      text-align: center;
-
-      color: #FFFFFF;
-    }
-
-    .modal-footer-btn {
-      border-top: 1px solid #000 !important;
-      border-right: 1px solid#000 !important;
-      border-width: 1px 1px 0 0 !important;
-      font-family: 'PingFang SC';
-      font-style: normal;
-      font-weight: 600;
-      font-size: 16px !important;
-      line-height: 22px !important;
-      height: auto !important;
-      padding: 16px 0;
-
-      color: #FFFFFF !important;
-    }
-
-    .modal-message {
-      width: auto;
-      margin: 0;
-      padding: 0 36px;
-      margin: 50px 0 54px 0;
-      font-weight: 400;
-      font-size: 18px;
-      line-height: 25px;
-    }
-
-    .edit-name-modal {
-      background: transparent;
-      border: 0;
-      border-bottom: 1px solid #fff;
-      border-radius: 0;
-      width: 100%;
-      padding-bottom: 12px;
-      color: #fff;
-
-      &::placeholder {
-        color: rgba(255, 255, 255, 0.5)
-      }
-
-      &:focus {
-        outline: 0;
-      }
-
-      &:focus-visible {
-        outline: 0;
-      }
-    }
-  }
-
   .switch-1 {
     display: flex;
     flex-direction: column;
@@ -130,4 +59,70 @@
       width: 110px;
     }
   }
+
+
+  .custom-modal {
+    .modal {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .edit-name-modal {
+      background: transparent;
+      border: 0;
+      border-bottom: 1px solid #EFF3F5;
+      border-radius: 0;
+      width: calc(100% - 52px);
+      margin-top: 50px;
+      margin: 50px 24px 42px 24px;
+      font-family: 'PingFang SC';
+      font-style: normal;
+      font-weight: 500;
+      font-size: 16px;
+      line-height: 22px;
+      color: #fff;
+      padding-bottom: 12px;
+
+      ::-webkit-input-placeholder {
+        color: rgba(48, 65, 77, 0.5);
+      }
+
+      &:focus {
+        outline: 0;
+      }
+
+      &:focus-visible {
+        outline: 0;
+      }
+
+    }
+
+    .modal-footer {
+      padding: 16;
+
+      .btn {
+        border-radius: 0;
+        margin: 0;
+        border-top: 1px solid #000;
+        height: 56px;
+
+        // &:first-child {
+        //   margin-left: 0;
+        // }
+
+        // &:last-child {
+        //   margin-right: 0;
+        // }
+      }
+
+      .btn-cancel {
+        color: #fff;
+        background: transparent;
+        // border: 1px solid #EFF3F5;
+        // background: #fff;
+        border-right: 1px solid #000;
+      }
+    }
+  }
+
 }

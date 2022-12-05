@@ -2,9 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { Icon } from '@custom/Icon';
 import { TimePicker } from '@custom/TimePicker';
 import { Cell } from '@custom/Cell';
-import { Modal } from '@components/Modal';
-import { Button } from '@components/base';
-// import { Input } from '@custom/Input';
+import { Modal } from '@custom/Modal';
+import { Btn as Button, BtnGroup } from '@custom/Btn';
 
 export const Detail = ({
   deviceData,
@@ -172,7 +171,7 @@ export const Detail = ({
         visible={visible}
       // visible={true}
       />
-      <div className='socket-container-modal'>
+      <div className='custom-modal'>
         <Modal
           visible={modalVisible}
           title='修改名称'
@@ -182,82 +181,94 @@ export const Detail = ({
             autoFocus
             className='edit-name-modal'
             placeholder='请输入名称'
-            
+
             onChange={(event) => {
               setCurrentName(event.currentTarget.value);
             }}
           />
-          <div className='footer'>
-            <Button
-              className="btn cancel"
-              onClick={() => {
-                setCurrentName(deviceData?.name_button1 || '');
-                setModalVisible(false);
-              }}
+          <div className='modal-footer'>
+            <BtnGroup
+              layout='flex'
             >
-              取消
-            </Button>
-            <Button
-              className="btn save"
-              onClick={() => {
-                currentName && doControlDeviceData('name_button1', currentName);
-                setModalVisible(false);
-              }}
-            >
-              保存
-            </Button>
+              <Button
+                className="btn-cancel"
+                onClick={() => {
+                  setCurrentName(deviceData?.name_button1 || '');
+                  setModalVisible(false);
+                }}
+              >
+                取消
+              </Button>
+              <Button
+                className="btn-save"
+                onClick={() => {
+                  currentName && doControlDeviceData('name_button1', currentName);
+                  setModalVisible(false);
+                }}
+              >
+                确定
+              </Button>
+
+            </BtnGroup>
           </div>
         </Modal>
       </div>
 
-      <div className='socket-container-modal'>
+      <div className='custom-modal'>
         <Modal
           visible={modeVisible}
           title='模式'
         >
           <div className="custom-radio">
             {modeList.map((item, index) => (
-                <label
-                  className="radio-item"
-                  htmlFor={`label-${item.value}`}
-                  key={index}
-                  onClick={() => {
-                    onRadioClick(item.value);
-                  }}>
-                  <input
-                    className="radio-item-radio"
-                    type="radio"
-                    id={`label-${item.value}`}
-                    name="mode"
-                    checked={radioData === item.value}
-                  />
-                  <span className="radio-item-label">{item.label}</span>
-                </label>
+              <label
+                className="radio-item"
+                htmlFor={`label-${item.value}`}
+                key={index}
+                onClick={() => {
+                  onRadioClick(item.value);
+                }}>
+                <input
+                  className="radio-item-radio"
+                  type="radio"
+                  id={`label-${item.value}`}
+                  name="mode"
+                  checked={radioData === item.value}
+                />
+                <span className="radio-item-label">{item.label}</span>
+              </label>
             ))}
           </div>
 
-          <div className='footer'>
-            <Button
-              className="btn cancel"
-              onClick={() => {
-                setRadioData(!deviceData?.mode_swtch1?.mode ? 0 : 1);
-                setModeVisible(false);
-              }}
+          <div className='modal-footer'>
+            <BtnGroup
+              layout='flex'
             >
-              取消
-            </Button>
-            <Button
-              className="btn save"
-              onClick={() => {
-                doControlDeviceData({ mode_swtch1: { mode: radioData } });
-                setModeVisible(false);
-              }}
-            >
-              确定
-            </Button>
+              <Button
+                className="btn-cancel"
+                onClick={() => {
+                  setRadioData(!deviceData?.mode_swtch1?.mode ? 0 : 1);
+                  setModeVisible(false);
+                }}
+              >
+                取消
+              </Button>
+              <Button
+                className="btn-save"
+                onClick={() => {
+                  doControlDeviceData({ mode_swtch1: { mode: radioData } });
+                  setModeVisible(false);
+                }}
+              >
+                确定
+              </Button>
+
+            </BtnGroup>
           </div>
+
         </Modal>
       </div>
+
     </div>
   );
 };
