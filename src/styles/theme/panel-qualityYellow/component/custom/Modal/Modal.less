@@ -88,7 +88,23 @@
   }
 
   .modal-footer {
-    padding: 16px;
+    padding: 24px;
+    .btn {
+      margin: 0 6px;
+
+      &:first-child {
+        margin-left: 0;
+      }
+
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+
+    .btn-cancel {
+      color: #67615A;
+      border: 1px solid #67615A;
+    }
     .footer-confirm-btn-group {
       display: flex;
 
@@ -116,10 +132,10 @@
       }
     }
 
-    .btn-group.confirm-btn-group {
-      padding-top: 16px;
-      padding-bottom: 16px;
-    }
+    // .btn-group.confirm-btn-group {
+    //   padding-top: 16px;
+    //   padding-bottom: 16px;
+    // }
   }
 }
 

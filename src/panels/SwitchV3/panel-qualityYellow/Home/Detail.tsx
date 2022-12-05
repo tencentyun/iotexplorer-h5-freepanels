@@ -124,10 +124,10 @@ export const Detail = ({
 
   return (
     <div className={`detail action action-${switchNum} ${!deviceData?.switch_1 ? '' : 'on'}`}>
-      <div className="switch">
+      <div className="switch-total">
         <div className="switch-title">开关</div>
         <Switch
-          className=" reverse custom-switch"
+          className="reverse custom-switch"
           checked={!!deviceData.switch_1}
           onChange={checked => (checked ? onClick() : offClick())}
         />
