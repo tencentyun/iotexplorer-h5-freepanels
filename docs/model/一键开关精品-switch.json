@@ -1,0 +1,102 @@
+{
+    "version": "1.0",
+    "properties": [
+        {
+            "id": "power_switch",
+            "name": "总开关",
+            "desc": "总开关",
+            "required": true,
+            "mode": "rw",
+            "define": {
+                "type": "bool",
+                "mapping": {
+                    "0": "关",
+                    "1": "开"
+                }
+            }
+        },
+        {
+            "id": "switch_1",
+            "name": "按键1_开关",
+            "desc": "按键_1的开关",
+            "required": true,
+            "mode": "rw",
+            "define": {
+                "type": "bool",
+                "mapping": {
+                    "0": "关",
+                    "1": "开"
+                }
+            }
+        },
+        {
+            "id": "name_button1",
+            "name": "按键1名称",
+            "desc": "",
+            "mode": "rw",
+            "define": {
+                "type": "string",
+                "min": "0",
+                "max": "32"
+            },
+            "required": false
+        },
+        {
+            "id": "button1",
+            "name": "按键1",
+            "desc": "",
+            "mode": "rw",
+            "define": {
+                "type": "enum",
+                "mapping": {
+                    "1": "1"
+                }
+            },
+            "required": false
+        },
+        {
+            "id": "mode_swtch1",
+            "name": "按键1模式",
+            "desc": "",
+            "mode": "rw",
+            "define": {
+                "type": "struct",
+                "specs": [
+                    {
+                        "id": "mode",
+                        "name": "模式",
+                        "dataType": {
+                            "type": "bool",
+                            "mapping": {
+                                "0": "开关模式",
+                                "1": "联动模式"
+                            }
+                        }
+                    }
+                ]
+            },
+            "required": false
+        },
+        {
+            "id": "count_down1",
+            "name": "按键1倒计时",
+            "desc": "",
+            "mode": "rw",
+            "define": {
+                "type": "int",
+                "min": "0",
+                "max": "86400",
+                "start": "0",
+                "step": "1",
+                "unit": "秒"
+            },
+            "required": false
+        }
+    ],
+    "events": [],
+    "actions": [],
+    "profile": {
+        "ProductId": "Y876IDH1KK",
+        "CategoryId": "552"
+    }
+}
