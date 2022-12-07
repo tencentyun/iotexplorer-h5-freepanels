@@ -1,7 +1,7 @@
 /*
  * @Description: 智能锁-表盘
  */
-import React, { useEffect, useState, useMemo, useCallback } from 'react';
+import React, { useEffect, useState, useMemo, useCallback, useRef } from 'react';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 import lottie from 'lottie-web';
 import { Icon } from '@custom/Icon';
@@ -14,11 +14,6 @@ export interface DiskProps {
 }
 
 let i = 0;
-const lockStatus = {
-  0: 'unlocked',
-  1: 'locked',
-  offline: 'offline',
-};
 
 export function Disk({
   deviceData = {},
@@ -26,8 +21,8 @@ export function Disk({
   offline,
 }: DiskProps) {
   const [unlockSuccess, setUnlockSuccess] = useState(false);
+  const isTouchingRef = useRef(false);
   const animatingRef = useCallback((node) => {
-    console.log(node);
     if (node !== null) {
       lottie.loadAnimation({
         container: document.getElementById('lottie-container') as Element,
@@ -65,7 +60,7 @@ export function Disk({
   // 前进计时器
   let forwardInterval: NodeJS.Timer;
   // 后退计时器
-  let fallbackInterval: NodeJS.Timer;
+  let fallbackInterval: any = null;
 
   const drawPercent = (percent) => {
     const circle = document.getElementById('circle') as HTMLUnknownElement;
@@ -107,7 +102,6 @@ export function Disk({
       i += step;
       const percent = i / 100;
       drawPercent(percent);
-
       if (i >= 100) {
         clearInterval(forwardInterval);
         sdk.callDeviceAction({}, 'unlock_remote')
@@ -126,26 +120,34 @@ export function Disk({
 
   const fallbackAnimation = () => {
     const indicator = document.getElementById('indicator') as HTMLUnknownElement;
-    fallbackInterval = setInterval(() => {
-      if (i <= 0) {
-        clearInterval(fallbackInterval);
-        indicator.setAttribute('fill', currentColor);
-        i = 0;
-        return;
-      }
-      i -= 2;
-      const percent = i / 100;
-      drawPercent(percent);
-    }, 50);
+    if (fallbackInterval === null) {
+      fallbackInterval = setInterval(() => {
+        console.log('fallbackInterval', i);
+        if (i <= 0) {
+          clearFallback();
+          indicator.setAttribute('fill', currentColor);
+          i = 0;
+          return;
+        }
+        i -= 2;
+        const percent = i / 100;
+        drawPercent(percent);
+      }, 50);
+    }
   };
 
   const handleTouchStart = (e) => {
-    // e.preventDefault();
-    // 如果离线之后的操作不执行
+    console.log('touchStart', e.touches);
     if (offline) {
       tips.showError('设备已离线');
       return;
     }
+
+    if (isTouchingRef.current) {
+      console.log('touching');
+      return;
+    }
+    isTouchingRef.current = true;
 
     longPress();
   };
@@ -153,10 +155,18 @@ export function Disk({
   const handleTouchMove = (e) => {
     e.preventDefault();
   };
+
+  const clearFallback = () => {
+    clearInterval(fallbackInterval);
+    fallbackInterval = null;
+  };
+
   const handleTouchEnd = (e) => {
     console.log('handleTouchEnd');
     e.preventDefault();
     clearInterval(forwardInterval);
+    isTouchingRef.current = false;
+    console.log('i', i);
     if (i > 0 && i < 100) {
       fallbackAnimation();
     }
@@ -168,7 +178,7 @@ export function Disk({
   };
 
   const longPress = () => {
-    clearInterval(fallbackInterval);
+    clearFallback();
     forwardAnimation();
   };
 
