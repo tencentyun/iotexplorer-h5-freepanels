@@ -1,9 +1,7 @@
 import React, { useMemo, useState, useEffect } from 'react';
-import classNames from 'classnames';
+import { Controller } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import SwiperCore, { Controller } from 'swiper';
 import 'swiper/less';
-import { Pagination } from "swiper";
 
 export interface ThemeSliderProps {
     className?: string;
@@ -23,15 +21,19 @@ export function ThemeSlider({
 }: ThemeSliderProps) {
 
     return (
-        <div className="cus-photo-slider-top">
-            <div className="slider-wrap">
+        <div className="cus-photo-slider-top1">
+            <div className="slider-wrap1">
                 <Swiper
                     slidesPerView={3}
-                    spaceBetween={30}
-                    pagination={{
-                        clickable: true,
+                    spaceBetween={10}
+                    initialSlide={3}
+                    onClick={(index) => {
+                        console.log(index);
                     }}
-                    modules={[Pagination]}
+                    // pagination={{
+                    //     clickable: true,
+                    // }}
+                    // modules={[Pagination]}
                     className="mySwiper"
                 >
                     <SwiperSlide>Slide 1</SwiperSlide>
