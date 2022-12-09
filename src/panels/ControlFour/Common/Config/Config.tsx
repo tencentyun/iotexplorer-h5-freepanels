@@ -11,7 +11,7 @@ export function Config(props) {
       <div className="card">
         <div className="title">卡片编辑</div>
         <div className="list">
-          <CardList />
+          <CardList {...props} />
         </div>
       </div>
       <div className="card">

@@ -6,7 +6,7 @@ export type ItemProps = HTMLAttributes<HTMLDivElement> & {
     isDragging?: boolean;
 };
 
-const Item = forwardRef<HTMLDivElement, ItemProps>(({ id, content, withOpacity, isDragging, style, ...props }, ref) => {
+const Item = forwardRef<HTMLDivElement, ItemProps>(({ id, content, onClick, withOpacity, isDragging, style, ...props }, ref) => {
     const inlineStyles: CSSProperties = {
         opacity: withOpacity ? '0.5' : '1',
         transformOrigin: '50% 50%',
@@ -23,7 +23,7 @@ const Item = forwardRef<HTMLDivElement, ItemProps>(({ id, content, withOpacity, 
         ...style,
     };
 
-    return <div  ref={ref} style={inlineStyles} {...props}>{content}</div>;
+    return <div ref={ref} style={inlineStyles} {...props} onClick={() => {onClick && onClick(id)}}>{content}</div>;
 });
 
 export default Item;

@@ -16,13 +16,13 @@ import SortableItem from './SortableItem';
 import Item from './Item';
 
 const GridDnD: FC = (props) => {
-  const { dataSource = [], onChange = () => { } } = { ...props };
+  const { dataSource = [], onChange = () => { }, maxLength = 6 } = { ...props };
   const [items, setItems] = useState([]);
   const [activeId, setActiveId] = useState<string | null>(null);
   const sensors = useSensors(useSensor(MouseSensor), useSensor(TouchSensor));
 
   const handleDragStart = useCallback((event: DragStartEvent) => {
-    console.log(event.active, dataSource);
+    // console.log(event.active, dataSource);
     setActiveId(event.active.id);
   }, []);
   const handleDragEnd = useCallback((event: DragEndEvent) => {
@@ -46,10 +46,8 @@ const GridDnD: FC = (props) => {
   }, []);
 
   useEffect(() => {
-    if (dataSource.length) {
-      setItems(dataSource);
-    }
-  }, [dataSource.length])
+    setItems(dataSource);
+  }, [dataSource])
 
   const getActiveContent = () => {
     const { content = '' } = { ...items.filter(item => item?.id === activeId) }[0]
@@ -67,12 +65,12 @@ const GridDnD: FC = (props) => {
       <SortableContext items={items} strategy={rectSortingStrategy}>
         <Grid columns={3}>
           {items.map((item) => (
-            <SortableItem key={item.id} id={item.id} content={item.content} />
+            <SortableItem key={item.id} id={item.id} content={item.content} onClick={props.onClick} />
           ))}
         </Grid>
       </SortableContext>
       <DragOverlay adjustScale style={{ transformOrigin: '0 0 ' }}>
-        {activeId ? <Item id={activeId} content={getActiveContent()} isDragging /> : null}
+        {activeId ? <Item id={activeId} content={getActiveContent()} isDragging onClick={props.onClick} /> : null}
       </DragOverlay>
     </DndContext>
   );
