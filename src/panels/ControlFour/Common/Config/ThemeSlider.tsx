@@ -26,17 +26,14 @@ export function ThemeSlider({
                 <Swiper
                     slidesPerView={3}
                     spaceBetween={10}
-                    initialSlide={3}
+                    initialSlide={value}
                     onClick={(index) => {
                         console.log(index);
                     }}
-                    // pagination={{
-                    //     clickable: true,
-                    // }}
-                    // modules={[Pagination]}
                     className="mySwiper"
                 >
-                    <SwiperSlide>Slide 1</SwiperSlide>
+                    {items.map((item, index) => <SwiperSlide key={index}>{item}</SwiperSlide>)}
+                    {/* <SwiperSlide>Slide 1</SwiperSlide>
                     <SwiperSlide>Slide 2</SwiperSlide>
                     <SwiperSlide>Slide 3</SwiperSlide>
                     <SwiperSlide>Slide 4</SwiperSlide>
@@ -44,7 +41,7 @@ export function ThemeSlider({
                     <SwiperSlide>Slide 6</SwiperSlide>
                     <SwiperSlide>Slide 7</SwiperSlide>
                     <SwiperSlide>Slide 8</SwiperSlide>
-                    <SwiperSlide>Slide 9</SwiperSlide>
+                    <SwiperSlide>Slide 9</SwiperSlide> */}
                 </Swiper>
             </div>
         </div>

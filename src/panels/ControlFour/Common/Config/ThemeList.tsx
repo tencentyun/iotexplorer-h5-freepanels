@@ -9,7 +9,7 @@ const getIndex = (key) => {
   //     index = i;
   //   }
   // });
-  return index + 1;
+  return index;
 };
 export function ThemeList({ deviceData, doControlDeviceData }) {
   // const [value, setValue] = useState(getIndex(deviceData.scene_data));

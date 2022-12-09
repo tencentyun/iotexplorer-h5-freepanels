@@ -23,6 +23,8 @@
   },
   "homepage": "https://github.com/tencentyun/iotexplorer-h5-freepanels#readme",
   "dependencies": {
+    "@dnd-kit/core": "^6.0.6",
+    "@dnd-kit/sortable": "^7.0.1",
     "@types/classnames": "^2.2.9",
     "@types/jest": "^24.0.23",
     "@types/node": "^12.12.11",

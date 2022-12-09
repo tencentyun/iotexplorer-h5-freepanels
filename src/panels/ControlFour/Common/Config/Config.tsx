@@ -1,5 +1,6 @@
 import React from 'react';
 import { ThemeList } from './ThemeList';
+import { CardList } from './CardList';
 
 export function Config(props) {
   return (
@@ -9,7 +10,9 @@ export function Config(props) {
       </div>
       <div className="card">
         <div className="title">卡片编辑</div>
-        <div className="list"></div>
+        <div className="list">
+          <CardList />
+        </div>
       </div>
       <div className="card">
         <div className="title">卡片主题</div>
