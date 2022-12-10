@@ -1046,6 +1046,20 @@ module.exports = {
     ],
   },
 
+  SwitchTwoV3: {
+    name: '二路开关',
+    categoryKey: 'SwitchTwoV3',
+    enable: true,
+    viewportWidth: 375,
+    panels: [
+      ['panel-qualityDark', { enable: true, entry: 'app.tsx' }],
+      ['panel-qualityWhite', { enable: true, entry: 'app.tsx' }],
+      ['panel-qualityBlue', { enable: true, entry: 'app.tsx' }],
+      ['panel-qualityPurple', { enable: true, entry: 'app.tsx' }],
+      ['panel-qualityYellow', { enable: true, entry: 'app.tsx' }],
+    ],
+  },
+
   ControlFour: {
     name: '妙控开关（4寸）',
     categoryKey: 'ControlFour',
