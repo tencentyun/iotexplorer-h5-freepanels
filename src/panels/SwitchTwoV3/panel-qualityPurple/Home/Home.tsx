@@ -51,7 +51,7 @@ export function Home(props) {
               <LightSwitch
                 key={value}
                 name={text}
-                value={!!deviceData[value]}
+                value={!!deviceData[value] || !!deviceData['power_switch']}
                 className={`light-switch-${index + 1}`}
                 onChange={onChange.bind(null, value)}
               />

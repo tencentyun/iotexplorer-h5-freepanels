@@ -61,8 +61,7 @@ export const Detail = ({
   }, [currentItem]);
 
   useEffect(() => {
-    console.log(!!deviceData[switchName])
-    setIconName(!!deviceData[switchName] ? onIconName : defaultIconName);
+    setIconName((!!deviceData[switchName] || !!deviceData['power_switch']) ? onIconName : defaultIconName);
   }, [deviceData[switchName]]);
 
   const isOneSwitch = switchNum === 1;
