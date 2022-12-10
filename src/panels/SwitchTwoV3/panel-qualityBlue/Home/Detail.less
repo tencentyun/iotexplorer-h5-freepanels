@@ -311,6 +311,67 @@
         text-align: left;
       }
     }
+
+    .modal-title {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      padding-left: 24px;
+      padding-right: 6px;
+
+      .title {
+        color: #30414D;
+        font-family: 'PingFang SC';
+        font-style: normal;
+        font-weight: 600;
+        font-size: 18px;
+        line-height: 25px;
+      }
+
+      .selector {
+        .adm-dropdown-item-title-text {
+          color: #30414D;
+          font-family: 'PingFang SC';
+          font-style: normal;
+          font-weight: 600;
+          font-size: 18px;
+          line-height: 25px;
+        }
+      }
+
+      .custom-dropdown {
+        background: transparent;
+        color: #fff;
+      }
+    }
   }
 
+}
+
+.adm-dropdown-popup {
+  .adm-dropdown-popup-mask {
+    background: transparent !important;
+  }
+
+  .adm-dropdown-popup-body {
+    transform: translate(0px, 0%);
+    width: calc(100vw - 32px);
+    left: 16px;
+    background: transparent;
+
+    .adm-dropdown-item-content {
+      background: #fff;
+
+      .item {
+        color: #30414D;
+        font-family: 'PingFang SC';
+        font-style: normal;
+        font-weight: 600;
+        font-size: 18px;
+        line-height: 25px;
+        padding: 12px 24px;
+      }
+    }
+  }
 }

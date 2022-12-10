@@ -1,15 +1,18 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { Icon } from '@custom/Icon';
 import { TimePicker } from '@custom/TimePicker';
 import { Cell } from '@custom/Cell';
 import { Modal } from '@custom/Modal';
 import { Btn as Button, BtnGroup } from '@custom/Btn';
+import { Dropdown } from '@custom/DropDown';
+import { DropdownRef } from 'antd-mobile/es/components/dropdown'
 
 export const Detail = ({
   deviceData,
   doControlDeviceData,
   context: { switchNum },
   currentSwitch,
+  currentMode,
   history: { PATH, push },
   isModal,
   isPopUp
@@ -26,17 +29,22 @@ export const Detail = ({
     currentSwitch.forEach(([key]) => (res[key] = status));
     return res;
   };
+  const initData = currentMode.map(([value, code, text], index) => {
+    const obj = {};
+    obj.label = deviceData[code] || text;
+    obj.code = value;
+    obj.value = deviceData[value]?.mode ? 1 : 0;
+    return obj;
+  });
   // 倒计时
   const [visible, setVisible] = useState(false);
   const [modalVisible, setModalVisible] = useState(false);
   const [currentName, setCurrentName] = useState('');
 
   const [modeVisible, setModeVisible] = useState(false);
-  const [radioData, setRadioData] = useState(0);
+  const [selected, setSelected] = useState(0);
+  const [modeCache, setModeCache] = useState([]);
 
-  useEffect(() => {
-    setRadioData(!deviceData?.mode_swtch1?.mode ? 0 : 1);
-  }, [deviceData?.mode_swtch1?.mode]);
 
   useEffect(() => {
     setCurrentName(deviceData?.name_button1);
@@ -80,15 +88,15 @@ export const Detail = ({
   };
 
   const actions = [
-    isOneSwitch
-      ? null
-      : [
-        isAllOpen ? '全开' : '全关',
-        'on',
-        () => ({}),
-        isAllOpen,
-        isChecked => (isChecked ? onClick() : offClick()),
-      ],
+    // isOneSwitch
+    //   ? null
+    //   : [
+    //     isAllOpen ? '全开' : '全关',
+    //     'on',
+    //     () => ({}),
+    //     isAllOpen,
+    //     isChecked => (isChecked ? onClick() : offClick()),
+    //   ],
     [
       '定时',
       'timing',
@@ -98,7 +106,9 @@ export const Detail = ({
   ].filter(v => v);
 
   const onRadioClick = (value) => {
-    setRadioData(value);
+    let data = [...modeCache];
+    data[selected].value = value;
+    setModeCache(data);
   };
 
   const modeList = [{
@@ -109,12 +119,19 @@ export const Detail = ({
     value: 1,
   }];
 
+  const options = currentMode.map(([value, code, text]) => ({ text: deviceData[code] || text, value }));
+  const dropdownRef = useRef<DropdownRef>(null);
+
+  useEffect(() => {
+    setModeCache(initData);
+  }, [currentMode])
+
   return (
     <div className={`detail action action-${switchNum}`}>
       <div className="operator">
-        <div className="operator-btn editor" onClick={() => setModalVisible(true)}>
+        {/* <div className="operator-btn editor" onClick={() => setModalVisible(true)}>
           <Icon className="operator-icon" name="editor" size="large" />
-        </div>
+        </div> */}
         <div className="operator-btn setting"></div>
       </div>
       <div className="environment">
@@ -146,7 +163,7 @@ export const Detail = ({
         <Cell
           prefixIcon={<Icon name="mode"></Icon>}
           title={'模式选择'}
-          subTitle={!deviceData?.mode_swtch1?.mode ? '常规' : '无线'}
+          // subTitle={!deviceData?.mode_swtch1?.mode ? '常规' : '无线'}
           onClick={() => setModeVisible(true)}
           className="modeBtn"
         ></Cell>
@@ -181,11 +198,11 @@ export const Detail = ({
             autoFocus
             className='edit-name-modal'
             placeholder='请输入名称'
-
             onChange={(event) => {
               setCurrentName(event.currentTarget.value);
             }}
           />
+
           <div className='modal-footer'>
             <BtnGroup
               layout='flex'
@@ -211,14 +228,28 @@ export const Detail = ({
 
             </BtnGroup>
           </div>
+
         </Modal>
       </div>
 
       <div className='custom-modal'>
         <Modal
           visible={modeVisible}
-          title='模式'
+        // title='模式'
         >
+          <div className="modal-title">
+            <div className="title">模式</div>
+            <div className="selector">
+              <Dropdown className="custom-dropdown" ref={dropdownRef}>
+                <Dropdown.Item key='selector' title={modeCache[selected]?.label} className="dropdown-items">
+                  {options.map((item, index) => <div className="item" key={index} onClick={() => {
+                    setSelected(index);
+                    dropdownRef.current?.close()
+                  }}>{item.text}</div>)}
+                </Dropdown.Item>
+              </Dropdown>
+            </div>
+          </div>
           <div className="custom-radio">
             {modeList.map((item, index) => (
               <label
@@ -233,7 +264,7 @@ export const Detail = ({
                   type="radio"
                   id={`label-${item.value}`}
                   name="mode"
-                  checked={radioData === item.value}
+                  checked={modeCache[selected]?.value === item.value}
                 />
                 <span className="radio-item-label">{item.label}</span>
               </label>
@@ -247,7 +278,8 @@ export const Detail = ({
               <Button
                 className="btn-cancel"
                 onClick={() => {
-                  setRadioData(!deviceData?.mode_swtch1?.mode ? 0 : 1);
+                  setSelected(0);
+                  setModeCache(initData);
                   setModeVisible(false);
                 }}
               >
@@ -256,7 +288,12 @@ export const Detail = ({
               <Button
                 className="btn-save"
                 onClick={() => {
-                  doControlDeviceData({ mode_swtch1: { mode: radioData } });
+                  let obj = {};
+                  modeCache.map(item => {
+                    obj[item.code] = { mode: item.value }
+                  })
+                  doControlDeviceData(obj);
+                  setSelected(0);
                   setModeVisible(false);
                 }}
               >
@@ -268,7 +305,6 @@ export const Detail = ({
 
         </Modal>
       </div>
-
     </div>
   );
 };
