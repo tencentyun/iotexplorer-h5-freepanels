@@ -16,6 +16,8 @@ const defaultIconName = {
 };
 
 export const Detail = ({
+  currentItem,
+  currentIndex,
   deviceData,
   doControlDeviceData,
   context: { switchNum },
@@ -25,6 +27,7 @@ export const Detail = ({
   isModal,
   isPopUp
 }) => {
+  const [switchName, modeName, btnName,] = currentItem;
   const SWITCH = { OPEN: 1, CLOSE: 0 };
   const getStatusData = status => currentSwitch.filter(([key]) => deviceData[key] !== status);
   const [isChecked, setChecked] = useState(false);
@@ -44,13 +47,12 @@ export const Detail = ({
   const [modeVisible, setModeVisible] = useState(false);
   const [radioData, setRadioData] = useState(0);
 
-  useEffect(() => {
-    setRadioData(!deviceData?.mode_swtch1?.mode ? 0 : 1);
-  }, [deviceData?.mode_swtch1?.mode]);
 
   useEffect(() => {
-    setCurrentName(deviceData?.name_button1);
-  }, [deviceData?.name_button1]);
+    setCurrentName(deviceData[btnName] || currentSwitch[currentIndex][1]);
+    setRadioData(!deviceData[modeName]?.mode ? 0 : 1);
+
+  }, [currentItem]);
 
 
   const isOneSwitch = switchNum === 1;
@@ -91,15 +93,15 @@ export const Detail = ({
   };
 
   const actions = [
-    isOneSwitch
-      ? null
-      : [
-        isAllOpen ? '全开' : '全关',
-        'on',
-        () => ({}),
-        isAllOpen,
-        isChecked => (isChecked ? onClick() : offClick()),
-      ],
+    // isOneSwitch
+    //   ? null
+    //   : [
+    //     isAllOpen ? '全开' : '全关',
+    //     'on',
+    //     () => ({}),
+    //     isAllOpen,
+    //     isChecked => (isChecked ? onClick() : offClick()),
+    //   ],
     [
       '定时',
       'timing',
@@ -123,17 +125,17 @@ export const Detail = ({
   }];
 
   return (
-    <div className={`detail action action-${switchNum} ${!deviceData?.switch_1 ? '' : 'on'}`}>
+    <div className={`detail action action-${1} ${!deviceData[switchName] ? '' : 'on'}`}>
       <div className="switch-total">
-        <div className="switch-title">开关</div>
+        <div className="switch-title"></div>
         <Switch
           className="reverse custom-switch"
-          checked={!!deviceData.switch_1}
-          onChange={checked => (checked ? onClick() : offClick())}
+          checked={!!deviceData[switchName] || !!deviceData['power_switch']}
+          onChange={checked => doControlDeviceData(switchName, !deviceData[switchName])}
         />
       </div>
       <div className="operator">
-        <div className="operator-content">{`模式：${!deviceData?.mode_swtch1?.mode ? '常规' : '无线'}模式`}</div>
+        <div className="operator-content">{`模式：${!deviceData[modeName]?.mode ? '常规' : '无线'}模式`}</div>
       </div>
       <div className="environment">
         {actions.map((item, index) => {
@@ -207,7 +209,7 @@ export const Detail = ({
             <Button
               className="btn cancel"
               onClick={() => {
-                setCurrentName(deviceData?.name_button1 || '');
+                setCurrentName(deviceData[btnName]);
                 setModalVisible(false);
               }}
             >
@@ -216,7 +218,7 @@ export const Detail = ({
             <Button
               className="btn save"
               onClick={() => {
-                currentName && doControlDeviceData('name_button1', currentName);
+                currentName && doControlDeviceData(btnName, currentName);
                 setModalVisible(false);
               }}
             >
@@ -259,7 +261,7 @@ export const Detail = ({
               <Button
                 className="btn-cancel"
                 onClick={() => {
-                  setRadioData(!deviceData?.mode_swtch1?.mode ? 0 : 1);
+                  setRadioData(!deviceData[modeName]?.mode ? 0 : 1);
                   setModeVisible(false);
                 }}
               >
@@ -268,7 +270,9 @@ export const Detail = ({
               <Button
                 className="btn-save"
                 onClick={() => {
-                  doControlDeviceData({ mode_swtch1: { mode: radioData } });
+                  let obj = {};
+                  obj[modeName] = { mode: radioData }
+                  doControlDeviceData(obj);
                   setModeVisible(false);
                 }}
               >

@@ -22,6 +22,8 @@ const onIconName = {
 };
 
 export const Detail = ({
+  currentItem,
+  currentIndex,
   deviceData,
   doControlDeviceData,
   context: { switchNum },
@@ -32,6 +34,7 @@ export const Detail = ({
   goMore
 }) => {
   const SWITCH = { OPEN: 1, CLOSE: 0 };
+  const [switchName, modeName, btnName, ] = currentItem;
   const getStatusData = status => currentSwitch.filter(([key]) => deviceData[key] !== status);
   const [isChecked, setChecked] = useState(false);
   const isAll = status => !getStatusData(status).length;
@@ -52,16 +55,15 @@ export const Detail = ({
   const [iconName, setIconName] = useState(defaultIconName);
 
   useEffect(() => {
-    setRadioData(!deviceData?.mode_swtch1?.mode ? 0 : 1);
-  }, [deviceData?.mode_swtch1?.mode]);
+    setCurrentName(deviceData[btnName] || currentSwitch[currentIndex][1]);
+    setRadioData(!deviceData[modeName]?.mode ? 0 : 1);
+
+  }, [currentItem]);
 
   useEffect(() => {
-    setCurrentName(deviceData?.name_button1);
-  }, [deviceData?.name_button1]);
-
-  useEffect(() => {
-    setIconName(!!deviceData?.switch_1 ? onIconName : defaultIconName);
-  }, [deviceData?.switch_1]);
+    console.log(!!deviceData[switchName])
+    setIconName(!!deviceData[switchName] ? onIconName : defaultIconName);
+  }, [deviceData[switchName]]);
 
   const isOneSwitch = switchNum === 1;
 
@@ -101,15 +103,15 @@ export const Detail = ({
   };
 
   const actions = [
-    isOneSwitch
-      ? null
-      : [
-        isAllOpen ? '全开' : '全关',
-        'on',
-        () => ({}),
-        isAllOpen,
-        isChecked => (isChecked ? onClick() : offClick()),
-      ],
+    // isOneSwitch
+    //   ? null
+    //   : [
+    //     isAllOpen ? '全开' : '全关',
+    //     'on',
+    //     () => ({}),
+    //     isAllOpen,
+    //     isChecked => (isChecked ? onClick() : offClick()),
+    //   ],
     [
       '定时',
       'timing',
@@ -130,15 +132,24 @@ export const Detail = ({
     label: '转无线开关',
     value: 1,
   }];
-
   return (
-    <div className={`detail action action-${switchNum} ${!deviceData?.switch_1 ? '' : 'on'}`}>
+    <div className={`detail action action-${1} ${!deviceData[switchName] ? '' : 'on'}`}>
       <div className="operator">
-        <div className="operator-btn editor" onClick={() => setModalVisible(true)}>
+        <div className="operator-btn editor" onClick={() => {
+          if (!iconName.editor.includes('-on')) {
+            return;
+          }
+          setModalVisible(true)
+        }}>
           <Icon className="operator-icon" name={iconName.editor} size="large" />
           <div className="operator-label">修改名称</div>
         </div>
-        <div className="operator-btn setting" onClick={goMore}>
+        <div className="operator-btn setting" onClick={() => {
+          if (!iconName.setting.includes('-on')) {
+            return;
+          }
+          goMore();
+        }}>
           <Icon className="operator-icon" name={iconName.setting} size="large" />
           <div className="operator-label">设置</div>
         </div>
@@ -147,14 +158,24 @@ export const Detail = ({
         {actions.map((item, index) => {
           const [title, name, onClick] = [...item];
           return (
-            <div className="box" key={index} onClick={onClick}>
+            <div className="box" key={index} onClick={() => {
+              if (!iconName[name].includes('-on')) {
+                return;
+              }
+              onClick()
+            }}>
               <div className="content">
                 <div className="box-content">
                   <Icon name={iconName[name]} />
                   <Cell
                     title={title}
                     className="border"
-                    onClick={onClick}
+                    onClick={() => {
+                      if (!iconName[name].includes('-on')) {
+                        return;
+                      }
+                      onClick()
+                    }}
                   ></Cell>
                 </div>
               </div>
@@ -211,14 +232,14 @@ export const Detail = ({
               setCurrentName(event.currentTarget.value);
             }}
           />
-           <div className='modal-footer'>
+          <div className='modal-footer'>
             <BtnGroup
               layout='flex'
             >
               <Button
                 className="btn-cancel"
                 onClick={() => {
-                  setCurrentName(deviceData?.name_button1 || '');
+                  setCurrentName(deviceData[btnName]);
                   setModalVisible(false);
                 }}
               >
@@ -227,7 +248,7 @@ export const Detail = ({
               <Button
                 className="btn-save"
                 onClick={() => {
-                  currentName && doControlDeviceData('name_button1', currentName);
+                  currentName && doControlDeviceData(btnName, currentName);
                   setModalVisible(false);
                 }}
               >
@@ -272,7 +293,7 @@ export const Detail = ({
               <Button
                 className="btn-cancel"
                 onClick={() => {
-                  setRadioData(!deviceData?.mode_swtch1?.mode ? 0 : 1);
+                  setRadioData(!deviceData[modeName]?.mode ? 0 : 1);
                   setModeVisible(false);
                 }}
               >
@@ -281,7 +302,9 @@ export const Detail = ({
               <Button
                 className="btn-save"
                 onClick={() => {
-                  doControlDeviceData({ mode_swtch1: { mode: radioData } });
+                  let obj = {};
+                  obj[modeName] = {mode: radioData}
+                  doControlDeviceData(obj);
                   setModeVisible(false);
                 }}
               >

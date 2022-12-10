@@ -1,7 +1,9 @@
 @import url('./LightSwitch.less');
-.cus-dev-detail{
+
+.cus-dev-detail {
   display: none;
 }
+
 .home {
   width: 100%;
   height: 100%;
@@ -9,11 +11,64 @@
   flex-direction: column;
   background: linear-gradient(167.96deg, #B3957B 0%, #A8866B 100%);
 
+  .custom-tabs {
+    .adm-tabs-header {
+      border-bottom: 0;
+      position: relative;
+
+      .adm-tabs-tab-list {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        &:after {
+          content: '';
+          position: absolute;
+          height: 32px;
+          width: 1px;
+          background: #fff;
+          left: 50%;
+        }
+
+        .adm-tabs-tab-wrapper-stretch {
+          flex: unset;
+
+          .adm-tabs-tab {
+            margin: 0;
+            position: relative;
+            font-family: 'PingFang SC';
+            font-style: normal;
+            font-weight: 600;
+            font-size: 16px;
+            line-height: 18px;
+            text-align: center;
+            color: #fff;
+          }
+
+          .adm-tabs-tab-active::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 4px;
+            background: #fff;
+            border-radius: 100px;
+            left: 0;
+            bottom: 0;
+          }
+        }
+      }
+    }
+    .adm-tabs-content {
+      padding: 0;
+      height: unset;
+    }
+  }
+
   .switch-1 {
     // display: flex;
     // flex-direction: column;
     // align-items: center;
-    height: 192px;
+    height: 142px;
   }
 
   .switch-2 {
