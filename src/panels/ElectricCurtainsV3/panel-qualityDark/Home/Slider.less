@@ -1,0 +1,158 @@
+.p-side {
+  border-radius: 0 0 40px 40px;
+  display: flex;
+  flex-direction: column;
+  margin-top: 26px;
+  color: #ffffff;
+
+  .state {
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 20px;
+    text-align: center;
+    margin-bottom: 27px;
+  }
+
+  .head-img {
+    width: 313px;
+    height: 218px;
+    margin: 0 auto;
+    position: relative;
+  }
+
+  .fixed-position {
+    display: flex;
+    width: 100%;
+    height: 30px;
+    margin-top: 94px;
+    justify-content: space-around;
+    align-items: center;
+
+    .item {
+      font-family: 'PingFang SC';
+      font-style: normal;
+      font-weight: 600;
+      font-size: 16px;
+      line-height: 22px;
+      text-align: center;
+      color: #FFFFFF;
+    }
+  }
+
+  .bar {
+    width: 100%;
+    height: 8px;
+    left: -2px;
+    top: 0;
+    position: absolute;
+    z-index: 2;
+    background: linear-gradient(360deg,
+        #afafaf -43.75%,
+        #e3e3e3 -1.19%,
+        rgba(109, 105, 107, 0.851478) 26.89%,
+        #e3e3e3 60.65%,
+        #afafaf 100%);
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.05);
+  }
+
+  .radius-left {
+    position: absolute;
+    top: -6px;
+    left: -2px;
+    width: 5px;
+    height: 19px;
+    background: #c6c6c6;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.05);
+    border-radius: 1px;
+    z-index: 3;
+  }
+
+  .radius-right {
+    position: absolute;
+    top: -6px;
+    right: -2px;
+    width: 5px;
+    height: 19px;
+    background: #c6c6c6;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.05);
+    border-radius: 1px;
+    z-index: 3;
+  }
+
+  .leave-wrap {
+    position: absolute;
+    width: 313px;
+    height: 210px;
+    display: flex;
+    margin-top: 5px;
+
+    .panel {
+      display: flex;
+      width: 50%;
+      flex: 0 50%;
+    }
+
+    .panel-right {
+      transform: rotate(180deg);
+
+      .leave {
+        transform: rotate(180deg);
+      }
+    }
+  }
+
+  .leave_item {
+    width: 7px;
+  }
+
+  .leave {
+    height: 100%;
+    width: 100%;
+    min-width: 37px;
+    background: url("../Icon/leave.svg");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+  }
+
+  .open-ratio {
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 20px;
+    text-align: center;
+    margin-top: 60px;
+  }
+
+  .head-fond {
+    width: 313px;
+    height: 20px;
+    margin: 0 auto;
+    margin-top: 16px;
+
+    .bar-progress {
+      width: 100%;
+      height: 8px;
+      background-color: #121723;
+      border-radius: 8px;
+    }
+
+    .control-bar {
+      width: 133px;
+      height: 8px;
+      background-color: #fff;
+      border-top-left-radius: 8px;
+      border-bottom-left-radius: 8px;
+    }
+
+    .bar-btn {
+      position: absolute;
+      margin-top: -14px;
+      width: 12px;
+      height: 12px;
+      background-color: #ffffff;
+      border-radius: 50%;
+      border: solid #fff 4px;
+      margin-left: 133px;
+    }
+  }
+}
