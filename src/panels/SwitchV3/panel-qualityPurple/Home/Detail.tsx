@@ -134,11 +134,21 @@ export const Detail = ({
   return (
     <div className={`detail action action-${switchNum} ${!deviceData?.switch_1 ? '' : 'on'}`}>
       <div className="operator">
-        <div className="operator-btn editor" onClick={() => setModalVisible(true)}>
+        <div className="operator-btn editor" onClick={() => {
+           if (!iconName['editor'].includes('-on')) {
+            return;
+          }
+          setModalVisible(true)
+        }}>
           <Icon className="operator-icon" name={iconName.editor} size="large" />
           <div className="operator-label">修改名称</div>
         </div>
-        <div className="operator-btn setting" onClick={goMore}>
+        <div className="operator-btn setting" onClick={() => {
+          if (!iconName['setting'].includes('-on')) {
+            return;
+          }
+          goMore();
+        }}>
           <Icon className="operator-icon" name={iconName.setting} size="large" />
           <div className="operator-label">设置</div>
         </div>
@@ -147,14 +157,24 @@ export const Detail = ({
         {actions.map((item, index) => {
           const [title, name, onClick] = [...item];
           return (
-            <div className="box" key={index} onClick={onClick}>
+            <div className="box" key={index} onClick={() => {
+              if (!iconName[name].includes('-on')) {
+                return;
+              }
+              onClick()
+            }}>
               <div className="content">
                 <div className="box-content">
                   <Icon name={iconName[name]} />
                   <Cell
                     title={title}
                     className="border"
-                    onClick={onClick}
+                    onClick={() => {
+                      if (!iconName[name].includes('-on')) {
+                        return;
+                      }
+                      onClick()
+                    }}
                   ></Cell>
                 </div>
               </div>

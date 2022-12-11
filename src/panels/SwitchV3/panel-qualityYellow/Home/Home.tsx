@@ -29,7 +29,7 @@ export function Home(props) {
         {currentSwitch.map(([key, name], index) => (
           <LightSwitch
             key={key}
-            name={name}
+            name={deviceData[key.replace('switch_', 'name_button')] || name}
             value={!!deviceData[key]}
             className={`light-switch-${index + 1}`}
             onChange={onChange.bind(null, key)}
