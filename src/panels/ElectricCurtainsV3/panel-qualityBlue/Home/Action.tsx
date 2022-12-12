@@ -19,7 +19,7 @@ export const Action = ({
   const actions = [
     [
       '开启',
-      '模式',
+      'open',
       () => {
         sdk.deviceData.auto_power = '1';
         doControlDeviceData({ auto_power: '1' });
@@ -28,7 +28,7 @@ export const Action = ({
     ],
     [
       control === 'open' ? '暂停' : '开始',
-      '模式',
+      control === 'open' ? 'stop' : 'begin',
       () => {
         // 暂停再次点击则开启 开启状态则暂停
         doControlDeviceData({ control: control === 'open' ? 'pause' : 'open' });
@@ -38,40 +38,12 @@ export const Action = ({
     ],
     [
       '关闭',
-      '模式',
+      'close',
       () => {
         doControlDeviceData({ auto_power: '0' });
         sdk.deviceData.auto_power = '0';
       },
       auto_power === '0',
-    ],
-    // [
-    //   '电机反向',
-    //   'reverse',
-    //   () => {
-    //     setControlBackVisiable(true);
-    //   },
-    // ],
-    // [
-    //   '早安模式',
-    //   'light',
-    //   () => {
-    //     setModeVisiable(true);
-    //   },
-    // ],
-    // [
-    //   '更多',
-    //   'more',
-    //   () => {
-    //     push(PATH.MORE);
-    //   },
-    // ],
-    [
-      '定时',
-      '时间',
-      () => {
-        push(PATH.TIMER_LIST, { isModule: true })
-      }
     ],
   ];
 
@@ -85,11 +57,10 @@ export const Action = ({
             className={`action-item  ${isChecked ? 'checked' : ''
               } action-item-${index + 1}`}
           >
-            {index !== actions.length - 1 ? <div className={`action-ele action-ele-${index}`}>
-              {/* <Icon name={isChecked ? `${name}-checked` : name} /> */}
-              <div>{name}</div>
+           <div className={`action-ele action-ele-${index}`}>
+              <Icon name={isChecked ? `${name}-checked` : name} />
               <div>{label}</div>
-            </div> : <Cell className="count-down" title={label} isLink={true} onClick={() => onClick(0)}><div className="subTitle">{name}</div></Cell>}
+            </div> 
           </div>
         ))}
       </div>
