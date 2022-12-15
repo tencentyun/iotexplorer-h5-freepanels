@@ -27,7 +27,7 @@ const eventMap = {
   unlock_remote_result: '远程解锁',
 };
 
-type LogItem = {label: string, time: string, data: any};
+type LogItem = {label: string, time: string, data: any, event: string };
 interface Log{
   hasMore: boolean,
   context: string;
@@ -87,6 +87,7 @@ export function LogList({ logType, activeKey, dateTime, templateMap }: LogListPr
       context: res.Context,
       children: logList.map(log => ({
         label: eventMap[log.EventId],
+        event: log.EventId,
         data: JSON.parse(log.Data),
         time: dayjs(log.TimeStamp).format('YYYY-MM-DD HH:mm'),
       })),
@@ -112,6 +113,32 @@ export function LogList({ logType, activeKey, dateTime, templateMap }: LogListPr
     setLoaded(false);
   }, [dateTime, activeKey]);
 
+  const SPLIT_STR = '$*$';
+  const renderLabelNode = ({ label, data, event }) => {
+    let labelNode: React.ReactNode = label;
+    switch (label) {
+      case '门锁告警':
+        labelNode = (
+          <div>{label}: <span className='adm-step-description'>
+            {alarmTipMap[data.alarm_tip]}
+            </span>
+          </div>
+        );
+        break;
+      case '指纹解锁':
+      case '卡片解锁':
+      case '密码解锁':
+      case '人脸解锁': {
+        const [id, name] = data.id.split(SPLIT_STR);
+        if (name) {
+          labelNode = `${name}使用${label}`;
+        }
+      }
+        break;
+    }
+    return labelNode;
+  };
+
   return (
     <div className="log-list">
       {isEmpty ? (
@@ -124,16 +151,8 @@ export function LogList({ logType, activeKey, dateTime, templateMap }: LogListPr
             <div>
               <div className="list">
                 <Steps direction="vertical">
-                  {data.map(({ label, time, data }, index) => {
-                    let labelNode: React.ReactNode = label;
-                    if (label === '门锁告警') {
-                      labelNode = (
-                        <div>{label}: <span className='adm-step-description'>
-                          {alarmTipMap[data.alarm_tip]}
-                          </span>
-                        </div>
-                      );
-                    }
+                  {data.map(({ label, time, data, event }, index) => {
+                    const labelNode = renderLabelNode({ label, data, event });
                     return <Step
                       key={index}
                       // icon={<div>aaa</div>}
