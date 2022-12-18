@@ -1035,6 +1035,20 @@ module.exports = {
     ],
   },
 
+  LightStripV3: {
+    categoryKey: "LightStripV3",
+    name: "RGB灯带",
+    enable: true,
+    viewportWidth: 375,
+    panels: [
+      ["panel-qualityDark", { enable: true, entry: "app.tsx" }],
+      ["panel-qualityWhite", { enable: true, entry: "app.tsx" }],
+      ["panel-qualityBlue", { enable: true, entry: "app.tsx" }],
+      ["panel-qualityPurple", { enable: true, entry: "app.tsx" }],
+      ["panel-qualityYellow", { enable: true, entry: "app.tsx" }],
+    ],
+  },
+
   ElectricCurtainsV3: {
     categoryKey: "ElectricCurtainsV3",
     name: "电动窗帘",

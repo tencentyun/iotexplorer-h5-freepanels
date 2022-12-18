@@ -1,0 +1,39 @@
+@import url("./Ticker.less");
+@import url("./Position.less");
+@import url("./LightBright.less");
+@import url("./Action.less");
+@import url("./Scene.less");
+.route-home {
+  display: inherit !important;
+}
+.home {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 24px;
+  .change-panel {
+    position: relative;
+    min-height: 382px;
+  }
+  .power {
+    position: absolute;
+    top: -4px;
+    right: 0;
+  }
+  .cus-dev-detail{
+    top:350px;
+    right:20px;
+  }
+  &.scene {
+    .cus-dev-detail {
+      display: none;
+      // top:10px;
+      // right:24px;
+    }
+    .action {
+      position: fixed;
+      bottom:200px;
+      left:0;
+    }
+  }
+}

@@ -13,6 +13,7 @@
     .rmc-picker {
       .rmc-picker-content {
         .rmc-picker-item {
+          text-align: center;
           padding-left: 0;
         }
       }
@@ -52,6 +53,22 @@
       position: absolute;
       left: 0;
       top: 102px;
+
+      &::after {
+        content: ' ';
+        width: 100%;
+        height: 35px;
+        position: absolute;
+        top: 5px;
+        left: 0;
+        right: 10px;
+        border: 1px solid;
+        border-color: transparent transparent transparent #141620;
+        // 使用该border 不需要设置background
+        background-clip: padding-box, border-box;
+        background-origin: padding-box, border-box;
+        background-image: linear-gradient(to right, #141620, #141620), linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(156, 140, 255, 0.24));
+      }
     }
 
     &:first-child {
@@ -66,9 +83,10 @@
         &::after {
           content: ' ';
           width: 90%;
-          height: 34px;
+          height: 35px;
           position: absolute;
-          top: 6px;
+          left: 10%;
+          top: 5px;
           right: -1px;
           border-radius: 16px 0 0 16px;
           border: 1px solid;
@@ -82,14 +100,14 @@
     }
 
 
-    &:nth-child(2) {
+    &:nth-last-of-type(2) {
       .rmc-picker-indicator {
         &::after {
           content: ' ';
           width: 90%;
-          height: 34px;
+          height: 35px;
           position: absolute;
-          top: 6px;
+          top: 5px;
           left: -1px;
           right: 10px;
           border-radius: 0 16px 16px 0;
