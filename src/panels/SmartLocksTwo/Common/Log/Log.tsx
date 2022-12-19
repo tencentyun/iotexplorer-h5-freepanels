@@ -17,7 +17,12 @@ export function Log(props) {
 
   return (
     <div className="log">
-      <LogList {...props} dateTime={dateTime} logType={'event'} />
+      <LogList
+        {...props}
+        dateTime={dateTime}
+        logType={'event'}
+        onSelectLog={() => setVisible(false)}
+      />
       <div className="date-pick" onClick={setVisible.bind(null, true)}>
         <Icon name="date" size="large"></Icon>
       </div>

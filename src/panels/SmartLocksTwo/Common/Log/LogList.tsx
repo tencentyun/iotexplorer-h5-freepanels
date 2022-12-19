@@ -38,6 +38,7 @@ interface LogListProps {
   activeKey: 'action' | 'event';
   dateTime: [Date, Date];
   templateMap: any;
+  onSelectLog: () => void
 }
 
 type LogType = 'all' | 'doorbell' | 'event';
@@ -48,7 +49,7 @@ const logTypeNames: Record<LogType, string> = {
   event: '告警信息',
 };
 
-export function LogList({ activeKey, dateTime, templateMap }: LogListProps) {
+export function LogList({ activeKey, dateTime, templateMap, onSelectLog }: LogListProps) {
   // 默认显示最近一个月的数据
   const alarmTipMap = templateMap?.alarm_lock.params[0].define.mapping;
   const dropdownRef = useRef<any>();
@@ -142,7 +143,11 @@ export function LogList({ activeKey, dateTime, templateMap }: LogListProps) {
   return (
     <div className="log-list">
       <div>
-        <Dropdown ref={dropdownRef}>
+        <Dropdown ref={dropdownRef} onChange={(key) => {
+          if (key) {
+            onSelectLog();
+          }
+        }}>
           <Dropdown.Item title={logTypeNames[logType]} key="logType">
             <div style={{ padding: 12 }}>
               <Radio.Group defaultValue='all' onChange={(v: LogType) => setLogType(v)}>
