@@ -1,11 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState, useMemo } from 'react';
 import dayjs from 'dayjs';
 import { Steps } from '@custom/Step';
 import { StatusTip } from '@src/components/StatusTip';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
-import { tips } from '@src/libs/wxlib';
 import { useLoadMore } from './useLoadMore';
-import { InfiniteScroll } from 'antd-mobile';
+import { InfiniteScroll, Dropdown, Radio, Space } from 'antd-mobile';
 
 const { Step } = Steps;
 
@@ -41,35 +40,22 @@ interface LogListProps {
   templateMap: any;
 }
 
-export function LogList({ logType, activeKey, dateTime, templateMap }: LogListProps) {
+type LogType = 'all' | 'doorbell' | 'event';
+
+const logTypeNames: Record<LogType, string> = {
+  all: '全部日志',
+  doorbell: '门铃呼叫',
+  event: '告警信息',
+};
+
+export function LogList({ activeKey, dateTime, templateMap }: LogListProps) {
   // 默认显示最近一个月的数据
   const alarmTipMap = templateMap?.alarm_lock.params[0].define.mapping;
-
+  const dropdownRef = useRef<any>();
   const [data, setData] = useState<LogItem[]>([]);
   const [isLoaded, setLoaded] = useState(false);
   const isEmpty = isLoaded && !data.length;
-  const getActionLog = async (context): Promise<Log> => {
-    // tips.showLoading();
-    const date = dateTime;
-    const res = await sdk.requestTokenApi('AppGetDeviceMultiActionHistories', {
-      DeviceId: sdk.deviceId,
-      Context: context,
-      MinTime: +dayjs(date[0]).startOf('day'),
-      MaxTime: +dayjs(date[0]).endOf('day'),
-      Limit: 20,
-      ActionIds: ['unlock_remote', 'add_fingerprint', 'add_card', 'add_face'],
-    });
-    // tips.hide();
-    const logList = res.ActionHistories.filter(log => log.ActionId !== 'get_ipc_device_id');
-    return {
-      hasMore: !res.Listover,
-      context: res.Context,
-      children: logList.map(log => ({
-        label: log.ActionName,
-        time: dayjs.unix(log.RspTime).format('YYYY-MM-DD HH:mm'),
-      })),
-    };
-  };
+  const [logType, setLogType] = useState<LogType>('all');
   const getEventlog = async (context): Promise<Log> => {
     // tips.showLoading();
     const date = dateTime;
@@ -96,7 +82,7 @@ export function LogList({ logType, activeKey, dateTime, templateMap }: LogListPr
   // 后端加载日志数据
   const loadLog = async (context) => {
     try {
-      const logList = await (logType === 'action' ? getActionLog(context) : getEventlog(context));
+      const logList = await getEventlog(context);
       setLoaded(true);
       setData([...data, ...logList.children]);
       return logList;
@@ -139,8 +125,42 @@ export function LogList({ logType, activeKey, dateTime, templateMap }: LogListPr
     return labelNode;
   };
 
+  useEffect(() => {
+    dropdownRef.current?.close();
+  }, [logType]);
+
+  const filteredData = useMemo(() => {
+    if (logType === 'all') {
+      return data;
+    }
+    if (logType === 'doorbell') {
+      return data.filter(item => item.event === 'doorbell');
+    }
+    return data.filter(item => item.event !== 'doorbell');
+  }, [data, logType]);
+
   return (
     <div className="log-list">
+      <div>
+        <Dropdown ref={dropdownRef}>
+          <Dropdown.Item title={logTypeNames[logType]} key="logType">
+            <div style={{ padding: 12 }}>
+              <Radio.Group defaultValue='all' onChange={(v: LogType) => setLogType(v)}>
+                {
+                  Object.keys(logTypeNames).map((key) => (
+                    <Space direction='vertical' block key={key}>
+                      <Radio block value={key} style={{ marginTop: 10 }}>
+                        {logTypeNames[key]}
+                      </Radio>
+                    </Space>
+                  ))
+                }
+              </Radio.Group>
+                </div>
+            </Dropdown.Item>
+          </Dropdown>
+      </div>
+
       {isEmpty ? (
         <div className="no-record-tips">
           <StatusTip emptyMessage='暂无数据' status='empty' className='empty'/>
@@ -151,11 +171,10 @@ export function LogList({ logType, activeKey, dateTime, templateMap }: LogListPr
             <div>
               <div className="list">
                 <Steps direction="vertical">
-                  {data.map(({ label, time, data, event }, index) => {
+                  {filteredData.map(({ label, time, data, event }, index) => {
                     const labelNode = renderLabelNode({ label, data, event });
                     return <Step
                       key={index}
-                      // icon={<div>aaa</div>}
                       title={labelNode}
                       status={index ? 'wait' : 'finish'}
                       description={time}
