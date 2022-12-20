@@ -1090,4 +1090,18 @@ module.exports = {
       ["panel-qualityYellow", { enable: true, entry: "app.tsx" }],
     ],
   },
+
+  CWLightStripV3: {
+    name: "CW灯带",
+    categoryKey: "CWLightStripV3",
+    enable: true,
+    viewportWidth: 375,
+    panels: [
+      ["panel-qualityDark", { enable: true, entry: "app.tsx" }],
+      ["panel-qualityWhite", { enable: true, entry: "app.tsx" }],
+      ["panel-qualityBlue", { enable: true, entry: "app.tsx" }],
+      ["panel-qualityPurple", { enable: true, entry: "app.tsx" }],
+      ["panel-qualityYellow", { enable: true, entry: "app.tsx" }],
+    ],
+  },
 };
