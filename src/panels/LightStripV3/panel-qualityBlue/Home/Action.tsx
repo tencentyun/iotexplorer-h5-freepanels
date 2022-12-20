@@ -1,19 +1,23 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { Icon } from '@custom/Icon';
 import { Cell } from '@custom/Cell';
 import { Modal } from '@custom/Modal';
 import { Btn as Button, BtnGroup } from '@custom/Btn';
+import { CountDown } from '../../Common/CountDown';
 
-const Action = ({
-  deviceData: { switch_led, work_mode = 'white' },
-  history: { PATH, push },
-  timer: { isExistTimer },
-  doControlDeviceData,
-}) => {
+
+const Action = (props) => {
+  const {
+    deviceData: { switch_led, count_down, work_mode = 'white' },
+    history: { PATH, push },
+    timer: { isExistTimer },
+    doControlDeviceData,
+  } = { ...props };
   const onSwitchChange = () => {
     doControlDeviceData({ switch_led: switch_led ? 0 : 1 });
   };
 
+  const countRef = useRef(null);
   const isSwitchOff = switch_led !== 1;
   const actionCls = isSwitchOff ? 'action-off' : '';
 
@@ -24,7 +28,7 @@ const Action = ({
     [
       '定时',
       isSwitchOff ? 'timing' : 'timing-checked',
-      push.bind(null, PATH.TIMER_COUNTDOWN, { isModule: true }),
+      !!count_down ? push.bind(null, PATH.TIMER_COUNTDOWNPAGE, { isModule: true }) : () => { countRef.current.onOpen() },
       isExistTimer,
     ],
     [
@@ -139,6 +143,12 @@ const Action = ({
           </div>
 
         </Modal>
+        <CountDown
+          ref={countRef}
+          {...props}
+          isModal={true}
+          isPopUp={false}
+        />
       </div>
     </>
   );

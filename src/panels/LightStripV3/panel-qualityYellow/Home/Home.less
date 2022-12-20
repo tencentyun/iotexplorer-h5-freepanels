@@ -253,12 +253,46 @@
   .colorMode {
     .scene-page {
       margin: 0;
-      height: calc(100% - 260px);
       background: #fff;
+      border-radius: 40px 40px 0 0;
+      padding: 70px 24px 0 24px;
+    }
+
+    .scene-switch {
+      margin: 32px 0 32px 22px;
+
+      .custom-switch {
+        width: 80px;
+        height: 40px;
+
+        .adm-switch-checkbox,
+        .adm-switch-checkbox:before {
+          height: 40px !important;
+          background: #F2F2F2 !important;
+        }
+
+        .adm-switch-handle {
+          margin-top: 2px;
+          margin-left: 2px;
+          width: 32px !important;
+          height: 32px !important;
+          background: #FFFFFF;
+        }
+      }
+
+      .adm-switch-checked {
+        .adm-switch-handle {
+          left: 40px !important;
+          width: 32px !important;
+          height: 32px !important;
+          background: #F2A56B !important;
+        }
+      }
     }
   }
 
   .action {
     border-radius: 0 !important;
+    padding-top: 0 !important;
   }
 }

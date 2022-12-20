@@ -1,17 +1,21 @@
-import React from 'react';
+import React, { useState, useRef } from 'react';
 import { Icon } from '@custom/Icon';
 import { Cell } from '@custom/Cell';
+import { CountDown } from '../../Common/CountDown';
 
-const Action = ({
-  deviceData: { switch_led },
-  history: { PATH, push },
-  timer: { isExistTimer },
-  doControlDeviceData,
-}) => {
+const Action = (props) => {
+
+  const {
+    deviceData: { switch_led, count_down },
+    history: { PATH, push },
+    timer: { isExistTimer },
+    doControlDeviceData,
+  } = { ...props };
   const onSwitchChange = () => {
     doControlDeviceData({ switch_led: switch_led ? 0 : 1 });
   };
 
+  const countRef = useRef(null);
   const isSwitchOff = switch_led !== 1;
   const actionCls = isSwitchOff ? 'action-off' : '';
 
@@ -26,29 +30,37 @@ const Action = ({
     [
       '定时器',
       isSwitchOff ? 'timing' : 'timing-checked',
-      push.bind(null, PATH.TIMER_COUNTDOWN, { isModule: true }),
+      !!count_down ? push.bind(null, PATH.TIMER_COUNTDOWNPAGE, { isModule: true }) : () => { countRef.current.onOpen() },
       isExistTimer,
       ''
     ],
   ];
   return (
-    <div className={`action action-off`}>
-      {actions.map(([label, name, onClick, isChecked, ele], index) => (
-        <div
-          key={name}
-          className={`action-item  ${isChecked ? 'checked' : ''} action-item-${
-            index + 1
-          }`}
-          onClick={onClick}
-        >
-          <div className={`action-ele action-ele-${index}`}>
-            {/* <div>{label}</div> */}
-            <Icon name={name} />
-            <div>{label}</div>
+    <>
+      <div className={`action action-off`}>
+        {actions.map(([label, name, onClick, isChecked, ele], index) => (
+          <div
+            key={name}
+            className={`action-item  ${isChecked ? 'checked' : ''} action-item-${index + 1
+              }`}
+            onClick={onClick}
+          >
+            <div className={`action-ele action-ele-${index}`}>
+              {/* <div>{label}</div> */}
+              <Icon name={name} />
+              <div>{label}</div>
+            </div>
           </div>
-        </div>
-      ))}
-    </div>
+        ))}
+      </div>
+      <CountDown
+        ref={countRef}
+        {...props}
+        isModal={false}
+        isPopUp={true}
+      />
+    </>
+
   );
 };
 
