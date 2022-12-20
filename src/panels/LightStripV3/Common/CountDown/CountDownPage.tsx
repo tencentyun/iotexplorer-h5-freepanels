@@ -44,7 +44,7 @@ export const CountDownPage = (props) => {
             <div>
                 {value && (
                     <div className="fix-bottom-btn">
-                        <Btn btnText="关闭定时" type="danger" onClick={() => {
+                        <Btn btnText="关闭定时" onClick={() => {
                             push(PATH.HOME, {})
                             doControlDeviceData({ count_down: 0 })
                         }} />
