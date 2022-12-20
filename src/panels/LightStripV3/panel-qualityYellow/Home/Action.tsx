@@ -29,7 +29,7 @@ const Action = (props) => {
     [
       '定时器',
       isSwitchOff ? 'timing' : 'timing-checked',
-      !!count_down ? push.bind(null, PATH.TIMER_COUNTDOWNPAGE, { isModule: true }) : () => { countRef.current.onOpen() },
+      !!count_down ? push.bind(null, PATH.TIMER_COUNTDOWNPAGE, { value: count_down }) : () => { countRef.current.onOpen() },
       isExistTimer,
       ''
     ],

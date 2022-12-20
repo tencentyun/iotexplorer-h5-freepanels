@@ -1,0 +1,60 @@
+.ticker {
+  .content {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+    .btn {
+      width: 33%;
+      height: 60px;
+    }
+
+    .btn:nth-child(2) {
+      border-radius: 0;
+      border-left: 1px solid #F6F4FC;
+      border-right: 1px solid #F6F4FC;
+    }
+
+    .btn-primary {
+      background: transparent;
+
+      .title {
+        color: rgba(29, 32, 45, 1);
+      }
+
+      &::after {
+        content: ' ';
+        width: 60px;
+        height: 4px;
+        background: #594AE1;
+        border-radius: 100px;
+        position: absolute;
+        bottom: 0px;
+        left: 26%;
+      }
+    }
+
+    .btn-reverse {
+      background: transparent;
+      border: 0;
+    }
+
+    .btn-text {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+  }
+
+  &.ticker-off {
+    // padding-top: 36px;
+
+    // .content {
+    //   display: none;
+    // }
+    .title {
+      color: #7E7BA6;
+    }
+  }
+}
