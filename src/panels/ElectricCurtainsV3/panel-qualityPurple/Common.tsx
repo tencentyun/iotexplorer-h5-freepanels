@@ -4,7 +4,7 @@ import { Home } from './Home/Home';
 import { More } from '../Common/Home/More';
 import { TimerList, TimerAdd, Repeat } from '../Common/Timer';
 
-const App = () => {
+const App = (props) => {
   const route = [
     { path: '/home', Component: Home },
     { path: '/more', Component: More },
@@ -12,7 +12,7 @@ const App = () => {
     { path: '/timer/add', Component: TimerAdd },
     { path: '/timer/action/repeat', Component: Repeat },
   ];
-  return <Router route={route} />;
+  return <Router route={route} {...props} />;
 };
 
 export default App;

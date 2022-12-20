@@ -2,7 +2,7 @@ import React from 'react';
 import { Router } from '@router';
 import { Home } from './Home';
 import { TimerList, TimerAdd, MainSwitch, Repeat } from '../Common/Timer';
-import { CountDown } from './CountDown';
+import { CountDown } from '../Common/CountDown';
 
 const App = () => {
   const route = [
@@ -13,7 +13,7 @@ const App = () => {
     { path: '/timer/action/repeat', Component: Repeat },
     { path: '/timer/countdown', Component: CountDown },
   ];
-  return <Router route={route} detail={false} />;
+  return <Router route={route}  detail={false}  />;
 };
 
 export default App;

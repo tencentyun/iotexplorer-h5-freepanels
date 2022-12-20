@@ -1,36 +1,69 @@
 .ticker {
-  position: fixed;
-  bottom: 50px;
-  width: calc(100vw - 48px);
   .content {
     display: flex;
     justify-content: space-around;
     align-items: center;
+
     .btn {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-      width: 100px;
-      height: 100px;
-      border-radius: 16px;
-      border: 1px solid #EEEEEE;
-      &.btn-reverse {
-        background: white;
-        color: @c1;
+      width: 33%;
+      height: 48px;
+      padding: 12px 0;
+
+      .btn-text {
+        height: 32px;
+        color: #fff;
       }
     }
+
+    .btn:nth-child(2) {
+      border-radius: 0;
+
+      .btn-text {
+        border-left: 1px solid #fff;
+        border-right: 1px solid #fff;
+      }
+    }
+
+    .btn-primary {
+      background: transparent;
+
+      .title {
+        color: #fff;
+      }
+
+      &::after {
+        content: ' ';
+        width: 60px;
+        height: 4px;
+        background: #fff;
+        border-radius: 100px;
+        position: absolute;
+        bottom: 0px;
+        left: 26%;
+      }
+    }
+
+    .btn-reverse {
+      background: transparent;
+      border: 0;
+    }
+
     .btn-text {
       display: flex;
       align-items: center;
       justify-content: center;
-      flex-direction: column;
-      .title {
-        margin-top: 8px;
-      }
     }
-    .disable {
-      opacity: 0.5;
+
+  }
+
+  &.ticker-off {
+    // padding-top: 36px;
+
+    // .content {
+    //   display: none;
+    // }
+    .title {
+      color: #fff;
     }
   }
 }

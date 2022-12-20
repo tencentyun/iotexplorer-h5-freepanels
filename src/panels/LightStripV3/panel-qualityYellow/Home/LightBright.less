@@ -1,29 +1,55 @@
 .light-bright {
+  margin-bottom: 24px;
+  padding: 0 8px;
   font-size: 36px;
-  margin: 24px 16px;
+
   .border {
     border: none;
   }
+
   &.off-switch {
     .value-text {
-      color:  @c6;
+      color: #565477;
     }
-    .mark-op-btn{
-      color: @c6;
+
+    .mark-op-btn {
+      color: #565477;
     }
-    .progress{
-      background: @c6 !important;
+
+    // .progress{
+    //   background: #454F65 !important;
+    // }
+  }
+
+  .cus-light-bright {
+    .mark {
+      margin-bottom: 16px;
+      .mark-op-btn {
+        background: transparent;
+      }
+    }
+
+    .border {
+      .slider {
+        height: 8px;
+        border-radius: 16px;
+        background: #fff;
+        border: 1px solid #EFF3F5;
+        .progress {
+          height: 8px;
+          border-radius: 16px;
+
+          .progress-dot {
+            margin: 0;
+            margin-top: -4px;
+            width: 16px;
+            height: 16px;
+            background: #594AE1;
+          }
+        }
+
+      }
     }
   }
-  .mark-op-btn {
-    width: 20px;
-    height: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #ffffff;
-  }
-  .progress {
-    background: @c2 !important;
-  }
+
 }

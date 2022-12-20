@@ -1,34 +1,48 @@
 import React from 'react';
 import { Icon } from '@custom/Icon';
+import { Cell } from '@custom/Cell';
 
 const Action = ({
-  style,
   deviceData: { switch_led },
   history: { PATH, push },
   timer: { isExistTimer },
+  doControlDeviceData,
 }) => {
+  const onSwitchChange = () => {
+    doControlDeviceData({ switch_led: switch_led ? 0 : 1 });
+  };
+
   const isSwitchOff = switch_led !== 1;
   const actionCls = isSwitchOff ? 'action-off' : '';
 
   const actions = [
+    // [
+    //   '总控开关',
+    //   isSwitchOff ? '关闭' : '开启',
+    //   onSwitchChange,
+    //   !!switch_led,
+    //   'switch'
+    // ],
     [
-      '定时',
+      '定时器',
       isSwitchOff ? 'timing' : 'timing-checked',
       push.bind(null, PATH.TIMER_COUNTDOWN, { isModule: true }),
       isExistTimer,
+      ''
     ],
   ];
   return (
-    <div className={`action ${actionCls} ${style}`}>
-      {actions.map(([label, name, onClick, isChecked], index) => (
+    <div className={`action action-off`}>
+      {actions.map(([label, name, onClick, isChecked, ele], index) => (
         <div
           key={name}
-          onClick={onClick}
           className={`action-item  ${isChecked ? 'checked' : ''} action-item-${
             index + 1
           }`}
+          onClick={onClick}
         >
           <div className={`action-ele action-ele-${index}`}>
+            {/* <div>{label}</div> */}
             <Icon name={name} />
             <div>{label}</div>
           </div>

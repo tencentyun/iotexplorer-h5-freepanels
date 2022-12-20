@@ -1,14 +1,13 @@
 .scene-page {
+  margin-top: 24px;
   margin-bottom: 16px;
-  max-height: 453px;
-  min-height: 302px;
   .scene-tab {
     margin-bottom: 14px;
     display: flex;
     font-weight: 600;
     font-size: 12px;
     line-height: 17px;
-    color: #30414D;
+    color: #FFFFFF;
     .tab-item {
       margin-right: 32px;
     }
@@ -22,17 +21,17 @@
         display: inline-block;
         width: 40px;
         height: 2px;
-        background: #30414D;
+        background: #FFFFFF;
       }
     }
   }
   .scene-content {
-    margin-bottom: 90px;
     padding-top: 16px;
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
-    max-height: 360px;
+    max-height: 406px;
+    min-height: 340px;
     overflow-y: auto;
     .theme-item {
       position: relative;
@@ -64,12 +63,6 @@
           background: #FFFFFF;
         }
       }
-    }
-    .empty {
-      margin-top: 100px;
-      width: 100%;
-      font-weight: 500;
-      text-align: center;
     }
   }
   &.off-scene {
