@@ -3,21 +3,32 @@
 @import url("./LightBright.less");
 @import url('./Scene.less');
 @import url("./Action.less");
+
 .route-home {
   display: inherit !important;
 }
+
 .home {
   display: flex;
   flex-direction: column;
   padding: 24px 20px;
+
   .change-panel {
     min-height: 494px;
   }
-  .cus-dev-detail{
-    top:380px;
-    right:20px;
+
+  .cus-dev-detail {
+    top: 380px;
+    right: 20px;
   }
-  &.scene{
+
+  &.colour {
+    .cus-dev-detail {
+      top: 320px;
+    }
+  }
+
+  &.sence {
     .cus-dev-detail {
       display: none;
     }

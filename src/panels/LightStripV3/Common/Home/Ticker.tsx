@@ -2,17 +2,17 @@ import React from 'react';
 import { Btn } from '@custom/Btn';
 
 const CONFIG = [
-  ['白光', 0, 'white'],
-  ['彩光', 1, 'colour'],
-  ['场景', 2, 'scene'],
+  ['白光', 0, 1],
+  ['彩光', 1, 0],
+  ['场景', 2, 4],
 ];
 
 const Ticker = ({
-  deviceData: { work_mode = 'white', switch_led },
+  deviceData: { colourMode = 1, power_switch },
   doControlDeviceData,
 }) => {
-  const isSwitchOff = switch_led !== 1;
-  const isChecked = (val: number | string) => work_mode === val;
+  const isSwitchOff = power_switch !== 1;
+  const isChecked = (val: number | string) => colourMode === val;
   const cls = isSwitchOff ? 'ticker-off' : '';
   return (
     <div className={`ticker ${cls}`}>
@@ -24,7 +24,7 @@ const Ticker = ({
             type={!isSwitchOff && isChecked(value) ? 'primary' : 'reverse'}
             onClick={() => {
               if (!isSwitchOff) {
-                doControlDeviceData({ work_mode: value });
+                doControlDeviceData({ colourMode: value });
               }
             }}
           >
