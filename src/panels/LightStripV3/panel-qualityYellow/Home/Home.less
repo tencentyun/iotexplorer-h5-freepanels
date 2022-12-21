@@ -16,8 +16,6 @@
   padding: 12px 0 0 0;
   height: calc(100vh - 12px);
 
-
-
   .colorMode {
     height: calc(100% - 50px);
     overflow: hidden;
@@ -35,8 +33,6 @@
           display: flex;
           flex-direction: column;
           padding-left: 22px;
-          align-items: center;
-          justify-content: center;
 
           .switch {
             margin: 32px 0;
@@ -100,15 +96,14 @@
             .progress {
               background: transparent;
             }
-          }
 
-          .color-list-off {
-            .slider {
-              background: #FFF !important;
+            &.color-list-off {
               opacity: 0.3;
-
-              .progress-dot {
-                display: none;
+              .slider {
+                background: #FFF !important;
+                .progress-dot {
+                  display: none;
+                }
               }
             }
           }
@@ -159,8 +154,6 @@
             margin-bottom: 2px;
             position: relative;
 
-            // display: flex;
-            // justify-content: center;
             .value-wrap {
               position: absolute;
               top: -24px;
@@ -203,96 +196,103 @@
           }
         }
       }
+      &.change-panel-off {
+        .right, .bright-list {
+          opacity: 0.8;
+        }
+      }
     }
   }
 
-
-
   .cus-dev-detail {
-    top: 20px;
+    top: 4px;
     right: 20px;
   }
 
-  &.scene {
-    .cus-dev-detail {
-      display: none;
+  &.white {
+    slider {
+      background: linear-gradient(0deg, #ABECD6 0%, #FBED96 100%);
     }
-  }
-}
 
-.white {
-  .colorMode .change-panel .switch-list .left .color-list .slider {
-    background: linear-gradient(0deg, #ABECD6 0%, #FBED96 100%);
-  }
-}
-
-.colour {
-  .colorMode {
-    .change-panel {
-      .switch-list {
-        height: calc(100% - 157px);
-
-        .left {
-          .color-list {
-            .slider {
-              background: linear-gradient(0deg, #2F00FF 2.55%, #03F7F9 16.79%, #32FB1D 32.04%, #A0EF07 43.48%, #EECD0C 59.13%, #F90219 74.36%, #E500F0 87.84%);
-            }
-
+    .colorMode {
+      .change-panel {
+        .switch-list {
+          .left {
+            align-items: center;
           }
         }
       }
-
-      .bright-list {
-        margin-bottom: 38px;
-      }
-    }
-  }
-}
-
-.scene {
-  .colorMode {
-    .scene-page {
-      margin: 0;
-      background: #fff;
-      border-radius: 40px 40px 0 0;
-      padding: 70px 24px 0 24px;
     }
 
-    .scene-switch {
-      margin: 32px 0 32px 22px;
-
-      .custom-switch {
-        width: 80px;
-        height: 40px;
-
-        .adm-switch-checkbox,
-        .adm-switch-checkbox:before {
-          height: 40px !important;
-          background: #F2F2F2 !important;
-        }
-
-        .adm-switch-handle {
-          margin-top: 2px;
-          margin-left: 2px;
-          width: 32px !important;
-          height: 32px !important;
-          background: #FFFFFF;
-        }
-      }
-
-      .adm-switch-checked {
-        .adm-switch-handle {
-          left: 40px !important;
-          width: 32px !important;
-          height: 32px !important;
-          background: #F2A56B !important;
-        }
-      }
-    }
   }
 
-  .action {
-    border-radius: 0 !important;
-    padding-top: 0 !important;
+  &.colour {
+    .bright-list {
+      margin-bottom: 38px;
+    }
+
+    .switch-list {
+      height: calc(100% - 145px) !important;
+
+      .left {
+        .react-colorful {
+          width: 150px;
+          height: 150px;
+        }
+      }
+    }
+
+  }
+
+  &.sence {
+    .cus-dev-detail {
+      display: none;
+    }
+
+    .colorMode {
+      .scene-page {
+        margin: 0;
+        background: #f2f2f2;;
+        border-radius: 40px 40px 0 0;
+        padding: 28px 24px 0 24px;
+      }
+
+      .scene-switch {
+        margin: 32px 0 32px 22px;
+
+        .custom-switch {
+          width: 80px;
+          height: 40px;
+
+          .adm-switch-checkbox,
+          .adm-switch-checkbox:before {
+            height: 40px !important;
+            background: #F2F2F2 !important;
+          }
+
+          .adm-switch-handle {
+            margin-top: 2px;
+            margin-left: 2px;
+            width: 32px !important;
+            height: 32px !important;
+            background: #FFFFFF;
+          }
+        }
+
+        .adm-switch-checked {
+          .adm-switch-handle {
+            left: 40px !important;
+            width: 32px !important;
+            height: 32px !important;
+            background: #F2A56B !important;
+          }
+        }
+      }
+    }
+
+    .action {
+      border-radius: 0 !important;
+      padding-top: 0 !important;
+    }
   }
 }

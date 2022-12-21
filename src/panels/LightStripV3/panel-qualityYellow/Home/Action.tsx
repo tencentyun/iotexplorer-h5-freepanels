@@ -5,17 +5,17 @@ import { CountDown } from '../../Common/CountDown';
 
 const Action = (props) => {
   const {
-    deviceData: { switch_led, count_down },
+    deviceData: { power_switch, count_down },
     history: { PATH, push },
     timer: { isExistTimer },
     doControlDeviceData,
   } = { ...props }
   const onSwitchChange = () => {
-    doControlDeviceData({ switch_led: switch_led ? 0 : 1 });
+    doControlDeviceData({ power_switch: power_switch ? 0 : 1 });
   };
 
   const countRef = useRef(null);
-  const isSwitchOff = switch_led !== 1;
+  const isSwitchOff = power_switch !== 1;
   const actionCls = isSwitchOff ? 'action-off' : '';
 
   const actions = [
@@ -29,7 +29,7 @@ const Action = (props) => {
     [
       '定时器',
       isSwitchOff ? 'timing' : 'timing-checked',
-      !!count_down ? push.bind(null, PATH.TIMER_COUNTDOWNPAGE, { value: count_down }) : () => { countRef.current.onOpen() },
+      !isSwitchOff && (!!count_down ? push.bind(null, PATH.TIMER_COUNTDOWNPAGE, { value: count_down }) : () => { countRef.current.onOpen() }),
       isExistTimer,
       ''
     ],
@@ -48,7 +48,7 @@ const Action = (props) => {
 
   return (
     <>
-      <div className={`action action-off ${count_down ? 'count-down': ''}`}>
+      <div className={`action ${actionCls} ${count_down ? 'count-down': ''}`}>
         {count_down ? <div className="count-down-module">
           <div className="title">重置</div>
           <div className="time">

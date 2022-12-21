@@ -13,30 +13,32 @@
   flex-direction: column;
   padding: 12px 20px 76px 20px;
 
-  .switch-btn {
-    width: 260px;
-    height: 260px;
-    background: #FFFFFF;
-    box-shadow: 0px 0px 20px rgba(162, 157, 217, 0.5);
-    border-radius: 100%;
-    margin: 32px auto 40px auto;
-    display: flex;
-    align-items: center;
-    justify-content: center;
 
-    .icon {
-      width: 86px;
-      height: 92px;
-
-      .svg-icon-normal {
-        width: 100%;
-        height: 100%;
-      }
-    }
-  }
 
   .change-panel {
     min-height: 494px;
+
+    .switch-btn {
+      width: 260px;
+      height: 260px;
+      background: #FFFFFF;
+      box-shadow: 0px 0px 20px rgba(162, 157, 217, 0.5);
+      border-radius: 100%;
+      margin: 32px auto 40px auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      .icon {
+        width: 86px;
+        height: 92px;
+
+        .svg-icon-normal {
+          width: 100%;
+          height: 100%;
+        }
+      }
+    }
 
     .color-list {
       margin-bottom: 28px;
@@ -62,27 +64,32 @@
       .progress {
         background: transparent;
       }
-    }
 
-    .color-list-off {
-      .slider {
-        background: #F6F4FC !important;
-
-        .progress-dot {
-          background: #fff !important;
+      &.white {
+        .slider {
+          background: linear-gradient(270deg, #ABECD6 0%, #FBED96 100%);
         }
       }
-    }
 
-    .white {
-      .slider {
-        background: linear-gradient(270deg, #ABECD6 0%, #FBED96 100%);
+      &.colour {
+        .react-colorful {
+          margin: 0 auto;
+          margin-top: 20px;
+        }
+        .slider {
+          background: linear-gradient(270deg, #2F00FF 2.55%, #03F7F9 16.79%, #32FB1D 32.04%, #A0EF07 43.48%, #EECD0C 59.13%, #F90219 74.36%, #E500F0 87.84%);
+        }
       }
-    }
 
-    .colour {
-      .slider {
-        background: linear-gradient(270deg, #2F00FF 2.55%, #03F7F9 16.79%, #32FB1D 32.04%, #A0EF07 43.48%, #EECD0C 59.13%, #F90219 74.36%, #E500F0 87.84%);
+      &.color-list-off {
+        opacity: 0.5;
+        .slider {
+          background: #F6F4FC !important;
+
+          .progress-dot {
+            background: #fff !important;
+          }
+        }
       }
     }
 
@@ -101,6 +108,24 @@
   &.scene {
     .cus-dev-detail {
       display: none;
+    }
+  }
+
+  &.colour {
+    .switch-btn {
+      width: unset;
+      height: unset;
+      background: transparent;
+      box-shadow: unset;
+      border-radius: 0;
+      margin: 0;
+      display: flex;
+      justify-content: flex-end;
+
+      .icon {
+        width: 30px;
+        height: 30px;
+      }
     }
   }
 }
