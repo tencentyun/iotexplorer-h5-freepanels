@@ -1035,6 +1035,21 @@ module.exports = {
     ],
   },
 
+  SwitchThreeV3: {
+    name: "三路开关",
+    categoryKey: "SwitchThreeV3",
+    enable: true,
+    viewportWidth: 375,
+    panels: [
+      ["panel-qualityDark", { enable: true, entry: "app.tsx" }],
+      ["panel-qualityWhite", { enable: true, entry: "app.tsx" }],
+      ["panel-qualityBlue", { enable: true, entry: "app.tsx" }],
+      ["panel-qualityPurple", { enable: true, entry: "app.tsx" }],
+      ["panel-qualityYellow", { enable: true, entry: "app.tsx" }],
+    ],
+  },
+  
+
   LightStripV3: {
     categoryKey: "LightStripV3",
     name: "RGB灯带",

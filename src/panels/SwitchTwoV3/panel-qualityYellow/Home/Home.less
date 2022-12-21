@@ -58,6 +58,7 @@
         }
       }
     }
+
     .adm-tabs-content {
       padding: 0;
       height: unset;
@@ -71,23 +72,81 @@
     height: 142px;
   }
 
+  
   .switch-2 {
-    display: flex;
-    padding: 50px 25px 23px 25px;
-    justify-content: space-between;
+    height: 142px;
 
     .light-switch {
-      width: 160px;
+      .switch-cus-count {
+        display: none;
+      }
+
+      &.is-checked {
+        .switch-cus-count {
+          display: flex;
+          align-items: center;
+          justify-content: flex-start;
+          /* width: 100%; */
+          margin-top: -70px;
+          margin-left: -153px;
+          font-weight: 400;
+          font-size: 14px;
+          margin-bottom: 25px;
+          color: white;
+
+
+          >div {
+            display: flex;
+
+            justify-content: center;
+            align-items: center;
+          }
+        }
+      }
     }
   }
+
 
   .switch-3 {
-    display: flex;
-    padding: 50px 18px 23px 18px;
-    justify-content: space-between;
+    height: 142px;
 
     .light-switch {
-      width: 110px;
+      .switch-cus-count {
+        display: none;
+      }
+
+      &.is-checked {
+        .switch-cus-count {
+          display: flex;
+          align-items: center;
+          justify-content: flex-start;
+          /* width: 100%; */
+          margin-top: -70px;
+          margin-left: -153px;
+          font-weight: 400;
+          font-size: 14px;
+          margin-bottom: 25px;
+          color: white;
+
+
+          >div {
+            display: flex;
+
+            justify-content: center;
+            align-items: center;
+          }
+        }
+      }
     }
   }
+
+  .switch-3-tab {
+
+    .adm-tabs-tab-list {
+      &::after {
+        content: none !important;
+      }
+    }
+  }
+
 }

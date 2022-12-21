@@ -25,11 +25,29 @@
 
   .switch-3 {
     display: flex;
-    padding: 50px 18px 23px 18px;
+    padding: 109px 18px 58px 18px;
     justify-content: space-between;
 
     .light-switch {
       width: 110px;
+      height: 278px;
+      border-radius: 0;
+      &:first-child{
+        border-radius: 16px 0  0 16px;
+      }
+      &:last-child{
+        border-radius: 0 16px 16px 0  ;
+      }
+
+      .content {
+        .wrapper {
+          height: 278px;
+
+          .switch-cus-count {
+            opacity: 0.7;
+          }
+        }
+      }
     }
   }
 }

@@ -33,12 +33,34 @@ export function Home(props) {
     setContext({ switchNum });
     // setCurrentName(deviceData['name_button1'])
   }, []);
+
+  const Label = ({ name }) => {
+    let time = deviceData?.[name];
+    if (time) {
+      const hour = `${Math.floor(time / 3600)}`;
+      const minute = `${Math.floor((time % 3600) / 60)}`;
+      return <div>
+        <div>
+          <span>{hour}</span>
+          h
+          <span>{minute}</span>
+          min
+        </div>
+        <div>
+          后关闭
+        </div>
+      </div>
+    }
+    return null;
+  }
+
+
   return (
     <div className="home">
-      <Tabs className="custom-tabs">
+      <Tabs className={`custom-tabs + switch-${switchNum}-tab` }>
         {currentSwitch.map(([value, text], index) => {
           return (<Tabs.Tab title={deviceData[value.replace('switch_', 'name_button')] || text} key={index}>
-            <div className={`dashboard switch-1`}>
+            <div className={`dashboard switch-${switchNum}`}>
               {/* {currentSwitch.map(([key, name], index) => (
                 <LightSwitch
                   key={key}
@@ -50,7 +72,9 @@ export function Home(props) {
               ))} */}
               <LightSwitch
                 key={value}
+                hasCount={true}
                 name={text}
+                count={<Label name={'count_down' + (index + 1)}></Label>}
                 value={!!deviceData[value] || !!deviceData['power_switch']}
                 className={`light-switch-${index + 1}`}
                 onChange={onChange.bind(null, value)}
