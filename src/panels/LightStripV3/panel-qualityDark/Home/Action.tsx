@@ -5,18 +5,18 @@ import { CountDown } from '../../Common/CountDown';
 
 const Action = (props) => {
   const {
-    deviceData: { switch_led, count_down },
+    deviceData: { power_switch, count_down },
     history: { PATH, push },
     timer: { isExistTimer },
     doControlDeviceData,
   } = { ...props };
   const onSwitchChange = () => {
-    doControlDeviceData({ switch_led: switch_led ? 0 : 1 });
+    doControlDeviceData({ power_switch: power_switch ? 0 : 1 });
   };
 
   const countRef = useRef(null);
 
-  const isSwitchOff = switch_led !== 1;
+  const isSwitchOff = power_switch !== 1;
   const actionCls = isSwitchOff ? 'action-off' : '';
 
   const actions = [
@@ -24,7 +24,7 @@ const Action = (props) => {
       '总控开关',
       isSwitchOff ? '关闭' : '开启',
       onSwitchChange,
-      !!switch_led,
+      !!power_switch,
       'switch'
     ],
     [
@@ -37,7 +37,7 @@ const Action = (props) => {
   ];
   return (
     <>
-      <div className={`action action-off`}>
+      <div className={`action ${actionCls}`}>
         {actions.map(([label, name, onClick, isChecked, ele], index) => (
           <div
             key={name}

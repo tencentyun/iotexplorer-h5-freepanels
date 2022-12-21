@@ -8,33 +8,34 @@ import { DeviceDetail } from '@custom/DeviceDetail';
 
 export function Home(props) {
   // tab模式
-  const colorMode = props.deviceData.work_mode || 'white';
+  const colorMode = props.deviceData.colourMode === 0 ? 0 : props.deviceData.colourMode;    // 0 彩色  1 白光  4 场景
+  console.log(colorMode);
   return (
     <div className={`home ${colorMode}`}>
       <DeviceDetail></DeviceDetail>
       <Ticker {...props} />
       <div>
-        { colorMode !== 'scene'
+        { colorMode !== 4
           ? <div className="change-panel">
             <Position {...props}></Position>
-            { colorMode === 'white'
+            { colorMode === 1
               ? <LightBright
                   iconName="brightness"
-                  controlName="bright_value"
+                  controlName="brightness"
                   {...props}
                 ></LightBright>
               : null
             }
-            { colorMode === 'colour'
+            { colorMode === 0
               ? <>
                   <LightBright
                     iconName="temperature"
-                    controlName="temp_value"
+                    controlName="color_temp"
                     {...props}
                   ></LightBright>
                   <LightBright
                     iconName="brightness"
-                    controlName="bright_value"
+                    controlName="brightness"
                     {...props}
                   ></LightBright>
                 </>

@@ -6,35 +6,44 @@ import Ticker from '../../Common/Home/Ticker';
 import Action from './Action';
 import { DeviceDetail } from '@custom/DeviceDetail';
 
+const classList = {
+  0: 'colour',
+  1: 'white',
+  4: 'sence'
+};
+
 export function Home(props) {
   // tab模式
-  const colorMode = props.deviceData.work_mode || 'white';
+  const colorMode = props.deviceData.colourMode === undefined ? 1 : props.deviceData.colourMode;    // 0 彩色  1 白光  4 场景
   return (
-    <div className={`home ${colorMode}`}>
+    <div className={`home ${classList[colorMode]}`}>
       <DeviceDetail></DeviceDetail>
       <Ticker {...props} />
       <div>
-        { colorMode !== 'scene'
+        { colorMode !== 4
           ? <div className="change-panel">
             <Position {...props}></Position>
-            { colorMode === 'white'
+            { colorMode === 1
               ? <LightBright
                   iconName="brightness"
-                  controlName="bright_value"
+                  controlName="brightness"
                   {...props}
                 ></LightBright>
               : null
             }
-            { colorMode === 'colour'
+            { colorMode === 0
               ? <>
                   <LightBright
                     iconName="temperature"
-                    controlName="temp_value"
+                    controlName="color_temp"
                     {...props}
+                    minValue={2700}
+                    maxValue={6000}
+                    defaultValue={2700}
                   ></LightBright>
                   <LightBright
                     iconName="brightness"
-                    controlName="bright_value"
+                    controlName="brightness"
                     {...props}
                   ></LightBright>
                 </>

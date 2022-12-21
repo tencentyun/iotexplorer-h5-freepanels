@@ -5,20 +5,19 @@ import { Modal } from '@custom/Modal';
 import { Btn as Button, BtnGroup } from '@custom/Btn';
 import { CountDown } from '../../Common/CountDown';
 
-
 const Action = (props) => {
   const {
-    deviceData: { switch_led, count_down, work_mode = 'white' },
+    deviceData: { power_switch, count_down, colourMode = 1 },
     history: { PATH, push },
     timer: { isExistTimer },
     doControlDeviceData,
   } = { ...props };
   const onSwitchChange = () => {
-    doControlDeviceData({ switch_led: switch_led ? 0 : 1 });
+    doControlDeviceData({ power_switch: power_switch ? 0 : 1 });
   };
 
   const countRef = useRef(null);
-  const isSwitchOff = switch_led !== 1;
+  const isSwitchOff = power_switch !== 1;
   const actionCls = isSwitchOff ? 'action-off' : '';
 
   const [modeVisible, setModeVisible] = useState(false);
@@ -28,20 +27,20 @@ const Action = (props) => {
     [
       '定时',
       isSwitchOff ? 'timing' : 'timing-checked',
-      !!count_down ? push.bind(null, PATH.TIMER_COUNTDOWNPAGE, { value: count_down }) : () => { countRef.current.onOpen() },
+      !isSwitchOff && (!!count_down ? push.bind(null, PATH.TIMER_COUNTDOWNPAGE, { value: count_down }) : () => { countRef.current.onOpen() }),
       isExistTimer,
     ],
     [
       '开关',
-      switch_led ? 'switch-checked' : 'switch',
+      power_switch ? 'switch-checked' : 'switch',
       onSwitchChange,
-      !!switch_led,
+      !!power_switch,
     ],
     [
       '模式选择',
-      switch_led ? 'mode-checked' : 'mode',
-      () => { setModeVisible(true) },
-      !!switch_led
+      power_switch ? 'mode-checked' : 'mode',
+      !isSwitchOff && (() => { setModeVisible(true) }),
+      !!power_switch
     ]
     // [
     //   '定时',
@@ -51,9 +50,9 @@ const Action = (props) => {
     // ],
   ];
   const modeList = [
-    ['白光', 0, 'white'],
-    ['彩光', 1, 'colour'],
-    ['场景', 2, 'scene'],
+    ['白光', 0, 1],
+    ['彩光', 1, 0],
+    ['场景', 2, 4],
   ];
 
   const onRadioClick = (value) => {
@@ -65,7 +64,7 @@ const Action = (props) => {
 
   return (
     <>
-      <div className={`action action-off`}>
+      <div className={`action ${actionCls}`}>
         {actions.map(([label, name, onClick, isChecked], index) => (
           <div
             key={index}
@@ -116,11 +115,11 @@ const Action = (props) => {
                 onClick={() => {
                   setModeVisible(false);
                   modeList.forEach(([name, index, value]) => {
-                    if (value === work_mode) {
+                    if (value === colourMode) {
                       setSelected(index)
                     }
                   })
-                  doControlDeviceData({ work_mode: work_mode });
+                  doControlDeviceData({ colourMode });
                 }}
               >
                 取消
@@ -133,7 +132,7 @@ const Action = (props) => {
                   //   doControlDeviceData({ work_mode: modeList[selected][2] });
                   // }
                   setModeVisible(false);
-                  doControlDeviceData({ work_mode: modeList[selected][2] });
+                  doControlDeviceData({ colourMode: modeList[selected][2] });
                 }}
               >
                 确定

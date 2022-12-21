@@ -2,24 +2,24 @@ import React from 'react';
 import { Icon } from '@custom/Icon';
 
 const Action = ({
-  deviceData: { switch_led },
+  deviceData: { power_switch },
   history: { PATH, push },
   timer: { isExistTimer },
   doControlDeviceData,
 }) => {
   const onSwitchChange = () => {
-    doControlDeviceData({ switch_led: switch_led ? 0 : 1 });
+    doControlDeviceData({ power_switch: power_switch ? 0 : 1 });
   };
 
-  const isSwitchOff = switch_led !== 1;
+  const isSwitchOff = power_switch !== 1;
   const actionCls = isSwitchOff ? 'action-off' : '';
 
   const actions = [
     [
       '开关',
-      switch_led ? 'switch-checked' : 'switch',
+      power_switch ? 'switch-checked' : 'switch',
       onSwitchChange,
-      !!switch_led,
+      !!power_switch,
     ],
     [
       '定时',

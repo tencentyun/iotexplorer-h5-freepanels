@@ -5,29 +5,36 @@ import { Icon } from '@src/components/custom/Icon';
 const THEME = [
   [],
   [
-    { id: '1', name: '海洋', value: 'ocean', isLike: true },
-    { id: '2', name: '向日葵', value: 'sunflower', isLike: true },
-    { id: '3', name: '森林', value: 'forest', isLike: false },
-    { id: '49', name: '草原', value: 'sky', isLike: false },
-    { id: '5', name: '炫彩', value: 'colorful', isLike: false },
+    { id: 0, name: '会客模式', value: 'ocean', isLike: false },
+    { id: 1, name: '休闲模式', value: 'relaxation', isLike: false },
+    { id: 2, name: '观影模式', value: 'forest', isLike: false },
+    { id: 3, name: '用餐模式', value: 'sky', isLike: false },
+    { id: 4, name: '变幻模式', value: 'colorful', isLike: false },
+    { id: 5, name: '浪漫模式', value: 'riotous', isLike: false },
+    { id: 6, name: '工作模式', value: 'job', isLike: false },
+    { id: 7, name: '睡眠模式', value: 'night', isLike: false },
+    { id: 8, name: '阅读模式', value: 'reading', isLike: false },
+    { id: 9, name: '清扫模式', value: 'multicolored', isLike: false },
+    { id: 10, name: '智能感光模式', value: 'cozy', isLike: false },
+
   ],
 ];
 
 export function ScenePage({
-  deviceData: { switch_led, scene_data },
+  deviceData: { power_switch, scene_data },
   doControlDeviceData,
 }) {
   // tab切换
   const [tabValue] = useState(1);
   // 主题数据
   const [themeList] = useState(THEME);
-  const favoriteHandle = (id: string) => {
+  const favoriteHandle = (id: number) => {
     doControlDeviceData('scene_data', id);
   };
 
   return (
     <div
-      className={classNames('scene-page', switch_led !== 1 ? 'off-scene' : '')}
+      className={classNames('scene-page', power_switch !== 1 ? 'off-scene' : '')}
     >
       <div className="scene-content">
         {themeList[tabValue].map(({ id, name, value }) => {
