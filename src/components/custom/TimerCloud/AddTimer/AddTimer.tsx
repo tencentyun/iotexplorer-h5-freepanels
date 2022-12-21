@@ -18,7 +18,6 @@ const AddTimer = ({
   isModuleTimer = false
 }) => {
 
-  console.log("接受到的高度", timerHeight);
   useTitle('添加定时');
   const [visible, setVisible] = useState(false);
   const [timerVisible, setTimerVisible] = useState(false);

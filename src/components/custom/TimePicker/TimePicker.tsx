@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState, useRef, ReactNode } from 'react';
 import classNames from 'classnames';
 import { Popup } from '@custom/Popup';
 import { Switch } from '@custom/Switch';
@@ -32,6 +32,7 @@ export interface TimePickerProps extends StyledProps {
   itemHeight?: number;
   height?: number;
   isSecond?: boolean;
+  customNode?: ReactNode;
 }
 
 const Container = ({ children, className, isModal, modalTitle, ...props }) => {
@@ -95,6 +96,7 @@ export function TimePicker(props: TimePickerProps) {
     isTimeRange,
     onSwitchChange,
     isSecond,
+    customNode = null, // 自定义元素
   } = props;
   const getDefaultValue = value => (value.length ? value : defaultValue);
   const [pickerValue, setPickerValue] = useState(getDefaultValue(value));
@@ -128,7 +130,7 @@ export function TimePicker(props: TimePickerProps) {
     onChange && onChange(val);
   };
 
-  if(!visible) return null;
+  if (!visible) return null;
   return (
     <div ref={ref} id="current-time">
       <Com
@@ -144,9 +146,10 @@ export function TimePicker(props: TimePickerProps) {
         destroyOnClose={true}
         maskClassName="time-picker-popup-mask"
       >
-        
+
         {title ? <div className="picker-header center">{title}</div> : null}
         {showTime ? <div className="picker-show-time">{formatValue.join(':')}</div> : null}
+        {customNode ? customNode : null}
         <div className="picker-body">
           <TimePickerView
             value={formatValue}

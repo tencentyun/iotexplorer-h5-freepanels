@@ -1,9 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { LightSwitch } from './LightSwitch';
 import { Detail } from './Detail';
-import { Modal } from '@custom/Modal';
-import { Icon } from '@custom/Icon';
-import { Btn as Button, BtnGroup } from '@custom/Btn';
 
 
 const allSwitch = [
@@ -23,6 +20,7 @@ const allMode = [
 
 const getSwitchNum = (templateMap = {}) => Object.keys(templateMap).filter(v => /^switch/.test(v)).length || 1;
 
+
 export function Home(props) {
   const { doControlDeviceData, templateMap, setContext, deviceData = {} } = props;
   const switchNum = getSwitchNum(templateMap);
@@ -32,6 +30,28 @@ export function Home(props) {
   useEffect(() => {
     setContext({ switchNum });
   }, []);
+
+  const Label = ({ name }) => {
+    let time = deviceData?.[name];
+    if (time) {
+      const hour = `${Math.floor(time / 3600)}`;
+      const minute = `${Math.floor((time % 3600) / 60)}`;
+      return <div>
+        <div>
+          <span>{hour}</span>
+          h
+          <span>{minute}</span>
+          min
+        </div>
+        <div>
+          后关闭
+        </div>
+      </div>
+    }
+    return null;
+  }
+
+
   return (
     <div className="home">
       <div className={`dashboard switch-${switchNum}`}>
@@ -44,7 +64,9 @@ export function Home(props) {
           {currentSwitch.map(([key, name], index) => (
             <LightSwitch
               key={key}
+              hasCount={true}
               name={name}
+              count={<Label name={'count_down' + (index + 1)}></Label>}
               value={!!deviceData[key]}
               className={`light-switch-${index + 1}`}
               onChange={onChange.bind(null, key)}

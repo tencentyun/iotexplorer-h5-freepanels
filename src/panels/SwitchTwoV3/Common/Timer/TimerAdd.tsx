@@ -6,12 +6,30 @@ import { Switch } from '@custom/Switch';
 
 
 
+
 export const TimerAdd = (props) => {
   const {
-    context: { power_switch = 0, switchNum = 4 },
+    // context: { power_switch = 0, switchNum = 4 },
+    context: { switchNum = 4 },
     setContext,
+    deviceData
   } = props;
-  let labelName = switchNum == 1 ? '开关' : '总开关';
+
+  const OPTIONS = [
+    { label: deviceData['power_switch'] || '总开关', value: 'power_switch' },
+    { label: deviceData['name_button1'] || '开关一', value: 'switch_1' },
+    { label: deviceData['name_button2'] || '开关二', value: 'switch_2' },
+    { label: deviceData['name_button3'] || '开关三', value: 'switch_3' },
+    { label: deviceData['name_button4'] || '开关四', value: 'switch_4' },
+    { label: deviceData['name_button5'] || '开关五', value: 'switch_5' },
+  ]
+
+  // 开关选择
+  let [powerSwitch, setPowerSwitch] = useState(['power_switch']);
+  // 开启或者关闭
+  let [enable, setEnable] = useState(0);
+  const options = OPTIONS.slice(0, switchNum + 1)
+  let labelName = OPTIONS.filter(({ value }) => powerSwitch[0] === value).map(item => item.label)?.[0];
 
   const labelEnum = {
     power_switch: {
@@ -21,52 +39,75 @@ export const TimerAdd = (props) => {
   };
 
   const [visible, setVisible] = useState(false);
-  const getSwitchNumData = (powerSwitch, num) => {
-    const value = 5 * powerSwitch;
-    const changeData = { power_switch: powerSwitch };
-    for (let i = 0; i < num; i++) {
-      changeData[`switch_${i + 1}`] = value;
-    }
-    return changeData;
-  };
 
-  const onAllSwitchChange = (powerSwitch) => {
-    const data = getSwitchNumData(1 * powerSwitch, switchNum);
-    setContext(data);
+  // 根据对应的选择字段值 和启用经用 设置对应的定时值
+  const getSwitchNumData = (switchValue, enableValue) => {
+    let switchFiled = switchValue === void 0 ? powerSwitch : switchValue;
+    let enableStatus = enableValue === void 0 ? enable : enableValue;
+    return { [switchFiled]: enableStatus };
+  }
+
+
+  // const getSwitchNumData = (powerSwitch, num) => {
+  //   const value = 5 * powerSwitch;
+  //   const changeData = { power_switch: powerSwitch };
+  //   for (let i = 0; i < num; i++) {
+  //     changeData[`switch_${i + 1}`] = value;
+  //   }
+  //   return changeData;
+  // };
+
+  const clone = v => JSON.parse(JSON.stringify(v));
+
+  const onAllSwitchChange = (powerSwitch, enable) => {
+    const data = getSwitchNumData(powerSwitch, enable);
+    let newContent = clone(props.context);
+    // 栓除原有的数据
+    OPTIONS.forEach(({ value }) => delete newContent[value])
+    setContext({ ...newContent, ...data }, false);
   };
 
   return (
     <>
       <CloudTimerAdd labelEnum={labelEnum} {...props}>
+
+        <List.Item
+          // className="no-arrow"
+          prefix={"按键"}
+          extra={labelName}
+          onClick={() => {
+            // push(PATH.TIMER_ACTION_SWITCH)
+            setVisible(true);
+          }}
+        />
         <List.Item
           className="no-arrow"
-          prefix={labelName}
+          prefix={'开关'}
           extra={<Switch
             className="reverse"
-            checked={power_switch}
+            checked={!!enable}
             onChange={val => {
-              onAllSwitchChange(val ? 1 : 0)
+              onAllSwitchChange(undefined, val ? 1 : 0)
+              setEnable(val ? 1 : 0);
             }}
           />}
           onClick={() => {
-
             // // push(PATH.TIMER_ACTION_SWITCH)
             // setVisible(true);
           }}
         />
       </CloudTimerAdd>
+      {/* // 开关选择 */}
       <OptionDialog
-        title={labelName}
+        title={"开关"}
         visible={visible}
-        value={[power_switch]}
+        value={powerSwitch}
         onCancel={() => setVisible(false)}
-        onConfirm={(val) => {
-          onAllSwitchChange(val?.[0] * 1);
+        onConfirm={(powerSwitch) => {
+          setPowerSwitch(powerSwitch)
+          onAllSwitchChange(powerSwitch, undefined);
         }}
-        options={[
-          { label: '开启', value: 1 },
-          { label: '关闭', value: 0 },
-        ]}
+        options={options}
       ></OptionDialog>
     </>
   );

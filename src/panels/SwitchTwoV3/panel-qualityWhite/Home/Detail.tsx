@@ -6,6 +6,13 @@ import { Modal } from '@custom/Modal';
 import { Btn as Button, BtnGroup } from '@custom/Btn';
 import { Dropdown } from '@custom/DropDown';
 import { DropdownRef } from 'antd-mobile/es/components/dropdown'
+const ALL_COUNT = [
+  ['count_down1', '开关一'],
+  ['count_down2', '开关二'],
+  ['count_down3', '开关三'],
+  ['count_down4', '开关四'],
+  ['count_down5', '开关五']
+]
 
 export const Detail = ({
   deviceData,
@@ -21,8 +28,9 @@ export const Detail = ({
   const SWITCH = { OPEN: 1, CLOSE: 0 };
   const getStatusData = status => currentSwitch.filter(([key]) => deviceData[key] !== status);
   const [isChecked, setChecked] = useState(false);
+  const [checkedSwitch, setCheckedSwitch] = useState(ALL_COUNT[0][0])
   const isAll = status => !getStatusData(status).length;
-  const isAllOpen = isAll(SWITCH.OPEN);
+  // const isAllOpen = isAll(SWITCH.OPEN);
   const isAllClose = isAll(SWITCH.CLOSE);
   const getSwitchData = (status) => {
     const res = {};
@@ -52,39 +60,58 @@ export const Detail = ({
 
   const isOneSwitch = switchNum === 1;
 
+  // const getCountdownTime = () => {
+  //   if (isAllClose) return [];
+  //   let res = [] as string[];
+  //   currentSwitch.forEach(([key]) => {
+  //     if (deviceData[key] === SWITCH.OPEN) {
+  //       const countdownKey = key.replace('switch', 'count_down');
+  //       const time = deviceData[countdownKey];
+  //       if (time) {
+  //         const hour = `${Math.floor(time / 3600)}`;
+  //         const minute = `${Math.floor((time % 3600) / 60)}`;
+  //         res = [hour, minute];
+  //       }
+  //     }
+  //   });
+  //   return res;
+  // };
+
   const getCountdownTime = () => {
-    if (isAllClose) return [];
+
     let res = [] as string[];
-    currentSwitch.forEach(([key]) => {
-      if (deviceData[key] === SWITCH.OPEN) {
-        const countdownKey = key.replace('switch', 'count_down');
-        const time = deviceData[countdownKey];
-        if (time) {
-          const hour = `${Math.floor(time / 3600)}`;
-          const minute = `${Math.floor((time % 3600) / 60)}`;
-          res = [hour, minute];
-        }
-      }
-    });
+    const time = deviceData[checkedSwitch];
+    if (time) {
+      const hour = `${Math.floor(time / 3600)}`;
+      const minute = `${Math.floor((time % 3600) / 60)}`;
+      res = [hour, minute];
+    }
     return res;
   };
+
 
   // 开启状态 并且存在倒计时记录
   const countdownTime = getCountdownTime();
   const onClick = () => doControlDeviceData(getSwitchData(SWITCH.OPEN));
   const offClick = () => doControlDeviceData(getSwitchData(SWITCH.CLOSE));
 
-  const submitCountDown = ([hour, minute], isChecked) => {
+  // const submitCountDown = ([hour, minute], isChecked) => {
+  //   setVisible(false);
+  //   setChecked(isChecked);
+  //   const times = hour * 3600 + minute * 60;
+  //   const openSwitch = getStatusData(SWITCH.CLOSE);
+  //   if (!openSwitch.length) return;
+  //   const countDownData = {};
+  //   openSwitch.forEach(([key]) => {
+  //     countDownData[key.replace('switch', 'count_down')] = times;
+  //   });
+  //   doControlDeviceData(countDownData);
+  // };
+
+  const submitCountDown = ([hour, minute]) => {
     setVisible(false);
-    setChecked(isChecked);
     const times = hour * 3600 + minute * 60;
-    const openSwitch = getStatusData(SWITCH.CLOSE);
-    if (!openSwitch.length) return;
-    const countDownData = {};
-    openSwitch.forEach(([key]) => {
-      countDownData[key.replace('switch', 'count_down')] = times;
-    });
-    doControlDeviceData(countDownData);
+    doControlDeviceData({ [checkedSwitch]: times });
   };
 
   const actions = [
@@ -126,6 +153,15 @@ export const Detail = ({
     setModeCache(initData);
   }, [currentMode])
 
+  
+  let counts = ALL_COUNT.slice(0, switchNum)
+  const CustomNode = () => {
+    return (<div className='custom-switch'>
+      {
+        counts.map(([name, label]) => <div className={checkedSwitch === name ? 'checked' : ''} onClick={setCheckedSwitch.bind(null, name)}>{label}</div>)
+      }
+    </div>)
+  }
   return (
     <div className={`detail action action-${switchNum}`}>
       <div className="operator">
@@ -186,6 +222,7 @@ export const Detail = ({
         onConfirm={submitCountDown}
         confirmText="确认"
         visible={visible}
+        customNode={<CustomNode />}
       // visible={true}
       />
       <div className='custom-modal'>

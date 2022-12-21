@@ -46,7 +46,7 @@ export const Detail = ({
 
   const [modeVisible, setModeVisible] = useState(false);
   const [radioData, setRadioData] = useState(0);
-
+ 
 
   useEffect(() => {
     setCurrentName(deviceData[btnName] || currentSwitch[currentIndex][1]);
@@ -57,39 +57,58 @@ export const Detail = ({
 
   const isOneSwitch = switchNum === 1;
 
+  // const getCountdownTime = () => {
+  //   if (isAllClose) return [];
+  //   let res = [] as string[];
+  //   currentSwitch.forEach(([key]) => {
+  //     if (deviceData[key] === SWITCH.OPEN) {
+  //       const countdownKey = key.replace('switch', 'count_down');
+  //       const time = deviceData[countdownKey];
+  //       if (time) {
+  //         const hour = `${Math.floor(time / 3600)}`;
+  //         const minute = `${Math.floor((time % 3600) / 60)}`;
+  //         res = [hour, minute];
+  //       }
+  //     }
+  //   });
+  //   return res;
+  // };
+
+
+
   const getCountdownTime = () => {
-    if (isAllClose) return [];
+
     let res = [] as string[];
-    currentSwitch.forEach(([key]) => {
-      if (deviceData[key] === SWITCH.OPEN) {
-        const countdownKey = key.replace('switch', 'count_down');
-        const time = deviceData[countdownKey];
-        if (time) {
-          const hour = `${Math.floor(time / 3600)}`;
-          const minute = `${Math.floor((time % 3600) / 60)}`;
-          res = [hour, minute];
-        }
-      }
-    });
+    const time = deviceData['count_down' + (currentIndex + 1)];
+    if (time) {
+      const hour = `${Math.floor(time / 3600)}`;
+      const minute = `${Math.floor((time % 3600) / 60)}`;
+      res = [hour, minute];
+    }
     return res;
   };
 
   // 开启状态 并且存在倒计时记录
   const countdownTime = getCountdownTime();
-  const onClick = () => doControlDeviceData(getSwitchData(SWITCH.OPEN));
-  const offClick = () => doControlDeviceData(getSwitchData(SWITCH.CLOSE));
+  // const onClick = () => doControlDeviceData(getSwitchData(SWITCH.OPEN));
+  // const offClick = () => doControlDeviceData(getSwitchData(SWITCH.CLOSE));
 
-  const submitCountDown = ([hour, minute], isChecked) => {
+  // const submitCountDown = ([hour, minute], isChecked) => {
+  //   setVisible(false);
+  //   setChecked(isChecked);
+  //   const times = hour * 3600 + minute * 60;
+  //   const openSwitch = getStatusData(SWITCH.CLOSE);
+  //   if (!openSwitch.length) return;
+  //   const countDownData = {};
+  //   openSwitch.forEach(([key]) => {
+  //     countDownData[key.replace('switch', 'count_down')] = times;
+  //   });
+  //   doControlDeviceData(countDownData);
+  // };
+  const submitCountDown = ([hour, minute]) => {
     setVisible(false);
-    setChecked(isChecked);
     const times = hour * 3600 + minute * 60;
-    const openSwitch = getStatusData(SWITCH.CLOSE);
-    if (!openSwitch.length) return;
-    const countDownData = {};
-    openSwitch.forEach(([key]) => {
-      countDownData[key.replace('switch', 'count_down')] = times;
-    });
-    doControlDeviceData(countDownData);
+    doControlDeviceData({ ['count_down' + (currentIndex + 1)]: times });
   };
 
   const actions = [
