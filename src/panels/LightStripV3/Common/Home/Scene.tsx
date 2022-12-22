@@ -21,7 +21,7 @@ const THEME = [
 ];
 
 export function ScenePage({
-  deviceData: { power_switch, scene_data },
+  deviceData: { power_switch, scene_data, count_down },
   doControlDeviceData,
 }) {
   // tab切换
@@ -34,7 +34,7 @@ export function ScenePage({
 
   return (
     <div
-      className={classNames('scene-page', power_switch !== 1 ? 'off-scene' : '')}
+      className={classNames('scene-page', power_switch !== 1 ? 'off-scene' : '', count_down ? 'scene-page-count' : '')}
     >
       <div className="scene-content">
         {themeList[tabValue].map(({ id, name, value }) => {

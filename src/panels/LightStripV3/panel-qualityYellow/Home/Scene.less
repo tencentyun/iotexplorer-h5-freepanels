@@ -30,7 +30,7 @@
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
-    max-height: 406px;
+    max-height: 368px;
     min-height: 340px;
     overflow-y: auto;
     .theme-item {
@@ -67,6 +67,12 @@
   }
   &.off-scene {
     opacity: 0.5;
+  }
+  &.scene-page-count {
+    .scene-content {
+      min-height: unset;
+      height: 324px;
+    }
   }
   .riotous { //缤纷
     background: linear-gradient(117.03deg, #0BB9FF 0%, #9CC7E7 21.88%, #FFC8CE 48.96%, #E0CBC9 69.27%, #81FFCB 100%);
