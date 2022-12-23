@@ -25,7 +25,7 @@ export function Record() {
           Limit: 10,
         });
         console.log('get info', recordListInfo);
-        // setRecordList(recordListInfo.Results);
+        setRecordList(recordListInfo.Results);
       } catch (err) {
         console.error('get info fail', err);
       }
