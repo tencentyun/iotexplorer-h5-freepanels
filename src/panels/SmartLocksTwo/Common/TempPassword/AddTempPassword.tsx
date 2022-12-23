@@ -61,7 +61,11 @@ export function AddTempPassword({ history: { goBack } }) {
         password: res.password,
         expired: dayjs(1000 * (res.expired + 20 * 60) /* 有效期 20分钟 */).format('YYYY/MM/DD HH:mm'),
       });
-    });
+    })
+      .catch((err) => {
+        console.log(err);
+        window.h5PanelSdk.tips.showError(err.msg);
+      });
   };
 
   // 保存周期密码

@@ -71,54 +71,60 @@ export function TempPassword({ history: { push, PATH }, tips, deviceData }) {
 
   return (
     <div className="temp-password">
-      <div className="password-list">
-        <List
-          data={data}
-          onDelete={onDelete}
-          render={({ Expired, Status }: PasswordItem, index) => {
-            const expired = Expired + 1200; /* 有效期20分钟 */
-            const isLose = Status === 1 || expired * 1000 < Date.now();
-            return (
-              <div key={index} className="item">
+      <div className='password-wrapper'>
+        <div className="password-list">
+          <List
+            data={data}
+            onDelete={onDelete}
+            render={({ Expired, Status }: PasswordItem, index) => {
+              const expired = Expired + 1200; /* 有效期20分钟 */
+              const isLose = Status === 1 || expired * 1000 < Date.now();
+              return (
+                <div key={index} className="item">
+                  <span>
+                    <div>单次</div>
+                    <div>将于 {dayjs(expired * 1000).format('YYYY/MM/DD  HH:mm:ss')} 失效</div>
+                  </span>
+                  {/* <span className={isLose ? 'flag fail' : 'flag success'}>{isLose ? '已失效' : '生效中'}</span> */}
+                </div>
+              );
+            }
+            }
+          />
+          <div style={{ marginTop: '0.42rem' }}></div>
+          <List
+            data={cyclePasswordList}
+            onDelete={onDeleteCyclePassword}
+            render={({ take_effect_date, invalid_date, take_effect_time, invalid_time, week }, index) => {
+              const weekStr = week.split('').map(index => arrWeek[index])
+                .join(' ');
+              const invalidTime = +dayjs(`${invalid_date} ${invalid_time}`);
+              const isLose = Date.now() > invalidTime;
+              return (<div key={index} className="item">
                 <span>
-                  <div>单次</div>
-                  <div>将于 {dayjs(expired * 1000).format('YYYY/MM/DD  HH:mm:ss')} 失效</div>
+                  <div>周期</div>
+                  <div>
+                    <div>{`${take_effect_date} ${take_effect_time} - ${invalid_date} ${invalid_time}`}</div>
+                    <div>{`${weekStr}`}</div>
+                  </div>
                 </span>
                 <span className={isLose ? 'flag fail' : 'flag success'}>{isLose ? '已失效' : '生效中'}</span>
-              </div>
-            );
+              </div>);
+            }
           }
-          }
-        />
-        <div style={{ marginTop: '0.42rem' }}></div>
-        <List
-          data={cyclePasswordList}
-          onDelete={onDeleteCyclePassword}
-          render={({ take_effect_date, invalid_date, take_effect_time, invalid_time, week }, index) => {
-            const weekStr = week.split('').map(index => arrWeek[index])
-              .join(' ');
-            const invalidTime = +dayjs(`${invalid_date} ${invalid_time}`);
-            const isLose = Date.now() > invalidTime;
-            return (<div key={index} className="item">
-              <span>
-                <div>周期</div>
-                <div>
-                  <div>{`${take_effect_date} ${take_effect_time} - ${invalid_date} ${invalid_time}`}</div>
-                  <div>{`${weekStr}`}</div>
-                </div>
-              </span>
-              <span className={isLose ? 'flag fail' : 'flag success'}>{isLose ? '已失效' : '生效中'}</span>
-            </div>);
-          }
-        }
-        />
+          />
+        </div>
+        { totalListLength === 0 && <StatusTip emptyMessage='暂无数据' status='empty' className='empty'/>}
+        <Btn className="add-btn" onClick={() => push(PATH.TEMP_PASSWORD_ADD)}>
+          添加+{' '}
+        </Btn>
       </div>
-      { totalListLength === 0 && <StatusTip emptyMessage='暂无数据' status='empty' className='empty'/>}
-      <Btn className="add-btn" onClick={() => push(PATH.TEMP_PASSWORD_ADD)}>
-        添加+{' '}
-      </Btn>
-      <div className="fix-bottom-btn">
-        {/* <Btn btnText="清空" type="danger" onClick={onCleanClick} /> */}
+      <div className="temp-password-tip">
+        <div>注意：</div>
+        <div>1、为保证门锁安全，密码值无法通过任何方
+        式二次查阅</div>
+        <div>2、此列表仅展示有效期内的密码，密码失效
+        后将自动从列表中移除，</div>
       </div>
     </div>
   );
