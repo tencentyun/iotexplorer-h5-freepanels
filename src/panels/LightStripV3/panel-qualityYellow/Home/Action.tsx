@@ -27,12 +27,17 @@ const Action = (props) => {
     //   'switch'
     // ],
     [
-      '定时器',
+      '倒计时',
       isSwitchOff ? 'timing' : 'timing-checked',
       !isSwitchOff && (!!count_down ? push.bind(null, PATH.TIMER_COUNTDOWNPAGE, { value: count_down }) : () => { countRef.current.onOpen() }),
       isExistTimer,
       ''
     ],
+    [
+      '定时',
+      'timing1',
+      push.bind(null, PATH.TIMER_LIST, { isModule: true }),
+    ]
   ];
 
   const getCountdownTime = (value) => {
@@ -48,7 +53,7 @@ const Action = (props) => {
 
   return (
     <>
-      <div className={`action ${actionCls} ${count_down ? 'count-down': ''}`}>
+      <div className={`action ${actionCls} ${count_down ? 'count-down' : ''}`}>
         {count_down ? <div className="count-down-module">
           <div className="title">重置</div>
           <div className="time">
@@ -59,12 +64,12 @@ const Action = (props) => {
             <span className="num">{countdownTime[2]}</span>
             <span>秒 </span>
           </div>
-          <div 
+          <div
             className="rest-btn"
             onClick={() => {
               doControlDeviceData({ count_down: 0 });
             }}
-            >重置</div>
+          >重置</div>
         </div> : null}
         {actions.map(([label, name, onClick, isChecked, ele], index) => (
           <div

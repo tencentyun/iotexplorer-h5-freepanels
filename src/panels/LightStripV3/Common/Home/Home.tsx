@@ -9,7 +9,6 @@ import { DeviceDetail } from '@custom/DeviceDetail';
 export function Home(props) {
   // tab模式
   const colorMode = props.deviceData.colourMode === 0 ? 0 : props.deviceData.colourMode;    // 0 彩色  1 白光  4 场景
-  console.log(colorMode);
   return (
     <div className={`home ${colorMode}`}>
       <DeviceDetail></DeviceDetail>

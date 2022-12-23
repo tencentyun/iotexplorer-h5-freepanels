@@ -29,11 +29,16 @@ const Action = (props) => {
     ],
     [
       '时间',
-      '定时器',
+      '倒计时',
       !!count_down ? push.bind(null, PATH.TIMER_COUNTDOWNPAGE, { value: count_down }) : () => { countRef.current.onOpen() },
       isExistTimer,
       ''
     ],
+    [
+      '定时',
+      'timing1',
+      push.bind(null, PATH.TIMER_LIST, {isModal: true}),
+    ]
   ];
   return (
     <>

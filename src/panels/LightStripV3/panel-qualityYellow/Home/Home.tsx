@@ -9,7 +9,7 @@ import { Icon } from '@custom/Icon';
 import { LightBright as ColorBright } from '@custom/LightBright';
 import { getColorValue, getDegValue } from '@utils';
 import { Switch } from '@custom/Switch'
-import { RgbColorPicker } from 'react-colorful';
+import ColorPicker from '@custom/ColorPicker';
 
 const classList = {
   0: 'colour',
@@ -19,17 +19,13 @@ const classList = {
 
 export function Home(props) {
   // tab模式
-  const { deviceData, colourMode, colour, doControlDeviceData } = props;
+  const { deviceData , doControlDeviceData } = props;
   const colorMode = props.deviceData.colourMode === undefined ? 1 : props.deviceData.colourMode;    // 0 彩色  1 白光  4 场景
+  const colour = deviceData?.colour;
   const isSwitchOff = props.deviceData.power_switch !== 1;
   const onSwitchChange = () => {
     props.doControlDeviceData({ power_switch: props.deviceData.power_switch ? 0 : 1 });
   };
-  const [color, setColor] = useState({ r: 255, g: 255, b: 255 });
-  useEffect(() => {
-    const data = { r: colour?.red || 255, g: colour?.green || 255, b: colour?.blue || 255 }
-    setColor(data);
-  }, [colour]);
   return (
     <div className={`home ${classList[colorMode]}`}>
       <DeviceDetail></DeviceDetail>
@@ -58,15 +54,7 @@ export function Home(props) {
                     onChange={(value, endTouch) => {
                       endTouch && doControlDeviceData('whiteData', getColorValue('white', parseInt(value)));
                     }}
-                  /> : <RgbColorPicker color={color} onChange={(deg) => {
-                    setColor(deg);
-                    const data = {
-                      red: deg.r,
-                      green: deg.g,
-                      blue: deg.b
-                    }
-                    doControlDeviceData('colour', data);
-                  }} />}
+                  /> : <ColorPicker {...props} />}
                 </div>
               </div>
               <div className="right">

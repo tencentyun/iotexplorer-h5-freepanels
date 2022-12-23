@@ -25,7 +25,7 @@ const Action = (props) => {
 
   const actions = [
     [
-      '定时',
+      '倒计时',
       isSwitchOff ? 'timing' : 'timing-checked',
       !isSwitchOff && (!!count_down ? push.bind(null, PATH.TIMER_COUNTDOWNPAGE, { value: count_down }) : () => { countRef.current.onOpen() }),
       isExistTimer,
@@ -41,6 +41,11 @@ const Action = (props) => {
       power_switch ? 'mode-checked' : 'mode',
       !isSwitchOff && (() => { setModeVisible(true) }),
       !!power_switch
+    ],
+    [
+      '定时',
+      'timing1',
+      push.bind(null, PATH.TIMER_LIST, { isModule: true }),
     ]
     // [
     //   '定时',

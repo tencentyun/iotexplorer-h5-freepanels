@@ -1,7 +1,7 @@
 import React from 'react';
 import { ListTimer as CloudTimerList } from '@custom/TimerCloud';
 const labelEnum = {
-  switch_led: {
+  power_switch: {
     label: '开关',
     value: ['关闭', '开启'],
   },
@@ -9,7 +9,7 @@ const labelEnum = {
 
 const getSwitchNumData = (powerSwitch) => {
   const value = 1 * powerSwitch;
-  const changeData = { switch_led: value };
+  const changeData = { power_switch: value };
   return changeData;
 };
 

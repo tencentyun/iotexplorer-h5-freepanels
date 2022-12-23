@@ -22,7 +22,7 @@ const Action = ({
       !!power_switch,
     ],
     [
-      '定时',
+      '倒计时',
       isSwitchOff ? 'timing' : 'timing-checked',
       push.bind(null, PATH.TIMER_COUNTDOWN, { isModule: true }),
       isExistTimer,
