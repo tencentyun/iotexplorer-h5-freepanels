@@ -7,7 +7,7 @@ import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 import { Steps } from '@src/components/custom/Steps';
 
 export function Record() {
-  const [recordList, setRecordList] = useState([{Value: 1, Time: 1671810169550}]);
+  const [recordList, setRecordList] = useState([]);
 
   useEffect(() => {
     // 获取历史记录
