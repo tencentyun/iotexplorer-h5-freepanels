@@ -1,0 +1,130 @@
+.home {
+  position: relative;
+  padding: 20px 48px;
+  height: calc(100vh - 40px);
+
+  header {
+    margin-bottom: 78px;
+  }
+
+  .tips {
+    line-height: 20px;
+    color: #FFFFFF;
+    text-align: center;
+    margin-top: 35px;
+    margin-bottom: 107px;
+
+    span {
+      position: relative;
+      display: inline-block;
+      font-family: 'PingFang SC';
+      font-style: normal;
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 20px;
+      text-align: center;
+      color: #565477;
+
+      // &::before {
+      //   content: '';
+      //   position: absolute;
+      //   top: 50%;
+      //   left: -14px;
+      //   margin-top: -3px;
+      //   display: inline-block;
+      //   width: 6px;
+      //   height: 6px;
+      //   border-radius: 50%;
+      //   background: #1D2C3E;
+      // }
+    }
+  }
+
+  .action {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    position: relative;
+    overflow: hidden;
+    // padding: 0 8px;
+    color: #ffffff;
+
+    .action-item {
+      display: flex;
+      // align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      align-items: center;
+      width: 103px;
+      height: 92px;
+      background: #FFFFFF;
+      box-shadow: 0px 4px 20px rgba(246, 244, 252, 0.9);
+      border-radius: 16px;
+
+      .action-ele {
+        display: flex;
+        // align-items: center;
+        // justify-content: center;
+        flex-direction: column;
+        font-size: 15px;
+        // margin-top: 10px;
+        font-weight: 600;
+        // margin: inherit;
+        padding: 0;
+        align-items: center;
+
+        >div:last-child {
+          margin-top: 4px;
+        }
+
+        .title {
+          font-family: 'PingFang SC';
+          font-style: normal;
+          font-weight: 600;
+          font-size: 12px;
+          line-height: 17px;
+          color: #565477;
+        }
+
+        .cell {
+          padding: 6px 0;
+        }
+      }
+
+      &.action-item-1 {
+        .cell {
+          display: none;
+        }
+
+        .action-ele {
+          flex-direction: column-reverse;
+        }
+
+        .title {
+          font-weight: 600;
+          font-size: 16px;
+          padding: 6px 0;
+          line-height: 22px;
+          margin-top: 4px;
+        }
+
+      }
+
+      &.action-item-2 {
+        .title {
+          display: none;
+        }
+
+        .cell-wrapper {
+          .icon-arrow-right {
+            display: none;
+          }
+        }
+      }
+    }
+
+    &.action-off {
+      color: @c6;
+    }
+  }
+}

@@ -1,0 +1,109 @@
+.disk {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  height: 260px;
+  width: 260px;
+  border-radius: 50%;
+  border: 1px solid #eff3f566;
+  background-color: #eff3f566;
+
+  .content-wrap {
+    height: 208px;
+    width: 208px;
+    border-radius: 50%;
+    background: #EFF3F5;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    .content {
+      display: flex;
+      justify-content: center;
+      width: 160px;
+      height: 160px;
+      align-items: center;
+      border-radius: 100%;
+      background: #fff;
+
+      .left-block {
+        position: relative;
+        margin-right: 4px;
+        width: 51px;
+        height: 78px;
+        border: 1px solid #EEEEEE;
+        border-radius: 14px;
+        background: #1D2C3E;
+        transition: .3s all linear;
+
+        &::after {
+          content: '';
+          position: absolute;
+          left: 50%;
+          bottom: 11px;
+          margin-left: -13px;
+          display: inline-block;
+          width: 26px;
+          height: 6px;
+          border-radius: 3px;
+          background: #00A884;
+        }
+      }
+
+      .right-block {
+        width: 18px;
+        height: 78px;
+        border: 1px solid #EEEEEE;
+        border-radius: 14px;
+        background: #1D2C3E;
+      }
+    }
+
+
+    .status-desc {
+      position: relative;
+      margin: 0 auto;
+      padding-left: 10px;
+      width: 28px;
+      height: 20px;
+      line-height: 20px;
+      font-size: 14px;
+      font-weight: 600;
+      color: #1D2C3E;
+
+      &::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: -4px;
+        margin-top: -3px;
+        display: inline-block;
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: #00D2B5;
+      }
+    }
+  }
+
+  .is-open {
+    .content {
+      .left-block {
+        margin-right: 16px;
+
+        &::after {
+          content: '';
+          background: #FF4D54;
+        }
+      }
+    }
+
+    .status-desc {
+      &::before {
+        background: #FF4D54;
+      }
+    }
+  }
+}

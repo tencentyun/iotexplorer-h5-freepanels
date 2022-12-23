@@ -1,10 +1,11 @@
 @mainColor: #342A73;
+
 .steps {
   .step {
     display: flex;
     margin-left: 46px;
     margin-bottom: 24px;
-    
+
     &::after {
       margin-bottom: 24px;
     }
@@ -18,7 +19,7 @@
             position: absolute;
             top: 50%;
             left: 50%;
-            transform: translate(-50%,-50%);
+            transform: translate(-50%, -50%);
             width: 10px;
             height: 10px;
             border-radius: 50%;
@@ -37,11 +38,11 @@
         }
       }
     }
-    
+
     .step-indicator {
       position: relative;
-  
-      
+
+
       .step-icon-dot {
         position: absolute;
         top: 50%;
@@ -52,6 +53,7 @@
         border: 2px solid @mainColor;
         border-radius: 50%;
         z-index: 1;
+
         &::after {
           content: '';
           display: inline-block;
@@ -67,7 +69,7 @@
         }
       }
     }
-  
+
     .step-content {
       display: flex;
       justify-content: space-between;
@@ -75,14 +77,18 @@
       width: 100%;
       border-radius: 16px;
       color: @mainColor;
-      background: #F7F4FD;
-      
+      background: #FFFFFF;
+      border: 1px solid #F6F8FB;
+
       .content-left {
         .detail {
           display: flex;
           margin-bottom: 9px;
           font-size: 24px;
+
           .time {
+            font-family: 'PingFang SC';
+            font-style: normal;
             display: inline-block;
             min-width: 60px;
             line-height: 34px;
@@ -90,6 +96,7 @@
             font-size: 24px;
             text-align: left;
           }
+
           .week {
             margin-top: 12px;
             margin-left: 8px;
@@ -98,11 +105,13 @@
             font-weight: 600;
           }
         }
+
         .date {
           font-size: 12px;
           line-height: 17px;
         }
       }
+
       .content-right {
         .status {
           margin-top: 7px;
@@ -111,6 +120,7 @@
           font-size: 18px;
           text-align: right;
         }
+
         .label {
           margin-top: 11px;
           line-height: 17px;
