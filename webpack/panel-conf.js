@@ -1121,8 +1121,21 @@ module.exports = {
   },
 
   MagneticDoorV3: {
-    name: "CW灯带",
+    name: "门磁",
     categoryKey: "MagneticDoorV3",
+    enable: true,
+    viewportWidth: 375,
+    panels: [
+      ["panel-qualityDark", { enable: true, entry: "app.tsx" }],
+      ["panel-qualityWhite", { enable: true, entry: "app.tsx" }],
+      ["panel-qualityBlue", { enable: true, entry: "app.tsx" }],
+      ["panel-qualityPurple", { enable: true, entry: "app.tsx" }],
+      ["panel-qualityYellow", { enable: true, entry: "app.tsx" }],
+    ],
+  },
+  BodySensorsV3: {
+    name: "人体感应器",
+    categoryKey: "BodySensorsV3",
     enable: true,
     viewportWidth: 375,
     panels: [

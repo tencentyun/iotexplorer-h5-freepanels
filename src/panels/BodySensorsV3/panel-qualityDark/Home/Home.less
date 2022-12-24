@@ -1,0 +1,78 @@
+.home {
+  position: relative;
+
+  header {
+    padding: 24px 17px 32px;
+  }
+
+  .setting-block {
+    margin: 32px 20px;
+    display: flex;
+    flex-direction: column;
+
+    .cell-wrapper {
+      .cell-prefix-icon {
+        display: none;
+      }
+
+      .cell-title-wrapper {
+        flex: 1;
+        display: flex;
+        justify-content: space-between;
+        margin-right: 24px;
+        .cell-title {
+          font-weight: 400;
+        }
+        .cell-subtitle {
+          font-family: 'PingFang SC';
+          font-style: normal;
+          font-weight: 400;
+          font-size: 16px;
+          line-height: 22px;
+          letter-spacing: 0.002em;
+          color: #FFFFFF;
+        }
+      }
+
+      .adm-switch {
+        width: 40px;
+        height: 20px;
+
+        .adm-switch-checkbox,
+        .adm-switch-checkbox:before {
+          height: 20px !important;
+          background: #1D202D !important;
+        }
+
+        .adm-switch-handle {
+          margin-top: 0;
+          margin-left: 2px;
+          width: 16px !important;
+          height: 16px !important;
+          background: #1D202D;
+        }
+      }
+
+      .adm-switch .adm-switch-checkbox .adm-switch-handle {
+        background: linear-gradient(90deg, #354269 0%, #3B3163 100%) !important;
+      }
+
+      .adm-switch-checked .adm-switch-checkbox .adm-switch-handle {
+        background: linear-gradient(90deg, #3161FE 0%, #5A31FE 100%) !important;
+        margin-left: -4px;
+      }
+    }
+
+    .setting-button {
+      margin-bottom: 16px;
+      padding: 24px 12px;
+      border-radius: 16px;
+      background: rgba(0, 0, 0, 0.3);
+      border: 1px solid rgba(156, 140, 255, 0.24);
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+}
