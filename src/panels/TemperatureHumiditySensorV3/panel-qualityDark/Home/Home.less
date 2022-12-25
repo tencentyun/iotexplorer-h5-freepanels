@@ -1,0 +1,59 @@
+.home {
+  position: relative;
+
+  header {
+    padding: 24px 17px 32px;
+  }
+
+  .setting-block {
+    margin: 0 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    .cell-wrapper {
+      .cell-prefix-icon {
+        display: none;
+      }
+
+      .cell-title-wrapper {
+        flex: 1;
+        display: flex;
+        justify-content: space-between;
+        flex-direction: column-reverse;
+        margin-right: 0;
+
+        .cell-title {
+          margin-top: 16px;
+          font-weight: 400;
+        }
+
+        .cell-subtitle {
+          font-family: 'PingFang SC';
+          font-style: normal;
+          font-weight: 500;
+          font-size: 12px;
+          line-height: 17px;
+          letter-spacing: 0.002em;
+          color: rgba(255, 255, 255, 0.75);
+          margin-left: 0;
+        }
+      }
+
+    }
+
+    .setting-button {
+      width: 134px;
+      height: 60px;
+      border-radius: 16px;
+      background: rgba(0, 0, 0, 0.3);
+      border: 1px solid rgba(156, 140, 255, 0.24);
+      margin-bottom: 0;
+      padding: 17px 12px;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+}

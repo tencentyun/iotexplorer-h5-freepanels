@@ -1,0 +1,110 @@
+{
+    "version": "1.0",
+    "properties": [
+        {
+            "id": "temperature",
+            "name": "温度",
+            "desc": "",
+            "mode": "r",
+            "define": {
+                "type": "struct",
+                "specs": [
+                    {
+                        "id": "current",
+                        "name": "当前温度",
+                        "dataType": {
+                            "type": "int",
+                            "min": "-10",
+                            "max": "55",
+                            "start": "20",
+                            "step": "1",
+                            "unit": "摄氏度"
+                        }
+                    },
+                    {
+                        "id": "level",
+                        "name": "温度等级",
+                        "dataType": {
+                            "type": "enum",
+                            "mapping": {
+                                "1": "寒冷",
+                                "2": "冷",
+                                "3": "舒适",
+                                "4": "热",
+                                "5": "酷热"
+                            }
+                        }
+                    }
+                ]
+            },
+            "required": false
+        },
+        {
+            "id": "humidity",
+            "name": "湿度",
+            "desc": "",
+            "mode": "r",
+            "define": {
+                "type": "struct",
+                "specs": [
+                    {
+                        "id": "current",
+                        "name": "当前湿度",
+                        "dataType": {
+                            "type": "int",
+                            "min": "0",
+                            "max": "100",
+                            "start": "20",
+                            "step": "1",
+                            "unit": ""
+                        }
+                    },
+                    {
+                        "id": "level",
+                        "name": "湿度等级",
+                        "dataType": {
+                            "type": "enum",
+                            "mapping": {
+                                "1": "干燥",
+                                "2": "略干",
+                                "3": "舒适",
+                                "4": "潮湿"
+                            }
+                        }
+                    }
+                ]
+            },
+            "required": false
+        },
+        {
+            "id": "low_voltage",
+            "name": "电池电量",
+            "desc": "",
+            "mode": "r",
+            "define": {
+                "type": "struct",
+                "specs": [
+                    {
+                        "id": "voltage",
+                        "name": "电量",
+                        "dataType": {
+                            "type": "int",
+                            "min": "0",
+                            "max": "100",
+                            "start": "0",
+                            "step": "1",
+                            "unit": ""
+                        }
+                    }
+                ]
+            },
+            "required": false
+        }
+    ],
+    "events": [],
+    "actions": [],
+    "profile": {
+        "ProductId": "FK3PRILR9Q",
+        "CategoryId": "25"
+    }
+}

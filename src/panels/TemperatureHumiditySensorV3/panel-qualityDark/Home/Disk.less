@@ -1,0 +1,110 @@
+.disk {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 80px auto 131px auto;
+  height: 260px;
+  width: 260px;
+  border-radius: 50%;
+  // border: 1px solid #1F2738;
+  position: relative;
+  background: rgb(46 44 115);
+    box-shadow: 41.4629px -16px 108.84px rgba(50, 97, 255, 0.51), -55.7157px -10px 101.066px rgba(90, 51, 255, 0.42), inset 0px -7.77429px 18.14px rgba(0, 45, 78, 0.21), inset 0px 7.77429px 18.14px rgba(0, 17, 41, 0.2);
+
+  .hoz {
+    position: absolute;
+    height: 293px;
+    width: 229px;
+    border-radius: 50%;
+    box-shadow:none;
+    background: linear-gradient(180deg, rgba(19, 26, 51, 0.2) 0%, rgba(19, 26, 51, 0.16) 100%);
+  }
+
+  .ver {
+    position: absolute;
+    width: 293px;
+    height: 229px;
+    border-radius: 50%;
+    box-shadow:none;
+    background: linear-gradient(180deg, rgba(19, 26, 51, 0.2) 0%, rgba(19, 26, 51, 0.16) 100%);
+  }
+
+  .center {
+    width: 260px;
+    height: 260px;
+    border-radius: 50%;
+    box-shadow:none;
+    background: linear-gradient(180deg, rgba(19, 26, 51, 0.2) 0%, rgba(19, 26, 51, 0.16) 100%);
+  }
+
+  .content {
+    display: flex;
+    align-items: center;
+    width: 239px;
+    height: 239px;
+    justify-content: space-around;
+
+    &::after {
+      content: ' ';
+      width: 2px;
+      height: 20px;
+      background: rgba(0, 0, 0, 0.3);
+      border-radius: 100px;
+      position: absolute;
+    }
+
+    .item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+
+      .item-content {
+        display: flex;
+        color: #fff;
+        align-items: baseline;
+        position: relative;
+        font-family: 'DIN Alternate';
+
+        .number {
+          font-size: 38px;
+        }
+
+        .unit-1 {
+          font-size: 24px;
+          padding-left: 10px;
+
+          &::before {
+            content: ' ';
+            width: 4px;
+            height: 4px;
+            border: 2px solid #fff;
+            border-radius: 50%;
+            position: absolute;
+            top: 9px;
+            right: 12px;
+          }
+        }
+
+        .unit-2 {
+          font-size: 24px;
+
+          &::before {
+            content: '';
+          }
+        }
+      }
+
+      .title {
+        font-family: 'PingFang SC';
+        font-style: normal;
+        font-weight: 600;
+        font-size: 14px;
+        line-height: 20px;
+        text-align: center;
+        color: #FFFFFF;
+        opacity: 0.5;
+      }
+    }
+  }
+}

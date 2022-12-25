@@ -1,0 +1,105 @@
+.disk {
+  margin: 28px auto 70px auto;
+  box-shadow: none;
+
+  .hoz {
+    background: #FFFFFF;
+    opacity: 0.5;
+    width: 189px;
+    height: 253px;
+    border: 20px solid #fff;
+    border-radius: 50%;
+    box-shadow: none;
+  }
+
+  .ver {
+    background: #FFFFFF;
+    opacity: 0.3;
+    width: 189px;
+    height: 253px;
+    border: 20px solid #fff;
+    border-radius: 16px;
+    transform: rotate(90deg);
+    border-radius: 50%;
+    box-shadow: none;
+  }
+
+  .center {
+    background: rgba(255, 255, 255, 0.3);
+    width: 229px;
+    height: 229px;
+    box-shadow: none;
+  }
+
+  .content {
+    display: flex;
+    align-items: center;
+    width: 239px;
+    height: 239px;
+    justify-content: space-around;
+
+    &::after {
+      content: ' ';
+      width: 2px;
+      height: 20px;
+      background: #67615A;
+      border-radius: 100px;
+      position: absolute;
+    }
+
+    .item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+
+      .item-content {
+        display: flex;
+        color: #67615A;;
+        align-items: baseline;
+        position: relative;
+
+        .number {
+          font-size: 38px;
+        }
+
+        .unit-1 {
+          font-size: 24px;
+          padding-left: 10px;
+
+          &::before {
+            content: ' ';
+            width: 4px;
+            height: 4px;
+            border: 2px solid #67615A;
+            color: #67615A;
+            border-radius: 50%;
+            position: absolute;
+            top: 9px;
+            right: 16px;
+          }
+        }
+
+        .unit-2 {
+          font-family: 'DIN Alternate';
+          font-size: 24px;
+
+          &::before {
+            content: '';
+          }
+        }
+      }
+
+      .title {
+        font-family: 'PingFang SC';
+        font-style: normal;
+        font-weight: 600;
+        font-size: 14px;
+        line-height: 20px;
+        text-align: center;
+        color: #67615A;
+        opacity: 0.5;
+      }
+    }
+  }
+}
