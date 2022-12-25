@@ -13,11 +13,11 @@ export function Disk({
   doControlDeviceData,
 }: DiskProps) {
   return (
-    <div className={classNames('disk', { 'is-open': deviceData.doorsensor_state })}>
+    <div className={classNames('disk', { 'is-open': deviceData.contact_state })}>
       <div
-        className={classNames('content-wrap', { 'is-open': deviceData.doorsensor_state })}
+        className={classNames('content-wrap', { 'is-open': deviceData.contact_state })}
         onClick={() => {
-          doControlDeviceData('doorsensor_state', Number(!deviceData.doorsensor_state));
+          doControlDeviceData('contact_state', Number(!deviceData.contact_state));
         }}>
         <div className="content">
           <div className="left-block"></div>

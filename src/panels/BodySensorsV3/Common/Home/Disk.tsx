@@ -19,8 +19,8 @@ export function Disk({
         <div className="content">
           <Icon name="body"/>
         </div>
-        <p className={classNames('status-desc', { 'status-active': deviceData.pir_state == 1 })}>
-          {deviceData.pir_state == 1 ? '检测有人移动' : '检测正常'}
+        <p className={classNames('status-desc', { 'status-active': deviceData.motionAlarm_state == 1 })}>
+          {deviceData.motionAlarm_state == 1 ? '检测有人移动' : '检测正常'}
         </p>
       </div>
     </div>

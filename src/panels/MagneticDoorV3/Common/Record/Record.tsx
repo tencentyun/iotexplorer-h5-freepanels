@@ -19,7 +19,7 @@ export function Record() {
         const lastYearTime = time.setFullYear(lastYear);
 
         const recordListInfo = await sdk.getDeviceDataHistory({
-          FieldName: 'doorsensor_state',
+          FieldName: 'contact_state',
           MaxTime: currentTime,
           MinTime: lastYearTime,
           Limit: 10,

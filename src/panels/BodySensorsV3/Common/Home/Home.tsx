@@ -36,7 +36,7 @@ export function Home({
       <header>
         {/* 电源模块 */}
         <Battery
-          value={deviceData.battery_percentage || 50}
+          value={deviceData?.low_voltage?.voltage || 50}
           isShowPercent={true}
           isShowTip={false}
         />
@@ -48,8 +48,8 @@ export function Home({
       ></Disk>
 
       {/* 设置按钮 */}
-      <div className={classNames('setting-block', `${deviceData.tamper_event === 1 ? 'is-checked' : ''}`)} onClick={() => {
-        doControlDeviceData('tamper_event', Number(!deviceData.tamper_event));
+      <div className={classNames('setting-block', `${deviceData.temperAlarm === 1 ? 'is-checked' : ''}`)} onClick={() => {
+        doControlDeviceData('temperAlarm', Number(!deviceData.temperAlarm));
       }}>
         <Cell
           className="setting-button"
@@ -57,12 +57,12 @@ export function Home({
           prefixIcon={<Icon name="alarm" />}
           size="medium"
           isLink={false}
-          subTitle={`${deviceData.tamper_event === 1 ? '开启' : '关闭'}`}
+          subTitle={`${deviceData.temperAlarm === 1 ? '开启' : '关闭'}`}
           value={
             <Switch
-              checked={deviceData.tamper_event == 1}
+              checked={deviceData.temperAlarm == 1}
               onChange={(value: boolean) => {
-                doControlDeviceData('tamper_event', Number(value));
+                doControlDeviceData('temperAlarm', Number(value));
               }}
             />
           }

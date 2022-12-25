@@ -26,7 +26,7 @@ export function Home({
         const lastYearTime = time.setFullYear(lastYear);
 
         const recordListInfo = await sdk.getDeviceDataHistory({
-          FieldName: 'doorsensor_state',
+          FieldName: 'contact_state',
           MaxTime: currentTime,
           MinTime: lastYearTime,
           Limit: 1,
@@ -68,7 +68,7 @@ export function Home({
         {/* 电源模块 */}
         {/* 电源模块 */}
         <Battery
-          value={deviceData.battery_percentage || 50}
+          value={deviceData?.low_voltage?.battery_percentage || 50}
           isShowPercent={true}
           isShowTip={false}
         />
