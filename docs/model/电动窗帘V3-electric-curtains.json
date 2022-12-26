@@ -1,0 +1,53 @@
+{
+    "version": "1.0",
+    "properties": [
+        {
+            "id": "power_switch",
+            "name": "电源开关",
+            "desc": "控制窗帘电源",
+            "required": true,
+            "mode": "rw",
+            "define": {
+                "type": "bool",
+                "mapping": {
+                    "0": "关",
+                    "1": "开"
+                }
+            }
+        },
+        {
+            "id": "mode",
+            "name": "窗帘操作模式",
+            "desc": "窗帘的操作模式",
+            "mode": "rw",
+            "define": {
+                "type": "enum",
+                "mapping": {
+                    "0": "打开",
+                    "1": "关闭",
+                    "2": "暂停"
+                }
+            }
+        },
+        {
+            "id": "position",
+            "name": "窗帘打开位置",
+            "desc": "窗帘打开的位置",
+            "mode": "rw",
+            "define": {
+                "type": "int",
+                "unit": "%",
+                "step": "1",
+                "min": "0",
+                "max": "100",
+                "start": "1"
+            }
+        }
+    ],
+    "events": [],
+    "actions": [],
+    "profile": {
+        "ProductId": "G0E62I2FR1",
+        "CategoryId": "519"
+    }
+}
