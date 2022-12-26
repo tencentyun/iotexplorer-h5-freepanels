@@ -125,12 +125,15 @@ export const Detail = ({
   return (
     <div className={`detail action action-${switchNum} ${!deviceData?.switch_1 ? '' : 'on'}`}>
       <div className="switch-total">
-        <div className="switch-title">开关</div>
+        <div className="switch-title">{deviceData?.name_button1 || '开关'}</div>
         <Switch
           className="reverse custom-switch"
           checked={!!deviceData.switch_1}
           onChange={checked => (checked ? onClick() : offClick())}
         />
+        <div className="operator-btn editor" onClick={() => setModalVisible(true)}>
+          <Icon className="operator-icon" name="editor" size="normal" />
+        </div>
       </div>
       <div className="operator">
         <div className="operator-content">{`模式：${!deviceData?.mode_swtch1?.mode ? '常规' : '无线'}模式`}</div>
@@ -153,21 +156,6 @@ export const Detail = ({
             </div>
           );
         })}
-        {/* <div className="switch-btn" onClick={() => {
-          currentSwitch.forEach(item => {
-            const [key] = [...item];
-            !deviceData[key] ? onClick() : offClick();
-          })
-        }}>
-          <Icon name="switch" />
-        </div> */}
-        {/* <Cell
-          prefixIcon={<Icon name="mode"></Icon>}
-          title={'模式选择'}
-          subTitle={!deviceData?.mode_swtch1?.mode ? '常规' : '无线'}
-          onClick={() => setModeVisible(true)}
-          className="modeBtn"
-        ></Cell> */}
       </div>
       <TimePicker
         className="switch-timer-cloud"
@@ -193,12 +181,14 @@ export const Detail = ({
         <Modal
           visible={modalVisible}
           title='修改名称'
+          className="edit-name-modal"
         >
           <input
             value={currentName}
             autoFocus
-            className='edit-name-modal'
+            className='edit-name-modal-input'
             placeholder='请输入名称'
+            maxLength={16}
             onChange={(event) => {
               setCurrentName(event.currentTarget.value);
             }}
@@ -206,6 +196,7 @@ export const Detail = ({
           <div className='footer'>
             <Button
               className="btn cancel"
+              type="cancel"
               onClick={() => {
                 setCurrentName(deviceData?.name_button1 || '');
                 setModalVisible(false);

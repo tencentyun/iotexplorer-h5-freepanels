@@ -1,6 +1,6 @@
 @import url('./LightSwitch.less');
 
-.dev-detail {
+.cus-dev-detail {
   display: none;
 }
 
@@ -42,7 +42,6 @@
         .adm-tabs-tab {
           margin: 0;
           position: relative;
-          font-family: 'PingFang SC';
           font-style: normal;
           font-weight: 600;
           font-size: 16px;
@@ -75,7 +74,6 @@
   .switch-2 {
     display: flex;
     padding: 50px 18px 59px 18px;
-    display: flex;
     flex-direction: column;
     align-items: center;
 
@@ -130,7 +128,6 @@
   .switch-3 {
     display: flex;
     padding: 50px 18px 59px 18px;
-    display: flex;
     flex-direction: column;
     align-items: center;
 
@@ -186,9 +183,38 @@
 
   .switch-3-tab {
     .adm-tabs-tab-list {
+      padding: 0 24px;
+
       &::after {
         content: none !important;
       }
+
+      .adm-tabs-tab {
+        max-width: 100px;
+        display: block;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+      }
     }
+
+  }
+  .switch-2-tab {
+    .adm-tabs-tab-list {
+      padding: 0 24px;
+
+      &::after {
+        content: none !important;
+      }
+
+      .adm-tabs-tab {
+        max-width: 150px;
+        display: block;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+      }
+    }
+
   }
 }

@@ -5,14 +5,8 @@ import { Cell } from '@custom/Cell';
 import { Modal } from '@custom/Modal';
 import { Btn as Button, BtnGroup } from '@custom/Btn';
 import { Dropdown } from '@custom/DropDown';
-import { DropdownRef } from 'antd-mobile/es/components/dropdown'
-const ALL_COUNT = [
-  ['count_down1', '开关一'],
-  ['count_down2', '开关二'],
-  ['count_down3', '开关三'],
-  ['count_down4', '开关四'],
-  ['count_down5', '开关五']
-]
+import { DropdownRef } from 'antd-mobile/es/components/dropdown';
+
 
 export const Detail = ({
   deviceData,
@@ -22,63 +16,40 @@ export const Detail = ({
   currentMode,
   history: { PATH, push },
   isModal,
-  isPopUp
+  isPopUp,
 }) => {
+  const ALL_COUNT = [
+    ['count_down1', deviceData.name_button1 || '开关一'],
+    ['count_down2', deviceData.name_button2 || '开关二'],
+    ['count_down3', deviceData.name_button3 || '开关三'],
+    ['count_down4', deviceData.name_button4 || '开关四'],
+    ['count_down5', deviceData.name_button5 || '开关五'],
+  ];
 
   const SWITCH = { OPEN: 1, CLOSE: 0 };
-  const getStatusData = status => currentSwitch.filter(([key]) => deviceData[key] !== status);
-  const [isChecked, setChecked] = useState(false);
-  const [checkedSwitch, setCheckedSwitch] = useState(ALL_COUNT[0][0])
-  const isAll = status => !getStatusData(status).length;
-  // const isAllOpen = isAll(SWITCH.OPEN);
-  const isAllClose = isAll(SWITCH.CLOSE);
+  const [isChecked] = useState(false);
+  const [checkedSwitch, setCheckedSwitch] = useState(ALL_COUNT[0][0]);
   const getSwitchData = (status) => {
     const res = {};
     currentSwitch.forEach(([key]) => (res[key] = status));
     return res;
   };
-  const initData = currentMode.map(([value, code, text], index) => {
-    const obj = {};
-    obj.label = deviceData[code] || text;
-    obj.code = value;
-    obj.value = deviceData[value]?.mode ? 1 : 0;
-    return obj;
-  });
+  const initData = currentMode.map(([value, code, text]) => ({
+    label: deviceData[code] || text,
+    code: value,
+    value: deviceData[value]?.mode ? 1 : 0,
+  }));
   // 倒计时
   const [visible, setVisible] = useState(false);
   const [modalVisible, setModalVisible] = useState(false);
-  const [currentName, setCurrentName] = useState('');
+  const [currentName, setCurrentName] = useState(ALL_COUNT[0][1]);
 
   const [modeVisible, setModeVisible] = useState(false);
   const [selected, setSelected] = useState(0);
   const [modeCache, setModeCache] = useState([]);
 
 
-  useEffect(() => {
-    setCurrentName(deviceData?.name_button1);
-  }, [deviceData?.name_button1]);
-
-  const isOneSwitch = switchNum === 1;
-
-  // const getCountdownTime = () => {
-  //   if (isAllClose) return [];
-  //   let res = [] as string[];
-  //   currentSwitch.forEach(([key]) => {
-  //     if (deviceData[key] === SWITCH.OPEN) {
-  //       const countdownKey = key.replace('switch', 'count_down');
-  //       const time = deviceData[countdownKey];
-  //       if (time) {
-  //         const hour = `${Math.floor(time / 3600)}`;
-  //         const minute = `${Math.floor((time % 3600) / 60)}`;
-  //         res = [hour, minute];
-  //       }
-  //     }
-  //   });
-  //   return res;
-  // };
-
   const getCountdownTime = () => {
-
     let res = [] as string[];
     const time = deviceData[checkedSwitch];
     if (time) {
@@ -95,19 +66,6 @@ export const Detail = ({
   const onClick = () => doControlDeviceData(getSwitchData(SWITCH.OPEN));
   const offClick = () => doControlDeviceData(getSwitchData(SWITCH.CLOSE));
 
-  // const submitCountDown = ([hour, minute], isChecked) => {
-  //   setVisible(false);
-  //   setChecked(isChecked);
-  //   const times = hour * 3600 + minute * 60;
-  //   const openSwitch = getStatusData(SWITCH.CLOSE);
-  //   if (!openSwitch.length) return;
-  //   const countDownData = {};
-  //   openSwitch.forEach(([key]) => {
-  //     countDownData[key.replace('switch', 'count_down')] = times;
-  //   });
-  //   doControlDeviceData(countDownData);
-  // };
-
   const submitCountDown = ([hour, minute]) => {
     setVisible(false);
     const times = hour * 3600 + minute * 60;
@@ -115,15 +73,6 @@ export const Detail = ({
   };
 
   const actions = [
-    // isOneSwitch
-    //   ? null
-    //   : [
-    //     isAllOpen ? '全开' : '全关',
-    //     'on',
-    //     () => ({}),
-    //     isAllOpen,
-    //     isChecked => (isChecked ? onClick() : offClick()),
-    //   ],
     [
       '定时',
       'timing',
@@ -133,7 +82,7 @@ export const Detail = ({
   ].filter(v => v);
 
   const onRadioClick = (value) => {
-    let data = [...modeCache];
+    const data = [...modeCache];
     data[selected].value = value;
     setModeCache(data);
   };
@@ -147,27 +96,37 @@ export const Detail = ({
   }];
 
   const options = currentMode.map(([value, code, text]) => ({ text: deviceData[code] || text, value }));
+
+  const [selectNameSwitch, setSelectNameSwitch] = useState(0);
+
   const dropdownRef = useRef<DropdownRef>(null);
+  const dropdownRefName = useRef<DropdownRef>(null);
 
   useEffect(() => {
     setModeCache(initData);
-  }, [currentMode])
+  }, [currentMode]);
 
-  
-  let counts = ALL_COUNT.slice(0, switchNum)
-  const CustomNode = () => {
-    return (<div className='custom-switch'>
-      {
-        counts.map(([name, label]) => <div className={checkedSwitch === name ? 'checked' : ''} onClick={setCheckedSwitch.bind(null, name)}>{label}</div>)
-      }
-    </div>)
-  }
+
+  const counts = ALL_COUNT.slice(0, switchNum);
+  const CustomNode = () => <div className='custom-switch'>
+    {
+      counts.map(([name, label]) => <div key={name} className={checkedSwitch === name ? 'checked' : ''} onClick={setCheckedSwitch.bind(null, name)}>{label}</div>)
+    }
+  </div>;
+
+  const saveName = () => {
+    setModalVisible(false);
+    const key = `name_button${selectNameSwitch + 1}`;
+    const name = currentName || ALL_COUNT[selectNameSwitch]?.[1];
+    doControlDeviceData({ [key]: name });
+  };
+
   return (
     <div className={`detail action action-${switchNum}`}>
       <div className="operator">
-        {/* <div className="operator-btn editor" onClick={() => setModalVisible(true)}>
+        <div className="operator-btn editor" onClick={() => setModalVisible(true)}>
           <Icon className="operator-icon" name="editor" size="large" />
-        </div> */}
+        </div>
         <div className="operator-btn setting"></div>
       </div>
       <div className="environment">
@@ -199,9 +158,8 @@ export const Detail = ({
         <Cell
           prefixIcon={<Icon name="mode"></Icon>}
           title={'模式选择'}
-          // subTitle={!deviceData?.mode_swtch1?.mode ? '常规' : '无线'}
           onClick={() => setModeVisible(true)}
-          className="modeBtn"
+          className="mode-btn"
         ></Cell>
       </div>
       <TimePicker
@@ -223,23 +181,49 @@ export const Detail = ({
         confirmText="确认"
         visible={visible}
         customNode={<CustomNode />}
-      // visible={true}
       />
+
       <div className='custom-modal'>
         <Modal
           visible={modalVisible}
-          title='修改名称'
+          className="edit-name-modal"
+          title={<div className="cus-module-title">
+            <span>修改名称</span>
+            <div className="selector">
+              <Dropdown className="custom-dropdown" ref={dropdownRefName}>
+                <Dropdown.Item key='selector' title={options[selectNameSwitch]?.text} className="dropdown-items">
+                  {
+                    options.map((item, index) => <div className="item" key={item.text} onClick={() => {
+                      setSelectNameSwitch(index);
+                      setCurrentName(ALL_COUNT[index]?.[1]);
+                      dropdownRefName.current?.close();
+                    }}>
+                      <div className="dw-check-item">
+                        <span>{item.text}</span>
+                        {
+                          selectNameSwitch === index
+                            ? <span><Icon className="operator-icon" name="drop-checked" size="small" /></span>
+                            : null
+                        }
+                      </div>
+                    </div>)
+                  }
+                </Dropdown.Item>
+              </Dropdown>
+            </div>
+          </div>}
         >
+
           <input
             value={currentName}
             autoFocus
-            className='edit-name-modal'
+            className='edit-name-modal-input'
             placeholder='请输入名称'
+            maxLength={16}
             onChange={(event) => {
               setCurrentName(event.currentTarget.value);
             }}
           />
-
           <div className='modal-footer'>
             <BtnGroup
               layout='flex'
@@ -247,25 +231,21 @@ export const Detail = ({
               <Button
                 className="btn-cancel"
                 onClick={() => {
-                  setCurrentName(deviceData?.name_button1 || '');
                   setModalVisible(false);
+                  setCurrentName(ALL_COUNT[selectNameSwitch]?.[1]);
                 }}
               >
                 取消
               </Button>
               <Button
                 className="btn-save"
-                onClick={() => {
-                  currentName && doControlDeviceData('name_button1', currentName);
-                  setModalVisible(false);
-                }}
+                onClick={saveName}
               >
                 确定
               </Button>
 
             </BtnGroup>
           </div>
-
         </Modal>
       </div>
 
@@ -281,7 +261,7 @@ export const Detail = ({
                 <Dropdown.Item key='selector' title={modeCache[selected]?.label} className="dropdown-items">
                   {options.map((item, index) => <div className="item" key={index} onClick={() => {
                     setSelected(index);
-                    dropdownRef.current?.close()
+                    dropdownRef.current?.close();
                   }}>{item.text}</div>)}
                 </Dropdown.Item>
               </Dropdown>
@@ -325,10 +305,10 @@ export const Detail = ({
               <Button
                 className="btn-save"
                 onClick={() => {
-                  let obj = {};
-                  modeCache.map(item => {
-                    obj[item.code] = { mode: item.value }
-                  })
+                  const obj = {};
+                  modeCache.forEach((item) => {
+                    obj[item.code] = { mode: item.value };
+                  });
                   doControlDeviceData(obj);
                   setSelected(0);
                   setModeVisible(false);
@@ -342,6 +322,6 @@ export const Detail = ({
 
         </Modal>
       </div>
-    </div>
+    </div >
   );
 };

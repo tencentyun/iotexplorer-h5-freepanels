@@ -3,26 +3,28 @@ import { LightSwitch } from './LightSwitch';
 import { Detail } from './Detail';
 
 
-const allSwitch = [
-  ['switch_1', '开关一'],
-  ['switch_2', '开关二'],
-  ['switch_3', '开关三'],
-  ['switch_4', '开关四'],
-  ['switch_5', '开关五'],
-];
-const allMode = [
-  ['mode_switch1', 'name_button1', '开关一'],
-  ['mode_switch2', 'name_button2', '开关二'],
-  ['mode_switch3', 'name_button3', '开关三'],
-  ['mode_switch4', 'name_button4', '开关四'],
-  ['mode_switch5', 'name_button5', '开关五'],
-]
-
 const getSwitchNum = (templateMap = {}) => Object.keys(templateMap).filter(v => /^switch/.test(v)).length || 1;
 
 
 export function Home(props) {
   const { doControlDeviceData, templateMap, setContext, deviceData = {} } = props;
+
+  const allSwitch = [
+    ['switch_1', deviceData.name_button1 || '开关一'],
+    ['switch_2', deviceData.name_button2 || '开关二'],
+    ['switch_3', deviceData.name_button3 || '开关三'],
+    ['switch_4', deviceData.name_button4 || '开关四'],
+    ['switch_5', deviceData.name_button5 || '开关五'],
+  ];
+
+  const allMode = [
+    ['mode_switch1', 'name_button1', deviceData.name_button1 || '开关一'],
+    ['mode_switch2', 'name_button2', deviceData.name_button2 || '开关二'],
+    ['mode_switch3', 'name_button3', deviceData.name_button3 || '开关三'],
+    ['mode_switch4', 'name_button4', deviceData.name_button4 || '开关四'],
+    ['mode_switch5', 'name_button5', deviceData.name_button5 || '开关五'],
+  ];
+
   const switchNum = getSwitchNum(templateMap);
   const currentSwitch = allSwitch.slice(0, switchNum);
   const currentMode = allMode.slice(0, switchNum);
@@ -32,7 +34,7 @@ export function Home(props) {
   }, []);
 
   const Label = ({ name }) => {
-    let time = deviceData?.[name];
+    const time = deviceData?.[name];
     if (time) {
       const hour = `${Math.floor(time / 3600)}`;
       const minute = `${Math.floor((time % 3600) / 60)}`;
@@ -46,10 +48,10 @@ export function Home(props) {
         <div>
           后关闭
         </div>
-      </div>
+      </div>;
     }
     return null;
-  }
+  };
 
 
   return (
@@ -66,7 +68,7 @@ export function Home(props) {
               key={key}
               hasCount={true}
               name={name}
-              count={<Label name={'count_down' + (index + 1)}></Label>}
+              count={<Label name={`count_down${index + 1}`}></Label>}
               value={!!deviceData[key]}
               className={`light-switch-${index + 1}`}
               onChange={onChange.bind(null, key)}

@@ -17,7 +17,7 @@ const allItem = [
   ['switch_2', 'mode_swtch2', 'name_button2'],
   ['switch_3', 'mode_swtch3', 'name_button3'],
   ['switch_4', 'mode_swtch4', 'name_button4'],
-  ['switch_5', 'mode_swtch5', 'name_button5']
+  ['switch_5', 'mode_swtch5', 'name_button5'],
 ];
 
 const getSwitchNum = (templateMap = {}) => Object.keys(templateMap).filter(v => /^switch/.test(v)).length || 1;
@@ -34,7 +34,7 @@ export function Home(props) {
     // setCurrentName(deviceData['name_button1'])
   }, []);
   const Label = ({ name }) => {
-    let time = deviceData?.[name];
+    const time = deviceData?.[name];
     if (time) {
       const hour = `${Math.floor(time / 3600)}`;
       const minute = `${Math.floor((time % 3600) / 60)}`;
@@ -48,29 +48,27 @@ export function Home(props) {
         <div>
           后关闭
         </div>
-      </div>
+      </div>;
     }
     return null;
-  }
+  };
   return (
     <div className="home">
       <Tabs className={`custom-tabs + switch-${switchNum}-tab` }>
-        {currentSwitch.map(([value, text], index) => {
-          return (<Tabs.Tab title={deviceData[value.replace('switch_', 'name_button')] || text} key={index}>
+        {currentSwitch.map(([value, text], index) => (<Tabs.Tab title={deviceData[value.replace('switch_', 'name_button')] || text} key={index}>
             <div className={`dashboard switch-${switchNum}`}>
               <LightSwitch
                 key={value}
                 hasCount={true}
                 name={text}
-                count={<Label name={'count_down' + (index + 1)}></Label>}
+                count={<Label name={`count_down${index + 1}`}></Label>}
                 value={!!deviceData[value]}
                 className={`light-switch-${index + 1}`}
                 onChange={onChange.bind(null, value)}
               />
             </div>
             <Detail {...props} currentSwitch={currentSwitch} currentIndex={index} currentItem={currentItem[index]} />
-          </Tabs.Tab>);
-        })}
+          </Tabs.Tab>))}
       </Tabs>
     </div>
   );
