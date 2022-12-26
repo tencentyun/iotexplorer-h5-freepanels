@@ -11,6 +11,26 @@
   flex-direction: column;
   background: linear-gradient(167.96deg, #B3957B 0%, #A8866B 100%);
 
+
+  .operator-btn {
+    position: absolute;
+    top: 81px;
+    left: -9px;
+    width: 46px;
+    height: 46px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .operator-icon {
+      width: 20px;
+      height: 20px;
+    }
+  }
+
+
+
   .custom-tabs {
     .adm-tabs-header {
       border-bottom: 0;
@@ -72,7 +92,7 @@
     height: 142px;
   }
 
-  
+
   .switch-2 {
     height: 142px;
 
@@ -141,12 +161,41 @@
   }
 
   .switch-3-tab {
-
     .adm-tabs-tab-list {
+      padding: 0 24px;
+
       &::after {
         content: none !important;
       }
+
+      .adm-tabs-tab {
+        max-width: 100px;
+        display: block;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+      }
     }
+
+  }
+  
+  .switch-2-tab {
+    .adm-tabs-tab-list {
+      padding: 0 24px;
+
+      &::after {
+        content: none !important;
+      }
+
+      .adm-tabs-tab {
+        max-width: 150px;
+        display: block;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+      }
+    }
+
   }
 
 }

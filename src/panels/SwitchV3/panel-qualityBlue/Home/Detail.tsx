@@ -179,6 +179,7 @@ export const Detail = ({
           <input
             value={currentName}
             autoFocus
+            maxLength={16}
             className='edit-name-modal'
             placeholder='请输入名称'
 

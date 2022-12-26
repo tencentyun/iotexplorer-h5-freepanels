@@ -17,7 +17,7 @@ import { ListTimer as CloudTimerList } from '@custom/TimerCloud';
 
 
 export const TimerList = (props) => {
-  let deviceData = props.deviceData;
+  const { deviceData } = props;
   // let switchNum = props.context.switchNum;
 
   const labelEnum = {
@@ -26,23 +26,23 @@ export const TimerList = (props) => {
       value: ['关闭', '开启'],
     },
     switch_1: {
-      label: deviceData['name_button1'] || '开关一',
+      label: deviceData.name_button1 || '开关一',
       value: ['关闭', '开启'],
     },
     switch_2: {
-      label: deviceData['name_button2'] || '开关二',
+      label: deviceData.name_button2 || '开关二',
       value: ['关闭', '开启'],
     },
     switch_3: {
-      label: deviceData['name_button3'] || '开关三',
+      label: deviceData.name_button3 || '开关三',
       value: ['关闭', '开启'],
     },
     switch_4: {
-      label: deviceData['name_button4'] || '开关四',
+      label: deviceData.name_button4 || '开关四',
       value: ['关闭', '开启'],
     },
     switch_5: {
-      label: deviceData['name_button5'] || '开关五',
+      label: deviceData.name_button5 || '开关五',
       value: ['关闭', '开启'],
     },
   };
