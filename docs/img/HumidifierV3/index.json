@@ -1,0 +1,22 @@
+[
+    {
+        "key": "./img/HumidifierV3/panel-qualityDark.png",
+        "url": "https://iot-cdn-1258344699.cos.ap-guangzhou.myqcloud.com/freepanel/img/HumidifierV3/panel-qualityDark.png"
+    },
+    {
+        "key": "./img/HumidifierV3/panel-qualityWhite.png",
+        "url": "https://iot-cdn-1258344699.cos.ap-guangzhou.myqcloud.com/freepanel/img/HumidifierV3/panel-qualityWhite.png"
+    },
+    {
+        "key": "./img/HumidifierV3/panel-qualityBlue.png",
+        "url": "https://iot-cdn-1258344699.cos.ap-guangzhou.myqcloud.com/freepanel/img/HumidifierV3/panel-qualityBlue.png"
+    },
+    {
+        "key": "./img/HumidifierV3/panel-qualityPurple.png",
+        "url": "https://iot-cdn-1258344699.cos.ap-guangzhou.myqcloud.com/freepanel/img/HumidifierV3/panel-qualityPurple.png"
+    },
+    {
+        "key": "./img/HumidifierV3/panel-qualityYellow.png",
+        "url": "https://iot-cdn-1258344699.cos.ap-guangzhou.myqcloud.com/freepanel/img/HumidifierV3/panel-qualityYellow.png"
+    }
+]
