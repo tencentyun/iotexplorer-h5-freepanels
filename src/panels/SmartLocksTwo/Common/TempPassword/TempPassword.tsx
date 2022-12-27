@@ -31,6 +31,11 @@ export function TempPassword({ history: { push, PATH }, tips, deviceData }) {
     }
   };
 
+  const validCyclePasswords = cyclePasswordList.filter(({ invalid_date, invalid_time }) => {
+    const invalidTime = +dayjs(`${invalid_date} ${invalid_time}`);
+    return Date.now() < invalidTime;
+  });
+
   const totalListLength = data.length + cyclePasswordList.length;
 
   const removeSinglePassword = (id: string) => {
@@ -42,18 +47,30 @@ export function TempPassword({ history: { push, PATH }, tips, deviceData }) {
     });
   };
 
-  const onDeleteCyclePassword = async (item) => {
+  // 过期了的话，自动删除，不显示提示
+  const onDeleteCyclePassword = async (item, showTip = true) => {
     console.log('to delete', item);
     try {
       const result = await sdk.callDeviceAction({ id: item.id }, 'del_cycle_password');
       if (result.OutputParams && JSON.parse(result.OutputParams).result === 1) {
-        tips.showInfo('删除成功');
+        showTip && tips.showInfo('删除成功');
       } else {
-        tips.showInfo('删除失败');
+        showTip && tips.showInfo('删除失败');
       }
     } catch (err) {
       console.error(err);
-      tips.showError('删除失败, 请重试');
+      showTip && tips.showError('删除失败, 请重试');
+    }
+  };
+
+  const deleteInvalidCyclePasswords = async () => {
+    for (let i = 0; i < cyclePasswordList.length; i++) {
+      const item = cyclePasswordList[i];
+      const { invalid_date, invalid_time } = item;
+      const invalidTime = +dayjs(`${invalid_date} ${invalid_time}`);
+      if (Date.now() >= invalidTime) {
+        await onDeleteCyclePassword(item, false);
+      }
     }
   };
 
@@ -67,6 +84,7 @@ export function TempPassword({ history: { push, PATH }, tips, deviceData }) {
 
   useEffect(() => {
     getPasswordList();
+    deleteInvalidCyclePasswords();
   }, []);
 
   return (
@@ -76,9 +94,8 @@ export function TempPassword({ history: { push, PATH }, tips, deviceData }) {
           <List
             data={data}
             onDelete={onDelete}
-            render={({ Expired, Status }: PasswordItem, index) => {
+            render={({ Expired }: PasswordItem, index) => {
               const expired = Expired + 1200; /* 有效期20分钟 */
-              const isLose = Status === 1 || expired * 1000 < Date.now();
               return (
                 <div key={index} className="item">
                   <span>
@@ -93,13 +110,11 @@ export function TempPassword({ history: { push, PATH }, tips, deviceData }) {
           />
           <div style={{ marginTop: '0.42rem' }}></div>
           <List
-            data={cyclePasswordList}
+            data={validCyclePasswords}
             onDelete={onDeleteCyclePassword}
             render={({ take_effect_date, invalid_date, take_effect_time, invalid_time, week }, index) => {
               const weekStr = week.split('').map(index => arrWeek[index])
                 .join(' ');
-              const invalidTime = +dayjs(`${invalid_date} ${invalid_time}`);
-              const isLose = Date.now() > invalidTime;
               return (<div key={index} className="item">
                 <span>
                   <div>周期</div>
@@ -108,7 +123,7 @@ export function TempPassword({ history: { push, PATH }, tips, deviceData }) {
                     <div>{`${weekStr}`}</div>
                   </div>
                 </span>
-                <span className={isLose ? 'flag fail' : 'flag success'}>{isLose ? '已失效' : '生效中'}</span>
+                {/* <span className={isLose ? 'flag fail' : 'flag success'}>{isLose ? '已失效' : '生效中'}</span> */}
               </div>);
             }
           }
@@ -121,10 +136,8 @@ export function TempPassword({ history: { push, PATH }, tips, deviceData }) {
       </div>
       <div className="temp-password-tip">
         <div>注意：</div>
-        <div>1、为保证门锁安全，密码值无法通过任何方
-        式二次查阅</div>
-        <div>2、此列表仅展示有效期内的密码，密码失效
-        后将自动从列表中移除，</div>
+        <div>1、为保证门锁安全，密码值无法通过任何方式二次查阅</div>
+        <div>2、此列表仅展示有效期内的密码，密码失效后将自动从列表中移除。</div>
       </div>
     </div>
   );

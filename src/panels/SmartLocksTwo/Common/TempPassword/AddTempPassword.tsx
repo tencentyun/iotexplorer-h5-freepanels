@@ -114,6 +114,7 @@ export function AddTempPassword({ history: { goBack } }) {
       });
     }
   };
+
   const onSubmit = () => {
     if (type === PASSWORD_TYPE.SINGLE) {
       if (singlePassword.password) {
