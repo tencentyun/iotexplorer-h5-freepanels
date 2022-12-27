@@ -15,49 +15,76 @@
 
   .disk-wrap {
     margin: 0 auto;
-    width: 260px;
-    height: 260px;
+    width: auto;
+    height: auto;
     display: flex;
     align-items: center;
     justify-content: center;
     margin-top: 20px;
+    position: relative;
 
     .outer {
-      width: 229px;
-      height: 293px;
+      width: 209px;
+      height: 273px;
       background: rgba(255, 255, 255, 0.3);
       border: 20px solid rgba(239, 243, 245, 0.5);
-      border-radius: 16px;
-      transform: rotate(120deg);
+      transform: rotate(60deg);
+      border-radius: 50%;
+      box-shadow: none;
+      position: absolute;
+    }
+
+    .center {
+      width: 209px;
+      height: 273px;
+      background: rgba(255, 255, 255, 0.3);
+      border: 20px solid rgba(239, 243, 245, 0.5);
+      transform: rotate(-30deg);
       border-radius: 50%;
       box-shadow: none;
 
-      .center {
-        width: 229px;
-        height: 293px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+
+      .inner {
+        color: #30414D;
         background: rgba(255, 255, 255, 0.3);
-        border: 20px solid rgba(239, 243, 245, 0.5);
-        transform: rotate(90deg);
-        border-radius: 50%;
         box-shadow: none;
+        transform: rotate(30deg);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
 
-        .inner {
+        .title {
+          opacity: 0.75;
+        }
+
+        .content {
+          display: flex;
           color: #30414D;
-          background: rgba(255, 255, 255, 0.3);
-          box-shadow: none;
-          transform: rotate(150deg);
+          font-style: normal;
+          font-weight: 500;
+          font-size: 12px;
+          line-height: 17px;
+          margin-top: 28px;
+          margin-left: 12px;
 
-          .title {
-            opacity: 0.75;
+          .value {
+            font-family: 'DIN Condensed';
+            height: 60px;
+            font-size: 60px;
+            line-height: 60px;
           }
 
-          .content {
-            color: #30414D;
+          .unit {
+            line-height: 12px;
           }
         }
       }
     }
-
   }
 
   .home-footer {
@@ -69,7 +96,7 @@
       display: flex;
       justify-content: space-between;
       padding: 0 62px;
-      margin: 60px 0 30px 0;
+      margin: 38px 0 30px 0;
 
       .btn {
         background: #FFFFFF;

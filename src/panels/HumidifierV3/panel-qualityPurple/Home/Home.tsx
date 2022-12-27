@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import classNames from 'classnames';
 import { Icon } from '@custom/Icon';
-import { Battery } from '@custom/Battery';
 import { OptionDialog } from '@custom/OptionDialog';
 import { Cell } from '@custom/Cell';
 import { CountDown } from '../../Common/CountDown';
@@ -19,7 +18,12 @@ export function Home(props) {
   const countRef = useRef(null);
 
   const [modeVisible, setModeVisible] = useState(false);
-  const [modeValue, setModeValue] = useState(deviceData.working_mode || '');
+  const [modeValue, setModeValue] = useState(0);
+
+
+  useEffect(() => {
+    setModeValue(deviceData.working_mode || 0)
+  }, [deviceData.working_mode])
 
 
   const handleToggle = (isAdd: boolean) => {
@@ -53,11 +57,6 @@ export function Home(props) {
   }
 
   const onCountDownClick = () => {
-    if (deviceData.count_down) {
-      push(PATH.TIMER_COUNTDOWNPAGE, { value: deviceData.count_down });
-      return;
-    }
-    debugger;
     countRef.current.onOpen();
   }
 
@@ -80,25 +79,18 @@ export function Home(props) {
         deviceData.power_switch === 1 ? 'power-on' : 'power-off',
       )}
     >
-      {/* 模式 */}
-      <div className="top">
-        <Battery
-          value={deviceData?.low_voltage?.voltage || 50}
-          isShowPercent={true}
-          isShowTip={false}
-        />
-        {/* <div className="mode-content">{MODE_LIST[deviceData?.working_mode || 0]}</div> */}
-      </div>
+
       {/* 表盘 */}
       <div className={classNames('disk-wrap')}>
         <div className="outer">
-          <div className="center">
-            <div className="inner">
-              <div className="title">目标湿度</div>
-              <div className="content">
-                <div className="value">{deviceData.humidity_set || 0}</div>
-                <div className="unit">%</div>
-              </div>
+
+        </div>
+        <div className="center">
+          <div className="inner">
+            <div className="title">目标湿度</div>
+            <div className="content">
+              <div className="value">{deviceData.humidity_set || 0}</div>
+              <div className="unit">%</div>
             </div>
           </div>
         </div>
@@ -149,7 +141,7 @@ export function Home(props) {
             <OptionDialog
               visible={modeVisible}
               title="模式"
-              defaultValue={[modeValue ? modeValue : 0]}
+              value={[modeValue || 0]}
               options={MODE_LIST.map((item, index) => ({ label: item, value: index }))}
               onCancel={() => {
                 setModeVisible(false);

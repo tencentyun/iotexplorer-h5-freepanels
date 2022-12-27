@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import classNames from 'classnames';
 import { Icon } from '@custom/Icon';
-import { Battery } from '@custom/Battery';
 import { OptionDialog } from '@custom/OptionDialog';
 import { Cell } from '@custom/Cell';
 import { CountDown } from '../CountDown';
@@ -19,8 +18,12 @@ export function Home(props) {
   const countRef = useRef(null);
 
   const [modeVisible, setModeVisible] = useState(false);
-  const [modeValue, setModeValue] = useState(deviceData.working_mode || '');
+  const [modeValue, setModeValue] = useState(0);
 
+
+  useEffect(() => {
+    setModeValue(deviceData.working_mode || 0)
+  }, [deviceData.working_mode])
 
   const handleToggle = (isAdd: boolean) => {
     if (deviceData.power_switch !== 1) return;
@@ -81,11 +84,6 @@ export function Home(props) {
     >
       {/* 模式 */}
       <div className="top">
-        <Battery
-          value={deviceData?.low_voltage?.voltage || 50}
-          isShowPercent={true}
-          isShowTip={false}
-        />
         <div className="mode-content">{MODE_LIST[deviceData?.working_mode || 0]}</div>
       </div>
       {/* 表盘 */}
@@ -103,7 +101,7 @@ export function Home(props) {
         </div>
       </div>
 
-      {/* 设置按钮 第一类 */}
+      {/* 设置按钮 */}
       <footer
         className={classNames('home-footer')}
       >
@@ -133,7 +131,7 @@ export function Home(props) {
             <OptionDialog
               visible={modeVisible}
               title="工作模式"
-              defaultValue={[modeValue ? modeValue : 0]}
+              value={[modeValue || 0]}
               options={MODE_LIST.map((item, index) => ({ label: item, value: index }))}
               onCancel={() => {
                 setModeVisible(false);
@@ -162,64 +160,6 @@ export function Home(props) {
         </div>
       </footer>
 
-      {/* 设置按钮 第二类 */}
-      <footer
-        className={classNames('home-footer two-kind')}
-      >
-        <div className="add-reduce">
-          <div className="btn" onClick={onMinusClick}>
-            <Icon name="minus" />
-          </div>
-          <div className="btn" onClick={onPlusClick}>
-            <Icon name="plus" />
-          </div>
-        </div>
-        <div className="actions">
-          <Cell
-            className="cell-settings"
-            title="开关"
-            isLink={true}
-            prefixIcon={<Icon name="switch" />}
-            onClick={onSwitchClick}
-          ></Cell>
-          <Cell
-            className="cell-settings"
-            title="工作模式"
-            isLink={true}
-            prefixIcon={<Icon name="mode" />}
-            onClick={onModeClick}
-          >
-            <OptionDialog
-              visible={modeVisible}
-              title="工作模式"
-              defaultValue={[modeValue ? modeValue : 0]}
-              options={MODE_LIST.map((item, index) => ({ label: item, value: index }))}
-              onCancel={() => {
-                setModeVisible(false);
-              }}
-              onConfirm={(value) => {
-                setModeValue(value[0]);
-                doControlDeviceData('working_mode', value[0]);
-              }}
-            ></OptionDialog>
-          </Cell>
-          <Cell
-            className="cell-settings"
-            title="定时"
-            isLink={true}
-            prefixIcon={<Icon name="time" />}
-            onClick={onTimeClick}
-          ></Cell>
-          <Cell
-            className="cell-settings"
-            title="倒计时"
-            isLink={true}
-            prefixIcon={<Icon name="count" />}
-            onClick={onCountDownClick}
-          >
-          </Cell>
-        </div>
-      </footer>
       <CountDown ref={countRef} {...props} />
     </main>
   );

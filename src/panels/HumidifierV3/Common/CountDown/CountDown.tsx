@@ -12,7 +12,7 @@ export const CountDown = forwardRef((props, ref) => {
   } = props;
   const onChange = (count_down) => {
     doControlDeviceData({ count_down });
-    isJumpRoute && push(PATH.TIMER_COUNTDOWNPAGE, { value: count_down })
+    timerRef.current.close();
   };
 
   const timerRef = useRef(null);
@@ -44,7 +44,7 @@ const Timer = forwardRef(({ value, onChange, isModal, isPopUp }, ref) => {
   const [visible, setVisible] = useState(false);
   useTitle('倒计时');
 
-  const submitCountDown = ([hour, minute, second]) => {
+  const submitCountDown = ([hour, minute, second = 0]) => {
     setVisible(false);
     const times = hour * 3600 + minute * 60 + 1 * second;
     onChange && onChange(times);
@@ -55,9 +55,9 @@ const Timer = forwardRef(({ value, onChange, isModal, isPopUp }, ref) => {
       const hour = `${Math.floor(value / 3600)}`;
       const minute = `${Math.floor((value % 3600) / 60)}`;
       const second = `${Math.floor((value % 3600) % 60)}`;
-      return [hour, minute, second];
+      return [hour, minute];
     }
-    return ['00', '00', '00'];
+    return ['00', '00'];
   };
 
 
@@ -80,7 +80,7 @@ const Timer = forwardRef(({ value, onChange, isModal, isPopUp }, ref) => {
         mask={false}
         showTime={false}
         itemHeight={58}
-        height={175}
+        height={248}
         isModal={isModal}
         isPopUp={isPopUp}
         showTwoDigit={true}
@@ -90,7 +90,7 @@ const Timer = forwardRef(({ value, onChange, isModal, isPopUp }, ref) => {
         onConfirm={submitCountDown}
         confirmText="确认"
         visible={visible}
-        isSecond={true}
+        // isSecond={true}
       />
     </div>
   );

@@ -1,6 +1,6 @@
 .home {
   position: relative;
-  padding: 20px 36px;
+  padding: 20px;
   height: calc(100vh - 40px);
 
   header {
@@ -47,7 +47,7 @@
     flex-wrap: wrap;
     position: relative;
     overflow: hidden;
-    // padding: 0 8px;
+    padding: 0 16px;
     color: #ffffff;
 
     .action-item {
@@ -138,5 +138,8 @@
     &.action-off {
       color: @c6;
     }
+  }
+  &.power-off {
+    opacity: 0.6;
   }
 }

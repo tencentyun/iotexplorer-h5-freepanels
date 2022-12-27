@@ -73,7 +73,6 @@
           background: #151D3C;
           box-shadow: 41.4629px -16px 108.84px rgba(50, 97, 255, 0.51), -55.7157px -10px 101.066px rgba(90, 51, 255, 0.42), inset 0px -7.77429px 18.14px rgba(0, 45, 78, 0.21), inset 0px 7.77429px 18.14px rgba(0, 17, 41, 0.2);
           color: #fff;
-          font-family: 'PingFang SC';
           font-style: normal;
           font-weight: 500;
           font-size: 12px;
@@ -86,18 +85,19 @@
           .content {
             display: flex;
             color: #fff;
-            font-family: 'PingFang SC';
             font-style: normal;
             font-weight: 500;
             font-size: 12px;
             line-height: 17px;
             margin-top: 28px;
             margin-left: 12px;
+
             .value {
               height: 60px;
               font-size: 60px;
               line-height: 60px;
             }
+
             .unit {
               line-height: 36px;
             }
@@ -151,6 +151,7 @@
             margin-right: 0;
             margin-bottom: 16px;
           }
+
           .icon-arrow-right {
             display: none;
           }
@@ -191,13 +192,18 @@
 
   }
 
-  // &.power-off {
+  &.power-off {
+    opacity: 0.5;
+  }
 
-  //   .icon,
-  //   .content,
-  //   .value,
-  //   .button-name {
-  //     opacity: 0.5;
-  //   }
-  // }
+  .dialog-wrap .dialog-content .item-block {
+    padding: 16px 0;
+    border-bottom: 1px solid #ccc;
+    margin: 0;
+  }
+
+  .dialog-wrap .dialog-content .item-block:last-child {
+    border-bottom: 0;
+    margin-bottom: 16px;
+  }
 }

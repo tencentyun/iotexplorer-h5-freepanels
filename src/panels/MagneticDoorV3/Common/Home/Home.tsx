@@ -6,6 +6,7 @@ import dayjs from 'dayjs';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 import { Cell } from '@custom/Cell';
 import { OptionDialog } from '@custom/OptionDialog';
+import classNames from 'classnames';
 
 export function Home({
   deviceData,
@@ -62,7 +63,7 @@ export function Home({
   //   </>);
   // }
   return (
-    <main className="home">
+    <main className={classNames("home")}>
       {/* 顶部 */}
       <header>
         {/* 电源模块 */}
@@ -125,7 +126,6 @@ export function Home({
         value={[deviceData?.temperAlarm || 0]}
         onCancel={() => setVisible(false)}
         onConfirm={(val) => {
-          console.log(val?.[0] * 1);
           doControlDeviceData({ temperAlarm: val?.[0] * 1 })
           // onAllSwitchChange(val?.[0] * 1);
         }}

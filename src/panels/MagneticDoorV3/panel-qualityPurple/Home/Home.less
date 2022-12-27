@@ -1,6 +1,6 @@
 .home {
   position: relative;
-  padding: 20px 48px;
+  padding: 20px;
   height: calc(100vh - 40px);
 
   header {
@@ -48,6 +48,7 @@
     overflow: hidden;
     // padding: 0 8px;
     color: #ffffff;
+    padding: 0 28px;
 
     .action-item {
       display: flex;
@@ -93,19 +94,37 @@
 
       &.action-item-1 {
         .cell {
+          padding: 0;
+          margin-top: -6px !important;
+        }
+
+        .icon {
           display: none;
+        }
+
+        .cell-wrapper {
+          .cell-title-wrapper {
+            display: none;
+          }
         }
 
         .action-ele {
           flex-direction: column-reverse;
+          padding: 0;
+
+          .adm-switch .adm-switch-checkbox .adm-switch-handle {
+            background: #C6C4E9 !important;
+          }
+
+          .adm-switch-checked .adm-switch-checkbox .adm-switch-handle {
+            background: #594AE1 !important;
+          }
         }
 
         .title {
           font-weight: 600;
           font-size: 16px;
-          padding: 6px 0;
-          line-height: 22px;
-          margin-top: 4px;
+          margin-top: 16px;
         }
 
       }
@@ -126,5 +145,8 @@
     &.action-off {
       color: @c6;
     }
+  }
+  &.power-off {
+    opacity: 0.6;
   }
 }

@@ -1,0 +1,100 @@
+.home {
+  position: relative;
+  padding-top: 30px;
+  color: #26313D;
+
+  .top {
+    justify-content: flex-start;
+
+    .battery {
+      position: relative;
+      top: 0;
+      left: 0;
+    }
+  }
+
+  .disk-wrap {
+    margin: 0 auto;
+    width: 260px;
+    height: 260px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+
+    .outer {
+      width: 229px;
+      height: 293px;
+      background: rgba(255, 255, 255, 0.3);
+      border: 20px solid rgba(246, 244, 252, 0.65);
+      border-radius: 16px;
+      transform: rotate(120deg);
+      border-radius: 50%;
+      box-shadow: none;
+
+      .center {
+        width: 229px;
+        height: 293px;
+        background: rgba(255, 255, 255, 0.3);
+        border: 20px solid rgba(246, 244, 252, 0.65);
+        transform: rotate(90deg);
+        border-radius: 50%;
+        box-shadow: none;
+
+        .inner {
+          color: #565477;
+          background: rgba(255, 255, 255, 0.3);
+          box-shadow: none;
+          transform: rotate(150deg);
+
+          .title {
+            opacity: 0.75;
+          }
+
+          .content {
+            color: #565477;
+          }
+        }
+      }
+    }
+
+  }
+
+  .home-footer {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+
+    .add-reduce {
+      display: flex;
+      justify-content: space-between;
+      padding: 0 62px;
+      margin: 60px 0 83px 0;
+
+      .btn {
+        background: #F6F4FC;
+        border-radius: 16px;
+      }
+    }
+
+    .actions {
+      .cell-settings {
+        background: #FFFFFF;
+        box-shadow: 0px 4px 20px rgba(246, 244, 252, 0.9);
+        border-radius: 16px;
+        border: 0;
+      }
+    }
+
+  }
+
+  // &.power-off {
+
+  //   .icon,
+  //   .content,
+  //   .value,
+  //   .button-name {
+  //     opacity: 0.5;
+  //   }
+  // }
+}
