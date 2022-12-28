@@ -13,12 +13,18 @@
 
   &::before {
     content: ' ';
+    display: block;
+    border-right: 1px solid #C6C4E9;
+    background-image: linear-gradient(44deg, rgba(255, 255, 255, 0) 50%, #C6C4E9 560%);
+    width: calc(50% - 6px);
+    height: calc(50% - 6px);
     position: absolute;
-    width: 2px;
-    height: calc(100% - 20px);
-    background: linear-gradient(to bottom, #C6C4E9 0%, #fff 50%, #fff 50%);
-    animation: fadenum 10s infinite;
-    transition: all .1s ease-in 0ms;
+    top: 6px;
+    left: 6px;
+    animation: radar-beam 5s infinite;
+    animation-timing-function: linear;
+    transform-origin: bottom right;
+    border-radius: 100% 0 0 0;
   }
 
   // &::after {
@@ -91,7 +97,11 @@
   }
 }
 
-@keyframes fadenum {
+@keyframes radar-beam {
+  0% {
+    transform: rotate(0deg);
+  }
+
   100% {
     transform: rotate(360deg);
   }
