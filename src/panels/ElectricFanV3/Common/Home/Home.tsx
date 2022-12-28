@@ -66,10 +66,6 @@ export function Home(props) {
   }
 
   const onCountDownClick = () => {
-    if (deviceData.count_down) {
-      push(PATH.TIMER_COUNTDOWNPAGE, { value: deviceData.count_down });
-      return;
-    }
     countRef.current.onOpen();
   }
 
@@ -92,14 +88,6 @@ export function Home(props) {
         deviceData.power_switch === 1 ? 'power-on' : 'power-off',
       )}
     >
-      {/* 模式 */}
-      <div className="top">
-        <Battery
-          value={deviceData?.low_voltage?.voltage || 50}
-          isShowPercent={true}
-          isShowTip={false}
-        />
-      </div>
       {/* 表盘 */}
       <div className={classNames('disk-wrap')}>
         <div className="outer">

@@ -6,15 +6,11 @@ import { getOptions } from '@utils';
 import { Cell } from '@custom/Cell';
 
 export const Action = ({
-  templateMap,
-  deviceData: { auto_power, control, control_back = 'forward', mode = 'morning' },
+  deviceData: {  power_switch, mode  },
   history: { PATH, push },
   doControlDeviceData,
   myRef,
 }) => {
-  // 抓拍模式
-  const [controlBackVisiable, setControlBackVisiable] = useState(false);
-  const [modeVisiable, setModeVisiable] = useState(false);
 
   const actions = [
     [
@@ -25,32 +21,34 @@ export const Action = ({
       }
     ],
     [
-      control === 'open' ? '暂停' : '开始',
-      control === 'open' ? 'stop' : 'begin',
+      // control === 'open' ? '暂停' : '开始',
+      // control === 'open' ? 'stop' : 'begin',
+      '暂停',
+      'stop',
       () => {
-        // 暂停再次点击则开启 开启状态则暂停
-        doControlDeviceData({ control: control === 'open' ? 'pause' : 'open' });
-        sdk.deviceData.control = control === 'open' ? 'pause' : 'open';
-        control === 'open' ? myRef.current.pause() : myRef.current.open();
+        doControlDeviceData({ mode: 2 });
+        myRef.current.pause();
       },
     ],
     [
       '开启',
       'open',
       () => {
-        sdk.deviceData.auto_power = '1';
-        doControlDeviceData({ auto_power: '1' });
+        doControlDeviceData({ mode: 0 });
+        myRef.current.close();
+        setTimeout(() => { myRef.current.open() }, 500)
       },
-      auto_power === '1',
+      mode === 0,
     ],
     [
       '关闭',
       'close',
       () => {
-        doControlDeviceData({ auto_power: '0' });
-        sdk.deviceData.auto_power = '0';
+        doControlDeviceData({ mode: 1 });
+        myRef.current.close();
+        setTimeout(() => { myRef.current.open() }, 500)
       },
-      auto_power === '0',
+      mode === 1,
     ],
   ];
 
@@ -60,7 +58,7 @@ export const Action = ({
         {actions.map(([label, name, onClick, isChecked], index) => (
           <div
             key={index}
-            onClick={() => onClick(0)}
+            onClick={() => !isChecked && onClick(0)}
             className={`action-item  ${isChecked ? 'checked' : ''
               } action-item-${index + 1}`}
           >
@@ -71,30 +69,7 @@ export const Action = ({
           </div>
         ))}
       </div>
-      <OptionDialog
-        visible={controlBackVisiable}
-        title="电机反向"
-        defaultValue={[control_back]}
-        options={getOptions(templateMap, 'control_back')}
-        onCancel={() => {
-          setControlBackVisiable(false);
-        }}
-        onConfirm={(value) => {
-          doControlDeviceData('control_back', value[0]);
-        }}
-      ></OptionDialog>
-      <OptionDialog
-        visible={modeVisiable}
-        title="电机反向"
-        defaultValue={[mode]}
-        options={getOptions(templateMap, 'mode')}
-        onCancel={() => {
-          setModeVisiable(false);
-        }}
-        onConfirm={(value) => {
-          doControlDeviceData('mode', value[0]);
-        }}
-      ></OptionDialog>
+      
     </div>
   );
 };

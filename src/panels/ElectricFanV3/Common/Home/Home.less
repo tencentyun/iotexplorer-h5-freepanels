@@ -1,6 +1,6 @@
 .home {
   position: relative;
-  padding-top: 30px;
+  padding-top: 82px;
   color: #26313D;
 
   .top {
@@ -83,6 +83,7 @@
             margin-top: 28px;
 
             .value {
+              font-weight: 'DIN Condensed';
               height: 60px;
               font-size: 60px;
               line-height: 60px;
@@ -169,27 +170,35 @@
             &.scale-1 {
               left: 10%;
             }
+
             &.scale-2 {
               left: 20%;
             }
+
             &.scale-3 {
               left: 30%;
             }
+
             &.scale-4 {
               left: 40%;
             }
+
             &.scale-5 {
               left: 50%;
             }
+
             &.scale-6 {
               left: 60%;
             }
+
             &.scale-7 {
               left: 70%;
             }
+
             &.scale-8 {
               left: 80%;
             }
+
             &.scale-9 {
               left: 90%;
             }
@@ -214,7 +223,7 @@
 
     .actions {
       display: flex;
-      padding: 0 22px;
+      padding: 0 16px;
       justify-content: space-between;
       margin-bottom: 16px;
 
@@ -224,13 +233,18 @@
         border: 1px solid rgba(156, 140, 255, 0.24);
         background: rgba(0, 0, 0, 0.3);
         border-radius: 16px;
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
 
         .cell-wrapper {
           display: flex;
           flex-direction: column;
           align-items: center;
-          width: 100%;
-          height: 100%;
+          width: calc(100% - 45px);
+          height: calc(100% - 40px);
 
           .cell-prefix-icon {
             margin-right: 0;
@@ -244,9 +258,9 @@
       }
 
       .cell-first {
-        width: 37px;
-        height: 82px;
-        padding: 20px 24px;
+        width: 77px;
+        height: 120px;
+        padding: 0;
       }
 
       .cell-second {
@@ -256,19 +270,16 @@
 
         .cell-wrapper {
           justify-content: center;
+          width: 100%;
+          height: 100%;
         }
       }
     }
 
   }
 
-  // &.power-off {
+  &.power-off {
 
-  //   .icon,
-  //   .content,
-  //   .value,
-  //   .button-name {
-  //     opacity: 0.5;
-  //   }
-  // }
+    opacity: 0.6;
+  }
 }

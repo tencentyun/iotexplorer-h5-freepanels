@@ -1,4 +1,4 @@
-import React, { ReactNode, forwardRef, useImperativeHandle } from 'react';
+import React, { ReactNode, forwardRef, useImperativeHandle, useEffect } from 'react';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 import { onControlDevice } from '@hooks/useDeviceData';
 import Bus from '@libs/utillib';
@@ -6,25 +6,65 @@ import { useDidMount, useWillUnmount } from 'beautiful-react-hooks';
 import { Icon } from '@custom/Icon';
 
 let timer;
-const info = {
-  curRatio: sdk.deviceData.percent_control
-    ? sdk.deviceData.percent_control
-    : 30,
-};
 
 const SideHead = forwardRef((props, ref) => {
-  useDidMount(() => {
-    timer = setInterval(changeRatio, 50);
-    Bus.emit('percent_control', info.curRatio);
-    moveProgress(info.curRatio);
-  });
+  let { deviceData: { position = 30, mode, power_switch }, doControlDeviceData } = { ...props };
+
+  let info = {
+    curRatio: position
+      ? position
+      : 30,
+  };
+
+  // useDidMount(() => {
+  //   timer = setInterval(changeRatio, 50);
+  //   Bus.emit('position', info.curRatio);
+  // });
+
+  useEffect(() => {
+    moveProgress(position);
+  }, [position])
 
   useWillUnmount(() => {
     clearInterval(timer);
   });
 
+
+
+  const changeRatio = () => {
+    if (mode === null || mode === 2 || power_switch === 0) {
+      clearInterval(timer);
+      timer = null;
+      return;
+    }
+    if (mode === 0) {
+      if (info.curRatio > 0) {
+        info.curRatio = info.curRatio - 1;
+        moveProgress(info.curRatio);
+        openLeave(info.curRatio);
+      }
+      if (info.curRatio === 0) {
+        clearInterval(timer);
+        timer = null;
+        doControlDeviceData({ position: info.curRatio })
+      }
+    } else if (mode === 1) {
+      if (info.curRatio < 100) {
+        info.curRatio = info.curRatio + 1;
+        moveProgress(info.curRatio);
+        openLeave(info.curRatio);
+      }
+      if (info.curRatio === 100) {
+        clearInterval(timer);
+        timer = null;
+        doControlDeviceData({ position: info.curRatio })
+      }
+    }
+  };
+
+
   const start = () => {
-    timer = setInterval(changeRatio, 50);
+    timer = setInterval(changeRatio, 100);
   };
 
   useImperativeHandle(ref, () => ({
@@ -32,32 +72,14 @@ const SideHead = forwardRef((props, ref) => {
     pause: () => {
       clearInterval(timer);
       timer = null;
+      doControlDeviceData({ position: info.curRatio })
     },
     close: () => {
       clearInterval(timer);
       timer = null;
-      sdk.deviceData.control = 'close';
+      doControlDeviceData({ position: info.curRatio })
     },
   }));
-
-  const changeRatio = () => {
-    if (sdk.deviceData.control === 'pause') {
-      return;
-    }
-    if (sdk.deviceData.auto_power === '1') {
-      if (info.curRatio > 0) {
-        info.curRatio = info.curRatio - 1;
-        moveProgress(info.curRatio);
-        openLeave(info.curRatio);
-      }
-    } else if (sdk.deviceData.auto_power === '0') {
-      if (info.curRatio < 100) {
-        info.curRatio = info.curRatio + 1;
-        moveProgress(info.curRatio);
-        openLeave(info.curRatio);
-      }
-    }
-  };
 
   const getNode = id => document.getElementById(id) || {
     clientWidth: 0,
@@ -92,6 +114,10 @@ const SideHead = forwardRef((props, ref) => {
   const getCx = e => e.changedTouches[0] || {};
 
   const handleMoveOpenRatio = (e: React.TouchEvent) => {
+    clearInterval(timer);
+    timer = null;
+    // onControlDevice('mode', null);
+
     const { offsetLeft, clientWidth } = getNode('bar-progress');
     const controlBar = getNode('control-bar');
     const barBtn = getNode('bar-btn');
@@ -100,7 +126,7 @@ const SideHead = forwardRef((props, ref) => {
     if (openRatio < 0) openRatio = 0;
     if (openRatio > 1) openRatio = 1;
     const openRatio_val = parseInt(`${openRatio * 100}`, 10); // 亮度数值
-    info.curRatio = openRatio_val;
+    // info.curRatio = openRatio_val;
 
     const node = getNode('open-ratio');
     node.innerText = getText(openRatio_val);
@@ -121,22 +147,23 @@ const SideHead = forwardRef((props, ref) => {
     if (openRatio < 0) openRatio = 0;
     if (openRatio > 1) openRatio = 1;
     const openRatio_val = parseInt(`${openRatio * 100}`, 10); // 亮度数值
-    info.curRatio = openRatio_val;
-    moveProgress(info.curRatio);
-    openLeave(info.curRatio);
-    onControlDevice('percent_control', openRatio_val);
+    // info.curRatio = openRatio_val;
+    moveProgress(openRatio_val);
+    openLeave(openRatio_val);
+    doControlDeviceData('position', openRatio_val);
+    mode !== 2 && doControlDeviceData('mode', null);
   };
 
   const handleStartOpenRatio = (e: React.TouchEvent) => {
-    sdk.deviceData.control = 'pause';
-    onControlDevice('control', 'pause');
+    // sdk.deviceData.control = 'pause';
+    // doControlDeviceData('mode', 2);
     const { clientWidth, offsetLeft } = getNode('bar-progress');
     let openRatio = (getCx(e).clientX - offsetLeft) / clientWidth;
     if (openRatio < 0) openRatio = 0;
     if (openRatio > 1) openRatio = 1;
     const openRatio_val = parseInt(`${openRatio * 100}`, 10); // 亮度数值
-    info.curRatio = openRatio_val;
-    onControlDevice('percent_control', openRatio_val);
+    // info.curRatio = openRatio_val;
+    doControlDeviceData('position', openRatio_val);
   };
 
   const createNodes = (num) => {
@@ -149,7 +176,7 @@ const SideHead = forwardRef((props, ref) => {
     return nodes;
   };
 
-  const { control, auto_power } = sdk.deviceData;
+  ;
   // 自启动开发开启 同时控制为开启 则为开启中
   // 自启动开发关闭 同时控制为开启 则为关闭中
   // 自启动开发开启 同时控制为关闭 则为关闭 -- 执行完毕后设置为关闭
@@ -169,6 +196,7 @@ const SideHead = forwardRef((props, ref) => {
     ['半开', 50],
     ['1/4', 75],
     ['关闭', 100],
+
   ];
 
 
