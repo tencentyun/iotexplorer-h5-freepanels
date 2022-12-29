@@ -4,11 +4,11 @@ import { Icon } from '@custom/Icon';
 import { Battery } from '@custom/Battery';
 import { OptionDialog } from '@custom/OptionDialog';
 import { Cell } from '@custom/Cell';
-import { CountDown } from '../../Common/CountDown';
+import { CountDown } from '../CountDown';
 import { Switch } from '@custom/Switch';
 
 
-const MODE_LIST = ['默认', '睡眠模式', '强劲模式', '低速模式'];
+const MODE_LIST = ['默认模式', '左右摇头', '上下摇头', '循环模式'];
 
 export function Home(props) {
   const {
@@ -54,10 +54,6 @@ export function Home(props) {
   }
 
   const onCountDownClick = () => {
-    if (deviceData.count_down) {
-      push(PATH.TIMER_COUNTDOWNPAGE, { value: deviceData.count_down });
-      return;
-    }
     countRef.current.onOpen();
   }
 
@@ -82,12 +78,6 @@ export function Home(props) {
     >
       {/* 模式 */}
       <div className="top">
-        <Battery
-          value={deviceData?.low_voltage?.voltage || 50}
-          isShowPercent={true}
-          isShowTip={false}
-        />
-        {/* <div className="mode-content">{MODE_LIST[deviceData?.working_mode || 0]}</div> */}
       </div>
       {/* 表盘 */}
       <div className={classNames('disk-wrap')}>
@@ -99,16 +89,8 @@ export function Home(props) {
             onChange={onSwitchClick}
           />
         </div>
-        <div className="outer">
-          <div className="center">
-            <div className="inner">
-              <div className="title">目标湿度</div>
-              <div className="content">
-                <div className="value">{deviceData.humidity_set || 0}</div>
-                <div className="unit">%</div>
-              </div>
-            </div>
-          </div>
+        <div className="right">
+          <Icon name="fan" />
         </div>
       </div>
 
@@ -127,13 +109,6 @@ export function Home(props) {
             prefixIcon={<Icon name="time" />}
             onClick={onTimeClick}
           ></Cell>
-          {/* <Cell
-            className="cell-settings switch-btn-settings"
-            title="开关"
-            isLink={true}
-            prefixIcon={<Icon name="switch" />}
-            onClick={onSwitchClick}
-          ></Cell> */}
           <Cell
             className="cell-settings"
             title="倒计时"

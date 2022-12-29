@@ -111,9 +111,7 @@ export function Home(props) {
           </div>
         </div> */}
         <div className="right">
-          <div className="line"></div>
-          {/* <Icon name={deviceData.power_switch !== 1 ? "light" : "light-checked"} /> */}
-          <Icon name="light" />
+          <Icon name="hum" />
         </div>
       </div>
 

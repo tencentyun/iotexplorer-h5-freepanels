@@ -1,6 +1,6 @@
 .home {
   position: relative;
-  padding-top: 20px;
+  padding-top: 0;
   color: #26313D;
   height: calc(100vh - 30px);
   background: linear-gradient(167.96deg, #B3957B 0%, #A8866B 100%);
@@ -18,18 +18,27 @@
 
   .disk-wrap {
     margin: 0;
-    width: calc(100% - 56px);
+    width: calc(100% - 38px);
     height: unset;
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
     padding-left: 20px;
 
+    .right {
+      height: 203px;
+      width: 143px;
+      position: relative;
+      z-index: 1;
+      top: 32px;
+    }
+
     .switch-total {
       display: flex;
       flex-direction: column;
       align-items: flex-start;
       margin-top: 42px;
+
 
       .switch-title {
         font-style: normal;
@@ -119,9 +128,11 @@
     display: flex;
     flex-direction: column;
     width: 100%;
-    height: calc(100% - 204px);
+    height: calc(100% - 174px);
     background: #F2F2F2;
     border-radius: 40px 40px 0 0;
+    position: relative;
+    z-index: 2;
 
     .mode-text {
       width: 311px;
@@ -157,9 +168,14 @@
 
         .cell-wrapper {
           height: 100%;
+          flex-direction: column;
 
           .cell-prefix-icon {
-            margin-bottom: 32px;
+            margin: 32px 0;
+          }
+
+          .icon-arrow-right {
+            display: none;
           }
 
           .cell-title-wrapper {
@@ -207,7 +223,7 @@
 
       .modal {
         width: 311px;
-        top: 526px;
+        top: 506px;
         height: 342px;
         border-radius: 24px;
 
