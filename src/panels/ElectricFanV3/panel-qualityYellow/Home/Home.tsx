@@ -1,7 +1,6 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useRef } from 'react';
 import classNames from 'classnames';
 import { Icon } from '@custom/Icon';
-import { Battery } from '@custom/Battery';
 import { OptionDialog } from '@custom/OptionDialog';
 import { Cell } from '@custom/Cell';
 import { CountDown } from '../CountDown';
