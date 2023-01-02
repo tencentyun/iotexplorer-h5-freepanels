@@ -1,0 +1,157 @@
+.cook-process {
+    width: 100%;
+    height: 100vh;
+
+    .current-status {
+        height: 330px;
+        background-image: url('../bg/bg.svg');
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+        opacity: 0.8;
+
+        .mask {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(#1D202D, rgba(255, 255, 255, 0), #1D202D);
+        }
+
+        .current-list {
+            margin: 0 52px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 80px;
+            position: relative;
+            top: -78px;
+
+            .current-item {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                color: #fff;
+
+                .value {
+                    font-family: 'DIN Alternate';
+                    font-weight: 700;
+                    font-size: 38px;
+                    line-height: 44px;
+                }
+
+                .label {
+                    font-weight: 600;
+                    font-size: 14px;
+                    line-height: 20px;
+                    opacity: 0.5;
+                }
+
+            }
+        }
+    }
+
+    .footer {
+        height: calc(100vh - 367px);
+        margin-top: 36px;
+        border-radius: 20px;
+        border-top: 1px solid rgba(255, 255, 255, 0.3);
+
+        .cook-item {
+            margin: 32px 20px;
+            display: flex;
+            align-items: center;
+
+            .cook-icon {
+                width: 40px;
+                height: 40px;
+                border-radius: 100%;
+                border: 1px solid rgba(156, 140, 255, 0.24);
+
+                .icon {
+                    width: 100%;
+                    height: 100%;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                }
+            }
+
+            span {
+                font-weight: 600;
+                font-size: 12px;
+                line-height: 17px;
+                margin-left: 16px;
+                color: #fff;
+            }
+        }
+
+        .cook-setting {
+            .cell {
+                padding: 12px 20px;
+                margin-bottom: 10px;
+
+                .cell-wrapper {
+                    .cell-prefix-icon {
+                        display: none;
+                    }
+
+                    .cell-title-wrapper {
+                        display: flex;
+                        justify-content: space-between;
+                        flex: 1;
+
+                        .cell-subtitle {
+                            font-weight: 500;
+                            font-size: 16px;
+                            line-height: 22px;
+                            letter-spacing: 0.002em;
+
+                            color: #FFFFFF;
+
+                        }
+                    }
+
+                    .icon-arrow-right {
+                        margin-left: 17px;
+                    }
+                }
+            }
+
+        }
+
+        .cook-btns {
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 38px;
+
+            .btn {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 70px;
+                height: 57px;
+                border-radius: 16px;
+                border: 1px solid rgba(156, 140, 255, 0.24);
+                background: rgba(0, 0, 0, 0.3);
+                color: #fff;
+                font-weight: 500;
+                font-size: 16px;
+
+                &:first-child {
+                    width: 251px;
+
+                    .icon {
+                        display: none;
+                    }
+                }
+
+                &:nth-child(2) {
+                    span {
+                        display: none;
+                    }
+                }
+            }
+        }
+    }
+}

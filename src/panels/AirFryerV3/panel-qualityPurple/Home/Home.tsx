@@ -2,23 +2,11 @@ import React, { useEffect, useRef, useState } from 'react';
 import classNames from 'classnames';
 import { Icon } from '@custom/Icon';
 import { Cell } from '@custom/Cell';
-import { CountDown } from '../CountDown';
+import { CountDown } from '../../Common/CountDown';
 import { Slider } from '@custom/Slider';
+import { OptionDialog } from '@custom/OptionDialog';
 
-// const marks = {
-//   0: 0,
-//   10: 10,
-//   20: 20,
-//   30: 30,
-//   40: 40,
-//   50: 50,
-//   60: 60,
-//   70: 70,
-//   80: 80,
-//   90: 90,
-//   100: 100,
-// }
-
+const MODE_LIST = ['默认模式', '左右摇头', '上下摇头', '循环模式'];
 export function Home(props) {
   const {
     deviceData,
@@ -29,6 +17,12 @@ export function Home(props) {
   const countRef = useRef(null);
 
   const [speed, setSpeed] = useState(0);
+  const [modeVisible, setModeVisible] = useState(false);
+  const [modeValue, setModeValue] = useState(0);
+
+  useEffect(() => {
+    setModeValue(deviceData.working_mode || 0)
+  }, [deviceData.working_mode])
 
   useEffect(() => {
     setSpeed(deviceData.wind_speed || 0)
@@ -90,12 +84,13 @@ export function Home(props) {
       {/* 表盘 */}
       <div className={classNames('disk-wrap')}>
         <div className="outer">
-          <div className="center">
-            <div className="inner">
-              <div className="title">风速</div>
-              <div className="content">
-                <div className="value">{deviceData.wind_speed || 0}</div>
-              </div>
+
+        </div>
+        <div className="center">
+          <div className="inner">
+            <div className="title">风速</div>
+            <div className="content">
+              <div className="value">{deviceData.wind_speed || 0}</div>
             </div>
           </div>
         </div>
@@ -141,65 +136,54 @@ export function Home(props) {
             <Icon name="plus" />
           </div>
         </div>
+
         <div className="actions">
           <Cell
             className="cell-first"
-            title="默认"
-            isLink={true}
-            prefixIcon={<Icon name="mode1" />}
-            onClick={() => { onModeClick(0) }}
-          ></Cell>
-          <Cell
-            className="cell-first"
-            title="左右摇头"
-            isLink={true}
-            prefixIcon={<Icon name="mode2" />}
-            onClick={() => { onModeClick(1) }}
-          >
-          </Cell>
-          <Cell
-            className="cell-first"
-            title="上下摇头"
-            isLink={true}
-            prefixIcon={<Icon name="mode3" />}
-            onClick={() => { onModeClick(2) }}
-          ></Cell>
-          <Cell
-            className="cell-first"
-            title="循环模式"
-            isLink={true}
-            prefixIcon={<Icon name="mode4" />}
-            onClick={() => { onModeClick(3) }}
-          >
-          </Cell>
-        </div>
-        <div className="actions">
-          <Cell
-            className="cell-second"
             title="开关"
             isLink={true}
             prefixIcon={<Icon name="switch" />}
             onClick={onSwitchClick}
           ></Cell>
           <Cell
-            className="cell-second"
+            className="cell-first"
             title="定时"
             isLink={true}
             prefixIcon={<Icon name="time" />}
             onClick={onTimeClick}
-          ></Cell>
+          >
+          </Cell>
           <Cell
-            className="cell-second"
+            className="cell-first"
             title="倒计时"
             isLink={true}
             prefixIcon={<Icon name="count" />}
             onClick={onCountDownClick}
+          ></Cell>
+          <Cell
+            className="cell-first"
+            title="模式"
+            isLink={true}
+            prefixIcon={<Icon name="mode" />}
+            onClick={() => { setModeVisible(true) }}
           >
           </Cell>
         </div>
       </footer>
-
-      <CountDown ref={countRef} {...props} />
+      <OptionDialog
+        visible={modeVisible}
+        title="模式"
+        value={[modeValue || 0]}
+        options={MODE_LIST.map((item, index) => ({ label: item, value: index }))}
+        onCancel={() => {
+          setModeVisible(false);
+        }}
+        onConfirm={(value) => {
+          setModeValue(value[0]);
+          doControlDeviceData('working_mode', value[0]);
+        }}
+      ></OptionDialog>
+      <CountDown ref={countRef} {...props} isModule={true} />
     </main>
   );
 }
