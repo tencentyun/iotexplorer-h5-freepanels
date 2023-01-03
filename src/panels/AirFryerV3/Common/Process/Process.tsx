@@ -36,6 +36,7 @@ export function Process(props) {
             <div className="label">当前温度</div>
           </div>
         </div>
+        <Icon name="pot" />
       </div>
       <div className={classNames("footer", deviceData.status === 4 ? 'doing' : 'not-doing')}>
         <div className="cook-item">

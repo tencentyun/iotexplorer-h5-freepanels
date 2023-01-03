@@ -1,9 +1,11 @@
 import React, { useEffect } from 'react';
 import { Icon } from '@custom/Icon';
+import { Switch } from '@custom/Switch';
 
 export function Home(props) {
   const {
     deviceData,
+    doControlDeviceData,
     history: { PATH, push },
   } = { ...props };
 
@@ -17,8 +19,20 @@ export function Home(props) {
     }
   }, [deviceData.power_switch])
 
+  const onSwitchClick = () => {
+    doControlDeviceData('power_switch', 1);
+  }
+
   return (
     <main className="home">
+      <div className="switch-total">
+        <div className="switch-title">开关</div>
+        <Switch
+          className="reverse custom-switch"
+          checked={!!deviceData.power_switch}
+          onChange={onSwitchClick}
+        />
+      </div>
       <div className="photo">
         <Icon name="pot" />
         <div className="bottom-bg"></div>

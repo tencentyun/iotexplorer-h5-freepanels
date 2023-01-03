@@ -10,40 +10,49 @@ export const Action = ({
 
   const actions = [
     [
-      '打开',
+      mode === 0 ? '暂停' : '打开',
       '模式',
       () => {
-        doControlDeviceData({ mode: 0 });
+        if (!power_switch) {
+          return;
+        }
+        doControlDeviceData({ mode: mode === 0 ? 2 : 0 });
         myRef.current.close();
         setTimeout(() => { myRef.current.open() }, 500)
       },
-      mode === 0,
+      '',
     ],
     [
       // mode === 2 ? '暂停' : '开始',
-      '暂停',
-      '模式',
+      !power_switch ? '开' : '关',
+      '开关',
       () => {
         // 暂停再次点击则开启 开启状态则暂停
-        doControlDeviceData({ mode: 2 });
-        myRef.current.pause();
+        doControlDeviceData({ power_switch: Number(!power_switch), mode: 2 });
+        myRef.current.close();
       },
-      mode === 2
+      ''
     ],
     [
-      '关闭',
+      mode === 1 ? '暂停' : '关闭',
       '模式',
       () => {
-        doControlDeviceData({ mode: 1 });
+        if (!power_switch) {
+          return;
+        }
+        doControlDeviceData({ mode: mode === 1 ? 2 : 1 });
         myRef.current.close();
         setTimeout(() => { myRef.current.open() }, 500)
       },
-      mode === 1,
+      '',
     ],
     [
       '定时',
       '时间',
       () => {
+        if (!power_switch) {
+          return;
+        }
         push(PATH.TIMER_LIST, { isModule: true })
       }
     ],

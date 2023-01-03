@@ -6,12 +6,12 @@ import { LightBright } from '@custom/LightBright';
 
 export const TimerAdd = (props) => {
   const {
-    context: { percent_control = 0, power_switch = 0 },
+    context: { position = 0, power_switch = 0 },
     setContext,
   } = props;
   const [visible, setVisible] = useState(false);
   const [percentVisible, setPercentVisible] = useState(false);
-  const [value, setValue] = useState(percent_control);
+  const [value, setValue] = useState(position);
 
   // TODO 目前没有电源开关模型字段
   return (
@@ -26,7 +26,7 @@ export const TimerAdd = (props) => {
         />
         <List.Item
           prefix="百分比设置"
-          extra={`${percent_control}%`}
+          extra={`${position}%`}
           onClick={() => {
             setPercentVisible(true);
           }}
@@ -50,7 +50,7 @@ export const TimerAdd = (props) => {
         title="百分比控制"
         visible={percentVisible}
         onCancel={() => setPercentVisible(false)}
-        onConfirm={() => setContext({ percent_control: value })}
+        onConfirm={() => setContext({ position: value })}
         options={[]}
       >
         <div className="timer-process">
@@ -59,6 +59,7 @@ export const TimerAdd = (props) => {
             value={value}
             onChange={v => setValue(Math.round(v))}
             isMask={false}
+            status={true}
           />
         </div>
       </OptionDialog>

@@ -11,9 +11,7 @@ const SideHead = forwardRef((props, ref) => {
   let { deviceData: { position = 30, mode, power_switch }, doControlDeviceData } = { ...props };
 
   let info = {
-    curRatio: position
-      ? position
-      : 30,
+    curRatio: position || position === 0 ? position : 30,
   };
 
   // useDidMount(() => {
@@ -218,16 +216,22 @@ const SideHead = forwardRef((props, ref) => {
         </div>
       </div>
 
-      <div className="count-down" onClick={ () => {
-        const {PATH, push} = props?.history || {};
+      <div className="count-down" onClick={() => {
+        if (!power_switch) {
+          return;
+        }
+        const { PATH, push } = props?.history || {};
         push(PATH.TIMER_LIST, { isModule: true })
       }}>
-         <Icon name="time"/>
+        <Icon name="time" />
         定时
       </div>
 
       <div className="fixed-position">
         {FIXED_POSITION.map(([text, position], index) => <div className="item" key={index} onClick={() => {
+          if (!power_switch) {
+            return;
+          }
           moveProgress(position);
           openLeave(position);
           doControlDeviceData('position', position);

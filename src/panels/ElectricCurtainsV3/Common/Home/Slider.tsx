@@ -10,9 +10,7 @@ const SideHead = forwardRef((props, ref) => {
   let { deviceData: { position = 30, mode, power_switch }, doControlDeviceData } = { ...props };
 
   let info = {
-    curRatio: position
-      ? position
-      : 30,
+    curRatio: position || position === 0 ? position : 30,
   };
 
   // useDidMount(() => {
@@ -219,6 +217,9 @@ const SideHead = forwardRef((props, ref) => {
 
       <div className="fixed-position">
         {FIXED_POSITION.map(([text, position], index) => <div className="item" key={index} onClick={() => {
+          if (!power_switch) {
+            return;
+          }
           // info.curRatio = position;
           // Bus.emit('position', info.curRatio);
           moveProgress(position);

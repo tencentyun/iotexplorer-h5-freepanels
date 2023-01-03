@@ -1,8 +1,6 @@
 import React, { ReactNode, forwardRef, useImperativeHandle, useEffect } from 'react';
-import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 import { onControlDevice } from '@hooks/useDeviceData';
-import Bus from '@libs/utillib';
-import { useDidMount, useWillUnmount } from 'beautiful-react-hooks';
+import { useWillUnmount } from 'beautiful-react-hooks';
 import { Icon } from '@custom/Icon';
 
 let timer;
@@ -11,9 +9,7 @@ const SideHead = forwardRef((props, ref) => {
   let { deviceData: { position = 30, mode, power_switch }, doControlDeviceData } = { ...props };
 
   let info = {
-    curRatio: position
-      ? position
-      : 30,
+    curRatio: position || position === 0 ? position : 30,
   };
 
   // useDidMount(() => {
@@ -219,20 +215,23 @@ const SideHead = forwardRef((props, ref) => {
       </div>
       <div className="head-switch" onClick={() => {
         // 暂停再次点击则开启 开启状态则暂停
-        props.doControlDeviceData({ mode: 2 });
-        ref.current.pause()
+        props.doControlDeviceData({ power_switch: Number(!power_switch), mode: 2 });
+        ref.current.close();
       }}>
         {/* <Icon className="switch-icon" name={props?.deviceData?.mode === 2 ? 'stop' : 'begin'} size="large" /> */}
-        <Icon className="switch-icon" name="stop" size="large" />
+        <Icon className="switch-icon" name="switch" size="large" />
       </div>
 
       <div className="fixed-position">
         {FIXED_POSITION.map(([text, position], index) => <div className="item" key={index} onClick={() => {
-          info.curRatio = position;
-          Bus.emit('percent_control', info.curRatio);
+          if (!power_switch) {
+            return;
+          }
+          // info.curRatio = position;
+          // Bus.emit('position', info.curRatio);
           moveProgress(info.curRatio);
           openLeave(info.curRatio);
-          onControlDevice('percent_control', position);
+          onControlDevice('position', position);
         }}>{text}</div>)}
       </div>
       {/* <div id="open-ratio" className="open-ratio">

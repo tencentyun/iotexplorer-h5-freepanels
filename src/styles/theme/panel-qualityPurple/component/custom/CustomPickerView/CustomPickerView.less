@@ -1,0 +1,49 @@
+.custom-picker {
+  .custom-picker-popup-mask {
+    opacity: 0;
+  }
+
+  .picker-header {
+    font-weight: 600;
+    font-size: 20px;
+    margin-top: 8px;
+    color: #565477;
+  }
+
+  .picker-body {
+    margin-top: 40px;
+    margin-bottom: 53px;
+
+    .rmc-picker-indicator::after {
+      border-radius: 16px !important;
+      left: 20px !important;
+    }
+
+    .rmc-picker-content {
+      .rmc-picker-item {
+        padding-left: 26px !important;
+      }
+    }
+  }
+
+  .picker-footer {
+    font-size: 16px;
+    color: #565477;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: absolute;
+    top: 12px;
+    width: 87%;
+    padding: 0 24px;
+
+    button {
+      color: #565477;
+      background-color: transparent;
+      border: none;
+      outline: none;
+      font-weight: 600;
+      background: transparent;
+    }
+  }
+}
