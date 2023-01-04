@@ -1,0 +1,125 @@
+{
+    "version": "1.0",
+    "properties": [
+        {
+            "id": "power_switch",
+            "name": "开关",
+            "desc": "",
+            "mode": "rw",
+            "define": {
+                "type": "bool",
+                "mapping": {
+                    "0": "关",
+                    "1": "开"
+                }
+            },
+            "required": false
+        },
+        {
+            "id": "count_down",
+            "name": "预约时间",
+            "desc": "",
+            "mode": "rw",
+            "define": {
+                "type": "int",
+                "min": "0",
+                "max": "86400",
+                "start": "0",
+                "step": "1",
+                "unit": "s"
+            },
+            "required": false
+        },
+        {
+            "id": "temperature_set",
+            "name": "温度设置",
+            "desc": "",
+            "mode": "rw",
+            "define": {
+                "type": "int",
+                "min": "0",
+                "max": "100",
+                "start": "0",
+                "step": "1",
+                "unit": ""
+            },
+            "required": false
+        },
+        {
+            "id": "current_temp",
+            "name": "当前温度",
+            "desc": "",
+            "mode": "rw",
+            "define": {
+                "type": "int",
+                "min": "0",
+                "max": "100",
+                "start": "0",
+                "step": "1",
+                "unit": ""
+            },
+            "required": false
+        },
+        {
+            "id": "working_mode",
+            "name": "工作模式",
+            "desc": "",
+            "mode": "rw",
+            "define": {
+                "type": "enum",
+                "mapping": {
+                    "0": "自定义",
+                    "1": "烧水",
+                    "2": "咖啡",
+                    "3": "热奶",
+                    "4": "银耳",
+                    "5": "花茶",
+                    "6": "煮蛋",
+                    "7": "药膳",
+                    "8": "煲汤",
+                    "9": "蒸煮",
+                    "10": "煮面"
+                }
+            },
+            "required": false
+        },
+        {
+            "id": "insulation_temp",
+            "name": "保温温度",
+            "desc": "",
+            "mode": "rw",
+            "define": {
+                "type": "int",
+                "min": "45",
+                "max": "85",
+                "start": "45",
+                "step": "1",
+                "unit": "摄氏度"
+            },
+            "required": false
+        },
+        {
+            "id": "status",
+            "name": "工作状态",
+            "desc": "",
+            "mode": "rw",
+            "define": {
+                "type": "enum",
+                "mapping": {
+                    "0": "停止",
+                    "1": "启动",
+                    "2": "暂停",
+                    "3": "待机",
+                    "4": "烹饪中"
+                }
+            },
+            "required": false
+        }
+    ],
+    "events": [],
+    "actions": [],
+    "profile": {
+        "ProductId": "K08YLL4M6Q",
+        "CategoryId": "1"
+    }
+}

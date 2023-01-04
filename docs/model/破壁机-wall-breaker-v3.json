@@ -1,0 +1,105 @@
+{
+    "version": "1.0",
+    "properties": [
+        {
+            "id": "power_switch",
+            "name": "开关",
+            "desc": "",
+            "mode": "rw",
+            "define": {
+                "type": "bool",
+                "mapping": {
+                    "0": "关",
+                    "1": "开"
+                }
+            },
+            "required": false
+        },
+        {
+            "id": "count_down",
+            "name": "预约时间",
+            "desc": "",
+            "mode": "rw",
+            "define": {
+                "type": "int",
+                "min": "0",
+                "max": "86400",
+                "start": "0",
+                "step": "1",
+                "unit": "s"
+            },
+            "required": false
+        },
+        {
+            "id": "working_mode",
+            "name": "烹饪模式",
+            "desc": "",
+            "mode": "rw",
+            "define": {
+                "type": "enum",
+                "mapping": {
+                    "0": "自定义",
+                    "1": "豆浆",
+                    "2": "浓汤",
+                    "3": "迷糊",
+                    "4": "八宝粥",
+                    "5": "玉米汁",
+                    "6": "果蔬汁",
+                    "7": "奶昔"
+                }
+            },
+            "required": false
+        },
+        {
+            "id": "insulation_mode",
+            "name": "保温模式",
+            "desc": "",
+            "mode": "rw",
+            "define": {
+                "type": "bool",
+                "mapping": {
+                    "0": "关",
+                    "1": "开"
+                }
+            },
+            "required": false
+        },
+        {
+            "id": "cleaning_mode",
+            "name": "清洗模式",
+            "desc": "",
+            "mode": "rw",
+            "define": {
+                "type": "bool",
+                "mapping": {
+                    "0": "关",
+                    "1": "开"
+                }
+            },
+            "required": false
+        },
+        {
+            "id": "status",
+            "name": "工作状态",
+            "desc": "",
+            "mode": "rw",
+            "define": {
+                "type": "enum",
+                "mapping": {
+                    "0": "停止",
+                    "1": "启动",
+                    "2": "暂停",
+                    "3": "待机",
+                    "4": "烹饪中"
+                }
+            },
+            "required": false
+        }
+    ],
+    "events": [],
+    "actions": [],
+    "profile": {
+        "ProductId": "DWZZ4GRITY",
+        "CategoryId": "1"
+    }
+}
