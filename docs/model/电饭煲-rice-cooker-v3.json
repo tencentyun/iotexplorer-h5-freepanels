@@ -1,0 +1,118 @@
+{
+    "version": "1.0",
+    "properties": [
+        {
+            "id": "power_switch",
+            "name": "开关",
+            "desc": "",
+            "mode": "rw",
+            "define": {
+                "type": "bool",
+                "mapping": {
+                    "0": "关",
+                    "1": "开"
+                }
+            },
+            "required": false
+        },
+        {
+            "id": "working_mode",
+            "name": "工作模式",
+            "desc": "",
+            "mode": "rw",
+            "define": {
+                "type": "enum",
+                "mapping": {
+                    "0": "自定义",
+                    "1": "轻食饭",
+                    "2": "儿童饭",
+                    "3": "老人饭"
+                }
+            },
+            "required": false
+        },
+        {
+            "id": "count_down",
+            "name": "预约时间",
+            "desc": "",
+            "mode": "rw",
+            "define": {
+                "type": "int",
+                "min": "0",
+                "max": "86400",
+                "start": "0",
+                "step": "1",
+                "unit": ""
+            },
+            "required": false
+        },
+        {
+            "id": "temperature_set",
+            "name": "温度设置",
+            "desc": "",
+            "mode": "rw",
+            "define": {
+                "type": "int",
+                "min": "0",
+                "max": "200",
+                "start": "0",
+                "step": "1",
+                "unit": "摄氏度"
+            },
+            "required": false
+        },
+        {
+            "id": "cooking_time",
+            "name": "烹饪时间",
+            "desc": "",
+            "mode": "rw",
+            "define": {
+                "type": "int",
+                "min": "0",
+                "max": "86400",
+                "start": "0",
+                "step": "1",
+                "unit": "s"
+            },
+            "required": false
+        },
+        {
+            "id": "cooking_time_left",
+            "name": "烹饪剩余时间",
+            "desc": "",
+            "mode": "r",
+            "define": {
+                "type": "int",
+                "min": "0",
+                "max": "86400",
+                "start": "0",
+                "step": "1",
+                "unit": "s"
+            },
+            "required": false
+        },
+        {
+            "id": "status",
+            "name": "工作状态",
+            "desc": "",
+            "mode": "rw",
+            "define": {
+                "type": "enum",
+                "mapping": {
+                    "0": "停止",
+                    "1": "启动",
+                    "2": "暂停",
+                    "3": "待机",
+                    "4": "烹饪中"
+                }
+            },
+            "required": false
+        }
+    ],
+    "events": [],
+    "actions": [],
+    "profile": {
+        "ProductId": "39NT3F69EE",
+        "CategoryId": "1"
+    }
+}

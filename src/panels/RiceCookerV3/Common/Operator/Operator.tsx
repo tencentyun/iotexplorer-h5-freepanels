@@ -26,11 +26,11 @@ export function Operator(props) {
     history: { PATH, push, goBack },
   } = { ...props };
 
-  useEffect(() => {
-    if (deviceData.power_switch === 0) {
-      push(PATH.HOME);
-    }
-  }, [deviceData.power_switch])
+  // useEffect(() => {
+  //   if (deviceData.power_switch === 0) {
+  //     push(PATH.HOME);
+  //   }
+  // }, [deviceData.power_switch])
 
   const countRef = useRef(null);
   const cookRef = useRef(null);
@@ -50,17 +50,17 @@ export function Operator(props) {
   }
 
   const onSwitchClick = () => {
-    doControlDeviceData('power_switch', 0);
+    doControlDeviceData('power_switch', Number(!deviceData.power_switch));
   }
 
   return (
-    <div className="operator-page">
+    <div className={classNames("operator-page", !!deviceData.power_switch ? '' : 'is-off')}>
       <div className="operator-header">
         <div className="switch-total">
           <div className="switch-title">开关</div>
           <Switch
             className="reverse custom-switch"
-            checked={true}
+            checked={!!deviceData.power_switch}
             onChange={onSwitchClick}
           />
         </div>
@@ -90,19 +90,7 @@ export function Operator(props) {
         <div className={classNames('options', `${deviceData.working_mode !== 0 ? 'is-disabled' : ''}`)}>
           <div className="title">烹饪参数</div>
           <div className="options-list">
-            <Cell
-              className="cell-item"
-              title="烹饪温度"
-              subTitle={`${!deviceData.temperature_set ? '-' : deviceData.temperature_set}°C`}
-              isLink={true}
-              prefixIcon={<Icon name="temperature" />}
-              onClick={() => {
-                if (deviceData.working_mode !== 0) {
-                  return;
-                }
-                setVisible(true);
-              }}
-            />
+
             <Cell
               className="cell-item"
               title="烹饪时间"
@@ -116,11 +104,24 @@ export function Operator(props) {
                 cookRef.current.onOpen()
               }}
             />
+            <Cell
+              className="cell-item"
+              title="烹饪温度"
+              subTitle={`${!deviceData.temperature_set ? '-' : deviceData.temperature_set}°C`}
+              isLink={true}
+              prefixIcon={<Icon name="temperature" />}
+              onClick={() => {
+                if (deviceData.working_mode !== 0) {
+                  return;
+                }
+                setVisible(true);
+              }}
+            />
           </div>
         </div>
         {deviceData.status === 4 ? <div className="cooking" onClick={() => push(PATH.PROCESS)}><span>美食</span><span>烹饪中</span></div> : null}
         <div className="footer">
-          <div className="custom-btn" onClick={() => { doControlDeviceData('power_switch', 0); }}>
+          <div className="custom-btn" onClick={() => { doControlDeviceData('power_switch', Number(!deviceData.power_switch)); }}>
             <Icon name="switch" />
           </div>
           <div className="custom-btn" onClick={() => {

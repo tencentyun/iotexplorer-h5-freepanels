@@ -1,0 +1,203 @@
+.cook-process {
+
+    .current-status {
+        height: 264px;
+        background-image: none;
+        opacity: 1;
+
+        .mask {
+            display: none;
+        }
+
+        .current-list {
+            margin: 0 64px 0 59px;
+            height: auto;
+            top: 84px;
+
+            &::after {
+                content: ' ';
+                width: 2px;
+                background: #F6F4FC;
+                height: 20px;
+                position: absolute;
+                left: calc(50% - 2px);
+            }
+
+            .current-item {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                color: #565477;
+
+            }
+        }
+    }
+
+    .footer {
+        height: calc(100vh - 367px);
+        margin-top: 0;
+        border-radius: 20px;
+        border-top: 1px solid rgba(255, 255, 255, 0.3);
+
+        .cook-item {
+            position: relative;
+            top: -50px;
+            margin: 0;
+            width: 100%;
+            justify-content: center;
+
+            .cook-icon {
+                display: none;
+            }
+
+            &::before {
+                content: ' ';
+                width: 6px;
+                height: 6px;
+                background: #F6F4FC;
+                border-radius: 100%;
+                position: relative;
+                margin-right: 4px;
+            }
+
+            &::after {
+                content: '';
+                color: #565477;
+                font-weight: 600;
+                font-size: 12px;
+                line-height: 17px;
+            }
+
+            span {
+                color: #565477;
+                margin: 0;
+            }
+        }
+
+
+        .cook-setting {
+            padding: 0 13px;
+            position: relative;
+
+            &::after {
+                top: 50%;
+                content: ' ';
+                width: 303px;
+                height: 2px;
+                position: absolute;
+                left: 36px;
+                background: #F6F4FC;
+            }
+
+            .cell {
+                border-radius: 16px 16px 0 0;
+                margin: 0;
+                border: 0;
+                background: #FFFFFF;
+                box-shadow: 10px 4px 0px 0px rgba(246, 244, 252, 0.9);
+                padding: 56px 80px;
+
+                &:nth-child(1) {
+                    border-radius: 16px 16px 0 0;
+
+                }
+
+                &:nth-child(2) {
+                    border-radius: 0 0 16px 16px;
+                }
+
+                .cell-wrapper {
+                    .cell-prefix-icon {
+                        display: none;
+                    }
+
+                    .cell-title-wrapper {
+                        align-items: center;
+                        .cell-title {
+                            color: #7E7BA6;
+                            font-size: 12px;
+                        }
+                        .cell-subtitle {
+                            font-family: 'DIN Alternate';
+                            font-weight: 700;
+                            font-size: 38px;
+                            line-height: 44px;
+                            color: #565477;
+
+                        }
+                    }
+
+                    .icon-arrow-right {
+                        display: none;
+                    }
+                }
+            }
+
+        }
+
+        .cook-btns {
+            padding: 0 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 16px;
+
+            .btn {
+                flex-direction: row;
+                width: 56px;
+                height: 56px;
+                border: 0;
+                background: #FFFFFF;
+                box-shadow: 0px 4px 20px rgba(246, 244, 252, 0.9);
+                border-radius: 16px;
+                color: #565477;
+                font-weight: 600;
+
+                .icon {
+                    margin-bottom: 0;
+                }
+
+                &:first-child {
+                    width: 269px;
+
+                    .icon {
+                        display: none;
+                    }
+                }
+
+                &:nth-child(2) {
+                    span {
+                        display: none;
+                    }
+                }
+            }
+        }
+
+        &.doing {
+            .cook-item {
+                &::before {
+                    background: #15C45D;
+                }
+
+                &::after {
+                    content: '工作中';
+                }
+            }
+
+        }
+
+        &.not-doing {
+            .cook-item {
+                &::before {
+                    background: #D83939;
+                }
+
+                &::after {
+                    content: '暂停中';
+                }
+            }
+
+        }
+    }
+}
