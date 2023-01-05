@@ -97,10 +97,10 @@ export function Operator(props) {
               isLink={true}
               prefixIcon={<Icon name="temperature" />}
               onClick={() => {
-                if (deviceData.working_mode !== 0) {
-                  return;
-                }
-                setVisible(true);
+                // if (deviceData.working_mode !== 0) {
+                //   return;
+                // }
+                // setVisible(true);
               }}
             />
             <Cell
@@ -110,10 +110,10 @@ export function Operator(props) {
               isLink={true}
               prefixIcon={<Icon name="cook-time" />}
               onClick={() => {
-                if (deviceData.working_mode !== 0) {
-                  return;
-                }
-                cookRef.current.onOpen()
+                // if (deviceData.working_mode !== 0) {
+                //   return;
+                // }
+                // cookRef.current.onOpen()
               }}
             />
           </div>
