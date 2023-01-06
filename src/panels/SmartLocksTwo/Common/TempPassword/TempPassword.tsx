@@ -6,6 +6,7 @@ import { List } from '@custom/List';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 import { arrWeek } from './AddTempPassword';
 import { StatusTip } from '@components/StatusTip';
+import { LoadingTip } from '@src/components/custom/StatusTip';
 interface PasswordItem {
   BeginTime: number
   DeviceName: string
@@ -21,7 +22,9 @@ export function TempPassword({ history: { push, PATH }, tips, deviceData }) {
   useTitle('临时密码');
   const [onetimePasswords, setOnetimePasswords] = useState<PasswordItem[]>([]);
   const cyclePasswordList = deviceData.cycle_password_list || [];
+  const [loading, setLoading] = useState(false);
   const getPasswordList = async () => {
+    setLoading(true);
     try {
       const { OTPPasswordProperties: passwords } = await sdk.requestTokenApi('AppGetDeviceOTPList', {
         DeviceId: sdk.deviceId,
@@ -41,6 +44,7 @@ export function TempPassword({ history: { push, PATH }, tips, deviceData }) {
       console.log('获取密码列表出错', err);
       tips.showError('获取密码列表出错');
     }
+    setLoading(false);
   };
 
   const validCyclePasswords = cyclePasswordList.filter(({ invalid_date, invalid_time }) => {
@@ -140,7 +144,7 @@ export function TempPassword({ history: { push, PATH }, tips, deviceData }) {
           }
           />
         </div>
-        { totalListLength === 0 && <StatusTip emptyMessage='暂无数据' status='empty' className='empty'/>}
+        { totalListLength === 0 && (loading ? <LoadingTip className='empty'/> : <StatusTip emptyMessage='暂无数据' status='empty' className='empty'/>)}
         <Btn className="add-btn" onClick={() => push(PATH.TEMP_PASSWORD_ADD)}>
           添加+{' '}
         </Btn>
