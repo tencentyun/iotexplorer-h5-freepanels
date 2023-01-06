@@ -9,22 +9,34 @@ import { StatusTip } from '@components/StatusTip';
 interface PasswordItem {
   BeginTime: number
   DeviceName: string
+  PropertyId: string
   Expired: number
   OTPPassword: string
   ProductId: string
   Status: 0 | 1
+  [key: string]: string | number;
 }
 
 export function TempPassword({ history: { push, PATH }, tips, deviceData }) {
   useTitle('临时密码');
-  const [data, setData] = useState([]);
+  const [onetimePasswords, setOnetimePasswords] = useState<PasswordItem[]>([]);
   const cyclePasswordList = deviceData.cycle_password_list || [];
   const getPasswordList = async () => {
     try {
       const { OTPPasswordProperties: passwords } = await sdk.requestTokenApi('AppGetDeviceOTPList', {
         DeviceId: sdk.deviceId,
       });
-      setData(passwords);
+      const validPwds: PasswordItem[] = [];
+      for (let i = 0; i < passwords.length; i++) {
+        // FIXME: 有效时间 +20分钟 不要在前端做
+        if (Date.now() < (passwords[i].Expired + 1200) * 1000) {
+          validPwds.push(passwords[i]);
+        } else {
+          console.log('删除了失效临时密码');
+          removeSinglePassword(passwords[i].PropertyId);
+        }
+      }
+      setOnetimePasswords(validPwds);
     } catch (err) {
       console.log('获取密码列表出错', err);
       tips.showError('获取密码列表出错');
@@ -36,7 +48,7 @@ export function TempPassword({ history: { push, PATH }, tips, deviceData }) {
     return Date.now() < invalidTime;
   });
 
-  const totalListLength = data.length + cyclePasswordList.length;
+  const totalListLength = onetimePasswords.length + cyclePasswordList.length;
 
   const removeSinglePassword = (id: string) => {
     sdk.requestTokenApi('AppRemoveDeviceOTP', {
@@ -76,10 +88,9 @@ export function TempPassword({ history: { push, PATH }, tips, deviceData }) {
 
   // 删除单条密码
   const onDelete = async (item) => {
-    // TODO 执行删除指定的密码
     await removeSinglePassword(item.PropertyId);
-    getPasswordList();
-    setData(data.filter(({ id }) => item.id !== id));
+    // 防止服务端数据没有更新
+    setTimeout(getPasswordList, 100);
   };
 
   useEffect(() => {
@@ -92,9 +103,9 @@ export function TempPassword({ history: { push, PATH }, tips, deviceData }) {
       <div className='password-wrapper'>
         <div className="password-list">
           <List
-            data={data}
+            data={onetimePasswords}
             onDelete={onDelete}
-            render={({ Expired }: PasswordItem, index) => {
+            render={({ Expired }: PasswordItem, _, index) => {
               const expired = Expired + 1200; /* 有效期20分钟 */
               return (
                 <div key={index} className="item">
@@ -112,7 +123,7 @@ export function TempPassword({ history: { push, PATH }, tips, deviceData }) {
           <List
             data={validCyclePasswords}
             onDelete={onDeleteCyclePassword}
-            render={({ take_effect_date, invalid_date, take_effect_time, invalid_time, week }, index) => {
+            render={({ take_effect_date, invalid_date, take_effect_time, invalid_time, week }, _, index) => {
               const weekStr = week.split('').map(index => arrWeek[index])
                 .join(' ');
               return (<div key={index} className="item">

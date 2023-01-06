@@ -17,6 +17,7 @@ const eventMap = {
   alarm_lock: '门锁告警',
   unlock_key: '钥匙解锁',
   unlock_temporary_password: '临时密码解锁',
+  unlock_onetime_password: '临时密码解锁',
   add_fingerprint_result: '上报指纹添加成功',
   add_password_result: '上报密码添加成功',
   add_card_result: '上报卡片添加成功',
@@ -41,12 +42,12 @@ interface LogListProps {
   onSelectLog: () => void
 }
 
-type LogType = 'all' | 'doorbell' | 'event';
+type LogType = 'all' | 'doorbell' | 'alarm_lock';
 
 const logTypeNames: Record<LogType, string> = {
   all: '全部日志',
   doorbell: '门铃呼叫',
-  event: '告警信息',
+  alarm_lock: '告警信息',
 };
 
 export function LogList({ activeKey, dateTime, templateMap, onSelectLog }: LogListProps) {
@@ -131,13 +132,15 @@ export function LogList({ activeKey, dateTime, templateMap, onSelectLog }: LogLi
   }, [logType]);
 
   const filteredData = useMemo(() => {
-    if (logType === 'all') {
-      return data;
+    switch (logType) {
+      case 'doorbell':
+      case 'alarm_lock':
+        return data.filter(item => item.event === logType);
+
+      case 'all':
+      default:
+        return data;
     }
-    if (logType === 'doorbell') {
-      return data.filter(item => item.event === 'doorbell');
-    }
-    return data.filter(item => item.event !== 'doorbell');
   }, [data, logType]);
 
   return (
@@ -165,14 +168,13 @@ export function LogList({ activeKey, dateTime, templateMap, onSelectLog }: LogLi
             </Dropdown.Item>
           </Dropdown>
       </div>
-
+      <div className="group">{dayjs(dateTime[0]).format('YYYY年MM月DD日') || ''}</div>
       {isEmpty ? (
         <div className="no-record-tips">
           <StatusTip emptyMessage='暂无数据' status='empty' className='empty'/>
         </div>
       ) : (
         <>
-          <div className="group">{dayjs(dateTime[0]).format('YYYY年MM月DD日') || ''}</div>
             <div>
               <div className="list">
                 <Steps direction="vertical">
