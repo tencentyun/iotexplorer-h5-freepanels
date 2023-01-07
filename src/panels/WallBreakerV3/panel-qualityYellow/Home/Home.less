@@ -1,4 +1,5 @@
 .home {
+  justify-content: flex-start;
   background: linear-gradient(167.96deg, #B3957B 0%, #A8866B 100%);
 
   .switch-total {
@@ -63,8 +64,15 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      position: relative;
 
       &.custom-cell {
+
+        &:nth-child(3),
+        &:nth-child(4) {
+          top: -34px;
+        }
+
         .adm-switch {
           margin-bottom: 26px;
           width: 80px;

@@ -31,26 +31,6 @@
             "required": false
         },
         {
-            "id": "working_mode",
-            "name": "烹饪模式",
-            "desc": "",
-            "mode": "rw",
-            "define": {
-                "type": "enum",
-                "mapping": {
-                    "0": "自定义",
-                    "1": "豆浆",
-                    "2": "浓汤",
-                    "3": "迷糊",
-                    "4": "八宝粥",
-                    "5": "玉米汁",
-                    "6": "果蔬汁",
-                    "7": "奶昔"
-                }
-            },
-            "required": false
-        },
-        {
             "id": "insulation_mode",
             "name": "保温模式",
             "desc": "",
@@ -91,6 +71,39 @@
                     "2": "暂停",
                     "3": "待机",
                     "4": "烹饪中"
+                }
+            },
+            "required": false
+        },
+        {
+            "id": "inching_mode",
+            "name": "点动模式",
+            "desc": "",
+            "mode": "rw",
+            "define": {
+                "type": "bool",
+                "mapping": {
+                    "0": "关",
+                    "1": "开"
+                }
+            },
+            "required": false
+        },
+        {
+            "id": "working_mode",
+            "name": "烹饪模式",
+            "desc": "",
+            "mode": "rw",
+            "define": {
+                "type": "enum",
+                "mapping": {
+                    "1": "豆浆",
+                    "2": "浓汤",
+                    "3": "迷糊",
+                    "4": "八宝粥",
+                    "5": "玉米汁",
+                    "6": "果蔬汁",
+                    "7": "奶昔"
                 }
             },
             "required": false

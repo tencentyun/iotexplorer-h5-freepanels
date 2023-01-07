@@ -82,13 +82,13 @@ export function Home(props) {
             doControlDeviceData('cleaning_mode', Number(value))
           }}
         />
-        {/* <Cell
+        <Cell
           className="custom-cell"
           title="点动模式"
           prefixIcon={<Icon name="home-mode-4"></Icon>}
           ele="switch"
           isLink={false}
-        /> */}
+        />
       </div>
       <div className="operator" onClick={() => {
         doControlDeviceData('power_switch', Number(!deviceData.power_switch))
