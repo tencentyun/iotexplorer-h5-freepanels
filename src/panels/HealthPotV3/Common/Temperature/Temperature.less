@@ -1,0 +1,131 @@
+.keep-temperature {
+    position: relative;
+    color: #26313D;
+    height: 100%;
+
+    .header {
+        width: 100%;
+        height: 296px;
+        background-image: url('../bg/bg.svg');
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+
+        .icon {
+            display: none;
+        }
+
+        .mask {
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            .title {
+                padding: 24px 32px;
+                background: rgba(0, 0, 0, 0.8);
+                border-radius: 16px;
+
+                font-weight: 600;
+                font-size: 17px;
+                line-height: 18px;
+                color: #FFFFFF;
+                position: relative;
+
+                &::before {
+                    content: ' ';
+                    width: 6px;
+                    height: 6px;
+                    background: #CCC;
+                    border-radius: 100%;
+                    position: absolute;
+                    top: 6px;
+                    left: -10px;
+                }
+
+                &.doing {
+                    &::before {
+                        background: #15C45D;
+                    }
+                }
+
+                &.not-doing {
+                    &::before {
+                        background: #D83939;
+                    }
+                }
+            }
+        }
+    }
+
+    .list {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        padding-top: 20px;
+
+        .cell {
+            padding: 12px 20px;
+            margin: 12px 0;
+
+            .cell-wrapper {
+                .cell-title-wrapper {
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: space-between;
+                    width: 100%;
+                    .cell-subtitle {
+                        font-size: 16px;
+                        color: #fff;
+                    }
+                }
+
+                .cell-prefix-icon {
+                    display: none;
+                }
+
+                // .icon-arrow-right {
+                //     display: none;
+                // }
+            }
+        }
+    }
+
+    .cook-btns {
+        padding: 0 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 220px;
+
+        .btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 70px;
+            height: 57px;
+            border-radius: 16px;
+            border: 1px solid rgba(156, 140, 255, 0.24);
+            background: rgba(0, 0, 0, 0.3);
+            color: #fff;
+            font-weight: 500;
+            font-size: 16px;
+
+            &:first-child {
+                width: 251px;
+
+                .icon {
+                    display: none;
+                }
+            }
+
+            &:nth-child(2) {
+                span {
+                    display: none;
+                }
+            }
+        }
+    }
+}

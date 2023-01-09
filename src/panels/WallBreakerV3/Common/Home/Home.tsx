@@ -88,6 +88,13 @@ export function Home(props) {
           prefixIcon={<Icon name="home-mode-4"></Icon>}
           ele="switch"
           isLink={false}
+          eleValue={!!deviceData.inching_mode}
+          onChange={(value) => {
+            if (!deviceData.power_switch) {
+              return;
+            }
+            doControlDeviceData('inching_mode', Number(value))
+          }}
         />
       </div>
       <div className="operator" onClick={() => {

@@ -39,6 +39,7 @@
             top: 28px;
             left: 78px;
             transform: scale(0.9);
+            width: calc(100% - 80px);
         }
 
         .options {
@@ -53,6 +54,7 @@
                 position: relative;
 
                 &::after {
+                    display: none;
                     top: 50%;
                     content: ' ';
                     width: 303px;
@@ -71,8 +73,7 @@
                     padding: 91px 80px;
 
                     &:nth-child(1) {
-                        border-radius: 16px 16px 0 0;
-
+                        border-radius: 16px;
                     }
 
                     &:nth-child(2) {
@@ -160,7 +161,7 @@
         }
 
         .footer {
-            margin-top: 20px;
+            margin-top: 244px;
             padding: 0 16px;
             display: flex;
             justify-content: space-between;

@@ -36,7 +36,6 @@ export function Operator(props) {
   const cookRef = useRef(null);
 
   const [visible, setVisible] = useState(false);
-  const [heatVisible, setHeatVisible] = useState(false);
 
   
 
@@ -107,7 +106,7 @@ export function Operator(props) {
                 setVisible(true);
               }}
             />
-            <Cell
+            {/* <Cell
               className="cell-item"
               title="保温温度"
               subTitle={`${!deviceData.insulation_temp ? '-' : deviceData.insulation_temp}°C`}
@@ -119,7 +118,7 @@ export function Operator(props) {
                 }
                 setHeatVisible(true)
               }}
-            />
+            /> */}
           </div>
         </div>
         {deviceData.status === 4 ? <div className="cooking" onClick={() => push(PATH.PROCESS)}><span>美食</span><span>烹饪中</span></div> : null}
@@ -152,18 +151,7 @@ export function Operator(props) {
             doControlDeviceData('temperature_set', parseInt(value));
           }}
         />
-        <CustomPickerView
-          {...props}
-          title={"保温温度"}
-          visible={heatVisible}
-          optionValues={getList('insulation_temp')}
-          value={[!deviceData.insulation_temp ? 0 : deviceData.insulation_temp]}
-          onCancel={setHeatVisible.bind(null, false)}
-          onConfirm={([value]) => {
-            setHeatVisible(false);
-            doControlDeviceData('insulation_temp', parseInt(value));
-          }}
-        />
+       
       </main>
     </div>
 

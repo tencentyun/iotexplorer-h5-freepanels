@@ -27,10 +27,10 @@ export function Process(props) {
       <div className="current-status">
         <div className="mask"></div>
         <div className="current-list">
-          <div className="current-item">
+          {/* <div className="current-item">
             <div className="value">{`${getRecentTemp(deviceData.insulation_temp)}°C`}</div>
             <div className="label">保温温度</div>
-          </div>
+          </div> */}
           <div className="current-item">
             <div className="value">{`${getRecentTemp(deviceData.current_temp)}°C`}</div>
             <div className="label">当前温度</div>
@@ -52,12 +52,12 @@ export function Process(props) {
             subTitle={`${getRecentTemp(deviceData.temperature_set)}°C`}
             isLink={true}
           />
-          <Cell
+          {/* <Cell
             title="保温温度"
             prefixIcon={<Icon name="cook-time" />}
             subTitle={`${getRecentTemp(deviceData.insulation_temp)}°C`}
             isLink={true}
-          />
+          /> */}
         </div>
         <div className="cook-btns">
           <div className="btn" onClick={() => {

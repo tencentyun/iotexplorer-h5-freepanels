@@ -15,12 +15,7 @@
             top: 84px;
 
             &::after {
-                content: ' ';
-                width: 2px;
-                background: #F6F4FC;
-                height: 20px;
-                position: absolute;
-                left: calc(50% - 2px);
+               display: none;
             }
 
             .current-item {
@@ -81,6 +76,7 @@
             position: relative;
 
             &::after {
+                display: none;
                 top: 50%;
                 content: ' ';
                 width: 303px;
@@ -99,12 +95,16 @@
                 padding: 56px 80px;
 
                 &:nth-child(1) {
-                    border-radius: 16px 16px 0 0;
+                    border-radius: 16px;
 
                 }
 
                 &:nth-child(2) {
                     border-radius: 0 0 16px 16px;
+                    min-height: 44px;
+                    .cell-wrapper {
+                        min-height: 44px;
+                    }
                 }
 
                 .cell-wrapper {
@@ -141,7 +141,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-top: 16px;
+            margin-top: 164px;
 
             .btn {
                 flex-direction: row;

@@ -103,7 +103,7 @@ export function Operator(props) {
                 setVisible(true);
               }}
             />
-            <Cell
+            {/* <Cell
               className="cell-item"
               title="保温功能"
               isLink={false}
@@ -116,7 +116,7 @@ export function Operator(props) {
                 }
                 doControlDeviceData('insulation_mode', Number(value));
               }}
-            />
+            /> */}
           </div>
         </div>
         {deviceData.status === 4 ? <div className="cooking" onClick={() => push(PATH.PROCESS)}><span>美食</span><span>烹饪中</span></div> : null}

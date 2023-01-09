@@ -54,21 +54,20 @@ export function Home(props) {
             push(PATH.OPERATOR);
           }}
         />
-        {/* <Cell
+        <Cell
           className="custom-cell"
           title="保温模式"
           prefixIcon={<Icon name="home-mode-2"></Icon>}
-          ele="switch"
-          isLink={false}
-          eleValue={!!deviceData.insulation_mode}
-          onChange={(value) => {
+          isLink={true}
+          onClick={(value) => {
             if (!deviceData.power_switch) {
               return;
             }
-            doControlDeviceData('insulation_mode', Number(value))
+            push(PATH.TEMPERATURE);
+            // doControlDeviceData('insulation_mode', Number(value))
           }}
         />
-        <Cell
+        {/* <Cell
           className="custom-cell"
           title="清洗模式"
           prefixIcon={<Icon name="home-mode-3"></Icon>}

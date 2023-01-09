@@ -3,8 +3,9 @@ import { Router } from '@router';
 import { Home } from '../Common/Home';
 import { TimerList, TimerAdd, MainSwitch, Repeat } from '../Common/Timer';
 import { CountDownPage } from '../Common/CountDown';
-import { Process } from '../Common/Process/Process';
 import { Operator } from '../Common/Operator/Operator';
+import { Process } from '../Common/Process/Process';
+import { Temperature } from '../Common/Temperature/Temperature';
 
 const App = (props) => {
   const route = [
@@ -15,7 +16,8 @@ const App = (props) => {
     { path: '/timer/action/repeat', Component: Repeat },
     { path: '/timer/countdownpage', Component: CountDownPage },
     { path: '/operator', Component: Operator },
-    { path: '/process', Component: Process }
+    { path: '/process', Component: Process },
+    { path: '/temperature', Component: Temperature },
   ];
   return <Router route={route} {...props} />;
 };

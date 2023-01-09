@@ -54,7 +54,7 @@ export function Home(props) {
             push(PATH.OPERATOR);
           }}
         />
-        {/* <Cell
+         <Cell
           className="custom-cell"
           title="保温模式"
           prefixIcon={<Icon name="home-mode-2"></Icon>}
@@ -68,7 +68,7 @@ export function Home(props) {
             doControlDeviceData('insulation_mode', Number(value))
           }}
         />
-        <Cell
+        {/* <Cell
           className="custom-cell"
           title="清洗模式"
           prefixIcon={<Icon name="home-mode-3"></Icon>}
