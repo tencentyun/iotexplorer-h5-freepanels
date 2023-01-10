@@ -18,6 +18,7 @@ const eventMap = {
   unlock_key: '钥匙解锁',
   unlock_temporary_password: '临时密码解锁',
   unlock_onetime_password: '临时密码解锁',
+  unlock_cycle_password: '周期密码解锁',
   add_fingerprint_result: '上报指纹添加成功',
   add_password_result: '上报密码添加成功',
   add_card_result: '上报卡片添加成功',
@@ -117,6 +118,7 @@ export function LogList({ activeKey, dateTime, templateMap, onSelectLog }: LogLi
       case '卡片解锁':
       case '密码解锁':
       case '人脸解锁': {
+        // id可能是由name+分隔符+id构成的字符串
         const [id, name] = data.id.split(SPLIT_STR);
         if (name) {
           labelNode = `${name}使用${label}`;

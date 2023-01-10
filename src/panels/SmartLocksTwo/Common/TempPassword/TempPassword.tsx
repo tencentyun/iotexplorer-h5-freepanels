@@ -52,7 +52,7 @@ export function TempPassword({ history: { push, PATH }, tips, deviceData }) {
     return Date.now() < invalidTime;
   });
 
-  const totalListLength = onetimePasswords.length + cyclePasswordList.length;
+  const totalListLength = onetimePasswords.length + validCyclePasswords.length;
 
   const removeSinglePassword = (id: string) => {
     sdk.requestTokenApi('AppRemoveDeviceOTP', {

@@ -75,7 +75,7 @@ export function Detail() {
         });
         console.log('get info', recordListInfo);
         for (let i = 0; i < 3; i++) {
-          setRecordList(recordListInfo.Results[i]);
+          setRecordList(recordListInfo.Results);
         }
       } catch (err) {
         console.error('get info fail', err);
