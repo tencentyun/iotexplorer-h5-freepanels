@@ -74,7 +74,12 @@ export function Operator(props) {
             indicator={() => null} >
             {getOptions(templateMap, 'working_mode').map((item, index) => {
               return (
-                <Swiper.Item key={index} onClick={() => { doControlDeviceData('working_mode', parseInt(item.value)) }}>
+                <Swiper.Item key={index} onClick={() => {
+                  if (!deviceData.power_switch) {
+                    return;
+                  }
+                  doControlDeviceData('working_mode', parseInt(item.value))
+                }}>
                   <div className="item">
                     <div className="icon-bg">
                       <Icon name={`mode-${index}`} />
@@ -125,13 +130,21 @@ export function Operator(props) {
             <Icon name="switch" />
           </div>
           <div className="custom-btn" onClick={() => {
+            if (!deviceData.power_switch) {
+              return;
+            }
             doControlDeviceData('status', 4);
             push(PATH.PROCESS);
           }}>
             <Icon name="start" />
             <span>{deviceData.status === 2 ? '继续烹饪' : '开始'}</span>
           </div>
-          <div className="custom-btn" onClick={() => countRef.current.onOpen()}>
+          <div className="custom-btn" onClick={() => {
+            if (!deviceData.power_switch) {
+              return;
+            }
+            countRef.current.onOpen()
+          }}>
             <Icon name="time" />
             <span>定时</span>
           </div>

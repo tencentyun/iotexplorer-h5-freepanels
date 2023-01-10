@@ -33,7 +33,7 @@ const Action = (props) => {
     [
       '',
       '模式',
-      () => { setModeVisible(true) },
+      power_switch && (() => { setModeVisible(true) }),
       !!power_switch,
       '',
       'mode'
@@ -41,7 +41,7 @@ const Action = (props) => {
     [
       '',
       '定时器',
-      push.bind(null, PATH.TIMER_LIST, {isModule: true}),
+      power_switch && push.bind(null, PATH.TIMER_LIST, {isModule: true}),
       isExistTimer,
       '',
       'time'

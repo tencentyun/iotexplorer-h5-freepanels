@@ -128,5 +128,16 @@
 
   &.is-off {
     opacity: 0.5;
+    .custom-mask {
+      display: block;
+    }
+  }
+  .custom-mask {
+    display: none;
+    width: 100%;
+    height: 80%;
+    z-index: 999;
+    position: absolute;
+    box-sizing: border-box;
   }
 }

@@ -55,6 +55,7 @@ const Action = (props) => {
 
   return (
     <div className="action-list">
+      <div className='custom-mask'></div>
       <div className="mode-list">
         {getOptions(templateMap, 'color_mode').map(({ label, value }, index) => (
           <div

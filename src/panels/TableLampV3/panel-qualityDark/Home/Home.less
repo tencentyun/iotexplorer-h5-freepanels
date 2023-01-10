@@ -52,5 +52,16 @@
 
   &.is-off {
     opacity: 0.5;
+    .custom-mask {
+      display: block;
+    }
+  }
+  .custom-mask {
+    display: none;
+    width: calc(100% - 48px);
+    height: 70%;
+    z-index: 999;
+    position: absolute;
+    box-sizing: border-box;
   }
 }

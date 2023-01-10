@@ -40,6 +40,7 @@ export function Home(props) {
 
   return (
     <div className={`home ${!deviceData.power_switch ? 'is-off' : ''}`}>
+      <div className="custom-mask"></div>
       <DeviceDetail></DeviceDetail>
       <div className='content-bottom'>
         <div className={classNames("change-panel")}>
