@@ -2,7 +2,7 @@
 
     .current-status {
         height: 264px;
-        background-image: none;
+        background-image: none !important;
         opacity: 1;
 
         .mask {
@@ -15,7 +15,7 @@
             top: 84px;
 
             &::after {
-               display: none;
+                display: none;
             }
 
             .current-item {
@@ -102,6 +102,7 @@
                 &:nth-child(2) {
                     border-radius: 0 0 16px 16px;
                     min-height: 44px;
+
                     .cell-wrapper {
                         min-height: 44px;
                     }
@@ -114,10 +115,12 @@
 
                     .cell-title-wrapper {
                         align-items: center;
+
                         .cell-title {
                             color: #7E7BA6;
                             font-size: 12px;
                         }
+
                         .cell-subtitle {
                             font-family: 'DIN Alternate';
                             font-weight: 700;

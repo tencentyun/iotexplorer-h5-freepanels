@@ -35,7 +35,7 @@ export function Home(props) {
           onChange={onSwitchClick}
         />
       </div>
-      <div className="header">
+      <div className="header" style={{ backgroundImage: `url(https://tencent-1305105198.cos.ap-guangzhou.myqcloud.com/HealthPotV3/bg.png)` }}>
         <div className="mask">
           <div className={classNames("title", !deviceData.power_switch ? 'not-doing' : 'doing')}>{!deviceData.power_switch ? `设备已关闭` : `设备已开启`}</div>
         </div>

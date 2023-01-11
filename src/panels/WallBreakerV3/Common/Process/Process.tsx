@@ -24,7 +24,7 @@ export function Process(props) {
   const { templateMap, deviceData, doControlDeviceData } = props;
   return (
     <div className="cook-process">
-      <div className="current-status">
+      <div className="current-status" style={{ backgroundImage: `url(https://tencent-1305105198.cos.ap-guangzhou.myqcloud.com/WallBreakerV3/bg.png)` }}>
         <div className="mask"></div>
         <div className="current-list">
           <div className="current-item">

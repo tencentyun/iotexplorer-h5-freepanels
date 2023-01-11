@@ -14,6 +14,7 @@ const getCountdownTime = (value) => {
 };
 
 const getRecentTemp = (value) => {
+  console.log(value)
   if (value) {
     return value < 10 ? '0' + value : value
   }
@@ -24,7 +25,7 @@ export function Process(props) {
   const { templateMap, deviceData, doControlDeviceData } = props;
   return (
     <div className="cook-process">
-      <div className="current-status">
+      <div className="current-status" style={{ backgroundImage: `url(https://tencent-1305105198.cos.ap-guangzhou.myqcloud.com/MiniCookPotV3/bg.png)` }}>
         <div className="mask"></div>
         <div className="current-list">
           <div className="current-item">
@@ -32,7 +33,7 @@ export function Process(props) {
             <div className="label">剩余时间</div>
           </div>
           <div className="current-item">
-            <div className="value">{`${getRecentTemp(deviceData.recent_temp)}°C`}</div>
+            <div className="value">{`${getRecentTemp(deviceData.temperature)}°C`}</div>
             <div className="label">当前温度</div>
           </div>
         </div>

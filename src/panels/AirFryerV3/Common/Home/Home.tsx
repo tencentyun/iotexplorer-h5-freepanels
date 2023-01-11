@@ -35,6 +35,7 @@ export function Home(props) {
       </div>
       <div className="photo">
         <Icon name="pot" />
+        <div className="product-img"  style={{ backgroundImage: `url(https://tencent-1305105198.cos.ap-guangzhou.myqcloud.com/AirFryerV3/product.png)` }}></div>
         <div className="bottom-bg"></div>
       </div>
       <div className="operator" onClick={() => {
