@@ -1,7 +1,7 @@
 .cook-process {
 
     .current-status {
-        height: 264px;
+        height: 346px;
         background-image: none !important;
         opacity: 1;
 
@@ -15,7 +15,12 @@
             top: 84px;
 
             &::after {
-               display: none;
+                content: '';
+                width: 2px;
+                height: 20px;
+                background: #F6F4FC;
+                position: absolute;
+                left: calc(50% + 2px);
             }
 
             .current-item {
@@ -30,14 +35,15 @@
     }
 
     .footer {
-        height: calc(100vh - 367px);
+        height: calc(100vh - 346px);
         margin-top: 0;
         border-radius: 20px;
         border-top: 1px solid rgba(255, 255, 255, 0.3);
+        background: none;
 
         .cook-item {
-            position: relative;
-            top: -50px;
+            position: absolute;
+            top: 242px;
             margin: 0;
             width: 100%;
             justify-content: center;
@@ -92,7 +98,7 @@
                 border: 0;
                 background: #FFFFFF;
                 box-shadow: 10px 4px 0px 0px rgba(246, 244, 252, 0.9);
-                padding: 56px 80px;
+                padding: 100px 80px;
 
                 &:nth-child(1) {
                     border-radius: 16px;
@@ -102,6 +108,7 @@
                 &:nth-child(2) {
                     border-radius: 0 0 16px 16px;
                     min-height: 44px;
+
                     .cell-wrapper {
                         min-height: 44px;
                     }
@@ -114,10 +121,12 @@
 
                     .cell-title-wrapper {
                         align-items: center;
+
                         .cell-title {
                             color: #7E7BA6;
                             font-size: 12px;
                         }
+
                         .cell-subtitle {
                             font-family: 'DIN Alternate';
                             font-weight: 700;
@@ -141,7 +150,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-top: 164px;
+            margin-top: 24px;
 
             .btn {
                 flex-direction: row;
@@ -180,9 +189,6 @@
                     background: #15C45D;
                 }
 
-                &::after {
-                    content: '工作中';
-                }
             }
 
         }
@@ -191,10 +197,6 @@
             .cook-item {
                 &::before {
                     background: #D83939;
-                }
-
-                &::after {
-                    content: '暂停中';
                 }
             }
 

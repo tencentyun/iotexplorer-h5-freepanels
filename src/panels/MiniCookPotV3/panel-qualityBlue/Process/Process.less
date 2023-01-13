@@ -1,7 +1,7 @@
 .cook-process {
 
     .current-status {
-        height: 302px;
+        height: 426px;
         background-image: none !important;
         opacity: 1;
 
@@ -15,7 +15,12 @@
             top: 108px;
 
             &::after {
-                display: none;
+                content: '';
+                width: 2px;
+                height: 20px;
+                background: #30414D;
+                position: absolute;
+                left: calc(50% + 2px);
             }
 
             .current-item {
@@ -29,14 +34,15 @@
     }
 
     .footer {
-        height: calc(100vh - 367px);
+        height: calc(100vh - 426px);
         margin-top: 0;
         border-radius: 20px;
         border-top: 1px solid rgba(255, 255, 255, 0.3);
+        background: none;
 
         .cook-item {
-            position: relative;
-            top: -73px;
+            position: absolute;
+            top: 281px;
             margin: 0;
             width: 100%;
             justify-content: center;
@@ -115,7 +121,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-top: 134px;
+            margin-top: 32px;
 
             .btn {
                 flex-direction: column;
@@ -149,9 +155,6 @@
                     background: #15C45D;
                 }
 
-                &::after {
-                    content: '工作中';
-                }
             }
 
         }
@@ -160,10 +163,6 @@
             .cook-item {
                 &::before {
                     background: #D83939;
-                }
-
-                &::after {
-                    content: '暂停中';
                 }
             }
 

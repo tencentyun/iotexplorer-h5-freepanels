@@ -1,33 +1,39 @@
 .cook-process {
     background: linear-gradient(167.96deg, #B3957B 0%, #A8866B 100%);
-
+    overflow: hidden;
     .current-status {
-        height: 192px;
-        background-image: none !important;
-        opacity: 1;
         display: flex;
-        padding: 0 32px;
-        justify-content: space-between;
-        position: relative;
-        top: 62px;
+        justify-content: center;
+        padding: 0;
+        height: 372px;
+        background: none !important;
 
         .mask {
             display: none;
         }
 
         .icon {
-            display: block;
+            display: none;
         }
 
         .current-list {
             margin: 0;
             display: flex;
-            flex-direction: column;
+            flex-direction: row;
             position: relative;
-            top: -52px;
+            top: 140px;
+            top: 140px;
+            width: calc(100% - 120px);
+            margin: 0 60px;
+            justify-content: space-between;
 
             &::after {
                 content: '';
+                width: 2px;
+                height: 20px;
+                background: #F2F2F2;
+                position: absolute;
+                left: calc(50% + 2px);
             }
 
             .current-item {
@@ -38,14 +44,14 @@
                 color: #fff;
 
                 &:nth-child(2) {
-                    margin-top: 24px;
+                    margin-top: 0;
                 }
             }
         }
     }
 
     .footer {
-        height: calc(100% - 194px);
+        height: calc(100% - 372px);
         margin-top: 0;
         border-radius: 46px 40px 0 0;
         border-top: 1px solid rgba(255, 255, 255, 0.3);
@@ -59,6 +65,7 @@
 
         .cook-setting {
             margin-top: 32px;
+            margin-bottom: 32px;
 
             .cell {
                 background: #FFFFFF;
@@ -111,7 +118,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-top: 207px;
+            margin-top: 16px;
 
             .btn {
                 width: 86px;
@@ -141,9 +148,6 @@
                     background: #15C45D;
                 }
 
-                &::after {
-                    content: '工作中';
-                }
             }
 
         }
@@ -154,9 +158,6 @@
                     background: #D83939;
                 }
 
-                &::after {
-                    content: '暂停中';
-                }
             }
 
         }

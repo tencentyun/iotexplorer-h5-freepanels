@@ -27,6 +27,7 @@
         .options {
             .title {
                 color: #30414D;
+                margin-bottom: 16px;
             }
 
             .options-list {
@@ -167,6 +168,57 @@
                         display: block;
                     }
                 }
+            }
+        }
+
+        >#current-time {
+            .picker-body {
+                .rmc-picker:nth-child(1) {
+                    .rmc-picker-item::after {
+                        content: ':';
+                        position: absolute;
+                        right: 0;
+                    }
+                }
+            }
+        }
+
+        >#current-time,
+        >#current-custom-picker {
+            .modal {
+                .modal-body {
+                    .picker-header {
+                        justify-content: start;
+                        margin-left: 4px;
+                        margin-top: 8px;
+                        margin-bottom: 12px;
+                    }
+
+                    .picker-body {
+                        width: calc(100% - 100px);
+                        margin-left: 50px;
+                        height: 170px;
+                        overflow: hidden;
+
+                        .rmc-multi-picker {
+                            height: 170px !important;
+                            position: relative;
+                            top: 16px;
+
+                            .rmc-picker {
+                                height: 170px !important;
+                            }
+                        }
+                    }
+                }
+
+            }
+        }
+
+        >#current-custom-picker {
+            .modal-body {
+                height: 76%;
+                overflow: hidden;
             }
         }
     }

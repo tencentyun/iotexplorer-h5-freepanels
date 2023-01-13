@@ -1,18 +1,18 @@
 .operator-page {
     background: linear-gradient(167.96deg, #B3957B 0%, #A8866B 100%);
     overflow: auto;
-    padding-top: 32px;
-    height: calc(100% - 32px);
+    padding-top: 219px;
+    height: calc(100% - 220px);
 
     .operator-header {
-        display: none;
-        padding: 23px 32px 0 22px;
-        justify-content: space-between;
-        position: relative;
-        top: 25px;
+        display: flex;
+        padding: 0;
+        position: absolute;
+        right: 16px;
+        top: 91px;
 
         .switch-total {
-            display: flex;
+            display: none;
             flex-direction: column;
             align-items: flex-start;
 
@@ -58,11 +58,13 @@
     .operator-list {
         background: #F2F2F2;
         border-radius: 40px 40px 0 0;
-        padding-top: 12px;
+        padding-top: 32px;
         position: relative;
-        height: calc(100% - 12px);
+        height: calc(100% - 32px);
 
         .list {
+            margin-top: 0;
+
             .adm-swiper-track {
                 .item {
                     .icon-bg {
@@ -82,7 +84,7 @@
             position: absolute;
             color: #67615A;
             width: 100%;
-            bottom: 175px;
+            top: 315px;
             padding: 0;
             margin: 0;
             text-align: center;
@@ -189,7 +191,7 @@
         }
 
         .footer {
-            margin-top: 241px;
+            margin-top: 53px;
             margin-bottom: 0;
             padding: 0 32px 0 16px;
 
@@ -242,9 +244,9 @@
                 // width: 322px;
                 // top: 506px;
                 // height: 390px;
-                width: 356px;
-                top: 412px;
-                height: 510px;
+                width: 348px;
+                top: 500px;
+                height: 390px;
                 border-radius: 24px;
 
                 .modal-body {
@@ -257,7 +259,15 @@
                         margin-bottom: 0;
                         justify-content: start;
                         margin-left: 8px;
-                        margin-bottom: 68px;
+                        margin-bottom: 10px;
+                    }
+
+                    .picker-body {
+
+                        .rmc-multi-picker,
+                        .rmc-picker {
+                            height: 240px !important;
+                        }
                     }
                 }
 
@@ -268,7 +278,7 @@
                 }
 
                 .modal-footer {
-                    margin-top: 40px;
+                    margin-top: 16px;
                     padding: 0 24px;
                 }
 

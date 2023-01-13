@@ -1,5 +1,6 @@
 .home {
   background: linear-gradient(167.96deg, #B3957B 0%, #A8866B 100%);
+  overflow: hidden;
 
   .switch-total {
     display: flex;
@@ -55,7 +56,7 @@
     .cell {
       padding: 0;
       margin: 0;
-      width: 139px;
+      width: 311px;
       height: 150px;
       background: #FFFFFF;
       border-radius: 24px;
@@ -66,7 +67,7 @@
 
       &.custom-cell {
         .adm-switch {
-          margin-bottom: 26px;
+          // margin-bottom: 26px;
           width: 80px;
           height: 40px;
 
@@ -95,19 +96,31 @@
         }
       }
 
+      &:nth-child(2) {
+        position: relative;
+        top: -33px;
+      }
+
       .cell-wrapper {
         display: flex;
         align-items: center;
-        flex-direction: column-reverse;
+        width: calc(100% - 72px);
 
         .cell-prefix-icon {
           display: none;
         }
 
-
+        .cell-title {
+          font-weight: 400;
+          font-size: 16px;
+          line-height: 22px;
+          text-align: center;
+          letter-spacing: 0.002em;
+          color: #67615A;
+        }
 
         .icon-arrow-right {
-          display: none;
+          display: block;
         }
       }
     }
