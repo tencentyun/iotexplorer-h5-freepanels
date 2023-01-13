@@ -2,34 +2,18 @@
     background: linear-gradient(167.96deg, #B3957B 0%, #A8866B 100%);
 
     .current-status {
-        height: 192px;
-        background-image:  none !important;
+        height: 522px;
+        background-image: none !important;
         opacity: 1;
-        display: flex;
-        padding: 0 32px;
-        justify-content: space-between;
-        position: relative;
-        top: 14px;
 
         .mask {
             display: none;
         }
 
-        .icon {
-            display: block;
-        }
-
         .current-list {
-            margin: 0;
-            display: flex;
-            flex-direction: column;
-            top: 0;
-            position: relative;
-            top: 4px;
-
-            &::after {
-                content: '';
-            }
+            margin: 0 64px 0 59px;
+            height: auto;
+            top: 160px;
 
             .current-item {
                 display: flex;
@@ -37,16 +21,12 @@
                 align-items: center;
                 justify-content: center;
                 color: #fff;
-
-                &:nth-child(2) {
-                    margin-top: 24px;
-                }
             }
         }
     }
 
     .footer {
-        height: calc(100% - 194px);
+        height: calc(100% - 524px);
         margin-top: 0;
         border-radius: 46px 40px 0 0;
         border-top: 1px solid rgba(255, 255, 255, 0.3);
@@ -54,57 +34,16 @@
         position: relative;
 
         .cook-item {
-            display: none;
-        }
+            position: relative;
+            top: -181px;
+            margin: 0;
+            width: 100%;
+            justify-content: center;
 
-
-        .cook-setting {
-            margin-top: 32px;
-
-            .cell {
-                background: #FFFFFF;
-                border: 0;
-                border-radius: 8px;
-                padding: 54px 32px;
-                margin: 0 32px 32px 32px;
-                border-radius: 24px;
-
-                .cell-wrapper {
-                    .cell-prefix-icon {
-                        display: none;
-                    }
-
-                    .cell-title-wrapper {
-                        flex-direction: row;
-                        justify-content: space-between;
-                        width: 100%;
-
-                        .cell-title {
-                            font-weight: 400;
-                            color: #67615A;
-                            font-size: 16px;
-                            display: flex;
-                            align-items: center;
-                        }
-
-                        .cell-subtitle {
-                            color: #67615A;
-                            margin: 0;
-                            font-family: 'DIN Alternate';
-                            font-weight: 700;
-                            font-size: 38px;
-                            line-height: 44px;
-                            color: #67615A;
-
-                        }
-                    }
-
-                    .icon-arrow-right {
-                        display: none;
-                    }
-                }
+            span {
+                color: #fff;
+                margin: 0;
             }
-
         }
 
         .cook-btns {
@@ -112,7 +51,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-top: -2px;
+            margin-top: 51px;
 
             .btn {
                 width: 86px;
@@ -136,30 +75,5 @@
             }
         }
 
-        &.doing {
-            .cook-item {
-                &::before {
-                    background: #15C45D;
-                }
-
-                &::after {
-                    content: '工作中';
-                }
-            }
-
-        }
-
-        &.not-doing {
-            .cook-item {
-                &::before {
-                    background: #D83939;
-                }
-
-                &::after {
-                    content: '暂停中';
-                }
-            }
-
-        }
     }
 }

@@ -3,15 +3,15 @@
     height: 100vh;
 
     .current-status {
-        height: 330px;
+        height: 571px;
         background-repeat: no-repeat;
-        background-size: 100% 100%;
+        background-size: 100% 330px;
         opacity: 0.8;
 
         .mask {
             width: 100%;
-            height: 100%;
-            background: linear-gradient(#1D202D, rgba(255, 255, 255, 0), #1D202D);
+            height: 330px;
+            background: linear-gradient(#1D202D 6%, rgba(255, 255, 255, 0), #1D202D 94%);
         }
 
         .icon {
@@ -23,9 +23,17 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            height: 80px;
             position: relative;
-            top: -78px;
+            bottom: -87px;
+
+            &::after {
+                content: ' ';
+                width: 2px;
+                height: 20px;
+                background: #fff;
+                position: absolute;
+                left: calc(50% - 2px);
+            }
 
             .current-item {
                 display: flex;
@@ -53,72 +61,33 @@
     }
 
     .footer {
-        height: calc(100vh - 367px);
-        margin-top: 36px;
         border-radius: 20px;
         border-top: 1px solid rgba(255, 255, 255, 0.3);
 
         .cook-item {
-            margin: 32px 20px;
             display: flex;
             align-items: center;
+            position: relative;
+            top: -217px;
+            width: 100%;
+            justify-content: center;
 
-            .cook-icon {
-                width: 40px;
-                height: 40px;
+            &::before {
+                content: '';
+                width: 6px;
+                height: 6px;
+                background: #CCC;
                 border-radius: 100%;
-                border: 1px solid rgba(156, 140, 255, 0.24);
-
-                .icon {
-                    width: 100%;
-                    height: 100%;
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                }
+                position: relative;
+                margin-right: 4px;
             }
 
             span {
                 font-weight: 600;
                 font-size: 12px;
                 line-height: 17px;
-                margin-left: 16px;
                 color: #fff;
             }
-        }
-
-        .cook-setting {
-            .cell {
-                padding: 12px 20px;
-                margin-bottom: 10px;
-
-                .cell-wrapper {
-                    .cell-prefix-icon {
-                        display: none;
-                    }
-
-                    .cell-title-wrapper {
-                        display: flex;
-                        justify-content: space-between;
-                        flex: 1;
-
-                        .cell-subtitle {
-                            font-weight: 500;
-                            font-size: 16px;
-                            line-height: 22px;
-                            letter-spacing: 0.002em;
-
-                            color: #FFFFFF;
-
-                        }
-                    }
-
-                    .icon-arrow-right {
-                        margin-left: 17px;
-                    }
-                }
-            }
-
         }
 
         .cook-btns {
@@ -126,7 +95,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-top: 38px;
+            margin-top: 16px;
 
             .btn {
                 display: flex;
@@ -155,6 +124,24 @@
                     }
                 }
             }
+        }
+
+        &.doing {
+            .cook-item {
+                &::before {
+                    background: #15C45D;
+                }
+            }
+
+        }
+
+        &.not-doing {
+            .cook-item {
+                &::before {
+                    background: #D83939;
+                }
+            }
+
         }
     }
 }

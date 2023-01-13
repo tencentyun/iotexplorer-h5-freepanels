@@ -1,7 +1,6 @@
-.cook-process {
-
+.keep-temperature {
     .current-status {
-        height: 264px;
+        height: 424px;
         background-image: none !important;
         opacity: 1;
 
@@ -12,10 +11,50 @@
         .current-list {
             margin: 0 64px 0 59px;
             height: auto;
-            top: 84px;
+            top: 112px;
+
+            .cell {
+                width: auto;
+
+                .cell-wrapper {
+                    .icon-arrow-right {
+                        display: none;
+                    }
+
+                    .cell-title-wrapper {
+                        flex-direction: column-reverse;
+                        align-items: center;
+
+                        .cell-title {
+                            font-weight: 600;
+                            font-size: 14px;
+                            line-height: 20px;
+                            color: #30414D;
+                            opacity: 0.5;
+                            margin-top: 6px;
+                        }
+
+                        .cell-subtitle {
+                            font-family: 'DIN Alternate';
+                            font-weight: 700;
+                            font-size: 38px;
+                            line-height: 44px;
+                            text-align: center;
+                            color: #30414D;
+                            margin: 0;
+                        }
+                    }
+                }
+            }
 
             &::after {
                 display: none;
+                content: ' ';
+                width: 2px;
+                height: 20px;
+                background: #30414D;
+                position: absolute;
+                left: calc(50% - 2px);
             }
 
             .current-item {
@@ -23,21 +62,22 @@
                 flex-direction: column;
                 align-items: center;
                 justify-content: center;
-                color: #565477;
+                color: #30414D;
 
             }
         }
     }
 
     .footer {
-        height: calc(100vh - 367px);
+        height: calc(100vh - 424px);
         margin-top: 0;
         border-radius: 20px;
         border-top: 1px solid rgba(255, 255, 255, 0.3);
+        background: none;
 
         .cook-item {
-            position: relative;
-            top: -50px;
+            position: absolute;
+            top: 240px;
             margin: 0;
             width: 100%;
             justify-content: center;
@@ -50,7 +90,7 @@
                 content: ' ';
                 width: 6px;
                 height: 6px;
-                background: #F6F4FC;
+                background: #CCC;
                 border-radius: 100%;
                 position: relative;
                 margin-right: 4px;
@@ -58,14 +98,18 @@
 
             &::after {
                 content: '';
-                color: #565477;
+                color: #30414D;
                 font-weight: 600;
                 font-size: 12px;
                 line-height: 17px;
             }
 
+
+
+
+
             span {
-                color: #565477;
+                color: #30414D;
                 margin: 0;
             }
         }
@@ -73,60 +117,28 @@
 
         .cook-setting {
             padding: 0 13px;
-            position: relative;
-
-            &::after {
-                display: none;
-                top: 50%;
-                content: ' ';
-                width: 303px;
-                height: 2px;
-                position: absolute;
-                left: 36px;
-                background: #F6F4FC;
-            }
 
             .cell {
-                border-radius: 16px 16px 0 0;
-                margin: 0;
-                border: 0;
+                padding: 32px 34px;
+                margin-top: 16px;
+                margin-bottom: 0;
                 background: #FFFFFF;
-                box-shadow: 10px 4px 0px 0px rgba(246, 244, 252, 0.9);
-                padding: 56px 80px;
-
-                &:nth-child(1) {
-                    border-radius: 16px;
-
-                }
-
-                &:nth-child(2) {
-                    border-radius: 0 0 16px 16px;
-                    min-height: 44px;
-
-                    .cell-wrapper {
-                        min-height: 44px;
-                    }
-                }
+                border: 1px solid #EFF3F5;
 
                 .cell-wrapper {
                     .cell-prefix-icon {
-                        display: none;
+                        display: block;
                     }
 
                     .cell-title-wrapper {
                         align-items: center;
-
-                        .cell-title {
-                            color: #7E7BA6;
-                            font-size: 12px;
-                        }
 
                         .cell-subtitle {
                             font-family: 'DIN Alternate';
                             font-weight: 700;
                             font-size: 38px;
                             line-height: 44px;
-                            color: #565477;
+                            color: #30414D;
 
                         }
                     }
@@ -144,7 +156,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-top: 164px;
+            margin-top: 186px;
 
             .btn {
                 flex-direction: row;
@@ -194,5 +206,42 @@
             }
 
         }
+
+
     }
+
+    >#current-custom-picker {
+        .modal {
+            .modal-body {
+                height: 76%;
+                overflow: hidden;
+
+                .picker-header {
+                    justify-content: start;
+                    margin-left: 4px;
+                    margin-top: 8px;
+                    margin-bottom: 12px;
+                }
+
+                .picker-body {
+                    width: calc(100% - 100px);
+                    margin-left: 50px;
+                    height: 170px;
+                    overflow: hidden;
+
+                    .rmc-multi-picker {
+                        height: 170px !important;
+                        position: relative;
+                        top: 16px;
+
+                        .rmc-picker {
+                            height: 170px !important;
+                        }
+                    }
+                }
+            }
+
+        }
+    }
+
 }

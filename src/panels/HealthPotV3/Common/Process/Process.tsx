@@ -44,6 +44,7 @@ export function Process(props) {
             <Icon name={`mode-${deviceData.working_mode}`} />
           </div>
           <span>{getOptions(templateMap, 'working_mode').filter(item => item.value === '' + deviceData.working_mode)[0]?.label}</span>
+          <span className="working-status">{getOptions(templateMap, 'status').filter(item => item.value === '' + deviceData.status)[0]?.label || '-'}</span>
         </div>
         <div className="cook-setting">
           <Cell
@@ -67,7 +68,7 @@ export function Process(props) {
             }
             doControlDeviceData('status', 4);
           }}>
-            <Icon name="temperature" />
+            <Icon name="status" />
             <span>{deviceData.status === 4 ? '暂停烹饪' : '继续烹饪'}</span>
           </div>
           <div className="btn" onClick={() => doControlDeviceData('status', 0)}>

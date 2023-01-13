@@ -1,0 +1,44 @@
+.cook-process {
+    .current-status {
+        height: 420px;
+        background-size: 100% 330px;
+        background-position-y: 30px;
+
+        .mask {
+            background: linear-gradient(#1D202D 10%, rgba(255, 255, 255, 0), #1D202D 80%)
+        }
+
+        .current-list {
+            margin: 0;
+            height: unset;
+            position: absolute;
+            top: 454px;
+            right: 20px;
+
+            .current-item {
+                flex-direction: row-reverse;
+                .label {
+                    opacity: 1;
+                    margin-right: 16px;
+                }
+            }
+        }
+    }
+
+    .footer {
+        height: calc(100% - 422px);
+        margin-top: 0;
+        background: rgba(0, 0, 0, 0.3);
+        .cook-item {
+            span {
+                font-size: 14px;
+            }
+            .working-status {
+                display: none;
+            }
+        }
+        .cook-btns {
+            margin-top: 32px;
+        }
+    }
+}

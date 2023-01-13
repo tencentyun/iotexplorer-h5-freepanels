@@ -40,24 +40,8 @@ export function Process(props) {
       </div>
       <div className={classNames("footer", deviceData.status === 4 ? 'doing' : 'not-doing')}>
         <div className="cook-item">
-          <div className="cook-icon">
-            <Icon name={`mode-${deviceData.working_mode}`} />
-          </div>
           <span>{getOptions(templateMap, 'working_mode').filter(item => item.value === '' + deviceData.working_mode)[0]?.label}</span>
-        </div>
-        <div className="cook-setting">
-          <Cell
-            title="烹饪温度"
-            prefixIcon={<Icon name="temperature" />}
-            subTitle={`${getRecentTemp(deviceData.temperature_set)}°C`}
-            isLink={true}
-          />
-          <Cell
-            title="烹饪时间"
-            prefixIcon={<Icon name="cook-time" />}
-            subTitle={`${getCountdownTime(deviceData.cooking_time)}`}
-            isLink={true}
-          />
+          <span className="working-status">{getOptions(templateMap, 'status').filter(item => item.value === '' + deviceData.status)[0]?.label || '-'}</span>
         </div>
         <div className="cook-btns">
           <div className="btn" onClick={() => {

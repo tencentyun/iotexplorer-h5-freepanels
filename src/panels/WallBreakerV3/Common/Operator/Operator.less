@@ -1,55 +1,44 @@
 .operator-page {
+    height: 100%;
+
     .operator-header {
-      display: none;
+        display: none;
     }
+
     .operator-list {
-        display: flex;
-        flex-direction: column;
+        height: 100%;
 
         .list {
-            margin-top: 12px;
+            height: calc(100% - 120px);
+            overflow: auto;
+            margin: 0 10px;
 
-            .adm-swiper-track {
-                width: calc(100% - 24px);
+            .item {
+                margin: 12px 10px;
+                width: 98px;
+                float: left;
 
-                .adm-swiper-slide:nth-child(1) {
-                    padding-left: 16px;
+                .mode-bg {
+                    width: 98px;
+                    height: 98px;
+                    background-color: rgba(0, 0, 0, 0.3);
+                    border-radius: 16px;
+                    border-width: 1px;
+                    border-style: solid;
+                    border-color: hsla(#9C8CFF, .24);
                 }
 
-                .item {
-                    display: flex;
-                    flex-direction: column;
-                    align-items: center;
-                    justify-content: center;
-
-                    .icon-bg {
-                        width: 40px;
-                        height: 40px;
-                        background: rgba(0, 0, 0, 0.3);
-                        border: 1px solid rgba(156, 140, 255, 0.24);
-                        border-radius: 50%;
-
-                        .icon {
-                            width: 100%;
-                            height: 100%;
-                            display: flex;
-                            align-items: center;
-                            justify-content: center;
-
-                            // .svg-icon-normal {
-                            //     width: 24px;
-                            //     height: 24px;
-                            // }
-                        }
-                    }
-
-                    .title {
-                        margin-top: 8px;
-                        font-weight: 600;
-                        font-size: 12px;
-                        line-height: 17px;
-                        text-align: center;
-                        color: #fff;
+                .title {
+                    margin-top: 12px;
+                    font-weight: 600;
+                    font-size: 12px;
+                    line-height: 17px;
+                    text-align: center;
+                    color: #FFFFFF;
+                }
+                &.checked {
+                    .mode-bg {
+                        border-color: #9C8CFF;
                     }
                 }
             }
@@ -153,7 +142,7 @@
         }
 
         .footer {
-            margin-top: 186px;
+            margin-bottom: 61px;
             padding: 0 20px;
             display: flex;
             justify-content: space-between;

@@ -63,15 +63,21 @@
         height: calc(100% - 12px);
 
         .list {
-            .adm-swiper-track {
-                .item {
-                    .icon-bg {
-                        background: #FFFFFF;
-                        border: 1px solid #EFF3F5;
-                    }
+            height: calc(100% - 133px);
 
-                    .title {
-                        color: #30414D;
+            .item {
+                .mode-bg {
+                    background-color: #fff;
+                    border-color: transparent;
+                }
+
+                .title {
+                    color: #67615A;
+                }
+
+                &.checked {
+                    .mode-bg {
+                        border-color: #F2A56B;
                     }
                 }
             }
@@ -148,7 +154,6 @@
         }
 
         .footer {
-            margin-top: 57px;
             margin-bottom: 0;
             padding: 0 32px 0 16px;
 
@@ -171,10 +176,20 @@
                     background: linear-gradient(0deg, #A8866B, #A8866B), #FFFFFF;
                     box-shadow: 0px 4px 16px #A8866B;
 
-                    &::after {
-                        content: '烹饪';
-                        color: #fff;
+                    span {
+                        &::after {
+                            content: '烹饪';
+                            color: #fff;
+                        }
+
+                        &.no-after {
+                            &::after {
+                                content: '';
+                            }
+                        }
                     }
+
+
                 }
 
             }

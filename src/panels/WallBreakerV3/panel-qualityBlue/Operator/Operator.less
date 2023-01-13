@@ -5,15 +5,19 @@
 
     .operator-list {
         .list {
-            .adm-swiper-track {
-                .item {
-                    .icon-bg {
-                        background: #FFFFFF;
-                        border: 1px solid #EFF3F5;
-                    }
-
-                    .title {
-                        color: #30414D;
+            height: calc(100% - 140px);
+            .item {
+                .mode-bg {
+                    background-color: #fff;
+                    border-radius: 8px;
+                    border-color: #EFF3F5;
+                }
+                .title {
+                    color: #30414D;
+                }
+                &.checked {
+                    .mode-bg {
+                        border-color: #4D9CF8;
                     }
                 }
             }
@@ -82,7 +86,7 @@
         }
 
         .footer {
-            margin-top: 150px;
+            margin-bottom: 66px;
 
             .custom-btn {
                 width: 120px;

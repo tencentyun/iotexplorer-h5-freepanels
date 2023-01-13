@@ -1,130 +1,200 @@
 .keep-temperature {
-    position: relative;
-    color: #26313D;
-    height: 100%;
+    width: 100%;
+    height: 100vh;
 
-    .header {
-        width: 100%;
-        height: 296px;
+    .current-status {
+        height: 420px;
         background-repeat: no-repeat;
-        background-size: 100% 100%;
+        opacity: 0.8;
+        background-size: 100% 330px;
+        background-position-y: 30px;
+
+        .mask {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(#1D202D 10%, rgba(255, 255, 255, 0), #1D202D 80%);
+        }
 
         .icon {
             display: none;
         }
 
-        .mask {
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.6);
+        .current-list {
             display: flex;
             justify-content: center;
             align-items: center;
+            position: relative;
+            top: 120px;
+            margin: 0 20px;
 
-            .title {
-                padding: 24px 32px;
-                background: rgba(0, 0, 0, 0.8);
-                border-radius: 16px;
+            .cell {
+                padding: 0;
+                margin: 0;
+                display: flex;
+                width: 100%;
 
-                font-weight: 600;
-                font-size: 17px;
-                line-height: 18px;
-                color: #FFFFFF;
-                position: relative;
-
-                &::before {
-                    content: ' ';
-                    width: 6px;
-                    height: 6px;
-                    background: #CCC;
-                    border-radius: 100%;
-                    position: absolute;
-                    top: 6px;
-                    left: -10px;
-                }
-
-                &.doing {
-                    &::before {
-                        background: #15C45D;
-                    }
-                }
-
-                &.not-doing {
-                    &::before {
-                        background: #D83939;
-                    }
-                }
-            }
-        }
-    }
-
-    .list {
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        position: relative;
-        padding-top: 20px;
-
-        .cell {
-            padding: 12px 20px;
-            margin: 12px 0;
-
-            .cell-wrapper {
-                .cell-title-wrapper {
-                    display: flex;
-                    flex-direction: row;
-                    justify-content: space-between;
+                .cell-wrapper {
                     width: 100%;
-                    .cell-subtitle {
-                        font-size: 16px;
-                        color: #fff;
+
+                    .cell-title-wrapper {
+                        display: flex;
+                        width: 100%;
+                        justify-content: space-between;
+
+                        .cell-subtitle {
+                            font-size: 16px;
+                            color: #fff;
+                        }
                     }
                 }
+            }
 
-                .cell-prefix-icon {
-                    display: none;
+            .current-item {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                color: #fff;
+
+                .value {
+                    font-family: 'DIN Alternate';
+                    font-weight: 700;
+                    font-size: 38px;
+                    line-height: 44px;
                 }
 
-                // .icon-arrow-right {
-                //     display: none;
-                // }
+                .label {
+                    font-weight: 600;
+                    font-size: 14px;
+                    line-height: 20px;
+                    opacity: 0.5;
+                }
+
             }
         }
     }
 
-    .cook-btns {
-        padding: 0 20px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-top: 220px;
+    .footer {
+        height: calc(100vh - 421px);
+        border-radius: 20px;
+        border-top: 1px solid rgba(255, 255, 255, 0.3);
+        background: rgba(0, 0, 0, 0.3);
 
-        .btn {
+        .cook-item {
+            margin: 32px 20px;
             display: flex;
             align-items: center;
-            justify-content: center;
-            width: 70px;
-            height: 57px;
-            border-radius: 16px;
-            border: 1px solid rgba(156, 140, 255, 0.24);
-            background: rgba(0, 0, 0, 0.3);
-            color: #fff;
-            font-weight: 500;
-            font-size: 16px;
-
-            &:first-child {
-                width: 251px;
+            justify-content: space-between;
+            .cook-icon {
+                width: 40px;
+                height: 40px;
+                border-radius: 100%;
+                border: 1px solid rgba(156, 140, 255, 0.24);
 
                 .icon {
-                    display: none;
+                    width: 100%;
+                    height: 100%;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
                 }
             }
 
-            &:nth-child(2) {
-                span {
-                    display: none;
+            span {
+                font-weight: 600;
+                font-size: 12px;
+                line-height: 17px;
+                margin-left: 14px;
+                color: #fff;
+            }
+
+            .title {
+                position: absolute;
+                left: 68px;
+            }
+        }
+
+        .cook-setting {
+            .cell {
+                padding: 12px 20px;
+                margin-bottom: 10px;
+
+                .cell-wrapper {
+                    .cell-prefix-icon {
+                        display: none;
+                    }
+
+                    .cell-title-wrapper {
+                        display: flex;
+                        justify-content: space-between;
+                        flex: 1;
+
+                        .cell-subtitle {
+                            font-weight: 500;
+                            font-size: 16px;
+                            line-height: 22px;
+                            letter-spacing: 0.002em;
+
+                            color: #FFFFFF;
+
+                        }
+                    }
+
+                    .icon-arrow-right {
+                        margin-left: 17px;
+                    }
                 }
             }
+
+        }
+
+        .cook-btns {
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 120px;
+
+            .btn {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 70px;
+                height: 57px;
+                border-radius: 16px;
+                border: 1px solid rgba(156, 140, 255, 0.24);
+                background: rgba(0, 0, 0, 0.3);
+                color: #fff;
+                font-weight: 500;
+                font-size: 16px;
+
+                &:first-child {
+                    width: 251px;
+
+                    .icon {
+                        display: none;
+                    }
+                }
+
+                &:nth-child(2) {
+                    span {
+                        display: none;
+                    }
+                }
+            }
+        }
+    }
+
+    >#current-custom-picker {
+        .picker-header {
+            color: #30414D;
+            font-weight: 600;
+            font-size: 20px;
+            line-height: 28px;
+        }
+
+        .picker-footer {
+            display: none;
         }
     }
 }
