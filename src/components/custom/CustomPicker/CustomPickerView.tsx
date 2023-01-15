@@ -22,6 +22,7 @@ export interface CustomPickerProps extends StyledProps {
     height?: number;
     customNode?: ReactNode;
     optionValues: number[];
+    timerHeight: number;
 }
 
 
@@ -71,7 +72,7 @@ export function CustomPickerView(props: CustomPickerProps) {
         value,
         mask = true,
         itemHeight = 58,
-        height = 375,
+        timerHeight:height = 375,
         onChange,
         onCancel = () => ({}),
         onConfirm = () => ({}),

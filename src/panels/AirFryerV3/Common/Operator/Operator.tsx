@@ -53,6 +53,13 @@ export function Operator(props) {
     doControlDeviceData('power_switch', 0);
   }
 
+  const getRecentTemp = (value) => {
+    if (value) {
+      return value < 10 ? '0' + value : value
+    }
+    return '-';
+  }
+
   return (
     <div className="operator-page">
       <div className="operator-header">
@@ -93,7 +100,7 @@ export function Operator(props) {
             <Cell
               className="cell-item"
               title="烹饪温度"
-              subTitle={`${!deviceData.temperature_set ? '-' : deviceData.temperature_set}°C`}
+              subTitle={`${getRecentTemp(deviceData.temperature_set)}°C`}
               isLink={true}
               prefixIcon={<Icon name="temperature" />}
               onClick={() => {

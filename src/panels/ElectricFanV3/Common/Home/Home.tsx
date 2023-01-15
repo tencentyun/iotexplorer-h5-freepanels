@@ -61,22 +61,37 @@ export function Home(props) {
   }
 
   const onModeClick = (value) => {
+    if (!deviceData.power_switch) {
+      return;
+    }
     doControlDeviceData('working_mode', value);
   }
 
   const onCountDownClick = () => {
+    if (!deviceData.power_switch) {
+      return;
+    }
     countRef.current.onOpen();
   }
 
   const onTimeClick = () => {
+    if (!deviceData.power_switch) {
+      return;
+    }
     push(PATH.TIMER_LIST, { isModule: false });
   }
 
   const onPlusClick = () => {
+    if (!deviceData.power_switch) {
+      return;
+    }
     handleToggle(true);
   }
 
   const onMinusClick = () => {
+    if (!deviceData.power_switch) {
+      return;
+    }
     handleToggle(false);
   }
 
@@ -128,6 +143,9 @@ export function Home(props) {
               value={speed}
               // marks={marks}
               onChange={(val) => {
+                if (!deviceData.power_switch) {
+                  return;
+                }
                 setSpeed(val);
                 doControlDeviceData({
                   wind_speed: val,

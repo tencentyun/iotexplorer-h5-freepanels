@@ -49,22 +49,37 @@ export function Home(props) {
   }
 
   const onModeClick = () => {
+    if (!deviceData.power_switch) {
+      return;
+    }
     setModeVisible(true);
   }
 
   const onCountDownClick = () => {
+    if (!deviceData.power_switch) {
+      return;
+    }
     countRef.current.onOpen();
   }
 
   const onTimeClick = () => {
+    if (!deviceData.power_switch) {
+      return;
+    }
     push(PATH.TIMER_LIST, { isModule: false });
   }
 
   const onPlusClick = () => {
+    if (!deviceData.power_switch) {
+      return;
+    }
     handleToggle(true);
   }
 
   const onMinusClick = () => {
+    if (!deviceData.power_switch) {
+      return;
+    }
     handleToggle(false);
   }
 

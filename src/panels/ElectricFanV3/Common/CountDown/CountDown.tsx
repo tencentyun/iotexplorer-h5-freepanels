@@ -39,7 +39,7 @@ export const CountDown = forwardRef((props, ref) => {
 });
 
 
-const Timer = forwardRef(({ value, onChange, isModal, isPopUp }, ref) => {
+const Timer = forwardRef(({ value, onChange, isModal, isPopUp, timerHeight }, ref) => {
 
   const [visible, setVisible] = useState(false);
   useTitle('倒计时');
@@ -80,7 +80,7 @@ const Timer = forwardRef(({ value, onChange, isModal, isPopUp }, ref) => {
         mask={false}
         showTime={false}
         itemHeight={58}
-        height={340}
+        height={timerHeight || 340}
         isModal={isModal}
         isPopUp={isPopUp}
         showTwoDigit={true}

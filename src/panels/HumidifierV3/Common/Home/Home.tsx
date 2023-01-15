@@ -52,10 +52,16 @@ export function Home(props) {
   }
 
   const onModeClick = () => {
+    if (!deviceData.power_switch) {
+      return;
+    }
     setModeVisible(true);
   }
 
   const onCountDownClick = () => {
+    if (!deviceData.power_switch) {
+      return;
+    }
     if (deviceData.count_down) {
       push(PATH.TIMER_COUNTDOWNPAGE, { value: deviceData.count_down });
       return;
@@ -64,14 +70,23 @@ export function Home(props) {
   }
 
   const onTimeClick = () => {
+    if (!deviceData.power_switch) {
+      return;
+    }
     push(PATH.TIMER_LIST, { isModule: false });
   }
 
   const onPlusClick = () => {
+    if (!deviceData.power_switch) {
+      return;
+    }
     handleToggle(true);
   }
 
   const onMinusClick = () => {
+    if (!deviceData.power_switch) {
+      return;
+    }
     handleToggle(false);
   }
 
