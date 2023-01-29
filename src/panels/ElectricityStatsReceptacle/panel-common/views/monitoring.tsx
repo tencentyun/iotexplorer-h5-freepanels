@@ -30,39 +30,37 @@ const nowTime = dayjs(new Date());
 const nowMonth = nowTime.month();
 const nowYear = nowTime.year();
 
-const monthDays = new Date(nowYear, nowMonth, 0).getDate(); // 计算本月天数
-const startOfMonth = new Date(nowYear, nowMonth, 1, 0, 0, 0).getTime();
-const endOfMonth = new Date(nowYear, nowMonth, monthDays, 23, 59, 59).getTime();
+
 
 const data: any = [
-  {
-    x: '1',
-    y: 0.1,
-  },
-  {
-    x: '2',
-    y: 0.5,
-  },
-  {
-    x: '3',
-    y: 0.4,
-  },
-  {
-    x: '4',
-    y: 1.2,
-  },
-  {
-    x: '4',
-    y: 0.2,
-  },
-  {
-    x: '6',
-    y: 1.2,
-  },
-  {
-    x: '7',
-    y: 0.2,
-  },
+  // {
+  //   x: '1',
+  //   y: 0,
+  // },
+  // {
+  //   x: '2',
+  //   y: 0,
+  // },
+  // {
+  //   x: '3',
+  //   y: 0,
+  // },
+  // {
+  //   x: '4',
+  //   y: 0,
+  // },
+  // {
+  //   x: '5',
+  //   y: 0,
+  // },
+  // {
+  //   x: '6',
+  //   y: 0,
+  // },
+  // {
+  //   x: '7',
+  //   y: 0,
+  // },
 ];
 
 // 聚合数据接口内结构
@@ -93,7 +91,13 @@ export function Monitoring() {
 
   const [year, setYear] = useState(nowYear);
   const [month, setMonth] = useState(nowMonth);
+  const [endMonth, setEndMonth] = useState(nowMonth);
   const [mode, setMode] = useState('month');
+
+
+  const monthDays = new Date(year, endMonth, 0).getDate(); // 计算本月天数
+  const startOfMonth = new Date(year, month, 1, 0, 0, 0).getTime();
+  const endOfMonth = new Date(year, endMonth, monthDays, 23, 59, 59).getTime();
 
   useEffect(() => {
     // 折线图数据
@@ -101,7 +105,7 @@ export function Monitoring() {
     getPowerData();
     getCurrentData();
     getVoltageData();
-  }, []);
+  }, [year, month, endMonth]);
 
   // 获取电量折线数据列表
   const getLineChartList = async () => {
@@ -219,6 +223,7 @@ export function Monitoring() {
         setYear(year - 1);
       } else {
         setMonth(month - 1);
+        setEndMonth(month - 1);
       }
     } else {
       setYear(year - 1);
@@ -232,6 +237,7 @@ export function Monitoring() {
         setYear(year + 1);
       } else {
         setMonth(month + 1);
+        setEndMonth(month + 1);
       }
     } else {
       setYear(year + 1);
@@ -299,6 +305,8 @@ export function Monitoring() {
                   )}
                   onClick={() => {
                     setMode('month');
+                    setMonth(nowMonth)
+                    setEndMonth(nowMonth)
                   }}
                 >
                   月
@@ -310,6 +318,8 @@ export function Monitoring() {
                   )}
                   onClick={() => {
                     setMode('year');
+                    setMonth(0)
+                    setEndMonth(11)
                   }}
                 >
                   年

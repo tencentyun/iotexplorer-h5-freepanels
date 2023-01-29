@@ -2,16 +2,30 @@
   "version": "1.0",
   "properties": [
     {
-      "id": "pir_sensitivity",
-      "name": "PIR 灵敏度",
+      "id": "doorsensor_state",
+      "name": "门磁",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "bool",
+        "mapping": {
+          "0": "关",
+          "1": "开"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "fault_event",
+      "name": "门磁故障",
       "desc": "",
       "mode": "rw",
       "define": {
         "type": "stringenum",
         "mapping": {
-          "0": "低",
-          "1": "中",
-          "2": "高"
+          "fault_1": "fault_1",
+          "fault_2": "fault_2",
+          "fault_3": "fault_3"
         }
       },
       "required": false
@@ -31,16 +45,16 @@
       "required": false
     },
     {
-      "id": "pir_time",
+      "id": "battery_state",
       "name": "电池电量状态",
       "desc": "",
       "mode": "rw",
       "define": {
         "type": "stringenum",
         "mapping": {
-          "0": "30s",
-          "1": "60s",
-          "2": "120s"
+          "low": "low",
+          "middle": "middle",
+          "high": "high"
         }
       },
       "required": false
