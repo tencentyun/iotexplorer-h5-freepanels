@@ -10,11 +10,11 @@ import '../components/morandi-home.less';
 
 export function MorandiHome() {
   const history = useHistory();
-  const [workMode, setWorkMode] = useState('middle');
+  // const [workMode, setWorkMode] = useState('middle');
 
-  useEffect(() => {
-    setWorkMode(sdk.deviceData.work_mode);
-  }, []);
+  // useEffect(() => {
+  //   setWorkMode(sdk.deviceData.work_mode);
+  // }, [sdk.deviceData.work_mode]);
 
   const imageSrc = () => 'https://tencent-1305105198.cos.ap-guangzhou.myqcloud.com/aromatherapy_machine/aromatherapy_machine.png';
 
@@ -32,6 +32,22 @@ export function MorandiHome() {
   // const handleBaseSetting = () => {
   //   sdk.goDeviceDetailPage();
   // };
+  const handleSetting = () => {
+    sdk.goDeviceDetailPage();
+  };
+
+  const getCountdownTime = (value) => {
+    if (value) {
+      const hour = `${Math.floor(value / 3600)}`;
+      const minute = `${Math.floor((value % 3600) / 60)}`;
+      const second = `${Math.floor((value % 3600) % 60)}`;
+      return [hour, minute, second];
+    }
+    return ['00', '00', '00'];
+  };
+
+  const getTimeLable = (value) => getCountdownTime(value).map((v: string) => (parseInt(v, 10) < 10 ? `0${parseInt(v, 10)}` : v)).join(':');
+
 
   return (
     <DeviceContext.Consumer>
@@ -59,7 +75,9 @@ export function MorandiHome() {
                   color="#576273"
                 />
               </div>
-
+              <div className="settings" onClick={handleSetting}>
+                <div className="icon-more"></div>
+              </div>
               {/* 控制区 */}
               <div className="control-area-wrap">
                 <div className="control-area">
@@ -135,15 +153,15 @@ export function MorandiHome() {
                   <ul className="countdown-slider-tips">
                     <li className="item">
                       <span className="label">小雾量</span>
-                      {workMode === 'small' && <span className="icon-cicle" />}
+                      {deviceData.work_mode === 'small' && <span className="icon-cicle" />}
                     </li>
                     <li className="item">
                       <span className="label">中雾量</span>
-                      {workMode === 'middle' && <span className="icon-cicle" />}
+                      {deviceData.work_mode === 'middle' && <span className="icon-cicle" />}
                     </li>
                     <li className="item">
-                      <span className="label">小雾量</span>
-                      {workMode === 'large' && <span className="icon-cicle" />}
+                      <span className="label">大雾量</span>
+                      {deviceData.work_mode === 'large' && <span className="icon-cicle" />}
                     </li>
                   </ul>
                   <div
@@ -154,36 +172,36 @@ export function MorandiHome() {
                     <span
                       onClick={() => {
                         if (deviceData.power_switch !== 1) return;
-                        setWorkMode('small');
-                        onControlDevice('work_mode', workMode);
+                        // setWorkMode('small');
+                        onControlDevice('work_mode','small');
                       }}
                     ></span>
                     <span
-                      style={{ opacity: workMode === 'small' ? 0 : 1 }}
+                      style={{ opacity: deviceData.work_mode === 'small' ? 0 : 1 }}
                     ></span>
                     <span
-                      style={{ opacity: workMode === 'small' ? 0 : 1 }}
+                      style={{ opacity: deviceData.work_mode === 'small' ? 0 : 1 }}
                     ></span>
                     <span
-                      style={{ opacity: workMode === 'small' ? 0 : 1 }}
+                      style={{ opacity: deviceData.work_mode === 'small' ? 0 : 1 }}
                       onClick={() => {
                         if (deviceData.power_switch !== 1) return;
-                        setWorkMode('middle');
-                        onControlDevice('work_mode', workMode);
+                        // setWorkMode('middle');
+                        onControlDevice('work_mode', "middle");
                       }}
                     ></span>
                     <span
-                      style={{ opacity: workMode === 'large' ? 1 : 0 }}
+                      style={{ opacity: deviceData.work_mode === 'large' ? 1 : 0 }}
                     ></span>
                     <span
-                      style={{ opacity: workMode === 'large' ? 1 : 0 }}
+                      style={{ opacity: deviceData.work_mode === 'large' ? 1 : 0 }}
                     ></span>
                     <span
-                      style={{ opacity: workMode === 'large' ? 1 : 0 }}
+                      style={{ opacity: deviceData.work_mode === 'large' ? 1 : 0 }}
                       onClick={() => {
                         if (deviceData.power_switch !== 1) return;
-                        setWorkMode('large');
-                        onControlDevice('work_mode', workMode);
+                        // setWorkMode('large');
+                        onControlDevice('work_mode', "large");
                       }}
                     ></span>
                   </div>
@@ -192,9 +210,10 @@ export function MorandiHome() {
                 <ul className="decoration-bottom">
                   <li className="content-item">
                     <p className="word">
-                      {deviceData.count_left
+                      {/* {deviceData.count_left
                         ? deviceData.count_left
-                        : '00:00:00'}
+                        : '00:00:00'} */}
+                        {getTimeLable(deviceData.count_left)}
                     </p>
                     <p className="label">倒计时剩余时间</p>
                   </li>

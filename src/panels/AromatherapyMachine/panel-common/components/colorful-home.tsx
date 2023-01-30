@@ -51,6 +51,20 @@ export function ColorfulHome() {
     sdk.goDeviceDetailPage();
   };
 
+
+
+  const getCountdownTime = (value) => {
+    if (value) {
+      const hour = `${Math.floor(value / 3600)}`;
+      const minute = `${Math.floor((value % 3600) / 60)}`;
+      const second = `${Math.floor((value % 3600) % 60)}`;
+      return [hour, minute, second];
+    }
+    return ['00', '00', '00'];
+  };
+
+  const getTimeLable = (value) => getCountdownTime(value).map((v: string) => (parseInt(v, 10) < 10 ? `0${parseInt(v, 10)}` : v)).join(':');
+
   return (
     <DeviceContext.Consumer>
       {({ deviceData }) => (
@@ -215,7 +229,8 @@ export function ColorfulHome() {
                 />
               </div>
               <p className="word">
-                {deviceData.count_left ? deviceData.count_left : '00:00:00'}
+                {/* {deviceData.count_left ? deviceData.count_left : '00:00:00'} */}
+                {getTimeLable(deviceData.count_left)}
               </p>
             </Block>
             <Block

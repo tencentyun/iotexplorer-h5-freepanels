@@ -11,7 +11,7 @@ import '../components/blue-home.less';
 
 export function BlueHome() {
   const history = useHistory();
-  const [currentMode, setCurrentMode] = useState('middle');
+  // const [currentMode, setCurrentMode] = useState('middle');
 
   const imageSrc = () => 'https://tencent-1305105198.cos.ap-guangzhou.myqcloud.com/aromatherapy_machine/aromatherapy_machine.png';
 
@@ -45,6 +45,19 @@ export function BlueHome() {
     sdk.goDeviceDetailPage();
   };
 
+  const getCountdownTime = (value) => {
+    if (value) {
+      const hour = `${Math.floor(value / 3600)}`;
+      const minute = `${Math.floor((value % 3600) / 60)}`;
+      const second = `${Math.floor((value % 3600) % 60)}`;
+      return [hour, minute, second];
+    }
+    return ['00', '00', '00'];
+  };
+
+  const getTimeLable = (value) => getCountdownTime(value).map((v: string) => (parseInt(v, 10) < 10 ? `0${parseInt(v, 10)}` : v)).join(':');
+
+
   return (
     <DeviceContext.Consumer>
       {({ deviceData }) => (
@@ -63,7 +76,9 @@ export function BlueHome() {
             <img className="product-image" src={imageSrc()}></img>
             <div className="shadow"></div>
           </div>
-
+          {/* <div className="settings1" onClick={handleBaseSetting}>
+              <div className="icon-more"></div>
+            </div> */}
           {/* 控制区 */}
           <div className="product-control-wrap">
             <div className="product-control">
@@ -84,7 +99,8 @@ export function BlueHome() {
                   ></div>
                 </div>
                 <p className="word">
-                  {deviceData.count_left ? deviceData.count_left : '00:00:00'}
+                  {/* {deviceData.count_left ? deviceData.count_left : '00:00:00'} */}
+                  {getTimeLable(deviceData.count_left)}
                 </p>
               </Block>
               <Block className="control-block">
@@ -111,31 +127,31 @@ export function BlueHome() {
             <ul className="countdown-slider-tips">
               <li className="item">
                 <span className="label">小雾量</span>
-                {currentMode === 'small' && <span className="icon-cicle" />}
+                {deviceData.work_mode === 'small' && <span className="icon-cicle" />}
               </li>
               <li className="item">
                 <span className="label">中雾量</span>
-                {currentMode === 'middle' && <span className="icon-cicle" />}
+                {deviceData.work_mode === 'middle' && <span className="icon-cicle" />}
               </li>
               <li className="item">
                 <span className="label">大雾量</span>
-                {currentMode === 'large' && <span className="icon-cicle" />}
+                {deviceData.work_mode === 'large' && <span className="icon-cicle" />}
               </li>
             </ul>
             <Slider
               className="countdown-slider"
               step={50}
-              defaultValue={workModeToValue(deviceData.work_mode)}
+              value={workModeToValue(deviceData.work_mode)}
               disabled={deviceData.power_switch !== 1}
               onChange={(value) => {
-                if (value === 0) {
-                  setCurrentMode('small');
-                } else if (value === 50) {
-                  setCurrentMode('middle');
-                } else {
-                  setCurrentMode('large');
-                }
-                onControlDevice('work_mode', currentMode);
+                // if (value === 0) {
+                //   setCurrentMode('small');
+                // } else if (value === 50) {
+                //   setCurrentMode('middle');
+                // } else {
+                //   setCurrentMode('large');
+                // }
+                onControlDevice('work_mode', value);
               }}
             />
           </div>
