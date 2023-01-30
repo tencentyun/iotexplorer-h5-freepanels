@@ -111,12 +111,12 @@ export function Home() {
                 >
                   <div className="device-info">
                     <div className="next-plan-desc font_line_2">
-                      <p>下次喂食时间</p>
+                      {/* <p>下次喂食时间</p>
                       <p>
                         {deviceData.meet_plan
                           ? formatTime(deviceData.meet_plan?.time)
                           : '暂无数据'}
-                      </p>
+                      </p> */}
                     </div>
                     <img
                       className="device-img"
@@ -134,12 +134,13 @@ export function Home() {
 
               {themeType !== 'dark' && themeType !== 'morandi' ? (
                 <div className="next-plan-desc font_line_2">
-                  <p>
+                  {/* 下次喂食时间不现实 */}
+                  {/* <p>
                     下次喂食:{' '}
                     {deviceData.meet_plan
                       ? formatTime(deviceData.meet_plan?.time)
                       : '暂无数据'}
-                  </p>
+                  </p> */}
                   <p>
                     喂食
                     {deviceData.meet_plan ? deviceData.meet_plan?.portion : '0'}
@@ -293,12 +294,12 @@ export function Home() {
                 总开关
               </div>
               <div className="next-plan-desc">
-                <p>
+                {/* <p>
                   下次喂食:{' '}
                   {deviceData.meet_plan
                     ? formatTime(deviceData.meet_plan?.time)
                     : '暂无数据'}
-                </p>
+                </p> */}
                 <p>
                   喂食
                   {deviceData.meet_plan ? deviceData.meet_plan?.portion : '0'}份
