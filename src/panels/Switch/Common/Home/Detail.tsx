@@ -11,13 +11,14 @@ export const Detail = ({
   log,
   history: { PATH, push },
 }) => {
-  const ALL_COUNT = [
+  const ALL_COUNT = switchNum > 1 ? [
     ['count_down1', deviceData.name_button1 || '开关一'],
     ['count_down2', deviceData.name_button2 || '开关二'],
     ['count_down3', deviceData.name_button3 || '开关三'],
     ['count_down4', deviceData.name_button4 || '开关四'],
     ['count_down5', deviceData.name_button5 || '开关五'],
-  ];
+  ] :
+    [['count_down', deviceData.name_button1 || '开关一']]
   const SWITCH = { OPEN: 1, CLOSE: 0 };
   const getStatusData = status => currentSwitch.filter(([key]) => deviceData[key] !== status);
   const [isChecked, setChecked] = useState(false);
@@ -114,7 +115,7 @@ export const Detail = ({
           showUnit={true}
           showTime={false}
           showTwoDigit={false}
-          customNode={switchNum > 2 ? <CustomNode /> : null}
+          customNode={switchNum > 1 ? <CustomNode /> : null}
           title={`倒计时${isChecked ? '开启' : '关闭'}`}
           switchIsOpen={countdownTime.length ? isChecked : false}
           onCancel={setVisible.bind(null, false)}
