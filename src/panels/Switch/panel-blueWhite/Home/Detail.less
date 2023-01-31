@@ -6,6 +6,7 @@
   background: #ffffff;
   box-shadow: 0 10px 100px 0 rgba(32, 33, 33, 0.1);
   border-radius: 70px;
+
   .environment {
     display: flex;
     justify-content: center;
@@ -17,6 +18,7 @@
     background: #1F2036;
     color: white;
     border-radius: 60px;
+
     .action-item {
       width: 50%;
       display: flex;
@@ -24,28 +26,34 @@
       justify-content: center;
       height: 50%;
       flex-direction: column;
+
       .action-ele {
         display: flex;
         align-items: center;
         justify-content: center;
         flex-direction: column;
-        > div:last-child {
+
+        >div:last-child {
           margin-top: 15px;
         }
       }
+
       // 居中偏移微调
       .action-ele-0 {
         margin-left: -48px;
         margin-top: -48px;
       }
+
       .action-ele-1 {
         margin-right: -48px;
         margin-top: -48px;
       }
+
       .action-ele-2 {
         margin-left: -48px;
         margin-bottom: -48px;
       }
+
       .action-ele-3 {
         margin-right: -48px;
         margin-bottom: -48px;
@@ -61,6 +69,7 @@
       position: absolute;
       background: #35364F;
     }
+
     .line-h {
       width: 0px;
       height: 442px;
@@ -71,17 +80,39 @@
       background: #35364F;
     }
   }
+
   &.action {
     height: 616px;
   }
+
 }
 
+.cus-time-picker {
+  .custom-switch {
+    height: 94px;
+    margin: 0 6px;
+    width: 100vw;
+    color: white;
+    display: flex;
+    justify-content: space-around;
+    font-size: 42px;
+    >div{
+      padding:20px;
+    }
+    >div.checked {
+      // background: rgba(0, 0, 0, 0.3);
+      background:#9c63ff;
+      border-radius: 16px;
+    }
+  }
+}
 
 .action-1 {
   box-shadow: none;
   background: transparent;
   height: inherit !important;
   margin-top: 185px;
+
   .action-item {
     width: 295px !important;
     height: 300px !important;
@@ -90,13 +121,16 @@
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
+
     .action-ele {
       margin: inherit !important;
     }
   }
+
   .environment {
     justify-content: space-around;
     background: transparent;
+
     #current-time {
       display: none;
     }
