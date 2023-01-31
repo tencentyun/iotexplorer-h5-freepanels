@@ -266,7 +266,7 @@ export function More() {
               <Cell
                 title="滤网寿命"
                 size="medium"
-                value={deviceData.filterlife}
+                value={deviceData.filter_life}
                 isLink={false}
               ></Cell>
               <Cell
