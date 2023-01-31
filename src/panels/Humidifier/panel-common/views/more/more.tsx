@@ -254,11 +254,11 @@ export function More() {
                 isLink={false}
                 value={
                   <Switch
-                    name="childjock"
+                    name="child_lock"
                     theme={themeType}
-                    checked={toggleBooleanByNumber(deviceData.childjock)}
+                    checked={toggleBooleanByNumber(deviceData.child_lock)}
                     onChange={(val: boolean) => {
-                      onControlDevice('childjock', Number(val));
+                      onControlDevice('child_lock', Number(val));
                     }}
                   />
                 }

@@ -52,7 +52,7 @@ export function ToolsBar() {
       },
       {
         label: '超声波蒸发',
-        value: 'ultrasonic',
+        value: 'ultrasonic_evaporation',
       },
     ];
   };
@@ -202,7 +202,7 @@ export function ToolsBar() {
   const enumWorkMode: any = {
     natural_evaporation: '自然蒸发',
     heating_evaporation: '加热蒸发',
-    ultrasonic: '超声波蒸发',
+    ultrasonic_evaporation: '超声波蒸发',
   };
 
   const enumGear: any = {
@@ -215,7 +215,7 @@ export function ToolsBar() {
     level_7: '7档',
     level_8: '8档',
     level_9: '9档',
-    level_MO: '10档',
+    level_10: '10档',
   };
 
   return (
@@ -237,7 +237,7 @@ export function ToolsBar() {
               name="icon-humidifier-ultrasonic"
               {...iconColor(deviceData.power_switch, 'ultrasonic')}
             ></SvgIcon>
-            <div className="label">超声波</div>
+            <div className="label">{deviceData.work_mode ? enumWorkMode[deviceData.work_mode] : '模式'}</div>
           </div>
           <div
             className={classNames(
@@ -254,7 +254,7 @@ export function ToolsBar() {
               name="icon-humidifier-gear"
               {...iconColor(deviceData.power_switch, 'gear')}
             ></SvgIcon>
-            <div className="label">{deviceData.spray_gears ? enumGear[deviceData.spray_gears] : '档位'}</div>
+            <div className="label">{deviceData.spary_gears ? enumGear[deviceData.spary_gears] : '档位'}</div>
           </div>
           <div
             className={classNames(
@@ -291,12 +291,12 @@ export function ToolsBar() {
             title="喷雾档位"
             styleType="spaceBetween"
             theme={themeType}
-            defaultValue={[deviceData.spray_gears]}
+            defaultValue={[deviceData.spary_gears]}
             options={gearOptions()}
             layoutType="spaceBetween"
             onCancel={() => setGearVisible(false)}
             onConfirm={(value) => {
-              onControlDevice('spray_gears', value[0]);
+              onControlDevice('spary_gears', value[0]);
               setGearVisible(false);
               setGearValue(value[0]);
             }}

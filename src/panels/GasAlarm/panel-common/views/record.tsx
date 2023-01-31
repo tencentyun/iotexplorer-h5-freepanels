@@ -72,11 +72,15 @@ export function Record() {
     }
   };
 
+  // const statusLabel: any = {
+  //   1: '燃气报警',
+  //   2: '正常',
+  //   3: '检测中',
+  //   4: '未知',
+  // };
   const statusLabel: any = {
-    1: '燃气报警',
-    2: '正常',
-    3: '检测中',
-    4: '未知',
+    alarm: 'alarm',
+    normal: 'normal',
   };
   // 记录里面的内容
   const recordItem = (result: HistoryResultProps) => {
@@ -93,7 +97,7 @@ export function Record() {
           <div className="date">{date.format('YYYY-MM-DD')}</div>
         </div>
         <div className="item-right">
-          <div className="status">{statusLabel[Number(result.Value)]}</div>
+          <div className="status">{statusLabel[result.Value] || '未知'}</div>
           <div className="label">状态</div>
         </div>
       </div>

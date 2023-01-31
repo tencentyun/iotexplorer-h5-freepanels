@@ -41,20 +41,20 @@ export function ContentArea() {
                   ? enumWorkMode[deviceData.work_mode]
                   : '暂无数据'}
               </div>
-              <div className="content">工作模式</div>
+              <div className="content">加热状态</div>
             </div>
             <div className="item">
               <div className="label">
                 {deviceData.unit_convert === 1
-                  ? deviceData.target_f_temp
-                    ? deviceData.target_f_temp
+                  ? deviceData.current_f_temp
+                    ? deviceData.current_f_temp
                     : '0'
-                  : deviceData.target_c_temp
-                    ? deviceData.target_c_temp
+                  : deviceData.current_c_temp
+                    ? deviceData.current_c_temp
                     : '0'}
-                °C
+                {!deviceData.unit_convert ? '°C' : '°F'}
               </div>
-              <div className="content">目标温度</div>
+              <div className="content">当前温度</div>
             </div>
           </div>
           <div className="items">

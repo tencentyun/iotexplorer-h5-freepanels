@@ -25,20 +25,21 @@ export function Home() {
           </div>
           {/* 童锁 */}
           <div className="morandi-header">
-            <TopNav status={deviceData.child_lock || 0} powerStatus={deviceData.power_switch || 0}/>
+            <TopNav status={deviceData.child_lock || 0} powerStatus={deviceData.power_switch || 0} />
           </div>
           {themeType === 'normal' ? (
             <>
               <HeaterDashboard
                 value={
-                  deviceData.unit_convert
-                    ? deviceData.current_c_temp
-                      ? deviceData.current_c_temp
+                  !deviceData.unit_convert
+                    ? deviceData.target_c_temp
+                      ? deviceData.target_c_temp
                       : 0
-                    : deviceData.current_f_temp
-                      ? deviceData.current_f_temp
+                    : deviceData.target_f_temp
+                      ? deviceData.target_f_temp
                       : 0
                 }
+                unit={!deviceData.unit_convert ? '°C' : '°F'}
                 dashboardStatus={
                   deviceData.power_switch ? 'initiate' : 'shutdown'
                 }
@@ -55,14 +56,15 @@ export function Home() {
             <>
               <HeaterDashboard
                 value={
-                  deviceData.unit_convert
-                    ? deviceData.current_c_temp
-                      ? deviceData.current_c_temp
+                  !deviceData.unit_convert
+                    ? deviceData.target_c_temp
+                      ? deviceData.target_c_temp
                       : 0
-                    : deviceData.current_f_temp
-                      ? deviceData.current_f_temp
+                    : deviceData.target_f_temp
+                      ? deviceData.target_f_temp
                       : 0
                 }
+                unit={!deviceData.unit_convert ? '°C' : '°F'}
                 dashboardStatus={
                   deviceData.power_switch ? 'initiate' : 'shutdown'
                 }
@@ -79,14 +81,15 @@ export function Home() {
             <>
               <HeaterDashboard
                 value={
-                  deviceData.unit_convert
-                    ? deviceData.current_c_temp
-                      ? deviceData.current_c_temp
+                  !deviceData.unit_convert
+                    ? deviceData.target_c_temp
+                      ? deviceData.target_c_temp
                       : 0
-                    : deviceData.current_f_temp
-                      ? deviceData.current_f_temp
+                    : deviceData.target_f_temp
+                      ? deviceData.target_f_temp
                       : 0
                 }
+                unit={!deviceData.unit_convert ? '°C' : '°F'}
                 dashboardStatus={
                   deviceData.power_switch ? 'initiate' : 'shutdown'
                 }
@@ -103,14 +106,15 @@ export function Home() {
             <>
               <HeaterDashboard
                 value={
-                  deviceData.unit_convert
-                    ? deviceData.current_c_temp
-                      ? deviceData.current_c_temp
+                  !deviceData.unit_convert
+                    ? deviceData.target_c_temp
+                      ? deviceData.target_c_temp
                       : 0
-                    : deviceData.current_f_temp
-                      ? deviceData.current_f_temp
+                    : deviceData.target_f_temp
+                      ? deviceData.target_f_temp
                       : 0
                 }
+                unit={!deviceData.unit_convert ? '°C' : '°F'}
                 dashboardStatus={
                   deviceData.power_switch ? 'initiate' : 'shutdown'
                 }
@@ -129,14 +133,15 @@ export function Home() {
                 <div className="dashboard-wrap">
                   <HeaterDashboard
                     value={
-                      deviceData.unit_convert
-                        ? deviceData.current_c_temp
-                          ? deviceData.current_c_temp
+                      !deviceData.unit_convert
+                        ? deviceData.target_c_temp
+                          ? deviceData.target_c_temp
                           : 0
-                        : deviceData.current_f_temp
-                          ? deviceData.current_f_temp
+                        : deviceData.target_f_temp
+                          ? deviceData.target_f_temp
                           : 0
                     }
+                    unit={!deviceData.unit_convert ? '°C' : '°F'}
                     dashboardStatus={
                       deviceData.power_switch ? 'initiate' : 'shutdown'
                     }

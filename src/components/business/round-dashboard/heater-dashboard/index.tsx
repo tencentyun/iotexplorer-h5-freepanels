@@ -12,12 +12,13 @@ import './style.less';
 interface dashboardProps {
   value: number;
   dashboardStatus: string;
+  unit: string;
 }
 
 const HeaterDashboard: React.FC<dashboardProps> = (props) => {
   const themeType = getThemeType();
   const CurrentSkinProps: any = SkinProps[themeType];
-  const { value, dashboardStatus } = props;
+  const { value, dashboardStatus, unit } = props;
 
   const skinProps = (CurrentSkinProps as any)[dashboardStatus];
 
@@ -31,9 +32,9 @@ const HeaterDashboard: React.FC<dashboardProps> = (props) => {
         />
         <div className="number">
           <strong>{value}</strong>
-          <span>°C</span>
+          <span>{unit}</span>
         </div>
-        <div className="title">当前温度</div>
+        <div className="title">温度调节</div>
       </div>
   );
 

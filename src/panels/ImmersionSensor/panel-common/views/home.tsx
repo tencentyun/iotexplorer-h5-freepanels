@@ -34,7 +34,7 @@ export function Home() {
         const lastYearTime = time.setFullYear(lastYear);
 
         const recordListInfo = await sdk.getDeviceDataHistory({
-          FieldName: 'water_sensor_state',
+          FieldName: 'sensor_probe',
           MaxTime: currentTime,
           MinTime: lastYearTime,
           Limit: 1,
@@ -52,11 +52,16 @@ export function Home() {
   // 获取时间
   const date = dayjs(Number(recordTime));
 
+  // const statusLabel: any = {
+  //   1: '有积水',
+  //   2: '正常',
+  //   3: '检测中',
+  //   4: '未知',
+  // };
+
   const statusLabel: any = {
-    1: '有积水',
-    2: '正常',
-    3: '检测中',
-    4: '未知',
+    normal: '正常',
+    fault: '错误',
   };
 
   // 设置
@@ -93,16 +98,16 @@ export function Home() {
                 <div
                   className={classNames(
                     'label',
-                    deviceData.watersensor_state === 'Alarm' ? 'active' : '',
+                    deviceData.sensor_probe === 'fault' ? 'active' : '',
                   )}
                 >
-                  {deviceData.watersensor_state === 'Alarm'
+                  {deviceData.sensor_probe === 'fault'
                     ? '注意，检测到积水'
                     : '当前未检测到积水'}
                 </div>
               </header>
 
-              <DataShowDisk status={deviceData.watersensor_state} />
+              <DataShowDisk status={deviceData.sensor_probe} />
             </div>
           ) : (
             <>
@@ -117,24 +122,24 @@ export function Home() {
                 <div
                   className={classNames(
                     'label',
-                    deviceData.watersensor_state === 'Alarm' ? 'active' : '',
+                    deviceData.sensor_probe === 'fault' ? 'active' : '',
                   )}
                 >
-                  {deviceData.watersensor_state === 'Alarm'
+                  {deviceData.sensor_probe === 'fault'
                     ? '注意，检测到积水'
                     : '当前未检测到积水'}
                 </div>
               </header>
 
-              <DataShowDisk status={deviceData.watersensor_state} />
+              <DataShowDisk status={deviceData.sensor_probe} />
             </>
           )}
           <div className="tips">
             {recordStatus ? (
               <span>
                 {date.format('YYYY-MM-DD HH:mm')}&nbsp;&nbsp;
-                {statusLabel[Number(recordStatus)]
-                  ? statusLabel[Number(recordStatus)]
+                {statusLabel[recordStatus]
+                  ? statusLabel[recordStatus]
                   : '未知'}
               </span>
             ) : <span>暂无报警</span>}

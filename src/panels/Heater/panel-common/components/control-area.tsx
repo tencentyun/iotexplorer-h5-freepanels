@@ -22,9 +22,9 @@ export function ControlArea(props: IFunExampleProps) {
             )}
             onClick={() => {
               if (!deviceData.power_switch) return;
-              const key =                deviceData.unit_convert === 0
-                ? 'current_c_temp'
-                : 'current_f_temp';
+              const key = !deviceData.unit_convert
+                ? 'target_c_temp'
+                : 'target_f_temp';
               let value = deviceData[key] ? deviceData[key] - 1 : 0;
               if (value <= 0) {
                 value = 0;
@@ -56,9 +56,9 @@ export function ControlArea(props: IFunExampleProps) {
             )}
             onClick={() => {
               if (!deviceData.power_switch) return;
-              const key =                deviceData.unit_convert === 0
-                ? 'current_c_temp'
-                : 'current_f_temp';
+              const key = !deviceData.unit_convert
+                ? 'target_c_temp'
+                : 'target_f_temp';
               let value = deviceData[key] ? deviceData[key] + 1 : 1;
               if (value >= 100) {
                 value = 100;
