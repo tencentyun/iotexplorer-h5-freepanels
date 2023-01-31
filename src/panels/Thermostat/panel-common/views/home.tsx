@@ -39,12 +39,8 @@ export function Home() {
   const [gearVisible, onToggleGear] = useState(false);
 
   useEffect(() => {
-    if (!deviceMaps.temp_unit_convert) {
-      // setTempValue(deviceMaps['set_fahrenheit'].start||0);
-    } else {
-      setTempValue(1);
-    }
-  }, []);
+     setTempValue((state.deviceData.temp_unit_convert === undefined || Number(state.deviceData.temp_unit_convert) === 0) ? state.deviceData.set_temp : state.deviceData.set_fahrenheit) ;
+  }, [state.deviceData.temp_unit_convert]);
   // 工作模式选项
   const modeOptions = () => {
     if (deviceMaps.spray_mode) {
@@ -208,20 +204,20 @@ export function Home() {
   };
 
   const renderContentArea = (mode: string, level: string, status: number) => (
-      <ul className={classNames('content-area', { 'content-area-active': status })}>
-        <li className="content-item">
-          <p className="word">{mode ? enumWorkMode[mode] : '暂无数据'}</p>
-          <p className="label">工作模式</p>
-        </li>
-        <li className="split"></li>
-        <li className="content-item">
-          <p className="word">{level ? enumGear[level] : '暂无数据'}</p>
-          <p className="label">档位</p>
-        </li>
-      </ul>
+    <ul className={classNames('content-area', { 'content-area-active': status })}>
+      <li className="content-item">
+        <p className="word">{mode ? enumWorkMode[mode] : '暂无数据'}</p>
+        <p className="label">工作模式</p>
+      </li>
+      <li className="split"></li>
+      <li className="content-item">
+        <p className="word">{level ? enumGear[level] : '暂无数据'}</p>
+        <p className="label">档位</p>
+      </li>
+    </ul>
   );
 
-  const minusHandle  = (powerStatus: number, unit: (string | number)) => {
+  const minusHandle = (powerStatus: number, unit: (string | number)) => {
     if (!powerStatus) return;
     let value = tempValue;
     value -= 1;
@@ -230,7 +226,7 @@ export function Home() {
     } else {
       setTempValue(value);
     }
-    unit == 0 ? onControlDevice('current_temp', value) : onControlDevice('current_fahrenheit', value);
+    unit !== undefined && Number(unit) === 0 ? onControlDevice('set_temp', value) : onControlDevice('set_fahrenheit', value);
   };
 
   const addHandle = (powerStatus: number, unit: (string | number)) => {
@@ -242,7 +238,7 @@ export function Home() {
     } else {
       setTempValue(value);
     }
-    unit == 0 ? onControlDevice('current_temp', value) : onControlDevice('current_fahrenheit', value);
+    (unit === undefined || Number(unit) === 0) ? onControlDevice('set_temp', value) : onControlDevice('set_fahrenheit', value);
   };
 
   const handleBaseSetting = () => {
@@ -264,17 +260,26 @@ export function Home() {
             <div className="dial">
               <ThermostatDashboard
                 value={
-                  deviceData.temp_unit_convert == 0
-                    ? deviceData.current_temp
-                      ? deviceData.current_temp
+                  deviceData.temp_unit_convert === undefined || Number(deviceData.temp_unit_convert) === 0
+                    ? deviceData.set_temp
+                      ? deviceData.set_temp
                       : 0
-                    : deviceData.current_fahrenheit
-                      ? deviceData.current_fahrenheit
+                    : deviceData.set_fahrenheit
+                      ? deviceData.set_fahrenheit
                       : 0
                 }
                 dashboardStatus={
                   deviceData.power_switch == 1 ? 'initiate' : 'shutdown'
                 }
+                unit={deviceData.temp_unit_convert === undefined || Number(deviceData.temp_unit_convert) === 0 ? '°C' : '°F'}
+                currentValue={                  
+                  deviceData.temp_unit_convert === undefined || Number(deviceData.temp_unit_convert) === 0
+                  ? deviceData.current_temp
+                    ? deviceData.current_temp
+                    : 0
+                  : deviceData.current_fahrenheit
+                    ? deviceData.current_fahrenheit
+                    : 0}
               />
             </div>
 

@@ -124,7 +124,7 @@ export function ScaleDial(props: DashboardProps) {
       let i = 0;
       const activeLineList = document.getElementsByClassName('line');
       interval = setInterval(() => {
-        const list = activeLineList[i].classList;
+        const list = activeLineList[i]?.classList;
         if (list.contains('activeLine')) {
           activeLineList[i].setAttribute('style', `stroke: ${scaleLine.activeColor};stroke-width: 5`);
         } else {

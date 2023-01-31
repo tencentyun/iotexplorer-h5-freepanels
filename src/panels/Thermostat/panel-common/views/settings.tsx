@@ -239,7 +239,7 @@ export function Settings() {
               <div
                 className={classNames(
                   'temp-btn',
-                  deviceData.temp_unit_convert === 0 ? 'selected' : '',
+                  (deviceData.temp_unit_convert=== undefined || Number(deviceData.temp_unit_convert) === 0) ? 'selected' : '',
                 )}
                 onClick={() => {
                   onControlDevice('temp_unit_convert', 0);
