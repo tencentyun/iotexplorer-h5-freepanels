@@ -5,7 +5,7 @@
  * @LastEditors:
  * @LastEditTime:
  */
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { DeviceSateContext } from '../../../../../../deviceStateContext';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 import classNames from 'classnames';
@@ -20,9 +20,17 @@ export enum enumTempKey {
 }
 
 export function Power() {
+  const [value, setValue] = useState(0);
+  useEffect(() => {
+    let v = sdk.deviceData.set_humidity || 0;
+    setValue(v);
+  }, [sdk.deviceData.set_humidity]);
   /* 按钮改为控制湿度*/
   const handleToggle = (isAdd: boolean) => {
     const oldVal = sdk.deviceData.set_humidity || 0;
+    if (oldVal == 100 || oldVal == 0 ) {
+      clearInterval(window.timer);
+    }
     if (isAdd) {
       if (oldVal < 100) apiControlDeviceData({
         set_humidity: oldVal + 1,
@@ -46,7 +54,16 @@ export function Power() {
             className={classNames('button-circle', 'reduce')}
             onClick={() => {
               if (!deviceData.power_switch) return;
+              clearInterval(window.timer);
               handleToggle(false);
+            }}
+            onTouchStart={() => {
+              window.timer = setInterval(() => {
+                handleToggle(false)
+              }, 500)
+            }}
+            onTouchEnd={() => {
+              clearInterval(window.timer);
             }}
           >
             <SvgIcon name="icon-reduce"></SvgIcon>
@@ -67,7 +84,16 @@ export function Power() {
             className={classNames('button-circle', 'add')}
             onClick={() => {
               if (!deviceData.power_switch) return;
+              clearInterval(window.timer);
               handleToggle(true);
+            }}
+            onTouchStart={() => {
+              window.timer = setInterval(() => {
+                handleToggle(true)
+              }, 500)
+            }}
+            onTouchEnd={() => {
+              clearInterval(window.timer);
             }}
           >
             <SvgIcon name="icon-add"></SvgIcon>

@@ -50,15 +50,15 @@ export function Settings() {
       return options.length > 0 ? options : [];
     }
     return [
-      { label: 'low', value: '0' },
-      { label: 'middle', value: '1' },
-      { label: 'high', value: '2' },
-      { label: 'mute', value: '3' },
+      { label: 'low', value: 'low' },
+      { label: 'middle', value: 'middle' },
+      { label: 'high', value: 'high' },
+      { label: 'mute', value: 'mute' },
     ];
   };
 
   const ringtoneOptions = () => {
-    if (deviceMaps.alarm_vol) {
+    if (deviceMaps.alarm_ringtone) {
       const options = deviceMaps.alarm_ringtone.map((t: any) => ({
         label: t.desc,
         value: t.name,
@@ -66,8 +66,11 @@ export function Settings() {
       return options.length > 0 ? options : [];
     }
     return [
-      { label: 'ringtone1', value: '1' },
-      { label: 'ringtone2', value: '2' },
+      { label: 'ringtone_1', value: 'ringtone_1' },
+      { label: 'ringtone_2', value: 'ringtone_2' },
+      { label: 'ringtone_3', value: 'ringtone_3' },
+      { label: 'ringtone_4', value: 'ringtone_4' },
+      { label: 'ringtone_5', value: 'ringtone_5' },
     ];
   };
 

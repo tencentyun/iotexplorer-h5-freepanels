@@ -348,8 +348,18 @@ export function Home() {
               <div
                 className={classNames('setting-button')}
                 onClick={() => {
+                  clearInterval(window.timer);
                   minusHandle(deviceData.power_switch, deviceData.temp_unit_convert);
-                }}>
+                }}
+                onTouchStart={() => {
+                  window.timer = setInterval(() => {
+                    minusHandle(deviceData.power_switch, deviceData.temp_unit_convert);
+                  }, 500)
+                }}
+                onTouchCancel={() => {
+                  clearInterval(window.timer);
+                }}
+              >
                 <SvgIcon className="control-icon" name="icon-ther-minus" color={iconColor(deviceData.power_switch)} />
               </div>
               <div
@@ -372,8 +382,18 @@ export function Home() {
               <div
                 className={classNames('setting-button')}
                 onClick={() => {
+                  clearInterval(window.timer);
                   addHandle(deviceData.power_switch, deviceData.temp_unit_convert);
-                }}>
+                }}
+                onTouchStart={() => {
+                  window.timer = setInterval(() => {
+                    addHandle(deviceData.power_switch, deviceData.temp_unit_convert);
+                  }, 500)
+                }}
+                onTouchCancel={() => {
+                  clearInterval(window.timer);
+                }}
+              >
                 <SvgIcon className="control-icon icon-ther-add" name="icon-ther-add" color={iconColor(deviceData.power_switch)} />
               </div>
             </div>
@@ -454,7 +474,16 @@ export function Home() {
                 <div
                   className={classNames('setting-button')}
                   onClick={() => {
+                    clearInterval(window.timer);
                     minusHandle(deviceData.power_switch, deviceData.temp_unit_convert);
+                  }}
+                  onTouchStart={() => {
+                    window.timer = setInterval(() => {
+                      minusHandle(deviceData.power_switch, deviceData.temp_unit_convert);
+                    }, 500)
+                  }}
+                  onTouchCancel={() => {
+                    clearInterval(window.timer);
                   }}
                 >
                   <SvgIcon
@@ -484,7 +513,16 @@ export function Home() {
                 <div
                   className={classNames('setting-button')}
                   onClick={() => {
+                    clearInterval(window.timer);
                     addHandle(deviceData.power_switch, deviceData.temp_unit_convert);
+                  }}
+                  onTouchStart={() => {
+                    window.timer = setInterval(() => {
+                      addHandle(deviceData.power_switch, deviceData.temp_unit_convert);
+                    }, 500)
+                  }}
+                  onTouchCancel={() => {
+                    clearInterval(window.timer);
                   }}
                 >
                   <SvgIcon

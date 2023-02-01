@@ -22,6 +22,7 @@ export function ControlArea(props: IFunExampleProps) {
             )}
             onClick={() => {
               if (!deviceData.power_switch) return;
+              clearInterval(window.timer);
               const key = !deviceData.unit_convert
                 ? 'target_c_temp'
                 : 'target_f_temp';
@@ -30,6 +31,23 @@ export function ControlArea(props: IFunExampleProps) {
                 value = 0;
               }
               onControlDevice(key, value);
+            }}
+            onTouchStart={() => {
+              if (!deviceData.power_switch) return;
+              window.timer = setInterval(() => {
+                const key = !deviceData.unit_convert
+                  ? 'target_c_temp'
+                  : 'target_f_temp';
+                let value = deviceData[key] ? deviceData[key] - 1 : 0;
+                if (value <= 0) {
+                  clearInterval(window.timer);
+                  value = 0;
+                }
+                onControlDevice(key, value);
+              }, 500)
+            }}
+            onTouchEnd={() => {
+              clearInterval(window.timer);
             }}
           >
             <SvgIcon
@@ -56,6 +74,7 @@ export function ControlArea(props: IFunExampleProps) {
             )}
             onClick={() => {
               if (!deviceData.power_switch) return;
+              clearInterval(window.timer);
               const key = !deviceData.unit_convert
                 ? 'target_c_temp'
                 : 'target_f_temp';
@@ -64,6 +83,23 @@ export function ControlArea(props: IFunExampleProps) {
                 value = 100;
               }
               onControlDevice(key, value);
+            }}
+            onTouchStart={() => {
+              if (!deviceData.power_switch) return;
+              window.timer = setInterval(() => {
+                const key = !deviceData.unit_convert
+                  ? 'target_c_temp'
+                  : 'target_f_temp';
+                let value = deviceData[key] ? deviceData[key] + 1 : 1;
+                if (value >= 100) {
+                  clearInterval(window.timer);
+                  value = 100;
+                }
+                onControlDevice(key, value);
+              }, 500)
+            }}
+            onTouchEnd={() => {
+              clearInterval(window.timer);
             }}
           >
             <SvgIcon className="control-icon icon-ther-add" name="icon-ther-add" />

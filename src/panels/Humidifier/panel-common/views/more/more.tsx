@@ -126,7 +126,7 @@ export function More() {
               <div
                 className={classNames(
                   'temp-btn',
-                  deviceData.temp_unit_convert === 0 ? 'selected' : '',
+                  (deviceData.temp_unit_convert === undefined || deviceData.temp_unit_convert === 0) ? 'selected' : '',
                 )}
                 onClick={() => {
                   onControlDevice('temp_unit_convert', 0);
