@@ -39,7 +39,7 @@ export function Home() {
   const [gearVisible, onToggleGear] = useState(false);
 
   useEffect(() => {
-     setTempValue((state.deviceData.temp_unit_convert === undefined || Number(state.deviceData.temp_unit_convert) === 0) ? state.deviceData.set_temp : state.deviceData.set_fahrenheit) ;
+    setTempValue((state.deviceData.temp_unit_convert === undefined || Number(state.deviceData.temp_unit_convert) === 0) ? state.deviceData.set_temp : state.deviceData.set_fahrenheit);
   }, [state.deviceData.temp_unit_convert]);
   // 工作模式选项
   const modeOptions = () => {
@@ -217,28 +217,81 @@ export function Home() {
     </ul>
   );
 
+  // const minusHandle = (powerStatus: number, unit: (string | number)) => {
+  //   if (!powerStatus) return;
+  //   let value = tempValue;
+  //   value -= 1;
+  //   if (value <= 0) {
+  //     setTempValue(0);
+  //   } else {
+  //     setTempValue(value);
+  //   }
+  //   unit !== undefined && Number(unit) === 0 ? onControlDevice('set_temp', value) : onControlDevice('set_fahrenheit', value);
+  // };
+
+
   const minusHandle = (powerStatus: number, unit: (string | number)) => {
     if (!powerStatus) return;
-    let value = tempValue;
-    value -= 1;
-    if (value <= 0) {
-      setTempValue(0);
+    if (unit !== undefined && Number(unit) === 1) {
+      let value = state.deviceData.set_fahrenheit || 32;
+      value -= 1;
+      if (value < 32) {
+        value = 32;
+      }
+      if (value > 104) {
+        value = 104;
+      }
+      onControlDevice('set_fahrenheit', value);
     } else {
-      setTempValue(value);
+      let value = state.deviceData.set_temp || 0;
+      value -= 1;
+      if (value < 0) {
+        value = 0;
+      }
+      if (value > 50) {
+        value = 50;
+      }
+      onControlDevice('set_temp', value)
     }
-    unit !== undefined && Number(unit) === 0 ? onControlDevice('set_temp', value) : onControlDevice('set_fahrenheit', value);
+
   };
+
+  // const addHandle = (powerStatus: number, unit: (string | number)) => {
+  //   if (!powerStatus) return;
+  //   let value = tempValue;
+  //   value += 1;
+  //   if (value >= 100) {
+  //     setTempValue(100);
+  //   } else {
+  //     setTempValue(value);
+  //   }
+  //   (unit === undefined || Number(unit) === 0) ? onControlDevice('set_temp', value) : onControlDevice('set_fahrenheit', value);
+  // };
 
   const addHandle = (powerStatus: number, unit: (string | number)) => {
     if (!powerStatus) return;
-    let value = tempValue;
-    value += 1;
-    if (value >= 100) {
-      setTempValue(100);
+    if (unit !== undefined && Number(unit) === 1) {
+      let value = state.deviceData.set_fahrenheit || 32;
+      value += 1;
+      if (value < 32) {
+        value = 32;
+      }
+      if (value > 104) {
+        value = 104;
+      }
+      onControlDevice('set_fahrenheit', value);
     } else {
-      setTempValue(value);
+      let value = state.deviceData.set_temp || 0;
+      value += 1;
+      if (value < 0) {
+        value = 0;
+      }
+      if (value > 50) {
+        value = 50;
+      }
+      onControlDevice('set_temp', value)
+
     }
-    (unit === undefined || Number(unit) === 0) ? onControlDevice('set_temp', value) : onControlDevice('set_fahrenheit', value);
   };
 
   const handleBaseSetting = () => {
@@ -272,14 +325,14 @@ export function Home() {
                   deviceData.power_switch == 1 ? 'initiate' : 'shutdown'
                 }
                 unit={deviceData.temp_unit_convert === undefined || Number(deviceData.temp_unit_convert) === 0 ? '°C' : '°F'}
-                currentValue={                  
+                currentValue={
                   deviceData.temp_unit_convert === undefined || Number(deviceData.temp_unit_convert) === 0
-                  ? deviceData.current_temp
                     ? deviceData.current_temp
-                    : 0
-                  : deviceData.current_fahrenheit
-                    ? deviceData.current_fahrenheit
-                    : 0}
+                      ? deviceData.current_temp
+                      : 0
+                    : deviceData.current_fahrenheit
+                      ? deviceData.current_fahrenheit
+                      : 0}
               />
             </div>
 
