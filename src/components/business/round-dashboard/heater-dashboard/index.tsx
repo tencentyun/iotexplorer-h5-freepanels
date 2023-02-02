@@ -13,12 +13,15 @@ interface dashboardProps {
   value: number;
   dashboardStatus: string;
   unit: string;
+  min: number;
+  max: number;
+  fahrenheitStatus: boolean;
 }
 
 const HeaterDashboard: React.FC<dashboardProps> = (props) => {
   const themeType = getThemeType();
   const CurrentSkinProps: any = SkinProps[themeType];
-  const { value, dashboardStatus, unit } = props;
+  const { value, dashboardStatus, unit, min, max, fahrenheitStatus } = props;
 
   const skinProps = (CurrentSkinProps as any)[dashboardStatus];
 
@@ -31,7 +34,7 @@ const HeaterDashboard: React.FC<dashboardProps> = (props) => {
           {...skinProps.warmth}
         />
         <div className="number">
-          <strong>{value}</strong>
+          <strong>{fahrenheitStatus ? value + 32 : value}</strong>
           <span>{unit}</span>
         </div>
         <div className="title">温度调节</div>
@@ -48,6 +51,8 @@ const HeaterDashboard: React.FC<dashboardProps> = (props) => {
           isOuterCicle={true}
           scaleIsGradient={false}
           businessType="Heater"
+          minValue={min}
+          maxValue={max}
           {...skinProps}
           {...props}
           currentColor={dashboardStatus === 'shutdown' ? '#C9D4DD' : '#0F0F0F'}
@@ -59,6 +64,8 @@ const HeaterDashboard: React.FC<dashboardProps> = (props) => {
           height={714}
           step={3}
           businessType="Heater"
+          minValue={min}
+          maxValue={max}
           {...skinProps}
           {...props}
         />
@@ -69,6 +76,8 @@ const HeaterDashboard: React.FC<dashboardProps> = (props) => {
           height={750}
           step={3}
           businessType="Heater"
+          minValue={min}
+          maxValue={max}
           {...skinProps}
           {...props}
         />

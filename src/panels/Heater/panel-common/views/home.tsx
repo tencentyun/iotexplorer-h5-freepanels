@@ -36,10 +36,13 @@ export function Home() {
                       ? deviceData.target_c_temp
                       : 0
                     : deviceData.target_f_temp
-                      ? deviceData.target_f_temp
+                      ? deviceData.target_f_temp - 32
                       : 0
                 }
-                unit={!deviceData.unit_convert ? '°C' : '°F'}
+                unit={(deviceData.unit_convert == undefined || deviceData.unit_convert === 0) ? '°C' : '°F'}
+                min={0}
+                fahrenheitStatus={!(deviceData.unit_convert === undefined || Number(deviceData.unit_convert) === 0)}
+                max={deviceData.unit_convert === undefined || Number(deviceData.unit_convert) === 0 ? 50 : 72}
                 dashboardStatus={
                   deviceData.power_switch ? 'initiate' : 'shutdown'
                 }
@@ -56,15 +59,18 @@ export function Home() {
             <>
               <HeaterDashboard
                 value={
-                  !deviceData.unit_convert
+                  deviceData.unit_convert === undefined || Number(deviceData.unit_convert) === 0
                     ? deviceData.target_c_temp
                       ? deviceData.target_c_temp
                       : 0
                     : deviceData.target_f_temp
-                      ? deviceData.target_f_temp
+                      ? deviceData.target_f_temp - 32
                       : 0
                 }
                 unit={!deviceData.unit_convert ? '°C' : '°F'}
+                min={0}
+                fahrenheitStatus={!(deviceData.unit_convert === undefined || Number(deviceData.unit_convert) === 0)}
+                max={deviceData.unit_convert === undefined || Number(deviceData.unit_convert) === 0 ? 40 : 72}
                 dashboardStatus={
                   deviceData.power_switch ? 'initiate' : 'shutdown'
                 }
@@ -86,10 +92,14 @@ export function Home() {
                       ? deviceData.target_c_temp
                       : 0
                     : deviceData.target_f_temp
-                      ? deviceData.target_f_temp
+                      ? deviceData.target_f_temp - 32
                       : 0
                 }
-                unit={!deviceData.unit_convert ? '°C' : '°F'}
+                unit={(deviceData.unit_convert == undefined || deviceData.unit_convert === 0) ? '°C' : '°F'}
+                min={0}
+                fahrenheitStatus={!(deviceData.unit_convert === undefined || Number(deviceData.unit_convert) === 0)}
+                max={deviceData.unit_convert === undefined || Number(deviceData.unit_convert) === 0 ? 50 : 72}
+                
                 dashboardStatus={
                   deviceData.power_switch ? 'initiate' : 'shutdown'
                 }
@@ -111,10 +121,13 @@ export function Home() {
                       ? deviceData.target_c_temp
                       : 0
                     : deviceData.target_f_temp
-                      ? deviceData.target_f_temp
+                      ? deviceData.target_f_temp -32
                       : 0
                 }
-                unit={!deviceData.unit_convert ? '°C' : '°F'}
+                unit={(deviceData.unit_convert == undefined || deviceData.unit_convert === 0) ? '°C' : '°F'}
+                min={0}
+                fahrenheitStatus={!(deviceData.unit_convert === undefined || Number(deviceData.unit_convert) === 0)}
+                max={deviceData.unit_convert === undefined || Number(deviceData.unit_convert) === 0 ? 50 : 72}
                 dashboardStatus={
                   deviceData.power_switch ? 'initiate' : 'shutdown'
                 }
@@ -138,10 +151,14 @@ export function Home() {
                           ? deviceData.target_c_temp
                           : 0
                         : deviceData.target_f_temp
-                          ? deviceData.target_f_temp
+                          ? deviceData.target_f_temp - 32
                           : 0
                     }
-                    unit={!deviceData.unit_convert ? '°C' : '°F'}
+                    unit={(deviceData.unit_convert == undefined || deviceData.unit_convert === 0) ? '°C' : '°F'}
+                    min={0}
+                    fahrenheitStatus={!(deviceData.unit_convert === undefined || Number(deviceData.unit_convert) === 0)}
+                    max={deviceData.unit_convert === undefined || Number(deviceData.unit_convert) === 0 ? 50 : 72}
+                    
                     dashboardStatus={
                       deviceData.power_switch ? 'initiate' : 'shutdown'
                     }

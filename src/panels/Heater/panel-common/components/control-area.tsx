@@ -23,14 +23,14 @@ export function ControlArea(props: IFunExampleProps) {
             onClick={() => {
               if (!deviceData.power_switch) return;
               clearInterval(window.timer);
-              const key = !deviceData.unit_convert
+              const key = deviceData.unit_convert === undefined || Number(deviceData.unit_convert) === 0
                 ? 'target_c_temp'
                 : 'target_f_temp';
-              let value = deviceData[key] ? deviceData[key] - 1 : 0;
+              let value = deviceData[key] ? (key === 'target_f_temp' ? deviceData[key] - 32 : deviceData[key]) - 1 : 0;
               if (value <= 0) {
                 value = 0;
               }
-              onControlDevice(key, value);
+              onControlDevice(key, key === 'target_f_temp' ? value + 32 : value);
             }}
             onTouchStart={() => {
               if (!deviceData.power_switch) return;
@@ -38,12 +38,12 @@ export function ControlArea(props: IFunExampleProps) {
                 const key = !deviceData.unit_convert
                   ? 'target_c_temp'
                   : 'target_f_temp';
-                let value = deviceData[key] ? deviceData[key] - 1 : 0;
+                let value = deviceData[key] ? (key === 'target_f_temp' ? deviceData[key] - 32 : deviceData[key]) - 1 : 0;
                 if (value <= 0) {
                   clearInterval(window.timer);
                   value = 0;
                 }
-                onControlDevice(key, value);
+                onControlDevice(key, key === 'target_f_temp' ? value + 32 : value);
               }, 500)
             }}
             onTouchEnd={() => {
@@ -78,11 +78,17 @@ export function ControlArea(props: IFunExampleProps) {
               const key = !deviceData.unit_convert
                 ? 'target_c_temp'
                 : 'target_f_temp';
-              let value = deviceData[key] ? deviceData[key] + 1 : 1;
-              if (value >= 100) {
-                value = 100;
+              let value = deviceData[key] ? (key === 'target_f_temp' ? deviceData[key] - 32 : deviceData[key]) + 1 : 1;
+              if (key === 'target_f_temp') {
+                if (value >= 72) {
+                  value = 72;
+                }
+              } else {
+                if (value >= 40) {
+                  value = 40;
+                }
               }
-              onControlDevice(key, value);
+              onControlDevice(key, key === 'target_f_temp' ? value + 32 : value);
             }}
             onTouchStart={() => {
               if (!deviceData.power_switch) return;
@@ -90,12 +96,19 @@ export function ControlArea(props: IFunExampleProps) {
                 const key = !deviceData.unit_convert
                   ? 'target_c_temp'
                   : 'target_f_temp';
-                let value = deviceData[key] ? deviceData[key] + 1 : 1;
-                if (value >= 100) {
-                  clearInterval(window.timer);
-                  value = 100;
+                let value = deviceData[key] ? (key === 'target_f_temp' ? deviceData[key] - 32 : deviceData[key]) + 1 : 1;
+                if (key === 'target_f_temp') {
+                  if (value >= 72) {
+                    clearInterval(window.timer);
+                    value = 72;
+                  }
+                } else {
+                  if (value >= 40) {
+                    clearInterval(window.timer);
+                    value = 40;
+                  }
                 }
-                onControlDevice(key, value);
+                onControlDevice(key, key === 'target_f_temp' ? value + 32 : value);
               }, 500)
             }}
             onTouchEnd={() => {

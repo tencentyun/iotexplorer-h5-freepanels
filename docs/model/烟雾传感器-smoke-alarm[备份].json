@@ -70,24 +70,10 @@
       "define": {
         "type": "stringenum",
         "mapping": {
-          "low": "低",
-          "middle": "中",
-          "high": "高",
-          "mute" : "静音"
-        }
-      },
-      "required": false
-    },
-    {
-      "id": "smoke_sensor_state",
-      "name": "烟雾检测状态",
-      "desc": "",
-      "mode": "ro",
-      "define": {
-        "type": "stringenum",
-        "mapping": {
-          "alarm": "报警",
-          "normal": "正常"
+          "low": "low",
+          "middle": "middle",
+          "high": "high",
+          "mute" : "mute"
         }
       },
       "required": false
@@ -111,12 +97,12 @@
       "id": "co_state",
       "name": "CO检测状态",
       "desc": "",
-      "mode": "ro",
+      "mode": "rw",
       "define": {
         "type": "stringenum",
         "mapping": {
-          "alarm": "报警",
-          "normal": "正常"
+          "alarm": "alarm",
+          "normal": "normal"
         }
       },
       "required": false
@@ -133,50 +119,6 @@
         "start": "0",
         "step": "1",
         "unit": "这个值的转换需要确定"
-      },
-      "required": false
-    },
-    {
-      "id": "self_checking",
-      "name": "设备自检",
-      "desc": "",
-      "mode": "rw",
-      "define": {
-        "type": "bool",
-        "mapping": {
-          "0": "关",
-          "1": "开"
-        }
-      },
-      "required": false
-    },
-    {
-      "id": "checking_result",
-      "name": "设备自检结果",
-      "desc": "枚举字符串型 值: checking, check_success, check_failure, others",
-      "mode": "ro",
-      "define": {
-        "type": "stringenum",
-        "mapping": {
-          "checking": "自检中",
-          "check_success": "自检成功",
-          "check_failure": "自检失败",
-          "others": "其他"
-        }
-      },
-      "required": false
-    },
-    {
-      "id": "muffling",
-      "name": "消音",
-      "desc": "0：不消音； 1：消音",
-      "mode": "rw",
-      "define": {
-        "type": "bool",
-        "mapping": {
-          "0": "不消音",
-          "1": "消音"
-        }
       },
       "required": false
     },
@@ -199,14 +141,14 @@
       "id": "co_value",
       "name": "CO检测值",
       "desc": "",
-      "mode": "ro",
+      "mode": "rw",
       "define": {
         "type": "int",
         "min": "0",
         "max": "1000",
         "start": "0",
         "step": "1",
-        "unit": "ppm"
+        "unit": ""
       },
       "required": false
     },

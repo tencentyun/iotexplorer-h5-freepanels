@@ -22,6 +22,8 @@ interface DeviceMaps {
   level: [];
 }
 
+let flag = 0;
+
 export function Home() {
   const themeType = getThemeType();
   const CurrentSkinProps: any = SkinProps[themeType];
@@ -37,6 +39,8 @@ export function Home() {
   const [modeVisible, onToggleMode] = useState(false);
   // 档位选择器
   const [gearVisible, onToggleGear] = useState(false);
+
+  const [num, setNum] = useState(0);
 
   useEffect(() => {
     setTempValue((state.deviceData.temp_unit_convert === undefined || Number(state.deviceData.temp_unit_convert) === 0) ? state.deviceData.set_temp : state.deviceData.set_fahrenheit);
@@ -217,19 +221,6 @@ export function Home() {
     </ul>
   );
 
-  // const minusHandle = (powerStatus: number, unit: (string | number)) => {
-  //   if (!powerStatus) return;
-  //   let value = tempValue;
-  //   value -= 1;
-  //   if (value <= 0) {
-  //     setTempValue(0);
-  //   } else {
-  //     setTempValue(value);
-  //   }
-  //   unit !== undefined && Number(unit) === 0 ? onControlDevice('set_temp', value) : onControlDevice('set_fahrenheit', value);
-  // };
-
-
   const minusHandle = (powerStatus: number, unit: (string | number)) => {
     if (!powerStatus) return;
     if (unit !== undefined && Number(unit) === 1) {
@@ -256,30 +247,18 @@ export function Home() {
 
   };
 
-  // const addHandle = (powerStatus: number, unit: (string | number)) => {
-  //   if (!powerStatus) return;
-  //   let value = tempValue;
-  //   value += 1;
-  //   if (value >= 100) {
-  //     setTempValue(100);
-  //   } else {
-  //     setTempValue(value);
-  //   }
-  //   (unit === undefined || Number(unit) === 0) ? onControlDevice('set_temp', value) : onControlDevice('set_fahrenheit', value);
-  // };
-
   const addHandle = (powerStatus: number, unit: (string | number)) => {
     if (!powerStatus) return;
     if (unit !== undefined && Number(unit) === 1) {
-      let value = state.deviceData.set_fahrenheit || 32;
+      let value = state.deviceData.set_fahrenheit - 32 > 0 ? state.deviceData.set_fahrenheit - 32 : 0;
       value += 1;
-      if (value < 32) {
-        value = 32;
+      if (value < 0) {
+        value = 0;
       }
-      if (value > 104) {
-        value = 104;
+      if (value > 72) {
+        value = 72;
       }
-      onControlDevice('set_fahrenheit', value);
+      onControlDevice('set_fahrenheit', value + 32);
     } else {
       let value = state.deviceData.set_temp || 0;
       value += 1;
@@ -290,7 +269,6 @@ export function Home() {
         value = 50;
       }
       onControlDevice('set_temp', value)
-
     }
   };
 
@@ -318,9 +296,12 @@ export function Home() {
                       ? deviceData.set_temp
                       : 0
                     : deviceData.set_fahrenheit
-                      ? deviceData.set_fahrenheit
+                      ? deviceData.set_fahrenheit - 32
                       : 0
                 }
+                min={0}
+                fahrenheitStatus={!(deviceData.temp_unit_convert === undefined || Number(deviceData.temp_unit_convert) === 0)}
+                max={deviceData.temp_unit_convert === undefined || Number(deviceData.temp_unit_convert) === 0 ? 50 : 72}
                 dashboardStatus={
                   deviceData.power_switch == 1 ? 'initiate' : 'shutdown'
                 }
@@ -332,7 +313,7 @@ export function Home() {
                       : 0
                     : deviceData.current_fahrenheit
                       ? deviceData.current_fahrenheit
-                      : 0}
+                      : 32}
               />
             </div>
 
@@ -348,16 +329,16 @@ export function Home() {
               <div
                 className={classNames('setting-button')}
                 onClick={() => {
-                  clearInterval(window.timer);
                   minusHandle(deviceData.power_switch, deviceData.temp_unit_convert);
                 }}
                 onTouchStart={() => {
-                  window.timer = setInterval(() => {
+                  clearInterval(flag);
+                  flag = setInterval(() => {
                     minusHandle(deviceData.power_switch, deviceData.temp_unit_convert);
                   }, 500)
                 }}
-                onTouchCancel={() => {
-                  clearInterval(window.timer);
+                onTouchEnd={() => {
+                  clearInterval(flag);
                 }}
               >
                 <SvgIcon className="control-icon" name="icon-ther-minus" color={iconColor(deviceData.power_switch)} />
@@ -382,16 +363,16 @@ export function Home() {
               <div
                 className={classNames('setting-button')}
                 onClick={() => {
-                  clearInterval(window.timer);
                   addHandle(deviceData.power_switch, deviceData.temp_unit_convert);
                 }}
                 onTouchStart={() => {
-                  window.timer = setInterval(() => {
+                  clearInterval(flag);
+                  flag = setInterval(() => {
                     addHandle(deviceData.power_switch, deviceData.temp_unit_convert);
                   }, 500)
                 }}
-                onTouchCancel={() => {
-                  clearInterval(window.timer);
+                onTouchEnd={() => {
+                  clearInterval(flag);
                 }}
               >
                 <SvgIcon className="control-icon icon-ther-add" name="icon-ther-add" color={iconColor(deviceData.power_switch)} />
@@ -474,16 +455,16 @@ export function Home() {
                 <div
                   className={classNames('setting-button')}
                   onClick={() => {
-                    clearInterval(window.timer);
                     minusHandle(deviceData.power_switch, deviceData.temp_unit_convert);
                   }}
                   onTouchStart={() => {
-                    window.timer = setInterval(() => {
+                    clearInterval(flag);
+                    flag = setInterval(() => {
                       minusHandle(deviceData.power_switch, deviceData.temp_unit_convert);
                     }, 500)
                   }}
-                  onTouchCancel={() => {
-                    clearInterval(window.timer);
+                  onTouchEnd={() => {
+                    clearInterval(flag);
                   }}
                 >
                   <SvgIcon
@@ -513,16 +494,16 @@ export function Home() {
                 <div
                   className={classNames('setting-button')}
                   onClick={() => {
-                    clearInterval(window.timer);
                     addHandle(deviceData.power_switch, deviceData.temp_unit_convert);
                   }}
                   onTouchStart={() => {
-                    window.timer = setInterval(() => {
+                    clearInterval(flag);
+                    flag = setInterval(() => {
                       addHandle(deviceData.power_switch, deviceData.temp_unit_convert);
                     }, 500)
                   }}
-                  onTouchCancel={() => {
-                    clearInterval(window.timer);
+                  onTouchEnd={() => {
+                    clearInterval(flag);
                   }}
                 >
                   <SvgIcon

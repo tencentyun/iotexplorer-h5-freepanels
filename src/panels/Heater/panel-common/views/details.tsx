@@ -235,7 +235,7 @@ export function Details() {
               <div
                 className={classNames(
                   'temp-btn',
-                  deviceData.unit_convert === 0 ? 'selected' : '',
+                  deviceData.unit_conver === undefined || deviceData.unit_convert === 0 ? 'selected' : '',
                 )}
                 onClick={() => {
                   onControlDevice('unit_convert', 0);

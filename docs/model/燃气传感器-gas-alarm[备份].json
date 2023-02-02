@@ -138,20 +138,6 @@
       "required": false
     },
     {
-      "id": "muffling",
-      "name": "消音",
-      "desc": "0：不消音； 1：消音",
-      "mode": "rw",
-      "define": {
-        "type": "bool",
-        "mapping": {
-          "0": "不消音",
-          "1": "消音"
-        }
-      },
-      "required": false
-    },
-    {
       "id": "battery_state",
       "name": "电池电量状态",
       "desc": "",

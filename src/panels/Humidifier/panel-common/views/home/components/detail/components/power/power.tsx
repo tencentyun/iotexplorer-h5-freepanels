@@ -28,9 +28,6 @@ export function Power() {
   /* 按钮改为控制湿度*/
   const handleToggle = (isAdd: boolean) => {
     const oldVal = sdk.deviceData.set_humidity || 0;
-    if (oldVal == 100 || oldVal == 0 ) {
-      clearInterval(window.timer);
-    }
     if (isAdd) {
       if (oldVal < 100) apiControlDeviceData({
         set_humidity: oldVal + 1,
@@ -54,10 +51,10 @@ export function Power() {
             className={classNames('button-circle', 'reduce')}
             onClick={() => {
               if (!deviceData.power_switch) return;
-              clearInterval(window.timer);
               handleToggle(false);
             }}
             onTouchStart={() => {
+              clearInterval(window.timer);
               window.timer = setInterval(() => {
                 handleToggle(false)
               }, 500)
