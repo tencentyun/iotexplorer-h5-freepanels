@@ -93,10 +93,10 @@ export function Home() {
                 <div
                   className={classNames(
                     'label',
-                    deviceData.smoke_sensor_state === '1' ? 'active' : '',
+                    deviceData.smoke_sensor_state === 'alarm' ? 'active' : '',
                   )}
                 >
-                  {deviceData.smoke_sensor_state === '1'
+                  {deviceData.smoke_sensor_state === 'alarm'
                     ? '注意，检测到烟雾'
                     : '当前没有烟雾报警'}
                 </div>
@@ -121,10 +121,10 @@ export function Home() {
                 <div
                   className={classNames(
                     'label',
-                    deviceData.smoke_sensor_state === '1' ? 'active' : '',
+                    deviceData.smoke_sensor_state === 'alarm' ? 'active' : '',
                   )}
                 >
-                  {deviceData.smoke_sensor_state === '1'
+                  {deviceData.smoke_sensor_state === 'alarm'
                     ? '注意，检测到烟雾'
                     : '当前没有烟雾报警'}
                 </div>

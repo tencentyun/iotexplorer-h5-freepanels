@@ -82,7 +82,7 @@
       "id": "smoke_sensor_state",
       "name": "烟雾检测状态",
       "desc": "",
-      "mode": "ro",
+      "mode": "r",
       "define": {
         "type": "stringenum",
         "mapping": {
@@ -111,7 +111,7 @@
       "id": "co_state",
       "name": "CO检测状态",
       "desc": "",
-      "mode": "ro",
+      "mode": "r",
       "define": {
         "type": "stringenum",
         "mapping": {
@@ -132,7 +132,7 @@
         "max": "1000",
         "start": "0",
         "step": "1",
-        "unit": "这个值的转换需要确定"
+        "unit": "ppm"
       },
       "required": false
     },
@@ -154,7 +154,7 @@
       "id": "checking_result",
       "name": "设备自检结果",
       "desc": "枚举字符串型 值: checking, check_success, check_failure, others",
-      "mode": "ro",
+      "mode": "r",
       "define": {
         "type": "stringenum",
         "mapping": {
@@ -199,7 +199,7 @@
       "id": "co_value",
       "name": "CO检测值",
       "desc": "",
-      "mode": "ro",
+      "mode": "r",
       "define": {
         "type": "int",
         "min": "0",

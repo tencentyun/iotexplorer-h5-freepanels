@@ -111,7 +111,7 @@ export function DataShowDisk(props: DiskProps) {
 
   let currentStatus = '';
 
-  if (status == '1') {
+  if (status == 'alarm') {
     currentStatus = 'alarm';
   } else {
     currentStatus = 'normal';

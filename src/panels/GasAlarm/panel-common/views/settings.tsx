@@ -50,10 +50,10 @@ export function Settings() {
       return options.length > 0 ? options : [];
     }
     return [
-      { label: 'low', value: 'low' },
-      { label: 'middle', value: 'middle' },
-      { label: 'high', value: 'high' },
-      { label: 'mute', value: 'mute' },
+      { label: '低', value: 'low' },
+      { label: '中', value: 'middle' },
+      { label: '高', value: 'high' },
+      { label: '静音', value: 'mute' },
     ];
   };
 

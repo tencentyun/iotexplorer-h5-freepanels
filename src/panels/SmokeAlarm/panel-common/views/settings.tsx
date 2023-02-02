@@ -51,10 +51,14 @@ export function Settings() {
       return options.length > 0 ? options : [];
     }
     return [
-      { label: 'low', value: '0' },
-      { label: 'middle', value: '1' },
-      { label: 'high', value: '2' },
-      { label: 'mute', value: '3' },
+      // { label: 'low', value: '0' },
+      // { label: 'middle', value: '1' },
+      // { label: 'high', value: '2' },
+      // { label: 'mute', value: '3' },
+      { label: '低', value: 'low' },
+      { label: '中', value: 'middle' },
+      { label: '高', value: 'high' },
+      { label: '静音', value: 'mute' },
     ];
   };
 
