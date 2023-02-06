@@ -66,11 +66,11 @@ export function Settings() {
       return options.length > 0 ? options : [];
     }
     return [
-      { label: 'ringtone_1', value: 'ringtone_1' },
-      { label: 'ringtone_2', value: 'ringtone_2' },
-      { label: 'ringtone_3', value: 'ringtone_3' },
-      { label: 'ringtone_4', value: 'ringtone_4' },
-      { label: 'ringtone_5', value: 'ringtone_5' },
+      { label: '铃声1', value: 'ringtone_1' },
+      { label: '铃声2', value: 'ringtone_2' },
+      { label: '铃声3', value: 'ringtone_3' },
+      { label: '铃声4', value: 'ringtone_4' },
+      { label: '铃声5', value: 'ringtone_5' },
     ];
   };
 

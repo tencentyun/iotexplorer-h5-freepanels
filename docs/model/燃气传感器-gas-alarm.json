@@ -65,8 +65,8 @@
       "define": {
         "type": "stringenum",
         "mapping": {
-          "alarm": "alarm",
-          "normal": "normal"
+          "alarm": "报警",
+          "normal": "正常"
         }
       },
       "required": false
@@ -79,10 +79,10 @@
       "define": {
         "type": "stringenum",
         "mapping": {
-          "checking": "checking",
-          "check_success": "check_success",
-          "check_failure": "check_failure",
-          "others": "others"
+          "checking": "自检中",
+          "check_success": "自检成功",
+          "check_failure": "自检失败",
+          "others": "其他"
         }
       },
       "required": false
@@ -95,11 +95,11 @@
       "define": {
         "type": "stringenum",
         "mapping": {
-          "fault": "fault",
-          "serious_fault": "serious_fault",
-          "sensor_fault": "sensor_fault",
-          "probe_fault": "probe_fault",
-          "power_fault": "power_fault"
+          "fault": "未知错误",
+          "serious_fault": "严重错误",
+          "sensor_fault": "传感器错误",
+          "probe_fault": "探头错误",
+          "power_fault": "电源错误"
         }
       },
       "required": false
@@ -112,11 +112,11 @@
       "define": {
         "type": "stringenum",
         "mapping": {
-          "ringtone_1": "ringtone_1",
-          "ringtone_2": "ringtone_2",
-          "ringtone_3": "ringtone_3",
-          "ringtone_4": "ringtone_4",
-          "ringtone_5": "ringtone_5"
+          "ringtone_1": "铃声1",
+          "ringtone_2": "铃声2",
+          "ringtone_3": "铃声3",
+          "ringtone_4": "铃声4",
+          "ringtone_5": "铃声5"
         }
       },
       "required": false
@@ -129,10 +129,10 @@
       "define": {
         "type": "stringenum",
         "mapping": {
-          "low": "low",
-          "middle": "middle",
-          "high": "high",
-          "mute" : "mute"
+          "low": "低",
+          "middle": "中",
+          "high": "高",
+          "mute" : "静音"
         }
       },
       "required": false
@@ -159,9 +159,9 @@
       "define": {
         "type": "stringenum",
         "mapping": {
-          "low": "low",
-          "middle": "middle",
-          "high": "high"
+          "low": "低",
+          "middle": "中",
+          "high": "高"
         }
       },
       "required": false
@@ -174,8 +174,8 @@
       "define": {
         "type": "stringenum",
         "mapping": {
-          "alarm": "alarm",
-          "normal": "normal"
+          "alarm": "报警",
+          "normal": "正常"
         }
       },
       "required": false
@@ -253,11 +253,11 @@
           "define": {
             "type": "stringenum",
             "mapping": {
-              "fault": "fault",
-              "serious_fault": "serious_fault",
-              "sensor_fault": "sensor_fault",
-              "probe_fault": "probe_fault",
-              "power_fault": "power_fault"
+              "fault": "未知错误",
+              "serious_fault": "严重错误",
+              "sensor_fault": "传感器错误",
+              "probe_fault": "探头错误",
+              "power_fault": "电源错误"
             }
           }
         }
