@@ -3,11 +3,25 @@
     display: flex;
     flex-direction: column;
 
+    .device-info {
+      .cell {
+        box-sizing: border-box;
+        background: #FFFFFF;
+        box-shadow: 0px 4px 20px #E6EAF0;
+        border-radius: 16px;
+        padding: 30px 36px 30px 32px;
+      }
+      margin: 12px 16px;
+    }
+
     .info {
       display: flex;
       flex-direction: row;
-      padding: 16px;
       justify-content: space-around;
+      background: #FFFFFF;
+      box-shadow: 0px 4px 20px #E6EAF0;
+      border-radius: 16px;
+      margin: 0 16px;
 
       .item {
         display: flex;
@@ -16,30 +30,27 @@
         justify-content: center;
 
         .detail {
-          width: 103px;
           height: 93px;
           display: flex;
           flex-direction: column;
-          justify-content: flex-start;
           align-items: center;
+          justify-content: center;
+          margin: 0 14px;
 
           .title {
-            margin: 16px 0;
             font-style: normal;
             font-size: 24px;
             line-height: 29px;
             text-align: center;
-            color: #1D202D;
+            color: #182129;
             opacity: 0.75;
 
             .value {
-              margin-right: 6px;
               font-family: 'DIN Condensed';
               font-weight: 700;
             }
 
             .unit {
-              font-family: 'PingFang SC';
               font-weight: 600;
               font-size: 16px;
               line-height: 22px;
@@ -48,12 +59,9 @@
           }
 
           .desc {
-            font-family: 'PingFang SC';
-            font-style: normal;
-            font-weight: 600;
-            font-size: 14px;
+            font-size: 12px;
             line-height: 20px;
-            opacity: 0.75;
+            color: rgba(24, 33, 41, 0.5);
           }
         }
 

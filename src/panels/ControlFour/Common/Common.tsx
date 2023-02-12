@@ -3,6 +3,7 @@ import { Router } from '@router';
 import { Home } from './Home';
 import { Config } from './Config';
 import { Editor } from './Editor';
+import {Layout} from './Layout'
 
 const App = (props) => {
   const route = [

@@ -1,12 +1,37 @@
 .wrapper {
-    display: grid;
-    grid-auto-flow: row dense;
-    grid-gap: 4px;
-    .item {
-        background: #ccc;
-        div:first-child {
-            width: 100%;
-            height: 100%;
+    // display: flex;
+    // flex-direction: row;
+    // flex-wrap: wrap;
+    position: relative;
+
+    .region {
+        position: absolute;
+        border: 1px solid #000;
+        box-sizing: border-box;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .device {
+        background: #000;
+    }
+
+    .switch {
+        background: #EBEFF3;
+        .selected {
+            align-items: flex-end;
         }
     }
+
+    // display: grid;
+    // grid-auto-flow: row dense;
+    // grid-gap: 4px;
+    // .item {
+    //     background: #ccc;
+    //     div:first-child {
+    //         width: 100%;
+    //         height: 100%;
+    //     }
+    // }
 }
