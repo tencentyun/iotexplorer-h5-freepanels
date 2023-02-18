@@ -8,7 +8,8 @@ import { Tabs } from '@custom/Tabs';
 import { Cell } from '@custom/Cell';
 import { Popup } from '@custom/Popup';
 import classNames from 'classnames';
-import { LAYOUT } from '../Layout/constant';
+import { LAYOUT, layoutList } from '../Layout/constant';
+import { Layout } from '../Layout';
 
 
 const allSwitch = [
@@ -19,57 +20,118 @@ const allSwitch = [
   ['switch_5', '开关五'],
 ];
 
-const getSwitchNum = (templateMap = {}) => Object.keys(templateMap).filter(v => /^switch/.test(v)).length || 1;
-const getLayoutList = () => {
-  let arr: Array<object>[] = [];
-  for (let key of Object.keys(LAYOUT)) {
-    arr.push(LAYOUT[key]);
-  }
-  return arr;
-}
+
+const test = [
+  [{
+    name: '123',
+    deviceid: 12,
+    type: 1,
+    position: [
+      [0, 3],
+      [0, 2],
+    ],
+  },
+  {
+    name: '333',
+    deviceid: 122,
+    type: 0,
+    position: [
+      [0, 1],
+      [2, 3],
+    ],
+  },
+  {
+    name: 'fasdf',
+    deviceid: 2,
+    type: 0,
+    position: [
+      [1, 2],
+      [2, 3],
+    ],
+  },
+  {
+    name: '3adsf',
+    deviceid: 33,
+    type: 0,
+    position: [
+      [2, 3],
+      [2, 3],
+    ],
+  },],
+  [{
+    name: 'adsf',
+    deviceid: 80,
+    type: 1,
+    position: [
+      [0, 3],
+      [0, 3],
+    ],
+  },]
+];
+
+
 
 export function Home(props) {
   const { doControlDeviceData, templateMap, setContext, deviceData = {}, history: { PATH, push },
   } = props;
-  // const switchNum = getSwitchNum(templateMap);
   const switchNum = 3;
   const currentSwitch = allSwitch.slice(0, switchNum);
+  const { card_config = test || [], card_theme = 'theme1' } = { ...deviceData };
   const onChange = (key, value) => doControlDeviceData(key, value ? 1 : 0);
   const [visible, setVisible] = useState(false);
   const [selected, setSelected] = useState([]);
+
   useEffect(() => {
     setContext({ switchNum });
-
-    // setCurrentName(deviceData['name_button1'])
   }, []);
+
+  const isSelected = (s) => {
+    return JSON.stringify(s) === JSON.stringify(selected) ? { border: '2px solid #4D9CF8' } : {}
+  }
 
   return (
     <div className="home">
       <Tabs defaultActiveKey='1' className="custom-tabs">
         <Tabs.Tab title='屏幕配置' key='1'>
-          {/* 设备离线 */}
-          <div className="modular">
-            <div className="modular-container">
-              <Cell title="设备已离线" prefixIcon={<Icon name="error" />} />
-            </div>
-          </div>
           {/* 主题风格 */}
           <div className="modular">
             <div className="modular-title">主题风格</div>
             <div className="modular-container">
-              <Cell title="主题名称" prefixIcon="" />
+              <Cell title="主题名称" prefixIcon={<Icon name={card_theme} />} onClick={() => push('/theme')} />
             </div>
           </div>
           {/* 我的屏幕 */}
           <div className="modular">
-            <div className="modular-title">我的屏幕</div>
+            <div className="modular-title">
+              <span>我的屏幕</span>
+              {card_config.length ? <Button className="editor-btn" onClick={() => push('/sort')}>
+                <Icon name="editor-other" />
+              </Button> : <></>}
+            </div>
             <div className="modular-container my-screen">
-              <div className="screen-list"></div>
-              <div className="screen-add">
-                <Button className="screen-btn" onClick={() => setVisible(true)}>
-                  <Icon name="add" />
-                </Button>
-                <span className="add-text">添加</span>
+              <div className="screen-list">
+                {card_config.map((item, index) => {
+                  return (<div className="my-screen-selected" key={`my-screen-${index}`} >
+                    <Layout
+                      style={{ width: 95, height: 95 }}
+                      selected={item}
+                      width={32}
+                      height={32}
+                      isPreview={true}
+                      onPreviewClick={() => {
+                        setSelected(item)
+                        push('/card/editor', { selected: JSON.stringify(item), isEdit: true })
+                      }}
+                    />
+                    <span className="add-text">{`屏${index + 1}`}</span>
+                  </div>)
+                })}
+                <div className="screen-add">
+                  <Button className="screen-btn" onClick={() => setVisible(true)}>
+                    <Icon name="add" />
+                  </Button>
+                  <span className="add-text">添加</span>
+                </div>
               </div>
             </div>
             <Popup
@@ -81,13 +143,20 @@ export function Home(props) {
               <div
                 className="layout-popup"
               >
-                <div className="header">屏幕布局</div>
+                <div className="header">
+                  屏幕布局
+                </div>
                 <div className="content">
-                  {getLayoutList().map((item, index) => {
-                    return (<div key={index} className={classNames('layout-item', JSON.stringify(item) === JSON.stringify(selected) ? 'selected' : '')} onClick={() => setSelected(item)}>
-                      <Icon className={`layout-${index + 1}`} />
-                    </div>)
-                  })}
+                  {layoutList.map((item, index) => <Layout
+                    key={`layout-${index}`}
+                    style={{ width: 95, height: 95, marginRight: 14, marginBottom: 24, border: '2px solid transparent', ...isSelected(item) }}
+                    selected={item}
+                    width={32}
+                    height={32}
+                    isPreview={true}
+                    onPreviewClick={() => setSelected(item)}
+                  />)}
+
                 </div>
                 <div className="footer">
                   <Button className="custom-btn" onClick={() => {

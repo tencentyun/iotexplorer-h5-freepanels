@@ -13,19 +13,10 @@ export const Detail = ({
   isModal,
   isPopUp
 }) => {
-
-  // push.bind(null, PATH.TIMER_LIST, {}),
-
-  console.log(push);
-
   const infoList = [[6, '（度）', '今日用电'], [34, '（度）', '当月电量'], [230, '（W）', '实时功率']];
-
   return (
     <div className={`detail action action-${switchNum}`}>
       <div className="environment">
-        <div className="device-info">
-          <Cell title="设备已离线" prefixIcon={<Icon name="error" />} />
-        </div>
         <div className='info'>
           {infoList.map(([value, unit, desc], index) => (
             <div className="item" key={index}>

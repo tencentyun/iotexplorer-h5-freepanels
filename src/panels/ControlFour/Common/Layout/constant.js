@@ -583,6 +583,20 @@ export default {
   thirteen,
 };
 
+export const layoutList = [
+  LAYOUT_1,
+  LAYOUT_2,
+  LAYOUT_3,
+  LAYOUT_4,
+  LAYOUT_5,
+  LAYOUT_6,
+  LAYOUT_7,
+  LAYOUT_8,
+  LAYOUT_9,
+  LAYOUT_10,
+  LAYOUT_11,
+];
+
 export const LAYOUT = {
   LAYOUT_1,
   LAYOUT_2,
