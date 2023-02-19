@@ -140,13 +140,14 @@ export function Home(props) {
               </div>
             </div>
             <Popup
+              className="layout-popup"
               visible={visible}
               onMaskClick={() => {
                 setVisible(false)
               }}
             >
               <div
-                className="layout-popup"
+                className="popup-content"
               >
                 <div className="header">
                   屏幕布局

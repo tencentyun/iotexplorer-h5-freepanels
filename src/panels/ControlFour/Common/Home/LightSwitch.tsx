@@ -7,6 +7,9 @@ export function LightSwitch({ value, name, className, onChange }) {
       <div className="content">
         <div className="wrapper">
           {/* <Icon className="light-icon" name={value ? 'light-on' : 'light'}  /> */}
+          <div className="light-icon">
+            <Icon name="light1" />
+          </div>
           <div className="flag"></div>
           {name ? <div className="name">{name}</div> : null}
         </div>

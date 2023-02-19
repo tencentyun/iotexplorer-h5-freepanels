@@ -157,108 +157,113 @@
 
 .layout-popup,
 .layout-info-popup {
-  height: 634px;
-  overflow-y: scroll;
-  padding: 24px;
-  box-sizing: border-box;
+  .popup-content {
+    height: 634px;
+    overflow-y: scroll;
+    padding: 24px;
+    box-sizing: border-box;
 
-  .header {
-    font-weight: 500;
-    font-size: 16px;
-    line-height: 22px;
-    display: flex;
-    align-items: center;
-    color: #182129;
-    justify-content: center;
-  }
-
-  .content {
-    display: flex;
-    flex-wrap: wrap;
-    margin-top: 24px;
-  }
-
-  .footer {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-
-    .custom-btn {
-      box-sizing: border-box;
-      width: 148px;
-      height: 56px;
-      border: 1px solid rgba(48, 65, 77, 0.3);
-      border-radius: 12px;
-      background: #fff;
-      color: #30414D;
+    .header {
+      font-weight: 500;
       font-size: 16px;
       line-height: 22px;
+      display: flex;
+      align-items: center;
+      color: #182129;
+      justify-content: center;
     }
 
-    .primary {
-      background: #4D9CF8;
-      box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.04);
-      backdrop-filter: blur(250px);
-      border: 1px solid transparent;
-      color: #fff;
+    .content {
+      display: flex;
+      flex-wrap: wrap;
+      margin-top: 24px;
     }
 
-    .disabled {
-      background: linear-gradient(0deg, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.4)), #4D9CF8;
-      box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.04);
-      backdrop-filter: blur(250px);
-      border: 1px solid transparent;
-      color: #fff;
+    .footer {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+
+      .custom-btn {
+        box-sizing: border-box;
+        width: 148px;
+        height: 56px;
+        border: 1px solid rgba(48, 65, 77, 0.3);
+        border-radius: 12px;
+        background: #fff;
+        color: #30414D;
+        font-size: 16px;
+        line-height: 22px;
+      }
+
+      .primary {
+        background: #4D9CF8;
+        box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.04);
+        backdrop-filter: blur(250px);
+        border: 1px solid transparent;
+        color: #fff;
+      }
+
+      .disabled {
+        background: linear-gradient(0deg, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.4)), #4D9CF8;
+        box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.04);
+        backdrop-filter: blur(250px);
+        border: 1px solid transparent;
+        color: #fff;
+      }
     }
   }
 }
 
 .layout-info-popup {
-  height: 520px;
+  .popup-content {
+    height: 520px;
 
-  .content {
-    align-items: center;
-    display: flex;
-    width: 206px;
-    flex-direction: column;
-    justify-content: center;
-    margin: 0 auto;
-    margin-top: 24px;
-    position: relative;
-
-    .info {
-      font-weight: 500;
-      font-size: 14px;
-      line-height: 20px;
-      display: flex;
+    .content {
       align-items: center;
-      color: #30414D;
+      display: flex;
+      width: 206px;
+      flex-direction: column;
+      justify-content: center;
+      margin: 0 auto;
+      margin-top: 24px;
+      position: relative;
+
+      .info {
+        font-weight: 500;
+        font-size: 14px;
+        line-height: 20px;
+        display: flex;
+        align-items: center;
+        color: #30414D;
+      }
+
+      .info-photo {
+        padding: 12px 0;
+        box-sizing: border-box;
+      }
+
+      .arrow-1 {
+        position: absolute;
+        top: 16px;
+        left: -50px;
+      }
+
+      .arrow-2 {
+        position: absolute;
+        bottom: 16px;
+        right: -36px;
+      }
     }
 
-    .info-photo {
-      padding: 12px 0;
-      box-sizing: border-box;
-    }
+    .footer {
+      justify-content: center;
+      margin-top: 40px;
 
-    .arrow-1 {
-      position: absolute;
-      top: 16px;
-      left: -50px;
-    }
-
-    .arrow-2 {
-      position: absolute;
-      bottom: 16px;
-      right: -36px;
+      .custom-btn {
+        width: 100%;
+      }
     }
   }
 
-  .footer {
-    justify-content: center;
-    margin-top: 40px;
-
-    .custom-btn {
-      width: 100%;
-    }
-  }
 }

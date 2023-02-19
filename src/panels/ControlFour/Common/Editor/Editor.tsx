@@ -176,11 +176,12 @@ export function Editor({ ...props }) {
         }}>删除屏幕</Btn></div> : <></>}
 
       <Popup
+          className="layout-info-popup"
         visible={infoVisible}
         onMaskClick={() => setInfoVisible(false)}
       >
         <div
-          className="layout-info-popup"
+          className="popup-content"
         >
           <div className="header">
             屏幕布局
