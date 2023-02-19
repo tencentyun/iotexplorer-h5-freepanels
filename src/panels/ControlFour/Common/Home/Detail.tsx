@@ -30,7 +30,7 @@ export const Detail = ({
             </div>))}
         </div>
         <div className="device-info">
-          <Cell title="开关配置" prefixIcon={<Icon name="error" />} onClick={() => push('/config', {})} />
+          <Cell title="开关配置" prefixIcon={<Icon name="editor-other" />} onClick={() => push('/switch', {})} />
         </div>
       </div>
     </div>

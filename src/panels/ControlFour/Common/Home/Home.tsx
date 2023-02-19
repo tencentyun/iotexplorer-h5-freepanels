@@ -76,7 +76,12 @@ export function Home(props) {
   } = props;
   const switchNum = 3;
   const currentSwitch = allSwitch.slice(0, switchNum);
-  const { card_config = test || [], card_theme = 'theme1' } = { ...deviceData };
+  let { card_config = test || [], card_theme = 'theme1' } = { ...deviceData };
+  // card_config = card_config.map(item => {
+  //   const { position = '[]', ...other } = { ...item };
+  //   return { ...other, position: JSON.parse(position) }
+  // });
+  // console.log(card_config)
   const onChange = (key, value) => doControlDeviceData(key, value ? 1 : 0);
   const [visible, setVisible] = useState(false);
   const [selected, setSelected] = useState([]);
@@ -120,7 +125,7 @@ export function Home(props) {
                       isPreview={true}
                       onPreviewClick={() => {
                         setSelected(item)
-                        push('/card/editor', { selected: JSON.stringify(item), isEdit: true })
+                        push('/editor', { selected: JSON.stringify(item), isEdit: true })
                       }}
                     />
                     <span className="add-text">{`屏${index + 1}`}</span>
@@ -163,7 +168,7 @@ export function Home(props) {
                     setVisible(false)
                   }}>取消</Button>
                   <Button className={classNames("custom-btn primary", !selected || !selected.length ? 'disabled' : '')} onClick={() => {
-                    push('/card/editor', { selected: JSON.stringify(selected) })
+                    push('/editor', { selected: JSON.stringify(selected) })
                   }}>保存</Button>
                 </div>
               </div>
