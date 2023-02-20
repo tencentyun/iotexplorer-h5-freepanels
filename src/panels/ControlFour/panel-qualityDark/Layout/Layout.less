@@ -1,46 +1,23 @@
 .wrapper {
-    position: relative;
-
-    .layout-delete {
-        position: absolute;
-        width: 20px;
-        height: 20px;
-        background: #D83939;
-        z-index: 20;
-        border-radius: 100%;
-        top: -6px;
-        left: 84px;
-    }
-
-    .mask {
-        position: relative;
-        width: 100%;
-        height: 100%;
-        z-index: 10;
-    }
-
-    &:nth-child(3n+3) {
-        margin-right: 0 !important;
-    }
-
     .region {
-        position: absolute;
-        border: 1px solid #182129;
-        box-sizing: border-box;
-        display: flex;
-        justify-content: center;
-        align-items: center;
+        border: 1px solid rgba(0, 0, 0, 0.3);
     }
 
     .device {
-        background: #182129;
+        background: rgba(0, 0, 0, 0.3);
+
+        .selected {
+            color: #fff;
+            font-size: 16px;
+        }
     }
 
     .switch {
-        background: #EBEFF3;
+        background: #404575;
 
         .selected {
-            align-items: flex-end;
+            color: #fff;
+            font-size: 16px;
         }
     }
 }
