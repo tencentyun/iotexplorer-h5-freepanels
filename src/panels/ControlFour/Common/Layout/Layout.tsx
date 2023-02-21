@@ -27,10 +27,10 @@ export function Layout(props) {
             className={classNames("region", type === 0 ? "switch" : "device",)}
             onClick={() => {
               if (type === 0) {
-                onWhiteClick();
+                onWhiteClick(index);
                 return;
               }
-              onBlackClick();
+              onBlackClick(index);
             }}
             style={{ width: (width * (x2 - x1)), height: (height * (y2 - y1)), left: x1 * width, top: y1 * height }}>
             {isPreview ? '' : deviceid ? <div className="selected">{name}</div> : <Icon name={`layout-add-${type}`}></Icon>}

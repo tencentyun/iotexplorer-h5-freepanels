@@ -27,7 +27,7 @@ export function Theme({ ...props }) {
             <div className={classNames("theme-btn", card_theme === value ? 'text' : '')} onClick={() => doControlDeviceData('card_theme', value)}>{card_theme === value ? '使用中' : <Icon name="download" />}</div>
           </div>
           <div className="theme-items">
-            {items.map(item => (<div key={item} className="theme-item"></div>))}
+            {items.map(item => (<div key={item} className="theme-item" style={{ backgroundImage: `url(https://tencent-1305105198.cos.ap-guangzhou.myqcloud.com/ControlFour/${item}.png)` }}></div>))}
           </div>
         </div>
       ))}
