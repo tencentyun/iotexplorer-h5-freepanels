@@ -1,0 +1,66 @@
+.detail {
+    .environment {
+        height: 100%;
+        width: 100%;
+        background: #F2F2F2;
+
+        .device-info {
+            position: absolute;
+            bottom: 24px;
+            padding: 0 32px;
+            width: 100%;
+            box-sizing: border-box;
+            margin: 0;
+
+            .cell {
+                background: #FFFFFF;
+                box-shadow: 0px 4px 20px rgba(246, 244, 252, 0.9);
+                border-radius: 16px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                .cell-title {
+                    font-weight: 400;
+                    color: #67615A;
+                }
+                .icon-arrow-right {
+                    display: none;
+                }
+            }
+        }
+
+        .info {
+            background: linear-gradient(90deg, #FFBD79 0%, #FFB86C 100%), #FFFFFF;
+            box-shadow: unset;
+            border-radius: 24px;
+            padding: 27px 32px;
+            margin: 0 32px;
+            position: absolute;
+            top: 84px;
+
+            .item {
+                .detail {
+                    .title {
+                        color: #fff;
+                        opacity: 1;
+                    }
+
+                    .desc {
+                        color: #fff;
+                        text-align: center;
+                        opacity: 0.7;
+                    }
+                }
+
+                &:nth-child(2) {
+
+                    &:after,
+                    &::before {
+                        content: '';
+                        width: 0;
+                    }
+                }
+            }
+        }
+    }
+}

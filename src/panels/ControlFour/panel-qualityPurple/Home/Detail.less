@@ -2,9 +2,24 @@
     .environment {
         .info {
             .item {
+                &:nth-child(2) {
+
+                    &:after,
+                    &::before {
+                        content: '';
+                        width: 0;
+                    }
+                }
+
                 .detail {
+                    height: 72px;
+
                     .title {
                         color: #565477;
+
+                        .value {
+                            font-size: 18px;
+                        }
                     }
 
                     .desc {
@@ -15,6 +30,15 @@
             }
         }
 
+        .device-info {
+            .cell {
+                padding: 25px 36px 25px 32px;
 
+                .cell-title {
+                    font-weight: 400;
+                }
+            }
+
+        }
     }
 }
