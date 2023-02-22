@@ -1078,7 +1078,7 @@ module.exports = {
     ],
   },
 
-  ControlFour: {
+  ControlFourV3: {
     name: "妙控开关（4寸）",
     categoryKey: "ControlFour",
     enable: true,
