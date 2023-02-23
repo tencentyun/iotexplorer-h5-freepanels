@@ -37,7 +37,7 @@ export function Home({
   const disabledRef = useRef(false);
   const videoDeviceId = isOneProductId ? sdk.deviceId : context.deviceId;
   useEffect(() => {
-    if (offline) {
+    if (offline && !sdk.productConfig?.Global?.DeviceForceOnline) {
       sdk.offlineTip.show();
     } else {
       sdk.offlineTip.hide();
