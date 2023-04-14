@@ -57,7 +57,7 @@ export function Details() {
       {({ deviceData }) => (
         <div className="details-wrap">
           {/* 基本信息 */}
-          <Block className="setting-block basic-info-block">
+          {/* <Block className="setting-block basic-info-block">
             <div className="basic-info">
               <div className="left">
                 <SvgIcon
@@ -130,7 +130,7 @@ export function Details() {
                 sdk.showDeviceDetail();
               }}
             ></Cell>
-          </Block>
+          </Block> */}
           {/* 云端定时 */}
           <Block className="setting-block">
             <Cell
@@ -144,7 +144,7 @@ export function Details() {
             ></Cell>
           </Block>
           <Block className="setting-block">
-            <Cell
+            {/* <Cell
               title="童锁"
               valueStyle={'gray'}
               size="medium"
@@ -163,7 +163,7 @@ export function Details() {
                   }}
                 />
               }
-            ></Cell>
+            ></Cell> */}
             <Cell
               title="摇头"
               valueStyle={'gray'}
@@ -235,7 +235,7 @@ export function Details() {
               <div
                 className={classNames(
                   'temp-btn',
-                  deviceData.unit_convert === 0 ? 'selected' : '',
+                  deviceData.unit_conver === undefined || deviceData.unit_convert === 0 ? 'selected' : '',
                 )}
                 onClick={() => {
                   onControlDevice('unit_convert', 0);
@@ -257,11 +257,11 @@ export function Details() {
             </div>
           </Block>
           {/* 移除设备 */}
-          <section className="card-wrap">
+          {/* <section className="card-wrap">
             <div className="remove" onClick={deleteDevice}>
               移除设备
             </div>
-          </section>
+          </section> */}
         </div>
       )}
     </DeviceContext.Consumer>

@@ -34,7 +34,16 @@ export function Settings() {
     middle: '中',
     high: '高',
   };
+  function getTest(deviceData) {
+    console.log(deviceData)
+    console.log(deviceData.temp_unit)
 
+    return [
+      deviceData.temp_unit !== null
+        ? '' + deviceData.temp_unit
+        : '0',
+    ]
+  }
   return (
     <DeviceContext.Consumer>
       {({ deviceData }) => (
@@ -112,7 +121,7 @@ export function Settings() {
             <Cell
               title="温标"
               value={
-                deviceData.temp_unit
+                deviceData.temp_unit !== undefined
                   ? deviceData.temp_unit == 1
                     ? '华氏度'
                     : '摄氏度'
@@ -128,8 +137,8 @@ export function Settings() {
                 visible={tempUnitVisible}
                 title="温标"
                 defaultValue={[
-                  deviceData.temp_unit
-                    ? deviceData.temp_unit.toString()
+                  deviceData.temp_unit !== undefined
+                    ? '' + deviceData.temp_unit
                     : '',
                 ]}
                 options={[

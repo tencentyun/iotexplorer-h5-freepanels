@@ -1,0 +1,185 @@
+.operator-page {
+    .operator-header {
+        display: none;
+    }
+
+    .operator-list {
+        .list {
+            .adm-swiper-track {
+                .item {
+                    .icon-bg {
+                        background: #FFFFFF;
+                        border: 1px solid #EFF3F5;
+                    }
+
+                    .title {
+                        color: #30414D;
+                    }
+                }
+            }
+        }
+
+        .desc {
+            color: #30414D;
+            opacity: 0.5;
+        }
+
+        .options {
+            .title {
+                margin-bottom: 16px;
+                color: #30414D;
+            }
+
+            .options-list {
+                .cell-item {
+                    background: #FFFFFF;
+                    border: 1px solid #EFF3F5;
+                    border-radius: 8px;
+                    padding: 32px 28px 32px 24px;
+
+                    .cell-wrapper {
+                        .cell-prefix-icon {
+                            display: none;
+                        }
+
+                        .cell-title-wrapper {
+                            flex-direction: row;
+
+                            .cell-title {
+                                color: #30414D;
+                                display: flex;
+                                align-items: center;
+                            }
+
+                            .cell-subtitle {
+                                color: #30414D;
+                                margin: 0;
+                                margin-left: 24px;
+
+                            }
+                        }
+
+                        .icon-arrow-right {
+                            top: 0;
+                        }
+                    }
+                }
+            }
+
+            &.is-disabled {
+                opacity: 0.75;
+
+                .icon-arrow-right {
+                    display: none;
+                }
+            }
+        }
+
+        .cooking {
+            background: #FFFFFF;
+            border: 1px solid #EFF3F5;
+            color: #30414D;
+            bottom: 180px;
+        }
+
+        .footer {
+            margin-top: 270px;
+
+            .custom-btn {
+                width: 120px;
+                height: 92px;
+                border-radius: 8px;
+                background: #FFFFFF;
+                border: 1px solid #EFF3F5;
+                color: #30414D;
+                position: relative;
+
+                &:nth-child(1) {
+                    border-radius: 100%;
+                    width: 60px;
+                    height: 60px;
+                    border: 0;
+                    background: #FE6D3E;
+                    left: calc(50% - 30px);
+                }
+
+                &:nth-child(2) {
+                    width: 120px;
+                    left: calc(50% - 30px);
+                    display: flex;
+                    flex-direction: column;
+
+                    .icon {
+                        display: block;
+                        margin-bottom: 16px;
+                    }
+                }
+
+                &:nth-child(3) {
+                    left: calc(-100% + 120px);
+                    display: flex;
+                    flex-direction: column;
+
+                    .icon {
+                        margin-bottom: 16px;
+                    }
+
+                    span {
+                        display: block;
+                    }
+                }
+            }
+        }
+
+        >#current-time {
+            .picker-body {
+                .rmc-picker:nth-child(1) {
+                    .rmc-picker-item::after {
+                        content: ':';
+                        position: absolute;
+                        right: 0;
+                    }
+                }
+            }
+        }
+
+        >#current-time,
+        >#current-custom-picker {
+            .modal {
+                .modal-body {
+                    .picker-header {
+                        justify-content: start;
+                        margin-left: 4px;
+                        margin-top: 8px;
+                        margin-bottom: 12px;
+                    }
+
+                    .picker-body {
+                        width: calc(100% - 100px);
+                        margin-left: 50px;
+                        height: 170px;
+                        overflow: hidden;
+
+                        .rmc-multi-picker {
+                            height: 170px !important;
+                            position: relative;
+                            top: 16px;
+
+                            .rmc-picker {
+                                height: 170px !important;
+                            }
+                        }
+                    }
+                }
+
+            }
+        }
+
+        >#current-custom-picker {
+            .modal-body {
+                height: 76%;
+                overflow: hidden;
+            }
+        }
+    }
+}

@@ -1,0 +1,33 @@
+.wrapper {
+    .region {
+        border: 1px solid rgba(0, 0, 0, 0.3);
+    }
+
+    .device {
+        background: rgba(0, 0, 0, 0.3);
+
+        .selected {
+            color: #fff;
+            font-size: 16px;
+        }
+    }
+
+    .switch {
+        background: #404575;
+
+        .selected {
+            color: #fff;
+            font-size: 16px;
+        }
+    }
+}
+
+.layout-delete::after {
+    content: '';
+    width: 14px;
+    left: 3px;
+    height: 2px;
+    background: #fff;
+    top: 8px;
+    position: absolute;
+}

@@ -1,0 +1,194 @@
+.home {
+  position: relative;
+  padding: 20px 0 0 0;
+  height: calc(100vh - 20px);
+  background: linear-gradient(167.96deg, #B3957B 0%, #A8866B 100%);
+  display: flex;
+  flex-direction: column;
+
+  header {
+    margin-bottom: 40px;
+    padding-left: 20px;
+
+    .battery .battery-wrap .current-level {
+      background-color: #fff;
+    }
+
+    .battery-percent {
+      color: #fff;
+    }
+  }
+
+  .tips {
+    line-height: 20px;
+    color: #FFFFFF;
+    text-align: center;
+    margin-top: 35px;
+    margin-bottom: 100px;
+
+    span {
+      position: relative;
+      margin-left: 14px;
+      display: inline-block;
+      font-family: 'PingFang SC';
+      font-style: normal;
+      font-weight: 600;
+      font-size: 14px;
+      line-height: 20px;
+      text-align: center;
+      color: #30414D;
+
+      &::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: -14px;
+        margin-top: -3px;
+        display: inline-block;
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: #1D2C3E;
+      }
+    }
+  }
+
+  .action {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    position: relative;
+    overflow: hidden;
+    color: #ffffff;
+    flex: 1;
+    background: #F2F2F2;
+    padding: 32px 32px 0 32px;
+    border-radius: 40px 40px 0 0;
+
+    .action-item {
+      display: flex;
+      // align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      width: 130px;
+      height: 150px;
+      background: #FFFFFF;
+      border-radius: 24px;
+      align-items: center;
+
+      .action-ele {
+        display: flex;
+        // align-items: center;
+        // justify-content: center;
+        flex-direction: column;
+        font-size: 15px;
+        // margin-top: 10px;
+        // margin: inherit;
+        padding: 17px 12px 0 12px;
+        align-items: center;
+
+        >div:last-child {
+          margin-top: 26px;
+        }
+
+        .title {
+          font-family: 'PingFang SC';
+          font-style: normal;
+          font-weight: 400;
+          font-size: 16px;
+          line-height: 22px;
+          text-align: center;
+          color: #67615A;
+        }
+
+        .cell {
+          padding: 6px 0;
+
+          .cell-title {
+            font-family: 'PingFang SC';
+            font-style: normal;
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 22px;
+            text-align: center;
+            color: #67615A;
+          }
+        }
+      }
+
+      &.action-item-1 {
+        .icon {
+          display: none;
+        }
+
+        .cell {
+          .cell-wrapper {
+            .cell-title-wrapper {
+              display: none;
+            }
+          }
+        }
+
+        .action-ele {
+          flex-direction: column-reverse;
+          padding: 0;
+
+          >div:last-child {
+            margin-top: 0;
+          }
+
+          .adm-switch {
+            width: 80px;
+            height: 40px;
+
+            .adm-switch-checkbox,
+            .adm-switch-checkbox:before {
+              height: 40px !important;
+              background: #F2F2F2 !important;
+            }
+
+            .adm-switch-handle {
+              margin-top: 2px;
+              margin-left: 2px;
+              width: 32px !important;
+              height: 32px !important;
+              background: #FFFFFF;
+            }
+          }
+
+          .adm-switch .adm-switch-checkbox .adm-switch-handle {
+            background: #fff !important;
+          }
+
+          .adm-switch-checked .adm-switch-checkbox .adm-switch-handle {
+            background: #F2A56B !important;
+            margin-left: -21px;
+          }
+        }
+
+        .title {
+          margin-top: 26px;
+        }
+      }
+
+      &.action-item-2 {
+        .title {
+          display: none;
+        }
+
+        .cell-wrapper {
+          .icon-arrow-right {
+            display: none;
+          }
+        }
+      }
+    }
+
+    &.action-off {
+      color: @c6;
+    }
+  }
+  &.power-off {
+    opacity: 0.6;
+  }
+}

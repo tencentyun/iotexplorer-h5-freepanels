@@ -29,7 +29,7 @@ export function Records() {
             id: i,
             date: data.Time,
             value: data.Value,
-            label: '喂食分数',
+            label: '喂食份数',
           });
         }
 

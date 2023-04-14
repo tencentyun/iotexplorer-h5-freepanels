@@ -8,8 +8,17 @@ export const Detail = ({
   timer: { isExistTimer },
   context: { switchNum },
   currentSwitch,
+  log,
   history: { PATH, push },
 }) => {
+  const ALL_COUNT = switchNum > 1 ? [
+    ['count_down1', deviceData.name_button1 || '开关一'],
+    ['count_down2', deviceData.name_button2 || '开关二'],
+    ['count_down3', deviceData.name_button3 || '开关三'],
+    ['count_down4', deviceData.name_button4 || '开关四'],
+    ['count_down5', deviceData.name_button5 || '开关五'],
+  ] :
+    [['count_down', deviceData.name_button1 || '开关一']]
   const SWITCH = { OPEN: 1, CLOSE: 0 };
   const getStatusData = status => currentSwitch.filter(([key]) => deviceData[key] !== status);
   const [isChecked, setChecked] = useState(false);
@@ -23,23 +32,24 @@ export const Detail = ({
   };
   // 倒计时
   const [visible, setVisible] = useState(false);
-
+  const [checkedSwitch, setCheckedSwitch] = useState(ALL_COUNT[0][0]);
   const isOneSwitch = switchNum === 1;
 
   const getCountdownTime = () => {
-    if (isAllClose) return [];
+    // if (isAllClose) return [];
     let res = [] as string[];
-    currentSwitch.forEach(([key]) => {
-      if (deviceData[key] === SWITCH.OPEN) {
-        const countdownKey = key.replace('switch', 'count_down');
-        const time = deviceData[countdownKey];
-        if (time) {
-          const hour = `${Math.floor(time / 3600)}`;
-          const minute = `${Math.floor((time % 3600) / 60)}`;
-          res = [hour, minute];
-        }
-      }
-    });
+    // currentSwitch.forEach(([key]) => {
+    // if (deviceData[key] === SWITCH.OPEN) {
+    // const countdownKey = key.replace('switch', 'count_down');
+    // const time = deviceData[countdownKey];
+    const time = deviceData[checkedSwitch];
+    if (time) {
+      const hour = `${Math.floor(time / 3600)}`;
+      const minute = `${Math.floor((time % 3600) / 60)}`;
+      res = [hour, minute];
+    }
+    // }
+    // });
     return res;
   };
 
@@ -52,13 +62,13 @@ export const Detail = ({
     setVisible(false);
     setChecked(isChecked);
     const times = hour * 3600 + minute * 60;
-    const openSwitch = getStatusData(SWITCH.CLOSE);
-    if (!openSwitch.length) return;
-    const countDownData = {};
-    openSwitch.forEach(([key]) => {
-      countDownData[key.replace('switch', 'count_down')] = times;
-    });
-    doControlDeviceData(countDownData);
+    // const openSwitch = getStatusData(SWITCH.CLOSE);
+    // if (!openSwitch.length) return;
+    // const countDownData = {};
+    // openSwitch.forEach(([key]) => {
+    //   countDownData[key.replace('switch', 'count_down')] = times;
+    // });
+    doControlDeviceData({ [checkedSwitch]: times });
   };
 
   const actions = [
@@ -67,6 +77,14 @@ export const Detail = ({
     isOneSwitch ? null : ['全关', isAllClose ? 'off' : 'off-checked', offClick, isAllClose],
     ['倒计时', countdownTime.length ? 'count-down-checked' : 'count-down', setVisible.bind(null, true)],
   ].filter(v => v);
+
+
+  const counts = ALL_COUNT.slice(0, switchNum);
+  const CustomNode = () => <div className="custom-switch">
+    {
+      counts.map(([name, label]) => <div key={name} className={checkedSwitch === name ? 'checked' : ''} onClick={setCheckedSwitch.bind(null, name)}>{label}</div>)
+    }
+  </div>;
 
   return (
     <div className={`detail  action action-${switchNum}`}>
@@ -97,6 +115,7 @@ export const Detail = ({
           showUnit={true}
           showTime={false}
           showTwoDigit={false}
+          customNode={switchNum > 1 ? <CustomNode /> : null}
           title={`倒计时${isChecked ? '开启' : '关闭'}`}
           switchIsOpen={countdownTime.length ? isChecked : false}
           onCancel={setVisible.bind(null, false)}

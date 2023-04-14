@@ -1,0 +1,85 @@
+.cook-process {
+
+    .current-status {
+        height: 549px;
+        background-image: none !important;
+        opacity: 1;
+
+        .mask {
+            display: none;
+        }
+
+        .current-list {
+            margin: 0 64px 0 59px;
+            height: auto;
+            top: 200px;
+            &::after {
+                background: #30414D;
+            }
+            .current-item {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                color: #30414D;
+            }
+        }
+    }
+
+    .footer {
+        margin-top: 0;
+        border-radius: 20px;
+        border-top: 1px solid rgba(255, 255, 255, 0.3);
+
+        .cook-item {
+            position: relative;
+            top: -114px;
+            margin: 0;
+            width: 100%;
+            justify-content: center;
+            span {
+                color: #30414D;
+                margin: 0;
+            }
+        }
+
+        .cook-btns {
+            padding: 0 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 0;
+
+            .btn {
+                flex-direction: column;
+                width: 120px;
+                height: 92px;
+                border-radius: 8px;
+                border: 1px solid #EFF3F5;
+                background: #fff;
+                color: #30414D;
+                font-weight: 600;
+
+                .icon {
+                    margin-bottom: 14px;
+                }
+
+                &:first-child {
+                    width: 207px;
+
+                    .icon {
+                        display: block;
+                    }
+                }
+
+                &:nth-child(2) {
+                    span {
+                        display: block;
+                    }
+                }
+            }
+        }
+
+
+    }
+}

@@ -1,0 +1,147 @@
+.cook-process {
+    width: 100%;
+    height: 100vh;
+
+    .current-status {
+        height: 571px;
+        background-repeat: no-repeat;
+        background-size: 100% 330px;
+        opacity: 0.8;
+
+        .mask {
+            width: 100%;
+            height: 330px;
+            background: linear-gradient(#1D202D 6%, rgba(255, 255, 255, 0), #1D202D 94%);
+        }
+
+        .icon {
+            display: none;
+        }
+
+        .current-list {
+            margin: 0 52px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            bottom: -87px;
+
+            &::after {
+                content: ' ';
+                width: 2px;
+                height: 20px;
+                background: #fff;
+                position: absolute;
+                left: calc(50% - 2px);
+            }
+
+            .current-item {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                color: #fff;
+
+                .value {
+                    font-family: 'DIN Alternate';
+                    font-weight: 700;
+                    font-size: 38px;
+                    line-height: 44px;
+                }
+
+                .label {
+                    font-weight: 600;
+                    font-size: 14px;
+                    line-height: 20px;
+                    opacity: 0.5;
+                }
+
+            }
+        }
+    }
+
+    .footer {
+        border-radius: 20px;
+        border-top: 1px solid rgba(255, 255, 255, 0.3);
+
+        .cook-item {
+            display: flex;
+            align-items: center;
+            position: relative;
+            top: -217px;
+            width: 100%;
+            justify-content: center;
+
+            &::before {
+                content: '';
+                width: 6px;
+                height: 6px;
+                background: #CCC;
+                border-radius: 100%;
+                position: relative;
+                margin-right: 4px;
+            }
+
+            span {
+                font-weight: 600;
+                font-size: 12px;
+                line-height: 17px;
+                color: #fff;
+            }
+        }
+
+        .cook-btns {
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 16px;
+
+            .btn {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 70px;
+                height: 57px;
+                border-radius: 16px;
+                border: 1px solid rgba(156, 140, 255, 0.24);
+                background: rgba(0, 0, 0, 0.3);
+                color: #fff;
+                font-weight: 500;
+                font-size: 16px;
+
+                &:first-child {
+                    width: 251px;
+
+                    .icon {
+                        display: none;
+                    }
+                }
+
+                &:nth-child(2) {
+                    span {
+                        display: none;
+                    }
+                }
+            }
+        }
+
+        &.doing {
+            .cook-item {
+                &::before {
+                    background: #15C45D;
+                }
+            }
+
+        }
+
+        &.not-doing {
+            .cook-item {
+                &::before {
+                    background: #D83939;
+                }
+            }
+
+        }
+    }
+}

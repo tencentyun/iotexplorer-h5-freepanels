@@ -126,7 +126,7 @@ export function More() {
               <div
                 className={classNames(
                   'temp-btn',
-                  deviceData.temp_unit_convert === 0 ? 'selected' : '',
+                  (deviceData.temp_unit_convert === undefined || deviceData.temp_unit_convert === 0) ? 'selected' : '',
                 )}
                 onClick={() => {
                   onControlDevice('temp_unit_convert', 0);
@@ -254,11 +254,11 @@ export function More() {
                 isLink={false}
                 value={
                   <Switch
-                    name="childjock"
+                    name="child_lock"
                     theme={themeType}
-                    checked={toggleBooleanByNumber(deviceData.childjock)}
+                    checked={toggleBooleanByNumber(deviceData.child_lock)}
                     onChange={(val: boolean) => {
-                      onControlDevice('childjock', Number(val));
+                      onControlDevice('child_lock', Number(val));
                     }}
                   />
                 }
@@ -266,7 +266,7 @@ export function More() {
               <Cell
                 title="滤网寿命"
                 size="medium"
-                value={deviceData.filterlife}
+                value={deviceData.filter_life}
                 isLink={false}
               ></Cell>
               <Cell

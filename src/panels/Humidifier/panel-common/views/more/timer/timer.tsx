@@ -38,7 +38,7 @@ const Timer = () => {
       value_enum: {
         natural_evaporation: '自然蒸发',
         heating_evaporation: '加热蒸发',
-        ultrasonic: '超声波蒸发',
+        ultrasonic_evaporation: '超声波蒸发',
       },
     },
   };
@@ -78,6 +78,7 @@ const Timer = () => {
                 onChange={(val: any) => {
                   setData(Object.assign(data, { power_switch: val }));
                 }}
+                defaultValue={data.power_switch}
               >
                 <List>
                   <List.Item

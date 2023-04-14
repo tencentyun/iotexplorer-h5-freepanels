@@ -54,7 +54,7 @@
         "min": "0",
         "max": "3600",
         "start": "0",
-        "step": "s"
+        "step": "1"
       },
       "required": false
     },
@@ -68,7 +68,7 @@
         "min": "0",
         "max": "3600",
         "start": "0",
-        "step": "s"
+        "step": "1"
       },
       "required": false
     },

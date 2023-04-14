@@ -27,7 +27,7 @@ export const Circular = ({
   const [deg, setDeg] = useState(value);
 
   useEffect(() => {
-    setDeg(value);
+    setDeg(value < min ? min : (value > max ? max : value));
   }, [value]);
 
   const onTouchMove = (e) => {

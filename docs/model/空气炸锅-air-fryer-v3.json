@@ -1,0 +1,138 @@
+{
+    "version": "1.0",
+    "properties": [
+        {
+            "id": "power_switch",
+            "name": "总开关",
+            "desc": "",
+            "mode": "rw",
+            "define": {
+                "type": "bool",
+                "mapping": {
+                    "0": "关",
+                    "1": "开"
+                }
+            },
+            "required": false
+        },
+        {
+            "id": "temperature_set",
+            "name": "烹饪温度",
+            "desc": "",
+            "mode": "rw",
+            "define": {
+                "type": "int",
+                "min": "0",
+                "max": "500",
+                "start": "0",
+                "step": "1",
+                "unit": ""
+            },
+            "required": false
+        },
+        {
+            "id": "recent_temp",
+            "name": "当前温度",
+            "desc": "",
+            "mode": "rw",
+            "define": {
+                "type": "int",
+                "min": "0",
+                "max": "500",
+                "start": "0",
+                "step": "1",
+                "unit": "摄氏度"
+            },
+            "required": false
+        },
+        {
+            "id": "count_down",
+            "name": "预约时间",
+            "desc": "",
+            "mode": "rw",
+            "define": {
+                "type": "int",
+                "min": "0",
+                "max": "86400",
+                "start": "0",
+                "step": "1",
+                "unit": "s"
+            },
+            "required": false
+        },
+        {
+            "id": "working_mode",
+            "name": "烹饪模式",
+            "desc": "",
+            "mode": "rw",
+            "define": {
+                "type": "enum",
+                "mapping": {
+                    "0": "自定义",
+                    "1": "整鸡",
+                    "2": "烤肠",
+                    "3": "披萨",
+                    "4": "牛排",
+                    "5": "戚风",
+                    "6": "鸡翅",
+                    "7": "海鲜",
+                    "8": "蛋挞"
+                }
+            },
+            "required": false
+        },
+        {
+            "id": "cooking_time",
+            "name": "烹饪时间",
+            "desc": "",
+            "mode": "rw",
+            "define": {
+                "type": "int",
+                "min": "0",
+                "max": "86400",
+                "start": "0",
+                "step": "1",
+                "unit": "s"
+            },
+            "required": false
+        },
+        {
+            "id": "cooking_time_left",
+            "name": "烹饪剩余时间",
+            "desc": "",
+            "mode": "rw",
+            "define": {
+                "type": "int",
+                "min": "0",
+                "max": "86400",
+                "start": "0",
+                "step": "1",
+                "unit": "s"
+            },
+            "required": false
+        },
+        {
+            "id": "status",
+            "name": "工作状态",
+            "desc": "",
+            "mode": "rw",
+            "define": {
+                "type": "enum",
+                "mapping": {
+                    "0": "停止",
+                    "1": "启动",
+                    "2": "暂停",
+                    "3": "待机",
+                    "4": "烹饪中"
+                }
+            },
+            "required": false
+        }
+    ],
+    "events": [],
+    "actions": [],
+    "profile": {
+        "ProductId": "XQ9KWOV621",
+        "CategoryId": "1"
+    }
+}

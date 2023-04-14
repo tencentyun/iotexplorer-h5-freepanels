@@ -22,7 +22,7 @@ export const DeviceContext: React.Context<{
   deviceStatus: 0,
   deviceData: {
     alarm_switch: 0,
-    smoke_sensor_state: 'Alarm',
+    smoke_sensor_state: 'alarm',
     smoke_sensor_value: 1,
     tamper_alarm: 0,
     alarm_time: 0,

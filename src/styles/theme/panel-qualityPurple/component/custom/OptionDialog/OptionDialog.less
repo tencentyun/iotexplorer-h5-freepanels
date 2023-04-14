@@ -1,0 +1,112 @@
+.dialog-wrap {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 343px;
+  height: auto;
+  border-radius: 16px;
+  background: #FFFFFF;
+  box-shadow: 0 6px 50px 0 rgba(32, 33, 33, 0.10);
+
+  .dialog-header {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    padding: 24px;
+    margin: 0 auto;
+    line-height: 25px;
+    font-weight: 600;
+    font-size: 18px;
+    color: @c1;
+    text-align: center;
+  }
+
+  .dialog-children {
+    position: absolute;
+    top: 32px;
+    left: 65px;
+  }
+
+  .dialog-content {
+    padding: 0 24px;
+    line-height: 22px;
+    font-size: 16px;
+    font-weight: 600;
+    color: @c1;
+
+    .item-block {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 24px;
+
+      .item-icon-selected {
+        position: relative;
+        width: 16px;
+        height: 16px;
+        border: 2px solid @c1;
+        border-radius: 10px;
+
+        &::before {
+          content: '';
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          display: inline-block;
+          width: 8px;
+          height: 8px;
+          border-radius: 50%;
+          background: @c1;
+        }
+      }
+
+      .item-icon-unselected {
+        width: 16px;
+        height: 16px;
+        border: 2px solid @c1;
+        border-radius: 10px;
+      }
+    }
+  }
+
+  footer {
+    position: relative;
+    display: flex;
+    justify-content: space-around;
+    padding-bottom: 16px;
+    // border-top: 1px solid #EFF3F5;
+
+    // &::before {
+    //   content: '';
+    //   position: absolute;
+    //   top: 0;
+    //   left: 50%;
+    //   transform: translateX(-50%);
+    //   width: 1px;
+    //   height: 100%;
+    //   background-color: #EFF3F5;
+    // }
+
+    .dialog-btn {
+      border: 1px solid rgba(48, 65, 77, 0.3);
+      width: 148px;
+      height: 56px;
+      border-radius: 12px;
+      font-weight: 500;
+      font-size: 16px;
+      color: #1D2C3E;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      &:last-child {
+        background:#594AE1;
+        color:white;
+        border: none;
+      }
+    }
+  }
+}

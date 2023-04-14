@@ -11,7 +11,7 @@ import '../components/dark-home.less';
 
 export function DarkHome() {
   const history = useHistory();
-  const [workMode, setWorkMode] = useState('middle');
+  // const [workMode, setWorkMode] = useState('middle');
 
   const imageSrc = () => 'https://tencent-1305105198.cos.ap-guangzhou.myqcloud.com/aromatherapy_machine/aromatherapy_machine.png';
 
@@ -37,6 +37,19 @@ export function DarkHome() {
   const handleBaseSetting = () => {
     sdk.goDeviceDetailPage();
   };
+
+  const getCountdownTime = (value) => {
+    if (value) {
+      const hour = `${Math.floor(value / 3600)}`;
+      const minute = `${Math.floor((value % 3600) / 60)}`;
+      const second = `${Math.floor((value % 3600) % 60)}`;
+      return [hour, minute, second];
+    }
+    return ['00', '00', '00'];
+  };
+
+  const getTimeLable = (value) => getCountdownTime(value).map((v: string) => (parseInt(v, 10) < 10 ? `0${parseInt(v, 10)}` : v)).join(':');
+
 
   return (
     <DeviceContext.Consumer>
@@ -120,7 +133,7 @@ export function DarkHome() {
               <ul className="countdown-slider-tips">
                 <li className="item">
                   <span className="label">小雾量</span>
-                  { workMode === 'small' ? (
+                  { deviceData.work_mode === 'small' ? (
                     deviceData.power_switch === 1 ? (
                       <SvgIcon
                         className="icon-arrow-down"
@@ -144,7 +157,7 @@ export function DarkHome() {
                 </li>
                 <li className="item">
                   <span className="label">中雾量</span>
-                  {workMode === 'middle' ? (
+                  {deviceData.work_mode === 'middle' ? (
                     deviceData.power_switch === 1 ? (
                       <SvgIcon
                         className="icon-arrow-down"
@@ -168,7 +181,7 @@ export function DarkHome() {
                 </li>
                 <li className="item">
                   <span className="label">大雾量</span>
-                  {workMode === 'large' ? (
+                  {deviceData.work_mode === 'large' ? (
                     deviceData.power_switch === 1 ? (
                       <SvgIcon
                         className="icon-arrow-down"
@@ -195,17 +208,27 @@ export function DarkHome() {
                 className="countdown-slider"
                 ticks
                 step={50}
-                defaultValue={workModeToValue(deviceData.work_mode)}
+                // defaultValue={workModeToValue(deviceData.work_mode)}
+                value={workModeToValue(deviceData.work_mode)}
                 disabled={deviceData.power_switch !== 1}
                 onChange={(value) => {
-                  if (value === 0) {
-                    setWorkMode('small');
+                  let module = 'middle';
+                  // if (value === 0) {
+                  //   setWorkMode('small');
+                  // } else if (value === 50) {
+                  //   setWorkMode('middle');
+                  // } else {
+                  //   setWorkMode('large');
+                  // }
+                   if (value === 0) {
+                    module ='small';
                   } else if (value === 50) {
-                    setWorkMode('middle');
+                    module ='middle';
                   } else {
-                    setWorkMode('large');
+                    module= "large"
+                    // setWorkMode('large');
                   }
-                  onControlDevice('work_mode', workMode);
+                  onControlDevice('work_mode', module);
                 }}
               />
             </div>
@@ -233,7 +256,8 @@ export function DarkHome() {
               <ul className="decoration-bottom">
                 <li className="content-item top">
                   <p className="word">
-                    {deviceData.count_left ? deviceData.count_left : '00:00:00'}
+                  {getTimeLable(deviceData.count_left)}
+                    {/* {deviceData.count_left ? deviceData.count_left : '00:00:00'} */}
                   </p>
                   <p className="word text">
                     {deviceData.work_mode

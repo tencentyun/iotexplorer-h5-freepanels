@@ -22,6 +22,8 @@ interface DeviceMaps {
   level: [];
 }
 
+let flag = 0;
+
 export function Home() {
   const themeType = getThemeType();
   const CurrentSkinProps: any = SkinProps[themeType];
@@ -38,13 +40,11 @@ export function Home() {
   // 档位选择器
   const [gearVisible, onToggleGear] = useState(false);
 
+  const [num, setNum] = useState(0);
+
   useEffect(() => {
-    if (!deviceMaps.temp_unit_convert) {
-      // setTempValue(deviceMaps['set_fahrenheit'].start||0);
-    } else {
-      setTempValue(1);
-    }
-  }, []);
+    setTempValue((state.deviceData.temp_unit_convert === undefined || Number(state.deviceData.temp_unit_convert) === 0) ? state.deviceData.set_temp : state.deviceData.set_fahrenheit);
+  }, [state.deviceData.temp_unit_convert]);
   // 工作模式选项
   const modeOptions = () => {
     if (deviceMaps.spray_mode) {
@@ -208,41 +208,68 @@ export function Home() {
   };
 
   const renderContentArea = (mode: string, level: string, status: number) => (
-      <ul className={classNames('content-area', { 'content-area-active': status })}>
-        <li className="content-item">
-          <p className="word">{mode ? enumWorkMode[mode] : '暂无数据'}</p>
-          <p className="label">工作模式</p>
-        </li>
-        <li className="split"></li>
-        <li className="content-item">
-          <p className="word">{level ? enumGear[level] : '暂无数据'}</p>
-          <p className="label">档位</p>
-        </li>
-      </ul>
+    <ul className={classNames('content-area', { 'content-area-active': status })}>
+      <li className="content-item">
+        <p className="word">{mode ? enumWorkMode[mode] : '暂无数据'}</p>
+        <p className="label">工作模式</p>
+      </li>
+      <li className="split"></li>
+      <li className="content-item">
+        <p className="word">{level ? enumGear[level] : '暂无数据'}</p>
+        <p className="label">档位</p>
+      </li>
+    </ul>
   );
 
-  const minusHandle  = (powerStatus: number, unit: (string | number)) => {
+  const minusHandle = (powerStatus: number, unit: (string | number)) => {
     if (!powerStatus) return;
-    let value = tempValue;
-    value -= 1;
-    if (value <= 0) {
-      setTempValue(0);
+    if (unit !== undefined && Number(unit) === 1) {
+      let value = state.deviceData.set_fahrenheit || 32;
+      value -= 1;
+      if (value < 32) {
+        value = 32;
+      }
+      if (value > 104) {
+        value = 104;
+      }
+      onControlDevice('set_fahrenheit', value);
     } else {
-      setTempValue(value);
+      let value = state.deviceData.set_temp || 0;
+      value -= 1;
+      if (value < 0) {
+        value = 0;
+      }
+      if (value > 50) {
+        value = 50;
+      }
+      onControlDevice('set_temp', value)
     }
-    unit == 0 ? onControlDevice('current_temp', value) : onControlDevice('current_fahrenheit', value);
+
   };
 
   const addHandle = (powerStatus: number, unit: (string | number)) => {
     if (!powerStatus) return;
-    let value = tempValue;
-    value += 1;
-    if (value >= 100) {
-      setTempValue(100);
+    if (unit !== undefined && Number(unit) === 1) {
+      let value = state.deviceData.set_fahrenheit - 32 > 0 ? state.deviceData.set_fahrenheit - 32 : 0;
+      value += 1;
+      if (value < 0) {
+        value = 0;
+      }
+      if (value > 72) {
+        value = 72;
+      }
+      onControlDevice('set_fahrenheit', value + 32);
     } else {
-      setTempValue(value);
+      let value = state.deviceData.set_temp || 0;
+      value += 1;
+      if (value < 0) {
+        value = 0;
+      }
+      if (value > 50) {
+        value = 50;
+      }
+      onControlDevice('set_temp', value)
     }
-    unit == 0 ? onControlDevice('current_temp', value) : onControlDevice('current_fahrenheit', value);
   };
 
   const handleBaseSetting = () => {
@@ -264,17 +291,29 @@ export function Home() {
             <div className="dial">
               <ThermostatDashboard
                 value={
-                  deviceData.temp_unit_convert == 0
+                  deviceData.temp_unit_convert === undefined || Number(deviceData.temp_unit_convert) === 0
+                    ? deviceData.set_temp
+                      ? deviceData.set_temp
+                      : 0
+                    : deviceData.set_fahrenheit
+                      ? deviceData.set_fahrenheit - 32
+                      : 0
+                }
+                min={0}
+                fahrenheitStatus={!(deviceData.temp_unit_convert === undefined || Number(deviceData.temp_unit_convert) === 0)}
+                max={deviceData.temp_unit_convert === undefined || Number(deviceData.temp_unit_convert) === 0 ? 50 : 72}
+                dashboardStatus={
+                  deviceData.power_switch == 1 ? 'initiate' : 'shutdown'
+                }
+                unit={deviceData.temp_unit_convert === undefined || Number(deviceData.temp_unit_convert) === 0 ? '°C' : '°F'}
+                currentValue={
+                  deviceData.temp_unit_convert === undefined || Number(deviceData.temp_unit_convert) === 0
                     ? deviceData.current_temp
                       ? deviceData.current_temp
                       : 0
                     : deviceData.current_fahrenheit
                       ? deviceData.current_fahrenheit
-                      : 0
-                }
-                dashboardStatus={
-                  deviceData.power_switch == 1 ? 'initiate' : 'shutdown'
-                }
+                      : 32}
               />
             </div>
 
@@ -291,7 +330,17 @@ export function Home() {
                 className={classNames('setting-button')}
                 onClick={() => {
                   minusHandle(deviceData.power_switch, deviceData.temp_unit_convert);
-                }}>
+                }}
+                onTouchStart={() => {
+                  clearInterval(flag);
+                  flag = setInterval(() => {
+                    minusHandle(deviceData.power_switch, deviceData.temp_unit_convert);
+                  }, 500)
+                }}
+                onTouchEnd={() => {
+                  clearInterval(flag);
+                }}
+              >
                 <SvgIcon className="control-icon" name="icon-ther-minus" color={iconColor(deviceData.power_switch)} />
               </div>
               <div
@@ -315,7 +364,17 @@ export function Home() {
                 className={classNames('setting-button')}
                 onClick={() => {
                   addHandle(deviceData.power_switch, deviceData.temp_unit_convert);
-                }}>
+                }}
+                onTouchStart={() => {
+                  clearInterval(flag);
+                  flag = setInterval(() => {
+                    addHandle(deviceData.power_switch, deviceData.temp_unit_convert);
+                  }, 500)
+                }}
+                onTouchEnd={() => {
+                  clearInterval(flag);
+                }}
+              >
                 <SvgIcon className="control-icon icon-ther-add" name="icon-ther-add" color={iconColor(deviceData.power_switch)} />
               </div>
             </div>
@@ -398,6 +457,15 @@ export function Home() {
                   onClick={() => {
                     minusHandle(deviceData.power_switch, deviceData.temp_unit_convert);
                   }}
+                  onTouchStart={() => {
+                    clearInterval(flag);
+                    flag = setInterval(() => {
+                      minusHandle(deviceData.power_switch, deviceData.temp_unit_convert);
+                    }, 500)
+                  }}
+                  onTouchEnd={() => {
+                    clearInterval(flag);
+                  }}
                 >
                   <SvgIcon
                     className="control-icon icon-ther-minus"
@@ -427,6 +495,15 @@ export function Home() {
                   className={classNames('setting-button')}
                   onClick={() => {
                     addHandle(deviceData.power_switch, deviceData.temp_unit_convert);
+                  }}
+                  onTouchStart={() => {
+                    clearInterval(flag);
+                    flag = setInterval(() => {
+                      addHandle(deviceData.power_switch, deviceData.temp_unit_convert);
+                    }, 500)
+                  }}
+                  onTouchEnd={() => {
+                    clearInterval(flag);
                   }}
                 >
                   <SvgIcon

@@ -1,0 +1,102 @@
+{
+    "version": "1.0",
+    "properties": [
+        {
+            "id": "power_switch",
+            "name": "开关",
+            "desc": "",
+            "mode": "rw",
+            "define": {
+                "type": "bool",
+                "mapping": {
+                    "0": "关",
+                    "1": "开"
+                }
+            },
+            "required": false
+        },
+        {
+            "id": "temperature_set",
+            "name": "温度调节",
+            "desc": "",
+            "mode": "rw",
+            "define": {
+                "type": "int",
+                "min": "0",
+                "max": "100",
+                "start": "0",
+                "step": "1",
+                "unit": ""
+            },
+            "required": false
+        },
+        {
+            "id": "insulation_mode",
+            "name": "保温功能",
+            "desc": "",
+            "mode": "rw",
+            "define": {
+                "type": "bool",
+                "mapping": {
+                    "0": "关",
+                    "1": "开"
+                }
+            },
+            "required": false
+        },
+        {
+            "id": "temperature",
+            "name": "当前温度",
+            "desc": "",
+            "mode": "rw",
+            "define": {
+                "type": "int",
+                "min": "0",
+                "max": "100",
+                "start": "0",
+                "step": "1",
+                "unit": "摄氏度"
+            },
+            "required": false
+        },
+        {
+            "id": "status",
+            "name": "启动状态",
+            "desc": "",
+            "mode": "rw",
+            "define": {
+                "type": "enum",
+                "mapping": {
+                    "0": "停止",
+                    "1": "启动",
+                    "2": "暂停",
+                    "3": "待机",
+                    "4": "烹饪中"
+                }
+            },
+            "required": false
+        },
+        {
+            "id": "working_mode",
+            "name": "工作模式",
+            "desc": "",
+            "mode": "rw",
+            "define": {
+                "type": "enum",
+                "mapping": {
+                    "0": "煮饭",
+                    "1": "煮粥",
+                    "2": "火锅",
+                    "3": "爆炒"
+                }
+            },
+            "required": false
+        }
+    ],
+    "events": [],
+    "actions": [],
+    "profile": {
+        "ProductId": "ZTRTJMEZP2",
+        "CategoryId": "1"
+    }
+}

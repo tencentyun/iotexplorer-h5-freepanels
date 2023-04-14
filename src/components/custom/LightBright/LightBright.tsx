@@ -11,14 +11,19 @@ export function LightBright({
   iconName = 'light',
   onChange = noop,
   isMask = true,
+  layout = 'hoz',  // ver
+  valuePosition = 'absolute'
 }) {
   const [dataInfo, setDataInfo] = useState({
     dataUser: defaultValue > maxValue ? maxValue : defaultValue,
     endTouch: false,
   });
-  const currentWidth = `${
-    5 + ((dataInfo.dataUser - minValue) * 95) / (maxValue - minValue)
-  }%`;
+  const currentWidth = `${5 + ((dataInfo.dataUser - minValue) * 95) / (maxValue - minValue)
+    }%`;
+
+  const currentHeight = `${0 + ((dataInfo.dataUser - minValue) * 90) / (maxValue - minValue)
+    }%`;
+
   const slider = useRef();
 
   const updateBrightVal = (val, endTouch) => {
@@ -47,8 +52,9 @@ export function LightBright({
   };
 
   const handleMove = (e: TouchEvent) => {
-    const val =      (e.touches[0].clientX - slider.current.offsetLeft)
-      / slider.current.clientWidth;
+    const val = layout === 'hoz' ? (e.changedTouches[0].clientX - slider.current.offsetLeft)
+      / slider.current.clientWidth : (e.changedTouches[0].clientY - slider.current.offsetTop)
+    / slider.current.clientHeight;
     const tmp = parseInt(val * (maxValue - minValue), 10) + minValue;
     updateBrightVal(tmp, false);
   };
@@ -58,8 +64,9 @@ export function LightBright({
     e.stopPropagation();
     document.removeEventListener('touchmove', handleMove);
     document.removeEventListener('touchend', handleEndMove);
-    const val =      (e.changedTouches[0].clientX - slider.current.offsetLeft)
-      / slider.current.clientWidth;
+    const val = layout === 'hoz' ? (e.changedTouches[0].clientX - slider.current.offsetLeft)
+      / slider.current.clientWidth : (e.changedTouches[0].clientY - slider.current.offsetTop)
+    / slider.current.clientHeight;
     const tmp = parseInt(val * (maxValue - minValue), 10) + minValue;
     updateBrightVal(tmp, true);
   };
@@ -70,14 +77,18 @@ export function LightBright({
     document.addEventListener('touchend', handleEndMove);
   };
 
+  const style = layout === 'hoz' ? { width: currentWidth } : { height: '100%' };
+  const dotStyle = layout === 'ver' ? { top: currentHeight } : {};
+  const valueStyle = valuePosition === 'absolute' && layout === 'hoz' ? { left: `calc(${currentWidth} - 14px)` } : {}
+
   return (
-    <div className="cus-light-bright">
+    <div className={`cus-light-bright ${layout}`}>
       {isMask ? (
         <div className="mark">
           <div className="mark-op-btn" onClick={toggleReduce}>
             <Icon name={status ? 'minus-checked' : 'minus'}></Icon>
           </div>
-          <div className="value-wrap">
+          <div className="value-wrap" style={{ ...valueStyle }}>
             <Icon name={status ? `${iconName}-checked` : iconName}></Icon>
             <div className="value-text">{dataInfo.dataUser}</div>
           </div>
@@ -89,8 +100,8 @@ export function LightBright({
 
       <div className="border" onTouchStart={onTouchStart}>
         <div ref={slider} className="slider">
-          <div className="progress" style={{ width: currentWidth }}>
-            <div className="progress-dot"></div>
+          <div className="progress" style={{ ...style }}>
+            <div className="progress-dot" style={{ ...dotStyle }}></div>
           </div>
         </div>
       </div>

@@ -1,0 +1,131 @@
+.home {
+  position: relative;
+  padding-top: 30px;
+  color: #26313D;
+  overflow: hidden;
+
+  .top {
+    justify-content: flex-start;
+
+    .battery {
+      position: relative;
+      top: 0;
+      left: 0;
+    }
+  }
+
+  .disk-wrap {
+    margin: 0 auto;
+    width: auto;
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+    position: relative;
+
+    .outer {
+      width: 209px;
+      height: 273px;
+      background: rgba(255, 255, 255, 0.3);
+      border: 20px solid rgba(246, 244, 252, 0.65);
+      transform: rotate(60deg);
+      border-radius: 50%;
+      box-shadow: none;
+      position: absolute;
+    }
+
+    .center {
+      width: 209px;
+      height: 273px;
+      background: rgba(255, 255, 255, 0.3);
+      border: 20px solid rgba(246, 244, 252, 0.65);
+      transform: rotate(-30deg);
+      border-radius: 50%;
+      box-shadow: none;
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+
+      .inner {
+        color: #565477;
+        background: rgba(255, 255, 255, 0.3);
+        box-shadow: none;
+        transform: rotate(30deg);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        .title {
+          opacity: 0.75;
+        }
+
+        .content {
+          display: flex;
+          color: #565477;
+          font-style: normal;
+          font-weight: 500;
+          font-size: 12px;
+          line-height: 17px;
+          margin-top: 28px;
+          margin-left: 12px;
+
+          .value {
+            font-family: 'DIN Condensed';
+            height: 60px;
+            font-size: 60px;
+            line-height: 60px;
+          }
+
+          .unit {
+            line-height: 12px;
+          }
+        }
+
+
+      }
+    }
+
+  }
+
+  .home-footer {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+
+    .add-reduce {
+      display: flex;
+      justify-content: space-between;
+      padding: 0 62px;
+      margin: 38px 0 83px 0;
+
+      .btn {
+        background: #F6F4FC;
+        border-radius: 16px;
+      }
+    }
+
+    .actions {
+      .cell-settings {
+        background: #FFFFFF;
+        box-shadow: 0px 4px 20px rgba(246, 244, 252, 0.9);
+        border-radius: 16px;
+        border: 0;
+      }
+    }
+
+  }
+
+  // &.power-off {
+
+  //   .icon,
+  //   .content,
+  //   .value,
+  //   .button-name {
+  //     opacity: 0.5;
+  //   }
+  // }
+}

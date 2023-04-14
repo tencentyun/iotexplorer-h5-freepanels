@@ -1,0 +1,79 @@
+.cook-process {
+    background: linear-gradient(167.96deg, #B3957B 0%, #A8866B 100%);
+
+    .current-status {
+        height: 522px;
+        background-image: none !important;
+        opacity: 1;
+
+        .mask {
+            display: none;
+        }
+
+        .current-list {
+            margin: 0 64px 0 59px;
+            height: auto;
+            top: 160px;
+
+            .current-item {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                color: #fff;
+            }
+        }
+    }
+
+    .footer {
+        height: calc(100% - 524px);
+        margin-top: 0;
+        border-radius: 46px 40px 0 0;
+        border-top: 1px solid rgba(255, 255, 255, 0.3);
+        background: #F2F2F2;
+        position: relative;
+
+        .cook-item {
+            position: relative;
+            top: -181px;
+            margin: 0;
+            width: 100%;
+            justify-content: center;
+
+            span {
+                color: #fff;
+                margin: 0;
+            }
+        }
+
+        .cook-btns {
+            padding: 0 28px 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 51px;
+
+            .btn {
+                width: 86px;
+                height: 72px;
+                background: #FFFFFF;
+                border-radius: 24px;
+                border: 0;
+                color: #fff;
+                position: relative;
+
+
+                &:nth-child(1) {
+                    width: 235px;
+                    background: linear-gradient(0deg, #A8866B, #A8866B), #FFFFFF;
+                    box-shadow: 0px 4px 16px #A8866B;
+                    // &::after {
+                    //     content: '烹饪';
+                    //     color: #fff;
+                    // }
+                }
+            }
+        }
+
+    }
+}

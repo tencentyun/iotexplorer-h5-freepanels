@@ -40,7 +40,7 @@ export function DataShowDisk(props: DiskProps) {
   const { status = 'normal' } = props;
 
   let currentStatus = '';
-  if (status == 'Alarm') {
+  if (status == 'fault') {
     currentStatus = 'alarm';
   } else {
     currentStatus = 'normal';

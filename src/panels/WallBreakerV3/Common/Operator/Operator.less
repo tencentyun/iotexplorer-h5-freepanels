@@ -1,0 +1,246 @@
+.operator-page {
+    height: 100%;
+
+    .operator-header {
+        display: none;
+    }
+
+    .operator-list {
+        height: 100%;
+
+        .list {
+            height: calc(100% - 120px);
+            overflow: auto;
+            margin: 0 10px;
+
+            .item {
+                margin: 12px 10px;
+                width: 98px;
+                float: left;
+
+                .mode-bg {
+                    width: 98px;
+                    height: 98px;
+                    background-color: rgba(0, 0, 0, 0.3);
+                    border-radius: 16px;
+                    border-width: 1px;
+                    border-style: solid;
+                    border-color: hsla(#9C8CFF, .24);
+                }
+
+                .title {
+                    margin-top: 12px;
+                    font-weight: 600;
+                    font-size: 12px;
+                    line-height: 17px;
+                    text-align: center;
+                    color: #FFFFFF;
+                }
+
+                &.checked {
+                    .mode-bg {
+                        border-color: #9C8CFF;
+                    }
+                }
+            }
+        }
+
+        .desc {
+            margin-top: 16px;
+            padding: 0 20px;
+            font-weight: 600;
+            font-size: 12px;
+            line-height: 17px;
+            color: #fff;
+            opacity: 0.75;
+        }
+
+        .options {
+            display: flex;
+            flex-direction: column;
+
+            .title {
+                margin: 24px 0 32px 20px;
+                font-weight: 600;
+                font-size: 16px;
+                line-height: 22px;
+                text-align: center;
+                color: #FFFFFF;
+                display: flex;
+            }
+
+            .options-list {
+                .cell-item {
+                    background: rgba(0, 0, 0, 0.3);
+                    border-radius: 16px;
+                    margin: 0 20px 12px 20px;
+                    border: 1px solid rgba(156, 140, 255, 0.24);
+                    padding: 16px 28px 15px 24px;
+
+                    .cell-wrapper {
+                        .cell-prefix-icon {
+                            display: none;
+                        }
+
+                        .cell-title-wrapper {
+                            display: flex;
+                            flex-direction: column;
+
+                            .cell-title {
+                                font-weight: 500;
+                                font-size: 12px;
+                                line-height: 17px;
+                                letter-spacing: 0.002em;
+                                color: rgba(255, 255, 255, 0.75);
+                            }
+
+                            .cell-subtitle {
+                                font-family: 'DIN Alternate';
+                                font-style: normal;
+                                font-weight: 700;
+                                font-size: 38px;
+                                line-height: 44px;
+                                color: #FFFFFF;
+                                margin: 0;
+                                margin-top: 9px;
+                            }
+                        }
+
+                        .icon-arrow-right {
+                            position: relative;
+                            top: -22px;
+                        }
+                    }
+                }
+            }
+
+            &.is-disabled {
+                opacity: 0.75;
+
+                .icon-arrow-right {
+                    display: none;
+                }
+            }
+        }
+
+        .cooking {
+            position: absolute;
+            right: 16px;
+            width: 100px;
+            height: 100px;
+            border-radius: 100%;
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(156, 140, 255, 0.24);
+            color: #fff;
+            bottom: 174px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-weight: 600;
+            font-size: 16px;
+            line-height: 22px;
+        }
+
+        .footer {
+            margin-bottom: 61px;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            .custom-btn {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 70px;
+                height: 57px;
+                border-radius: 16px;
+                border: 1px solid rgba(156, 140, 255, 0.24);
+                background: rgba(0, 0, 0, 0.3);
+                color: #fff;
+                font-weight: 500;
+                font-size: 16px;
+
+                &:nth-child(2) {
+                    .icon {
+                        display: none;
+                    }
+
+                    width: 167px;
+
+                }
+
+                &:nth-child(3) {
+                    span {
+                        display: none;
+                    }
+                }
+            }
+        }
+
+        >#current-custom-picker {
+            .picker-header {
+                color: #30414D;
+                font-weight: 600;
+                font-size: 20px;
+                line-height: 28px;
+            }
+
+            .picker-footer {
+                display: none;
+            }
+        }
+
+        >#current-time {
+            .picker-body {
+                .rmc-picker:nth-child(1) {
+                    .rmc-picker-item::after {
+                        content: ':';
+                        position: absolute;
+                        right: 0;
+                    }
+                }
+            }
+        }
+
+        >#current-time,
+        >#current-custom-picker {
+            .modal {
+                .modal-body {
+                    .picker-header {
+                        justify-content: start;
+                        margin-left: 4px;
+                        margin-top: 8px;
+                        margin-bottom: 12px;
+                    }
+
+                    .picker-body {
+                        width: calc(100% - 100px);
+                        margin-left: 50px;
+                        height: 170px;
+                        overflow: hidden;
+
+                        .rmc-multi-picker {
+                            height: 170px !important;
+                            position: relative;
+                            top: 16px;
+
+                            .rmc-picker {
+                                height: 170px !important;
+                            }
+                        }
+                    }
+                }
+
+            }
+        }
+
+        >#current-custom-picker {
+            .modal-body {
+                height: 76%;
+                overflow: hidden;
+            }
+        }
+    }
+}

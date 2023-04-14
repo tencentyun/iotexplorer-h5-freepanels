@@ -130,8 +130,9 @@ export function CircleDial(props: DashboardProps) {
       interval = setInterval(() => {
         if (!activeLineList[i]) return;
         const opacity = opacityValue * i > 0.3 ? opacityValue * i : 0.3;
-        const list = activeLineList[i].classList;
-        if (list.contains('activeLine')) {
+        const list = activeLineList[i]?.classList;
+        if (!list) return;
+        if (list?.contains('activeLine')) {
           activeLineList[i].setAttribute('style', `stroke: ${scaleLine.activeColor};stroke-width: 5;opacity: ${opacity}`);
         } else {
           activeLineList[i].setAttribute('style', 'stroke: ' + 'none' + ';stroke-width: 5;');

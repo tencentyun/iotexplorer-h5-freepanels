@@ -1,0 +1,112 @@
+.timer-cloud-list {
+  // width: 100%;
+  margin-top: 0;
+  padding: 16px;
+  font-size: 12px;
+  height: calc(100vh - 86px);
+  overflow: auto;
+
+  .timer-list-card {
+
+    border-radius: 16px;
+    margin-bottom: 16px;
+    color: @c1;
+    overflow: hidden !important;
+    transform: rotate(0deg);
+
+
+
+    .adm-swipe-action {
+      display: flow-root;
+      border-radius: 16px;
+      width: 100%;
+      // background: #1f2738;
+      background: #FFFFFF;
+      transform: rotate(0deg);
+
+      .adm-swipe-action-track {
+        // padding: 11px 22px;
+        padding: 16px 12px 12px 12px;
+      }
+
+      .adm-swipe-action-action-button {
+        width: 80px;
+        font-weight: 500;
+        font-size: 16px;
+        border-top-right-radius: 16px;
+        border-bottom-right-radius: 16px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        span {
+          position: absolute;
+        }
+      }
+
+      .adm-swipe-action-actions-right {
+        margin-left: 1px;
+        background: #ff3141;
+      }
+    }
+
+    // &.open-status {
+    //   color: #000000;
+    // }
+    .timer-list-body {
+      display: flex;
+      align-items: baseline;
+      margin-bottom: 9px;
+
+      >.timer {
+        width: 57px;
+        font-size: 16px;
+        font-weight: 500;
+        position: relative;
+        // bottom: -5px;
+      }
+
+      >.switch {
+        position: absolute;
+        right: 16px;
+        bottom: 12px;
+      }
+
+      >.repeat {
+        flex: 1;
+        font-weight: 500;
+        font-size: 12px;
+
+        >span {
+          position: relative;
+          margin-right: 12px;
+        }
+
+        >span:not(:last-child) {
+          zoom: 1;
+
+          &::after {
+            content: "\00060";
+            position: absolute;
+            right: -7px;
+            bottom: -12px;
+            font-size: 16px;
+            color: @c1;
+          }
+        }
+      }
+
+      .week-small {
+        font-size: 11px;
+      }
+
+
+    }
+
+    .timer-list-desc {
+      font-weight: 400;
+      font-size: 12px;
+      color: @c1;
+    }
+  }
+}

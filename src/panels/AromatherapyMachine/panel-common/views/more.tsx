@@ -76,7 +76,8 @@ export function More() {
           </Block>
           <Block className="setting-block countdown-block">
             <Cell
-              title={`倒计时・${formatTime(countdown)}`}
+              // title={`倒计时・${formatTime(countdown)}`}
+              title={`倒计时・${formatTime(deviceData.count_down ? deviceData.count_down : 7200)}`}
               prefixIcon={cellIcon('icon-aro-countdown')}
               valueStyle={'gray'}
               size="medium"
@@ -91,7 +92,7 @@ export function More() {
               min={0}
               max={86400}
               onAfterChange={(value) => {
-                setCountdown(value);
+                // setCountdown(value);
                 onControlDevice('count_down', value);
               }}
             />

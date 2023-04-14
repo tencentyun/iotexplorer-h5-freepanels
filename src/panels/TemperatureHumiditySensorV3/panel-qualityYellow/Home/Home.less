@@ -1,0 +1,56 @@
+.home {
+  position: relative;
+  background: linear-gradient(167.96deg, #B3957B 0%, #A8866B 100%);
+  height: 100vh;
+
+  header {
+    padding: 24px 17px 32px;
+  }
+
+  .setting-block {
+    margin: 0;
+    display: flex;
+    flex-direction: row;
+    height: unset;
+    background: #f2f2f2;
+    border-radius: 40px 40px 0 0;
+    padding: 32px 32px 65px 32px;
+
+
+    .cell-wrapper {
+      flex-direction: column;
+      padding-top: 18px;
+
+      .cell-prefix-icon {
+        display: block;
+        margin-right: 0;
+        width: 32px;
+        height: 32px;
+      }
+
+      .cell-title-wrapper {
+        .cell-title {
+          margin-top: 36px;
+          color: #67615A;
+        }
+
+        .cell-subtitle {
+          display: none;
+        }
+      }
+
+    }
+
+    .setting-button {
+      background: #FFFFFF;
+      border-radius: 24px;
+      border: 0;
+      width: 115px;
+      height: 126px;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+}

@@ -1,0 +1,51 @@
+.disk {
+    .hoz {
+        background: #FFFFFF;
+        opacity: 0.5;
+        width: 229px;
+        height: 293px;
+        border: 20px solid #F6F4FC;
+        border-radius: 50%;
+        box-shadow: none;
+    }
+
+    .ver {
+        background: #FFFFFF;
+        opacity: 0.3;
+        width: 229px;
+        height: 293px;
+        border: 20px solid #F6F4FC;
+        border-radius: 16px;
+        transform: rotate(90deg);
+        border-radius: 50%;
+        box-shadow: none;
+    }
+
+    .center {
+        box-shadow: none;
+    }
+
+    .content {
+
+        &::after {
+            background: #C6C4E9;
+        }
+
+        .item {
+            .item-content {
+                color: #565477;
+
+                .unit-1 {
+                    &::before {
+                        border: 2px solid #30414D;
+
+                    }
+                }
+            }
+
+            .title {
+                color: #565477;
+            }
+        }
+    }
+}

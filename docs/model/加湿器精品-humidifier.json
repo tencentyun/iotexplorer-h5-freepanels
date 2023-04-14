@@ -1,0 +1,86 @@
+{
+    "version": "1.0",
+    "properties": [
+        {
+            "id": "power_switch",
+            "name": "总开关",
+            "desc": "",
+            "mode": "rw",
+            "define": {
+                "type": "bool",
+                "mapping": {
+                    "0": "关",
+                    "1": "开"
+                }
+            },
+            "required": false
+        },
+        {
+            "id": "working_mode",
+            "name": "工作模式",
+            "desc": "",
+            "mode": "rw",
+            "define": {
+                "type": "enum",
+                "mapping": {
+                    "0": "默认",
+                    "1": "睡眠模式",
+                    "2": "强劲模式",
+                    "3": "低速模式"
+                }
+            },
+            "required": false
+        },
+        {
+            "id": "count_down",
+            "name": "倒计时",
+            "desc": "",
+            "mode": "rw",
+            "define": {
+                "type": "int",
+                "min": "0",
+                "max": "86400",
+                "start": "0",
+                "step": "1",
+                "unit": "s"
+            },
+            "required": false
+        },
+        {
+            "id": "count_down_left",
+            "name": "倒计时剩余时间",
+            "desc": "",
+            "mode": "r",
+            "define": {
+                "type": "int",
+                "min": "0",
+                "max": "86400",
+                "start": "0",
+                "step": "1",
+                "unit": "s"
+            },
+            "required": false
+        },
+        {
+            "id": "humidity_set",
+            "name": "湿度调节",
+            "desc": "",
+            "mode": "rw",
+            "define": {
+                "type": "int",
+                "min": "0",
+                "max": "100",
+                "start": "0",
+                "step": "1",
+                "unit": "%"
+            },
+            "required": false
+        }
+    ],
+    "events": [],
+    "actions": [],
+    "profile": {
+        "ProductId": "P9UF7RRVXR",
+        "CategoryId": "1"
+    }
+}

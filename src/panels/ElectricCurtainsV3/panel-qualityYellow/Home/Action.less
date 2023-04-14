@@ -1,0 +1,64 @@
+.home {
+  .actionBox {
+    height: calc(100% - 300px);
+    background: #F2F2F2;
+    border-radius: 46px 46px 0 0;
+
+    .action {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      overflow: hidden;
+      padding: 32px 32px 0 32px;
+
+      .action-item {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        background: #FFFFFF;
+        width: 139px;
+        height: 150px;
+        border-radius: 24px;
+
+        .svg-icon-normal {
+          width: 32px;
+          height: 32px;
+        }
+
+
+        .action-ele-2, .action-ele-3 {
+          .svg-icon-normal {
+            width: 52px;
+            height: 26px;
+          }
+        }
+
+
+        .action-ele {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          flex-direction: column;
+          font-size: 15px;
+          font-weight: 400;
+
+          >div:last-child {
+            margin-top: 32px;
+          }
+        }
+
+        &.checked {
+          color: #ffffff;
+          background: #F2A56B;
+        }
+      }
+
+      .action-item:nth-child(3),
+      .action-item:nth-child(4) {
+        margin-top: 24px;
+      }
+    }
+  }
+
+}

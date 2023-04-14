@@ -28,7 +28,7 @@ export const DeviceSateContext: React.Context<{
     set_fahrenheit: number;
     spray_volume: string;
     spray_mode: string;
-    filterlife: number;
+    filter_life: number;
     work_mode: string;
     set_temp: number;
     set_humidity: number;
@@ -37,7 +37,7 @@ export const DeviceSateContext: React.Context<{
     anion: number;
     fragrance: number;
     pm25: number;
-    childjock: number;
+    child_lock: number;
     temp_unit_convert: number;
     current_temp: number;
     current_level: number;
@@ -71,8 +71,8 @@ export const DeviceSateContext: React.Context<{
     spray_volume: 'large', // 喷雾量  枚举值： large -多 middle -中 small -少
     spray_mode: 'auto', // 喷雾模式 枚举值： humidity -潮湿 manual -壬动 auto -自动 work-工作 health -健康 baby -亲亲 sleep -睡眠
     sleep: 0, // 睡眠 开关 - -O 1
-    childjock: 0, // 童锁开关 开关 - -O 1
-    filterlife: 100, // 滤网寿命 数值范围：0-100 初始值：0 步长：1
+    child_lock: 0, // 童锁开关 开关 - -O 1
+    filter_life: 100, // 滤网寿命 数值范围：0-100 初始值：0 步长：1
     plasma: 0, // 等离子 开关 - -O 1
     temp_unit_convert: 0, // 枚举值： 0-摄氏度 1 -华氏度
     spray_gears: 'level_1', // 档位

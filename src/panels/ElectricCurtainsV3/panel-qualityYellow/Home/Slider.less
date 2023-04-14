@@ -1,0 +1,243 @@
+.p-side {
+  border-radius: 0 0 40px 40px;
+  display: flex;
+  flex-direction: column;
+  padding-top: 18px;
+  color: @c1;
+  padding-bottom: 60px;
+
+  .state {
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 20px;
+    text-align: center;
+    padding-bottom: 17px;
+  }
+
+  .head-img {
+    width: 313px;
+    height: 118px;
+    margin: 0 auto;
+    position: relative;
+  }
+
+  .count-down {
+    width: 116px;
+    height: 46px;
+    background: #FFFFFF;
+    border: 1px solid #EFF3F5;
+    border-radius: 8px;
+    font-family: 'PingFang SC';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    text-align: center;
+    color: #30414D;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 70px;
+
+    .time {
+      width: 18px;
+      height: 18px;
+      margin-right: 18px;
+    }
+  }
+
+  .fixed-position {
+    display: flex;
+    width: 230px;
+    margin: 0 auto;
+    height: 30px;
+    margin-top: 32px;
+    justify-content: space-between;
+    align-items: center;
+
+    .item {
+      font-weight: 600;
+      font-size: 16px;
+      line-height: 22px;
+      text-align: center;
+      color: #fff;
+      position: relative;
+
+      &:nth-child(2) {
+        left: 46px;
+      }
+
+      &:nth-child(3) {
+        left: 18px;
+      }
+    }
+  }
+
+  .fixed-scale {
+    display: flex;
+    width: 230px;
+    margin: 0 auto;
+    justify-content: space-between;
+    align-items: center;
+    height: 8px;
+    margin-top: -7px;
+
+    .item {
+      background-color: #ffffff4d;
+      width: 1px;
+      height: 8px;
+      position: relative;
+
+      &:nth-child(2) {
+        left: 42px;
+      }
+
+      &:nth-child(3) {
+        left: 24px;
+      }
+    }
+  }
+
+  .bar {
+    width: 100%;
+    height: 8px;
+    left: -2px;
+    top: 0;
+    position: absolute;
+    z-index: 2;
+    background: linear-gradient(360deg,
+        #afafaf -43.75%,
+        #e3e3e3 -1.19%,
+        rgba(109, 105, 107, 0.851478) 26.89%,
+        #e3e3e3 60.65%,
+        #afafaf 100%);
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.05);
+  }
+
+  .radius-left {
+    position: absolute;
+    top: -6px;
+    left: -2px;
+    width: 5px;
+    height: 19px;
+    background: #c6c6c6;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.05);
+    border-radius: 1px;
+    z-index: 3;
+  }
+
+  .radius-right {
+    position: absolute;
+    top: -6px;
+    right: -2px;
+    width: 5px;
+    height: 19px;
+    background: #c6c6c6;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.05);
+    border-radius: 1px;
+    z-index: 3;
+  }
+
+  .leave-wrap {
+    position: absolute;
+    width: 313px;
+    height: 110px;
+    display: flex;
+    margin-top: 5px;
+
+    .panel {
+      display: flex;
+      width: 50%;
+      flex: 0 50%;
+    }
+
+    .panel-right {
+      transform: rotate(180deg);
+
+      .leave {
+        transform: rotate(180deg);
+      }
+    }
+  }
+
+  .leave_item {
+    width: 7px;
+  }
+
+  .leave {
+    height: 100%;
+    width: 100%;
+    min-width: 37px;
+    background: url("../Icon/leave.svg");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+  }
+
+  .open-ratio {
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 20px;
+    text-align: center;
+    margin-top: 60px;
+  }
+
+  .head-fond {
+    width: 230px;
+    height: 20px;
+    margin: 0 auto;
+    margin-top: 4px;
+    position: relative;
+
+    .openBtn,
+    .closeBtn {
+      position: absolute;
+      top: -11px;
+      width: 16px;
+      height: 22px;
+      position: absolute;
+      font-family: 'PingFang SC';
+      font-style: normal;
+      font-weight: 600;
+      font-size: 16px;
+      line-height: 22px;
+      text-align: right;
+
+      color: #FFFFFF;
+    }
+
+    .openBtn {
+      left: -23px;
+    }
+
+    .closeBtn {
+      right: -24px;
+    }
+
+    .bar-progress {
+      width: 100%;
+      height: 2px;
+      background-color: #ffffff4d;
+      border-radius: 2px;
+    }
+
+    .control-bar {
+      width: 133px;
+      height: 2px;
+      background-color: #fff;
+      border-top-left-radius: 2px;
+      border-bottom-left-radius: 2px;
+    }
+
+    .bar-btn {
+      position: absolute;
+      margin-top: -7px;
+      width: 3px;
+      height: 3px;
+      background-color: #fff;
+      border-radius: 50%;
+      border: solid #fff 4px;
+      margin-left: 133px;
+    }
+  }
+}

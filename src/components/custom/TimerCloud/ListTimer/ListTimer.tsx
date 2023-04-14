@@ -42,11 +42,12 @@ const ListTimer = ({
   // 确保每次打开的当前时间不一样
   const getDefaultValue = () => {
     const date = new Date();
+    let min = '' + date.getMinutes();
     return {
       ...contextDefaultValue,
       ...defaultValue,
       Days: [0, 0, 0, 0, 0, 0, 0],
-      TimePoint: `${date.getHours()}:${date.getMinutes()}`,
+      TimePoint: `${date.getHours()}:${min.length == 1 ? '0' + min : min}`,
     };
   };
 
@@ -57,8 +58,8 @@ const ListTimer = ({
   return (
     <div className={`timer-cloud  ${className || ''}`}>
       <ul className="timer-cloud-list">
-        {timers.map(({ Status, TimerId, TimePoint, Days, Data }) => (
-          <li className={`timer-list-card  ${Status === 1 && 'open-status'}`} key={TimerId}>
+        {timers.map(({ Status, TimerId, TimePoint, Days, Data }, i) => (
+          <li className={`timer-list-card gra-border  ${Status === 1 && 'open-status'}`} key={i}>
             <SwipeAction
               ref={ref}
               closeOnAction={false}
@@ -75,10 +76,10 @@ const ListTimer = ({
                 },
               ]}
             >
-              <div className="timer-list-body">
+              <div className="timer-list-body" key={i}>
                 <span className="timer">{TimePoint}</span>
                 <span className={`repeat ${Days.split('').filter(v => 1 * v).length > 5 ? 'week-small' : ''}`}>
-                  {Days.split('').map((item, index) => (item === '1' ? `${arrWeek[index]} ` : ''))}
+                  {Days.split('').map((item, index) => (item === '1' ? <span key={index}>{`${arrWeek[index]} `}</span> : ''))}
                 </span>
                 <span className="switch">
                   <Switch
@@ -95,14 +96,14 @@ const ListTimer = ({
         ))}
       </ul>
       <button
-        className="add-timer-btn"
+        className="add-timer-btn gra-border"
         onClick={() => {
           setContext(getDefaultValue());
 
           push(PATH.TIMER_ADD, query);
         }}
       >
-        添加定时
+        +添加定时
       </button>
     </div>
   );

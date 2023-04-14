@@ -1,0 +1,176 @@
+{
+  "version": "1.0",
+  "properties": [
+    {
+      "id": "power_switch",
+      "name": "电源开关",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "bool",
+        "mapping": {
+          "0": "关",
+          "1": "开"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "tamper_alarm",
+      "name": "防拆报警",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "bool",
+        "mapping": {
+          "0": "关",
+          "1": "开"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "work_mode",
+      "name": "工作模式",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "stringenum",
+        "mapping": {
+          "White": "白光",
+          "Color": "彩光",
+          "Scene": "场景",
+          "Music": "音乐"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "alarm_ringtone",
+      "name": "报警铃声",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "stringenum",
+        "mapping": {
+          "ringtone_1": "ringtone_1",
+          "ringtone_2": "ringtone_2",
+          "ringtone_3": "ringtone_3",
+          "ringtone_4": "ringtone_4",
+          "ringtone_5": "ringtone_5"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "alarm_vol",
+      "name": "报警音量",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "stringenum",
+        "mapping": {
+          "low": "low",
+          "middle": "middle",
+          "high": "high",
+          "mute" : "mute"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "battery_state",
+      "name": "电池电量状态",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "stringenum",
+        "mapping": {
+          "low": "low",
+          "middle": "middle",
+          "high": "high"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "co_state",
+      "name": "CO检测状态",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "stringenum",
+        "mapping": {
+          "alarm": "alarm",
+          "normal": "normal"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "smoke_sensor_value",
+      "name": "烟雾检测值",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "int",
+        "min": "0",
+        "max": "1000",
+        "start": "0",
+        "step": "1",
+        "unit": "这个值的转换需要确定"
+      },
+      "required": false
+    },
+    {
+      "id": "battery_percentage",
+      "name": "电池电量",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "int",
+        "min": "0",
+        "max": "100",
+        "start": "0",
+        "step": "1",
+        "unit": "%"
+      },
+      "required": false
+    },
+    {
+      "id": "co_value",
+      "name": "CO检测值",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "int",
+        "min": "0",
+        "max": "1000",
+        "start": "0",
+        "step": "1",
+        "unit": ""
+      },
+      "required": false
+    },
+    {
+      "id": "alarm_time",
+      "name": "报警时长",
+      "desc": "这个值的转换需要确定",
+      "mode": "rw",
+      "define": {
+        "type": "int",
+        "min": "1",
+        "max": "60",
+        "start": "0",
+        "step": "1"
+      },
+      "required": false
+    }
+  ],
+  "events": [],
+  "actions": [],
+  "profile": {
+    "ProductId": "P9FCB4V9V1",
+    "CategoryId": "1"
+  }
+}

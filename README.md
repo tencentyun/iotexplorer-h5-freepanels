@@ -25,6 +25,7 @@
 | 电工类-开关类 | 场景开关 | 多路开关   | MultiSwitch           |
 |          |           | 开关面板   | switch          |
 |          |           | 一路开关   | SwitchOne                  |
+|          |           | 一键开关[精品]   | SwitchV3                  |
 |          |           | 一路开关v2 | SwitchOneV2                |
 |          |           | 一路开关v3  | SwitchOneTwo                |
 |          |           | 二路开关   | TwoSwitch                   |
@@ -105,7 +106,12 @@ panel-cold  冷色系
 panel-card  白灰卡块系
 panel-brunet 深色系
 panel-fresh  鲜艳色系
-panel-house 
+panel-house  暖色系
+panel-qualityDark    精品黑色系             
+panel-qualityWhite   精品白色系           
+panel-qualityBlue    精品蓝色系           
+panel-qualityPurple  精品紫色系           
+panel-qualityYellow  精品暖色系 
 ```
 
 ### 2、二次开发

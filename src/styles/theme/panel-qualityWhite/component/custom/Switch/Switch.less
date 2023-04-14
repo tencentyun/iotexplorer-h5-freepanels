@@ -1,0 +1,85 @@
+.adm-switch {
+  width: 40px;
+  --width: 40px;
+  --checked-color: #1D202D !important;
+
+  // 关闭
+  .adm-switch-checkbox {
+    min-width: 40px !important;
+    height: 20px !important;
+
+    background: #F6F8FB !important;
+
+    .adm-switch-handle {
+      top: 2px !important;
+      width: 16px !important;
+      height: 16px !important;
+      left: 2px !important;
+      border-radius: 50% !important;
+      background: #1D202D !important;
+    }
+
+    &::before {
+      top: 0;
+      height: 18px;
+      background: #F6F8FB !important;
+    }
+  }
+
+  // 开启
+  &.adm-switch-checked {
+    .adm-switch-checkbox {
+      background: #1D202D;
+    }
+
+    .adm-switch-handle {
+      left: calc(100% - 16px) !important;
+      // background-color: #FFFFFF;
+      background: #1D202D !important;
+    }
+  }
+
+  // 两种switch  -- 正常背景
+  &.reverse {
+    width: 40px;
+    --width: 40px;
+    --checked-color: #1D202D !important;
+  
+    // 关闭
+    .adm-switch-checkbox {
+      min-width: 40px !important;
+      height: 20px !important;
+  
+      background: #FFFFFF !important;
+  
+      .adm-switch-handle {
+        top: 2px !important;
+        width: 16px !important;
+        height: 16px !important;
+        left: 2px !important;
+        border-radius: 50% !important;
+        background: #1D202D !important;
+      }
+  
+      &::before {
+        top: 0;
+        height: 18px;
+        background: #FFFFFF !important;
+      }
+    }
+  
+    // 开启
+    &.adm-switch-checked {
+      .adm-switch-checkbox {
+        background: #1D202D;
+      }
+  
+      .adm-switch-handle {
+        left: calc(100% - 16px) !important;
+        // background-color: #FFFFFF;
+        background: #1D202D !important;
+      }
+    }
+  }
+
+}

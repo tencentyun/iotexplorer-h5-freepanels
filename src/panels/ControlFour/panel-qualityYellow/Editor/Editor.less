@@ -1,0 +1,139 @@
+.editor-layout {
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    position: relative;
+
+    .header {
+        width: 100%;
+        padding: 12px 16px 18px 16px;
+        box-sizing: border-box;
+        display: flex;
+        justify-content: space-between;
+
+        span {
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 20px;
+            color: rgba(24, 33, 41, 0.5);
+        }
+    }
+
+    .content {
+        position: relative;
+        width: 326px;
+        margin: 0 auto;
+        box-sizing: border-box;
+    }
+
+    .footer {
+        position: absolute;
+        bottom: 42px;
+        width: 100%;
+        padding: 0 20px;
+        box-sizing: border-box;
+
+        .delete-btn {
+            background: #D83939;
+        }
+    }
+}
+
+.switch-scene-popup {
+    height: 638px;
+
+    .custom-tabs {
+        .device-list {
+            .device-item {
+                .device-title {
+                    color: #67615A;
+                }
+            }
+        }
+
+        .adm-tabs-header {
+            border-radius: 40px 40px 0 0;
+            background-color: #F2F2F2;
+
+            .adm-tabs-tab {
+                padding: 24px 0 18px;
+            }
+        }
+
+        .adm-tabs-content {
+            background-color: #F2F2F2;
+            height: 550px;
+
+            .service-list {
+                box-sizing: border-box;
+                width: 100%;
+                height: 100%;
+                overflow: auto;
+
+
+            }
+
+            .custom-cell {
+                background: #FFFFFF;
+                border: 1px solid #F2F2F2;
+                border-radius: 8px;
+                margin-bottom: 16px;
+
+                .adm-switch.adm-switch-checked .adm-switch-checkbox,
+                .adm-switch .adm-switch-checkbox::before {
+                    background: #F2F2F2 !important;
+                }
+
+                .type-checkbox {
+                    margin-right: 16px;
+
+                    .icon-radio,
+                    .icon-radio-checked,
+                    .radio,
+                    .radio-checked {
+                        width: 24px;
+                        height: 24px;
+                    }
+                }
+
+                .cell-title-wrapper {
+                    display: flex;
+                    flex-direction: column;
+                    margin-left: 24px;
+
+                    .cell-title {
+                        font-weight: 500;
+                        font-size: 16px;
+                        line-height: 22px;
+                        display: flex;
+                        align-items: center;
+                        color: #67615A;
+                    }
+
+                    .cell-subtitle {
+                        margin-top: 20px;
+                        font-weight: 500;
+                        font-size: 12px;
+                        line-height: 17px;
+                        display: flex;
+                        align-items: center;
+                        color: #67615A;
+                        opacity: 0.5;
+                        margin-left: 0;
+                    }
+                }
+
+                .adm-switch {
+                    position: absolute;
+                    bottom: 16px;
+                    right: 16px;
+                }
+
+            }
+        }
+    }
+
+}

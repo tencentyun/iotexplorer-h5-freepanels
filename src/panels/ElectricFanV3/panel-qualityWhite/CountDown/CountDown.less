@@ -1,0 +1,40 @@
+.cus-time-picker {
+    >#current-time {
+        .modal {
+            .modal-body {
+                .picker-header {
+                    justify-content: start;
+                    margin-left: 4px;
+                    margin-top: 8px;
+                    margin-bottom: 12px;
+                }
+
+                .picker-body {
+                    width: calc(100% - 100px);
+                    margin-left: 50px;
+                    height: 170px;
+                    overflow: hidden;
+
+                    .rmc-picker:nth-child(1) {
+                        .rmc-picker-item-selected::after {
+                            content: ':';
+                            position: absolute;
+                            right: 0;
+                        }
+                    }
+
+                    .rmc-multi-picker {
+                        height: 170px !important;
+                        position: relative;
+                        top: 16px;
+
+                        .rmc-picker {
+                            height: 170px !important;
+                        }
+                    }
+                }
+            }
+
+        }
+    }
+}

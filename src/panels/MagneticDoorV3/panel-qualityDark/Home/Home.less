@@ -1,0 +1,102 @@
+.home {
+  position: relative;
+  padding: 20px 17px;
+
+  header {
+    margin-bottom: 78px;
+  }
+
+  .tips {
+    position: absolute;
+    line-height: 20px;
+    color: #FFFFFF;
+    text-align: center;
+    left: 136px;
+    bottom: 280px;
+
+    span {
+      position: relative;
+      margin-left: 14px;
+      display: inline-block;
+      font-family: 'PingFang SC';
+      font-style: normal;
+      font-weight: 600;
+      font-size: 12px;
+
+      &::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: -14px;
+        margin-top: -3px;
+        display: inline-block;
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: #FFFFFF;
+      }
+    }
+  }
+
+  .action {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    position: relative;
+    overflow: hidden;
+    // padding: 0 8px;
+    color: #ffffff;
+
+    .action-item {
+      display: flex;
+      // align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      background: @c2;
+      border-radius: 16px;
+      width: 158px;
+      height: 94px;
+      border: 1px solid rgba(156, 140, 255, 0.24);
+
+      .action-ele {
+        display: flex;
+        // align-items: center;
+        // justify-content: center;
+        flex-direction: column;
+        font-size: 15px;
+        // margin-top: 10px;
+        font-weight: 600;
+        // margin: inherit;
+        padding: 17px 12px 0 12px;
+
+        >div:last-child {
+          margin-top: 4px;
+        }
+
+        .title {
+          font-family: 'PingFang SC';
+          font-style: normal;
+          font-weight: 500;
+          font-size: 12px;
+          line-height: 17px;
+          color: rgba(255, 255, 255, 0.75);
+        }
+
+        .icon {
+          display: none;
+        }
+
+        .cell {
+          padding: 12px 0 22px 0;
+        }
+      }
+    }
+
+    &.action-off {
+      color: @c6;
+    }
+  }
+  &.power-off {
+    opacity: 0.6;
+  }
+}

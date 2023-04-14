@@ -11,6 +11,7 @@ export const DeviceContext: React.Context<{
     battery_percentage: number;
     battery_state: string;
     muffling: number;
+    alarm_switch: number;
   };
   deviceStatus: number;
 }> = createContext({
@@ -25,5 +26,6 @@ export const DeviceContext: React.Context<{
     battery_percentage: 6,
     battery_state: 'low',
     muffling: 0,
+    alarm_switch:1
   },
 });

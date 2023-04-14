@@ -1,0 +1,127 @@
+.home {
+  justify-content: flex-start;
+  background: linear-gradient(167.96deg, #B3957B 0%, #A8866B 100%);
+
+  .switch-total {
+    display: flex;
+  }
+
+
+
+  .photo {
+    margin-top: 257px;
+
+    .bottom-bg {
+      width: 322px;
+      height: 8px;
+      background: rgba(255, 255, 255, 0.5);
+      border-radius: 8px;
+      top: 0;
+    }
+  }
+
+  .header {
+    background: none !important;
+    height: 292px;
+    position: relative;
+
+    .icon {
+      display: block;
+      position: absolute;
+      bottom: 1px;
+      right: 20px;
+    }
+
+    .mask {
+      background: transparent;
+
+      .title {
+        display: none;
+      }
+    }
+  }
+
+  .list {
+    width: calc(100% - 32px);
+    height: calc(100% - 294px);
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    top: 0;
+    border-radius: 30px 30px 0 0;
+    background: #F2F2F2;
+    padding: 20px 16px 0 16px;
+    flex-wrap: wrap;
+
+    .cell {
+      padding: 0;
+      margin: 0;
+      width: 139px;
+      height: 150px;
+      background: #FFFFFF;
+      border-radius: 24px;
+      margin: 12px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+
+      &.custom-cell {
+
+        &:nth-child(3),
+        &:nth-child(4) {
+          top: -34px;
+        }
+
+        .adm-switch {
+          margin-bottom: 26px;
+          width: 80px;
+          height: 40px;
+
+          .adm-switch-checkbox,
+          .adm-switch-checkbox:before {
+            height: 40px !important;
+            background: #F2F2F2 !important;
+          }
+
+          .adm-switch-handle {
+            margin-top: 2px;
+            margin-left: 2px;
+            width: 32px !important;
+            height: 32px !important;
+            background: #FFFFFF !important;
+          }
+
+          &.adm-switch-checked {
+            .adm-switch-handle {
+              left: 40px !important;
+              width: 32px !important;
+              height: 32px !important;
+              background: #F2A56B !important;
+            }
+          }
+        }
+      }
+
+      .cell-wrapper {
+        display: flex;
+        align-items: center;
+        flex-direction: column-reverse;
+
+        .cell-prefix-icon {
+          display: none;
+        }
+
+
+
+        .icon-arrow-right {
+          display: none;
+        }
+      }
+    }
+  }
+
+  .operator {
+    display: none;
+  }
+}

@@ -10,12 +10,13 @@ import { DeviceContext } from '../deviceContext';
 import { getThemeType } from '@libs/theme';
 import { SkinProps } from '../skinProps';
 import '../components/normal-home.less';
+import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 
 export function NormalHome() {
   const themeType = getThemeType();
   const CurrentSkinProps: any = SkinProps[themeType];
   const history = useHistory();
-  const [currentMode, setCurrentMode] = useState('middle');
+  // const [currentMode, setCurrentMode] = useState('middle');
 
   const imageSrc = () => 'https://tencent-1305105198.cos.ap-guangzhou.myqcloud.com/aromatherapy_machine/aromatherapy_machine.png';
   const iconColor = (powerStatus: number, active: number) => {
@@ -47,6 +48,23 @@ export function NormalHome() {
     history.push('/more');
   };
 
+  const handleSetting = () => {
+    sdk.goDeviceDetailPage();
+  };
+
+  const getCountdownTime = (value) => {
+    if (value) {
+      const hour = `${Math.floor(value / 3600)}`;
+      const minute = `${Math.floor((value % 3600) / 60)}`;
+      const second = `${Math.floor((value % 3600) % 60)}`;
+      return [hour, minute, second];
+    }
+    return ['00', '00', '00'];
+  };
+
+  const getTimeLable = (value) => getCountdownTime(value).map((v: string) => (parseInt(v, 10) < 10 ? `0${parseInt(v, 10)}` : v)).join(':');
+
+
   return (
     <DeviceContext.Consumer>
       {({ deviceData }) => (
@@ -70,6 +88,9 @@ export function NormalHome() {
                 name="icon-more-cicle"
                 {...CurrentSkinProps.more}
               />
+            </div>
+            <div className="settings" onClick={handleSetting}>
+              <div className="icon-more"></div>
             </div>
 
             {/* 控制区 */}
@@ -148,7 +169,7 @@ export function NormalHome() {
               <ul className="countdown-slider-tips">
                 <li className="item">
                   <span className="label">小雾量</span>
-                  {currentMode === 'small' ? (
+                  {deviceData.work_mode === 'small' ? (
                     <SvgIcon
                       className="icon-arrow-down"
                       name="icon-arrow-down"
@@ -160,7 +181,7 @@ export function NormalHome() {
                 </li>
                 <li className="item">
                   <span className="label">中雾量</span>
-                  {currentMode === 'middle' ? (
+                  {deviceData.work_mode === 'middle' ? (
                     <SvgIcon
                       className="icon-arrow-down"
                       name="icon-arrow-down"
@@ -172,7 +193,7 @@ export function NormalHome() {
                 </li>
                 <li className="item">
                   <span className="label">大雾量</span>
-                  {currentMode === 'large' ? (
+                  {deviceData.work_mode === 'large' ? (
                     <SvgIcon
                       className="icon-arrow-down"
                       name="icon-arrow-down"
@@ -198,7 +219,7 @@ export function NormalHome() {
                   } else {
                     data = 'large';
                   }
-                  setCurrentMode(data);
+                  // setCurrentMode(data);
                   onControlDevice('work_mode', data);
                 }}
               />
@@ -207,7 +228,8 @@ export function NormalHome() {
             <ul className="decoration-bottom">
               <li className="content-item">
                 <p className="word">
-                  {deviceData.count_left ? deviceData.count_left : '00:00:00'}
+                  {/* {deviceData.count_left ? deviceData.count_left : '00:00:00'} */}
+                  {getTimeLable(deviceData.count_left)}
                 </p>
                 <p className="label">倒计时剩余时间</p>
               </li>
