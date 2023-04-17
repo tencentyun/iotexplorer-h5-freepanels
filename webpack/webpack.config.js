@@ -12,7 +12,7 @@ const postcss = require('postcss-pxtorem');
 const plugin = require('./plugin');
 const viewportConfig = require('./pxToViewport.config');
 const argv = require('minimist')(process.argv.slice(2));
-const category = argv.category || process.env.npm_config_category || '';
+const category = argv.category || process.env.npm_config_category || process.env.Category || '';
 const panelTheme = argv.panel || process.env.npm_config_panel || '';
 
 // 使用 npm run dev --category=xxx --index 统一生成index.js, index.css
