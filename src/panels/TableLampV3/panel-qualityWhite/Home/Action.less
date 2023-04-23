@@ -54,8 +54,89 @@
       }
     }
 
+    .action-item-4 {
+      width: 343px;
+      height: 72px;
+      left: 16px;
+      top: 664px;
+
+      background: #FFFFFF;
+      border: 1px solid #EFF3F5;
+      border-radius: 8px;
+    }
+
     &.action-off {
       color: #30414D;
+    }
+
+    .cell-settings {
+      width: 120px;
+      height: 92px;
+      margin-top: 24px;
+      background: #FFFFFF;
+      border: 1px solid #EFF3F5;
+      border-radius: 8px;
+      padding: 0;
+      margin-bottom: 24px;
+
+
+      &.switch-btn-settings {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        padding: 0;
+        background: #30414D;
+
+        .cell-wrapper {
+          width: 100%;
+          height: 100%;
+
+          .cell-prefix-icon {
+            margin-bottom: 0;
+            margin-top: 0;
+          }
+
+          .cell-title-wrapper {
+            display: none;
+          }
+        }
+
+      }
+
+      &.mode-btn-settings {
+        width: 343px;
+        height: 72px;
+
+        .cell-wrapper {
+          width: calc(100% - 36px);
+          height: 100%;
+          padding: 0 18px;
+          flex-direction: row;
+          position: relative;
+
+          .cell-prefix-icon {
+            margin-right: 18px;
+          }
+
+          .icon-arrow-right {
+            display: block;
+          }
+
+          .cell-title-wrapper {
+            .cell-subtitle {
+              position: absolute;
+              right: 40px;
+              top: 24px;
+              font-weight: 600;
+              font-size: 16px;
+              line-height: 22px;
+              text-align: right;
+              color: rgba(38, 49, 61, 0.75);
+            }
+          }
+        }
+
+      }
     }
   }
 
@@ -64,6 +145,7 @@
       display: flex;
       flex-direction: column;
     }
+
     .custom-radio {
       display: flex;
       flex-direction: column;
@@ -172,10 +254,12 @@
         color: #fff;
       }
     }
+
     .modal-footer {
       .btn:nth-child(1) {
         margin: 0 8px 0 0 !important;
       }
+
       .btn:nth-child(2) {
         margin: 0 0 0 8px !important;
       }

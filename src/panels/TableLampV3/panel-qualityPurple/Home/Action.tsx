@@ -2,7 +2,7 @@ import React, { useRef, useEffect, useState } from 'react';
 import { Icon } from '@custom/Icon';
 import { OptionDialog } from '@custom/OptionDialog';
 import { getOptions } from '@utils';
-
+import { CountDown } from '../../Common/CountDown';
 const Action = (props) => {
   const {
     templateMap,
@@ -10,6 +10,7 @@ const Action = (props) => {
     history: { PATH, push },
     timer: { isExistTimer },
     doControlDeviceData,
+    setCountDown
   } = { ...props };
   const onSwitchChange = () => {
     doControlDeviceData({ power_switch: power_switch ? 0 : 1 });
@@ -26,23 +27,31 @@ const Action = (props) => {
 
   const actions = [
     [
-      '开关',
-      'switch',
-      onSwitchChange,
-      !!power_switch,
-    ],
-    [
-      '补光模式',
-      'mode',
-      power_switch && (() => { setModeVisible(true) }),
-      !!power_switch
-    ],
-    [
       '定时',
       'time',
       power_switch && push.bind(null, PATH.TIMER_LIST, { isModule: true }),
       isExistTimer,
     ],
+    [
+      '倒计时',
+      'countdown',
+      power_switch && (() => { countRef.current.onOpen(); }),
+      !!power_switch
+    ],
+
+    // [
+    //   '开关',
+    //   'switch',
+    //   onSwitchChange,
+    //   !!power_switch,
+    // ],
+    [
+      '模式',
+      'mode',
+      power_switch && (() => { setModeVisible(true) }),
+      !!power_switch
+    ],
+
 
     // [
     //   '定时',
@@ -81,6 +90,9 @@ const Action = (props) => {
           doControlDeviceData('working_mode', parseInt(value[0]));
         }}
       ></OptionDialog>
+      <CountDown ref={countRef} {...props} onChange={(count_down) => {
+        setCountDown && setCountDown(count_down)
+      }} />
     </>
   );
 };

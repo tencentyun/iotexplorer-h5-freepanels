@@ -11,6 +11,26 @@
   flex-direction: column;
   padding: 24px 20px;
 
+  .count-down {
+    position: absolute;
+    width: 200px;
+    height: 32px;
+    left: calc(50% - 100px);
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 16px;
+    top: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    span {
+      font-weight: 600;
+      font-size: 12px;
+      line-height: 17px;
+      color: #FFFFFF;
+    }
+  }
+
   .change-panel {
     min-height: 494px;
 
@@ -52,10 +72,12 @@
 
   &.is-off {
     opacity: 0.5;
+
     .custom-mask {
       display: block;
     }
   }
+
   .custom-mask {
     display: none;
     width: calc(100% - 48px);
