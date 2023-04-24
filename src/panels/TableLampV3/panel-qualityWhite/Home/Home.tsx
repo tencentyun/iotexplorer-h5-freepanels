@@ -51,17 +51,17 @@ export function Home(props) {
     }
 
 
-    if (direction === 'x') {
-      if (value >= 2700 && value <= 3400) {
-        doControlDeviceData({ color_mode: 1 })
-      } else if (value > 3400 && value <= 4500) {
-        doControlDeviceData({ color_mode: 2 })
-      } else if (value > 4500 && value <= 6000) {
-        doControlDeviceData({ color_mode: 3 })
-      } else if (value > 6000) {
-        doControlDeviceData({ color_mode: 4 })
-      }
-    }
+    // if (direction === 'x') {
+    //   if (value >= 2700 && value <= 3400) {
+    //     doControlDeviceData({ color_mode: 1 })
+    //   } else if (value > 3400 && value <= 4500) {
+    //     doControlDeviceData({ color_mode: 2 })
+    //   } else if (value > 4500 && value <= 6000) {
+    //     doControlDeviceData({ color_mode: 3 })
+    //   } else if (value > 6000) {
+    //     doControlDeviceData({ color_mode: 4 })
+    //   }
+    // }
 
     setField({
       [attr]: value >= max ? max : (value <= min ? min : value)
@@ -69,6 +69,7 @@ export function Home(props) {
   }
 
   const onTouchEnd = (e) => {
+    console.log("测试数据",field)
     doControlDeviceData({ ...field });
   }
 
