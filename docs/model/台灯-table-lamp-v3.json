@@ -1,103 +1,101 @@
 {
   "version": "1.0",
-  "properties": [
-    {
+  "properties": [{
       "id": "power_switch",
       "name": "开关",
       "desc": "",
       "mode": "rw",
       "define": {
-        "type": "bool",
-        "mapping": {
-          "0": "关",
-          "1": "开"
-        }
+          "type": "bool",
+          "mapping": {
+              "0": "关",
+              "1": "开"
+          }
       },
       "required": false
-    },
-    {
+  },
+  {
       "id": "brightness",
       "name": "亮度调节",
       "desc": "",
       "mode": "rw",
       "define": {
-        "type": "int",
-        "min": "0",
-        "max": "100",
-        "start": "0",
-        "step": "1",
-        "unit": "%"
+          "type": "int",
+          "min": "1",
+          "max": "100",
+          "start": "1",
+          "step": "1",
+          "unit": "%"
       },
       "required": false
-    },
-    {
-      "id": "mode_swtch_4",
-      "name": "按键4场景",
-      "desc": "",
-      "mode": "rw",
-      "define": {
-        "type": "enum",
-        "mapping": {
-          "0": "场景按键1",
-          "1": "场景按键2",
-          "2": "场景按键3",
-          "3": "场景按键4"
-        }
-      },
-      "required": false
-    },
-    {
-      "id": "working_mode",
-      "name": "补光模式",
-      "desc": "",
-      "mode": "rw",
-      "define": {
-        "type": "enum",
-        "mapping": {
-          "1": "关闭",
-          "2": "自拍补光",
-          "3": "无极调光",
-          "4": "美妆补光"
-        }
-      },
-      "required": false
-    },
-    {
-      "id": "color_mode",
-      "name": "夜灯模式",
-      "desc": "",
-      "mode": "rw",
-      "define": {
-        "type": "enum",
-        "mapping": {
-          "1": "夜灯",
-          "2": "温馨",
-          "3": "阅读",
-          "4": "工作"
-        }
-      },
-      "required": false
-    },
-    {
+  },
+  {
       "id": "color_temp",
       "name": "色温调节",
       "desc": "",
       "mode": "rw",
       "define": {
-        "type": "int",
-        "min": "1000",
-        "max": "6500",
-        "start": "2000",
-        "step": "100",
-        "unit": ""
+          "type": "int",
+          "min": "0",
+          "max": "1000",
+          "start": "0",
+          "step": "1",
+          "unit": ""
       },
       "required": false
-    }
-  ],
+  },
+  {
+      "id": "color_mode",
+      "name": "工作模式",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+          "type": "enum",
+          "mapping": {
+              "1": "夜灯模式",
+              "2": "温馨模式",
+              "3": "阅读模式",
+              "4": "工作模式"
+          }
+      },
+      "required": false
+  },
+  {
+      "id": "mode_swtch_4",
+      "name": "按键4场景",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+          "type": "enum",
+          "mapping": {
+              "0": "场景按键1",
+              "1": "场景按键2",
+              "2": "场景按键3",
+              "3": "场景按键4"
+          }
+      },
+      "required": false
+  },
+  {
+      "id": "working_mode",
+      "name": "补光模式",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+          "type": "enum",
+          "mapping": {
+              "1": "关闭",
+              "2": "自拍补光",
+              "3": "无极调光",
+              "4": "美妆补光"
+          }
+      },
+      "required": false
+  }],
   "events": [],
   "actions": [],
   "profile": {
-    "ProductId": "516IR4HEA8",
-    "CategoryId": "1"
+      "ProductId": "Q51820J3QD",
+      "CategoryId": "1"
   }
 }

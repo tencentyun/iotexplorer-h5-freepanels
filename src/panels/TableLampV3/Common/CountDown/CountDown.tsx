@@ -42,7 +42,7 @@ export const CountDown = forwardRef((props, ref) => {
 const Timer = forwardRef(({ value, onChange, isModal, isPopUp }, ref) => {
 
   const [visible, setVisible] = useState(false);
-  useTitle('倒计时');
+  // useTitle('倒计时');
 
   const submitCountDown = ([hour, minute, second]) => {
     setVisible(false);
