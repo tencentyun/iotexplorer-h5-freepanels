@@ -14,23 +14,19 @@ export function Home(props) {
     doControlDeviceData,
   } = props;
 
- 
 
 
-  const { color_mode = 1, brightness = 100, color_temp = 2700 } = deviceData;
+
+  const { brightness = 100, color_temp = 2700 } = deviceData;
+
+  const [color_mode, setcolorMode] = useState(deviceData.color_mode || 1);
+
   const hozRef = useRef(null);
   const verRef = useRef(null);
 
-  const [field, setField] = useState({brightness,color_temp});
+  const [field, setField] = useState({ brightness, color_temp,attr:'color_temp' });
   const [showCountDown, setShowCountDown] = useState(false);
   const [countDown, setCountDown] = useState('00:00:00');
-
-
-
-
-
-
-
 
 
   const onTouchMove = (direction, attr, ref, e) => {
@@ -63,26 +59,28 @@ export function Home(props) {
     }
 
 
-    // if (direction === 'x') {
-    //   if (value >= 2700 && value <= 3400) {
-    //     doControlDeviceData({ color_mode: 1 })
-    //   } else if (value > 3400 && value <= 4500) {
-    //     doControlDeviceData({ color_mode: 2 })
-    //   } else if (value > 4500 && value <= 6000) {
-    //     doControlDeviceData({ color_mode: 3 })
-    //   } else if (value > 6000) {
-    //     doControlDeviceData({ color_mode: 4 })
-    //   }
-    // }
+    if (direction === 'x') {
+      if (value >= 2700 && value <= 3400) {
+        setcolorMode(1)
+      } else if (value > 3400 && value <= 4500) {
+        setcolorMode(2)
+      } else if (value > 4500 && value <= 6000) {
+        setcolorMode(3)
+      } else if (value > 6000) {
+        setcolorMode(4)
+      }
+    }
 
+    
     setField({
       ...field,
+      attr,
       [attr]: value >= max ? max : (value <= min ? min : value)
     })
   }
 
-  const onTouchEnd = (e) => {
-    doControlDeviceData({...field });
+  const onTouchEnd = () => {
+    doControlDeviceData({ [field.attr]: field[field.attr] });
   }
 
 
@@ -92,7 +90,7 @@ export function Home(props) {
       <DeviceDetail></DeviceDetail>
       <div className='content-bottom'>
         <div className={classNames("change-panel")}>
-          <div className={classNames('touch-panel', `mode-${color_mode}`)} style={{ opacity: parseInt(brightness, 10) / 100, zIndex: 1, position: 'relative' }}></div>
+          <div className={classNames('touch-panel', `mode-${color_mode}`)} style={{ opacity: parseInt(field.brightness, 10) / 100, zIndex: 1, position: 'relative' }}></div>
           <div className={classNames('touch-panel', `mode-${color_mode}`)} style={{ zIndex: 2, background: 'transparent', position: 'absolute', top: 0 }}>
             <div className="touch-item" onTouchMove={(e) => { onTouchMove('x', 'color_temp', hozRef, e) }} onTouchEnd={onTouchEnd} ref={hozRef}>
               <Icon name={`gesture-hoz-${parseInt(color_mode) === 1 || parseInt(color_mode) === 3 ? 'blank' : 'white'}`} />
