@@ -13,13 +13,15 @@ export function Home(props) {
     deviceData,
     doControlDeviceData,
   } = props;
-  const { color_mode = 1, brightness = 100, color_temp = 2700 } = deviceData;
+  const { brightness = 100, color_temp = 2700 } = deviceData;
   const hozRef = useRef(null);
   const verRef = useRef(null);
 
   const [field, setField] = useState({brightness,color_temp});
   const [showCountDown, setShowCountDown] = useState(false);
   const [countDown, setCountDown] = useState('00:00:00');
+  const [color_mode,setcolorMode] = useState(deviceData.color_mode || 1);
+
 
   const onTouchMove = (direction, attr, ref, e) => {
     const wrap = ref.current;
@@ -51,17 +53,19 @@ export function Home(props) {
       }
     }
 
-    // if (direction === 'x') {
-    //   if (value >= 2700 && value <= 3500) {
-    //     doControlDeviceData({ color_mode: 1 })
-    //   } else if (value > 3500 && value <= 4500) {
-    //     doControlDeviceData({ color_mode: 2 })
-    //   } else if (value > 4500 && value <= 6000) {
-    //     doControlDeviceData({ color_mode: 3 })
-    //   } else if (value > 6000) {
-    //     doControlDeviceData({ color_mode: 4 })
-    //   }
-    // }
+   
+    if (direction === 'x') {
+      if (value >= 2700 && value <= 3400) {
+        setcolorMode(1)
+      } else if (value > 3400 && value <= 4500) {
+        setcolorMode(2)
+      } else if (value > 4500 && value <= 6000) {
+        setcolorMode(3)
+      } else if (value > 6000) {
+        setcolorMode(4)
+      }
+    }
+
     setField({
       ...field,
       [attr]: value >= max ? max : (value <= min ? min : value)
