@@ -13,13 +13,25 @@ export function Home(props) {
     deviceData,
     doControlDeviceData,
   } = props;
+
+ 
+
+
   const { color_mode = 1, brightness = 100, color_temp = 2700 } = deviceData;
   const hozRef = useRef(null);
   const verRef = useRef(null);
 
-  const [field, setField] = useState({});
+  const [field, setField] = useState({brightness,color_temp});
   const [showCountDown, setShowCountDown] = useState(false);
   const [countDown, setCountDown] = useState('00:00:00');
+
+
+
+
+
+
+
+
 
   const onTouchMove = (direction, attr, ref, e) => {
     const wrap = ref.current;
@@ -51,26 +63,28 @@ export function Home(props) {
     }
 
 
-    if (direction === 'x') {
-      if (value >= 2700 && value <= 3400) {
-        doControlDeviceData({ color_mode: 1 })
-      } else if (value > 3400 && value <= 4500) {
-        doControlDeviceData({ color_mode: 2 })
-      } else if (value > 4500 && value <= 6000) {
-        doControlDeviceData({ color_mode: 3 })
-      } else if (value > 6000) {
-        doControlDeviceData({ color_mode: 4 })
-      }
-    }
+    // if (direction === 'x') {
+    //   if (value >= 2700 && value <= 3400) {
+    //     doControlDeviceData({ color_mode: 1 })
+    //   } else if (value > 3400 && value <= 4500) {
+    //     doControlDeviceData({ color_mode: 2 })
+    //   } else if (value > 4500 && value <= 6000) {
+    //     doControlDeviceData({ color_mode: 3 })
+    //   } else if (value > 6000) {
+    //     doControlDeviceData({ color_mode: 4 })
+    //   }
+    // }
 
     setField({
+      ...field,
       [attr]: value >= max ? max : (value <= min ? min : value)
     })
   }
 
   const onTouchEnd = (e) => {
-    doControlDeviceData({ ...field });
+    doControlDeviceData({...field });
   }
+
 
   return (
     <div className={`home ${!deviceData.power_switch ? 'is-off' : ''}`}>
@@ -83,13 +97,13 @@ export function Home(props) {
             <div className="touch-item" onTouchMove={(e) => { onTouchMove('x', 'color_temp', hozRef, e) }} onTouchEnd={onTouchEnd} ref={hozRef}>
               <Icon name={`gesture-hoz-${parseInt(color_mode) === 1 || parseInt(color_mode) === 3 ? 'blank' : 'white'}`} />
               <div className="title">冷暖调节</div>
-              <div className="title">色温：{color_temp}K</div>
+              <div className="title">色温：{field.color_temp}K</div>
             </div>
             <div className="split-line"></div>
             <div className="touch-item" onTouchMove={(e) => { onTouchMove('y', 'brightness', verRef, e) }} onTouchEnd={onTouchEnd} ref={verRef}>
               <Icon name={`gesture-ver-${parseInt(color_mode) === 1 || parseInt(color_mode) === 3 ? 'blank' : 'white'}`} />
               <div className="title">亮度调节</div>
-              <div className="title">亮度：{brightness}%</div>
+              <div className="title">亮度：{field.brightness}%</div>
             </div>
             {showCountDown && <div className="count-down">
               <span>倒计时：</span>
