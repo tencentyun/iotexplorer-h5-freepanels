@@ -2,7 +2,9 @@ import React, { useRef, useEffect, useState } from 'react';
 import { Icon } from '@custom/Icon';
 import { OptionDialog } from '@custom/OptionDialog';
 import { getOptions } from '@utils'
-const colorList = ['#FEFFFF', '#FCF0D2', '#BDD0FA', '#F9D276'];
+import { CountDown } from '../../Common/CountDown';
+
+const colorList = ['#F9D276', '#FCF0D2', '#FEFFFF', '#BDD0FA'];
 const Action = (props) => {
   const {
     templateMap,
@@ -10,8 +12,8 @@ const Action = (props) => {
     history: { PATH, push },
     timer: { isExistTimer },
     doControlDeviceData,
+    setCountDown
   } = { ...props }
-
   const { power_switch, working_mode } = deviceData;
   const countRef = useRef(null);
   const modeList = getOptions(templateMap, 'working_mode');
@@ -30,10 +32,16 @@ const Action = (props) => {
       isExistTimer,
       ''
     ],
+    // [
+    //   '补光模式',
+    //   'mode',
+    //   () => { setModeVisible(true) },
+    //   !!power_switch
+    // ],
     [
-      '补光模式',
-      'mode',
-      () => { setModeVisible(true) },
+      '倒计时',
+      'countdown',
+      power_switch && (() => { countRef.current.onOpen(); }),
       !!power_switch
     ],
   ];
@@ -55,6 +63,10 @@ const Action = (props) => {
 
   return (
     <div className="action-list">
+      <div className="mode-btn" onClick={() => { setModeVisible(true) }}>
+        <span style={{ marginRight: 8 }}>补光模式</span>
+        <span>&gt;</span>
+      </div>
       <div className='custom-mask'></div>
       <div className="mode-list">
         {getOptions(templateMap, 'color_mode').map(({ label, value }, index) => (
@@ -118,6 +130,9 @@ const Action = (props) => {
           doControlDeviceData('working_mode', parseInt(value[0]));
         }}
       ></OptionDialog>
+      <CountDown ref={countRef} {...props} onChange={(count_down) => {
+        setCountDown && setCountDown(count_down)
+      }} />
     </div>
   );
 };

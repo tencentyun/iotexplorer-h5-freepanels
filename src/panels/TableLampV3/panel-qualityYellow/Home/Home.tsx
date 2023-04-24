@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Action from './Action';
 import { DeviceDetail } from '@custom/DeviceDetail';
 import { Switch } from '@custom/Switch';
@@ -9,6 +9,9 @@ export function Home(props) {
   const onSwitchClick = () => {
     doControlDeviceData('power_switch', Number(!deviceData.power_switch));
   }
+
+  const [showCountDown, setShowCountDown] = useState(false);
+  const [countDown, setCountDown] = useState('00:00:00');
   return (
     <div className={`home ${!deviceData.power_switch ? 'is-off' : ''}`}>
       <DeviceDetail></DeviceDetail>
@@ -22,11 +25,24 @@ export function Home(props) {
               onChange={onSwitchClick}
             />
           </div>
+
+          {showCountDown && <div className="count-down">
+            <span>倒计时：</span>
+            <span>{countDown}</span>
+          </div>}
           <div className="right">
             <Icon name="light" />
           </div>
         </div>
-        <Action {...props}></Action>
+        <Action {...props} setCountDown={(value) => {
+          if (value) {
+            const hour = `${Math.floor(value / 3600)}`;
+            const minute = `${Math.floor((value % 3600) / 60)}`;
+            const second = `${Math.floor((value % 3600) % 60)}`;
+            setCountDown(`${hour >= 10 ? hour : '0' + hour}:${minute >= 10 ? minute : '0' + minute}:${second >= 10 ? second : '0' + second}`)
+          }
+          setShowCountDown(true);
+        }}></Action>
       </div>
     </div>
   );

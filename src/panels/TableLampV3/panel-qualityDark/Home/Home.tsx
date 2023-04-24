@@ -1,12 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Position } from '../../Common/Home/Position';
 import LightBright from '../../Common/Home/LightBright';
 import Action from './Action';
 import { DeviceDetail } from '@custom/DeviceDetail';
 import { getOptions } from '@utils';
 import classNames from 'classnames';
-
-const colorList = ['#FEFFFF', '#FCF0D2', '#BDD0FA', '#F9D276'];
+const colorList = ['#F9D276', '#FCF0D2', '#FEFFFF', '#BDD0FA'];
 
 export function Home(props) {
   const {
@@ -14,11 +13,17 @@ export function Home(props) {
     deviceData: { power_switch, color_mode = 1 },
     doControlDeviceData,
   } = props;
+  const [showCountDown, setShowCountDown] = useState(false);
+  const [countDown, setCountDown] = useState('00:00:00');
   return (
     <div className={`home ${!power_switch ? 'is-off' : ''}`}>
       <div className="custom-mask"></div>
       <DeviceDetail></DeviceDetail>
       <div className='content-bottom'>
+        {showCountDown && <div className="count-down">
+          <span>倒计时：</span>
+          <span>{countDown}</span>
+        </div>}
         <div className={classNames("change-panel")}>
           <Position {...props}></Position>
           <LightBright
@@ -38,7 +43,15 @@ export function Home(props) {
             ))}
           </div>
         </div>
-        <Action {...props}></Action>
+        <Action {...props} setCountDown={(value) => {
+          if (value) {
+            const hour = `${Math.floor(value / 3600)}`;
+            const minute = `${Math.floor((value % 3600) / 60)}`;
+            const second = `${Math.floor((value % 3600) % 60)}`;
+            setCountDown(`${hour >= 10 ? hour : '0' + hour}:${minute >= 10 ? minute : '0' + minute}:${second >= 10 ? second : '0' + second}`)
+          }
+          setShowCountDown(true);
+        }}></Action>
       </div>
     </div>
   );

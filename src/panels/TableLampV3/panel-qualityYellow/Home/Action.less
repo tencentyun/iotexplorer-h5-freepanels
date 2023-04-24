@@ -6,6 +6,24 @@
     position: relative;
     z-index: 2;
 
+    .mode-btn {
+      position: absolute;
+      left: 22px;
+      top: -44px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      span {
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 22px;
+        text-align: center;
+        letter-spacing: 0.002em;
+        color: #FFFFFF;
+      }
+    }
+
     .mode-list {
       display: flex;
       justify-content: space-around;
@@ -125,13 +143,20 @@
         top: 500px;
         width: 322px;
         height: 340px;
+
+        .dialog-header {
+          padding-bottom: 10px;
+        }
+
         .dialog-content {
-          margin-bottom: 42px;
+          margin-bottom: 12px;
+
           .item-block {
             margin: 0;
             padding: 16px 0;
             border-bottom: 1px solid #67615A;
-            &:nth-child(3) {
+
+            &:last-child {
               border: 0;
             }
           }
