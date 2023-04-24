@@ -12,7 +12,7 @@ const LightBrightPage = ({
       defaultValue={deviceData[controlName]}
       status={deviceData.power_switch === 1}
       iconName={iconName}
-      minValue={0}
+      minValue={1}
       maxValue={100}
       onChange={(value, endTouch) => endTouch && doControlDeviceData(controlName, value)}
     />

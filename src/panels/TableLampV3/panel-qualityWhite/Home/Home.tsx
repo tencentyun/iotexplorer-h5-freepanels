@@ -27,15 +27,34 @@ export function Home(props) {
     const { height, width } = wrap.getBoundingClientRect();
     const offsetX = (clientX >= width ? width : (clientX <= 0 ? 0 : clientX)) * (6500 / width);
     const offsetY = (clientY >= height ? height : (clientY <= 0 ? 0 : clientY)) * (100 / height);
-    const value = parseInt(direction === 'x' ? offsetX : (100 - offsetY));
-    console.log(clientX)
+    let value = parseInt(direction === 'x' ? offsetX : (100 - offsetY));
     // const offsetValue = (!deviceData[attr] ? 0 : parseInt(deviceData[attr])) + value;
-    const min = direction === 'x' ? 2700 : 0;
+    const min = direction === 'x' ? 2700 : 1;
     const max = direction === 'x' ? 6500 : 100;
+    // 处理value固定值
+
     if (direction === 'x') {
-      if (value >= 2700 && value <= 3500) {
+      if (value > 2700 && value <= 3400) {
+        value = 3400;
+      } else if (value > 3400 && value <= 4000) {
+        value = 4000;
+      } else if (value > 4000 && value <= 4600) {
+        value = 4600;
+      } else if (value > 4600 && value <= 5200) {
+        value = 5200;
+      } else if (value > 5200 && value <= 5800) {
+        value = 5800;
+      }
+      else if (value > 5800 && value <= 6500) {
+        value = 6500;
+      }
+    }
+
+
+    if (direction === 'x') {
+      if (value >= 2700 && value <= 3400) {
         doControlDeviceData({ color_mode: 1 })
-      } else if (value > 3500 && value <= 4500) {
+      } else if (value > 3400 && value <= 4500) {
         doControlDeviceData({ color_mode: 2 })
       } else if (value > 4500 && value <= 6000) {
         doControlDeviceData({ color_mode: 3 })
@@ -43,6 +62,7 @@ export function Home(props) {
         doControlDeviceData({ color_mode: 4 })
       }
     }
+
     setField({
       [attr]: value >= max ? max : (value <= min ? min : value)
     })
