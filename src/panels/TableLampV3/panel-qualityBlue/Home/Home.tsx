@@ -17,7 +17,7 @@ export function Home(props) {
   const hozRef = useRef(null);
   const verRef = useRef(null);
 
-  const [field, setField] = useState({brightness,color_temp});
+  const [field, setField] = useState({ brightness, color_temp,attr:'color_temp' });
   const [showCountDown, setShowCountDown] = useState(false);
   const [countDown, setCountDown] = useState('00:00:00');
   const [color_mode,setcolorMode] = useState(deviceData.color_mode || 1);
@@ -68,12 +68,13 @@ export function Home(props) {
 
     setField({
       ...field,
+      attr,
       [attr]: value >= max ? max : (value <= min ? min : value)
     })
   }
 
   const onTouchEnd = (e) => {
-    doControlDeviceData({ ...field });
+    doControlDeviceData({ [field.attr]: field[field.attr] });
   }
 
   return (
