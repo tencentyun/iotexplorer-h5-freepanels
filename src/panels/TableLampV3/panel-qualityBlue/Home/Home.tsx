@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState ,useEffect} from 'react';
 import Action from './Action';
 import { DeviceDetail } from '@custom/DeviceDetail';
 import { getOptions } from '@utils';
@@ -21,6 +21,16 @@ export function Home(props) {
   const [showCountDown, setShowCountDown] = useState(false);
   const [countDown, setCountDown] = useState('00:00:00');
   const [color_mode,setcolorMode] = useState(deviceData.color_mode || 1);
+
+
+  useEffect(()=>{
+    setcolorMode(deviceData.color_mode)
+  },[deviceData.color_mode])
+
+
+  useEffect(()=>{
+    setField({...field,brightness,color_temp})
+  },[brightness,color_temp])
 
 
   const onTouchMove = (direction, attr, ref, e) => {
