@@ -1,10 +1,11 @@
 import log from '@libs/logger';
 import React, { useState } from 'react';
-import { toLineObj, getEnv } from '@utils';
+import * as  utils from '@utils';
 import { useTimer } from '@src/hooks/useDevice';
 import { StatusTip } from '@custom/StatusTip';
 import { DeviceDetail } from '@custom/DeviceDetail';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
+import { useTitle } from '@hooks/useTitle';
 import { useDeviceInfo } from '@hooks/useDeviceInfo';
 import {
   HashRouter,
@@ -14,7 +15,18 @@ import {
   useHistory,
 } from 'react-router-dom';
 
+let { toLineObj, getEnv } = utils;
 const env = getEnv();
+
+
+const setStorage = (key: string, data) => localStorage.setItem(key, JSON.stringify(data));
+const getStorage = (key: string) => {
+  let value = localStorage.getItem(key);
+  return value ? JSON.parse(value) : value
+};
+
+
+
 
 const parse = (url = '', { code = '' } = {}) => {
   if (!url) return {};
@@ -26,7 +38,7 @@ const parse = (url = '', { code = '' } = {}) => {
     const keyValue = qs.split('=');
     let value = keyValue[1];
     if (code) {
-      value =        code === 'encode'
+      value = code === 'encode'
         ? encodeURIComponent(value)
         : decodeURIComponent(value);
     }
@@ -39,7 +51,7 @@ const stringify = (obj = {}, { code = '' } = {}) => Object.keys(obj)
   .map((key) => {
     let value = obj[key];
     if (code) {
-      value =          code === 'encode'
+      value = code === 'encode'
         ? encodeURIComponent(value)
         : decodeURIComponent(value);
     }
@@ -57,6 +69,11 @@ const PageComponent = ({
 }) => {
   const reactDomHistory = useHistory();
   const [timerState, TimerAction] = useTimer();
+  // 本地存储 记录用户第一次使用产品等信息
+  let { UserID, DeviceId } = props?.deviceInfo || {}
+  let uniKey = `${UserID}/${DeviceId}_`;
+  const setLocal = (key, value) => setStorage(`${uniKey}${key}`, value);
+  const getLocal = key => getStorage(`${uniKey}${key}`);
   const history = {
     push: (pathName, params) => {
       let url = pathName;
@@ -74,19 +91,28 @@ const PageComponent = ({
   const { tips } = sdk;
 
   // 查看更多 设备详情
-  const goMore = ()=>{
+  const goMore = () => {
     !sdk.disable && sdk?.goDeviceDetailPage()
   }
+
+  const setTitle = (title) => useTitle(title || props?.deviceInfo?.AliasName ||  props?.deviceInfo?.DeviceName);
 
   const allProps = {
     history,
     ...props,
     timer: { ...timerState, ...TimerAction },
     tips,
-    goMore
+    goMore,
+    setLocal,
+    getLocal,
+    utils,
+    setTitle
   };
 
-  log.mi('', allProps);
+  log.mi('allProps', allProps);
+
+  if (path === '/home') setTitle('');
+
   return (
     <div
       className={`route-root  route-${getPathName(
@@ -108,7 +134,7 @@ const getPathName = (path: string, split = '_', isUpperCase = true) => {
     : pathName.toLocaleLowerCase();
 };
 
-export const Router = ({ route = [] as HashMap[], detail = true,...routerProps }) => {
+export const Router = ({ route = [] as HashMap[], detail = true, ...routerProps }) => {
   const [state, action] = useDeviceInfo();
   const [context, setContextData] = useState({});
   const setContext = (key, val = true, isAppend = true) => {
