@@ -15,7 +15,7 @@ const GateWay = (props) => {
   // 其他页面返回也刷新
   const [gatewayList, setGatewayList] = useState([]);
   const [visible, setVisible] = useState(false);
-  const { deviceData = {}, doControlDeviceData = () => { } } = { ...props };
+  const { deviceData = {}, doControlDeviceData = () => { }, history } = { ...props };
   useEffect(() => {
   }, []);
 
@@ -44,7 +44,7 @@ const GateWay = (props) => {
     [
       '子设备管理',
       'book',
-      () => { },
+      () => { history?.push('/subDevice') },
       ''
     ],
   ].filter(v => v);
@@ -56,8 +56,8 @@ const GateWay = (props) => {
       {/* 功能列表组件 */}
       <div className="comp-block">
         <div className="comp-list">
-          {actions.map(([title, prefixIcon, cb, value, type]) => (
-            <div className="cell-item">
+          {actions.map(([title, prefixIcon, cb, value, type], index) => (
+            <div className="cell-item" key={index}>
               <Icon className="custom-icon" name={prefixIcon}></Icon>
               <Cell
                 title={title}
@@ -102,7 +102,8 @@ export function Home(props) {
   return (
     <div className='home'>
       <div className="custom-tabs">
-        {tabs.map(item => (<div
+        {tabs.map((item, index) => (<div
+          key={index}
           className={classNames("custom-tab", active === item[0] ? 'on' : '', item[2])}
           onClick={() => onTabClick(item[0])}
         >
