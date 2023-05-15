@@ -5,45 +5,18 @@ import { Icon } from '@custom/Icon';
 import { Tabs } from '@custom/Tabs';
 import { Btn } from '@custom/Btn';
 import { SubDevice } from '../SubDevice';
+import { Modal } from '@custom/Modal';
 import classNames from 'classnames';
 import { Light } from '../Light'
 import { Cell } from '@custom/Cell';
+import { LightBright } from '@custom/LightBright';
 
 const GateWay = (props) => {
   // 其他页面返回也刷新
   const [gatewayList, setGatewayList] = useState([]);
-  const { deviceData = {}, doControlDeviceData } = { ...props };
-  const getDeviceDataGateway = async () => {
-    const { h5PanelSdk } = window;
-    const { subDeviceList } = await h5PanelSdk.getSubDeviceList();
-    try {
-      // 获取设备状态
-      const deviceIds = subDeviceList.map(({ DeviceId }) => DeviceId);
-      const devicesStatus = await sdk.requestTokenApi('AppGetDeviceStatuses', {
-        Action: 'AppGetDeviceStatuses',
-        // AccessToken: 'AccessToken',
-        RequestId: sdk.requestId,
-        DeviceIds: deviceIds,
-      });
-      // "Online": 0 //0 在线；1：离线
-      const data = subDeviceList.map(item => ({
-        ...item,
-        Online: devicesStatus.DeviceStatuses.filter(({ DeviceId }) => DeviceId === item.DeviceId)[0]?.Online,
-      }));
-      setGatewayList(data);
-    } catch (err) {
-      console.error('get info fail', err);
-    }
-  };
+  const [visible, setVisible] = useState(false);
+  const { deviceData = {}, doControlDeviceData = () => { } } = { ...props };
   useEffect(() => {
-    // 获取网关子设备
-    sdk.on('pageShow', () => {
-      getDeviceDataGateway();
-    });
-    getDeviceDataGateway();
-    return () => {
-      sdk.off('pageShow');
-    };
   }, []);
 
   const actions = [
@@ -59,13 +32,13 @@ const GateWay = (props) => {
       'bell',
       () => { doControlDeviceData('alarm_sound_switch', !deviceData?.alarm_sound_switch) },
       !!deviceData?.alarm_sound_switch,
-      'switch'
+      'switch',
     ],
     [
       '报警音量',
       'voice',
-      () => { },
-      deviceData?.guard_vol || 0,
+      () => { setVisible(true) },
+      deviceData?.guard_vol || '0',
       ''
     ],
     [
@@ -88,6 +61,7 @@ const GateWay = (props) => {
               <Icon className="custom-icon" name={prefixIcon}></Icon>
               <Cell
                 title={title}
+                subTitle={value}
                 prefixIcon=''
                 onClick={cb}
                 ele={type}
@@ -101,6 +75,17 @@ const GateWay = (props) => {
           ))}
         </div>
       </div>
+      <Modal className='voice-modal' title="告警声音" visible={visible} onClose={() => setVisible(false)}>
+        <LightBright
+          defaultValue={deviceData['guard_vol'] || 0}
+          status={true}
+          iconName="light"
+          minValue={0}
+          maxValue={10}
+          onChange={(value, endTouch) => endTouch && doControlDeviceData('guard_vol', value)}
+        ></LightBright>
+        <Btn className="custom-btn" onClick={() => setVisible(false)}>关闭</Btn>
+      </Modal>
     </div>
   );
 }

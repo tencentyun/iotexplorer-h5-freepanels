@@ -8,7 +8,6 @@ export function Light(props) {
     <div className="night-bright">
       <div className="switch-content" >
         <div className="custom-circle" onClick={() => {
-          console.log(!deviceData?.night_switch)
           doControlDeviceData('night_switch', !deviceData?.night_switch)
         }}>
           <div className="custom-ring">
