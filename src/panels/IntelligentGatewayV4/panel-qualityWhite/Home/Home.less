@@ -1,0 +1,101 @@
+@import url("./Position.less");
+
+.home {
+  width: 100%;
+  color: @c1;
+
+  .custom-tabs {
+    display: flex;
+    flex-direction: row;
+    height: 32px;
+    align-items: center;
+    position: relative;
+    margin-top: 16px;
+
+    .custom-tab {
+      width: calc(50% - 40px);
+      display: flex;
+
+      .title {
+        font-weight: 400;
+        height: 18px;
+        font-size: 16px;
+        line-height: 18px;
+        color: #000000;
+      }
+    }
+
+    .line {
+      position: absolute;
+      left: 50%;
+      width: 1px;
+      height: 32px;
+      background: #EFF3F5;
+    }
+
+    .first {
+      justify-content: flex-end;
+      padding-right: 40px;
+    }
+
+    .second {
+      padding-left: 40px;
+    }
+
+    .on {
+      .title {
+        position: relative;
+        font-weight: 600;
+
+        &::after {
+          content: '';
+          position: absolute;
+          width: 20px;
+          height: 4px;
+          background: #30414D;
+          border-radius: 100px;
+          left: calc(50% - 10px);
+          bottom: -12px;
+        }
+      }
+
+    }
+  }
+
+  .content {
+    .gateway {
+      .comp-block {
+        .comp-list {
+          padding: 16px;
+
+          .cell-item {
+            position: relative;
+
+            .custom-icon {
+              position: absolute;
+              z-index: 1;
+              top: 24px;
+              left: 16px;
+            }
+
+            .cell.border {
+              box-sizing: border-box;
+              border: 1px solid #EFF3F5;
+              border-radius: 8px;
+              padding: 12px 16px;
+              padding-left: 56px;
+              margin-bottom: 16px;
+              height: 70px;
+              display: flex;
+              flex-direction: column;
+              justify-content: center;
+              background: #fff;
+            }
+          }
+        }
+      }
+    }
+
+
+  }
+}
