@@ -83,6 +83,14 @@ const PageComponent = ({
       }
       reactDomHistory.push(url);
     },
+    replace: (pathName, params) => {
+      let url = pathName;
+      if (params) {
+        const queryString = stringify(params);
+        url = `${pathName}?${queryString}`;
+      }
+      reactDomHistory.replace(url);
+    },
     goBack: reactDomHistory.goBack,
     query: parse(reactDomHistory.location.search, { code: 'need' }),
     PATH,
@@ -95,7 +103,7 @@ const PageComponent = ({
     !sdk.disable && sdk?.goDeviceDetailPage()
   }
 
-  const setTitle = (title) => useTitle(title || props?.deviceInfo?.AliasName ||  props?.deviceInfo?.DeviceName);
+  const setTitle = (title) => useTitle(title || props?.deviceInfo?.AliasName || props?.deviceInfo?.DeviceName);
 
   const allProps = {
     history,
@@ -106,6 +114,7 @@ const PageComponent = ({
     setLocal,
     getLocal,
     utils,
+    sdk,
     setTitle
   };
 

@@ -1,0 +1,181 @@
+{
+    "version": "1.0",
+    "properties": [
+        {
+            "id": "power_switch",
+            "name": "总开关",
+            "desc": "总开关",
+            "required": true,
+            "mode": "rw",
+            "define": {
+                "type": "bool",
+                "mapping": {
+                    "0": "关",
+                    "1": "开"
+                }
+            }
+        },
+        {
+            "id": "switch_1",
+            "name": "按键1_开关",
+            "desc": "按键_1的开关",
+            "required": true,
+            "mode": "rw",
+            "define": {
+                "type": "bool",
+                "mapping": {
+                    "0": "关",
+                    "1": "开"
+                }
+            }
+        },
+        {
+            "id": "count_down1",
+            "name": "按键1倒计时",
+            "desc": "",
+            "mode": "rw",
+            "define": {
+                "type": "int",
+                "min": "0",
+                "max": "86400",
+                "start": "0",
+                "step": "1",
+                "unit": "秒"
+            },
+            "required": false
+        },
+        {
+            "id": "button1",
+            "name": "按键1",
+            "desc": "",
+            "mode": "rw",
+            "define": {
+                "type": "enum",
+                "mapping": {
+                    "1": "1"
+                }
+            },
+            "required": false
+        },
+        {
+            "id": "switch_2",
+            "name": "按键2_开关",
+            "desc": "按键_2的开关",
+            "required": false,
+            "mode": "rw",
+            "define": {
+                "type": "bool",
+                "mapping": {
+                    "0": "关",
+                    "1": "开"
+                }
+            }
+        },
+        {
+            "id": "button2",
+            "name": "按键2",
+            "desc": "",
+            "mode": "rw",
+            "define": {
+                "type": "enum",
+                "mapping": {
+                    "1": "1"
+                }
+            },
+            "required": false
+        },
+        {
+            "id": "count_down2",
+            "name": "按键2倒计时",
+            "desc": "",
+            "mode": "rw",
+            "define": {
+                "type": "int",
+                "min": "0",
+                "max": "86400",
+                "start": "0",
+                "step": "1",
+                "unit": "秒"
+            },
+            "required": false
+        },
+        {
+            "id": "mode_switch1",
+            "name": "按键1模式",
+            "desc": "",
+            "mode": "rw",
+            "define": {
+                "type": "enum",
+                "mapping": {
+                    "0": "开关模式",
+                    "1": "场景模式"
+                }
+            },
+            "required": false
+        },
+        {
+            "id": "mode_switch2",
+            "name": "按键2模式",
+            "desc": "",
+            "mode": "rw",
+            "define": {
+                "type": "enum",
+                "mapping": {
+                    "0": "开关模式",
+                    "1": "场景模式"
+                }
+            },
+            "required": false
+        },
+        {
+            "id": "scene_switch",
+            "name": "场景模式开关",
+            "desc": "",
+            "mode": "rw",
+            "define": {
+                "type": "enum",
+                "mapping": {
+                    "0": "关闭",
+                    "1": "开启"
+                }
+            },
+            "required": false
+        },
+        {
+            "id": "add_elec",
+            "name": "增加电量",
+            "desc": "",
+            "mode": "r",
+            "define": {
+                "type": "float",
+                "min": "0",
+                "max": "50000",
+                "start": "0",
+                "step": "0.01",
+                "unit": "kwh（度）"
+            },
+            "required": false
+        },
+        {
+            "id": "current_power",
+            "name": "当前功率",
+            "desc": "",
+            "mode": "r",
+            "define": {
+                "type": "int",
+                "min": "0",
+                "max": "99999",
+                "start": "0",
+                "step": "1",
+                "unit": "W"
+            },
+            "required": false
+        }
+    ],
+    "events": [],
+    "actions": [],
+    "profile": {
+        "ProductId": "G5VUDFRT3R",
+        "CategoryId": "553"
+    }
+}
