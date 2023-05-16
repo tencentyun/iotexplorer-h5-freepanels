@@ -1,0 +1,221 @@
+.position_card {
+  position: relative;
+  padding: 58px 0 15px 0;
+
+  .main-bg {
+    width: 260px;
+    height: 260px;
+    // border: 1px solid #1F2738;
+    border-radius: 50%;
+    background: #272a6b;
+    box-shadow: 41.4629px -16px 108.84px rgba(50, 97, 255, 0.51), -55.7157px -10px 101.066px rgba(90, 51, 255, 0.42), inset 0px -7.77429px 18.14px rgba(0, 45, 78, 0.21), inset 0px 7.77429px 18.14px rgba(0, 17, 41, 0.2);
+
+    .bg-img {
+      position: absolute;
+      top: 38px;
+      left: 38px;
+      width: calc(100% - 100px);
+      height: calc(100% - 100px);
+      margin: 12px;
+      border-radius: 50%;
+      background: @c2;
+      box-shadow: 0px 0px 10px 2px #1F2738;
+
+      .svg-icon {
+        width: 60px;
+        height: 60px;
+      }
+    }
+  }
+
+  .circle-ring {
+    width: 236px;
+    height: 236px;
+    position: relative;
+
+    .fan-shape {
+      .clip-path {
+        // clip-path: inset(74% -2% -2% 1%) !important;
+        clip-path: polygon(50% 50%, -32% 100%, 132% 100%) !important;
+        top: 1px;
+        background: #272a6b;
+        position: relative;
+
+      }
+    }
+
+    .custom-circle {
+
+      &::before,
+      &::after {
+        content: ' ';
+        position: absolute;
+        width: 2px;
+        height: 44px;
+        background: #fff;
+        transform: rotate(60deg);
+        bottom: 42px;
+        left: 29px;
+        z-index: 2;
+      }
+
+      &::after {
+        left: unset;
+        right: 29px;
+        transform: rotate(300deg);
+      }
+    }
+
+    .cus-circle-panel .round-container .round .point {
+      width: 20px;
+      height: 44px;
+      border: 0 !important;
+      margin: 0;
+      background: transparent;
+      border-radius: 4px;
+      position: relative;
+      top: 6px;
+
+      &::after {
+        content: ' ';
+        width: 3px;
+        height: 44px;
+        background-color: #fff;
+        z-index: 1;
+        position: absolute;
+        left: 9px;
+      }
+    }
+
+    .bg {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+
+
+      .outer {
+        width: 100%;
+        height: 100%;
+        background-image: linear-gradient(270deg, #FFFFFF 0%, #BDD0FB 100%);
+      }
+
+      .inner {
+        width: 182px;
+        height: 182px;
+        background: #282e77;
+      }
+
+      .center {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 1;
+
+        .title {
+          font-weight: 500;
+          font-size: 16px;
+          line-height: 22px;
+          color: #1D202D;
+        }
+      }
+    }
+  }
+
+  .color-value {
+    display: none;
+  }
+
+  &.mode-3 {
+    .circle-ring {
+      .custom-circle::before {
+        background: #FEFFFF;
+      }
+
+      .bg {
+        .outer {
+          background-image: linear-gradient(270deg, #FFFFFF 0%, #FEFFFF 100%);
+        }
+
+        .bg-img {
+          background: #FEFFFF;
+        }
+      }
+    }
+  }
+
+  &.mode-2 {
+    .circle-ring {
+      .custom-circle::before {
+        background: #FCF0D2;
+      }
+
+      .bg {
+        .outer {
+          background-image: linear-gradient(270deg, #FFFFFF 0%, #FCF0D2 100%);
+        }
+
+        .bg-img {
+          background: #FCF0D2;
+        }
+      }
+    }
+  }
+
+  &.mode-4 {
+    .circle-ring {
+      .custom-circle::before {
+        background: #BDD0FB;
+      }
+
+      .bg {
+        .outer {
+          background-image: linear-gradient(270deg, #FFFFFF 0%, #BDD0FB 100%);
+        }
+
+        .bg-img {
+          background: #BDD0FB;
+        }
+      }
+    }
+  }
+
+  &.mode-1 {
+    .circle-ring {
+      .custom-circle::before {
+        background: #F9D276;
+      }
+
+      .bg {
+        .outer {
+          background-image: linear-gradient(270deg, #FFFFFF 0%, #F9D276 100%);
+        }
+
+        .bg-img {
+          background: #F9D276;
+        }
+      }
+    }
+  }
+
+
+  // &.off-switch {
+  //   .bg {
+  //     .outer {
+  //       background: #151d3c !important;
+  //       opacity: 1 !important;
+  //     }
+  //   }
+
+  //   .bg-img {
+  //     width: calc(100% - 100px);
+  //     height: calc(100% - 100px);
+  //     border: none;
+  //     background: #151D3C !important;
+  //     box-shadow: 0px 0px 24px rgba(0, 0, 0, 0.85) !important;
+  //   }
+
+  //   .inner {
+  //     opacity: 0.5;
+  //   }
+  // }
+}

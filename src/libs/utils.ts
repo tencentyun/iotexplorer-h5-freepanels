@@ -114,6 +114,11 @@ export const getOptions = (templateMap, key: string) => {
   return [{ label: '没数据', value: '0' }];
 };
 
+export const getOptionsArray = (templateMap, key: string) => {
+  let res = getOptions(templateMap,key);
+  return res.map(({label,value})=>([label,value]))
+};
+
 
 export const getDesc = (templateMap, key: string, type: string): string => {
   if (templateMap[key]) {

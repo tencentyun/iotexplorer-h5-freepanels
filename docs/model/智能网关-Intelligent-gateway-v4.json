@@ -1,0 +1,107 @@
+{
+    "version": "1.0",
+    "properties": [{
+        "id": "guard_mode",
+        "name": "守护模式",
+        "desc": "",
+        "mode": "rw",
+        "define": {
+            "type": "bool",
+            "mapping": {
+                "0": "关闭",
+                "1": "开启"
+            }
+        },
+        "required": false
+    },
+    {
+        "id": "night_brightness",
+        "name": "夜灯亮度",
+        "desc": "",
+        "mode": "rw",
+        "define": {
+            "type": "int",
+            "min": "0",
+            "max": "100",
+            "start": "0",
+            "step": "1",
+            "unit": ""
+        },
+        "required": false
+    },
+    {
+        "id": "night_switch",
+        "name": "夜灯开关",
+        "desc": "",
+        "mode": "rw",
+        "define": {
+            "type": "bool",
+            "mapping": {
+                "0": "关",
+                "1": "开"
+            }
+        },
+        "required": false
+    },
+    {
+        "id": "alarm_sound_switch",
+        "name": "报警声音开关",
+        "desc": "",
+        "mode": "rw",
+        "define": {
+            "type": "bool",
+            "mapping": {
+                "0": "关",
+                "1": "开"
+            }
+        },
+        "required": false
+    },
+    {
+        "id": "gateway_state",
+        "name": "网关状态",
+        "desc": "",
+        "mode": "r",
+        "define": {
+            "type": "enum",
+            "mapping": {
+                "0": "normal",
+                "1": "guarding"
+            }
+        },
+        "required": false
+    },
+    {
+        "id": "alarm_active",
+        "name": "上报告警",
+        "desc": "设备主动上报报警异常状态",
+        "mode": "r",
+        "define": {
+            "type": "string",
+            "min": "0",
+            "max": "2048"
+        },
+        "required": false
+    },
+    {
+        "id": "guard_vol",
+        "name": "报警音量调节",
+        "desc": "",
+        "mode": "rw",
+        "define": {
+            "type": "int",
+            "min": "0",
+            "max": "10",
+            "start": "0",
+            "step": "1",
+            "unit": ""
+        },
+        "required": false
+    }],
+    "events": [],
+    "actions": [],
+    "profile": {
+        "ProductId": "DB1ZTRJL7Q",
+        "CategoryId": "1"
+    }
+}

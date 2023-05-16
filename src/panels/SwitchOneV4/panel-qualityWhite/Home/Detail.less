@@ -1,0 +1,409 @@
+.detail {
+  .operator {
+    width: calc(100% - 36px);
+    display: flex;
+    justify-content: space-between;
+    position: absolute;
+    top: 18px;
+    left: 18px;
+
+    .operator-btn {
+      width: 20px;
+      height: 20px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      .operator-icon {
+        width: 20px;
+        height: 20px;
+      }
+    }
+  }
+
+  .environment {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 16px;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+
+    .switch-btn {
+      position: absolute;
+      left: calc(50% - 30px);
+      width: 60px;
+      height: 60px;
+      top: 20px;
+
+      .icon .svg-icon-normal {
+        width: 60px;
+        height: 60px;
+      }
+    }
+
+    .modeBtn {
+      width: 100%;
+      background: #FFFFFF;
+      border: 1px solid #EFF3F5;
+      border-radius: 8px;
+      margin-top: 24px;
+      padding: 24px 20px 24px 18px;
+
+      .cell-prefix-icon {
+        width: 20px;
+        height: 20px;
+        margin-right: 18px;
+      }
+
+      .cell-wrapper {
+        position: relative;
+      }
+
+      .cell-title {
+        font-family: 'PingFang SC';
+        font-style: normal;
+        font-weight: 600;
+        font-size: 16px;
+        line-height: 22px;
+        color: #30414D;
+      }
+
+      .cell-subtitle {
+        position: absolute;
+        right: 18px;
+        top: 0;
+        font-family: 'PingFang SC';
+        font-style: normal;
+        font-weight: 600;
+        font-size: 16px;
+        text-align: right;
+
+        color: rgba(38, 49, 61, 0.75);
+      }
+    }
+
+    .box {
+      width: 120px;
+      height: 92px;
+      background: #FFFFFF;
+      border: 1px solid #EFF3F5;
+      border-radius: 8px;
+
+      .content {
+        width: 100%;
+        height: 100%;
+
+        .box-content {
+          display: flex;
+          flex-direction: column;
+          width: 100%;
+          height: calc(100% - 20px);
+          align-items: center;
+          padding-top: 20px;
+
+          .icon .svg-icon-normal {
+            width: 24px;
+            height: 24px;
+          }
+
+          .cell.border {
+            padding: 0 !important;
+            border: 0 !important;
+            margin: 0 !important;
+            height: auto !important;
+            padding-left: 2px !important;
+            margin-top: 16px !important;
+
+            .cell-title-wrapper {
+              width: 100%;
+              text-align: center;
+            }
+
+            .icon-arrow-right {
+              display: none;
+            }
+          }
+
+          .title {
+            font-style: normal;
+            font-size: 12px;
+            line-height: 17px;
+            color: rgba(255, 255, 255, 0.75);
+          }
+
+          .switch {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 8px;
+
+            .switch-title {
+              font-style: normal;
+              font-size: 16px;
+              line-height: 22px;
+              text-align: right;
+              color: #FFFFFF;
+            }
+
+            .custom-switch {
+              width: 40px;
+              height: 20px;
+
+              .adm-switch-checkbox,
+              .adm-switch-checkbox:before {
+                background: #1D202D !important;
+              }
+
+              .adm-switch-handle {
+                background: linear-gradient(90deg, #354269 0%, #3B3163 100%);
+              }
+            }
+          }
+
+          .adm-switch-checked {
+            .adm-switch-handle {
+              background: linear-gradient(90deg, #3161FE 0%, #5A31FE 100%) !important;
+            }
+          }
+        }
+      }
+    }
+
+  }
+
+  >#current-time {
+    .modal-footer {
+      padding: 16;
+
+      .btn-group {
+        padding: 0;
+      }
+
+      .btn {
+        margin: 0 6px;
+        height: 56px;
+
+        &:first-child {
+          margin-left: 0;
+        }
+
+        &:last-child {
+          margin-right: 0;
+        }
+      }
+
+      .btn-cancel {
+        color: #30414D;
+        border: 1px solid #EFF3F5;
+        background: #fff;
+      }
+    }
+  }
+
+  .custom-modal {
+    .modal {
+      display: flex;
+      flex-direction: column;
+    }
+
+    // .custom-radio {
+    //   display: flex;
+    //   flex-direction: column;
+    //   flex: 1;
+
+    //   input[type="radio"] {
+    //     opacity: 0;
+    //     width: 0;
+    //     height: 0;
+    //     display: none;
+    //   }
+
+    //   .radio-item {
+    //     font-size: 14px;
+    //     color: rgba(0, 0, 0, 0.65);
+    //     -webkit-box-sizing: border-box;
+    //     box-sizing: border-box;
+    //     list-style: none;
+    //     display: block;
+    //     position: relative;
+    //     margin-right: 8px;
+    //     cursor: pointer;
+    //     transition: all .3s ease;
+
+    //     display: flex;
+    //     align-items: center;
+    //     justify-content: space-between;
+    //     border-bottom: 1px solid #67615A;
+    //     margin: 0 24px;
+    //     padding: 0 2px;
+    //   }
+
+    //   .radio-item:last-child {
+    //     border: 0;
+    //   }
+
+    //   .radio-item-label::after {
+    //     display: inline-block;
+    //     width: 16px;
+    //     height: 16px;
+    //     border-radius: 50%;
+    //     border: 1px solid #30414D;
+    //     -webkit-box-sizing: border-box;
+    //     box-sizing: border-box;
+    //     content: "";
+    //     right: 0;
+    //     position: absolute;
+    //     top: calc(50% - 10px);
+    //   }
+
+    //   input[type="radio"]:checked+.radio-item-label::after {
+    //     padding: 4px;
+    //     background-color: #30414D;
+    //     background-clip: content-box;
+    //     border-color: #30414D;
+    //   }
+
+    //   .radio-item-label {
+    //     margin: 12px 0;
+    //     padding: 16px 0;
+    //     font-family: 'PingFang SC';
+    //     font-style: normal;
+    //     font-weight: 600;
+    //     font-size: 14px;
+    //     line-height: 20px;
+    //     color: #67615A;
+    //     display: block;
+    //     width: calc(100% - 16px);
+    //     text-align: left;
+    //   }
+    // }
+    .edit-name-modal {
+      background: transparent;
+      border: 0;
+      border-bottom: 1px solid #EFF3F5;
+      border-radius: 0;
+      width: calc(100% - 52px);
+      margin-top: 50px;
+      margin: 50px 24px 42px 24px;
+      font-family: 'PingFang SC';
+      font-style: normal;
+      font-weight: 600;
+      font-size: 16px;
+      line-height: 22px;
+      color: #30414D;
+      padding-bottom: 12px;
+
+      ::placeholder {
+
+        color: rgba(48, 65, 77, 0.5);
+      }
+
+      &:focus {
+        outline: 0;
+      }
+
+      &:focus-visible {
+        outline: 0;
+      }
+    }
+
+    .custom-radio {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+
+      input[type="radio"] {
+        opacity: 0;
+        width: 0;
+        height: 0;
+        display: none;
+      }
+
+      .radio-item {
+        font-size: 14px;
+        color: rgba(0, 0, 0, 0.65);
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        list-style: none;
+        display: block;
+        position: relative;
+        margin-right: 8px;
+        cursor: pointer;
+        transition: all .3s ease;
+
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border-bottom: 1px solid #EFF3F5;
+        margin: 0 16px;
+        padding: 0 8px;
+      }
+
+      .radio-item:last-child {
+        border: 0;
+      }
+
+      .radio-item-label::after {
+        display: inline-block;
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        border: 1px solid #30414D;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        content: "";
+        right: 0;
+        position: absolute;
+        top: calc(50% - 10px);
+      }
+
+      input[type="radio"]:checked+.radio-item-label::after {
+        padding: 4px;
+        background-color: #30414D;
+        background-clip: content-box;
+        border-color: #30414D;
+      }
+
+      display: flex;
+      flex-direction: column;
+
+      .radio-item-label {
+        padding: 16px 0;
+        font-family: 'PingFang SC';
+        font-style: normal;
+        font-weight: 600;
+        font-size: 14px;
+        line-height: 20px;
+        color: #30414D;
+        display: block;
+        width: calc(100% - 16px);
+        text-align: left;
+      }
+    }
+
+    // .modal-footer {
+    //   padding: 16;
+
+    //   .btn {
+    //     margin: 0 6px;
+    //     height: 56px;
+
+    //     &:first-child {
+    //       margin-left: 0;
+    //     }
+
+    //     &:last-child {
+    //       margin-right: 0;
+    //     }
+    //   }
+
+    //   .btn-cancel {
+    //     color: #30414D;
+    //     border: 1px solid #EFF3F5;
+    //     background: #fff;
+    //   }
+    // }
+  }
+
+}

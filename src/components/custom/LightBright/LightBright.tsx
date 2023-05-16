@@ -8,6 +8,7 @@ export function LightBright({
   minValue = 0,
   status = false,
   defaultValue = 80,
+  value,
   iconName = 'light',
   onChange = noop,
   isMask = true,
@@ -40,6 +41,12 @@ export function LightBright({
   useEffect(() => {
     onChange && onChange(dataInfo.dataUser, dataInfo.endTouch);
   }, [dataInfo]);
+
+  useEffect(()=>{
+    if(value !=void 0 ){
+      updateBrightVal(value,false);
+    }
+  },[value])
 
   const toggleReduce = () => {
     if (!status) return;

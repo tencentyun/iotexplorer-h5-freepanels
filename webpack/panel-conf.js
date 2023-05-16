@@ -1263,4 +1263,126 @@ module.exports = {
       ["panel-qualityYellow", { enable: true, entry: "app.tsx" }],
     ],
   },
+
+  //------------------------------精品追加产品----------------------------------
+  
+  DownlightsV4: {
+    name: "筒灯",
+    categoryKey: "DownlightsV4",
+    enable: true,
+    viewportWidth: 375,
+    panels: [
+      // ["panel-qualityDark", { enable: true, entry: "app.tsx" }],
+      ["panel-qualityWhite", { enable: true, entry: "app.tsx" }],
+      // ["panel-qualityBlue", { enable: true, entry: "app.tsx" }],
+      // ["panel-qualityPurple", { enable: true, entry: "app.tsx" }],
+      // ["panel-qualityYellow", { enable: true, entry: "app.tsx" }],
+    ],
+  },
+  SpotlightsV4: {
+    name: "射灯",
+    categoryKey: "SpotlightsV4",
+    enable: true,
+    viewportWidth: 375,
+    panels: [
+      // ["panel-qualityDark", { enable: true, entry: "app.tsx" }],
+      ["panel-qualityWhite", { enable: true, entry: "app.tsx" }],
+      // ["panel-qualityBlue", { enable: true, entry: "app.tsx" }],
+      // ["panel-qualityPurple", { enable: true, entry: "app.tsx" }],
+      // ["panel-qualityYellow", { enable: true, entry: "app.tsx" }],
+    ],
+  },
+  CWLightStripV4: {
+    name: "CW灯带",
+    categoryKey: "CWLightStripV4",
+    enable: true,
+    viewportWidth: 375,
+    panels: [
+      // ["panel-qualityDark", { enable: true, entry: "app.tsx" }],
+      ["panel-qualityWhite", { enable: true, entry: "app.tsx" }],
+      // ["panel-qualityBlue", { enable: true, entry: "app.tsx" }],
+      // ["panel-qualityPurple", { enable: true, entry: "app.tsx" }],
+      // ["panel-qualityYellow", { enable: true, entry: "app.tsx" }],
+    ],
+  },
+
+  RGBLightStripV4: {
+    categoryKey: "RGBLightStripV4",
+    name: "RGB灯带",
+    enable: true,
+    viewportWidth: 375,
+    panels: [
+        // ["panel-qualityDark", { enable: true, entry: "app.tsx" }],
+        ["panel-qualityWhite", { enable: true, entry: "app.tsx" }],
+        // ["panel-qualityBlue", { enable: true, entry: "app.tsx" }],
+        // ["panel-qualityPurple", { enable: true, entry: "app.tsx" }],
+        // ["panel-qualityYellow", { enable: true, entry: "app.tsx" }],
+    ],
+  },
+  SwitchTwoV4: {
+    name: "二路开关",
+    categoryKey: "SwitchTwoV4",
+    enable: true,
+    viewportWidth: 375,
+    panels: [
+      ["panel-qualityDark", { enable: true, entry: "app.tsx" }],
+      ["panel-qualityWhite", { enable: true, entry: "app.tsx" }],
+      ["panel-qualityBlue", { enable: true, entry: "app.tsx" }],
+      ["panel-qualityPurple", { enable: true, entry: "app.tsx" }],
+      ["panel-qualityYellow", { enable: true, entry: "app.tsx" }],
+    ],
+  },
+  SwitchThreeV4: {
+    name: "三路开关",
+    categoryKey: "SwitchThreeV4",
+    enable: true,
+    viewportWidth: 375,
+    panels: [
+      // ["panel-qualityDark", { enable: true, entry: "app.tsx" }],
+      ["panel-qualityWhite", { enable: true, entry: "app.tsx" }],
+      // ["panel-qualityBlue", { enable: true, entry: "app.tsx" }],
+      // ["panel-qualityPurple", { enable: true, entry: "app.tsx" }],
+      // ["panel-qualityYellow", { enable: true, entry: "app.tsx" }],
+    ],
+  },
+  SwitchOneV4: {
+    name: "一路开关",
+    categoryKey: "SwitchOneV4",
+    enable: true,
+    viewportWidth: 375,
+    panels: [
+      // ["panel-qualityDark", { enable: true, entry: "app.tsx" }],
+      ["panel-qualityWhite", { enable: true, entry: "app.tsx" }],
+      // ["panel-qualityBlue", { enable: true, entry: "app.tsx" }],
+      // ["panel-qualityPurple", { enable: true, entry: "app.tsx" }],
+      // ["panel-qualityYellow", { enable: true, entry: "app.tsx" }],
+    ],
+  },
+  TableLampV4: {
+    name: "台灯",
+    categoryKey: "TableLampV4",
+    enable: true,
+    viewportWidth: 375,
+    panels: [
+      // ["panel-qualityDark", { enable: true, entry: "app.tsx" }],
+      ["panel-qualityWhite", { enable: true, entry: "app.tsx" }],
+      // ["panel-qualityBlue", { enable: true, entry: "app.tsx" }],
+      // ["panel-qualityPurple", { enable: true, entry: "app.tsx" }],
+      // ["panel-qualityYellow", { enable: true, entry: "app.tsx" }],
+    ],
+  },
+
+  IntelligentGatewayV4:{
+    name: "智能网关",
+    categoryKey: "IntelligentGatewayV4",
+    enable: true,
+    viewportWidth: 375,
+    panels: [
+      // ["panel-qualityDark", { enable: true, entry: "app.tsx" }],
+      ["panel-qualityWhite", { enable: true, entry: "app.tsx" }],
+      // ["panel-qualityBlue", { enable: true, entry: "app.tsx" }],
+      // ["panel-qualityPurple", { enable: true, entry: "app.tsx" }],
+      // ["panel-qualityYellow", { enable: true, entry: "app.tsx" }],
+    ],
+  }
 };
