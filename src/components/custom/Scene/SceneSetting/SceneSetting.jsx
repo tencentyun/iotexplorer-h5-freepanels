@@ -6,113 +6,52 @@ import { useTitle } from '@src/hooks/useTitle';
 import { Empty } from '@custom/Empty';
 import { Icon } from '@custom/Icon';
 
-export const SceneSetting = ({ log, sdk, history }) => {
+
+const getSceneData = (deviceData = {}, scenceLength = 3, oScene = {}) => {
+    let datas = [];
+    for (let i = 0; i < scenceLength; i++) {
+        let sceneId = deviceData?.switch_scene_ids?.[i];
+        datas.push({
+            groupName: deviceData?.switch_names?.[i] || '场景按键' + (i + 1),
+            groupKey: i,
+            data: oScene[sceneId] ? [oScene[sceneId]] : []
+        })
+    }
+    return datas;
+}
+
+
+export const SceneSetting = ({ log, sdk, deviceData, doControlDeviceData, history, scenceLength = 3 }) => {
     let { replace, PATH } = history;
-    const [{ scenes, SCENE_API, doScene }] = useScene();
+    const [{ scenes }] = useScene();
     useTitle('场景设置')
-    // const scenes = {
-    //     "RequestId": "4r#9XohF@x",
-    //     "SceneList": [{
-    //         "SceneId": "s_727962b04f47459686ae170b8f21c4e1",
-    //         "FamilyId": "f_a513aefafe964f13bfa9f859d3d50728",
-    //         "SceneName": "灯带测试",
-    //         "SceneIcon": "https://main.qcloudimg.com/raw/06b9530a8f14b4a9fad2fdd7942d18c2.jpeg",
-    //         "FilterType": "",
-    //         "Actions": [{
-    //             "ActionType": 0,
-    //             "ProductId": "Q19Z8U71GG",
-    //             "DeviceName": "CWLightStripV4",
-    //             "GroupId": "",
-    //             "Data": "{\"power_switch\":1}"
-    //         },
-    //         {
-    //             "ActionType": 0,
-    //             "ProductId": "Q19Z8U71GG",
-    //             "DeviceName": "CWLightStripV4",
-    //             "GroupId": "",
-    //             "Data": "{\"brightness\":49}"
-    //         },
-    //         {
-    //             "ActionType": 0,
-    //             "ProductId": "48UDRJSYRU",
-    //             "DeviceName": "SwitchTwoV4",
-    //             "GroupId": "",
-    //             "Data": "{\"power_switch\":1}"
-    //         },
-    //         {
-    //             "ActionType": 0,
-    //             "ProductId": "48UDRJSYRU",
-    //             "DeviceName": "SwitchTwoV4",
-    //             "GroupId": "",
-    //             "Data": "{\"scene_switch\":1}"
-    //         }],
-    //         "UserId": "342974119110774784",
-    //         "CreateTime": 1684132575,
-    //         "UpdateTime": 1684132905,
-    //         "Flag": 0,
-    //         "Status": 0
-    //     },
-    //     {
-    //         "SceneId": "s_5f6e1df7213b42c784986ab106188edd",
-    //         "FamilyId": "f_a513aefafe964f13bfa9f859d3d50728",
-    //         "SceneName": "测试场景",
-    //         "SceneIcon": "https://main.qcloudimg.com/raw/8f40b6329330a24faac28cf746a65840.jpeg",
-    //         "FilterType": "",
-    //         "Actions": [{
-    //             "ActionType": 0,
-    //             "ProductId": "48UDRJSYRU",
-    //             "DeviceName": "SwitchTwoV4",
-    //             "GroupId": "",
-    //             "Data": "{\"power_switch\":1}"
-    //         }],
-    //         "UserId": "342974119110774784",
-    //         "CreateTime": 1684120625,
-    //         "UpdateTime": 1684131954,
-    //         "Flag": 0,
-    //         "Status": 0
-    //     }],
-    //     "Total": 2
-    // }
 
+    let senceData = getSceneData(deviceData, scenceLength, scenes?.oScene);
 
-    log.mi("获取到的场景数据:", scenes)
-    log.mi("获取到的场景数据:", JSON.stringify(scenes))
-
-
-    // TODO 后面提供物理模型后进行分组
-    let list = scenes.SceneList;
-
-    log.mi("场景格式化后的数据:", list)
-
-    // TODO 物理模型进行处理分组
-
-    let senceData = [{
-        groupName: "场景按键1",
-        groupKey: 'key1',
-        data: list
-    }, {
-        groupName: "场景按键2",
-        data: list
-    },
-    {
-        groupName: "场景按键3",
-        data: []
-    }]
-
-    // 根据场景ID获取对应的场景
+    log.mi("获取到的场景数据:", scenes, scenes?.oScene, senceData);
 
     const onNameChange = (index, name) => {
-        log.mi('数据的变化', name);
+        let oldData = JSON.parse(JSON.stringify(deviceData.switch_names || []));
+        oldData[index] = name;
+        doControlDeviceData('switch_names', oldData);
     }
-
 
     const onAddSenceCheck = (index) => {
         replace(PATH.SCENE_BIND, { groupId: index });
     }
 
+    const bindScene = (groupId) => {
+        replace(PATH.SCENE_LIST, { groupId })
+    }
+
 
     if (!senceData?.length) return <Empty></Empty>
 
+    log.mi("senceData", senceData);
+
+    const onSwitchChange = (index, checked) => {
+        doControlDeviceData('mode_switch' + (index + 1), checked ? 1 : 0);
+    }
 
     return <div className='scene-setting'>
         {senceData.map((group, index) => {
@@ -125,13 +64,13 @@ export const SceneSetting = ({ log, sdk, history }) => {
                     </span>
 
                     {
-                        group.data.length ? <Icon name="change" onClick={onAddSenceCheck.bind(null, index)}></Icon> : 
+                        group.data.length ? <Icon name="change" onClick={bindScene.bind(null, index)}></Icon> :
                             <div className="add-icon" onClick={onAddSenceCheck.bind(null, index)} > + </div>
                     }
 
                 </div>
                 {group.data.map(item => {
-                    return <div className='scene-list' key={item.SceneId}>
+                    return <div className='scene-list' key={item?.SceneId}>
                         <div className='sence-item'>
                             <div className='item' style={{ backgroundImage: `url(${item.SceneIcon})` }}>
                                 <span>
@@ -140,7 +79,7 @@ export const SceneSetting = ({ log, sdk, history }) => {
                                 </span>
                                 <div>
                                     <div className='scene-execute'>
-                                        <Switch></Switch>
+                                        <Switch checked={!!deviceData['mode_switch' + (index + 1)]} onChange={onSwitchChange.bind(null,index)}></Switch>
                                     </div>
                                 </div>
                             </div>
@@ -148,10 +87,10 @@ export const SceneSetting = ({ log, sdk, history }) => {
                     </div>
                 })}
                 {
-                 group.data.length ? null :
-                    <div className='bind-scene' onClick={onAddSenceCheck.bind(null, index)}>
-                        <span> + 绑定场景</span>
-                    </div>
+                    group.data.length ? null :
+                        <div className='bind-scene' onClick={onAddSenceCheck.bind(null, index)}>
+                            <span> + 绑定场景</span>
+                        </div>
                 }
             </div>
         })}
