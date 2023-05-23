@@ -10,7 +10,7 @@ const SCENE_API = {
 
 export const requestTokenApi = (action: string, data = {} as any) => {
   const { ProductId, DeviceName, UserID, FamilyId } = sdk.deviceInfo;
-  let param = {
+  const param = {
     // UserID,
     // ProductId,
     // DeviceName,
@@ -24,7 +24,6 @@ export const requestTokenApi = (action: string, data = {} as any) => {
 };
 
 export const useScene = () => {
-
   const [scenes, setScenes] = useState({});
 
   useEffect(() => {
@@ -34,23 +33,21 @@ export const useScene = () => {
   // 转换需要的数据
   const totalDevice = (Actions) => {
     if (Actions && Actions.length) {
-      let keys = [];
-      Actions.forEach(element: any => {
-        keys.push(element?.DeviceName)
+      const keys: string[] = [];
+      Actions.forEach((element: any) => {
+        keys.push(element?.DeviceName);
       });
       return [... new Set(keys)].filter(v => !!v).length;
     }
     return 0;
-  }
+  };
 
   const refreshSceneList = async () => {
     const sceneList = await requestTokenApi(SCENE_API.LIST);
 
-    let list = sceneList.SceneList.map((item) => {
-      return { ...item, deviceCount: totalDevice(item.Actions) }
-    })
-    
-    let result = { ...sceneList, SceneList: list };
+    const list = sceneList.SceneList.map(item => ({ ...item, deviceCount: totalDevice(item.Actions) }));
+
+    const result = { ...sceneList, SceneList: list };
     setScenes(result);
 
     console.log('requestTokenApi===== SceneList =========', result);
