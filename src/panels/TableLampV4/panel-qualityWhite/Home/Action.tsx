@@ -24,7 +24,7 @@ const Action = (props) => {
 
   const modeList = getOptions(templateMap, 'working_mode');
   const [modeVisible, setModeVisible] = useState(false)
-  const [modeValue, setModeValue] = useState();
+  const [modeValue, setModeValue] = useState(1);
   useEffect(() => {
     setModeValue(modeList[working_mode - 1 || 0].value)
   }, [working_mode])
@@ -78,7 +78,7 @@ const Action = (props) => {
   ]
 
 
-  const goScenePage=()=>{
+  const goScenePage = () => {
     push(PATH.SCENE_SETTING)
   }
 
@@ -114,7 +114,7 @@ const Action = (props) => {
               setModeVisible(false);
             }}
             onConfirm={(value) => {
-              setModeValue(parseInt(value[0]) - 1);
+              setModeValue(value[0]);
               doControlDeviceData('working_mode', parseInt(value[0]));
             }}
           ></OptionDialog>

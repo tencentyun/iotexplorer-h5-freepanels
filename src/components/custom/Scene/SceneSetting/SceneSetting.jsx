@@ -23,7 +23,7 @@ const getSceneData = (deviceData = {}, scenceLength = 3, oScene = {}) => {
 
 export const SceneSetting = ({ log, sdk, deviceData, doControlDeviceData, history, scenceLength = 3 }) => {
     let { replace, PATH } = history;
-    const [{ scenes }] = useScene();
+    const [{ scenes }] = useScene(JSON.stringify(deviceData));
     useTitle('场景设置')
 
     let senceData = getSceneData(deviceData, scenceLength, scenes?.oScene);
