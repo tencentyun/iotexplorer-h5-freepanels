@@ -1048,7 +1048,6 @@ module.exports = {
       ["panel-qualityYellow", { enable: true, entry: "app.tsx" }],
     ],
   },
-  
 
   LightStripV3: {
     categoryKey: "LightStripV3",
@@ -1080,7 +1079,7 @@ module.exports = {
 
   ControlFourV3: {
     name: "妙控开关（4寸）",
-    categoryKey: "ControlFour",
+    categoryKey: "ControlFourV3",
     enable: true,
     viewportWidth: 375,
     panels: [
@@ -1265,7 +1264,7 @@ module.exports = {
   },
 
   //------------------------------精品追加产品----------------------------------
-  
+
   DownlightsV4: {
     name: "筒灯",
     categoryKey: "DownlightsV4",
@@ -1312,11 +1311,11 @@ module.exports = {
     enable: true,
     viewportWidth: 375,
     panels: [
-        // ["panel-qualityDark", { enable: true, entry: "app.tsx" }],
-        ["panel-qualityWhite", { enable: true, entry: "app.tsx" }],
-        // ["panel-qualityBlue", { enable: true, entry: "app.tsx" }],
-        // ["panel-qualityPurple", { enable: true, entry: "app.tsx" }],
-        // ["panel-qualityYellow", { enable: true, entry: "app.tsx" }],
+      // ["panel-qualityDark", { enable: true, entry: "app.tsx" }],
+      ["panel-qualityWhite", { enable: true, entry: "app.tsx" }],
+      // ["panel-qualityBlue", { enable: true, entry: "app.tsx" }],
+      // ["panel-qualityPurple", { enable: true, entry: "app.tsx" }],
+      // ["panel-qualityYellow", { enable: true, entry: "app.tsx" }],
     ],
   },
   SwitchTwoV4: {
@@ -1372,7 +1371,7 @@ module.exports = {
     ],
   },
 
-  IntelligentGatewayV4:{
+  IntelligentGatewayV4: {
     name: "智能网关",
     categoryKey: "IntelligentGatewayV4",
     enable: true,
@@ -1384,5 +1383,5 @@ module.exports = {
       // ["panel-qualityPurple", { enable: true, entry: "app.tsx" }],
       // ["panel-qualityYellow", { enable: true, entry: "app.tsx" }],
     ],
-  }
+  },
 };

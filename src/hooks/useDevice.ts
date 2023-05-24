@@ -24,12 +24,12 @@ export const requestTokenApi = (action: string, data = {} as any) => {
   });
 };
 
-export const useTimer = () => {
+export const useTimer = (key) => {
   const [timers, setTimers] = useState([]);
   useEffect(() => {
     refreshTimerList();
     // return () => { };
-  }, []);
+  }, [key]);
 
   const refreshTimerList = async () => {
     const timerList = await requestTokenApi(TIMER_API.LIST);

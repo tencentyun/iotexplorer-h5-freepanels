@@ -21,35 +21,92 @@ export function Home(props) {
 
   const [color_mode, setcolorMode] = useState(deviceData.color_mode || 1);
 
- 
+
 
 
 
   const hozRef = useRef(null);
   const verRef = useRef(null);
 
-  const [field, setField] = useState({ brightness, color_temp,attr:'color_temp' });
-  const [showCountDown, setShowCountDown] = useState(false);
-  const [countDown, setCountDown] = useState('00:00:00');
+  const [field, setField] = useState({ brightness, color_temp, attr: 'color_temp' });
+  let showCountDown = !!deviceData?.count_down;
+
+  const setCountDown = () => {
+    // doControlDeviceData
+  }
 
 
-  useEffect(()=>{
+  // const [countDown, setCountDown] = useState('00:00:00');
+
+
+  const showCountDownLabel = (value) => {
+    if (value) {
+      const hour = Math.floor(value / 3600);
+      const minute = Math.floor((value % 3600) / 60);
+      const second = Math.floor((value % 3600) % 60);
+      return `${hour >= 10 ? hour : '0' + hour}:${minute >= 10 ? minute : '0' + minute}:${second >= 10 ? second : '0' + second}`;
+    }
+    return null;
+  }
+
+
+
+  useEffect(() => {
     setcolorMode(deviceData.color_mode)
-  },[deviceData.color_mode])
+  }, [deviceData.color_mode])
 
 
-  useEffect(()=>{
-    setField({...field,brightness,color_temp})
-  },[brightness,color_temp])
-  
+  useEffect(() => {
+    setField({ ...field, brightness, color_temp })
+  }, [brightness, color_temp])
+
   const onTouchMove = (direction, attr, ref, e) => {
     const wrap = ref.current;
     const { clientX, clientY } = e.changedTouches[0];
     const { height, width } = wrap.getBoundingClientRect();
-    const offsetX = (clientX >= width ? width : (clientX <= 0 ? 0 : clientX)) * (6500 / width);
-    const offsetY = (clientY >= height ? height : (clientY <= 0 ? 0 : clientY)) * (100 / height);
-    let value = parseInt(direction === 'x' ? offsetX : (100 - offsetY));
-    // const offsetValue = (!deviceData[attr] ? 0 : parseInt(deviceData[attr])) + value;
+    // const offsetX = (clientX >= width ? width : (clientX <= 0 ? 0 : clientX)) * (6500 / width);
+    // const offsetY = (clientY >= height ? height : (clientY <= 0 ? 0 : clientY)) * (100 / height);
+    let offsetX = clientX;
+    let offsetY = clientY;
+    let value = parseInt(direction === 'x' ? `${offsetX}` : `${(100 - offsetY)}`);
+
+    // value = value2;
+    // if(direction != 'x'){
+    //   console.log("---", brightness,(50 - offsetY) * ((100-brightness)/100))
+    //   value =  (brightness || 0 ) + (50 - offsetY) * ((100-brightness)/100)
+    // }
+    // 向上还是ixiangxia
+    let value2 = 0;
+    if (direction != 'x') {
+      let begin = window.__offsetY;
+      let isUp = begin - offsetY < 0 ? false : true;
+      let sep = Math.abs(begin - offsetY);
+      // 移动的数值
+      value2 = isUp ? brightness + sep : brightness - sep;
+      if (value2 > 100) {
+        value2 =100;
+      }
+      if (value2 < 1) {
+        value2 = 1;
+      }
+      // console.log("移动的值", { brightness, begin, isUp, sep, value2, clientX, clientY })
+      value = value2;
+    }else{
+      let begin = window.__offsetX;
+      let isRight = begin - offsetX < 0 ? true : false;
+      let sep = Math.abs(begin - offsetX)* 50;
+      // 移动的数值
+      value2 = isRight ? color_temp + sep : color_temp - sep;
+      if (value2 > 6500) {
+        value2 =6500;
+      }
+      if (value2 < 100) {
+        value2 = 100;
+      }
+      // console.log("移动的值", { color_temp, begin, isRight, sep, value2, clientX, clientY })
+      value = value2;
+    }
+
     const min = direction === 'x' ? 2700 : 1;
     const max = direction === 'x' ? 6500 : 100;
     // 处理value固定值
@@ -84,7 +141,7 @@ export function Home(props) {
       }
     }
 
-    
+
     setField({
       ...field,
       attr,
@@ -93,10 +150,28 @@ export function Home(props) {
   }
 
   const onTouchEnd = () => {
+    console.log("field[field.attr]", field.attr, field[field.attr]);
     doControlDeviceData({ [field.attr]: field[field.attr] });
   }
 
+  const onTouchStart = (direction, attr, ref, e) => {
+    const wrap = ref.current;
+    const { clientX, clientY } = e.changedTouches[0];
+    const { height, width } = wrap.getBoundingClientRect();
 
+    // const offsetX = (clientX >= width ? width : (clientX <= 0 ? 0 : clientX)) * (6500 / width);
+    // const offsetY = (clientY >= height ? height : (clientY <= 0 ? 0 : clientY)) * (100 / height);
+
+    let offsetX = clientX;
+    let offsetY = clientY;
+
+    // 记录开始位置
+    window.__offsetY = offsetY;
+    window.__offsetX = offsetX;
+    console.log("记录开始移动的位置值:", { offsetY, offsetX })
+  }
+
+  // console.log("-----------------改变的值:",brightness)
   return (
     <div className={`home ${!deviceData.power_switch ? 'is-off' : ''}`}>
       <div className="custom-mask"></div>
@@ -105,20 +180,20 @@ export function Home(props) {
         <div className={classNames("change-panel")}>
           <div className={classNames('touch-panel', `mode-${color_mode}`)} style={{ opacity: parseInt(field.brightness, 10) / 100, zIndex: 1, position: 'relative' }}></div>
           <div className={classNames('touch-panel', `mode-${color_mode}`)} style={{ zIndex: 2, background: 'transparent', position: 'absolute', top: 0 }}>
-            <div className="touch-item" onTouchMove={(e) => { onTouchMove('x', 'color_temp', hozRef, e) }} onTouchEnd={onTouchEnd} ref={hozRef}>
+            <div className="touch-item" onTouchMove={(e) => { onTouchMove('x', 'color_temp', hozRef, e) }} onTouchStart={(e) => onTouchStart('x', 'color_temp', hozRef, e)} onTouchEnd={onTouchEnd} ref={hozRef}>
               <Icon name={`gesture-hoz-${parseInt(color_mode) === 1 || parseInt(color_mode) === 3 ? 'blank' : 'white'}`} />
               <div className="title">冷暖调节</div>
               <div className="title">色温：{field.color_temp}K</div>
             </div>
             <div className="split-line"></div>
-            <div className="touch-item" onTouchMove={(e) => { onTouchMove('y', 'brightness', verRef, e) }} onTouchEnd={onTouchEnd} ref={verRef}>
+            <div className="touch-item" onTouchMove={(e) => { onTouchMove('y', 'brightness', verRef, e) }} onTouchStart={(e) => onTouchStart('y', 'color_temp', hozRef, e)} onTouchEnd={onTouchEnd} ref={verRef}>
               <Icon name={`gesture-ver-${parseInt(color_mode) === 1 || parseInt(color_mode) === 3 ? 'blank' : 'white'}`} />
               <div className="title">亮度调节</div>
               <div className="title">亮度：{field.brightness}%</div>
             </div>
             {showCountDown && <div className="count-down">
               <span>倒计时：</span>
-              <span>{countDown}</span>
+              <span>{showCountDownLabel(deviceData?.count_down)}</span>
             </div>}
           </div>
           <div className="mode-list">
@@ -140,7 +215,6 @@ export function Home(props) {
             const second = `${Math.floor((value % 3600) % 60)}`;
             setCountDown(`${hour >= 10 ? hour : '0' + hour}:${minute >= 10 ? minute : '0' + minute}:${second >= 10 ? second : '0' + second}`)
           }
-          setShowCountDown(true);
         }}></Action>
       </div>
     </div>

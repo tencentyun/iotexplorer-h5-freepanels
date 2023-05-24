@@ -5,7 +5,7 @@ import { Detail } from './Detail';
 const getSwitchNum = (templateMap = {}) => Object.keys(templateMap).filter(v => /^switch/.test(v)).length || 1;
 
 export function Home(props) {
-  const { doControlDeviceData, templateMap, setContext, deviceData = {} } = props;
+  const { doControlDeviceData, templateMap, setContext, deviceData = {},switchNumProp } = props;
   const allSwitch = [
     ['switch_1', deviceData.name_button1 || '开关一'],
     ['switch_2', deviceData.name_button2 || '开关二'],
@@ -22,7 +22,7 @@ export function Home(props) {
     ['mode_switch5', 'name_button5', deviceData.name_button5 || '开关五'],
   ];
 
-  const switchNum = getSwitchNum(templateMap);
+  const switchNum = switchNumProp || getSwitchNum(templateMap);
   const currentSwitch = allSwitch.slice(0, switchNum);
   const currentMode = allMode.slice(0, switchNum);
   const onChange = (key, value) => doControlDeviceData(key, value ? 1 : 0);

@@ -72,6 +72,49 @@
             "required": false
         },
         {
+            "id": "scene_linkage",
+            "name": "场景联动",
+            "desc": "",
+            "mode": "rw",
+            "define": {
+                "type": "enum",
+                "mapping": {
+                    "0": "场景按键1"
+                }
+            },
+            "required": false
+        },
+        {
+            "id": "switch_names",
+            "name": "场景名称",
+            "desc": "",
+            "mode": "rw",
+            "define": {
+                "arrayInfo": {
+                    "type": "string",
+                    "min": "0",
+                    "max": "20"
+                },
+                "type": "array"
+            },
+            "required": false
+        },
+        {
+            "id": "switch_scene_ids",
+            "name": "场景id",
+            "desc": "",
+            "mode": "rw",
+            "define": {
+                "arrayInfo": {
+                    "type": "string",
+                    "min": "0",
+                    "max": "2048"
+                },
+                "type": "array"
+            },
+            "required": false
+        },
+        {
             "id": "scene_switch",
             "name": "场景模式开关",
             "desc": "",

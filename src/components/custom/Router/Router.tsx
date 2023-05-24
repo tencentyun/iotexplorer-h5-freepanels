@@ -68,7 +68,7 @@ const PageComponent = ({
   ...props
 }) => {
   const reactDomHistory = useHistory();
-  const [timerState, TimerAction] = useTimer();
+  const [timerState, TimerAction] = useTimer(JSON.stringify(props.deviceData));
   // 本地存储 记录用户第一次使用产品等信息
   let { UserID, DeviceId } = props?.deviceInfo || {}
   let uniKey = `${UserID}/${DeviceId}_`;

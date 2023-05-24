@@ -14,8 +14,8 @@ const allSwitch = [
 const getSwitchNum = (templateMap = {}) => Object.keys(templateMap).filter(v => /^switch/.test(v)).length || 1;
 
 export function Home(props) {
-  const { doControlDeviceData, templateMap, setContext, deviceData = {} } = props;
-  const switchNum = getSwitchNum(templateMap);
+  const { doControlDeviceData, templateMap, setContext, deviceData = {},switchNumProp } = props;
+  const switchNum = switchNumProp || getSwitchNum(templateMap);
   const currentSwitch = allSwitch.slice(0, switchNum);
   const onChange = (key, value) => doControlDeviceData(key, value ? 1 : 0);
 
