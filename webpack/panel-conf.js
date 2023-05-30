@@ -1384,4 +1384,32 @@ module.exports = {
       // ["panel-qualityYellow", { enable: true, entry: "app.tsx" }],
     ],
   },
+  // 没有彩色模式
+  SpotlightsTwoV4: {
+    name: "射灯",
+    categoryKey: "SpotlightsTwoV4",
+    enable: true,
+    viewportWidth: 375,
+    panels: [
+      // ["panel-qualityDark", { enable: true, entry: "app.tsx" }],
+      ["panel-qualityWhite", { enable: true, entry: "app.tsx" }],
+      // ["panel-qualityBlue", { enable: true, entry: "app.tsx" }],
+      // ["panel-qualityPurple", { enable: true, entry: "app.tsx" }],
+      // ["panel-qualityYellow", { enable: true, entry: "app.tsx" }],
+    ],
+  },
+  // 没有彩色模式
+  DownlightsTwoV4: {
+    name: "筒灯",
+    categoryKey: "DownlightsTwoV4",
+    enable: true,
+    viewportWidth: 375,
+    panels: [
+      // ["panel-qualityDark", { enable: true, entry: "app.tsx" }],
+      ["panel-qualityWhite", { enable: true, entry: "app.tsx" }],
+      // ["panel-qualityBlue", { enable: true, entry: "app.tsx" }],
+      // ["panel-qualityPurple", { enable: true, entry: "app.tsx" }],
+      // ["panel-qualityYellow", { enable: true, entry: "app.tsx" }],
+    ],
+  },
 };
