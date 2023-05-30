@@ -2,8 +2,7 @@
  * @Description: 人体传感器-表盘
  */
 import React from 'react';
-import classNames from 'classnames';
-import { Icon } from '@custom/Icon';
+
 
 export interface DiskProps {
   deviceData: any;
@@ -21,14 +20,14 @@ export function Disk({
         <div className="content">
           <div className="item">
             <div className="item-content">
-              <div className="number">{deviceData?.temperature?.current || 0}</div>
+              <div className="number">{deviceData?.current_temp || 0}</div>
               <div className="unit-1">c</div>
             </div>
             <div className="title">环境温度</div>
           </div>
           <div className="item">
             <div className="item-content">
-              <div className="number">{deviceData?.humidity?.current || 0}</div>
+              <div className="number">{deviceData?.current_humidity || 0}</div>
               <div className="unit-2">%</div>
             </div>
             <div className="title">环境湿度</div>
