@@ -60,7 +60,7 @@ export function Home(props) {
           <LightSwitch
             key={key}
             hasCount={true}
-            name={name}
+            name={deviceData[key]==='1' ? '开启':'关闭'}
             count={<Label name={`count_down${index + 1}`}></Label>}
             value={!!deviceData[key]}
             className={`light-switch-${index + 1}`}

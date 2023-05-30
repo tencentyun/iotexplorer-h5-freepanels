@@ -70,6 +70,7 @@ export const SceneSetting = ({ log, sdk, deviceData, doControlDeviceData, histor
 
                 </div>
                 {group.data.map(item => {
+                {/* {[{}].map(item => { */}
                     return <div className='scene-list' key={item?.SceneId}>
                         <div className='sence-item'>
                             <div className='item' style={{ backgroundImage: `url(${item.SceneIcon})` }}>
