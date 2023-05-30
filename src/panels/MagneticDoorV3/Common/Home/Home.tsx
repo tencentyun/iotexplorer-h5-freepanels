@@ -69,7 +69,7 @@ export function Home({
         {/* 电源模块 */}
         {/* 电源模块 */}
         <Battery
-          value={deviceData?.low_voltage?.battery_percentage || 50}
+          value={deviceData?.low_voltage?.voltage || 50}
           isShowPercent={true}
           isShowTip={false}
         />

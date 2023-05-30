@@ -54,7 +54,13 @@ export function Record() {
   return (
     <main className={classNames('more-record', { 'no-record': recordList.length === 0 })}>
       {recordList.length > 0 ? (
-        <Steps stepData={recordList} />
+        <Steps stepData={recordList} statusLabels={
+          {
+            0: '关闭',
+            1: '开启',
+            2: '未知',
+          }
+        } />
       ) : (
         <div className="no-record-tips">没有报警记录</div>
       )}
