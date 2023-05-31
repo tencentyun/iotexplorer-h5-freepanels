@@ -12,18 +12,18 @@ interface stringKey {
 }
 
 const HUMIDITY_LIST = {
-  1: '干燥',
-  2: '略干',
-  3: '舒适',
-  4: '潮湿'
+  "0": "干燥",
+  "1": "略干",
+  "2": "舒适",
+  "3": "潮湿"
 };
 
 const TEMPERATURE_LIST = {
-  1: '寒冷',
-  2: '冷',
-  3: '舒适',
-  4: '热',
-  5: '酷热'
+  0: '寒冷',
+  1: '较冷',
+  2: '舒适',
+  3: '较热',
+  4: '酷热'
 };
 
 export function Home({
@@ -37,7 +37,7 @@ export function Home({
       <header>
         {/* 电源模块 */}
         <Battery
-          value={deviceData?.low_voltage?.voltage || 50}
+          value={deviceData?.voltage || 50}
           isShowPercent={true}
           isShowTip={false}
         />
@@ -52,7 +52,7 @@ export function Home({
       <div className={classNames('setting-block')}>
         <Cell
           className="setting-button"
-          title={TEMPERATURE_LIST[deviceData?.temperature?.level || 1] }
+          title={TEMPERATURE_LIST[deviceData?.temp_level || 1]}
           prefixIcon={<Icon name="temperature" />}
           size="medium"
           isLink={false}
@@ -60,7 +60,7 @@ export function Home({
         ></Cell>
         <Cell
           className="setting-button"
-          title={HUMIDITY_LIST[deviceData?.humidity?.level || 1]}
+          title={HUMIDITY_LIST[deviceData?.humidity_level || 1]}
           prefixIcon={<Icon name="humidity" />}
           size="medium"
           isLink={false}

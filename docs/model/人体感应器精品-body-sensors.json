@@ -2,30 +2,6 @@
     "version": "1.0",
     "properties": [
         {
-            "id": "low_voltage",
-            "name": "电池电量",
-            "desc": "",
-            "mode": "r",
-            "define": {
-                "type": "struct",
-                "specs": [
-                    {
-                        "id": "voltage",
-                        "name": "电量",
-                        "dataType": {
-                            "type": "int",
-                            "min": "0",
-                            "max": "100",
-                            "start": "0",
-                            "step": "1",
-                            "unit": ""
-                        }
-                    }
-                ]
-            },
-            "required": false
-        },
-        {
             "id": "motionAlarm_state",
             "name": "红外检测",
             "desc": "检测是否有人入侵",
@@ -51,20 +27,35 @@
                 }
             },
             "required": false
+        },
+        {
+            "id": "voltage",
+            "name": "电池电量",
+            "desc": "",
+            "mode": "r",
+            "define": {
+                "type": "int",
+                "min": "0",
+                "max": "100",
+                "start": "0",
+                "step": "1",
+                "unit": ""
+            },
+            "required": false
         }
     ],
     "events": [
         {
             "id": "status_report",
             "name": "DeviceStatus",
-            "desc": "Report the device status",
+            "desc": "Reportthedevicestatus",
             "type": "info",
             "required": false,
             "params": [
                 {
                     "id": "status",
                     "name": "running_state",
-                    "desc": "Report current device running state",
+                    "desc": "Reportcurrentdevicerunningstate",
                     "define": {
                         "type": "bool",
                         "mapping": {
@@ -76,7 +67,7 @@
                 {
                     "id": "message",
                     "name": "Message",
-                    "desc": "Some extra message",
+                    "desc": "Someextramessage",
                     "define": {
                         "type": "string",
                         "min": "0",
@@ -88,7 +79,7 @@
     ],
     "actions": [],
     "profile": {
-        "ProductId": "NPUTMCLCY6",
+        "ProductId": "H88LJA0QIZ",
         "CategoryId": "109"
     }
 }

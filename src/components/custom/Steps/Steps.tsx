@@ -11,6 +11,7 @@ interface stepProps {
 }
 export interface StepsProps {
   stepData: stepProps[];
+  statusLabels:HashMap
 }
 
 const DAY_DESC: string[] = [
@@ -23,11 +24,11 @@ const DAY_DESC: string[] = [
   '周六',
 ];
 
-export function Steps({ stepData }: StepsProps) {
+export function Steps({ stepData, statusLabels }: StepsProps) {
   const item = (value: stepProps, index: number) => {
     const date = dayjs(Number(value.Time));
 
-    const statusLabel: HashMap = {
+    const statusLabel: HashMap = statusLabels || {
       1: '有积水',
       2: '正常',
       3: '检测中',

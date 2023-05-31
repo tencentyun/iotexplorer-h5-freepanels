@@ -1,0 +1,52 @@
+.ticker {
+  .content {
+    // display: none;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    min-height: 36px;
+    
+    .btn {
+      width: 88px;
+      height: 36px;
+      border-radius: 16px;
+      font-size: 16px;
+      color: #000000;
+      font-weight: 600;
+      background: transparent !important;
+    }
+
+    .btn-primary {
+      &::after{
+        content: '';
+        position: absolute;
+        width: 28px;
+        height: 4px;
+        left: calc(50% - 14px);
+        top: 29px;
+        background-color: #000000;
+        border-radius: 7px;
+      }
+    }
+
+    .btn-reverse {
+      // background: @c2;
+      border: none;
+    }
+
+    .btn-text {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+      font-size: 16px;
+    }
+
+  }
+
+  &.ticker-off {
+    .title {
+      opacity: 0.5;
+    }
+  }
+}
