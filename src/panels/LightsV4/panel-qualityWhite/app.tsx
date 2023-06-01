@@ -26,7 +26,7 @@ import './app.less';
   * 
   *
   *
-  *  * productType 类渲染支持组件的图标显示
+  *  * 每个产品都可以传递 productType 类渲染支持组件的图标显示
   *  * defModel 支持固定的指定显示模式  默认是双色模式
   */
 

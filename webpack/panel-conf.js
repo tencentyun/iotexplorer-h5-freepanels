@@ -1265,6 +1265,9 @@ module.exports = {
 
   //------------------------------精品追加产品----------------------------------
 
+
+  
+
   DownlightsV4: {
     name: "筒灯",
     categoryKey: "DownlightsV4",
@@ -1278,6 +1281,7 @@ module.exports = {
       // ["panel-qualityYellow", { enable: true, entry: "app.tsx" }],
     ],
   },
+
   SpotlightsV4: {
     name: "射灯",
     categoryKey: "SpotlightsV4",
@@ -1291,6 +1295,7 @@ module.exports = {
       // ["panel-qualityYellow", { enable: true, entry: "app.tsx" }],
     ],
   },
+
   CWLightStripV4: {
     name: "CW灯带",
     categoryKey: "CWLightStripV4",
