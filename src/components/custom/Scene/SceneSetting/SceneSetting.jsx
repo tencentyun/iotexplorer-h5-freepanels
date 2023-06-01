@@ -60,7 +60,7 @@ export const SceneSetting = ({ log, sdk, deviceData, doControlDeviceData, histor
 
                     <span>
                         <span>{group.groupName || '-'}</span>
-                        <EditorDialog displayName={group.groupName || ''} onOk={onNameChange.bind(null, index)}></EditorDialog>
+                        {/* <EditorDialog displayName={group.groupName || ''} onOk={onNameChange.bind(null, index)}></EditorDialog> */}
                     </span>
 
                     {

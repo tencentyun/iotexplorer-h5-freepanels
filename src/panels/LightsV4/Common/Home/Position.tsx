@@ -16,19 +16,26 @@ const toValue = val => Math.round(2700 + val * step);
 export function Position({
   // value,
   brightness = 80,
-  productType,
+  productType = "spotlight",
+  productColorMode = 1,
   deviceData: {
     // brightness = 80,
-    color_mode = 0,
+    color_mode,
     color_temp = 2700,  // 色温  2700-6500  步长1
     work_mode,
     white_data,
     colour_data,
-    power_switch },
+    power_switch
+  },
+  log,
   doControlDeviceData,
 }) {
 
-  const isColorFull = color_mode == 2;
+
+  // 颜色模式
+  const colorMode = color_mode === void 0 ? productColorMode : color_mode;
+
+  const isColorFull = colorMode == 2;
 
   useEffect(() => {
     if (isColorFull) { // 彩色模式
@@ -37,7 +44,7 @@ export function Position({
     } else { // 单色和双色模式
       setDeg(toDeg(color_temp));
     }
-  }, [color_mode, color_temp]);
+  }, [colorMode, color_temp]);
 
   const [deg, setDeg] = useState(0);
   const isPowerOff = power_switch !== 1;
@@ -59,10 +66,10 @@ export function Position({
   ];
 
 
-  console.log("传递的参数:::", productType);
+  log.mi("传递的参数:::", productType,colorMode);
 
   return (
-    <div className={`position_card center ${powerStatus} color-type-${color_mode}`}>
+    <div className={`position_card center ${powerStatus} color-type-${colorMode}`}>
       <div className="main-bg center">
         <div className="circle-ring">
           <div className="bg">
@@ -73,7 +80,7 @@ export function Position({
               <div className="circle inner"></div>
             </div>
             <div className="bg-img center">
-              <Icon name={productType ? productType : (isPowerOff ? 'light-bg-off' : `light-bg-${work_mode || 'white'}`)}></Icon>
+              <Icon name={productType}></Icon>
             </div>
           </div>
           <Circular className={isPowerOff ? 'circular-off' : ''} value={deg} onChange={onChange} touch={!isPowerOff} />

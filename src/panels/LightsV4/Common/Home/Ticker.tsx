@@ -11,19 +11,29 @@ const COLOR_MODULE = [
 
 
 const Ticker = ({
-  deviceData: {color_mode, power_switch },
-  context:{workMode},
+  deviceData: {
+    color_mode,
+    power_switch
+  },
+  context: { workMode },
+  productColorMode = 1,
   setContext,
 }) => {
-  const currentModule = COLOR_MODULE[color_mode];
+
+  // 颜色模式
+  const colorMode = color_mode === void 0 ? productColorMode : color_mode;
+  debugger;
+  const currentModule = COLOR_MODULE[colorMode];
 
   const CONFIG = currentModule ? [currentModule, COLOR_MODULE[3]] : null;
 
   // 默认选择的场景
-  const work_mode = workMode == void 0 ? CONFIG?.[0][1] :workMode;
+  const work_mode = workMode == void 0 ? CONFIG?.[0][1] : workMode;
 
   const isSwitchOff = power_switch !== 1;
+
   const isChecked = (val: number | string) => work_mode === val;
+
   const cls = isSwitchOff ? 'ticker-off' : '';
 
 
@@ -43,7 +53,7 @@ const Ticker = ({
           >
             <div className="title">{name}</div>
           </Btn>
-        )): null}
+        )) : null}
       </div>
     </div>
   );
