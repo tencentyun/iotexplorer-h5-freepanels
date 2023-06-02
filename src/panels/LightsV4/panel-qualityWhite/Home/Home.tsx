@@ -9,20 +9,18 @@ import RGBColor from '../../Common/Home/RGBColor';
 
 export function Home(props) {
   let {
-    deviceData: { color_mode = 0, brightness },
+    deviceData: { color_mode, brightness },
     context,
+    productColorMode = 1,
     setTitle,
   } = props;
 
-
-
   // 颜色模式
-  const colorMode = color_mode;
+  const colorMode = color_mode === void 0 ? productColorMode : color_mode;
   // tab 教模式和其他模式
   const work_mode = context?.workMode || colorMode;
 
   const isPowerOff = !props.deviceData.power_switch ? 'power-off' : 'power-on';
-
 
   const isColorFull = colorMode == '2';
 
@@ -39,11 +37,12 @@ export function Home(props) {
       <div className='content-bottom'>
         {work_mode != '10'
           ? <div className={`change-panel color-mode-${colorMode}`}>
-            {isColorFull ?
-              <div className='color_card'>
-                <RGBColor brightness={brightnessValue} {...props}></RGBColor>
-              </div> :
-              <Position  {...props} brightness={brightnessValue}></Position>}
+            {
+              isColorFull ?
+                <div className='color_card'>
+                  <RGBColor brightness={brightnessValue} {...props}></RGBColor>
+                </div> :
+                <Position  {...props} brightness={brightnessValue}></Position>}
 
             {isColorFull ?
               <>
@@ -54,6 +53,7 @@ export function Home(props) {
                   maxValue={6500}
                   {...props}
                 ></LightBright>
+
                 <LightBright
                   iconName="brightness"
                   onChange={setBrightness}

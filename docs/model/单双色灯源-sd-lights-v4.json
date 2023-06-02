@@ -44,6 +44,20 @@
             }
         },
         {
+            "id": "color_mode",
+            "name": "灯光模式",
+            "desc": "",
+            "mode": "rw",
+            "define": {
+                "type": "enum",
+                "mapping": {
+                    "0": "单色模式",
+                    "1": "双色模式"
+                }
+            },
+            "required": false
+        },
+        {
             "id": "scene_type",
             "name": "场景类型",
             "desc": "",

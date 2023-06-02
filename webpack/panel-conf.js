@@ -1265,6 +1265,9 @@ module.exports = {
 
   //------------------------------精品追加产品----------------------------------
 
+
+
+
   DownlightsV4: {
     name: "筒灯",
     categoryKey: "DownlightsV4",
@@ -1278,6 +1281,7 @@ module.exports = {
       // ["panel-qualityYellow", { enable: true, entry: "app.tsx" }],
     ],
   },
+
   SpotlightsV4: {
     name: "射灯",
     categoryKey: "SpotlightsV4",
@@ -1291,6 +1295,50 @@ module.exports = {
       // ["panel-qualityYellow", { enable: true, entry: "app.tsx" }],
     ],
   },
+
+
+  SdLightsV4: {
+    name: "单/双色灯源",
+    categoryKey: "SdLightsV4",
+    enable: true,
+    viewportWidth: 375,
+    panels: [
+      // ["panel-qualityDark", { enable: true, entry: "app.tsx" }],
+      ["panel-qualityWhite", { enable: true, entry: "app.tsx" }],
+      // ["panel-qualityBlue", { enable: true, entry: "app.tsx" }],
+      // ["panel-qualityPurple", { enable: true, entry: "app.tsx" }],
+      // ["panel-qualityYellow", { enable: true, entry: "app.tsx" }],
+    ],
+  },
+
+  CLightStripV4: {
+    name: "彩光灯带",
+    categoryKey: "CLightStripV4",
+    enable: true,
+    viewportWidth: 375,
+    panels: [
+      // ["panel-qualityDark", { enable: true, entry: "app.tsx" }],
+      ["panel-qualityWhite", { enable: true, entry: "app.tsx" }],
+      // ["panel-qualityBlue", { enable: true, entry: "app.tsx" }],
+      // ["panel-qualityPurple", { enable: true, entry: "app.tsx" }],
+      // ["panel-qualityYellow", { enable: true, entry: "app.tsx" }],
+    ],
+  },
+
+  LightStripPowerV4: {
+    name: "灯带电源",
+    categoryKey: "LightStripPowerV4",
+    enable: true,
+    viewportWidth: 375,
+    panels: [
+      // ["panel-qualityDark", { enable: true, entry: "app.tsx" }],
+      ["panel-qualityWhite", { enable: true, entry: "app.tsx" }],
+      // ["panel-qualityBlue", { enable: true, entry: "app.tsx" }],
+      // ["panel-qualityPurple", { enable: true, entry: "app.tsx" }],
+      // ["panel-qualityYellow", { enable: true, entry: "app.tsx" }],
+    ],
+  },
+
   CWLightStripV4: {
     name: "CW灯带",
     categoryKey: "CWLightStripV4",
@@ -1324,11 +1372,11 @@ module.exports = {
     enable: true,
     viewportWidth: 375,
     panels: [
-      ["panel-qualityDark", { enable: true, entry: "app.tsx" }],
+      // ["panel-qualityDark", { enable: true, entry: "app.tsx" }],
       ["panel-qualityWhite", { enable: true, entry: "app.tsx" }],
-      ["panel-qualityBlue", { enable: true, entry: "app.tsx" }],
-      ["panel-qualityPurple", { enable: true, entry: "app.tsx" }],
-      ["panel-qualityYellow", { enable: true, entry: "app.tsx" }],
+      // ["panel-qualityBlue", { enable: true, entry: "app.tsx" }],
+      // ["panel-qualityPurple", { enable: true, entry: "app.tsx" }],
+      // ["panel-qualityYellow", { enable: true, entry: "app.tsx" }],
     ],
   },
   SwitchThreeV4: {

@@ -1,0 +1,219 @@
+{
+    "version": "1.0",
+    "properties": [
+        {
+            "id": "power_switch",
+            "name": "电灯开关",
+            "desc": "控制电灯开灭",
+            "required": true,
+            "mode": "rw",
+            "define": {
+                "type": "bool",
+                "mapping": {
+                    "0": "关",
+                    "1": "开"
+                }
+            }
+        },
+        {
+            "id": "brightness",
+            "name": "亮度",
+            "desc": "灯光亮度",
+            "mode": "rw",
+            "define": {
+                "type": "int",
+                "min": "1",
+                "max": "100",
+                "start": "1",
+                "step": "1",
+                "unit": "%"
+            }
+        },
+        {
+            "id": "color_temp",
+            "name": "色温",
+            "desc": "灯光冷暖",
+            "mode": "rw",
+            "define": {
+                "type": "int",
+                "min": "2700",
+                "max": "6500",
+                "start": "2700",
+                "step": "100",
+                "unit": "K"
+            }
+        },
+        {
+            "id": "color_mode",
+            "name": "灯光模式",
+            "desc": "",
+            "mode": "rw",
+            "define": {
+                "type": "enum",
+                "mapping": {
+                    "0": "单色光模式",
+                    "1": "双色光模式",
+                    "2": "彩色光模式"
+                }
+            },
+            "required": false
+        },
+        {
+            "id": "gradient_cycle",
+            "name": "渐变时间",
+            "desc": "",
+            "mode": "rw",
+            "define": {
+                "type": "int",
+                "min": "0",
+                "max": "86400",
+                "start": "1",
+                "step": "1",
+                "unit": "S"
+            },
+            "required": false
+        },
+        {
+            "id": "night_light",
+            "name": "夜灯设置",
+            "desc": "",
+            "mode": "rw",
+            "define": {
+                "type": "struct",
+                "specs": [
+                    {
+                        "id": "switch",
+                        "name": "开关",
+                        "dataType": {
+                            "type": "bool",
+                            "mapping": {
+                                "0": "关",
+                                "1": "开"
+                            }
+                        }
+                    },
+                    {
+                        "id": "start_time",
+                        "name": "开始时间",
+                        "dataType": {
+                            "type": "int",
+                            "min": "0",
+                            "max": "86400",
+                            "start": "0",
+                            "step": "1",
+                            "unit": ""
+                        }
+                    },
+                    {
+                        "id": "end_time",
+                        "name": "结束时间",
+                        "dataType": {
+                            "type": "int",
+                            "min": "0",
+                            "max": "86400",
+                            "start": "0",
+                            "step": "1",
+                            "unit": ""
+                        }
+                    }
+                ]
+            },
+            "required": false
+        },
+        {
+            "id": "rgb_color",
+            "name": "RGB颜色",
+            "desc": "",
+            "mode": "rw",
+            "define": {
+                "type": "struct",
+                "specs": [
+                    {
+                        "id": "red",
+                        "name": "红色",
+                        "dataType": {
+                            "type": "int",
+                            "min": "0",
+                            "max": "255",
+                            "start": "0",
+                            "step": "1",
+                            "unit": ""
+                        }
+                    },
+                    {
+                        "id": "green",
+                        "name": "绿色",
+                        "dataType": {
+                            "type": "int",
+                            "min": "0",
+                            "max": "255",
+                            "start": "0",
+                            "step": "1",
+                            "unit": ""
+                        }
+                    },
+                    {
+                        "id": "blue",
+                        "name": "蓝色",
+                        "dataType": {
+                            "type": "int",
+                            "min": "0",
+                            "max": "255",
+                            "start": "0",
+                            "step": "1",
+                            "unit": ""
+                        }
+                    }
+                ]
+            },
+            "required": false
+        },
+        {
+            "id": "count_down",
+            "name": "倒计时",
+            "desc": "",
+            "mode": "rw",
+            "define": {
+                "type": "int",
+                "min": "0",
+                "max": "86400",
+                "start": "0",
+                "step": "1",
+                "unit": ""
+            },
+            "required": false,
+            "type": "int"
+        },
+        {
+            "id": "scene_type",
+            "name": "场景类型",
+            "desc": "",
+            "mode": "rw",
+            "define": {
+                "type": "enum",
+                "mapping": {
+                    "0": "明亮",
+                    "1": "柔和",
+                    "2": "冷光",
+                    "3": "暖光",
+                    "4": "夜灯",
+                    "5": "阅读",
+                    "6": "电视",
+                    "7": "月光",
+                    "8": "流光",
+                    "9": "浪漫",
+                    "10": "烛光",
+                    "11": "律动",
+                    "12": "观影"
+                }
+            },
+            "required": false
+        }
+    ],
+    "events": [],
+    "actions": [],
+    "profile": {
+        "ProductId": "J1HURD300G",
+        "CategoryId": "141"
+    }
+}
