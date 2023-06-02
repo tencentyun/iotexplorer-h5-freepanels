@@ -12,7 +12,9 @@ const step = (6500 - 2700) / 360;
 
 const toDeg = val => (val - 2700) / step;
 const toValue = val => Math.round(2700 + val * step);
-
+// 按照指定的补偿处理值  == 由于回显转换步长后 会跳动 故最好时候会断取整 目前不做步长的取整操作
+// const toStep=(val) => val - val % 100
+const toStep = (val) => val;
 export function Position({
   // value,
   brightness = 80,
@@ -55,7 +57,7 @@ export function Position({
       // const key = work_mode === 'colour' ? 'colour_data' : 'white_data';
       // doControlDeviceData(key, getColorValue(work_mode, parseInt(deg)));
     } else {
-      doControlDeviceData({ color_temp: toValue(deg) })
+      doControlDeviceData({ color_temp: toStep(toValue(deg)) })
     }
   };
   const powerStatus = isPowerOff ? 'off-switch' : 'on-switch';
@@ -66,7 +68,7 @@ export function Position({
   ];
 
 
-  log.mi("传递的参数:::", productType,colorMode);
+  log.mi("传递的参数:::", productType, colorMode);
 
   return (
     <div className={`position_card center ${powerStatus} color-type-${colorMode}`}>
