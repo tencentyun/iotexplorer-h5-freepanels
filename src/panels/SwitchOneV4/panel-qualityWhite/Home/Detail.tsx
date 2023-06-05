@@ -112,10 +112,10 @@ export const Detail = ({
   return (
     <div className={`detail action action-${switchNum}`}>
       <div className="operator">
-        <div className="operator-btn editor" onClick={() => setModalVisible(true)}>
+        {/* <div className="operator-btn editor" onClick={() => setModalVisible(true)}>
           <Icon className="operator-icon" name="editor" size="large" />
         </div>
-        <div className="operator-btn setting"></div>
+        <div className="operator-btn setting"></div> */}
       </div>
       <div className="environment">
         {actions.map((item, index) => {
