@@ -5,6 +5,8 @@ import { Editor } from './Editor';
 import { Theme } from './Theme';
 import LayoutSort from './Layout/LayoutSort';
 import Switch from './Switch';
+import EcChart from './EcChart';
+import PowerChart from './PowerChart';
 
 const App = (props) => {
   const route = [
@@ -12,7 +14,9 @@ const App = (props) => {
     { path: '/editor', Component: Editor },
     { path: '/theme', Component: Theme },
     { path: '/sort', Component: LayoutSort },
-    { path: '/switch', Component: Switch }
+    { path: '/switch', Component: Switch },
+    { path: '/ecchart', Component: EcChart },
+    { path: '/powerchart', Component: PowerChart },
   ];
   return <Router route={route} {...props} />;
 };

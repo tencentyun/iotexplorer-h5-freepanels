@@ -8,19 +8,18 @@ import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 import { Cell } from '@custom/Cell';
 import classNames from 'classnames';
 import { v4 as uuidv4 } from 'uuid';
+import { setNewToOld, setOldToNew } from '../Layout/constant';
 
 const serviceList = [
-  ['时钟', 'time'],
-  ['天气', 'weather']
+  ['天气', '01']
 ];
 
 const Device = (props) => {
   const {
-    deviceData = {},
     setValue = () => { },
-    selectedIndex
+    selectedIndex,
+    dataSource = []
   } = { ...props };
-  const { card_config = [] } = deviceData;
   const [list, setList] = useState([]);
   const getDeviceList = async () => {
     try {
@@ -38,15 +37,14 @@ const Device = (props) => {
       console.error('get info fail', err);
     }
   };
-
   useEffect(() => {
     getDeviceList();
   }, [])
   return (<div className="device-list">
     {list.map(({ AliasName, DeviceId, IconUrl }, index) => (
-      <div key={index} className="device-item" onClick={() => setValue(DeviceId, AliasName)}>
+      <div key={`cell_${index}`} className="device-item" onClick={() => setValue(DeviceId, AliasName, 'device')}>
         <div
-          className={classNames("device-bg", DeviceId === card_config[selectedIndex]?.deviceid ? 'selected' : '')}
+          className={classNames("device-bg", (DeviceId === dataSource[selectedIndex]?.device) ? 'selected' : '')}
           style={!IconUrl ? { backgroundColor: '#D9D9D9' } : {}}
         >
           <img className="device-img" src={IconUrl} />
@@ -58,8 +56,7 @@ const Device = (props) => {
 }
 
 const ServicePopup = forwardRef((props: any, ref) => {
-  const { deviceData = {}, doControlDeviceData } = { ...props };
-  const { card_config = [] } = deviceData;
+  const { dataSource = [], history: { query } } = { ...props };
   const [visible, setVisible] = useState(false);
   const [selectedIndex, setSelectedIndex] = useState();
 
@@ -71,13 +68,15 @@ const ServicePopup = forwardRef((props: any, ref) => {
     close: () => setVisible(false)
   }))
 
-  const setSelectedValue = (id, name) => {
-    const new_card_config = [...card_config];
+  const setSelectedValue = (id, name, type) => {
+    const data = [...dataSource].map(item => item);
     if (selectedIndex || selectedIndex === 0) {
-      new_card_config[selectedIndex].deviceid = id;
-      new_card_config[selectedIndex].name = name;
+      data[selectedIndex].device = id;
+      data[selectedIndex].name = name;
+      data[selectedIndex]._type = type;
     }
-    doControlDeviceData('card_config', new_card_config);
+    props.onChange(data);
+    setVisible(false)
   }
 
   return (
@@ -86,20 +85,21 @@ const ServicePopup = forwardRef((props: any, ref) => {
       visible={visible}
       onMaskClick={() => setVisible(false)}
     >
-      <Tabs defaultActiveKey='1' className="custom-tabs">
-        <Tabs.Tab title='设备' key='1'>
-          <Device {...props} selectedIndex={selectedIndex} setValue={setSelectedValue} />
+      <Tabs defaultActiveKey='tab_1' className="custom-tabs">
+        <Tabs.Tab title='设备' key='tab_1'>
+          <Device {...props} dataSource={dataSource} selectedIndex={selectedIndex} setValue={setSelectedValue} />
         </Tabs.Tab>
-        <Tabs.Tab title='服务' key='2'>
+        <Tabs.Tab title='服务' key='tab_2'>
           <div className="service-list">
             {serviceList.map(([name, id], index) => (
               <Cell
+                key={`service_${index}`}
                 className="custom-cell"
                 title={name}
                 ele="checkbox"
                 isLink={false}
-                eleValue={card_config[selectedIndex]?.deviceid === id}
-                onChange={() => setSelectedValue(id, name)}
+                eleValue={dataSource[selectedIndex]?.device === id}
+                onChange={() => setSelectedValue(id, name, 'service')}
               />
             ))}
           </div>
@@ -111,16 +111,14 @@ const ServicePopup = forwardRef((props: any, ref) => {
 });
 
 const ScenePopup = forwardRef((props: any, ref) => {
-  const { deviceData = {}, doControlDeviceData } = { ...props };
-  const { card_config = [] } = deviceData;
-
+  const { dataSource = [], history: { query } } = { ...props };
   const [visible, setVisible] = useState(false);
   const [selectedIndex, setSelectedIndex] = useState();
   const [sceneList, setSceneList] = useState([
-    { SceneName: '123', SceneId: '122', Actions: [1] },
-    { SceneName: '123', SceneId: '12', Actions: [1] },
-    { SceneName: '123', SceneId: '1222', Actions: [1] },
-    { SceneName: '123', SceneId: '12232', Actions: [1] },
+    // { SceneName: '123', SceneId: '122', Actions: [1] },
+    // { SceneName: '123', SceneId: '12', Actions: [1] },
+    // { SceneName: '123', SceneId: '1222', Actions: [1] },
+    // { SceneName: '123', SceneId: '12232', Actions: [1] },
   ]);
   const getSceneList = async () => {
     try {
@@ -132,7 +130,7 @@ const ScenePopup = forwardRef((props: any, ref) => {
         Offset: 1,
         Limit: 50
       });
-      // setSceneList(SceneList);
+      setSceneList(SceneList);
     } catch (err) {
       console.error('get info fail', err);
     }
@@ -150,13 +148,15 @@ const ScenePopup = forwardRef((props: any, ref) => {
     close: () => setVisible(false)
   }));
 
-  const setSelectedValue = (id, name) => {
-    const new_card_config = [...card_config];
+  const setSelectedValue = (id, name, type) => {
+    const data = [...dataSource];
     if (selectedIndex || selectedIndex === 0) {
-      new_card_config[selectedIndex].deviceid = id;
-      new_card_config[selectedIndex].name = name;
+      data[selectedIndex].device = id;
+      data[selectedIndex].name = name;
+      data[selectedIndex]._type = type;
     }
-    doControlDeviceData('card_config', new_card_config);
+    props.onChange(data)
+    setVisible(false)
   }
   return (
     <Popup
@@ -164,20 +164,21 @@ const ScenePopup = forwardRef((props: any, ref) => {
       visible={visible}
       onMaskClick={() => setVisible(false)}
     >
-      <Tabs defaultActiveKey='1' className="custom-tabs">
-        <Tabs.Tab title='设备' key='1'>
-          <Device {...props} selectedIndex={selectedIndex} setValue={setSelectedValue} />
+      <Tabs defaultActiveKey='tab_1' className="custom-tabs">
+        <Tabs.Tab title='设备' key='tab_1'>
+          <Device {...props} dataSource={dataSource} selectedIndex={selectedIndex} setValue={setSelectedValue} />
         </Tabs.Tab>
-        <Tabs.Tab title='场景' key='2'>
+        <Tabs.Tab title='场景' key='tab_2'>
           {sceneList.map(({ SceneId, SceneName, Actions = [] }, index) => (
             <Cell
+              key={'scene_${index}'}
               className="custom-cell"
               title={SceneName}
               subTitle={`${Actions.length}个设备`}
               ele="switch"
               isLink={false}
-              eleValue={card_config[selectedIndex]?.deviceid === SceneId}
-              onChange={() => setSelectedValue(SceneId, SceneName)}
+              eleValue={dataSource[selectedIndex]?.device === SceneId}
+              onChange={() => setSelectedValue(SceneId, SceneName, 'scene')}
             />
           ))}
         </Tabs.Tab>
@@ -187,17 +188,25 @@ const ScenePopup = forwardRef((props: any, ref) => {
 });
 
 export function Editor({ ...props }) {
-  const { history: { query, push }, doControlDeviceData } = { ...props };
+  const { history: { query, push }, deviceData = {},
+    doControlDeviceData
+  } = { ...props };
   const [infoVisible, setInfoVisible] = useState(false);
-
+  const { screen_page = [] } = { ...deviceData };
+  const dataSource = screen_page.length ? [...setNewToOld([...screen_page][Number(query?.index)])] : [];
   const serviceRef = useRef(null);
   const sceneRef = useRef(null);
-
+  const onChange = (data) => {
+    const nData = [...screen_page];
+    nData[Number(query?.index)] = setOldToNew(data);
+    doControlDeviceData('screen_page', nData);
+  }
   useEffect(() => {
     if (!query.isEdit || !JSON.parse(query.isEdit)) {
       setInfoVisible(true);
     }
   }, [query.isEdit])
+
   return (
     <div className="editor-layout">
       <div className="header">
@@ -210,7 +219,7 @@ export function Editor({ ...props }) {
       <div className="content">
         <Layout
           {...props}
-          selected={JSON.parse(query.selected || '[]')}
+          selected={dataSource}
           onBlackClick={(index) => serviceRef.current.open(index)}
           onWhiteClick={(index) => sceneRef.current.open(index)}
         >
@@ -218,7 +227,7 @@ export function Editor({ ...props }) {
       </div>
       {JSON.parse(query.isEdit || 'false') ? <div className="footer">
         <Btn className="delete-btn" onClick={() => {
-          // doControlDeviceData('card_config', )
+          // doControlDeviceData('screen_page', )
           push('/home');
         }}>删除屏幕</Btn></div> : <></>}
 
@@ -257,8 +266,8 @@ export function Editor({ ...props }) {
           </div>
         </div>
       </Popup>
-      <ScenePopup {...props} ref={sceneRef} />
-      <ServicePopup {...props} ref={serviceRef} />
+      <ScenePopup {...props} ref={sceneRef} dataSource={dataSource} onChange={onChange} />
+      <ServicePopup {...props} ref={serviceRef} dataSource={dataSource} onChange={onChange} />
     </div>
   );
 }

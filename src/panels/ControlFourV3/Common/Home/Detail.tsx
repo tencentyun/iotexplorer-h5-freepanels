@@ -13,13 +13,13 @@ export const Detail = ({
   isModal,
   isPopUp
 }) => {
-  const infoList = [[6, '（度）', '今日用电'], [34, '（度）', '当月电量'], [230, '（W）', '实时功率']];
+  const infoList = [[deviceData?.today_ec?.ec || '-', '（度）', '今日用电', () => push('/powerchart')], [deviceData?.current_power || '-', '（W）', '当前功率', () => push('/ecchart')]];
   return (
     <div className={`detail action action-${switchNum}`}>
       <div className="environment">
         <div className='info'>
-          {infoList.map(([value, unit, desc], index) => (
-            <div className="item" key={index}>
+          {infoList.map(([value, unit, desc, click], index) => (
+            <div className="item" key={index} onClick={click}>
               <div className="detail">
                 <div className="title">
                   <span className="value">{value}</span>
@@ -30,7 +30,7 @@ export const Detail = ({
             </div>))}
         </div>
         <div className="device-info">
-          <Cell title="开关配置" prefixIcon={<Icon name="editor-other" />} onClick={() => push('/switch', {})} />
+          <Cell title="开关名称" prefixIcon={<Icon name="editor-other" />} onClick={() => push('/switch', {})} />
         </div>
       </div>
     </div>

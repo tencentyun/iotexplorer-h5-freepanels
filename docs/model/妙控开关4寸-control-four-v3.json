@@ -1,0 +1,246 @@
+{
+  "version": "1.0",
+  "properties": [
+    {
+      "id": "switch_1",
+      "name": "继电开关1",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "bool",
+        "mapping": {
+          "0": "关",
+          "1": "开"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "switch_2",
+      "name": "继电开关2",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "bool",
+        "mapping": {
+          "0": "关",
+          "1": "开"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "switch_3",
+      "name": "继电开关3",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "bool",
+        "mapping": {
+          "0": "关",
+          "1": "开"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "switch_1_name",
+      "name": "继电开关1显示名",
+      "desc": "在开关键上显示的名称",
+      "mode": "rw",
+      "define": {
+        "type": "string",
+        "min": "0",
+        "max": "20"
+      },
+      "required": false
+    },
+    {
+      "id": "switch_2_name",
+      "name": "继电开关2显示名",
+      "desc": "在开关键上显示的名称",
+      "mode": "rw",
+      "define": {
+        "type": "string",
+        "min": "0",
+        "max": "20"
+      },
+      "required": false
+    },
+    {
+      "id": "switch_3_name",
+      "name": "继电开关3显示名",
+      "desc": "在开关键上显示的名称",
+      "mode": "rw",
+      "define": {
+        "type": "string",
+        "min": "0",
+        "max": "20"
+      },
+      "required": false
+    },
+    {
+      "id": "current_power",
+      "name": "当前功率",
+      "desc": "功率发生变化，且变化在一定幅度才上报",
+      "mode": "rw",
+      "define": {
+        "type": "float",
+        "min": "0",
+        "max": "100",
+        "start": "0",
+        "step": "1",
+        "unit": "瓦"
+      },
+      "required": false
+    },
+    {
+      "id": "today_ec",
+      "name": "今日用电",
+      "desc": "date为YYYYMM，ec为截止当前时间，今天的用电量，每半小时上报一次",
+      "mode": "rw",
+      "define": {
+        "type": "struct",
+        "specs": [
+          {
+            "id": "date",
+            "name": "日期",
+            "dataType": {
+              "type": "string",
+              "min": "0",
+              "max": "6"
+            }
+          },
+          {
+            "id": "ec",
+            "name": "用电量",
+            "dataType": {
+              "type": "float",
+              "min": "0",
+              "max": "100",
+              "start": "0",
+              "step": "1",
+              "unit": "度"
+            }
+          }
+        ]
+      },
+      "required": false
+    },
+    {
+      "id": "safe_pwd",
+      "name": "安全密码",
+      "desc": "6位数字安全密码",
+      "mode": "rw",
+      "define": {
+        "type": "string",
+        "min": "0",
+        "max": "6"
+      },
+      "required": false
+    },
+    {
+      "id": "screen_layout",
+      "name": "屏幕布局",
+      "desc": "对屏幕黑色区域和按键区域功能配置",
+      "mode": "rw",
+      "define": {
+        "arrayInfo": {
+          "type": "struct",
+          "specs": [
+            {
+              "id": "id",
+              "name": "屏幕页号",
+              "dataType": {
+                "type": "int",
+                "min": "0",
+                "max": "6",
+                "start": "0",
+                "step": "1",
+                "unit": ""
+              }
+            },
+            {
+              "id": "config",
+              "name": "布局配置",
+              "dataType": {
+                "type": "string",
+                "min": "0",
+                "max": "2048"
+              }
+            }
+          ]
+        },
+        "type": "array"
+      },
+      "required": false
+    },
+    {
+      "id": "theme_style",
+      "name": "主题风格",
+      "desc": "设备使用的主题风格编号",
+      "mode": "rw",
+      "define": {
+        "type": "string",
+        "min": "0",
+        "max": "10"
+      },
+      "required": false
+    }
+  ],
+  "events": [],
+  "actions": [
+    {
+      "id": "update_theme_style",
+      "name": "主题风格更新",
+      "desc": "用户选择更新主题风格，设备收到下载地址，需响应回复小程序收到更新通知",
+      "input": [
+        {
+          "id": "id",
+          "name": "编号",
+          "define": {
+            "type": "string",
+            "min": "0",
+            "max": "10"
+          }
+        },
+        {
+          "id": "url",
+          "name": "下载地址",
+          "define": {
+            "type": "string",
+            "min": "0",
+            "max": "2048"
+          }
+        },
+        {
+          "id": "md5",
+          "name": "md5",
+          "define": {
+            "type": "string",
+            "min": "0",
+            "max": "100"
+          }
+        }
+      ],
+      "output": [
+        {
+          "id": "result",
+          "name": "响应",
+          "define": {
+            "type": "bool",
+            "mapping": {
+              "0": "未收到",
+              "1": "收到"
+            }
+          }
+        }
+      ],
+      "required": false
+    }
+  ],
+  "profile": {
+    "ProductId": "M43NHRD75E",
+    "CategoryId": "1"
+  }
+}
