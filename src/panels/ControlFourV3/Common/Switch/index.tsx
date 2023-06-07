@@ -35,7 +35,7 @@ function Switch(props) {
         {defaultValue.infinite.map(([value, key], index) => <div className="custom-group" key={`infinite_'${index}`}>
           <div className="custom-label" >{value}</div>
           <Input
-            className="custom-input"
+            className="custom-input wireless"
             placeholder='请输入'
             defaultValue={value}
             clearable

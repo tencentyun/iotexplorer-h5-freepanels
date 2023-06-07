@@ -21,6 +21,7 @@ export default function LayoutSort(props) {
         <Btn className="custom-btn save" onClick={() => {
           const value = dndkitRef.current.getValue();
           doControlDeviceData('screen_page', getNewData(value));
+          goBack();
         }}>保存</Btn>
       </div>
     </> : <></>}
