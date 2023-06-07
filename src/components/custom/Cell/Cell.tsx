@@ -54,6 +54,7 @@ export function Cell({
   ele = '', // 默认支持两种常见元素 switch / checkbox
   eleValue = false, // 元素值
   onChange = () => ({}),
+  ...prop
 }: CellProps) {
   const target = useRef(null);
   const meta: CellProps = {
@@ -74,7 +75,7 @@ export function Cell({
   const EleComponent = supportEle[ele];
 
   return (
-    <div className={`cell ${className ? className : ''}`} ref={target} onClick={handleClick}>
+    <div className={`cell ${className ? className : ''}`} {...prop} ref={target} onClick={handleClick}>
       <div className="cell-wrapper">
         {/* 左侧图标 */}
         {prefixIcon ? (

@@ -25,11 +25,11 @@ const Device = (props) => {
     try {
       const { DeviceList } = await sdk.requestTokenApi('AppGetFamilyDeviceList', {
         Action: 'AppGetFamilyDeviceList',
-        AccessToken: 'AccessToken',
-        RequestId: uuidv4(),
+        // AccessToken: 'AccessToken',
+        // RequestId: uuidv4(),
         FamilyId: sdk.familyId,
         RoomId: sdk.RoomId,
-        Offset: 1,
+        Offset: 0,
         Limit: 50
       });
       setList(DeviceList);
@@ -124,10 +124,10 @@ const ScenePopup = forwardRef((props: any, ref) => {
     try {
       const { SceneList } = await sdk.requestTokenApi('AppGetSceneList', {
         Action: 'AppGetSceneList',
-        AccessToken: 'AccessToken',
+        // AccessToken: 'AccessToken',
         RequestId: sdk.requestId,
         FamilyId: sdk.familyId,
-        Offset: 1,
+        Offset: 0,
         Limit: 50
       });
       setSceneList(SceneList);
@@ -169,8 +169,9 @@ const ScenePopup = forwardRef((props: any, ref) => {
           <Device {...props} dataSource={dataSource} selectedIndex={selectedIndex} setValue={setSelectedValue} />
         </Tabs.Tab>
         <Tabs.Tab title='场景' key='tab_2'>
-          {sceneList.map(({ SceneId, SceneName, Actions = [] }, index) => (
+          {sceneList.map(({ SceneId, SceneName,SceneIcon, Actions = [] }, index) => (
             <Cell
+              style={{ backgroundImage: `url(${SceneIcon})`}}
               key={'scene_${index}'}
               className="custom-cell"
               title={SceneName}
