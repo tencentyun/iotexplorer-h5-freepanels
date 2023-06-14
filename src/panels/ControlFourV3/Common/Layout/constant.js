@@ -328,13 +328,6 @@ const LAYOUT_8 = [
   {
     type: 0,
     position: [
-      [2, 3],
-      [2, 2],
-    ],
-  },
-  {
-    type: 0,
-    position: [
       [0, 3],
       [2, 3],
     ],
@@ -370,13 +363,7 @@ const LAYOUT_9 = [
       [1, 2],
     ],
   },
-  {
-    type: 0,
-    position: [
-      [2, 3],
-      [2, 2],
-    ],
-  },
+
   {
     type: 0,
     position: [

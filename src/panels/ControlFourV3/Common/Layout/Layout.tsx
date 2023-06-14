@@ -15,8 +15,9 @@ export function Layout(props) {
     onBlackClick = () => { },
     onWhiteClick = () => { },
   } = { ...props };
+  console.log(selected);
   return (
-    <div className="wrapper" style={...style}>
+    <div className="wrapper" style={{ ...style, width: `${width * 3}px`, height: `${height * 3}px` }}>
       {isCanDelete && <div className="layout-delete" onClick={onDelete}></div>}
       {isPreview && <div className="mask" onClick={onPreviewClick}></div>}
       {selected.map(({ position: [[x1, x2], [y1, y2]], type, device, name }, index) => {
@@ -32,7 +33,7 @@ export function Layout(props) {
               onBlackClick(index);
             }}
             style={{ width: (width * (x2 - x1)), height: (height * (y2 - y1)), left: x1 * width, top: y1 * height }}>
-            {isPreview ? '' : device ? <div className="selected">{name || device}</div> : <Icon name={`layout-add-${type}`}></Icon>}
+            {isPreview ? '' : (device ? <div className="selected">{name || device}</div> : <Icon name={`layout-add-${type}`}></Icon>)}
           </div>
         );
       })}

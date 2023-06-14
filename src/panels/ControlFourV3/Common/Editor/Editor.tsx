@@ -11,7 +11,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { setNewToOld, setOldToNew } from '../Layout/constant';
 
 const serviceList = [
-  ['天气', '01']
+  ['天气', '01', 'weather']
 ];
 
 const Device = (props) => {
@@ -40,17 +40,27 @@ const Device = (props) => {
   useEffect(() => {
     getDeviceList();
   }, [])
-  return (<div className="device-list">
+  return (<div className="service-list">
     {list.map(({ AliasName, DeviceId, IconUrl }, index) => (
-      <div key={`cell_${index}`} className="device-item" onClick={() => setValue(DeviceId, AliasName, 'device')}>
-        <div
-          className={classNames("device-bg", (DeviceId === dataSource[selectedIndex]?.device) ? 'selected' : '')}
-          style={!IconUrl ? { backgroundColor: '#D9D9D9' } : {}}
-        >
-          <img className="device-img" src={IconUrl} />
-        </div>
-        <div className="device-title">{AliasName}</div>
-      </div>
+      <Cell
+        key={`device_${index}`}
+        className="custom-cell"
+        prefixIcon={IconUrl ? <img className="device-img" style={{height: 24, width: 24}} src={IconUrl} /> : <></>}
+        title={AliasName}
+        ele="checkbox"
+        isLink={false}
+        eleValue={dataSource[index]?.device === DeviceId}
+        onChange={() => setValue(DeviceId, AliasName, 'device')}
+      />
+      // <div key={`cell_${index}`} className="device-item" onClick={() => setValue(DeviceId, AliasName, 'device')}>
+      //   <div
+      //     className={classNames("device-bg", (DeviceId === dataSource[selectedIndex]?.device) ? 'selected' : '')}
+      //     style={!IconUrl ? { backgroundColor: '#D9D9D9' } : {}}
+      //   >
+      //     <img className="device-img" src={IconUrl} />
+      //   </div>
+      //   <div className="device-title">{AliasName}</div>
+      // </div>
     ))}
   </div>)
 }
@@ -86,15 +96,16 @@ const ServicePopup = forwardRef((props: any, ref) => {
       onMaskClick={() => setVisible(false)}
     >
       <Tabs defaultActiveKey='tab_1' className="custom-tabs">
-        <Tabs.Tab title='设备' key='tab_1'>
+        <Tabs.Tab title='设备开关' key='tab_1'>
           <Device {...props} dataSource={dataSource} selectedIndex={selectedIndex} setValue={setSelectedValue} />
         </Tabs.Tab>
         <Tabs.Tab title='服务' key='tab_2'>
           <div className="service-list">
-            {serviceList.map(([name, id], index) => (
+            {serviceList.map(([name, id, icon], index) => (
               <Cell
                 key={`service_${index}`}
                 className="custom-cell"
+                prefixIcon={icon ? <Icon name={icon}></Icon> : <></>}
                 title={name}
                 ele="checkbox"
                 isLink={false}
@@ -165,13 +176,13 @@ const ScenePopup = forwardRef((props: any, ref) => {
       onMaskClick={() => setVisible(false)}
     >
       <Tabs defaultActiveKey='tab_1' className="custom-tabs">
-        <Tabs.Tab title='设备' key='tab_1'>
+        <Tabs.Tab title='设备开关' key='tab_1'>
           <Device {...props} dataSource={dataSource} selectedIndex={selectedIndex} setValue={setSelectedValue} />
         </Tabs.Tab>
         <Tabs.Tab title='场景' key='tab_2'>
-          {sceneList.map(({ SceneId, SceneName,SceneIcon, Actions = [] }, index) => (
+          {sceneList.map(({ SceneId, SceneName, SceneIcon, Actions = [] }, index) => (
             <Cell
-              style={{ backgroundImage: `url(${SceneIcon})`}}
+              style={{ backgroundImage: `url(${SceneIcon})` }}
               key={'scene_${index}'}
               className="custom-cell"
               title={SceneName}
@@ -229,6 +240,9 @@ export function Editor({ ...props }) {
       {JSON.parse(query.isEdit || 'false') ? <div className="footer">
         <Btn className="delete-btn" onClick={() => {
           // doControlDeviceData('screen_page', )
+          let nData = [...screen_page];
+          query?.index && nData.splice(Number(query?.index), 1);
+          doControlDeviceData('screen_page', nData);
           push('/home');
         }}>删除屏幕</Btn></div> : <></>}
 

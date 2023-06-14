@@ -1,76 +1,78 @@
 .editor-layout {
-    background: #1D202D;
+  background: #1D202D;
 
-    .header {
-        span {
-            color: rgba(255, 255, 255, 0.5);
-        }
+  .header {
+    span {
+      color: rgba(255, 255, 255, 0.5);
     }
+  }
 
-    .content {
-        position: relative;
-        width: 326px;
-        margin: 0 auto;
-        box-sizing: border-box;
+  .content {
+    position: relative;
+    width: 326px;
+    margin: 0 auto;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+  }
+
+  .footer {
+    position: absolute;
+    bottom: 42px;
+    width: 100%;
+    padding: 0 20px;
+    box-sizing: border-box;
+
+    .delete-btn {
+      background: #D83939;
     }
-
-    .footer {
-        position: absolute;
-        bottom: 42px;
-        width: 100%;
-        padding: 0 20px;
-        box-sizing: border-box;
-
-        .delete-btn {
-            background: #D83939;
-        }
-    }
+  }
 }
 
 .switch-scene-popup {
-    .adm-popup-body {
-        top: 58px;
-        width: 90%;
-        left: 5%;
-        height: 558px;
-        border-radius: 16px;
-        box-shadow: 0px 3px 34px rgba(0, 0, 0, 0.85);
-        background: #151D3C;
-    }
-
+  .adm-popup-body {
+    top: 58px;
+    width: 90%;
+    left: 5%;
     height: 558px;
+    border-radius: 16px;
+    box-shadow: 0px 3px 34px rgba(0, 0, 0, 0.85);
+    background: #151D3C;
+  }
 
-    .custom-tabs {
-        .adm-tabs-header {
-            border-radius: 16px 16px 0 0;
-            background-color: #151D3C;
-            border-bottom: 1px solid transparent;
+  height: 558px;
 
-            .adm-tabs-tab {
-                color: #fff;
-            }
-        }
+  .custom-tabs {
+    .adm-tabs-header {
+      border-radius: 16px 16px 0 0;
+      background-color: #151D3C;
+      border-bottom: 1px solid transparent;
 
-        .adm-tabs-content {
-            border-radius: 0 0 16px 16px;
-            background-color: #151D3C;
-            height: 550px;
-
-            .custom-cell {
-                background: rgba(0, 0, 0, 0.3);
-                border: 1px solid #9C8CFF3D;
-
-                .cell-title-wrapper {
-                    .cell-title {
-                        color: #fff;
-                    }
-
-                    .cell-subtitle {
-                        color: #fff;
-                    }
-                }
-            }
-        }
+      .adm-tabs-tab {
+        color: #fff;
+      }
     }
+
+    .adm-tabs-content {
+      border-radius: 0 0 16px 16px;
+      background-color: #151D3C;
+      height: 550px;
+
+      .custom-cell {
+        background: rgba(0, 0, 0, 0.3);
+        border: 1px solid #9C8CFF3D;
+
+        .cell-title-wrapper {
+          .cell-title {
+            color: #fff;
+          }
+
+          .cell-subtitle {
+            color: #fff;
+          }
+        }
+      }
+    }
+  }
 
 }
