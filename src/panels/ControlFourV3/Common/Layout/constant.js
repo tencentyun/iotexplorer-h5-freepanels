@@ -967,7 +967,7 @@ export const setOldToNew = (layout) => {
     };
   });
   let num;
-  [].concat(layoutList).forEach((item, index) => {
+  layoutList.forEach((item, index) => {
     if (JSON.stringify(item) === JSON.stringify(layout)) {
       num = index;
     }
@@ -975,7 +975,7 @@ export const setOldToNew = (layout) => {
   if (num === undefined) {
     return layout;
   }
-  let _newLayoutList = [].concat(newLayoutList);
+  let _newLayoutList = newLayoutList.map(item => item);
   layout.forEach((item, index) => {
     const { type, _type } = { ...item };
     let obj = { type: _type };
@@ -1006,6 +1006,7 @@ export const setNewToOld = (layout) => {
     return [];
   }
   let num = 0;
+  console.log('asdfasdfasdf', newLayoutList)
   newLayoutList.forEach((item, index) => {
     if (item.layout_id === layout_id) {
       num = index;

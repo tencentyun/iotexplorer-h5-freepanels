@@ -1,6 +1,7 @@
 import React from 'react';
 import { Input } from '@custom/Input';
-
+import { Icon } from '@custom/Icon';
+import { useTitle } from '@hooks/useTitle';
 const defaultValue = {
   local: [['开关1', 'switch_1_name'], ['开关2', 'switch_2_name'], ['开关3', 'switch_3_name']],
   infinite: [
@@ -14,21 +15,24 @@ const defaultValue = {
 };
 
 function Switch(props) {
+  useTitle('开关名称');
   const { doControlDeviceData, deviceData } = { ...props };
   return (
     <div className="switch-list-panel">
       <div className="switch-group">
         <span className="title">本地开关</span>
-        {defaultValue.local.map(([value, key], index) => <Input
-          key={index}
-          className="custom-input"
-          placeholder='请输入'
-          defaultValue={deviceData[key] || value}
-          clearable
-          onBlur={(e) => {
-            const v = e.currentTarget.value;
-            doControlDeviceData(key, v);
-          }} />)}
+        {defaultValue.local.map(([value, key], index) => <div key={index} style={{ position: 'relative' }}>
+          <Icon name="editor-other" style={{ position: 'absolute', top: 16 }} />
+          <Input
+
+            className="custom-input"
+            placeholder='请输入'
+            defaultValue={deviceData[key] || value}
+            clearable
+            onBlur={(e) => {
+              const v = e.currentTarget.value;
+              doControlDeviceData(key, v);
+            }} /></div>)}
       </div>
       {/* <div className="switch-group">
         <span className="title" style={{ marginBottom: 18, display: 'block' }}>无限开关</span>

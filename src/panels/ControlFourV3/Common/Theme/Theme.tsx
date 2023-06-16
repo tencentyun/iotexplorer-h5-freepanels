@@ -2,8 +2,10 @@ import React from 'react';
 import { Icon } from '@custom/Icon';
 import classNames from 'classnames';
 import { THEME_LIST } from '../contants';
+import { useTitle } from '@hooks/useTitle';
 
 export function Theme({ ...props }) {
+  useTitle('主题风格');
   const { doControlDeviceData, deviceData = {} } = { ...props };
   const { theme_style } = deviceData;
   return (

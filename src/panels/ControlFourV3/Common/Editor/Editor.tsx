@@ -9,10 +9,12 @@ import { Cell } from '@custom/Cell';
 import classNames from 'classnames';
 import { v4 as uuidv4 } from 'uuid';
 import { setNewToOld, setOldToNew } from '../Layout/constant';
+import { useTitle } from '@hooks/useTitle';
 
 const serviceList = [
   ['天气', '01', 'weather']
 ];
+
 
 const Device = (props) => {
   const {
@@ -45,7 +47,7 @@ const Device = (props) => {
       <Cell
         key={`device_${index}`}
         className="custom-cell"
-        prefixIcon={IconUrl ? <img className="device-img" style={{height: 24, width: 24}} src={IconUrl} /> : <></>}
+        prefixIcon={IconUrl ? <img className="device-img" style={{ height: 24, width: 24 }} src={IconUrl} /> : <></>}
         title={AliasName}
         ele="checkbox"
         isLink={false}
@@ -200,6 +202,7 @@ const ScenePopup = forwardRef((props: any, ref) => {
 });
 
 export function Editor({ ...props }) {
+  useTitle('屏幕布局');
   const { history: { query, push }, deviceData = {},
     doControlDeviceData
   } = { ...props };

@@ -100,7 +100,7 @@ export function Home(props) {
                 <div className="content">
                   {layoutList.map((item, index) => <Layout
                     key={`layout-${index}`}
-                    style={{ width: 95, height: 95, marginRight: 14, marginBottom: 24, border: '2px solid transparent', ...isSelected(item) }}
+                    style={{ width: 95, height: 95, marginBottom: 24, border: '2px solid transparent', ...isSelected(item) }}
                     selected={item}
                     width={32}
                     height={32}

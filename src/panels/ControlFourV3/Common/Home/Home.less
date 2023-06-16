@@ -8,11 +8,18 @@
   background: #fff;
 
   .custom-tabs {
+    width: 100%;
+    height: 100%;
+
     .adm-tabs-header {
       border-bottom: 0;
       background-image: url('../Icon/bg.svg');
       background-size: 100% 52px;
       width: 100%;
+      height: 52px;
+      display: flex;
+      flex-direction: row;
+
       .adm-tabs-tab-active {
         position: relative;
 
@@ -69,13 +76,13 @@
             display: flex;
             flex-wrap: wrap;
             justify-content: flex-start;
-            width: calc(100% - 16px);
+            width: 100%;
 
             .my-screen-selected {
               display: flex;
               flex-direction: column;
               align-items: center;
-              margin-right: 24px;
+              margin-right: calc((100% - 297px) / 2);
               margin-bottom: 20px;
 
               .add-text {
@@ -100,14 +107,15 @@
             align-items: center;
 
             .screen-btn {
-              width: 90px;
-              height: 90px;
+              width: 95px;
+              height: 95px;
               background: #30414D;
               border-radius: 0;
+              margin-top: 2px;
             }
 
             .add-text {
-              margin-top: 4px;
+              margin-top: 6px;
               font-weight: 500;
               font-size: 14px;
               line-height: 20px;

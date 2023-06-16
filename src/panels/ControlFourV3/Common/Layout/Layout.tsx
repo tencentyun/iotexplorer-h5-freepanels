@@ -15,7 +15,6 @@ export function Layout(props) {
     onBlackClick = () => { },
     onWhiteClick = () => { },
   } = { ...props };
-  console.log(selected);
   return (
     <div className="wrapper" style={{ ...style, width: `${width * 3}px`, height: `${height * 3}px` }}>
       {isCanDelete && <div className="layout-delete" onClick={onDelete}></div>}
