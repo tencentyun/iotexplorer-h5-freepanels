@@ -183,17 +183,27 @@ const ScenePopup = forwardRef((props: any, ref) => {
         </Tabs.Tab>
         <Tabs.Tab title='场景' key='tab_2'>
           {sceneList.map(({ SceneId, SceneName, SceneIcon, Actions = [] }, index) => (
+            // <Cell
+            //   style={{ backgroundImage: `url(${SceneIcon})` }}
+            //   key={'scene_${index}'}
+            //   className="custom-cell"
+            //   title={SceneName}
+            //   subTitle={`${Actions.length}个设备`}
+            //   ele="switch"
+            //   isLink={false}
+            //   eleValue={dataSource[selectedIndex]?.device === SceneId}
+            //   onChange={() => setSelectedValue(SceneId, SceneName, 'scene')}
+            // />
             <Cell
-              style={{ backgroundImage: `url(${SceneIcon})` }}
-              key={'scene_${index}'}
-              className="custom-cell"
-              title={SceneName}
-              subTitle={`${Actions.length}个设备`}
-              ele="switch"
-              isLink={false}
-              eleValue={dataSource[selectedIndex]?.device === SceneId}
-              onChange={() => setSelectedValue(SceneId, SceneName, 'scene')}
-            />
+            key={`service_${SceneId}`}
+            className="custom-cell"
+            // prefixIcon={icon ? <Icon name={icon}></Icon> : <></>}
+            title={SceneName}
+            ele="checkbox"
+            isLink={false}
+            eleValue={dataSource[selectedIndex]?.device === SceneId}
+            onChange={() => setSelectedValue(SceneId, SceneName, 'scene')}
+          />
           ))}
         </Tabs.Tab>
       </Tabs>
