@@ -21,7 +21,7 @@ const getSceneData = (deviceData = {}, scenceLength = 3, oScene = {}, currentInd
 }
 
 
-export const SceneSetting = ({ log, sdk, deviceData, doControlDeviceData, history, scenceLength = 3, isPush = false, currentIndex = 0, isBackHome = false }) => {
+export const SceneSetting = ({ log, sdk, deviceData, doControlDeviceData, history, scenceLength = 3, scenceAction,isPush = false, currentIndex = 0, isBackHome = false }) => {
   let { replace, PATH, push } = history;
     const [{ scenes ,excuteScene}] = useScene(JSON.stringify(deviceData));
   useTitle('场景设置')
