@@ -1460,4 +1460,46 @@ module.exports = {
       // ["panel-qualityYellow", { enable: true, entry: "app.tsx" }],
     ],
   },
+   // 无线开关一v4
+   WirelessSwitchOneV4: {
+    name: "无线开关",
+    categoryKey: "WirelessSwitchOneV4",
+    enable: true,
+    viewportWidth: 375,
+    panels: [
+      // ["panel-qualityDark", { enable: true, entry: "app.tsx" }],
+      ["panel-qualityWhite", { enable: true, entry: "app.tsx" }],
+      // ["panel-qualityBlue", { enable: true, entry: "app.tsx" }],
+      // ["panel-qualityPurple", { enable: true, entry: "app.tsx" }],
+      // ["panel-qualityYellow", { enable: true, entry: "app.tsx" }],
+    ],
+  },
+  // 无线开关二v4
+  WirelessSwitchTwoV4: {
+    name: "无线开关",
+    categoryKey: "WirelessSwitchTwoV4",
+    enable: true,
+    viewportWidth: 375,
+    panels: [
+      // ["panel-qualityDark", { enable: true, entry: "app.tsx" }],
+      ["panel-qualityWhite", { enable: true, entry: "app.tsx" }],
+      // ["panel-qualityBlue", { enable: true, entry: "app.tsx" }],
+      // ["panel-qualityPurple", { enable: true, entry: "app.tsx" }],
+      // ["panel-qualityYellow", { enable: true, entry: "app.tsx" }],
+    ],
+  },
+   // 无线开关三v4
+   WirelessSwitchThreeV4: {
+    name: "无线开关",
+    categoryKey: "WirelessSwitchThreeV4",
+    enable: true,
+    viewportWidth: 375,
+    panels: [
+      // ["panel-qualityDark", { enable: true, entry: "app.tsx" }],
+      ["panel-qualityWhite", { enable: true, entry: "app.tsx" }],
+      // ["panel-qualityBlue", { enable: true, entry: "app.tsx" }],
+      // ["panel-qualityPurple", { enable: true, entry: "app.tsx" }],
+      // ["panel-qualityYellow", { enable: true, entry: "app.tsx" }],
+    ],
+  },
 };

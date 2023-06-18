@@ -1,0 +1,129 @@
+.wireless-switch-detail {
+  width: 100%;
+  padding-bottom: 32px;
+
+  .wireless-top {
+    margin-top: 93px;
+
+
+    .switch-area {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      .switch-bg {
+        width: 260px;
+        height: 260px;
+        border-radius: 100%;
+        background: rgba(224, 229, 237, 0.5);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        .switch-bg-1 {
+          width: 196px;
+          height: 196px;
+          border-radius: 100%;
+          background: linear-gradient(146.45deg, #FFFFFF 14.49%, #F2F6FE 85.19%);
+          filter: blur(0.611111px);
+          display: flex;
+          justify-content: center;
+          position: relative;
+
+          .switch-status {
+            margin-top: 16px;
+            width: 6px;
+            height: 20px;
+            background: #D83939;
+            border-radius: 2px;
+          }
+
+          .icon-light {
+            position: absolute;
+            top: calc(50% - 24px);
+          }
+
+
+          .on {
+            background: #15C45D;
+          }
+        }
+      }
+    }
+
+    .operation-list {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      margin: 0 16px;
+
+      .battery {
+        display: flex;
+        align-items: center;
+
+        .battery-wrap {
+          flex-shrink: 0;
+          width: 26px;
+          height: 14px;
+          background: url(../Icon/battery.svg) no-repeat center;
+          background-size: contain;
+          display: flex;
+          align-items: center;
+
+          .inner {
+            margin-left: 3px;
+            width: 18px;
+            height: 8px;
+          }
+
+          .current-level {
+            width: 0;
+            height: 100%;
+            background-color: #30414D;
+            border-radius: 2px;
+            opacity: 0.5;
+          }
+        }
+
+        .battery-percent {
+          margin-left: 8px;
+          line-height: 20px;
+          font-weight: 600;
+          font-size: 14px;
+          color: #30414D;
+          opacity: 0.5;
+        }
+
+        .battery-tip {
+          white-space: nowrap;
+          margin-left: 8px;
+        }
+      }
+    }
+  }
+
+  .margin-30 {
+    margin-top: 30px;
+  }
+
+  .wireless-bottom {
+    margin: 32px 16px 32px 16px;
+
+    .desc {
+      font-size: 12px;
+      line-height: 17px;
+      color: #30414D;
+    }
+
+    .scene-setting {
+      .sence-group {
+        margin: 16px 0;
+      }
+
+      .add-icon {
+        display: none;
+      }
+    }
+  }
+}
