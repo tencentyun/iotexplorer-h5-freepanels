@@ -47,9 +47,9 @@ export const useScene = (key) => {
 
 
   const refreshSceneList = async () => {
-    const sceneList = await requestTokenApi(SCENE_API.LIST);
-    // console.log("进行场景的获取",sceneList)
-    // const sceneList = testData;
+    // const sceneList = await requestTokenApi(SCENE_API.LIST);
+    console.log("进行场景的获取",sceneList)
+    const sceneList = testData;
     let oScene = {};
     let list = sceneList.SceneList.map((item) => {
       let newItem = { ...item, deviceCount: totalDevice(item.Actions) };

@@ -7,10 +7,10 @@ import { Empty } from '@custom/Empty';
 import { Icon } from '@custom/Icon';
 
 
-const getSceneData = (deviceData = {}, scenceLength = 3, oScene = {}, index = 1) => {
+const getSceneData = (deviceData = {}, scenceLength = 3, oScene = {}, currentIndex = 0) => {
   let datas = [];
   for (let i = 0; i < scenceLength; i++) {
-    let sceneId = deviceData?.switch_scene_ids?.[i] || deviceData?.[`switch${index}_scene_ids`]?.[i];
+    let sceneId = currentIndex ? deviceData?.[`switch${currentIndex}_scene_ids`]?.[i] : deviceData?.switch_scene_ids?.[i];
     datas.push({
       groupName: deviceData?.switch_names?.[i] || '场景按键' + (i + 1),
       groupKey: i,
@@ -21,12 +21,11 @@ const getSceneData = (deviceData = {}, scenceLength = 3, oScene = {}, index = 1)
 }
 
 
-export const SceneSetting = ({ log, sdk, deviceData, doControlDeviceData, history, scenceLength = 3, isPush = false, index = 1 }) => {
+export const SceneSetting = ({ log, sdk, deviceData, doControlDeviceData, history, scenceLength = 3, isPush = false, currentIndex = 0, isBackHome = false }) => {
   let { replace, PATH, push } = history;
   const [{ scenes }] = useScene(JSON.stringify(deviceData));
   useTitle('场景设置')
-
-  let senceData = getSceneData(deviceData, scenceLength, scenes?.oScene, index);
+  let senceData = getSceneData(deviceData, scenceLength, scenes?.oScene, currentIndex);
 
   log.mi("获取到的场景数据:", scenes, scenes?.oScene, senceData);
 
@@ -37,11 +36,11 @@ export const SceneSetting = ({ log, sdk, deviceData, doControlDeviceData, histor
   }
 
   const onAddSenceCheck = (index) => {
-    isPush ? push(PATH.SCENE_BIND, { groupId: index }) : replace(PATH.SCENE_BIND, { groupId: index });
+    isPush ? push(PATH.SCENE_BIND, { groupId: index, isBackHome, currentIndex }) : replace(PATH.SCENE_BIND, { groupId: index, isBackHome, currentIndex });
   }
 
   const bindScene = (groupId) => {
-    isPush ? push(PATH.SCENE_LIST, { groupId }) : replace(PATH.SCENE_LIST, { groupId })
+    isPush ? push(PATH.SCENE_LIST, { groupId, isBackHome, currentIndex }) : replace(PATH.SCENE_LIST, { groupId, isBackHome, currentIndex })
   }
 
 

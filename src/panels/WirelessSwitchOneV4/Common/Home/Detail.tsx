@@ -8,13 +8,14 @@ export const Detail = (props) => {
     deviceData = {},
     doControlDeviceData = () => { },
     templateMap = {},
-    history: { push },
+    history: { PATH, push },
     index = 1,
     switchNum = 1
   } = { ...props };
   useEffect(() => {
     props.deviceData.switch_names = templateMap["switch_type_1"]?.define?.mapping || ['单击', '双击', '长按']
   }, []);
+
 
   return (
     <div className={`wireless-switch-detail`}>
@@ -42,7 +43,7 @@ export const Detail = (props) => {
       </div>
       <div className="wireless-bottom">
         <p className="desc">您可以将开关绑定具体的场景，一键执行设备控制</p>
-        <SceneSetting {...props} isPush={true} />
+        <SceneSetting {...props} isPush={true} currentIndex={index} isBackHome={true} />
       </div>
     </div >
   );
