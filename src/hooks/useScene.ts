@@ -6,6 +6,7 @@ const SCENE_API = {
   UPDATE: 'AppModifyScene',
   LIST: 'AppGetSceneList',
   DELETE: 'AppDeleteScene',
+  EXECUTE:'AppRunScene',
 };
 
 
@@ -69,5 +70,17 @@ export const useScene = (key) => {
     return result;
   };
 
-  return [{ scenes, SCENE_API, doScene }];
+  const excuteScene = async (scene,data={})=>{
+    const Action = SCENE_API.EXECUTE;
+    let param = {
+      Action,
+      SceneId:scene?.SceneId,
+      ...data
+    };
+    
+    let result = await sdk.requestTokenApi(Action, param);
+    console.log('requestTokenApi===== excuteScene =========', Action, param,result );
+  };
+
+  return [{ scenes, SCENE_API, doScene ,excuteScene}];
 };

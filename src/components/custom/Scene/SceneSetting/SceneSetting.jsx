@@ -23,17 +23,17 @@ const getSceneData = (deviceData = {}, scenceLength = 3, oScene = {}, currentInd
 
 export const SceneSetting = ({ log, sdk, deviceData, doControlDeviceData, history, scenceLength = 3, isPush = false, currentIndex = 0, isBackHome = false }) => {
   let { replace, PATH, push } = history;
-  const [{ scenes }] = useScene(JSON.stringify(deviceData));
+    const [{ scenes ,excuteScene}] = useScene(JSON.stringify(deviceData));
   useTitle('场景设置')
   let senceData = getSceneData(deviceData, scenceLength, scenes?.oScene, currentIndex);
 
-  log.mi("获取到的场景数据:", scenes, scenes?.oScene, senceData);
+    log.mi("获取到的场景数据:", scenes, scenes?.oScene, senceData);
 
-  const onNameChange = (index, name) => {
-    let oldData = JSON.parse(JSON.stringify(deviceData.switch_names || []));
-    oldData[index] = name;
-    doControlDeviceData('switch_names', oldData);
-  }
+    const onNameChange = (index, name) => {
+        let oldData = JSON.parse(JSON.stringify(deviceData.switch_names || []));
+        oldData[index] = name;
+        doControlDeviceData('switch_names', oldData);
+    }
 
   const onAddSenceCheck = (index) => {
     isPush ? push(PATH.SCENE_BIND, { groupId: index, isBackHome, currentIndex }) : replace(PATH.SCENE_BIND, { groupId: index, isBackHome, currentIndex });
@@ -44,56 +44,72 @@ export const SceneSetting = ({ log, sdk, deviceData, doControlDeviceData, histor
   }
 
 
-  if (!senceData?.length) return <Empty></Empty>
+    if (!senceData?.length) return <Empty></Empty>
 
-  log.mi("senceData", senceData);
+    log.mi("senceData", senceData);
 
-  const onSwitchChange = (index, checked) => {
-    doControlDeviceData('mode_switch' + (index + 1), checked ? 1 : 0);
-  }
+    const onSwitchChange = (index, checked) => {
+        doControlDeviceData('mode_switch' + (index + 1), checked ? 1 : 0);
+    }
 
-  return <div className='scene-setting'>
-    {senceData.map((group, index) => {
-      return <div className='sence-group' key={index}>
-        <div className='scene-header'>
+    // 不是触发物模型 直接执行
+    const isExexuteAction = 'excute' === scenceAction;
 
-          <span>
-            <span>{group.groupName || '-'}</span>
-            {/* <EditorDialog displayName={group.groupName || ''} onOk={onNameChange.bind(null, index)}></EditorDialog> */}
-          </span>
+    // 执行场景
+    const excuteScenceAction= async (scence)=>{
+        log.mi("执行的场景:",scence);
+        let res = await excuteScene(scence);
+        tips?.showSuccess('执行成功');
+    }
 
-          {
-            group.data.length ? <Icon name="change" onClick={bindScene.bind(null, index)}></Icon> :
-              <div className="add-icon" onClick={onAddSenceCheck.bind(null, index)} > + </div>
-          }
+    return <div className='scene-setting'>
+        {senceData.map((group, index) => {
+            return <div className='sence-group' key={index}>
+                <div className='scene-header'>
 
-        </div>
-        {group.data.map(item => {
-          {/* {[{}].map(item => { */ }
-          return <div className='scene-list' key={item?.SceneId}>
-            <div className='sence-item'>
-              <div className='item' style={{ backgroundImage: `url(${item.SceneIcon})` }}>
-                <span>
-                  <div className='scene-name'>{item.SceneName || '-'}</div>
-                  <div className='scene-detail'>{item.deviceCount || 0}个设备</div>
-                </span>
-                <div>
-                  <div className='scene-execute'>
-                    <Switch checked={!!deviceData['mode_switch' + (index + 1)]} onChange={onSwitchChange.bind(null, index)}></Switch>
-                  </div>
+                    <span>
+                        <span>{group.groupName || '-'}</span>
+                        {/* <EditorDialog displayName={group.groupName || ''} onOk={onNameChange.bind(null, index)}></EditorDialog> */}
+                    </span>
+
+                    {
+                        group.data.length ? <Icon name="change" onClick={bindScene.bind(null, index)}></Icon> :
+                            <div className="add-icon" onClick={onAddSenceCheck.bind(null, index)} > + </div>
+                    }
+
                 </div>
-              </div>
+                {group.data.map(item => {
+                {/* {[{}].map(item => { */}
+                    return <div className='scene-list' key={item?.SceneId}>
+                        <div className='sence-item'>
+                            <div className='item' style={{ backgroundImage: `url(${item.SceneIcon})` }}>
+                                <span>
+                                    <div className='scene-name'>{item.SceneName || '-'}</div>
+                                    <div className='scene-detail'>{item.deviceCount || 0}个设备</div>
+                                </span>
+                                <div>
+                                    <div className='scene-execute'>
+                                        {isExexuteAction}
+                                        {
+                                            isExexuteAction ?
+                                            <div className="execute-btn" onClick={excuteScenceAction.bind(null,item)}>执行</div> :
+                                            <Switch checked={!!deviceData['mode_switch' + (index + 1)]} onChange={onSwitchChange.bind(null,index)}></Switch>
+                                        }
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                })}
+                {
+                    group.data.length ? null :
+                        <div className='bind-scene' onClick={onAddSenceCheck.bind(null, index)}>
+                            <span> + 绑定场景</span>
+                        </div>
+                }
             </div>
-          </div>
         })}
-        {
-          group.data.length ? null :
-            <div className='bind-scene' onClick={onAddSenceCheck.bind(null, index)}>
-              <span> + 绑定场景</span>
-            </div>
-        }
-      </div>
-    })}
 
   </div>
 }
