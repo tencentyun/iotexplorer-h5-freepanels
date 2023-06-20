@@ -1,15 +1,15 @@
+// const A0001 = {
+//   grid: "3*3",
+//   position: [{ row: "1/4", column: "1/4" }],
+// };
 const A0001 = {
-  grid: "3*3",
-  position: [{ row: "1/4", column: "1/4" }],
-};
-const A0002 = {
   grid: "3*3",
   position: [
     { row: "1/3", column: "1/4" },
     { row: "3", column: "1/4" },
   ],
 };
-const A0003 = {
+const A0002 = {
   grid: "3*2",
   position: [
     { row: "1/3", column: "1/3" },
@@ -17,7 +17,7 @@ const A0003 = {
     { row: "3", column: "2" },
   ],
 };
-const A0004 = {
+const A0003 = {
   grid: "3*3",
   position: [
     { row: "1/3", column: "1/4" },
@@ -27,7 +27,7 @@ const A0004 = {
   ],
 };
 
-const A0005 = {
+const A0004 = {
   grid: "3*3",
   position: [
     { row: "1/4", column: "1/3" },
@@ -35,7 +35,7 @@ const A0005 = {
   ],
 };
 
-const A0006 = {
+const A0005 = {
   grid: "2*3",
   position: [
     { row: "1/3", column: "1/3" },
@@ -44,7 +44,7 @@ const A0006 = {
   ],
 };
 
-const A0007 = {
+const A0006 = {
   grid: "3*3",
   position: [
     { row: "1/4", column: "1/3" },
@@ -54,7 +54,7 @@ const A0007 = {
   ],
 };
 
-const A0008 = {
+const A0007 = {
   grid: "3*3",
   position: [
     { row: "1/3", column: "1" },
@@ -66,12 +66,26 @@ const A0008 = {
   ],
 };
 
-const A0009 = {
+const A0008 = {
   grid: "3*3",
   position: [
     { row: "1/3", column: "1" },
     { row: "1/3", column: "2" },
     { row: "1", column: "3" },
+    { row: "2", column: "3" },
+    { row: "3", column: "1" },
+    { row: "3", column: "2" },
+    { row: "3", column: "3" },
+  ],
+};
+
+const A0009 = {
+  grid: "3*3",
+  position: [
+    { row: "1/3", column: "1" },
+    { row: "1", column: "2" },
+    { row: "1", column: "3" },
+    { row: "2", column: "2" },
     { row: "2", column: "3" },
     { row: "3", column: "1" },
     { row: "3", column: "2" },
@@ -83,27 +97,13 @@ const A0010 = {
   grid: "3*3",
   position: [
     { row: "1/3", column: "1" },
-    { row: "1", column: "2" },
-    { row: "1", column: "3" },
-    { row: "2", column: "2" },
-    { row: "2", column: "3" },
-    { row: "3", column: "1" },
-    { row: "3", column: "2" },
-    { row: "3", column: "3" },
-  ],
-};
-
-const A0011 = {
-  grid: "3*3",
-  position: [
-    { row: "1/3", column: "1" },
     { row: "1/3", column: "2" },
     { row: "1/3", column: "3" },
     { row: "3", column: "1/4" },
   ],
 };
 
-const A0012 = {
+const A0011 = {
   grid: "3*3",
   position: [
     { row: "1", column: "1" },
@@ -117,7 +117,7 @@ const A0012 = {
   ],
 };
 
-const A0013 = {
+const A0012 = {
   grid: "3*3",
   position: [
     { row: "1", column: "1" },
@@ -135,12 +135,29 @@ const A0013 = {
 /**
  * type: 0 开关 白色区域   1：设备，黑色区域
  */
+// const LAYOUT_1 = [
+//   {
+//     type: 1,
+//     position: [
+//       [0, 3],
+//       [0, 3],
+//     ],
+//   },
+// ];
+
 const LAYOUT_1 = [
   {
     type: 1,
     position: [
       [0, 3],
+      [0, 2],
+    ],
+  },
+  {
+    type: 0,
+    position: [
       [0, 3],
+      [2, 3],
     ],
   },
 ];
@@ -156,7 +173,14 @@ const LAYOUT_2 = [
   {
     type: 0,
     position: [
-      [0, 3],
+      [0, 3 / 2],
+      [2, 3],
+    ],
+  },
+  {
+    type: 0,
+    position: [
+      [3 / 2, 3],
       [2, 3],
     ],
   },
@@ -173,30 +197,6 @@ const LAYOUT_3 = [
   {
     type: 0,
     position: [
-      [0, 3 / 2],
-      [2, 3],
-    ],
-  },
-  {
-    type: 0,
-    position: [
-      [3 / 2, 3],
-      [2, 3],
-    ],
-  },
-];
-
-const LAYOUT_4 = [
-  {
-    type: 1,
-    position: [
-      [0, 3],
-      [0, 2],
-    ],
-  },
-  {
-    type: 0,
-    position: [
       [0, 1],
       [2, 3],
     ],
@@ -213,6 +213,23 @@ const LAYOUT_4 = [
     position: [
       [2, 3],
       [2, 3],
+    ],
+  },
+];
+
+const LAYOUT_4 = [
+  {
+    type: 1,
+    position: [
+      [0, 2],
+      [0, 3],
+    ],
+  },
+  {
+    type: 0,
+    position: [
+      [2, 3],
+      [0, 3],
     ],
   },
 ];
@@ -229,23 +246,6 @@ const LAYOUT_5 = [
     type: 0,
     position: [
       [2, 3],
-      [0, 3],
-    ],
-  },
-];
-
-const LAYOUT_6 = [
-  {
-    type: 1,
-    position: [
-      [0, 2],
-      [0, 3],
-    ],
-  },
-  {
-    type: 0,
-    position: [
-      [2, 3],
       [0, 3 / 2],
     ],
   },
@@ -258,7 +258,7 @@ const LAYOUT_6 = [
   },
 ];
 
-const LAYOUT_7 = [
+const LAYOUT_6 = [
   {
     type: 1,
     position: [
@@ -284,6 +284,51 @@ const LAYOUT_7 = [
     type: 0,
     position: [
       [2, 3],
+      [2, 3],
+    ],
+  },
+];
+
+const LAYOUT_7 = [
+  {
+    type: 1,
+    position: [
+      [0, 1],
+      [0, 2],
+    ],
+  },
+  {
+    type: 0,
+    position: [
+      [1, 2],
+      [0, 1],
+    ],
+  },
+  {
+    type: 0,
+    position: [
+      [2, 3],
+      [0, 1],
+    ],
+  },
+  {
+    type: 0,
+    position: [
+      [1, 2],
+      [1, 2],
+    ],
+  },
+  {
+    type: 0,
+    position: [
+      [2, 3],
+      [1, 2],
+    ],
+  },
+  {
+    type: 0,
+    position: [
+      [0, 3],
       [2, 3],
     ],
   },
@@ -301,7 +346,7 @@ const LAYOUT_8 = [
     type: 0,
     position: [
       [1, 2],
-      [0, 1],
+      [0, 2],
     ],
   },
   {
@@ -314,26 +359,33 @@ const LAYOUT_8 = [
   {
     type: 0,
     position: [
+      [2, 3],
       [1, 2],
+    ],
+  },
+
+  {
+    type: 0,
+    position: [
+      [0, 1],
+      [2, 3],
+    ],
+  },
+  {
+    type: 0,
+    position: [
       [1, 2],
+      [2, 3],
     ],
   },
   {
     type: 0,
     position: [
       [2, 3],
-      [1, 2],
-    ],
-  },
-  {
-    type: 0,
-    position: [
-      [0, 3],
       [2, 3],
     ],
   },
 ];
-
 const LAYOUT_9 = [
   {
     type: 1,
@@ -346,7 +398,7 @@ const LAYOUT_9 = [
     type: 0,
     position: [
       [1, 2],
-      [0, 2],
+      [0, 1],
     ],
   },
   {
@@ -359,11 +411,17 @@ const LAYOUT_9 = [
   {
     type: 0,
     position: [
+      [1, 2],
+      [1, 2],
+    ],
+  },
+  {
+    type: 0,
+    position: [
       [2, 3],
       [1, 2],
     ],
   },
-
   {
     type: 0,
     position: [
@@ -386,66 +444,8 @@ const LAYOUT_9 = [
     ],
   },
 ];
+
 const LAYOUT_10 = [
-  {
-    type: 1,
-    position: [
-      [0, 1],
-      [0, 2],
-    ],
-  },
-  {
-    type: 0,
-    position: [
-      [1, 2],
-      [0, 1],
-    ],
-  },
-  {
-    type: 0,
-    position: [
-      [2, 3],
-      [0, 1],
-    ],
-  },
-  {
-    type: 0,
-    position: [
-      [1, 2],
-      [1, 2],
-    ],
-  },
-  {
-    type: 0,
-    position: [
-      [2, 3],
-      [1, 2],
-    ],
-  },
-  {
-    type: 0,
-    position: [
-      [0, 1],
-      [2, 3],
-    ],
-  },
-  {
-    type: 0,
-    position: [
-      [1, 2],
-      [2, 3],
-    ],
-  },
-  {
-    type: 0,
-    position: [
-      [2, 3],
-      [2, 3],
-    ],
-  },
-];
-
-const LAYOUT_11 = [
   {
     type: 0,
     position: [
@@ -476,7 +476,7 @@ const LAYOUT_11 = [
   },
 ];
 
-const LAYOUT_12 = [
+const LAYOUT_11 = [
   {
     type: 0,
     position: [
@@ -534,7 +534,7 @@ const LAYOUT_12 = [
     ],
   },
 ];
-const LAYOUT_13 = [
+const LAYOUT_12 = [
   {
     type: 0,
     position: [
@@ -600,10 +600,23 @@ const LAYOUT_13 = [
   },
 ];
 
+// const new_layout_1 = {
+//   layout_id: "01",
+//   config: {
+//     black_area: {
+//       device: "",
+//       type: "",
+//     },
+//   },
+// };
 const new_layout_1 = {
   layout_id: "01",
   config: {
     black_area: {
+      device: "",
+      type: "",
+    },
+    white_area1: {
       device: "",
       type: "",
     },
@@ -617,6 +630,10 @@ const new_layout_2 = {
       type: "",
     },
     white_area1: {
+      device: "",
+      type: "",
+    },
+    white_area2: {
       device: "",
       type: "",
     },
@@ -637,6 +654,10 @@ const new_layout_3 = {
       device: "",
       type: "",
     },
+    white_area3: {
+      device: "",
+      type: "",
+    },
   },
 };
 const new_layout_4 = {
@@ -650,14 +671,6 @@ const new_layout_4 = {
       device: "",
       type: "",
     },
-    white_area2: {
-      device: "",
-      type: "",
-    },
-    white_area3: {
-      device: "",
-      type: "",
-    },
   },
 };
 const new_layout_5 = {
@@ -668,6 +681,10 @@ const new_layout_5 = {
       type: "",
     },
     white_area1: {
+      device: "",
+      type: "",
+    },
+    white_area2: {
       device: "",
       type: "",
     },
@@ -685,6 +702,10 @@ const new_layout_6 = {
       type: "",
     },
     white_area2: {
+      device: "",
+      type: "",
+    },
+    white_area3: {
       device: "",
       type: "",
     },
@@ -706,6 +727,14 @@ const new_layout_7 = {
       type: "",
     },
     white_area3: {
+      device: "",
+      type: "",
+    },
+    white_area4: {
+      device: "",
+      type: "",
+    },
+    white_area5: {
       device: "",
       type: "",
     },
@@ -735,6 +764,10 @@ const new_layout_8 = {
       type: "",
     },
     white_area5: {
+      device: "",
+      type: "",
+    },
+    white_area6: {
       device: "",
       type: "",
     },
@@ -771,15 +804,15 @@ const new_layout_9 = {
       device: "",
       type: "",
     },
+    white_area7: {
+      device: "",
+      type: "",
+    },
   },
 };
 const new_layout_10 = {
   layout_id: "10",
   config: {
-    black_area: {
-      device: "",
-      type: "",
-    },
     white_area1: {
       device: "",
       type: "",
@@ -793,18 +826,6 @@ const new_layout_10 = {
       type: "",
     },
     white_area4: {
-      device: "",
-      type: "",
-    },
-    white_area5: {
-      device: "",
-      type: "",
-    },
-    white_area6: {
-      device: "",
-      type: "",
-    },
-    white_area7: {
       device: "",
       type: "",
     },
@@ -812,27 +833,6 @@ const new_layout_10 = {
 };
 const new_layout_11 = {
   layout_id: "11",
-  config: {
-    white_area1: {
-      device: "",
-      type: "",
-    },
-    white_area2: {
-      device: "",
-      type: "",
-    },
-    white_area3: {
-      device: "",
-      type: "",
-    },
-    white_area4: {
-      device: "",
-      type: "",
-    },
-  },
-};
-const new_layout_12 = {
-  layout_id: "12",
   config: {
     white_area1: {
       device: "",
@@ -868,8 +868,8 @@ const new_layout_12 = {
     },
   },
 };
-const new_layout_13 = {
-  layout_id: "13",
+const new_layout_12 = {
+  layout_id: "12",
   config: {
     white_area1: {
       device: "",
@@ -923,10 +923,11 @@ let newLayoutList = [
   new_layout_10,
   new_layout_11,
   new_layout_12,
-  new_layout_13,
+  // new_layout_13,
 ];
 
 export default {
+  // A0001,
   A0001,
   A0002,
   A0003,
@@ -939,7 +940,6 @@ export default {
   A0010,
   A0011,
   A0012,
-  A0013,
 };
 
 export const layoutList = [
@@ -955,7 +955,7 @@ export const layoutList = [
   LAYOUT_10,
   LAYOUT_11,
   LAYOUT_12,
-  LAYOUT_13,
+  // LAYOUT_13,
 ];
 
 export const setOldToNew = (layout) => {
@@ -1039,5 +1039,5 @@ export const LAYOUT = {
   LAYOUT_10,
   LAYOUT_11,
   LAYOUT_12,
-  LAYOUT_13,
+  // LAYOUT_13,
 };

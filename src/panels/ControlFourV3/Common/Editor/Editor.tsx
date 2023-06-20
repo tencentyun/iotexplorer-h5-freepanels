@@ -15,11 +15,15 @@ const serviceList = [
   ['天气', '01', 'weather']
 ];
 
+const filterDataSource = async (dataSource) => {
+
+}
 
 const Device = (props) => {
   const {
     setValue = () => { },
     selectedIndex,
+    isFilter = false,
     dataSource = []
   } = { ...props };
   const [list, setList] = useState([]);
@@ -34,14 +38,21 @@ const Device = (props) => {
         Offset: 0,
         Limit: 50
       });
-      setList(DeviceList);
+      const ProductIds = DeviceList.map(item => item.ProductId);
+      const { Products } = await sdk.requestTokenApi('AppGetProducts', {
+        Action: 'AppGetProducts',
+        ProductIds: ProductIds,
+      });
+      const data = Products.filter(item => [618, 620, 621, 626].includes(item.CategoryId)).map(item => item.ProductId);
+      const _data = data.filter(item => data.includes(item.ProductId))
+      setList(isFilter ? _data : DeviceList);
     } catch (err) {
       console.error('get info fail', err);
     }
   };
   useEffect(() => {
     getDeviceList();
-  }, [])
+  }, [isFilter])
   return (<div className="service-list">
     {list.map(({ AliasName, DeviceId, IconUrl }, index) => (
       <Cell
@@ -71,7 +82,6 @@ const ServicePopup = forwardRef((props: any, ref) => {
   const { dataSource = [], history: { query } } = { ...props };
   const [visible, setVisible] = useState(false);
   const [selectedIndex, setSelectedIndex] = useState();
-
   useImperativeHandle(ref, () => ({
     open: (index) => {
       setSelectedIndex(index);
@@ -98,8 +108,8 @@ const ServicePopup = forwardRef((props: any, ref) => {
       onMaskClick={() => setVisible(false)}
     >
       <Tabs defaultActiveKey='tab_1' className="custom-tabs">
-        <Tabs.Tab title='设备开关' key='tab_1'>
-          <Device {...props} dataSource={dataSource} selectedIndex={selectedIndex} setValue={setSelectedValue} />
+        <Tabs.Tab title='设备' key='tab_1'>
+          <Device {...props} dataSource={dataSource} selectedIndex={selectedIndex} setValue={setSelectedValue} isFilter={true} />
         </Tabs.Tab>
         <Tabs.Tab title='服务' key='tab_2'>
           <div className="service-list">
@@ -195,15 +205,15 @@ const ScenePopup = forwardRef((props: any, ref) => {
             //   onChange={() => setSelectedValue(SceneId, SceneName, 'scene')}
             // />
             <Cell
-            key={`service_${SceneId}`}
-            className="custom-cell"
-            // prefixIcon={icon ? <Icon name={icon}></Icon> : <></>}
-            title={SceneName}
-            ele="checkbox"
-            isLink={false}
-            eleValue={dataSource[selectedIndex]?.device === SceneId}
-            onChange={() => setSelectedValue(SceneId, SceneName, 'scene')}
-          />
+              key={`service_${SceneId}`}
+              className="custom-cell"
+              // prefixIcon={icon ? <Icon name={icon}></Icon> : <></>}
+              title={SceneName}
+              ele="checkbox"
+              isLink={false}
+              eleValue={dataSource[selectedIndex]?.device === SceneId}
+              onChange={() => setSelectedValue(SceneId, SceneName, 'scene')}
+            />
           ))}
         </Tabs.Tab>
       </Tabs>
