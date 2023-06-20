@@ -15,15 +15,16 @@ const serviceList = [
   ['天气', '01', 'weather']
 ];
 
-const filterDataSource = async (dataSource) => {
-
+const category = {
+  black: [616, 618, 620, 621, 622, 626],
+  white: [618, 620, 621, 626]
 }
 
 const Device = (props) => {
   const {
     setValue = () => { },
     selectedIndex,
-    isFilter = false,
+    type = 'black',
     dataSource = []
   } = { ...props };
   const [list, setList] = useState([]);
@@ -43,16 +44,17 @@ const Device = (props) => {
         Action: 'AppGetProducts',
         ProductIds: ProductIds,
       });
-      const data = Products.filter(item => [618, 620, 621, 626].includes(item.CategoryId)).map(item => item.ProductId);
+      const data = Products.filter(item => category[type].includes(item.CategoryId)).map(item => item.ProductId);
       const _data = data.filter(item => data.includes(item.ProductId))
-      setList(isFilter ? _data : DeviceList);
+      // setList(_data);
+      setList(DeviceList);
     } catch (err) {
       console.error('get info fail', err);
     }
   };
   useEffect(() => {
     getDeviceList();
-  }, [isFilter])
+  }, [type])
   return (<div className="service-list">
     {list.map(({ AliasName, DeviceId, IconUrl }, index) => (
       <Cell
@@ -109,7 +111,7 @@ const ServicePopup = forwardRef((props: any, ref) => {
     >
       <Tabs defaultActiveKey='tab_1' className="custom-tabs">
         <Tabs.Tab title='设备' key='tab_1'>
-          <Device {...props} dataSource={dataSource} selectedIndex={selectedIndex} setValue={setSelectedValue} isFilter={true} />
+          <Device {...props} dataSource={dataSource} selectedIndex={selectedIndex} setValue={setSelectedValue} type={'black'} />
         </Tabs.Tab>
         <Tabs.Tab title='服务' key='tab_2'>
           <div className="service-list">
@@ -189,7 +191,7 @@ const ScenePopup = forwardRef((props: any, ref) => {
     >
       <Tabs defaultActiveKey='tab_1' className="custom-tabs">
         <Tabs.Tab title='设备开关' key='tab_1'>
-          <Device {...props} dataSource={dataSource} selectedIndex={selectedIndex} setValue={setSelectedValue} />
+          <Device {...props} dataSource={dataSource} selectedIndex={selectedIndex} setValue={setSelectedValue} type={'black'} />
         </Tabs.Tab>
         <Tabs.Tab title='场景' key='tab_2'>
           {sceneList.map(({ SceneId, SceneName, SceneIcon, Actions = [] }, index) => (

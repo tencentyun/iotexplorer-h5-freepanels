@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useRef } from 'react';
+import { Form } from 'antd-mobile';
 import { Input } from '@custom/Input';
 import { Icon } from '@custom/Icon';
 import { useTitle } from '@hooks/useTitle';
@@ -17,22 +18,37 @@ const defaultValue = {
 function Switch(props) {
   useTitle('开关名称');
   const { doControlDeviceData, deviceData } = { ...props };
+  const items = ['item0', 'item1', 'item2'];
+  const itemRefs = items.reduce((acc, value) => {
+    acc[value] = React.createRef();
+    return acc;
+  }, {});
+
   return (
     <div className="switch-list-panel">
       <div className="switch-group">
         <span className="title">本地开关</span>
-        {defaultValue.local.map(([value, key], index) => <div key={index} style={{ position: 'relative' }}>
-          <Icon name="editor-other" style={{ position: 'absolute', top: 16 }} />
-          <Input
-
-            className="custom-input"
-            placeholder='请输入'
-            defaultValue={deviceData[key] || value}
-            clearable
-            onBlur={(e) => {
-              const v = e.currentTarget.value;
-              doControlDeviceData(key, v);
-            }} /></div>)}
+        <Form layout='horizontal' className="switch-form">
+          {defaultValue.local.map(([value, key], index) =>
+            <Form.Item
+              label={`开关${index + 1}`}
+              key={index}
+              extra={
+                <Icon name="editor-other" onClick={e => itemRefs[`item${index}`].current.focus()} />
+              }
+            >
+              <Input
+                ref={itemRefs[`item${index}`]}
+                placeholder='请输入开关名称'
+                defaultValue={deviceData[key] || value}
+                onBlur={(e) => {
+                  const v = e.currentTarget.value;
+                  doControlDeviceData(key, v);
+                }}
+              />
+            </Form.Item>
+          )}
+        </Form>
       </div>
       {/* <div className="switch-group">
         <span className="title" style={{ marginBottom: 18, display: 'block' }}>无限开关</span>
@@ -48,7 +64,7 @@ function Switch(props) {
               doControlDeviceData(key, v);
             }} /></div>)}
       </div> */}
-    </div>
+    </div >
   );
 }
 

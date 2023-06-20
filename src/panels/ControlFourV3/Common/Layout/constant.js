@@ -1006,7 +1006,6 @@ export const setNewToOld = (layout) => {
     return [];
   }
   let num = 0;
-  console.log('asdfasdfasdf', newLayoutList)
   newLayoutList.forEach((item, index) => {
     if (item.layout_id === layout_id) {
       num = index;
