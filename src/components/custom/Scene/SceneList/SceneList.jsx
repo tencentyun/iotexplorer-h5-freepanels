@@ -1,14 +1,14 @@
 import { Cell } from '@custom/Cell';
 import { useTitle } from '@src/hooks/useTitle';
 import React, { useRef, useState, useEffect } from 'react';
-import { useScene } from '@src/hooks/useScene';
+import { useSceneAuto } from '@src/hooks/useSceneAuto';
 import {Empty}  from '@custom/Empty'
 export function SceneList({ history, deviceData,doControlDeviceData,sdk, log }) {
     // 选择绑定场景列表
     useTitle('手动场景')
     let { query: { groupId, isBackHome, currentIndex }, replace, PATH ,tips} = history;
     // TODO 使用系内置
-    const [{ scenes, SCENE_API, doScene }] = useScene();
+    const [{ scenes, SCENE_API, doScene }] = useSceneAuto();
 
     let list = scenes?.SceneList;
 

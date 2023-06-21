@@ -12,10 +12,10 @@ export function SceneBind({ history, sdk, log, deviceData, doControlDeviceData }
     // 目前只能在提供的场景测试上可以进行触发
 
     sdk.h5Websocket.on('message', (data) => {
-      // log.mi('--------------------------------app------------------+++++h5 msg++++:', { groupId, action: data?.action, data, deviceData })
+      log.mi('--------------------------------app---SceneBind---------------+++++h5 msg++++:', { groupId, action: data?.action, data, deviceData })
       if (data?.action === 'createScene') {
         let senceId = data?.payload?.sceneId;
-        // log.mi('--------------内部--app------------------+++++h5 msg++++:', { groupId, senceId, data, deviceData })
+        log.mi('--------------内部--app------------------+++++h5 msg++++:', { groupId, senceId, data, deviceData })
         if (senceId) {
           log.mi("创建场景成功", senceId, data, groupId)
           // 执行跳转到设置页面
@@ -61,7 +61,8 @@ export function SceneBind({ history, sdk, log, deviceData, doControlDeviceData }
 
   const addNewScene = () => {
     addEmit(groupId);
-    sdk.goScenePage({ type: "manual" })
+    // sdk.goScenePage({ type: "auto" })
+    sdk.goScenePage({ type: "default" }) // TODO 目前需要手动选择
     setIsShowPage(false);
   }
 

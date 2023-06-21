@@ -64,7 +64,7 @@ export const useScene = (key) => {
   };
 
 
-  const doScene = async (action: string, data = {} as any) => {
+  const doScene = async ( data = {} as any,action: string) => {
     const result = await requestTokenApi(action, data);
     await refreshSceneList();
     return result;
