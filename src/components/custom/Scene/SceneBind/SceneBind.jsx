@@ -60,9 +60,9 @@ export function SceneBind({ history, sdk, log, deviceData, doControlDeviceData }
   // test({payload:{sceneId:123}})
 
   const addNewScene = () => {
-    addEmit(groupId);
+    // addEmit(groupId);
     // sdk.goScenePage({ type: "auto" })
-    sdk.goScenePage({ type: "default" }) // TODO 目前需要手动选择
+    sdk.goScenePage({ type: "auto" }) 
     setIsShowPage(false);
   }
 

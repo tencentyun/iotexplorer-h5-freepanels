@@ -46,7 +46,7 @@ export const SceneSetting = ({ log, sdk, deviceData, doControlDeviceData, histor
 
 
     // 更新或者删除
-    const addUpdateEmit = (groupId) => {
+    const addEmit = (groupId) => {
         sdk.h5Websocket.on('message', (data) => {
             log.mi('--------------------------------app--SceneSetting----------------+++++h5 msg++++:', { groupId, action: data?.action, data, deviceData })
             if (data?.action === 'deleteScene') {
@@ -72,12 +72,33 @@ export const SceneSetting = ({ log, sdk, deviceData, doControlDeviceData, histor
             } else if (data?.action === 'editScene') {
                 let senceId = data?.payload?.sceneId;
                 refreshSceneList();
+            } else if (data?.action === 'createScene') {
+                let senceId = data?.payload?.sceneId;
+                log.mi('--------------内部--app------------------+++++h5 msg++++:', { groupId, senceId, data, deviceData })
+                if (senceId) {
+                    log.mi("创建场景成功", senceId, data, groupId)
+                    // 执行跳转到设置页面
+                    // 设计绑定的数据
+                    let oldData = JSON.parse(
+                        JSON.stringify(
+                            (!!JSON.parse(currentIndex) ? deviceData?.[`switch${currentIndex}_scene_ids`] : deviceData?.switch_scene_ids) || []
+                        )
+                    );
+                    oldData[groupId] = senceId;
+                    // 调整到设置页面
+                    // log.mi("数据处理:", deviceData, oldData, senceId, data?.payload, replace, PATH.SCENE_SETTING,doControlDeviceData)
+
+                    doControlDeviceData(!!JSON.parse(currentIndex) ? `switch${currentIndex}_scene_ids` : 'switch_scene_ids', oldData);
+                    // replace(PATH.SCENE_SETTING);
+                } else {
+                    log.mi("创建场景失败", data)
+                }
             } else {
                 // 兼容两层跳转
-                if (data?.action === 'pageShow') {
-                    // 调整到设置页面
-                    replace(JSON.parse(isBackHome) ? PATH.HOME : PATH.SCENE_SETTING, { tabIndex: JSON.parse(currentIndex) || 1 });
-                }
+                // if (data?.action === 'pageShow') {
+                //     // 调整到设置页面
+                //     replace(JSON.parse(isBackHome) ? PATH.HOME : PATH.SCENE_SETTING, { tabIndex: JSON.parse(currentIndex) || 1 });
+                // }
             }
         });
     }
@@ -87,10 +108,11 @@ export const SceneSetting = ({ log, sdk, deviceData, doControlDeviceData, histor
 
     log.mi("senceData", senceData);
 
-    const onSwitchChange = (index, item, checked) => {
-        // doControlDeviceData('mode_switch' + (index + 1), checked ? 1 : 0);
-
-        doScene(({ AutomationId: item?.SceneId, Status: checked ? 1 : 0 }))
+    const onSwitchChange = (index, item, checked,e) => {
+        console.log("onSwitchChange--->",index, item, checked,e,e.target)
+        e.stopPropagation();
+        e.preventDefault()
+        doScene(({ AutomationId: item?.SceneId, Status: checked ? 0 : 1 }))
     }
 
     // 不是触发物模型 直接执行
@@ -110,10 +132,15 @@ export const SceneSetting = ({ log, sdk, deviceData, doControlDeviceData, histor
     }
 
     const onEditAction = (item, groupId, e) => {
-        if (e.target.className === 'adm-switch-checkbox') return;
-        addUpdateEmit(groupId);
+        console.log("-------------onEditAction",e.target.className)
+        addEmit(groupId);
         sdk.goScenePage({ type: "auto", AutomationId: item?.SceneId, sceneId: item?.SceneId }) // TODO 目前需要手动选择
-        // setIsShowPage(false);
+        
+    }
+
+    const addNewScene = (groupId) => {
+        addEmit(groupId);
+        sdk.goScenePage({ type: "auto" })
     }
 
     return <div className='scene-setting'>
@@ -141,13 +168,15 @@ export const SceneSetting = ({ log, sdk, deviceData, doControlDeviceData, histor
                                     <div className='scene-name'>{item.SceneName || '-'}</div>
                                     <div className='scene-detail'>{item.deviceCount || 0}个设备</div>
                                 </span>
-                                <div>
+                                <div className="action-span" onClick={(e) => {
+                                    onSwitchChange(index, item, item?.Status === 1,e)
+                                }}>
                                     <div className='scene-execute'>
                                         {isExexuteAction}
                                         {
                                             isExexuteAction ?
                                                 <div className="execute-btn" onClick={excuteScenceAction.bind(null, item)}>执行</div> :
-                                                <Switch checked={item?.Status === 1} onChange={onSwitchChange.bind(null, index, item)}></Switch>
+                                                <Switch checked={item?.Status === 1}></Switch>
                                         }
                                     </div>
                                 </div>
@@ -157,7 +186,7 @@ export const SceneSetting = ({ log, sdk, deviceData, doControlDeviceData, histor
                 })}
                 {
                     group.data.length ? null :
-                        <div className='bind-scene' onClick={onAddSenceCheck.bind(null, index)}>
+                        <div className='bind-scene' onClick={() => addNewScene(index)}>
                             <span> + 绑定场景</span>
                         </div>
                 }
