@@ -29,22 +29,22 @@ const testData = {
 };
 
 // 自动化数据测试
-const testAutoData =  {
-    List: [
-      {
-        AutomationId: "a_cb6a39ee5b864f3db6baf3f1c5aa24ea",
-        Icon: "https://qcloudimg.tencent-cloud.cn/raw/364a67ef4a2fe06307e521ebc97ed5c2.png",
-        Name: "aaa",
-        Status: 1
-      },
-      {
-        AutomationId: "a_8179738d40ca4915985f2ff7becf857d",
-        Icon: "https://main.qcloudimg.com/raw/5f9afaeee1639558d24fe3bf5a538e64.jpeg",
-        Name: "自动测试",
-        Status: 1
-      }
-    ],
-    RequestId: "u%2NWK-vM"
+const testAutoData = {
+  List: [
+    {
+      AutomationId: "a_cb6a39ee5b864f3db6baf3f1c5aa24ea",
+      Icon: "https://qcloudimg.tencent-cloud.cn/raw/364a67ef4a2fe06307e521ebc97ed5c2.png",
+      Name: "aaa",
+      Status: 1
+    },
+    {
+      AutomationId: "a_8179738d40ca4915985f2ff7becf857d",
+      Icon: "https://main.qcloudimg.com/raw/5f9afaeee1639558d24fe3bf5a538e64.jpeg",
+      Name: "自动测试",
+      Status: 1
+    }
+  ],
+  RequestId: "u%2NWK-vM"
 };
 
 
@@ -90,19 +90,34 @@ export const useSceneAuto = (key) => {
 
 
 
+  const getDetail = async (list) => {
+
+    let promises = [];
+    list.forEach(item => {
+      item?.AutomationId && promises.push(requestTokenApi(SCENE_API.DETAIL, { AutomationId: item?.AutomationId }));
+    });
+
+    let res = await Promise.all(promises);
+    debugger;
+    return res.map(item => item?.Data);
+  }
 
 
   const refreshSceneList = async () => {
-    const autoList = await requestTokenApi(SCENE_API.LIST);
-    console.log("自动场景的获取数据",autoList)
+    const autoLists = await requestTokenApi(SCENE_API.LIST);
+    console.log("自动场景的获取数据", autoLists)
+
+    // 获取设备统计数量 即设备详情
+    const details = await getDetail(autoLists.List)
+
     // const autoList = testAutoData;
     // 转换自动数据和手动一致
     const sceneList = {
-      ...autoList,
-      SceneList: transData(autoList?.List)
+      ...autoLists,
+      SceneList: transData(details)
     }
 
-    console.log("转黄前后的数据",autoList,autoList?.List,sceneList)
+    console.log("转黄前后的数据", details, sceneList)
 
     let oScene = {};
     let list = sceneList.SceneList.map((item) => {
@@ -139,5 +154,5 @@ export const useSceneAuto = (key) => {
     console.log('requestTokenApi===== excuteScene =========', Action, param, result);
   };
 
-  return [{ scenes, SCENE_API, doScene, excuteScene ,refreshSceneList}];
+  return [{ scenes, SCENE_API, doScene, excuteScene, refreshSceneList }];
 };
