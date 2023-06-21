@@ -3,6 +3,7 @@ import classNames from 'classnames';
 import { SceneSetting } from '@custom/Scene';
 import { Battery } from '@custom/Battery';
 import { Icon } from '@custom/Icon';
+import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 export const Detail = (props) => {
   const {
     deviceData = {},
@@ -43,7 +44,7 @@ export const Detail = (props) => {
       </div>
       <div className="wireless-bottom">
         <p className="desc">您可以将开关绑定具体的场景，一键执行设备控制</p>
-        <SceneSetting {...props} isPush={true} currentIndex={index} isBackHome={true} />
+        <SceneSetting {...props} sdk={sdk} isPush={true} currentIndex={index} isBackHome={true} />
       </div>
     </div >
   );
