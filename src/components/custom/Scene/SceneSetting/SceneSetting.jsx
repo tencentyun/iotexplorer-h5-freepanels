@@ -22,7 +22,12 @@ const getSceneData = (deviceData = {}, scenceLength = 3, oScene = {}, currentInd
 
 
 
-export const SceneSetting = ({ log, sdk, deviceData, doControlDeviceData, history, scenceLength = 3, scenceAction, isPush = false, currentIndex = 0, isBackHome = false }) => {
+export const SceneSetting = ({ log, sdk, deviceConfigData, doDeviceConfigData, history, scenceLength = 3, scenceAction, isPush = false, currentIndex = 0, isBackHome = false }) => {
+
+    // 设备操作数据
+    const doControlDeviceData = doDeviceConfigData;
+    const deviceData = deviceConfigData;
+
     let { replace, PATH, push } = history;
     const [{ scenes, excuteScene, doScene, refreshSceneList }] = useSceneAuto(JSON.stringify(deviceData));
     useTitle('场景设置')
@@ -108,8 +113,8 @@ export const SceneSetting = ({ log, sdk, deviceData, doControlDeviceData, histor
 
     log.mi("senceData", senceData);
 
-    const onSwitchChange = (index, item, checked,e) => {
-        console.log("onSwitchChange--->",index, item, checked,e,e.target)
+    const onSwitchChange = (index, item, checked, e) => {
+        console.log("onSwitchChange--->", index, item, checked, e, e.target)
         e.stopPropagation();
         e.preventDefault()
         doScene(({ AutomationId: item?.SceneId, Status: checked ? 0 : 1 }))
@@ -132,10 +137,10 @@ export const SceneSetting = ({ log, sdk, deviceData, doControlDeviceData, histor
     }
 
     const onEditAction = (item, groupId, e) => {
-        console.log("-------------onEditAction",e.target.className)
+        console.log("-------------onEditAction", e.target.className)
         addEmit(groupId);
         sdk.goScenePage({ type: "auto", AutomationId: item?.SceneId, sceneId: item?.SceneId }) // TODO 目前需要手动选择
-        
+
     }
 
     const addNewScene = (groupId) => {
@@ -169,7 +174,7 @@ export const SceneSetting = ({ log, sdk, deviceData, doControlDeviceData, histor
                                     <div className='scene-detail'>{item.deviceCount || 0}个设备</div>
                                 </span>
                                 <div className="action-span" onClick={(e) => {
-                                    onSwitchChange(index, item, item?.Status === 1,e)
+                                    onSwitchChange(index, item, item?.Status === 1, e)
                                 }}>
                                     <div className='scene-execute'>
                                         {isExexuteAction}

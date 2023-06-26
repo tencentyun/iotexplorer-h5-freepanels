@@ -7,6 +7,7 @@ import { DeviceDetail } from '@custom/DeviceDetail';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 import { useTitle } from '@hooks/useTitle';
 import { useDeviceInfo } from '@hooks/useDeviceInfo';
+import { useDeviceConfig } from '@hooks/useDeviceConfigData';
 import {
   HashRouter,
   Switch,
@@ -24,8 +25,6 @@ const getStorage = (key: string) => {
   let value = localStorage.getItem(key);
   return value ? JSON.parse(value) : value
 };
-
-
 
 
 const parse = (url = '', { code = '' } = {}) => {
@@ -65,6 +64,7 @@ const PageComponent = ({
   className,
   path,
   detail,
+  deviceConfigProps,
   ...props
 }) => {
   const reactDomHistory = useHistory();
@@ -107,6 +107,7 @@ const PageComponent = ({
 
   const allProps = {
     history,
+    ...deviceConfigProps,
     ...props,
     timer: { ...timerState, ...TimerAction },
     tips,
@@ -117,7 +118,7 @@ const PageComponent = ({
     sdk,
     setTitle
   };
-
+  window.allProps = allProps;
   log.mi('allProps', allProps);
 
   if (path === '/home') setTitle('');
@@ -145,6 +146,8 @@ const getPathName = (path: string, split = '_', isUpperCase = true) => {
 
 export const Router = ({ route = [] as HashMap[], detail = true, ...routerProps }) => {
   const [state, action] = useDeviceInfo();
+  const [deviceConfigProps] = useDeviceConfig(null)
+
   const [context, setContextData] = useState({});
   const setContext = (key, val = true, isAppend = true) => {
     const isObject = typeof key === 'object';
@@ -205,6 +208,7 @@ export const Router = ({ route = [] as HashMap[], detail = true, ...routerProps 
                   log={log}
                   env={env}
                   detail={detail}
+                  deviceConfigProps={deviceConfigProps}
                 />
               </div>
             )}
