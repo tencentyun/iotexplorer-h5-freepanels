@@ -975,7 +975,7 @@ export const setOldToNew = (layout) => {
   if (num === undefined) {
     return layout;
   }
-  let _newLayoutList = newLayoutList.map(item => item);
+  let _newLayoutList = newLayoutList.map((item) => item);
   layout.forEach((item, index) => {
     const { type, _type } = { ...item };
     let obj = { type: _type };
@@ -987,7 +987,11 @@ export const setOldToNew = (layout) => {
     if (type === 1) {
       _newLayoutList[num].config.black_area = obj;
     } else {
-      _newLayoutList[num].config[`white_area${index}`] = obj;
+      if (!layout.filter((_item) => _item.type === 1).length) {
+        _newLayoutList[num].config[`white_area${index + 1}`] = obj;
+      } else {
+        _newLayoutList[num].config[`white_area${index}`] = obj;
+      }
     }
   });
   _newLayoutList = _newLayoutList.map((item) => ({
@@ -1017,9 +1021,15 @@ export const setNewToOld = (layout) => {
     if (type === 1) {
       item.device = config?.black_area?.device || config?.black_area?.id;
     } else {
-      item.device =
-        config[`white_area${index}`]?.device ||
-        config[`white_area${index}`]?.id;
+      if (!_layout.filter((_item) => _item.type === 1).length) {
+        item.device =
+          config[`white_area${index + 1}`]?.device ||
+          config[`white_area${index + 1}`]?.id;
+      } else {
+        item.device =
+          config[`white_area${index}`]?.device ||
+          config[`white_area${index}`]?.id;
+      }
     }
     return item;
   });
