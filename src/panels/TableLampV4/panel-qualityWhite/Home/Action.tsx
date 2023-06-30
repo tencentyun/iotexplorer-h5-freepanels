@@ -79,7 +79,10 @@ const Action = (props) => {
 
 
   const goScenePage = () => {
-    push(PATH.SCENE_SETTING)
+    if (power_switch) {
+      push(PATH.SCENE_SETTING)
+    }
+
   }
 
   return (

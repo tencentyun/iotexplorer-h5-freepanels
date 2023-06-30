@@ -6,6 +6,7 @@ const SCENE_API = {
   UPDATE: 'AppModifyScene',
   LIST: 'AppGetSceneList',
   DELETE: 'AppDeleteScene',
+  EXECUTE:'AppRunScene',
 };
 
 
@@ -48,7 +49,7 @@ export const useScene = (key) => {
 
   const refreshSceneList = async () => {
     const sceneList = await requestTokenApi(SCENE_API.LIST);
-    // console.log("进行场景的获取",sceneList)
+    console.log("进行场景的获取",sceneList)
     // const sceneList = testData;
     let oScene = {};
     let list = sceneList.SceneList.map((item) => {
@@ -63,11 +64,23 @@ export const useScene = (key) => {
   };
 
 
-  const doScene = async (action: string, data = {} as any) => {
+  const doScene = async ( data = {} as any,action: string) => {
     const result = await requestTokenApi(action, data);
     await refreshSceneList();
     return result;
   };
 
-  return [{ scenes, SCENE_API, doScene }];
+  const excuteScene = async (scene,data={})=>{
+    const Action = SCENE_API.EXECUTE;
+    let param = {
+      Action,
+      SceneId:scene?.SceneId,
+      ...data
+    };
+    
+    let result = await sdk.requestTokenApi(Action, param);
+    console.log('requestTokenApi===== excuteScene =========', Action, param,result );
+  };
+
+  return [{ scenes, SCENE_API, doScene ,excuteScene}];
 };

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Router } from '@router';
-import { Home } from './Home';
+import { Home } from './Home/Home';
 import { TimerList, TimerAdd, MainSwitch, Repeat } from '../Common/Timer';
 import { CountDownPage } from '../Common/CountDown';
 import { SceneBind, SceneSetting,SceneList } from '@custom/Scene';

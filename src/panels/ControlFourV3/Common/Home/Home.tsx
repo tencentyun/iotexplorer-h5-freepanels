@@ -8,8 +8,9 @@ import { Tabs } from '@custom/Tabs';
 import { Cell } from '@custom/Cell';
 import { Popup } from '@custom/Popup';
 import classNames from 'classnames';
-import { LAYOUT, layoutList } from '../Layout/constant';
+import { layoutList, setNewToOld, setOldToNew } from '../Layout/constant';
 import { Layout } from '../Layout';
+import { THEME_LIST } from '../contants';
 
 
 const allSwitch = [
@@ -20,68 +21,12 @@ const allSwitch = [
   ['switch_5', '开关五'],
 ];
 
-
-const test = [
-  [{
-    name: '123',
-    deviceid: 12,
-    type: 1,
-    position: [
-      [0, 3],
-      [0, 2],
-    ],
-  },
-  {
-    name: '333',
-    deviceid: 122,
-    type: 0,
-    position: [
-      [0, 1],
-      [2, 3],
-    ],
-  },
-  {
-    name: 'fasdf',
-    deviceid: 2,
-    type: 0,
-    position: [
-      [1, 2],
-      [2, 3],
-    ],
-  },
-  {
-    name: '3adsf',
-    deviceid: 33,
-    type: 0,
-    position: [
-      [2, 3],
-      [2, 3],
-    ],
-  },],
-  [{
-    name: 'adsf',
-    deviceid: 80,
-    type: 1,
-    position: [
-      [0, 3],
-      [0, 3],
-    ],
-  },]
-];
-
-
-
 export function Home(props) {
   const { doControlDeviceData, templateMap, setContext, deviceData = {}, history: { PATH, push },
   } = props;
   const switchNum = 3;
   const currentSwitch = allSwitch.slice(0, switchNum);
-  let { card_config = test || [], card_theme = 'theme1' } = { ...deviceData };
-  // card_config = card_config.map(item => {
-  //   const { position = '[]', ...other } = { ...item };
-  //   return { ...other, position: JSON.parse(position) }
-  // });
-  // console.log(card_config)
+  let { screen_page = [], theme_style = 'theme1' } = { ...deviceData };
   const onChange = (key, value) => doControlDeviceData(key, value ? 1 : 0);
   const [visible, setVisible] = useState(false);
   const [selected, setSelected] = useState([]);
@@ -102,30 +47,30 @@ export function Home(props) {
           <div className="modular">
             <div className="modular-title">主题风格</div>
             <div className="modular-container">
-              <Cell title="主题名称" prefixIcon={<Icon name={card_theme} />} onClick={() => push('/theme')} />
+              <Cell title={THEME_LIST.filter(([label, value, subTheme]) => value === theme_style)[0][0] || "默认主题"} prefixIcon={<div className="theme-img" style={{ backgroundImage: `url(https://tencent-1305105198.cos.ap-guangzhou.myqcloud.com/ControlFour/${theme_style}-3.png)`, backgroundSize: '100%', width: '100%', height: '100%' }} />} onClick={() => push('/theme')} />
             </div>
           </div>
           {/* 我的屏幕 */}
           <div className="modular">
             <div className="modular-title">
               <span>我的屏幕</span>
-              {card_config.length ? <Button className="editor-btn" onClick={() => push('/sort')}>
+              {screen_page.length ? <Button className="editor-btn" onClick={() => push('/sort')}>
                 <Icon name="editor-other" />
               </Button> : <></>}
             </div>
             <div className="modular-container my-screen">
               <div className="screen-list">
-                {card_config.map((item, index) => {
+                {screen_page.map((item, index) => {
                   return (<div className="my-screen-selected" key={`my-screen-${index}`} >
                     <Layout
                       style={{ width: 95, height: 95 }}
-                      selected={item}
+                      selected={setNewToOld(item)}
                       width={32}
                       height={32}
                       isPreview={true}
                       onPreviewClick={() => {
-                        setSelected(item)
-                        push('/editor', { selected: JSON.stringify(item), isEdit: true })
+                        setSelected(setNewToOld(item))
+                        push('/editor', { selected: JSON.stringify(setNewToOld(item)), isEdit: true, index })
                       }}
                     />
                     <span className="add-text">{`屏${index + 1}`}</span>
@@ -155,7 +100,7 @@ export function Home(props) {
                 <div className="content">
                   {layoutList.map((item, index) => <Layout
                     key={`layout-${index}`}
-                    style={{ width: 95, height: 95, marginRight: 14, marginBottom: 24, border: '2px solid transparent', ...isSelected(item) }}
+                    style={{ width: 95, height: 95, marginBottom: 24, border: '2px solid transparent', ...isSelected(item) }}
                     selected={item}
                     width={32}
                     height={32}
@@ -165,11 +110,12 @@ export function Home(props) {
 
                 </div>
                 <div className="footer">
-                  <Button className="custom-btn" onClick={() => {
-                    setVisible(false)
-                  }}>取消</Button>
+                  <Button className="custom-btn" onClick={() => setVisible(false)}>取消</Button>
                   <Button className={classNames("custom-btn primary", !selected || !selected.length ? 'disabled' : '')} onClick={() => {
-                    push('/editor', { selected: JSON.stringify(selected) })
+                    const layout = setOldToNew(selected);
+                    screen_page.push(layout);
+                    doControlDeviceData('screen_page', screen_page);
+                    push('/editor', { selected: JSON.stringify(selected), index: screen_page.length - 1 });
                   }}>保存</Button>
                 </div>
               </div>
@@ -181,7 +127,7 @@ export function Home(props) {
             {currentSwitch.map(([key, name], index) => (
               <LightSwitch
                 key={key}
-                name={name}
+                name={(deviceData[`${key}_name`]) || name}
                 value={!!deviceData[key]}
                 className={`light-switch-${index + 1}`}
                 onChange={onChange.bind(null, key)}

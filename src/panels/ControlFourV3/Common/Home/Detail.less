@@ -16,6 +16,7 @@
           width: 18px;
           height: 18px;
         }
+
         .cell-prefix-icon {
           margin-right: 12px;
         }
@@ -38,6 +39,8 @@
         flex-direction: row;
         align-items: center;
         justify-content: center;
+        width: 50%;
+        position: relative;
 
         .detail {
           height: 93px;
@@ -76,8 +79,6 @@
         }
 
         &:nth-child(2) {
-
-          &:after,
           &::before {
             content: '';
             width: 2px;
@@ -85,8 +86,24 @@
             opacity: 0.1;
             border-radius: 10px;
             height: 56px;
+            position: absolute;
+            left: 0;
           }
+
         }
+
+        // &:nth-child(2) {
+
+        //   &:after,
+        //   &::before {
+        //     content: '';
+        //     width: 2px;
+        //     background: #555861;
+        //     opacity: 0.1;
+        //     border-radius: 10px;
+        //     height: 56px;
+        //   }
+        // }
       }
     }
 

@@ -1,0 +1,70 @@
+.ec-chart {
+  height: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
+
+  .cycle-btns {
+    display: flex;
+    justify-content: space-around;
+    width: 80%;
+    margin: 0 auto;
+    margin-top: 20px;
+
+    .custom-btn {
+      width: 60px;
+      height: 30px;
+      border-radius: 12px;
+      background: transparent;
+      color: #30414D;
+      border: 1px solid #30414D;
+    }
+
+    .selected {
+      background: #30414D;
+      color: #fff;
+    }
+  }
+
+  .desc {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 24px 0;
+
+    .content {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      .value {
+        font-family: 'DIN Condensed';
+        font-weight: 700;
+        font-size: 20px;
+        line-height: 20px;
+        margin-top: 5px;
+        margin-right: 4px;
+      }
+
+      .unit {
+        font-size: 16px;
+        font-weight: 600;
+      }
+    }
+
+    .label {
+      margin-top: 12px;
+      font-size: 14px;
+      color: rgba(24, 33, 41, 0.5)
+    }
+  }
+
+  .container {
+    height: calc(100% - 90px);
+    box-sizing: border-box;
+
+    .echarts-for-react {
+      height: 100% !important;
+    }
+  }
+}
