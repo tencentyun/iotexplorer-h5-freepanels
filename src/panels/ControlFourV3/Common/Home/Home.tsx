@@ -76,12 +76,14 @@ export function Home(props) {
                     <span className="add-text">{`屏${index + 1}`}</span>
                   </div>)
                 })}
-                <div className="screen-add">
-                  <Button className="screen-btn" onClick={() => setVisible(true)}>
-                    <Icon name="add" />
-                  </Button>
-                  <span className="add-text">添加</span>
-                </div>
+                {
+                  screen_page?.length !== 6 ? (<div className="screen-add">
+                    <Button className="screen-btn" onClick={() => setVisible(true)}>
+                      <Icon name="add" />
+                    </Button>
+                    <span className="add-text">添加</span>
+                  </div>) : <></>
+                }
               </div>
             </div>
             <Popup
