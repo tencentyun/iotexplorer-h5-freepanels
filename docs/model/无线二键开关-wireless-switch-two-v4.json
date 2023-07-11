@@ -1,0 +1,256 @@
+{
+  "version": "1.0",
+  "properties": [
+    {
+      "id": "power_switch",
+      "name": "总开关",
+      "desc": "总开关",
+      "required": true,
+      "mode": "rw",
+      "define": {
+        "type": "bool",
+        "mapping": {
+          "0": "关",
+          "1": "开"
+        }
+      }
+    },
+    {
+      "id": "switch_1",
+      "name": "按键1_开关",
+      "desc": "按键_1的开关",
+      "required": true,
+      "mode": "rw",
+      "define": {
+        "type": "bool",
+        "mapping": {
+          "0": "关",
+          "1": "开"
+        }
+      }
+    },
+    {
+      "id": "switch_2",
+      "name": "按键2_开关",
+      "desc": "按键_2的开关",
+      "required": false,
+      "mode": "rw",
+      "define": {
+        "type": "bool",
+        "mapping": {
+          "0": "关",
+          "1": "开"
+        }
+      }
+    },
+    {
+      "id": "count_down1",
+      "name": "按键1倒计时",
+      "desc": "按键1倒计时",
+      "required": false,
+      "mode": "rw",
+      "define": {
+        "type": "int",
+        "unit": "%",
+        "step": "1",
+        "min": "0",
+        "max": "86400"
+      }
+    },
+    {
+      "id": "count_down2",
+      "name": "按键2倒计时",
+      "desc": "按键2倒计时",
+      "required": false,
+      "mode": "rw",
+      "define": {
+        "type": "int",
+        "unit": "%",
+        "step": "1",
+        "min": "0",
+        "max": "86400"
+      }
+    },
+    {
+      "id": "switch1_scene_ids",
+      "name": "按键一场景id",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "arrayInfo": {
+          "type": "int",
+          "min": "0",
+          "max": "5000",
+          "start": "0",
+          "step": "1",
+          "unit": ""
+        },
+        "type": "array"
+      },
+      "required": false
+    },
+    {
+      "id": "switch2_scene_ids",
+      "name": "按键二场景id",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "arrayInfo": {
+          "type": "int",
+          "min": "0",
+          "max": "5000",
+          "start": "0",
+          "step": "1",
+          "unit": ""
+        },
+        "type": "array"
+      },
+      "required": false
+    },
+    {
+      "id": "battery",
+      "name": "电池电量",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "int",
+        "min": "0",
+        "max": "100",
+        "start": "0",
+        "step": "1",
+        "unit": ""
+      },
+      "required": false
+    },
+    {
+      "id": "cur_ele",
+      "name": "今日用电量",
+      "desc": "",
+      "mode": "r",
+      "define": {
+        "type": "float",
+        "min": "0",
+        "max": "10000",
+        "start": "0",
+        "step": "1",
+        "unit": ""
+      },
+      "required": false
+    },
+    {
+      "id": "cur_current",
+      "name": "当前电流",
+      "desc": "",
+      "mode": "r",
+      "define": {
+        "type": "float",
+        "min": "0",
+        "max": "10000",
+        "start": "0",
+        "step": "1",
+        "unit": ""
+      },
+      "required": false
+    },
+    {
+      "id": "cur_voltage",
+      "name": "当前电压",
+      "desc": "",
+      "mode": "r",
+      "define": {
+        "type": "float",
+        "min": "0",
+        "max": "10000",
+        "start": "0",
+        "step": "1",
+        "unit": ""
+      },
+      "required": false
+    },
+    {
+      "id": "cur_power",
+      "name": "当前功率",
+      "desc": "",
+      "mode": "r",
+      "define": {
+        "type": "float",
+        "min": "0",
+        "max": "10000",
+        "start": "0",
+        "step": "1",
+        "unit": ""
+      },
+      "required": false
+    }
+  ],
+  "events": [
+    {
+      "id": "status_report",
+      "name": "DeviceStatus",
+      "desc": "Report the device status",
+      "type": "info",
+      "required": false,
+      "params": [
+        {
+          "id": "status",
+          "name": "running_state",
+          "desc": "Report current device running state",
+          "define": {
+            "type": "bool",
+            "mapping": {
+              "0": "normal",
+              "1": "fault"
+            }
+          }
+        },
+        {
+          "id": "message",
+          "name": "Message",
+          "desc": "Some extra message",
+          "define": {
+            "type": "string",
+            "min": "0",
+            "max": "64"
+          }
+        }
+      ]
+    },
+    {
+      "id": "hardware_fault",
+      "name": "Hardware_fault",
+      "desc": "Report hardware fault",
+      "type": "fault",
+      "required": false,
+      "params": [
+        {
+          "id": "name",
+          "name": "Name",
+          "desc": "Name like: memory,tf card, censors ...",
+          "define": {
+            "type": "string",
+            "min": "0",
+            "max": "64"
+          }
+        },
+        {
+          "id": "error_code",
+          "name": "Error_Code",
+          "desc": "Error code for fault",
+          "define": {
+            "type": "int",
+            "unit": "",
+            "step": "1",
+            "min": "0",
+            "max": "2000",
+            "start": "1"
+          }
+        }
+      ]
+    }
+  ],
+  "actions": [],
+  "profile": {
+    "ProductId": "2QSVO42IV0",
+    "CategoryId": "553"
+  }
+}
