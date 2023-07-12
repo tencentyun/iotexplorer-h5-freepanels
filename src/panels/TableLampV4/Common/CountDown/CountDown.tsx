@@ -9,7 +9,8 @@ export const CountDown = forwardRef((props, ref) => {
     history: { PATH, push }
   } = props;
   const onChange = (count_down) => {
-    doControlDeviceData({ count_down });
+    // 16进制字符串形式下发 
+    doControlDeviceData({ count_down: count_down.toString(16)});
     props.onChange && props.onChange(count_down)
     // isJumpRoute && push(PATH.TIMER_COUNTDOWNPAGE, { value: count_down })
   };
@@ -30,7 +31,8 @@ export const CountDown = forwardRef((props, ref) => {
       <Timer
         {...props}
         ref={timerRef}
-        value={deviceData.count_down}
+        _value={deviceData.count_down}
+        // value={deviceData.count_down}
         onChange={onChange}
       ></Timer>
     </div>
@@ -38,7 +40,9 @@ export const CountDown = forwardRef((props, ref) => {
 });
 
 
-const Timer = forwardRef(({ value, onChange, isModal, isPopUp }, ref) => {
+const Timer = forwardRef(({ _value, onChange, isModal, isPopUp }, ref) => {
+
+  const [value] = useState(_value)
 
   const [visible, setVisible] = useState(false);
   // useTitle('倒计时');
