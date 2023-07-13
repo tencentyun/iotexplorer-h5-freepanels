@@ -21,7 +21,8 @@ export function Home(props) {
   let showCountDown = !!deviceData?.count_down;
   const setCountDown = () => { };
 
-  const showCountDownLabel = (value) => {
+  const showCountDownLabel = (_value) => {
+    let value = parseInt(_value || 0, 16);
     if (value) {
       const hour = Math.floor(value / 3600);
       const minute = Math.floor((value % 3600) / 60);
