@@ -11,7 +11,7 @@ import classNames from 'classnames';
 import { layoutList, setNewToOld, setOldToNew } from '../Layout/constant';
 import { Layout } from '../Layout';
 import { THEME_LIST } from '../contants';
-
+import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 
 const allSwitch = [
   ['switch_1', '开关一'],
@@ -22,17 +22,73 @@ const allSwitch = [
 ];
 
 export function Home(props) {
-  const { doControlDeviceData, templateMap, setContext, deviceData = {}, history: { PATH, push },
+  const { doControlDeviceData, templateMap, setContext, deviceData = {}, deviceInfo, history: { PATH, push },
   } = props;
   const switchNum = 3;
   const currentSwitch = allSwitch.slice(0, switchNum);
-  let { screen_page = [], theme_style = 'theme1' } = { ...deviceData };
+  let { screen_page = [], theme_style } = { ...deviceData };
   const onChange = (key, value) => doControlDeviceData(key, value ? 1 : 0);
   const [visible, setVisible] = useState(false);
   const [selected, setSelected] = useState([]);
+  const [themeList, setThemeList] = useState([]);
+
+  const getThemeList = async () => {
+    const { Result } = await sdk.requestTokenApi('AppGetResourceThumbnailList', {
+      Action: 'AppGetResourceThumbnailList',
+      // AccessToken: 'AccessToken',
+      ProductId: deviceInfo.ProductId,
+      // FamilyId: sdk.familyId,
+      // RoomId: sdk.roomId,
+      Offset: 0,
+      Limit: 50
+    });
+    console.log('theme', Result);
+    // const result1 = [
+    //   {
+    //     "CreateTime": "2023-07-03 16:38:15",
+    //     "ProductName": "5uiy7bb6_test2023",
+    //     "ProductID": "0I2YXP9S11",
+    //     "Name": "测试",
+    //     "Md5": "9b5959e6147f4e15d5809eb4ef5ff678",
+    //     "Size": 2008054,
+    //     "Description": "缩略图",
+    //     "ResourceThumbnailInfo": [
+    //       {
+    //         "CosUrl": "https://iothub-tasktest-1256872341.cos.ap-guangzhou.myqcloud.com/600000559219/0I2YXP9S11_product/thumbnail/%E6%B5%8B%E8%AF%95_uncompress/6lIVr77uihU.jpg?sign=q-sign-algorithm%3Dsha1%26q-ak%3DAKIDQhstjLituhcKq9D2c096pJZaKsFl8PVV%26q-sign-time%3D1688440470%3B1688447670%26q-key-time%3D1688440470%3B1688447670%26q-header-list%3Dhost%26q-url-param-list%3D%26q-signature%3D7f57ca6761ffb3bcefb8fb78ba16f49ad852b54e",
+    //         "Name": "6lIVr77uihU.jpg"
+    //       },
+    //       {
+    //         "CosUrl": "https://iothub-tasktest-1256872341.cos.ap-guangzhou.myqcloud.com/600000559219/0I2YXP9S11_product/thumbnail/%E6%B5%8B%E8%AF%95_uncompress/9jFPVQzUgNY.jpg?sign=q-sign-algorithm%3Dsha1%26q-ak%3DAKIDQhstjLituhcKq9D2c096pJZaKsFl8PVV%26q-sign-time%3D1688440470%3B1688447670%26q-key-time%3D1688440470%3B1688447670%26q-header-list%3Dhost%26q-url-param-list%3D%26q-signature%3D7b402a94fe2bcb36cbc618fb09a046aedb7aabfa",
+    //         "Name": "9jFPVQzUgNY.jpg"
+    //       }
+    //     ]
+    //   },
+    //   {
+    //     "CreateTime": "2023-07-03 17:02:10",
+    //     "ProductName": "5uiy7bb6_test2023",
+    //     "ProductID": "0I2YXP9S11",
+    //     "Name": "测试资源",
+    //     "Md5": "9b5959e6147f4e15d5809eb4ef5ff678",
+    //     "Size": 2008054,
+    //     "Description": "新",
+    //     "ResourceThumbnailInfo": [
+    //       {
+    //         "CosUrl": "https://iothub-tasktest-1256872341.cos.ap-guangzhou.myqcloud.com/600000559219/0I2YXP9S11_product/thumbnail/%E6%B5%8B%E8%AF%95_uncompress/6lIVr77uihU.jpg?sign=q-sign-algorithm%3Dsha1%26q-ak%3DAKIDQhstjLituhcKq9D2c096pJZaKsFl8PVV%26q-sign-time%3D1688440470%3B1688447670%26q-key-time%3D1688440470%3B1688447670%26q-header-list%3Dhost%26q-url-param-list%3D%26q-signature%3D7f57ca6761ffb3bcefb8fb78ba16f49ad852b54e",
+    //         "Name": "6lIVr77uihU.jpg"
+    //       },
+    //       {
+    //         "CosUrl": "https://iothub-tasktest-1256872341.cos.ap-guangzhou.myqcloud.com/600000559219/0I2YXP9S11_product/thumbnail/%E6%B5%8B%E8%AF%95_uncompress/9jFPVQzUgNY.jpg?sign=q-sign-algorithm%3Dsha1%26q-ak%3DAKIDQhstjLituhcKq9D2c096pJZaKsFl8PVV%26q-sign-time%3D1688440470%3B1688447670%26q-key-time%3D1688440470%3B1688447670%26q-header-list%3Dhost%26q-url-param-list%3D%26q-signature%3D7b402a94fe2bcb36cbc618fb09a046aedb7aabfa",
+    //         "Name": "9jFPVQzUgNY.jpg"
+    //       }
+    //     ]
+    //   }
+    // ];
+    setThemeList(Result);
+  }
 
   useEffect(() => {
     setContext({ switchNum });
+    getThemeList();
   }, []);
 
   const isSelected = (s) => {
@@ -47,7 +103,7 @@ export function Home(props) {
           <div className="modular">
             <div className="modular-title">主题风格</div>
             <div className="modular-container">
-              <Cell title={THEME_LIST.filter(([label, value, subTheme]) => value === theme_style)[0][0] || "默认主题"} prefixIcon={<div className="theme-img" style={{ backgroundImage: `url(https://tencent-1305105198.cos.ap-guangzhou.myqcloud.com/ControlFour/${theme_style}-3.png)`, backgroundSize: '100%', width: '100%', height: '100%' }} />} onClick={() => push('/theme')} />
+              <Cell title={theme_style || "默认主题"} prefixIcon={<div className="theme-img" style={{ backgroundImage: `${themeList.filter(({ Name }) => Name === theme_style)?.['ResourceThumbnailInfo']?.[0]?.['CosUrl']}`, backgroundSize: '100%', width: '100%', height: '100%' }} />} onClick={() => push('/theme')} />
             </div>
           </div>
           {/* 我的屏幕 */}
