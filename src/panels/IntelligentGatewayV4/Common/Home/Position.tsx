@@ -3,13 +3,15 @@ import { Icon } from '@custom/Icon';
 import classNames from 'classnames';
 export function Position(props) {
   const {
-    deviceData
+    deviceInfo,
+    deviceData,
+    doControlDeviceData
   } = props;
-  const text = deviceData?.guard_mode ? '已开启' : '未开启';
-  const subText = '守护模式';
+  const text = deviceInfo?.DeviceName || deviceInfo?.AliasName || '智能网关';
+  const subText = deviceData?.guard_mode ? '在线' : '离线';
   const clsName = deviceData?.guard_mode ? 'open' : 'close';
   return (
-    <div className="position center">
+    <div className="position center" onClick={() => { doControlDeviceData('guard_mode', !deviceData?.guard_mode) }}>
       <div className={classNames('area', clsName)}>
         <div className="circular-outer center">
           <div className="circular-inner center">
