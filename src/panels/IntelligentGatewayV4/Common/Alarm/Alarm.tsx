@@ -19,7 +19,7 @@ export function Alarm(props) {
   // useEffect(() => {})
   const onRadioClick = (value) => {
     setRadioData(value);
-    doControlDeviceData('doorbell_tips', value)
+    doControlDeviceData('alarm_voice_tips', value)
   };
   return (
     <div className="alarm-scene">
@@ -60,7 +60,7 @@ export function Alarm(props) {
         </div>
       </div>
       <div className="operator">
-        <Btn onClick={() => sdk.goScenePage({ type: "auto" })}>创建门铃场景</Btn>
+        <Btn onClick={() => sdk.goScenePage({ type: "auto" })}>创建安防场景</Btn>
       </div>
     </div>
   );
