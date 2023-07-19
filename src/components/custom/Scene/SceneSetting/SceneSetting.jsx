@@ -7,12 +7,12 @@ import { Empty } from '@custom/Empty';
 import { Icon } from '@custom/Icon';
 
 
-const getSceneData = (deviceData = {}, scenceLength = 3, oScene = {}, currentIndex = 0) => {
+const getSceneData = (deviceData = {}, scenceLength = 3, oScene = {}, currentIndex = 0,groupNames=[]) => {
     let datas = [];
     for (let i = 0; i < scenceLength; i++) {
         let sceneId = currentIndex ? deviceData?.[`switch${currentIndex}_scene_ids`]?.[i] : deviceData?.switch_scene_ids?.[i];
         datas.push({
-            groupName: deviceData?.switch_names?.[i] || '场景按键' + (i + 1),
+            groupName:groupNames[i] || deviceData?.switch_names?.[i] || '场景按键' + (i + 1),
             groupKey: i,
             data: oScene[sceneId] ? [oScene[sceneId]] : []
         })
@@ -22,7 +22,7 @@ const getSceneData = (deviceData = {}, scenceLength = 3, oScene = {}, currentInd
 
 
 
-export const SceneSetting = ({ log, sdk, deviceConfigData, doDeviceConfigData, history, scenceLength = 3, scenceAction, isPush = false, currentIndex = 0, isBackHome = false }) => {
+export const SceneSetting = ({ log, sdk, deviceConfigData, doDeviceConfigData, history, scenceLength = 3, scenceAction, isPush = false, currentIndex = 0, isBackHome = false ,groupNames}) => {
 
     // 设备操作数据
     const doControlDeviceData = doDeviceConfigData;
@@ -31,7 +31,7 @@ export const SceneSetting = ({ log, sdk, deviceConfigData, doDeviceConfigData, h
     let { replace, PATH, push } = history;
     const [{ scenes, excuteScene, doScene, refreshSceneList }] = useSceneAuto(JSON.stringify(deviceData));
     useTitle('场景设置')
-    let senceData = getSceneData(deviceData, scenceLength, scenes?.oScene, currentIndex);
+    let senceData = getSceneData(deviceData, scenceLength, scenes?.oScene, currentIndex,groupNames);
 
     log.mi("获取到的场景数据:", {scenes, oScene:scenes?.oScene, senceData,currentIndex,deviceConfigData});
 

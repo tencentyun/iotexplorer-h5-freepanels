@@ -31,15 +31,14 @@ export const Detail = (props) => {
         </div>
         <div className="operation-list">
           <div className="operation-1"></div>
-          <div className="operation-2" onClick={() => push('/source')}>
-            {/* 电源模块 */}
-            <Battery
+          {/* <div className="operation-2" onClick={() => push('/source')}>
+             <Battery
               value={deviceData?.battery || 0}
               isShowPercent={true}
               isShowTip={false}
               color='brown'
-            />
-          </div>
+            /> 
+          </div> */}
         </div>
       </div>
       <div className="wireless-bottom">
