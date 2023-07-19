@@ -11,7 +11,8 @@ interface stepProps {
 }
 export interface StepsProps {
   stepData: stepProps[];
-  statusLabels:HashMap
+  statusLabels: HashMap;
+  type: String;
 }
 
 const DAY_DESC: string[] = [
@@ -24,7 +25,7 @@ const DAY_DESC: string[] = [
   '周六',
 ];
 
-export function Steps({ stepData, statusLabels }: StepsProps) {
+export function Steps({ stepData, statusLabels, type }: StepsProps) {
   const item = (value: stepProps, index: number) => {
     const date = dayjs(Number(value.Time));
 
@@ -44,16 +45,16 @@ export function Steps({ stepData, statusLabels }: StepsProps) {
           <div className="content-left">
             <div className="detail">
               <span className="time">{date.format('HH:mm')}</span>
-              <span className="week">{DAY_DESC[date.day()]}</span>
+              {type !== 'gateway' ? <span className="week">{DAY_DESC[date.day()]}</span> : <></>}
             </div>
-            <div className="date">{date.format('YYYY.MM.DD')}</div>
+            {type !== 'gateway' ? <div className="date">{date.format('YYYY.MM.DD')}</div> : <div className="date">{value.Value}</div>}
           </div>
-          <div className="content-right">
+          {type !== 'gateway' ? <div className="content-right">
             <div className="status">{statusLabel[Number(value.Value)]}</div>
             <div className="label">状态</div>
-          </div>
+          </div> : <></>}
         </div>
-      </div>
+      </div >
     );
   };
   return (
