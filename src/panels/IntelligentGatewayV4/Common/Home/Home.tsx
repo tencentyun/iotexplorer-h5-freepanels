@@ -1,15 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { Position } from './Position';
-import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 import { Icon } from '@custom/Icon';
-import { Tabs } from '@custom/Tabs';
 import { Btn } from '@custom/Btn';
-import { SubDevice } from '../SubDevice';
 import { Modal } from '@custom/Modal';
-import classNames from 'classnames';
-import { Light } from '../Light'
 import { Cell } from '@custom/Cell';
 import { LightBright } from '@custom/LightBright';
+import { Notice } from './Notice/Notice';
+import { Voice } from './Notice/Voice';
+
+
 
 const GateWay = (props) => {
   // 其他页面返回也刷新
@@ -24,7 +23,8 @@ const GateWay = (props) => {
       '门铃场景',
       'block',
       () => { history?.push('/scene') },
-      !!deviceData?.guard_mode,
+      // !!deviceData?.guard_mode,
+      '',
       ''
     ],
     [
@@ -38,7 +38,8 @@ const GateWay = (props) => {
       '微信通知',
       'weixin',
       () => { history.push(`/pages/Device/ConfigWXNotify/ConfigWXNotify?deviceId=${deviceInfo.DeviceId}`) },
-      !!deviceData?.guard_vol,
+      // !!deviceData?.guard_vol,
+      '',
       ''
     ],
     [
@@ -53,6 +54,10 @@ const GateWay = (props) => {
     <div className="gateway">
       {/* 圆环组件 */}
       <Position {...props}></Position>
+      {/* 系统声音 */}
+      <Voice  {...props} />
+
+
       {/* 功能列表组件 */}
       <div className="comp-block">
         <div className="comp-list">
@@ -62,7 +67,7 @@ const GateWay = (props) => {
                 title={'添加子设备'}
                 className="border"
                 prefixIcon={<Icon className="custom-icon" name="add"></Icon>}
-                onClick={() => { history?.push('/subDevice') }}
+                onClick={() => { history?.push('/search/device', { start: Math.random() }) }}
               ></Cell>
             </div>
             <div className="sub-device">
@@ -113,7 +118,7 @@ export function Home(props) {
   return (
     <div className='home'>
       <div className="custom-notice">
-
+        <Notice {...props} />
       </div>
       <div className="content">
         <GateWay {...props} />
