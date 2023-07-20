@@ -7,12 +7,12 @@ import { Empty } from '@custom/Empty';
 import { Icon } from '@custom/Icon';
 
 
-const getSceneData = (deviceData = {}, scenceLength = 3, oScene = {}, currentIndex = 0) => {
+const getSceneData = (deviceData = {}, scenceLength = 3, oScene = {}, currentIndex = 0,groupNames=[]) => {
     let datas = [];
     for (let i = 0; i < scenceLength; i++) {
         let sceneId = currentIndex ? deviceData?.[`switch${currentIndex}_scene_ids`]?.[i] : deviceData?.switch_scene_ids?.[i];
         datas.push({
-            groupName: deviceData?.switch_names?.[i] || '场景按键' + (i + 1),
+            groupName:groupNames[i] || deviceData?.switch_names?.[i] || '场景按键' + (i + 1),
             groupKey: i,
             data: oScene[sceneId] ? [oScene[sceneId]] : []
         })
@@ -22,7 +22,7 @@ const getSceneData = (deviceData = {}, scenceLength = 3, oScene = {}, currentInd
 
 
 
-export const SceneSetting = ({ log, sdk, deviceConfigData, doDeviceConfigData, history, scenceLength = 3, scenceAction, isPush = false, currentIndex = 0, isBackHome = false }) => {
+export const SceneSetting = ({ log, sdk, deviceConfigData, doDeviceConfigData, history, scenceLength = 3, scenceAction, isPush = false, currentIndex = 0, isBackHome = false ,groupNames}) => {
 
     // 设备操作数据
     const doControlDeviceData = doDeviceConfigData;
@@ -31,9 +31,9 @@ export const SceneSetting = ({ log, sdk, deviceConfigData, doDeviceConfigData, h
     let { replace, PATH, push } = history;
     const [{ scenes, excuteScene, doScene, refreshSceneList }] = useSceneAuto(JSON.stringify(deviceData));
     useTitle('场景设置')
-    let senceData = getSceneData(deviceData, scenceLength, scenes?.oScene, currentIndex);
+    let senceData = getSceneData(deviceData, scenceLength, scenes?.oScene, currentIndex,groupNames);
 
-    log.mi("获取到的场景数据:", scenes, scenes?.oScene, senceData);
+    log.mi("获取到的场景数据:", {scenes, oScene:scenes?.oScene, senceData,currentIndex,deviceConfigData});
 
     const onNameChange = (index, name) => {
         let oldData = JSON.parse(JSON.stringify(deviceData.switch_names || []));
@@ -51,61 +51,38 @@ export const SceneSetting = ({ log, sdk, deviceConfigData, doDeviceConfigData, h
 
 
     // 更新或者删除
-    const addEmit = (groupId) => {
-        sdk.h5Websocket.on('message', (data) => {
-            log.mi('--------------------------------app--SceneSetting----------------+++++h5 msg++++:', { groupId, action: data?.action, data, deviceData })
+    const addEmit = (PositionIndex) => {
+        sdk.h5Websocket.off('message'); // 关闭监听
+        log.mi('--------------绑定监听----------PositionIndex:', PositionIndex)
+        sdk.h5Websocket.on('message', ((groupId,data) => {
+            // log.mi('--------------------------------app--SceneSetting----------------+++++h5 msg++++:', { groupId, action: data?.action, data, deviceData })
             if (data?.action === 'deleteScene') {
                 let senceId = data?.payload?.sceneId;
-                log.mi('--------------内部--app------------------+++++h5 msg++++:', { groupId, senceId, data, deviceData })
+                log.mi('--------------内部--app------------------+++++h5 deleteScene msg++++:', { groupId, senceId, data, deviceData })
                 if (senceId) {
                     log.mi("删除场景成功", senceId, data, groupId)
-                    // 执行跳转到设置页面
-                    // 设计绑定的数据
-                    let oldData = JSON.parse(
-                        JSON.stringify(
-                            (!!JSON.parse(currentIndex) ? deviceData?.[`switch${currentIndex}_scene_ids`] : deviceData?.switch_scene_ids) || []
-                        )
-                    );
-                    // 删除
-                    delete oldData[groupId];
-                    log.mi("数据处理:", deviceData, oldData, senceId, data?.payload, replace, PATH.SCENE_SETTING, doControlDeviceData)
-                    doControlDeviceData(!!JSON.parse(currentIndex) ? `switch${currentIndex}_scene_ids` : 'switch_scene_ids', oldData);
+                    // 删除直接刷新
                     refreshSceneList();
                 } else {
                     log.mi("删除场景失败", data)
                 }
             } else if (data?.action === 'editScene') {
-                let senceId = data?.payload?.sceneId;
                 refreshSceneList();
             } else if (data?.action === 'createScene') {
                 let senceId = data?.payload?.sceneId;
-                log.mi('--------------内部--app------------------+++++h5 msg++++:', { groupId, senceId, data, deviceData })
+                log.mi('--------------内部--app------------------+++++h5  createScene msg++++:', { groupId, senceId, data, deviceData })
                 if (senceId) {
-                    log.mi("创建场景成功", senceId, data, groupId)
-                    // 执行跳转到设置页面
-                    // 设计绑定的数据
-                    let oldData = JSON.parse(
-                        JSON.stringify(
-                            (!!JSON.parse(currentIndex) ? deviceData?.[`switch${currentIndex}_scene_ids`] : deviceData?.switch_scene_ids) || []
-                        )
-                    );
+                    log.mi("创建场景成功", {senceId, data, groupId,currentIndex})
+                    let oldData = JSON.parse(JSON.stringify(deviceData?.switch_scene_ids || []));
                     oldData[groupId] = senceId;
-                    // 调整到设置页面
-                    // log.mi("数据处理:", deviceData, oldData, senceId, data?.payload, replace, PATH.SCENE_SETTING,doControlDeviceData)
-
-                    doControlDeviceData(!!JSON.parse(currentIndex) ? `switch${currentIndex}_scene_ids` : 'switch_scene_ids', oldData);
-                    // replace(PATH.SCENE_SETTING);
+                    doControlDeviceData("switch_scene_ids",oldData);
+                    refreshSceneList();
                 } else {
                     log.mi("创建场景失败", data)
                 }
             } else {
-                // 兼容两层跳转
-                // if (data?.action === 'pageShow') {
-                //     // 调整到设置页面
-                //     replace(JSON.parse(isBackHome) ? PATH.HOME : PATH.SCENE_SETTING, { tabIndex: JSON.parse(currentIndex) || 1 });
-                // }
             }
-        });
+        }).bind(null,PositionIndex));
     }
 
 

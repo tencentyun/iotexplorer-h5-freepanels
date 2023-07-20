@@ -108,12 +108,13 @@ export function TimePicker(props: TimePickerProps) {
     setChecked(switchIsOpen);
   }, [switchIsOpen, visible]);
 
-  useEffect(() => {
-    setPickerValue(getDefaultValue(value));
-    return () => {
-      setPickerValue(defaultValue);
-    };
-  }, [value]);
+  // TODO 页面存在到计时时，不能进行选中时间  需要去掉联动跳过
+  // useEffect(() => {
+  //   setPickerValue(getDefaultValue(value));
+  //   return () => {
+  //     setPickerValue(defaultValue);
+  //   };
+  // }, [value]);
 
   const time = pickerValue.length ? pickerValue : defaultValue;
   const ref = useRef(null);

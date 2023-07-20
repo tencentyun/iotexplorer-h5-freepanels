@@ -1,0 +1,147 @@
+{
+  "version": "1.0",
+  "properties": [
+    {
+      "id": "switch_type_1",
+      "name": "开关1",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "enum",
+        "mapping": {
+          "0": "单击",
+          "1": "双击",
+          "2": "长按"
+        }
+      },
+      "required": false
+    },
+    {
+      "id": "battery",
+      "name": "电池电量",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "int",
+        "min": "0",
+        "max": "100",
+        "start": "0",
+        "step": "1",
+        "unit": ""
+      },
+      "required": false
+    },
+    {
+      "id": "power_switch",
+      "name": "总开关",
+      "desc": "总开关",
+      "required": false,
+      "mode": "rw",
+      "define": {
+        "type": "bool",
+        "mapping": {
+          "0": "关",
+          "1": "开"
+        }
+      }
+    },
+    {
+      "id": "switch_1",
+      "name": "按键1_开关",
+      "desc": "按键_1的开关",
+      "required": false,
+      "mode": "rw",
+      "define": {
+        "type": "bool",
+        "mapping": {
+          "0": "关",
+          "1": "开"
+        }
+      }
+    },
+    {
+      "id": "switch1_scene_ids",
+      "name": "按键一场景id",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "arrayInfo": {
+          "type": "int",
+          "min": "0",
+          "max": "5000",
+          "start": "0",
+          "step": "1",
+          "unit": ""
+        },
+        "type": "array"
+      },
+      "required": false
+    },
+    {
+      "id": "cur_ele",
+      "name": "今日用电量",
+      "desc": "",
+      "mode": "r",
+      "define": {
+        "type": "float",
+        "min": "0",
+        "max": "10000",
+        "start": "0",
+        "step": "1",
+        "unit": ""
+      },
+      "required": false
+    },
+    {
+      "id": "cur_current",
+      "name": "当前电流",
+      "desc": "",
+      "mode": "r",
+      "define": {
+        "type": "float",
+        "min": "0",
+        "max": "10000",
+        "start": "0",
+        "step": "1",
+        "unit": ""
+      },
+      "required": false
+    },
+    {
+      "id": "cur_voltage",
+      "name": "当前电压",
+      "desc": "",
+      "mode": "r",
+      "define": {
+        "type": "float",
+        "min": "0",
+        "max": "10000",
+        "start": "0",
+        "step": "1",
+        "unit": ""
+      },
+      "required": false
+    },
+    {
+      "id": "cur_power",
+      "name": "当前功率",
+      "desc": "",
+      "mode": "rw",
+      "define": {
+        "type": "float",
+        "min": "0",
+        "max": "10000",
+        "start": "0",
+        "step": "1",
+        "unit": ""
+      },
+      "required": false
+    }
+  ],
+  "events": [],
+  "actions": [],
+  "profile": {
+    "ProductId": "SPJ0X444WN",
+    "CategoryId": "1"
+  }
+}

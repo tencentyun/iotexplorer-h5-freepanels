@@ -18,17 +18,19 @@ export function Home(props) {
   const { brightness = 100, color_temp = 4000 } = deviceData;
   const [color_mode, setcolorMode] = useState(deviceData.color_mode || 1);
   const [field, setField] = useState({ brightness, color_temp, attr: 'color_temp' });
-  let showCountDown = !!deviceData?.count_down;
+  let showCountDown = !!deviceData?.count_down && deviceData?.count_down != '0';
   const setCountDown = () => { };
 
-  const showCountDownLabel = (value) => {
+  const showCountDownLabel = (_value) => {
+    if (!_value) return null;
+    let value = parseInt(_value || 0, 16);
     if (value) {
       const hour = Math.floor(value / 3600);
       const minute = Math.floor((value % 3600) / 60);
       const second = Math.floor((value % 3600) % 60);
       return `${hour >= 10 ? hour : '0' + hour}:${minute >= 10 ? minute : '0' + minute}:${second >= 10 ? second : '0' + second}`;
     }
-    return null;
+    // return null;
   }
 
   useEffect(() => {

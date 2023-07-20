@@ -5,7 +5,7 @@ import { CountDown } from './CountDown';
 
 export const CountDownPage = (props) => {
     const { history: { PATH, push, query }, doControlDeviceData } = props;
-    let { value, } = query;
+    let { value } = query;
     const getCountdownTime = (value) => {
         if (value) {
             const hour = `${Math.floor(value / 3600)}`;
@@ -17,7 +17,7 @@ export const CountDownPage = (props) => {
     };
     const countRef = useRef(null);
 
-    const countdownTime = getCountdownTime(value).map((v: string) => (parseInt(v, 10) < 10 ? `0${parseInt(v, 10)}` : v));
+    const countdownTime = getCountdownTime(1* (value || 0 )).map((v: string) => (parseInt(v, 10) < 10 ? `0${parseInt(v, 10)}` : v));
     return (
         <div className="cus-time-picker-list">
             {value && (

@@ -22,12 +22,14 @@ const AddTimer = ({
   const [visible, setVisible] = useState(false);
   const [timerVisible, setTimerVisible] = useState(false);
   // 模态框记录
-  const [timePoint, setTimePoint] = useState(TimePoint)
+  const [timePoint1, setTimePoint] = useState(TimePoint)
 
   // 设置显示滚动的个数 
   // 7 个 408
   const { isModule } = query || {}; // 是否为模态框弹出三级配置
-  const timer = TimePoint.split(':');
+  
+  const timer = timePoint1.split(':');
+
 
   const getWeeks = (weeks: number[]) => {
     if (!weeks) return [];
@@ -87,6 +89,8 @@ const AddTimer = ({
     setTimerVisible(false)
     setContext({ TimePoint: TimePoint.join(':') })
   }
+
+
 
 
   return (
