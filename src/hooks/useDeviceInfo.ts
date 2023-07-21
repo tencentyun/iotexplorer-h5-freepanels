@@ -21,6 +21,7 @@ export type DoControlDeviceData = (id: string | { [id: string]: any }, value?: a
 
 export interface UseDeviceInfoHandler {
   doControlDeviceData: DoControlDeviceData;
+  updateDeviceData: (deviceData: Record<string, unknown>) => void;
 }
 
 export type UseDeviceInfoResult = [UserDeviceInfoData, UseDeviceInfoHandler];
@@ -151,6 +152,13 @@ export const useDeviceInfo = (): UseDeviceInfoResult => {
     controlDeviceDataDebounceMap.current[id] = setTimeout(() => controlDeviceData(deviceData), 100);
   };
 
+  const updateDeviceData = (deviceData = {}) => {
+    dispatch({
+      type: UseDeviceInfoAction.UpdateDeviceData,
+      payload: { deviceData },
+    });
+  };
+
   useEffect(() => {
     const handleWsReport = ({ deviceId, deviceData }) => {
       console.log('handleWsStatusChange==========', deviceData);
@@ -248,5 +256,5 @@ export const useDeviceInfo = (): UseDeviceInfoResult => {
     offline,
     powerOff,
     isShareDevice: sdk.isShareDevice,
-  }, { doControlDeviceData }];
+  }, { doControlDeviceData, updateDeviceData }];
 };

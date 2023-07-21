@@ -1,23 +1,27 @@
 .wireless-source {
   width: 100%;
   height: 100%;
-  .source-panel {
-    margin: 32px 16px;
-    padding: 16px;
-    background: #FFFFFF;
-    border: 1px solid #EFF3F5;
-    border-radius: 8px;
+}
+
+.statistics-panel-wrap {
+  margin: 32px 16px;
+}
+
+.electric-statistics-panel {
+  padding: 16px;
+  background: #FFFFFF;
+  border: 1px solid #EFF3F5;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  .panel-item {
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    .panel-item {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      .item-label {
-        margin: 8px;
-      }
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    .item-label {
+      margin: 8px;
     }
   }
 }

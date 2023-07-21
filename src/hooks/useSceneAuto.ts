@@ -98,7 +98,6 @@ export const useSceneAuto = (key) => {
     });
 
     let res = await Promise.all(promises);
-    debugger;
     return res.map(item => item?.Data);
   }
 
