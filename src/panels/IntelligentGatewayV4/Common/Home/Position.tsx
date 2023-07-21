@@ -8,10 +8,11 @@ export function Position(props) {
     doControlDeviceData
   } = props;
   const text = deviceInfo?.DeviceName || deviceInfo?.AliasName || '智能网关';
-  const subText = deviceData?.guard_mode ? '在线' : '离线';
-  const clsName = deviceData?.guard_mode ? 'open' : 'close';
+  const subText = deviceInfo?.Online ? '在线' : '离线';
+  const clsName = deviceInfo?.Online ? 'open' : 'close';
   return (
-    <div className="position center" onClick={() => { doControlDeviceData('guard_mode', !deviceData?.guard_mode) }}>
+    // <div className="position center" onClick={() => { doControlDeviceData('guard_mode', !deviceData?.guard_mode) }}>
+    <div className="position center">
       <div className={classNames('area', clsName)}>
         <div className="circular-outer center">
           <div className="circular-inner center">

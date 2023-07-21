@@ -8,8 +8,11 @@ import { BindProduction } from "./BindProduction";
 import { Spin } from '@custom/Spin';
 
 
+/**
+ *  添加子设备
+ */
 
-const IS_TEST = true;
+const IS_TEST = false;
 
 interface SearchResultInfo {
     productId: string;
@@ -60,7 +63,7 @@ const defaultScanResult = IS_TEST ? [
 export function SearchDevice(props) {
     let { sdk, deviceData, history: { query, push }, log } = props;
 
-    const scan_time = 3000; // 扫描时间
+    const scan_time = 300; // 扫描时间
     const BIND_TIMEOUT = 3000; // 绑定超时时间
     useTitle('搜索设备');
     // 0 标识未开始 1标识开始 -1标识超时 3 表示已经收到数据 -2 表示其他错误  10 表示绑定设备界面 11 重新添加
@@ -165,7 +168,8 @@ export function SearchDevice(props) {
     const startSearch = () => {
         setStatus(STATUS.STARTSCAN);
         let fn = IS_TEST ? callDeviceAction : sdk.callDeviceAction;
-        fn({ scan: 1, scan_timeout: scan_time }, '_sys_gw_scan_subdev')
+        fn.call(sdk,{ scan: 1, scan_timeout: scan_time}, '_sys_gw_scan_subdev')
+        // sdk.callDeviceAction({ scan: 1, scan_timeout: scan_time}, '_sys_gw_scan_subdev')
             .then(() => {
                 // 外层deviceData监听上报设备
                 setStatus(1);
@@ -184,6 +188,7 @@ export function SearchDevice(props) {
                 }, scan_time + 1000) // 多加一秒  避免数据在回来的路上
             })
             .catch((err) => {
+                console.error(err);
                 setErrorMsg([getErrorMsg(err)])
                 setStatus(STATUS.ERROR);
             });
@@ -276,7 +281,7 @@ export function SearchDevice(props) {
     const startBind = (info) => new Promise((__resolve, __reject) => {
         let fn = IS_TEST ? callDeviceActionBind : sdk.callDeviceAction;
         // 请求绑定
-        fn({ // 测试数据
+        fn.call(sdk,{ // 测试数据
             protocol: info.protocol,
             product_id: info.productId,
             uuids: info.uuid,
@@ -295,6 +300,7 @@ export function SearchDevice(props) {
             setTitle("添加成功");
             setStatus(STATUS.BINDSUCCESS);
         }).catch(error => {
+            console.error(error);
             setStatus(STATUS.BINDBERROR);
             setBindErrorMsg(getErrorMsg(error))
         })
@@ -344,6 +350,7 @@ export function SearchDevice(props) {
                                 {/* 列表显示数据 */}
                                 {searchResult.map(info => {
                                     return <Production
+                                        IS_TEST={IS_TEST}
                                         key={info?.id}
                                         onStartBind={(product) => onStartBind(info, product)}
                                         info={info}
@@ -371,7 +378,7 @@ export function SearchDevice(props) {
                             <div className='begin-bind'>
                                 {
                                     bindData.map(info => {
-                                        return <BindProduction key={info?.id} info={info} sdk={sdk} />
+                                        return <BindProduction IS_TEST={IS_TEST} key={info?.id} info={info} sdk={sdk} />
                                     })
                                 }
                             </div>
@@ -402,7 +409,7 @@ export function SearchDevice(props) {
                     : null
             }
             {/* 页面状态测试 */}
-            
+
             {/* <div>状态:{status}</div>
             <div>错误信息:{errorMsg}</div>
             <div>返回数据结果:{deviceData._sys_gw_scan_report}</div> */}

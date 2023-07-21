@@ -11,6 +11,8 @@ import { SceneBind, SceneSetting, SceneList } from '@custom/Scene';
 const App = () => {
   const route = [
     // { path: '/home', Component: SearchDevice },
+    // { path: '/home', Component: SubDevice },
+
     { path: '/home', Component: Home },
     { path: '/subDevice', Component: SubDevice },
     { path: '/search/device', Component: SearchDevice }, // 添加子设备

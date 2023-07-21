@@ -21,40 +21,44 @@ export function Record(props) {
         // const lastYearTime = time.setFullYear(lastYear);
 
         let result = await sdk.requestTokenApi('AppListEventHistory', {
+          AccessToken: "AccessToken",
           Action: 'AppListEventHistory',
           ProductId: props?.deviceInfo?.ProductId,
           DeviceName: props?.deviceInfo?.DeviceName,
-          Size: 50
+          StartTime: + new Date() - 100 * 60 * 60 * 12 * 30 * 12, // 向前一年的数据  //TODO 需求确认
+          EndTime: + new Date(),
+          // Type: "alert",
+          Size: 100
         });
-        result.EventHistory = [{
-          "TimeStamp": 1553484903,
-          "ProductId": "product1",
-          "DeviceName": "light3",
-          "EventId": "status_report",
-          "Type": "info",
-          "Data": "{\"status\": 0,\"message\": \"test message:11:35:03.288277\"}"
-        }, {
-          "TimeStamp": 1553484903,
-          "ProductId": "product1",
-          "DeviceName": "light3",
-          "EventId": "status_report",
-          "Type": "info",
-          "Data": "{\"status\": 0,\"message\": \"test message:11:35:03.288277\"}"
-        }, {
-          "TimeStamp": 1553484903,
-          "ProductId": "product1",
-          "DeviceName": "light3",
-          "EventId": "status_report",
-          "Type": "info",
-          "Data": "{\"status\": 0,\"message\": \"test message:11:35:03.288277\"}"
-        }, {
-          "TimeStamp": 1553484903,
-          "ProductId": "product1",
-          "DeviceName": "light3",
-          "EventId": "status_report",
-          "Type": "info",
-          "Data": "{\"status\": 0,\"message\": \"test message:11:35:03.288277\"}"
-        }]
+        // result.EventHistory = [{
+        //   "TimeStamp": 1553484903,
+        //   "ProductId": "product1",
+        //   "DeviceName": "light3",
+        //   "EventId": "status_report",
+        //   "Type": "info",
+        //   "Data": "{\"status\": 0,\"message\": \"test message:11:35:03.288277\"}"
+        // }, {
+        //   "TimeStamp": 1553484903,
+        //   "ProductId": "product1",
+        //   "DeviceName": "light3",
+        //   "EventId": "status_report",
+        //   "Type": "info",
+        //   "Data": "{\"status\": 0,\"message\": \"test message:11:35:03.288277\"}"
+        // }, {
+        //   "TimeStamp": 1553484903,
+        //   "ProductId": "product1",
+        //   "DeviceName": "light3",
+        //   "EventId": "status_report",
+        //   "Type": "info",
+        //   "Data": "{\"status\": 0,\"message\": \"test message:11:35:03.288277\"}"
+        // }, {
+        //   "TimeStamp": 1553484903,
+        //   "ProductId": "product1",
+        //   "DeviceName": "light3",
+        //   "EventId": "status_report",
+        //   "Type": "info",
+        //   "Data": "{\"status\": 0,\"message\": \"test message:11:35:03.288277\"}"
+        // }]
         setRecordList(result?.EventHistory?.map(item => ({ Time: item.TimeStamp, Value: JSON.parse(item?.Data || "{}")?.message })));
       } catch (err) {
         console.error('get info fail', err);

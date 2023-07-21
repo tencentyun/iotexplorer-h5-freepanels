@@ -4,17 +4,31 @@ import { Icon } from '@custom/Icon';
 /**
  * 提示内容
  */
-export function Notice({ deviceData:{ alarm_actives,muffling },templateMap, doControlDeviceData,productInfo, history, deviceInfo }) {
+export function Notice({ deviceData: { muffling }, templateMap, doControlDeviceData, productInfo, history, deviceInfo, alarmType }) {
 
     // 使用物模型定义
-    let ALARM_ACTIVES = templateMap?.alarm_actives?.define?.mapping || {};
+    // let ALARM_ACTIVES = templateMap?.alarm_actives?.define?.mapping || {};
 
+    // 固定写死 无模型对应缺少门铃
+    let ALARM_ACTIVES = {
+        "0": "异常警报",
+        "1": "防盗报警",
+        "2": "燃气报警",
+        "3": "水浸报警",
+        "4": "烟雾报警",
+        "5": "紧急sos",
+        "6": "门铃声"
+    };
+
+    // 处理报警上报数据
+    let alarm_actives = alarmType;
     // 是否显示 提示
-    let isShow = !!alarm_actives;
+    let isShow = void 0 != alarm_actives;
     if (!isShow) return null;
-    let isDoor = alarm_actives == 1;
+
+    let isDoor = alarm_actives == 6;
     let level = isDoor ? 'normal' : 'warn'; // 门铃生
-    let message = isDoor ? "当前门铃响起>" : `当前${ALARM_ACTIVES[alarm_actives].replace('告警_', '')}中 >`;
+    let message = isDoor ? "当前门铃响起>" : `当前${ALARM_ACTIVES[alarm_actives]}中 >`;
     let cls = `item ${level}`;
 
     return (
@@ -28,7 +42,7 @@ export function Notice({ deviceData:{ alarm_actives,muffling },templateMap, doCo
                         {message}
                     </div>
                 </div>
-                <div className='voice' onClick={()=>doControlDeviceData("muffling",!muffling)}>
+                <div className='voice' onClick={() => doControlDeviceData("muffling", !muffling)}>
                     <Icon className="custom-icon" name={muffling ? "voice-close" : "voice-open"}></Icon>
                 </div>
             </div>

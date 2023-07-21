@@ -16,7 +16,7 @@ const productInfoPromiseCache: Record<string, Promise<null | {
     IconUrl: string,
 }>> = {};
 
-export function Production({ info, onStartBind, sdk }) {
+export function Production({ info, onStartBind, sdk, IS_TEST }) {
 
     const [data, setData] = useState();
 
@@ -28,24 +28,25 @@ export function Production({ info, onStartBind, sdk }) {
         return productInfoPromiseCache[productId];
     };
 
-    // const getProductionData = async (info) => {
-    //     const result = await getProductInfoPromise(info.productId);
-    //     setData(result.data);
-    // }
+    const getProductionData = async (info) => {
+        const result = await getProductInfoPromise(info.productId);
+        setData(result.data);
+    }
 
     // 测试数据
-    const getProductionData = async (info) => {
+    const getTestProductionData = async (info) => {
         setData({
             IconUrl: "https://main.qcloudimg.com/raw/05ca75c84bb7c1e2dbc9d762cf3af1f1.png",
             Name: "门窗传感器",
             productId: "11111111",
-            DeviceName: "设备名"
+            device_name: "设备名"
         });
     }
 
 
     useEffect(() => {
-        getProductionData(info);
+        let fn = IS_TEST ? getTestProductionData : getProductionData;
+        fn(info);
     }, [info.productId])
 
 
@@ -62,7 +63,7 @@ export function Production({ info, onStartBind, sdk }) {
         {/* 名称 */}
         <div className="name-flag">{String(data?.Name || info.productId)}</div>
         {/* 产品名称 */}
-        <div>{String(data?.DeviceName || info.productId)}</div>
+        <div>{String(data?.device_name || info.productId)}</div>
     </div >
     );
 }

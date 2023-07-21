@@ -5,21 +5,23 @@ import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 import { SceneList } from '@custom/Scene';
 
 export function Alarm(props) {
-  const { templateMap = {}, history: { PATH, push }, doControlDeviceData } = { ...props };
-  const RING_LIST = [{ label: '门铃声', value: 0 },
-  { label: '警报声', value: 1 },
-  { label: '防盗告警', value: 2 },
-  { label: '燃气报警', value: 3 },
-  { label: '水浸报警', value: 4 },
-  { label: '烟雾报警', value: 5 },
-  { label: '紧急SOS', value: 6 }]
+  const { templateMap = {}, history: { PATH, push }, deviceData: { alram_voice_tips }, doControlDeviceData } = { ...props };
+  const RING_LIST = [
+    // { label: '门铃声', value: 0 },
+    { label: '警报声', value: 1 },
+    { label: '防盗告警', value: 2 },
+    { label: '燃气报警', value: 3 },
+    { label: '水浸报警', value: 4 },
+    { label: '烟雾报警', value: 5 },
+    { label: '紧急SOS', value: 6 }]
+
   useTitle('安防告警')
-  const [radioData, setRadioData] = useState(0);
+  // const [radioData, setRadioData] = useState(0);
 
   // useEffect(() => {})
   const onRadioClick = (value) => {
-    setRadioData(value);
-    doControlDeviceData('alarm_voice_tips', value)
+    // setRadioData(value);
+    doControlDeviceData('alram_voice_tips', value)
   };
   return (
     <div className="alarm-scene">
@@ -44,7 +46,7 @@ export function Alarm(props) {
                   type="radio"
                   id={`label-${value}`}
                   name="mode"
-                  checked={radioData === value}
+                  checked={(alram_voice_tips || 1 ) === value}
                 />
                 <span className="radio-item-label">{label}</span>
               </label>
@@ -53,15 +55,13 @@ export function Alarm(props) {
 
         </div>
       </div>
-      <div className="scene-list">
+      {/* <div className="scene-list">
         <div className="title">已创建场景</div>
         <div className="list">
           <SceneList {...props} sdk={sdk} />
         </div>
-      </div>
-      <div className="operator">
-        <Btn onClick={() => sdk.goScenePage({ type: "auto" })}>创建安防场景</Btn>
-      </div>
+      </div> */}
+      <div className="fexid-btn center" onClick={() => sdk.goScenePage({ type: "auto" })}>创建安防场景</div>
     </div>
   );
 }

@@ -10,11 +10,24 @@ import { Voice } from './Notice/Voice';
 
 
 
+
+
+
+
+
+
+
+
 const GateWay = (props) => {
   // 其他页面返回也刷新
   const [gatewayList, setGatewayList] = useState([]);
   const [visible, setVisible] = useState(false);
-  const { deviceData = {}, doControlDeviceData = () => { }, history, deviceInfo } = { ...props };
+  const { deviceData = {}, sdk, doControlDeviceData = () => { }, history, deviceInfo } = { ...props };
+
+
+
+
+
   useEffect(() => {
   }, []);
 
@@ -37,7 +50,12 @@ const GateWay = (props) => {
     [
       '微信通知',
       'weixin',
-      () => { history.push(`/pages/Device/ConfigWXNotify/ConfigWXNotify?deviceId=${deviceInfo.DeviceId}`) },
+      () => {
+        sdk._appBridge.callMpApi('navigateTo', {
+          url: `/pages/Device/ConfigWXNotify/ConfigWXNotify?deviceId=${sdk.deviceId}`,
+        });
+
+      },
       // !!deviceData?.guard_vol,
       '',
       ''
@@ -115,10 +133,37 @@ const GateWay = (props) => {
 
 
 export function Home(props) {
+  // 接受到的告警类型 
+  const [alarmType, setAlarmType] = useState();
+  const { sdk } = props;
+
+  // 绑定告警信息监听
+  useEffect(() => {
+    const handlePropertyReport = ({ deviceId, Payload }) => {
+      console.log("监听->接受到的数据::::", {
+        deviceId,
+        Payload
+      }, JSON.stringify({
+        deviceId,
+        Payload
+      }))
+      // 测试
+      const PayloadTest = { "method": "event_post", "clientToken": "123", "version": "1.0", "eventId": "alarm_event", "type": "alert", "timestamp": 1689925478905, "params": { "alarm_type": 2 } };
+      if (deviceId !== sdk.deviceId) return;
+      if (Payload.eventId != "alarm_event") return;
+      setAlarmType(Payload?.params?.alarm_type);
+      // console.log("监听->接受到的当前告警上报的数据::::", Payload.alarm_event, { deviceId, Payload })
+    };
+    sdk.on('wsEventReport', handlePropertyReport);
+    return () => {
+      sdk.off('wsEventReport', handlePropertyReport);
+    };
+  }, []);
+
   return (
     <div className='home'>
       <div className="custom-notice">
-        <Notice {...props} />
+        <Notice {...props} alarmType={alarmType} />
       </div>
       <div className="content">
         <GateWay {...props} />

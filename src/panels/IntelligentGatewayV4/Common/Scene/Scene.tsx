@@ -5,16 +5,19 @@ import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 import { SceneList } from '@custom/Scene';
 
 export function Scene(props) {
-  const { templateMap = {}, history: { PATH, push }, doControlDeviceData } = { ...props };
+  const { templateMap = {}, history: { PATH, push }, deviceData: { doorbell }, doControlDeviceData } = props;
   const RING_LIST = [{ label: '普通', value: 0 }, { label: '轻快', value: 1 }, { label: '古典', value: 2 }]
   useTitle('门铃场景')
-  const [radioData, setRadioData] = useState(0);
+  // const [radioData, setRadioData] = useState(doorbell || 0);
 
   // useEffect(() => {})
   const onRadioClick = (value) => {
-    setRadioData(value);
-    doControlDeviceData('doorbell_tips', value)
+    // setRadioData(value);
+    doControlDeviceData('doorbell', value)
   };
+
+
+
   return (
     <div className="ring-scene">
       <div className="banner">
@@ -37,7 +40,7 @@ export function Scene(props) {
                   type="radio"
                   id={`label-${value}`}
                   name="mode"
-                  checked={radioData === value}
+                  checked={(doorbell || 0) == value}
                 />
                 <span className="radio-item-label">{label}</span>
               </label>
@@ -46,15 +49,13 @@ export function Scene(props) {
 
         </div>
       </div>
-      <div className="scene-list">
+      {/* <div className="scene-list">
         <div className="title">已创建场景</div>
         <div className="list">
           <SceneList {...props} sdk={sdk} />
         </div>
-      </div>
-      <div className="operator">
-        <Btn onClick={() => sdk.goScenePage({ type: "auto" })}>创建门铃场景</Btn>
-      </div>
+      </div> */}
+      <div className="fexid-btn center" onClick={() => sdk.goScenePage({ type: "auto" })}>创建门铃场景</div>
     </div>
   );
 }
