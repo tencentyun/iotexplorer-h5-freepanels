@@ -32,6 +32,7 @@ export interface CellProps {
   ele?: string;
   eleValue?: boolean;
   onChange?:  (checked: boolean) => void  ;
+  showArrow?: boolean;
 }
 
 const supportEle = {
@@ -54,6 +55,7 @@ export function Cell({
   ele = '', // 默认支持两种常见元素 switch / checkbox
   eleValue = false, // 元素值
   onChange = () => ({}),
+  showArrow,
   ...prop
 }: CellProps) {
   const target = useRef(null);
@@ -95,7 +97,7 @@ export function Cell({
         </div>
 
         {/* 右侧箭头 */}
-        {isLink ? <span className="icon-arrow-right"></span> : null}
+        {isLink || showArrow ? <span className="icon-arrow-right"></span> : null}
         {ele ? (
           <EleComponent
             onChange={onChange}

@@ -6,11 +6,13 @@ import { Modal } from '@custom/Modal';
 import { Btn as Button, BtnGroup } from '@custom/Btn';
 import { Dropdown } from '@custom/DropDown';
 import { DropdownRef } from 'antd-mobile/es/components/dropdown';
-
+import { Battery } from '@custom/Battery';
+import { ElectricStatisticsPanel } from '@src/panels/WirelessSwitchOneV4/Common/Source';
 
 export const Detail = ({
   deviceData,
   doControlDeviceData,
+  updateDeviceData,
   context: { switchNum },
   currentSwitch,
   currentMode,
@@ -121,12 +123,22 @@ export const Detail = ({
     doControlDeviceData({ [key]: name });
   };
 
+  // Todo 电量统计mock数据（后续去掉）
+  useEffect(() => {
+    updateDeviceData({
+      cur_ele: 20,
+      cur_current: 5,
+      cur_voltage: 220,
+      cur_power: 0.7,
+    });
+  }, []);
+
   return (
     <div className={`detail action action-${switchNum}`}>
       <div className="operator">
-        <div className="operator-btn editor" onClick={() => setModalVisible(true)}>
-          <Icon className="operator-icon" name="editor" size="large" />
-        </div>
+        {/*<div className="operator-btn editor" onClick={() => setModalVisible(true)}>*/}
+        {/*  <Icon className="operator-icon" name="editor" size="large" />*/}
+        {/*</div>*/}
         <div className="operator-btn setting"></div>
       </div>
       <div className="environment">
@@ -161,6 +173,26 @@ export const Detail = ({
           onClick={() => setModeVisible(true)}
           className="mode-btn"
         ></Cell>
+      </div>
+      <div
+        className="electric-statistics-panel-wrap"
+        onClick={() => push('/source')}
+      >
+        <Cell
+          isLink={false}
+          showArrow={true}
+          prefixIcon={
+            <Battery
+              value={deviceData?.battery || 0}
+              isShowPercent={false}
+              isShowTip={false}
+              color='brown'
+            />
+          }
+          title={'电量统计'}
+          className="electric-statistics-panel-header"
+        ></Cell>
+        <ElectricStatisticsPanel deviceData={deviceData} />
       </div>
       <TimePicker
         className="switch-timer-cloud"
