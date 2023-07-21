@@ -4,17 +4,19 @@ import { TimePicker } from '@custom/TimePicker';
 import { Cell } from '@custom/Cell';
 import { Modal } from '@custom/Modal';
 import { Btn as Button, BtnGroup } from '@custom/Btn';
+import { Battery } from '@custom/Battery';
+import { ElectricStatisticsPanel } from '@src/panels/WirelessSwitchOneV4/Common/Source';
 
 export const Detail = ({
   deviceData,
   doControlDeviceData,
+  updateDeviceData,
   context: { switchNum },
   currentSwitch,
   history: { PATH, push },
   isModal,
-  isPopUp
+  isPopUp,
 }) => {
-
   const SWITCH = { OPEN: 1, CLOSE: 0 };
   const getStatusData = status => currentSwitch.filter(([key]) => deviceData[key] !== status);
   const [isChecked, setChecked] = useState(false);
@@ -109,11 +111,21 @@ export const Detail = ({
     value: 1,
   }];
 
+  // Todo 电量统计mock数据（后续去掉）
+  useEffect(() => {
+    updateDeviceData({
+      cur_ele: 20,
+      cur_current: 5,
+      cur_voltage: 220,
+      cur_power: 0.7,
+    });
+  }, []);
+
   return (
     <div className={`detail action action-${switchNum}`}>
       <div className="operator">
         <div className="operator-btn editor" onClick={() => setModalVisible(true)}>
-          <Icon className="operator-icon" name="editor" size="large" />
+          {/*<Icon className="operator-icon" name="editor" size="large" />*/}
         </div>
         <div className="operator-btn setting"></div>
       </div>
@@ -150,6 +162,26 @@ export const Detail = ({
           onClick={() => setModeVisible(true)}
           className="modeBtn"
         ></Cell>
+      </div>
+      <div
+        className="electric-statistics-panel-wrap"
+        onClick={() => push('/source')}
+      >
+        <Cell
+          isLink={false}
+          showArrow={true}
+          prefixIcon={
+            <Battery
+              value={deviceData?.battery || 0}
+              isShowPercent={false}
+              isShowTip={false}
+              color='brown'
+            />
+          }
+          title={'电量统计'}
+          className="electric-statistics-panel-header"
+        ></Cell>
+        <ElectricStatisticsPanel deviceData={deviceData} />
       </div>
       <TimePicker
         className="switch-timer-cloud"
