@@ -63,9 +63,9 @@ const defaultScanResult = IS_TEST ? [
 export function SearchDevice(props) {
     let { sdk, deviceData, history: { query, push }, log } = props;
 
-    const scan_time = 300; // 扫描时间
-    const BIND_TIMEOUT = 3000; // 绑定超时时间
-    useTitle('搜索设备');
+    const scan_time = 60; // 扫描时间
+    const BIND_TIMEOUT = 80000; // 绑定超时时间
+    // useTitle('搜索设备');
     // 0 标识未开始 1标识开始 -1标识超时 3 表示已经收到数据 -2 表示其他错误  10 表示绑定设备界面 11 重新添加
     const STATUS = {
         UNSCAN: 0,
@@ -109,7 +109,7 @@ export function SearchDevice(props) {
             setTimeout(() => {
                 resolve("OK");
                 // reject({ code: '————TEST-callDeviceAction', msg: '请求扫描异常' });
-            }, scan_time)
+            }, scan_time * 1000)
         })
     }
 
@@ -156,9 +156,9 @@ export function SearchDevice(props) {
         }
         // 处理监听的设备
         handleScanReport(scanData)
-        if (status === STATUS.BINDBEGIN) {
-            setStatus(STATUS.SUCCESS);
-        }
+        // if (status === STATUS.BINDBEGIN) {
+        setStatus(STATUS.SUCCESS);
+        // }
 
     }
 
@@ -168,8 +168,8 @@ export function SearchDevice(props) {
     const startSearch = () => {
         setStatus(STATUS.STARTSCAN);
         let fn = IS_TEST ? callDeviceAction : sdk.callDeviceAction;
-        fn.call(sdk,{ scan: 1, scan_timeout: scan_time}, '_sys_gw_scan_subdev')
-        // sdk.callDeviceAction({ scan: 1, scan_timeout: scan_time}, '_sys_gw_scan_subdev')
+        fn.call(sdk, { scan: 1, scan_timeout: scan_time }, '_sys_gw_scan_subdev')
+            // sdk.callDeviceAction({ scan: 1, scan_timeout: scan_time}, '_sys_gw_scan_subdev')
             .then(() => {
                 // 外层deviceData监听上报设备
                 setStatus(1);
@@ -218,7 +218,7 @@ export function SearchDevice(props) {
 
     // 重新绑定
     const recoverBind = () => {
-        setTitle("添加设备")
+        // setTitle("添加设备")
         setStatus(STATUS.SUCCESS);
     }
 
@@ -239,10 +239,11 @@ export function SearchDevice(props) {
                 } else {
                     const listener = ({ deviceId, Payload }: { deviceId: string; Payload: any }) => {
                         if (deviceId !== sdk.deviceId) return;
+                        log.mi("监听到绑定上报数据:", Payload);
                         if (Payload.eventId !== '_sys_gw_bind_result') return;
                         if (Payload.params.product_id === info.productId
                             && Payload.params.protocol === info.protocol
-                            && Payload.params.uuid === info.uuid) {
+                            && (Payload.params.uuid || '').split(';')[0] === info.uuid) {
                             const resultCode = Payload.params.code;
                             if (resultCode === 0) {
                                 resolve(Payload.params.device_name);
@@ -281,7 +282,7 @@ export function SearchDevice(props) {
     const startBind = (info) => new Promise((__resolve, __reject) => {
         let fn = IS_TEST ? callDeviceActionBind : sdk.callDeviceAction;
         // 请求绑定
-        fn.call(sdk,{ // 测试数据
+        fn.call(sdk, { // 测试数据
             protocol: info.protocol,
             product_id: info.productId,
             uuids: info.uuid,
@@ -297,7 +298,7 @@ export function SearchDevice(props) {
     const startBinds = (scans) => {
         let allPromsie = scans.map(scan => startBind(scan));
         Promise.all(allPromsie).then(() => {
-            setTitle("添加成功");
+            // setTitle("添加成功");
             setStatus(STATUS.BINDSUCCESS);
         }).catch(error => {
             console.error(error);
@@ -309,7 +310,23 @@ export function SearchDevice(props) {
 
 
     // 监听上报的设备数据
-    let scanResponse = deviceData?._sys_gw_scan_subdev;
+    // let scanResponse = deviceData?._sys_gw_scan_subdev;
+
+    let scanResponse = deviceData?._sys_gw_scan_report;
+
+    useEffect(() => {
+        console.log("---------------------------------------------------------------", status)
+        if (status === STATUS.OVER) {
+            console.log("---------------------------------------------------------------", window.document.title)
+            window.document.title = "1222"
+            setTitle("添加设备")
+            console.log("---------------------------------------------------------------", window.document.title)
+        }
+
+    }, [status])
+
+
+
     useEffect(() => {
         if (scanResponse) { // 存在扫描数据
             lisenerScanReport(scanResponse);
@@ -321,6 +338,7 @@ export function SearchDevice(props) {
         query.start && startSearch();
     }, [query.start])
 
+    log.mi("扫描结果:", { status, searchResult })
 
     return (
         <div className="search-device">
@@ -344,14 +362,14 @@ export function SearchDevice(props) {
                     <>
                         <div className='scan-success'>
                             <div className='scan-msg'>{
-                                MESSAGE["1"].map(val => <div>{val}</div>)
+                                STATUS.OVER ? ["本次搜索结束", "您可以添加当前子设备"].map(val => <div>{val}</div>) : MESSAGE["1"].map(val => <div>{val}</div>)
                             }</div>
                             <div className="list">
                                 {/* 列表显示数据 */}
                                 {searchResult.map(info => {
                                     return <Production
                                         IS_TEST={IS_TEST}
-                                        key={info?.id}
+                                        key={info?.productId}
                                         onStartBind={(product) => onStartBind(info, product)}
                                         info={info}
                                         sdk={sdk}

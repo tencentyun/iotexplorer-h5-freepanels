@@ -30,7 +30,7 @@ export function Production({ info, onStartBind, sdk, IS_TEST }) {
 
     const getProductionData = async (info) => {
         const result = await getProductInfoPromise(info.productId);
-        setData(result.data);
+        setData(result);
     }
 
     // 测试数据

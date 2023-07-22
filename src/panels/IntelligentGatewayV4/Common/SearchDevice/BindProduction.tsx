@@ -30,7 +30,7 @@ export function BindProduction({ info, sdk ,IS_TEST}) {
 
     const getProductionData = async (info) => {
         const result = await getProductInfoPromise(info.productId);
-        setData(result.data);
+        setData(result);
     }
 
     // 测试数据
@@ -71,7 +71,9 @@ export function BindProduction({ info, sdk ,IS_TEST}) {
                 <div>{String(data?.device_name || info.productId)}</div>
             </div>
         </div>
-        <div className={`bind-on-line ${data?.onLine ? 'on-line' : 'off-line'}`}>{data?.onLine ? '在线' : '离线'}</div>
+        <div className={`bind-on-line ${data?.onLine ? 'on-line' : 'off-line'}`}>
+            {data?.onLine ? '在线' : '离线'}
+        </div>
     </div >
     );
 }

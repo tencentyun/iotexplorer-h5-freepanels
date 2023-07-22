@@ -47,7 +47,7 @@ export function Steps({ stepData, statusLabels, type }: StepsProps) {
               <span className="time">{date.format('HH:mm')}</span>
               {type !== 'gateway' ? <span className="week">{DAY_DESC[date.day()]}</span> : <></>}
             </div>
-            {type !== 'gateway' ? <div className="date">{date.format('YYYY.MM.DD')}</div> : <div className="date">{value.Value}</div>}
+            <div className="date">{value.Value}</div>
           </div>
           {type !== 'gateway' ? <div className="content-right">
             <div className="status">{statusLabel[Number(value.Value)]}</div>

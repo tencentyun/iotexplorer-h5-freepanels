@@ -1,15 +1,40 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Icon } from '@custom/Icon';
 import classNames from 'classnames';
 export function Position(props) {
   const {
     deviceInfo,
-    deviceData,
-    doControlDeviceData
+    sdk
   } = props;
-  const text = deviceInfo?.DeviceName || deviceInfo?.AliasName || '智能网关';
-  const subText = deviceInfo?.Online ? '在线' : '离线';
-  const clsName = deviceInfo?.Online ? 'open' : 'close';
+
+  const text = deviceInfo?.AliasName || deviceInfo?.DeviceName || '智能网关';
+  const [status, setStatus] = useState(deviceInfo?.Online);
+
+  const subText = status ? '在线' : '离线';
+  const clsName = status ? 'open' : 'close';
+
+
+
+
+  const handleWsStatusChange = ({ deviceId: deviceIdFromEvent, deviceStatus }: {
+    deviceId: string;
+    deviceStatus: number;
+  }) => {
+    debugger;
+    if (deviceIdFromEvent === deviceInfo.DeviceId) {
+      debugger;
+      setStatus(deviceStatus);
+    }
+  };
+
+  useEffect(() => {
+    sdk.on('wsStatusChange', handleWsStatusChange);
+    return () => {
+      sdk.off('wsStatusChange', handleWsStatusChange);
+    };
+  }, [])
+
+
   return (
     // <div className="position center" onClick={() => { doControlDeviceData('guard_mode', !deviceData?.guard_mode) }}>
     <div className="position center">
