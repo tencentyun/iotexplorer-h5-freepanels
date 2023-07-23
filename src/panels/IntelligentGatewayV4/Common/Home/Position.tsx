@@ -20,9 +20,7 @@ export function Position(props) {
     deviceId: string;
     deviceStatus: number;
   }) => {
-    debugger;
     if (deviceIdFromEvent === deviceInfo.DeviceId) {
-      debugger;
       setStatus(deviceStatus);
     }
   };

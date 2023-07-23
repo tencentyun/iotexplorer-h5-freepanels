@@ -1,5 +1,22 @@
 import { useEffect, useState } from 'react';
 
+
+function base64toHEX(base64) {
+    let raw = atob(base64);
+    let HEX = '';
+    for ( let i = 0; i < raw.length; i++ ) {
+        let _hex = raw.charCodeAt(i).toString(16)
+      HEX += (_hex.length==2?_hex:'0'+_hex);
+    }
+    return HEX.toUpperCase();
+  }
+
+// 转换64截取最后6位
+
+const tansSplit=(uuid)=>{
+    let hex = base64toHEX(uuid)
+    return hex.slice(hex.length-6,hex.length)
+}
 /**
  * 绑定产品信息
  */
@@ -68,11 +85,12 @@ export function BindProduction({ info, sdk ,IS_TEST}) {
                 {/* 名称 */}
                 <div className="name-flag">{String(data?.Name || info.productId)}</div>
                 {/* 产品名称 */}
-                <div>{String(data?.device_name || info.productId)}</div>
+                {/* <div>{String(data?.device_name || info.productId)}</div> */}
+                <div>{info.device_name}</div>
             </div>
         </div>
-        <div className={`bind-on-line ${data?.onLine ? 'on-line' : 'off-line'}`}>
-            {data?.onLine ? '在线' : '离线'}
+        <div className={`bind-on-line ${info?.success ? 'on-line' : 'off-line'}`}>
+            {info?.success ? '添加成功' : ''}
         </div>
     </div >
     );

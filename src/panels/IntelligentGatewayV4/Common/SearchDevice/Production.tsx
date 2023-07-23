@@ -16,6 +16,8 @@ const productInfoPromiseCache: Record<string, Promise<null | {
     IconUrl: string,
 }>> = {};
 
+
+
 export function Production({ info, onStartBind, sdk, IS_TEST }) {
 
     const [data, setData] = useState();
@@ -63,7 +65,7 @@ export function Production({ info, onStartBind, sdk, IS_TEST }) {
         {/* 名称 */}
         <div className="name-flag">{String(data?.Name || info.productId)}</div>
         {/* 产品名称 */}
-        <div>{String(data?.device_name || info.productId)}</div>
+        <div>{info.device_name}</div>
     </div >
     );
 }

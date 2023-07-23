@@ -25,9 +25,6 @@ const GateWay = (props) => {
   const { deviceData = {}, sdk, doControlDeviceData = () => { }, history, deviceInfo } = { ...props };
 
 
-
-
-
   useEffect(() => {
   }, []);
 
@@ -140,13 +137,13 @@ export function Home(props) {
   // 绑定告警信息监听
   useEffect(() => {
     const handlePropertyReport = ({ deviceId, Payload }) => {
-      console.log("监听->接受到的数据::::", {
-        deviceId,
-        Payload
-      }, JSON.stringify({
-        deviceId,
-        Payload
-      }))
+      // console.log("监听->接受到的数据::::", {
+      //   deviceId,
+      //   Payload
+      // }, JSON.stringify({
+      //   deviceId,
+      //   Payload
+      // }))
       // 测试
       const PayloadTest = { "method": "event_post", "clientToken": "123", "version": "1.0", "eventId": "alarm_event", "type": "alert", "timestamp": 1689925478905, "params": { "alarm_type": 2 } };
       if (deviceId !== sdk.deviceId) return;
