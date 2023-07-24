@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { getErrorMsg } from "./utils";
-import {setTitle } from '@hooks/useTitle';
+import { setTitle } from '@hooks/useTitle';
 import { Circle } from "./Circle";
 import { Production } from "./Production";
 import { BindProduction } from "./BindProduction";
@@ -80,7 +80,7 @@ export function SearchDevice(props) {
     let { sdk, deviceData, history: { query, push }, log } = props;
 
     const scan_time = 60; // 扫描时间
-    const BIND_TIMEOUT = 80000; // 绑定超时时间
+    const BIND_TIMEOUT = 10000; // 绑定超时时间
     // 0 标识未开始 1标识开始 -1标识超时 3 表示已经收到数据 -2 表示其他错误  10 表示绑定设备界面 11 重新添加
     const STATUS = {
         UNSCAN: 0,
@@ -148,16 +148,17 @@ export function SearchDevice(props) {
     }
 
     // 设置绑定成功的状态
-    const setSuccess = (deviceName) => {
+    const setSuccess = (deviceName, isSuccess) => {
         let newBindData = (window._bindData || []).map(item => {
             if (item.device_name === deviceName) {
-                return { ...item, success: true }
+                return { ...item, success: isSuccess }
             } else {
                 return item;
             }
         })
         setBindData(newBindData)
     }
+
 
 
 
@@ -300,6 +301,8 @@ export function SearchDevice(props) {
         Promise.race([
             // 监听设备上报事件
             new Promise((resolve, reject) => {
+
+
                 if (IS_TEST) {
                     // 测试数据
                     setTimeout(() => {
@@ -318,9 +321,11 @@ export function SearchDevice(props) {
                             if (resultCode === 0) {
                                 // 设置指定设备未成功状态
                                 let device_name = Payload?.params?.device_name;
-                                setSuccess(device_name)
+                                setSuccess(device_name, true)
                                 resolve(Payload.params.device_name);
                             } else {
+                                let device_name = Payload?.params?.device_name;
+                                setSuccess(device_name, false)
                                 reject({ code: 'GATEWAY_REPLY_BIND_FAIL', msg: `网关回复绑定子设备失败，错误码=${resultCode} ` });
                             }
                             removeListener();
@@ -338,8 +343,15 @@ export function SearchDevice(props) {
             // 超时
             new Promise((_resolve, reject) => {
                 setTimeout(() => {
+                    console.log("超时", info.device_name, info)
+                    // 如果有反馈 则不进行超时处理
+                    removeListener()
+                    let cuurent = window._bindData.filter(({ device_name }) => device_name === info.device_name);
+                    if (cuurent[0]?.success) return _resolve( info.device_name);
+                    console.log("处理", info.device_name, info)
                     reject({ code: 'WAIT_GATEWAY_BIND_RESULT_TIMEOUT', msg: '等待网关回复绑定结果超时' });
-                }, BIND_TIMEOUT);
+                    setSuccess(info.device_name, false);
+                }, BIND_TIMEOUT * window._bindData.length);
             }),
         ]).then(resultSubDeviceId => {
             // 绑定成功
@@ -472,7 +484,7 @@ export function SearchDevice(props) {
                         <Spin loading={statusRef.current == STATUS.BINDBEGIN}>
                             <div className='begin-bind'>
                                 {
-                                    bindData.map(info => {
+                                    window._bindData.map(info => {
                                         return <BindProduction IS_TEST={IS_TEST} key={info?.id} info={info} sdk={sdk} />
                                     })
                                 }

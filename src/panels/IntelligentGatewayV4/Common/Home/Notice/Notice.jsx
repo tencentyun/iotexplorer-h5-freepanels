@@ -43,7 +43,7 @@ export function Notice({ deviceData: { muffling }, templateMap, doControlDeviceD
                     </div>
                 </div>
                 <div className='voice' onClick={() => doControlDeviceData("muffling", !muffling)}>
-                    <Icon className="custom-icon" name={muffling ? "voice-close" : "voice-open"}></Icon>
+                    <Icon className="custom-icon" name={muffling == '0' ? "voice-close" : "voice-open"}></Icon>
                 </div>
             </div>
         </div>

@@ -89,8 +89,8 @@ export function BindProduction({ info, sdk ,IS_TEST}) {
                 <div>{info.device_name}</div>
             </div>
         </div>
-        <div className={`bind-on-line ${info?.success ? 'on-line' : 'off-line'}`}>
-            {info?.success ? '添加成功' : ''}
+        <div className={`bind-on-line ${info?.success === true ? 'on-line' : 'off-error'}`}>
+            {info?.success===true ? '添加成功' : (info?.success===false ? '添加失败':'')}
         </div>
     </div >
     );

@@ -8,10 +8,10 @@ export function Position(props) {
   } = props;
 
   const text = deviceInfo?.AliasName || deviceInfo?.DeviceName || '智能网关';
-  const [status, setStatus] = useState(deviceInfo?.Online);
+  const [status, setStatus] = useState(deviceInfo?.Status);
 
-  const subText = status ? '在线' : '离线';
-  const clsName = status ? 'open' : 'close';
+  const subText = status == 1 ? '在线' : '离线';
+  const clsName = status == 1 ? 'open' : 'close';
 
 
 
@@ -21,6 +21,7 @@ export function Position(props) {
     deviceStatus: number;
   }) => {
     if (deviceIdFromEvent === deviceInfo.DeviceId) {
+      console.log("设置状态",deviceStatus)
       setStatus(deviceStatus);
     }
   };
@@ -32,7 +33,7 @@ export function Position(props) {
     };
   }, [])
 
-
+  console.log("RENDER:",{status,deviceStatus:deviceInfo?.deviceStatus,deviceInfo})
   return (
     // <div className="position center" onClick={() => { doControlDeviceData('guard_mode', !deviceData?.guard_mode) }}>
     <div className="position center">

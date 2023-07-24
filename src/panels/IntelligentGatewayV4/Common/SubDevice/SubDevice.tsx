@@ -38,7 +38,27 @@ export function SubDevice(props) {
   // 最近提供接口  但是不能通
   const getDeviceList = async () => {
     try {
-      const { DeviceList } = await sdk.getSubDeviceList();
+      let { subDeviceList } = await sdk.getSubDeviceList();
+      console.log("获取到的结果:",subDeviceList)
+
+      // 获取设备状态
+      if(subDeviceList.length){
+        let  {DeviceStatuses} = await  sdk.requestTokenApi("AppGetDeviceStatuses", {
+          "Action": "AppGetDeviceStatuses",
+          DeviceIds:subDeviceList.map(item=>item?.DeviceId)
+        })
+
+        let oStatus = {};
+        DeviceStatuses.map(({Online,DeviceId})=>{
+          oStatus[DeviceId] = Online;
+        })
+
+        subDeviceList = subDeviceList.map(item=>{
+          return {...item, onLine : oStatus[item.DeviceId] }
+          // return {...item, onLine :  }
+        })
+      }
+
 
       // const DeviceList = [
       //   {
@@ -62,11 +82,12 @@ export function SubDevice(props) {
 
 
 
-      setList(DeviceList);
+
+      setList(subDeviceList || []);
       setMessage('');
-      setDefaultList(DeviceList);
+      setDefaultList(subDeviceList);
     } catch (err) {
-      setMessage(err);
+      setMessage(err.message);
       console.error('get info fail', err);
     }
   };
@@ -78,6 +99,9 @@ export function SubDevice(props) {
       setDefaultList([]);
     }
   }, [])
+
+  console.log("RENDER_SUBDEVICE",list)
+
   return (
     <div className="sub-device">
       {list.length ? <>
@@ -93,9 +117,10 @@ export function SubDevice(props) {
         </div> */}
         <div className="content">
           {
-            list.map(({ AliasName, ProductId, DeviceName, IconUrl, onLine }) => {
+            list.map(({ AliasName, ProductId,DeviceId, DeviceName, IconUrl, onLine }) => {
               return <div className="bind-production" onClick={() => {
-                history.push(`https://iot.cloud.tencent.com/h5panel/developing?deviceName=${AliasName}&productId=${ProductId}`)
+                sdk.goDevicePanelPage(DeviceId)
+                // history.push(`https://iot.cloud.tencent.com/h5panel/developing?deviceName=${DeviceName}&productId=${ProductId}`)
               }}>
                 <div className='left-content center'>
                   {/* 图标 */}
@@ -112,8 +137,8 @@ export function SubDevice(props) {
                     <div>{DeviceName}</div>
                   </div>
                 </div>
-                <div className={` center bind-on-line ${onLine ? 'on-line' : 'off-line'}`}>
-                  {onLine ? '在线' : '离线'}
+                <div className={` center bind-on-line ${onLine==1 ? 'on-line' : 'off-line'}`}>
+                  {onLine==1  ? '在线' : '离线'}
                   <div className='arrow-icon'> <Icon name="arrow"></Icon></div>
                 </div>
               </div >
