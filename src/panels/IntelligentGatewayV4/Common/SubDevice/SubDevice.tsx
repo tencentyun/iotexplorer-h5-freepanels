@@ -105,22 +105,11 @@ export function SubDevice(props) {
   return (
     <div className="sub-device">
       {list.length ? <>
-        {/* <div className="top">
-          <SearchBar
-            placeholder="搜索"
-            onSearch={(value) => {
-              const newList = list.filter(item => item.AliasName.includes(value));
-              setList(newList)
-            }}
-            onChange={value => !value && setList(defaultList)}
-          />
-        </div> */}
         <div className="content">
           {
             list.map(({ AliasName, ProductId,DeviceId, DeviceName, IconUrl, onLine }) => {
-              return <div className="bind-production" onClick={() => {
+              return <div className="bind-production" key={DeviceName} onClick={() => {
                 sdk.goDevicePanelPage(DeviceId)
-                // history.push(`https://iot.cloud.tencent.com/h5panel/developing?deviceName=${DeviceName}&productId=${ProductId}`)
               }}>
                 <div className='left-content center'>
                   {/* 图标 */}
@@ -146,17 +135,6 @@ export function SubDevice(props) {
             })
           }
 
-          {/* {list.map(({ AliasName, ProductId }, index) => <Cell
-            key={index}
-            title={AliasName}
-            prefixIcon=''
-            ele={''}
-            onClick={() => {
-              history.push(`https://iot.cloud.tencent.com/h5panel/developing?deviceName=${AliasName}&productId=${ProductId}`)
-            }}
-            isLink={true}
-            className="border"
-          ></Cell>)} */}
         </div>
       </> : <div className="no-page">
         <div className="bg"></div>
@@ -165,7 +143,7 @@ export function SubDevice(props) {
       </div>
       }
 
-      <div className="fexid-btn center" onClick={() => history?.push('/search/device', { start: Math.random() })}>+添加子设备</div>
+      <div className="fexid-btn center" onClick={() => history?.replace('/search/device', { start: Math.random() })}>+添加子设备</div>
     </div >
   );
 }

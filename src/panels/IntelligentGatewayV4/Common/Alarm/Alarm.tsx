@@ -5,7 +5,7 @@ import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 import { SceneList } from '@custom/Scene';
 
 export function Alarm(props) {
-  const { templateMap = {}, history: { PATH, push }, deviceData: { alram_voice_tips }, doControlDeviceData } = { ...props };
+  const { deviceData: { alram_voice_tips }, doControlDeviceData } = { ...props };
   const RING_LIST = [
     // { label: '门铃声', value: 0 },
     { label: '警报声', value: 1 },

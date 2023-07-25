@@ -92,7 +92,6 @@ export function SearchDevice(props) {
         BINDBEGIN: 10, // 开始绑定
         BINDBERROR: 11, // 绑定失败
         BINDSUCCESS: 12, // 绑定成功
-        BINDOVER: 13, // 全部绑定结束
     }
 
     // 每个状态对应的标题
@@ -309,7 +308,7 @@ export function SearchDevice(props) {
                     setTimeout(() => {
                         resolve("监听成功");
                         // reject({ code: 'GATEWAY_REPLY_BIND_FAIL', msg: `网关回复绑定子设备失败`});
-                    }, 100)
+                    }, 3000)
                 } else {
                     const listener = ({ deviceId, Payload }: { deviceId: string; Payload: any }) => {
                         if (deviceId !== sdk.deviceId) return;
@@ -333,7 +332,6 @@ export function SearchDevice(props) {
                         }
                     };
 
-                    log.mi("开始监听------------->", info);
                     sdk.on('wsEventReport', listener);
 
                     removeListener = () => {
@@ -345,15 +343,15 @@ export function SearchDevice(props) {
             // 超时
             new Promise((_resolve, reject) => {
                 setTimeout(() => {
-                    console.log("绑定超时", info.device_name, info)
+                    console.log("超时", info.device_name, info)
                     // 如果有反馈 则不进行超时处理
-                    removeListener()
+                    // removeListener()
                     let cuurent = window._bindData.filter(({ device_name }) => device_name === info.device_name);
-                    if (cuurent[0]?.success) return _resolve(info.device_name);
-                    console.log("超时处理", info.device_name, info)
+                    if (cuurent[0]?.success) return _resolve( info.device_name);
+                    console.log("处理", info.device_name, info)
                     setSuccess(info.device_name, false);
                     reject({ code: 'WAIT_GATEWAY_BIND_RESULT_TIMEOUT', msg: '等待网关回复绑定结果超时' });
-                }, BIND_TIMEOUT);
+                }, BIND_TIMEOUT * window._bindData.length);
             }),
         ]).then(resultSubDeviceId => {
             // 绑定成功
@@ -368,7 +366,6 @@ export function SearchDevice(props) {
     // 开始绑定
     const startBind = (info) => new Promise((__resolve, __reject) => {
         let fn = IS_TEST ? callDeviceActionBind : sdk.callDeviceAction;
-        log.mi("-----------------------------------开始绑定:",info, new Date())
         // 请求绑定
         fn.call(sdk, { // 测试数据
             protocol: info.protocol,
@@ -379,71 +376,19 @@ export function SearchDevice(props) {
         }).catch(__reject);
     });
 
-    const serialPromises = (promises = [], args = []) => {
-        return new Promise((resolve, reject) => {
-
-            const allResult = [];
-            const successResult = [];
-            const errorResult = [];
-
-            // 最后结束
-            const finnalyFn = () => {
-                console.log("最后---结束");
-                resolve({ allResult, successResult, errorResult })
-            }
-
-            // 分布执行
-            const process = (index, promiseArg, preResult) => {
-
-                let current = promises[index];
-
-                let next = (result) => process(index + 1, args[index + 1], result)
-
-                if (current) {
-                    current(promiseArg, preResult).then(success => {
-                        allResult.push(success);
-                        successResult.push(success);
-                        if (promises.length - 1 === index) {
-                            finnalyFn()
-                        }
-                        next(success);
-                    }).catch(err => {
-                        allResult.push(err);
-                        errorResult.push(err);
-                        if (promises.length - 1 === index) {
-                            finnalyFn()
-                        }
-                        next(err);
-                    });
-                }
-            }
-            process(0, args[0], null);
-        })
-    }
-    // /**
-    //  *  开始绑定指定或多个设备
-    //  */
-    // const startBinds = (scans) => {
-    //     let allPromsie = scans.map(scan => startBind(scan));
-    //     // Promise.all(allPromsie).then(() => {
-    //     //     setStatus(STATUS.BINDSUCCESS);
-    //     // }).catch(error => {
-    //     //     console.error(error);
-    //     //     setStatus(STATUS.BINDBERROR);
-    //     //     setBindErrorMsg(getErrorMsg(error))
-    //     // })
-    //     serialPromises(allPromsie);
-    // }
-
 
     /**
- *  开始绑定指定或多个设备
- */
+     *  开始绑定指定或多个设备
+     */
     const startBinds = (scans) => {
-        serialPromises(scans.map(() => startBind), scans).then(() => {
-            // if (errorResult?.length) return setStatus(STATUS.BINDBERROR);
-            setStatus(STATUS.BINDOVER);
-        });
+        let allPromsie = scans.map(scan => startBind(scan));
+        Promise.all(allPromsie).then(() => {
+            setStatus(STATUS.BINDSUCCESS);
+        }).catch(error => {
+            console.error(error);
+            setStatus(STATUS.BINDBERROR);
+            setBindErrorMsg(getErrorMsg(error))
+        })
     }
 
 
@@ -514,7 +459,7 @@ export function SearchDevice(props) {
                                 {searchResult.map(info => {
                                     return <Production
                                         IS_TEST={IS_TEST}
-                                        key={info?.uuid}
+                                        key={info?.productId}
                                         onStartBind={(product) => onStartBind(info, product)}
                                         info={info}
                                         sdk={sdk}
@@ -535,24 +480,23 @@ export function SearchDevice(props) {
 
             {/* 进行绑定 */}
             {
-                (statusRef.current === STATUS.BINDBEGIN || statusRef.current === STATUS.BINDSUCCESS
-                    || statusRef.current == STATUS.BINDBERROR || statusRef.current === STATUS.BINDOVER) ?
+                (statusRef.current === STATUS.BINDBEGIN || statusRef.current === STATUS.BINDSUCCESS || statusRef.current == STATUS.BINDBERROR) ?
                     <>
-                        <Spin loading={statusRef.current != STATUS.BINDOVER}>
+                        <Spin loading={statusRef.current == STATUS.BINDBEGIN}>
                             <div className='begin-bind'>
                                 {
                                     window._bindData.map(info => {
-                                        return <BindProduction IS_TEST={IS_TEST} key={info?.uuid} info={info} sdk={sdk} />
+                                        return <BindProduction IS_TEST={IS_TEST} key={info?.id} info={info} sdk={sdk} />
                                     })
                                 }
                             </div>
                         </Spin>
                         {
                             // 成功或者失败都是直接完成
-                            (statusRef.current === STATUS.BINDOVER) ?
+                            (statusRef.current === STATUS.BINDSUCCESS || statusRef.current == STATUS.BINDBERROR) ?
                                 <>
                                     <div className="fexid-btn center" onClick={
-                                        () => goBack()}>完成</div>
+                                        () =>goBack()}>完成</div>
                                 </>
                                 : null
                         }
