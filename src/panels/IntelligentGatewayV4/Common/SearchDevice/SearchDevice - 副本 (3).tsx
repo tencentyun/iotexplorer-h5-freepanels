@@ -1,10 +1,11 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { getErrorMsg } from "./utils";
+import { setTitle } from '@hooks/useTitle';
 import { Circle } from "./Circle";
 import { Production } from "./Production";
 import { BindProduction } from "./BindProduction";
 import { Spin } from '@custom/Spin';
-
+import { isNullOrUndefined } from 'util';
 
 
 function base64toHEX(base64) {
@@ -41,19 +42,46 @@ interface ProtocolScanReport {
     uuids: string;
 }
 
+const protocolNameMap: Record<number, string> = {
+    0: 'BLE MESH',
+    1: 'PLC',
+    2: 'RS485',
+};
+
+const productInfoPromiseCache: Record<string, Promise<null | {
+    ProductId: string,
+    Name: string,
+    Description: string,
+    DataTemplate: string,
+    NetType: string,
+    CategoryId: number,
+    ProductType: number,
+    UpdateTime: number,
+    IconUrl: string,
+}>> = {};
 
 /**
  * 
  * 设备收索
  * 
  */
-const defaultScanResult = [];
+const defaultScanResult = IS_TEST ? [
+    { productId: 'ANODBJFLG1', protocol: "0", uuids: "1234;", uuid: "1234" },
+    { productId: 'ANODBJFLG2', protocol: "0", uuids: "1234;", uuid: "1234" },
+    { productId: 'ANODBJFLG3', protocol: "0", uuids: "1234;", uuid: "1234" },
+    { productId: 'ANODBJFLG4', protocol: "0", uuids: "1234;", uuid: "1234" },
+    { productId: 'ANODBJFLG5', protocol: "0", uuids: "1234;", uuid: "1234" },
+    { productId: 'ANODBJFLG6', protocol: "0", uuids: "1234;", uuid: "1234" },
+    { productId: 'ANODBJFLG7', protocol: "0", uuids: "1234;", uuid: "1234" },
+    { productId: 'ANODBJFLG8', protocol: "0", uuids: "1234;", uuid: "1234" }
+] : [];
+
 
 export function SearchDevice(props) {
     let { sdk, deviceData, history: { query, goBack }, log } = props;
 
-    const scan_time = 60; // 扫描时间
-    const BIND_TIMEOUT = 20000; // 绑定超时时间
+    const scan_time = 6; // 扫描时间
+    const BIND_TIMEOUT = 10000; // 绑定超时时间
     // 0 标识未开始 1标识开始 -1标识超时 3 表示已经收到数据 -2 表示其他错误  10 表示绑定设备界面 11 重新添加
     const STATUS = {
         UNSCAN: 0,
@@ -86,7 +114,7 @@ export function SearchDevice(props) {
     // status 变为同步
     const statusRef = useRef(status);
     const setStatus = (v) => {
-        console.log("状态status", v)
+        console.log("扫描--设置---页面状态", v)
         statusRef.current = v;
         _setStatus(v);
     }
@@ -94,22 +122,18 @@ export function SearchDevice(props) {
     const [errorMsg, setErrorMsg] = useState(['正在搜索附近设备', '请确保设备处于配网状态']); // 错误信息
     const [bindErrorMsg, setBindErrorMsg] = useState(''); // 错误信息
 
-    const [isLisenceScan, _setLisenceScan] = useState(false);
-    const setLisenceScan = (stat) => {
-        if (!stat) log.mi("停止监听设备上报数据接受-------------------", stat)
-        _setLisenceScan(stat);
-
-    }
     // 扫描的数据
+    // const [searchResult, setSearchResult] = useState<SearchResultInfo[]>([]);
     const [searchResult, setSearchResult] = useState<SearchResultInfo[]>(defaultScanResult);
+
     // 需要绑定的数据
+    // const [bindData, setBindData] = useState([]);
     const [bindData, _setBindData] = useState(defaultScanResult);
 
-    const clone = v => JSON.parse(JSON.stringify(v));
     // 兼容直接设置后不能渠道值
     const setBindData = (data) => {
-        window._bindData = clone(data);
-        _setBindData(clone(data))
+        window._bindData = data;
+        _setBindData(data)
     }
 
     const MESSAGE = {
@@ -127,8 +151,6 @@ export function SearchDevice(props) {
 
     // 设置绑定成功的状态
     const setSuccess = (deviceName, isSuccess) => {
-
-
         let newBindData = (window._bindData || []).map(item => {
             if (item.device_name === deviceName) {
                 return { ...item, success: isSuccess }
@@ -136,11 +158,31 @@ export function SearchDevice(props) {
                 return item;
             }
         })
-        log.mi("设置绑定结果:", deviceName, isSuccess, newBindData)
         setBindData(newBindData)
     }
 
 
+
+
+    // 测试数据 
+
+    const callDeviceAction = (param, p2) => {
+        return new Promise((resolve, reject) => {
+            setTimeout(() => {
+                resolve("OK");
+                // reject({ code: '————TEST-callDeviceAction', msg: '请求扫描异常' });
+            }, scan_time * 1000)
+        })
+    }
+
+    const callDeviceActionBind = (param, p2) => {
+        return new Promise((resolve, reject) => {
+            setTimeout(() => {
+                resolve("OK");
+                // reject({ code: '————TEST-callDeviceActionBind', msg: '请求绑定异常' });
+            }, scan_time)
+        })
+    }
 
     // 处理扫描上报的数据
     const handleScanReport = (scanReport: ProtocolScanReport[]) => {
@@ -150,6 +192,8 @@ export function SearchDevice(props) {
                 .split(';')
                 .filter(item => item.length > 0)
                 .forEach((uuid) => {
+                    console.log("------------------'", uuid)
+
                     result.push({
                         productId: protocolScanReport.product_id,
                         protocol: protocolScanReport.protocol,
@@ -162,17 +206,14 @@ export function SearchDevice(props) {
 
         // 按照uuid去重 追加数据
         let existUUID = {};
-
-        if (!result.length) { // 上报空数据 不处理状态和数据
-            log.mw("上报的数据为空")
-            return;
-        }
         result = searchResult.concat(result).filter(({ uuid }) => {
             let res = !existUUID[uuid];
             existUUID[uuid] = uuid;
             return res;
         })
+
         setSearchResult(result);
+        console.log("扫描有收到数据-------------------------", result)
         setStatus(STATUS.SUCCESS);
     };
 
@@ -199,18 +240,32 @@ export function SearchDevice(props) {
      * 开始扫描
      */
     const startSearch = async () => {
-        log.mi("开始扫描----------------------------------");
+
         setStatus(STATUS.STARTSCAN);
+        console.log("开始扫描----------------------------------:")
+
         // 停止扫描
-        await stopSearch();
-        // 开启扫描
-        sdk.callDeviceAction({ scan: 1, scan_timeout: scan_time }, '_sys_gw_scan_subdev')
+        let stopErrorMessage = await stopSearch();
+        if (stopErrorMessage) { // 存在错误
+            setStatus(STATUS.ERROR);
+            setErrorMsg([stopErrorMessage])
+        }
+
+        
+        
+
+
+        let fn = IS_TEST ? callDeviceAction : sdk.callDeviceAction;
+        fn.call(sdk, { scan: 1, scan_timeout: scan_time }, '_sys_gw_scan_subdev')
+            // sdk.callDeviceAction({ scan: 1, scan_timeout: scan_time}, '_sys_gw_scan_subdev')
             .then(() => {
-                // 外层开始监听数据
+                // 外层deviceData监听上报设备
+                if (IS_TEST) { // 测试数据
+                    dealScanReport(JSON.stringify(defaultScanResult))
+                }
+
                 // 超时处理
-                setLisenceScan(true); // 停止接受数据
                 setTimeout(() => {
-                    setLisenceScan(false); // 停止接受数据
                     stopSearch();
                     if (statusRef.current == STATUS.STARTSCAN) { // 还在在搜索 数据未回来
                         setStatus(STATUS.TIMEOUT); // 超时处理
@@ -230,17 +285,17 @@ export function SearchDevice(props) {
 
     // 停扫描
     const stopSearch = () => new Promise((resolve, reject) => {
-        log.mi("停止上一次服务端扫描")
+        console.log("停止扫描----------------------------------:")
         sdk.callDeviceAction({
             scan: 0,
             scan_timeout: 0,
         }, '_sys_gw_scan_subdev')
             .then(() => {
-                log.mi("停止扫描>>>>>成功停止")
+                log.mi("清空扫描")
                 resolve('');
             })
             .catch((err) => {
-                log.me("停止扫描>>>>>:调用停止搜索失败：", getErrorMsg(err))
+                log.me("调用停止搜索失败：", getErrorMsg(err))
                 reject(getErrorMsg(err));
             });
     })
@@ -279,33 +334,44 @@ export function SearchDevice(props) {
         Promise.race([
             // 监听设备上报事件
             new Promise((resolve, reject) => {
-                const listener = ({ deviceId, Payload }: { deviceId: string; Payload: any }) => {
-                    if (deviceId !== sdk.deviceId) return;
-                    log.mi("监听到绑定上报数据:", Payload, info);
-                    if (Payload.eventId !== '_sys_gw_bind_result') return;
-                    if (Payload.params.product_id === info.productId
-                        && Payload.params.protocol === info.protocol
-                        && (Payload.params.uuid || '').split(';')[0] === info.uuid) {
-                        const resultCode = Payload.params.code;
-                        if (resultCode === 0) {
-                            // 设置指定设备未成功状态
-                            let device_name = Payload?.params?.device_name;
-                            setSuccess(device_name, true)
-                            resolve(Payload.params.device_name);
-                        } else {
-                            let device_name = Payload?.params?.device_name;
-                            setSuccess(device_name, false)
-                            reject({ code: 'GATEWAY_REPLY_BIND_FAIL', msg: `网关回复绑定子设备失败，错误码=${resultCode} ` });
+
+
+                if (IS_TEST) {
+                    // 测试数据
+                    setTimeout(() => {
+                        resolve("监听成功");
+                        // reject({ code: 'GATEWAY_REPLY_BIND_FAIL', msg: `网关回复绑定子设备失败`});
+                    }, 100)
+                } else {
+                    const listener = ({ deviceId, Payload }: { deviceId: string; Payload: any }) => {
+                        if (deviceId !== sdk.deviceId) return;
+                        log.mi("监听到绑定上报数据:", Payload);
+                        if (Payload.eventId !== '_sys_gw_bind_result') return;
+                        if (Payload.params.product_id === info.productId
+                            && Payload.params.protocol === info.protocol
+                            && (Payload.params.uuid || '').split(';')[0] === info.uuid) {
+                            const resultCode = Payload.params.code;
+                            if (resultCode === 0) {
+                                // 设置指定设备未成功状态
+                                let device_name = Payload?.params?.device_name;
+                                setSuccess(device_name, true)
+                                resolve(Payload.params.device_name);
+                            } else {
+                                let device_name = Payload?.params?.device_name;
+                                setSuccess(device_name, false)
+                                reject({ code: 'GATEWAY_REPLY_BIND_FAIL', msg: `网关回复绑定子设备失败，错误码=${resultCode} ` });
+                            }
+                            removeListener();
                         }
-                    }
-                };
+                    };
 
-                log.mi("开始监听------绑定设备------->", info);
-                sdk.on('wsEventReport', listener);
+                    log.mi("开始监听------------->", info);
+                    sdk.on('wsEventReport', listener);
 
-                removeListener = () => {
-                    sdk.off('wsEventReport', listener);
-                };
+                    removeListener = () => {
+                        sdk.off('wsEventReport', listener);
+                    };
+                }
             }),
 
             // 超时
@@ -313,7 +379,7 @@ export function SearchDevice(props) {
                 setTimeout(() => {
                     console.log("绑定超时", info.device_name, info)
                     // 如果有反馈 则不进行超时处理
-                    // removeListener()
+                    removeListener()
                     let cuurent = window._bindData.filter(({ device_name }) => device_name === info.device_name);
                     if (cuurent[0]?.success) return _resolve(info.device_name);
                     console.log("超时处理", info.device_name, info)
@@ -327,17 +393,16 @@ export function SearchDevice(props) {
                 productId: info.productId,
                 resultSubDeviceId,
             })
-        }).catch(__reject).finally(()=>{
-            removeListener();
-        });
+        }).catch(__reject);
     });
 
 
     // 开始绑定
     const startBind = (info) => new Promise((__resolve, __reject) => {
+        let fn = IS_TEST ? callDeviceActionBind : sdk.callDeviceAction;
         log.mi("-----------------------------------开始绑定:", info, new Date())
         // 请求绑定
-        sdk.callDeviceAction({ // 测试数据
+        fn.call(sdk, { // 测试数据
             protocol: info.protocol,
             product_id: info.productId,
             uuids: info.uuid,
@@ -387,25 +452,50 @@ export function SearchDevice(props) {
             process(0, args[0], null);
         })
     }
+    // /**
+    //  *  开始绑定指定或多个设备
+    //  */
+    // const startBinds = (scans) => {
+    //     let allPromsie = scans.map(scan => startBind(scan));
+    //     // Promise.all(allPromsie).then(() => {
+    //     //     setStatus(STATUS.BINDSUCCESS);
+    //     // }).catch(error => {
+    //     //     console.error(error);
+    //     //     setStatus(STATUS.BINDBERROR);
+    //     //     setBindErrorMsg(getErrorMsg(error))
+    //     // })
+    //     serialPromises(allPromsie);
+    // }
 
 
     /**
-    *  开始绑定指定或多个设备
-    */
+ *  开始绑定指定或多个设备
+ */
     const startBinds = (scans) => {
-        setLisenceScan(false); // 取消监听扫描
         serialPromises(scans.map(() => startBind), scans).then(() => {
             // if (errorResult?.length) return setStatus(STATUS.BINDBERROR);
             setStatus(STATUS.BINDOVER);
         });
     }
 
+
+
     // 监听上报的设备数据
+    // let scanResponse = deviceData?._sys_gw_scan_subdev;
+
     let scanResponse = deviceData?._sys_gw_scan_report;
+
+    // useEffect(() => {
+    //     if (query.start) { // 标题还是不会生效
+    //         // console.log("-----TITLE---------BEFORE-------------------------------------------------", window.document.title)
+    //         setTitle(TITLE[statusRef.current])
+    //         // console.log("------TITLE-------AFTER--------------------------------------------------", window.document.title)
+    //     }
+    // }, [statusRef.current, query.start])
+
+
     useEffect(() => {
-        if (query.start) {
-            startSearch()
-        };
+        query.start && startSearch();
         return () => {
             log.mi("扫描清空数据-----------")
             // 清空页面数据
@@ -414,22 +504,25 @@ export function SearchDevice(props) {
             setStatus(STATUS.UNSCAN);
             stopSearch(); // 停止扫描
             setErrorMsg([]);
-            window._bindData = [];
-            // 清空历史存储的扫描数据 _sys_gw_scan_report？ 
         }
     }, [query.start])
 
-
     // 监听并且处理上报数据
     useEffect(() => {
-        if (isLisenceScan) {
-            log.mw("接受到扫描的设备：", statusRef.current, scanResponse)
-            scanResponse && dealScanReport(scanResponse);
+        if (scanResponse) {
+            log.mi("--扫描--接受到扫描的子设备的数据:", statusRef.current, scanResponse)
         }
-    }, [scanResponse, isLisenceScan])
+        // 接受到数据 并且页面状态是开始扫描或者部分扫描成功时 才处理数据
+        if (scanResponse && (statusRef.current === STATUS.STARTSCAN || statusRef.current === STATUS.SUCCESS)) { // 存在扫描数据
+            log.mi("--扫描--接受到扫描的子设备的数据----处理:", statusRef.current, scanResponse)
+            dealScanReport(scanResponse);
+        }
+    }, [scanResponse])
 
 
-    log.mi("RENDER:", { status: statusRef.current, searchResult, scanResponse, bindData, _bindData: window._bindData })
+
+
+    log.mi("RENDER_扫描结果:", { status: statusRef.current, searchResult, scanResponse, bindData })
 
     return (
         <div className="search-device">
@@ -444,6 +537,7 @@ export function SearchDevice(props) {
                         </> : null
                     }
                 </div>
+
                 : null}
             {/* 收到扫描数据 */}
             {/* // 目前需求缺少扫描完毕页面  则采用扫描成功月面*/}
@@ -504,6 +598,25 @@ export function SearchDevice(props) {
                     </>
                     : null
             }
+            {/* 
+            {
+                statusRef.current === STATUS.BINDBERROR ?
+                    <>
+                        <div className='bind-error-panel center'>
+                            <div>
+                                <Icon name="bind-error" />
+                            </div>
+                            <div className="fexid-btn center" onClick={() => recoverBind()}>重新添加</div>
+                        </div>
+                        <div>{bindErrorMsg}</div>
+                    </>
+                    : null
+            } */}
+            {/* 页面状态测试 */}
+
+            {/* <div>状态:{status}</div>
+            <div>错误信息:{errorMsg}</div>
+            <div>返回数据结果:{deviceData._sys_gw_scan_report}</div> */}
         </div>
     );
 }
