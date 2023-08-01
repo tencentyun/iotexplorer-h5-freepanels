@@ -36,7 +36,7 @@ const Action = (props) => {
       name: 'time',
       onClick: () => {
         if (power_switch) {
-          push.bind(null, PATH.TIMER_LIST, { isModule: true });
+          push(PATH.TIMER_LIST, { isModule: true });
         }
       },
       isChecked: isExistTimer,
@@ -44,13 +44,13 @@ const Action = (props) => {
     {
       label: '开关',
       name: 'switch',
-      onclick: onSwitchChange,
+      onClick: onSwitchChange,
       isChecked: !!power_switch,
     },
     {
       label: '倒计时',
       name: 'countdown',
-      onclick: () => {
+      onClick: () => {
         if (power_switch) {
           countRef.current?.onOpen();
         }
