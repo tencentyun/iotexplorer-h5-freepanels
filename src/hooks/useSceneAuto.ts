@@ -126,7 +126,7 @@ export const useSceneAuto = (key) => {
   };
 
 
-  const doScene = async (data = {} as any, action: string) => {
+  const doScene = async (data = {} as any, action?: string) => {
     const param = {
       ...data,
     };

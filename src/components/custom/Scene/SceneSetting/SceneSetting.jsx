@@ -79,22 +79,43 @@ export const SceneSetting = ({
 
   log.mi('sceneData', sceneData);
 
-  const onSwitchChange = (index, item, checked, e) => {
-    console.log('onSwitchChange--->', index, item, checked, e, e.target);
-    e.stopPropagation();
-    e.preventDefault();
-    doScene(({ AutomationId: item?.SceneId, Status: checked ? 0 : 1 }));
+  const onSwitchChange = async (scene) => {
+    console.log('onSwitchChange--->', scene.Status);
+    return doScene({ AutomationId: scene?.SceneId, Status: !!scene.Status ? 0 : 1 });
   };
 
   const onEditAction = (item, groupId, e) => {
     console.log('-------------onEditAction', e.target.className);
     addEmit(groupId);
-    sdk.goScenePage({ type: 'auto', AutomationId: item?.SceneId, sceneId: item?.SceneId }); // TODO 目前需要手动选择
+    sdk.goScenePage({
+      sceneType: 'auto',
+      sceneId: item?.SceneId,
+      sceneOptions: { freezeCondition: true },
+    });
   };
 
   const addNewScene = (groupId) => {
     addEmit(groupId);
-    sdk.goScenePage({ type: 'auto' });
+    const MODE_SWITCH_PROPERTY = 'mode_swtch_4';
+    sdk.goScenePage({
+      sceneType: 'auto',
+      sceneOptions: {
+        Conditions: [
+          {
+            CondType: 0,
+            Property: {
+              ProductId: sdk.productId,
+              DeviceName: sdk.deviceName,
+              PropertyId: MODE_SWITCH_PROPERTY,
+              Op: 'eq',
+              Value: groupId,
+            },
+          },
+        ],
+        freezeCondition: true,
+        freezeAction: false,
+      },
+    });
   };
 
   return (
@@ -102,7 +123,7 @@ export const SceneSetting = ({
       {sceneData.map((group, index) => (
         <div className='sence-group' key={index}>
           <div className='scene-header'>
-            <span>{group.groupName || '-'}dev</span>
+            <span>{group.groupName || '-'}</span>
           </div>
           {group.data.map(item => (
             <div className='scene-list' key={item?.SceneId}>
@@ -112,13 +133,11 @@ export const SceneSetting = ({
                     <div className='scene-name'>{item.SceneName || '-'}</div>
                     <div className='scene-detail'>{item.deviceCount || 0}个设备</div>
                   </div>
-                  <div
-                    className='action-span'
-                    onClick={(e) => {
-                      onSwitchChange(index, item, item?.Status === 1, e);
-                    }}
-                  >
-                    <Switch checked={item?.Status === 1} />
+                  <div className='action-span' onClick={e => e.stopPropagation()}>
+                    <Switch
+                      checked={item?.Status === 1}
+                      onChange={async () => onSwitchChange(item)}
+                    />
                   </div>
                 </div>
               </div>

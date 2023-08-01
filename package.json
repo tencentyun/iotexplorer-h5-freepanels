@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "dev:dj": "npm run dev --category=TableLampV4 --panel=panel-qualityWhite",
     "dev": "npx webpack serve --config webpack/webpack.config.js --mode=development ",
     "pre": "npx webpack serve --config webpack/webpack.config.js --mode=production",
     "build": "npm run node-mem",
@@ -34,7 +35,7 @@
     "@typescript-eslint/eslint-plugin": "^4.28.1",
     "@typescript-eslint/parser": "^4.28.1",
     "amfe-flexible": "^2.2.1",
-    "antd-mobile": "5.0.0-rc.18",
+    "antd-mobile": "^5.32.0",
     "beautiful-react-hooks": "^1.0.2",
     "classnames": "^2.2.6",
     "crypto-js": "^4.1.1",
