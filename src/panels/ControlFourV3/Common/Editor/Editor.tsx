@@ -46,8 +46,8 @@ const Device = (props) => {
       });
       const data = Products.filter(item => category[type].includes(item.CategoryId)).map(item => item.ProductId);
       const _data = DeviceList.filter(item => data.includes(item.ProductId))
-      // setList(_data);
-      setList(DeviceList);
+      setList(_data);
+      // setList(DeviceList);
       console.log("aaaaaaaaaa------------>", { data, _data, type })
 
     } catch (err) {
