@@ -89,7 +89,7 @@ const Action = (props) => {
         ))}
         <Cell
           className='cell-settings mode-btn-settings'
-          title='补光模式dev'
+          title='补光模式'
           isLink={true}
           prefixIcon={<Icon name='mode' />}
           onClick={() => {
