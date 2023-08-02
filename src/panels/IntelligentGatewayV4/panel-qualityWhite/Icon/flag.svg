@@ -1,0 +1,18 @@
+<svg width="240" height="240" viewBox="0 0 240 240" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Group 546117">
+<g id="Ellipse 2">
+<mask id="path-1-inside-1_4157_5877" fill="white">
+<path d="M120 0C96.3703 -2.81781e-07 73.2666 6.97634 53.5858 20.0542C33.9051 33.1321 18.5235 51.7294 9.36976 73.514L64.9355 96.8623C69.4916 86.0193 77.1476 76.7628 86.9434 70.2535C96.7391 63.7442 108.239 60.2718 120 60.2718V0Z"/>
+</mask>
+<path d="M120 0C96.3703 -2.81781e-07 73.2666 6.97634 53.5858 20.0542C33.9051 33.1321 18.5235 51.7294 9.36976 73.514L64.9355 96.8623C69.4916 86.0193 77.1476 76.7628 86.9434 70.2535C96.7391 63.7442 108.239 60.2718 120 60.2718V0Z" stroke="url(#paint0_radial_4157_5877)" stroke-width="120" mask="url(#path-1-inside-1_4157_5877)"/>
+</g>
+<rect id="Rectangle 1892" x="120" width="2" height="60" rx="1" fill="#30414D"/>
+</g>
+<defs>
+<radialGradient id="paint0_radial_4157_5877" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(148.5 29) rotate(177.698) scale(99.5804 123.846)">
+<stop stop-color="#F6F8FB"/>
+<stop offset="0.270833" stop-color="#30414D" stop-opacity="0.1"/>
+<stop offset="1" stop-color="white" stop-opacity="0"/>
+</radialGradient>
+</defs>
+</svg>

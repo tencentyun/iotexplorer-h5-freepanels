@@ -169,11 +169,28 @@ export function Home(props) {
                 </div>
                 <div className="footer">
                   <Button className="custom-btn" onClick={() => setVisible(false)}>取消</Button>
-                  <Button className={classNames("custom-btn primary", !selected || !selected.length ? 'disabled' : '')} onClick={() => {
+                  <Button className={classNames("custom-btn primary", !selected || !selected.length ? 'disabled' : '')} onClick={async () => {
+                    setVisible(false);
+                    await new Promise((resolve) => {
+                      setTimeout(() => {
+                        resolve();
+                      }, 200)
+                    })
+                    const _selected = [...selected].map(item => ({ type: item.type, position: item.position, device: undefined }));
                     const layout = setOldToNew(selected);
-                    screen_page.push(layout);
+                    const _layout = {
+                      layout_id: layout.layout_id,
+                      config: ''
+                    };
+                    const config = JSON.parse(layout?.config || '{}');
+                    let _config = {};
+                    for (let key of Object.keys(config)) {
+                      _config[key] = {}
+                    }
+                    _layout.config = JSON.stringify(_config);
+                    screen_page.push(_layout);
                     doControlDeviceData('screen_page', screen_page);
-                    push('/editor', { selected: JSON.stringify(selected), index: screen_page.length - 1 });
+                    push('/editor', { selected: JSON.stringify(_selected), index: screen_page.length - 1 });
                   }}>保存</Button>
                 </div>
               </div>

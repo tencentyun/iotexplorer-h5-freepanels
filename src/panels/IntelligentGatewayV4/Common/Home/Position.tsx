@@ -1,17 +1,42 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Icon } from '@custom/Icon';
 import classNames from 'classnames';
 export function Position(props) {
   const {
     deviceInfo,
-    deviceData,
-    doControlDeviceData
+    sdk
   } = props;
-  const text = deviceInfo?.DeviceName || deviceInfo?.AliasName || '智能网关';
-  const subText = deviceData?.guard_mode ? '在线' : '离线';
-  const clsName = deviceData?.guard_mode ? 'open' : 'close';
+
+  const text = deviceInfo?.AliasName || deviceInfo?.DeviceName || '智能网关';
+  const [status, setStatus] = useState(deviceInfo?.Status);
+
+  const subText = status == 1 ? '在线' : '离线';
+  const clsName = status == 1 ? 'open' : 'close';
+
+
+
+
+  const handleWsStatusChange = ({ deviceId: deviceIdFromEvent, deviceStatus }: {
+    deviceId: string;
+    deviceStatus: number;
+  }) => {
+    if (deviceIdFromEvent === deviceInfo.DeviceId) {
+      console.log("设置状态",deviceStatus)
+      setStatus(deviceStatus);
+    }
+  };
+
+  useEffect(() => {
+    sdk.on('wsStatusChange', handleWsStatusChange);
+    return () => {
+      sdk.off('wsStatusChange', handleWsStatusChange);
+    };
+  }, [])
+
+  console.log("RENDER:",{status,deviceStatus:deviceInfo?.deviceStatus,deviceInfo})
   return (
-    <div className="position center" onClick={() => { doControlDeviceData('guard_mode', !deviceData?.guard_mode) }}>
+    // <div className="position center" onClick={() => { doControlDeviceData('guard_mode', !deviceData?.guard_mode) }}>
+    <div className="position center">
       <div className={classNames('area', clsName)}>
         <div className="circular-outer center">
           <div className="circular-inner center">

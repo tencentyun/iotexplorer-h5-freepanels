@@ -1,0 +1,30 @@
+.cus-spin {
+    .cus-spin-inner {
+        position: fixed;
+        z-index: 1000;
+        min-width: 100vw;
+        min-height: 100vh;
+        .spin-icon {
+            animation: rotateloading 4s linear infinite;
+        }
+
+    }
+}
+
+@keyframes rotateloading {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.icon {
+    .loading-spin {
+        width: 68px;
+        height: 68px;
+        background-image: url('./loading-spin.svg');
+    }
+}

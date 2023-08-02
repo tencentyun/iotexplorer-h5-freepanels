@@ -1,0 +1,30 @@
+.notice {
+    .item {
+        border-radius: 8px;
+        border: 1px solid #EFF3F5;
+        height: 32px;
+        flex-shrink: 0;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 16px;
+        margin: 16px 44px;
+        .alarIcon{
+            margin-right: 8px;
+        }
+        .front{
+            display: flex;
+            align-items: center;
+        }
+        
+        &.warn {
+            background: #D83939;
+        }
+
+        &.normal {
+            background: #15C45D;
+        }
+    }
+
+}
