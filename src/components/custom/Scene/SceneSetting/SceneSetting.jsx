@@ -145,7 +145,7 @@ export const SceneSetting = ({
           ))}
           {!group.data.length && (
             <div className='bind-scene' onClick={() => addNewScene(index)}>
-              <span> + 绑定场景dev</span>
+              <span> + 绑定场景</span>
             </div>
           )}
         </div>
