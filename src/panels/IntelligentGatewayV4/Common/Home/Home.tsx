@@ -149,17 +149,17 @@ export function Home(props) {
       //   Payload
       // }))
       // 测试
-      const PayloadTest = {
-        method: 'event_post',
-        clientToken: '123',
-        version: '1.0',
-        eventId: 'alarm_event',
-        type: 'alert',
-        timestamp: 1689925478905,
-        params: { alarm_type: 2 },
-      };
+      // const PayloadTest = {
+      //   method: 'event_post',
+      //   clientToken: '123',
+      //   version: '1.0',
+      //   eventId: 'alarm_event',
+      //   type: 'alert',
+      //   timestamp: 1689925478905,
+      //   params: { alarm_type: 2 },
+      // };
       if (deviceId !== sdk.deviceId) return;
-      if (Payload.eventId != 'alarm_event') return;
+      if (Payload.eventId !== 'alarm_event') return;
       setAlarmType(Payload?.params?.alarm_type);
       // console.log("监听->接受到的当前告警上报的数据::::", Payload.alarm_event, { deviceId, Payload })
     };
