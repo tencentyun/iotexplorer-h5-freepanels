@@ -7,23 +7,18 @@ import { Cell } from '@custom/Cell';
 import { LightBright } from '@custom/LightBright';
 import { Notice } from './Notice/Notice';
 import { Voice } from './Notice/Voice';
-
-
-
-
-
-
-
-
-
+import { noop } from '@utillib';
 
 
 const GateWay = (props) => {
   // 其他页面返回也刷新
-  const [gatewayList, setGatewayList] = useState([]);
   const [visible, setVisible] = useState(false);
-  const { deviceData = {}, sdk, doControlDeviceData = () => { }, history, deviceInfo } = { ...props };
-
+  const {
+    deviceData = {},
+    sdk,
+    doControlDeviceData = noop,
+    history,
+  } = props;
 
   useEffect(() => {
   }, []);
@@ -32,15 +27,19 @@ const GateWay = (props) => {
     [
       '门铃场景',
       'block',
-      () => { history?.push('/scene') },
+      () => {
+        history?.push('/scene');
+      },
       // !!deviceData?.guard_mode,
       '',
-      ''
+      '',
     ],
     [
       '安防报警',
       'alarm',
-      () => { history?.push('/alarm') },
+      () => {
+        history?.push('/alarm');
+      },
       !!deviceData?.alarm_sound_switch,
       '',
     ],
@@ -51,22 +50,23 @@ const GateWay = (props) => {
         sdk._appBridge.callMpApi('navigateTo', {
           url: `/pages/Device/ConfigWXNotify/ConfigWXNotify?deviceId=${sdk.deviceId}`,
         });
-
       },
       // !!deviceData?.guard_vol,
       '',
-      ''
+      '',
     ],
     [
       '报警历史',
       'record',
-      () => { history?.push('/record') },
-      ''
+      () => {
+        history?.push('/record');
+      },
+      '',
     ],
   ].filter(v => v);
 
   return (
-    <div className="gateway">
+    <div className='gateway'>
       {/* 圆环组件 */}
       <Position {...props}></Position>
       {/* 系统声音 */}
@@ -74,29 +74,33 @@ const GateWay = (props) => {
 
 
       {/* 功能列表组件 */}
-      <div className="comp-block">
-        <div className="comp-list">
-          <div className="sub-device-list">
-            <div className="sub-device">
+      <div className='comp-block'>
+        <div className='comp-list'>
+          <div className='sub-device-list'>
+            <div className='sub-device'>
               <Cell
                 title={'添加子设备'}
-                className="border"
-                prefixIcon={<Icon className="custom-icon" name="add"></Icon>}
-                onClick={() => { history?.push('/search/device', { start: Math.random() }) }}
+                className='border'
+                prefixIcon={<Icon className='custom-icon' name='add'></Icon>}
+                onClick={() => {
+                  history?.push('/search/device', { start: Math.random() });
+                }}
               ></Cell>
             </div>
-            <div className="sub-device">
+            <div className='sub-device'>
               <Cell
                 title={'子设备列表'}
-                className="border"
-                prefixIcon={<Icon className="custom-icon" name="book"></Icon>}
-                onClick={() => { history?.push('/subDevice') }}
+                className='border'
+                prefixIcon={<Icon className='custom-icon' name='book'></Icon>}
+                onClick={() => {
+                  history?.push('/subDevice');
+                }}
               ></Cell>
             </div>
           </div>
           {actions.map(([title, prefixIcon, cb, value, type], index) => (
-            <div className="cell-item" key={index}>
-              <Icon className="custom-icon" name={prefixIcon}></Icon>
+            <div className='cell-item' key={index}>
+              <Icon className='custom-icon' name={prefixIcon}></Icon>
               <Cell
                 title={title}
                 subTitle={value}
@@ -106,31 +110,31 @@ const GateWay = (props) => {
                 eleValue={value}
                 onChange={cb}
                 isLink={!type}
-                className="border"
+                className='border'
               ></Cell>
             </div>
 
           ))}
         </div>
       </div>
-      <Modal className='voice-modal' title="告警声音" visible={visible} onClose={() => setVisible(false)}>
+      <Modal className='voice-modal' title='告警声音' visible={visible} onClose={() => setVisible(false)}>
         <LightBright
-          defaultValue={deviceData['guard_vol'] || 0}
+          defaultValue={deviceData.guard_vol || 0}
           status={true}
-          iconName="light"
+          iconName='light'
           minValue={0}
           maxValue={10}
           onChange={(value, endTouch) => endTouch && doControlDeviceData('guard_vol', value)}
         ></LightBright>
-        <Btn className="custom-btn" onClick={() => setVisible(false)}>关闭</Btn>
+        <Btn className='custom-btn' onClick={() => setVisible(false)}>关闭</Btn>
       </Modal>
     </div>
   );
-}
+};
 
 
 export function Home(props) {
-  // 接受到的告警类型 
+  // 接受到的告警类型
   const [alarmType, setAlarmType] = useState();
   const { sdk } = props;
 
@@ -145,9 +149,17 @@ export function Home(props) {
       //   Payload
       // }))
       // 测试
-      const PayloadTest = { "method": "event_post", "clientToken": "123", "version": "1.0", "eventId": "alarm_event", "type": "alert", "timestamp": 1689925478905, "params": { "alarm_type": 2 } };
+      const PayloadTest = {
+        method: 'event_post',
+        clientToken: '123',
+        version: '1.0',
+        eventId: 'alarm_event',
+        type: 'alert',
+        timestamp: 1689925478905,
+        params: { alarm_type: 2 },
+      };
       if (deviceId !== sdk.deviceId) return;
-      if (Payload.eventId != "alarm_event") return;
+      if (Payload.eventId != 'alarm_event') return;
       setAlarmType(Payload?.params?.alarm_type);
       // console.log("监听->接受到的当前告警上报的数据::::", Payload.alarm_event, { deviceId, Payload })
     };
@@ -159,12 +171,12 @@ export function Home(props) {
 
   return (
     <div className='home'>
-      <div className="custom-notice">
+      <div className='custom-notice'>
         <Notice {...props} alarmType={alarmType} />
       </div>
-      <div className="content">
+      <div className='content'>
         <GateWay {...props} />
       </div>
     </div>
-  )
+  );
 }
