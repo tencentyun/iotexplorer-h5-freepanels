@@ -90,7 +90,7 @@ export const SceneSetting = ({
     sdk.goScenePage({
       sceneType: 'auto',
       sceneId: item?.SceneId,
-      sceneOptions: { freezeCondition: true },
+      scenePreset: { freezeCondition: true },
     });
   };
 
@@ -99,7 +99,7 @@ export const SceneSetting = ({
     const MODE_SWITCH_PROPERTY = 'mode_swtch_4';
     sdk.goScenePage({
       sceneType: 'auto',
-      sceneOptions: {
+      scenePreset: {
         Conditions: [
           {
             CondType: 0,
