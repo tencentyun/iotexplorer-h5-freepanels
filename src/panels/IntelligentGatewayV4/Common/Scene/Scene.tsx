@@ -50,7 +50,7 @@ export function Scene(props) {
         className='fexid-btn center'
         onClick={() => sdk.goScenePage({
           sceneType: 'auto',
-          sceneOptions: {
+          scenePreset: {
             Actions: [
               {
                 ActionType: 0,

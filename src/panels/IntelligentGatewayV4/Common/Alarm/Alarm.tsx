@@ -61,21 +61,24 @@ export function Alarm(props) {
       </div> */}
       <div
         className='fexid-btn center'
-        onClick={() => sdk.goScenePage({
-          sceneType: 'auto',
-          sceneOptions: {
-            Actions: [
-              {
-                ActionType: 0,
-                ProductId: sdk.productId,
-                DeviceName: sdk.deviceName,
-                TemplateId: 'alarm_voice',
-                TemplateValue: alram_voice_tips || 0,
-              },
-            ],
-            freezeAction: true,
-          },
-        })}
+        onClick={() => {
+          sdk.goScenePage({
+            sceneType: 'auto',
+            scenePreset: {
+              Actions: [
+                {
+                  ActionType: 0,
+                  ProductId: sdk.productId,
+                  DeviceName: sdk.deviceName,
+                  TemplateId: 'alarm_voice',
+                  TemplateValue: alram_voice_tips || 0,
+                },
+              ],
+              freezeAction: true,
+            },
+          });
+        }
+        }
       >
         创建安防场景
       </div>
