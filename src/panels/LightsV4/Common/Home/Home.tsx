@@ -44,8 +44,6 @@ export function Home(props) {
           : <ScenePage {...props}></ScenePage>
         }
         <Action {...props}></Action>
-    
-
       </div>
     </div>
   );

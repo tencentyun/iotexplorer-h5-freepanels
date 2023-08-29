@@ -1,8 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { StyledProps } from '@libs/global';
 import { Circular } from '@custom/Circular';
 import { Icon } from '@custom/Icon';
-import { getColorValue, getDegValue } from '@utils';
+import { getDegValue } from '@utils';
+import { Input, Modal, Toast } from 'antd-mobile';
+
 export interface LightColorProps extends StyledProps {
   defaultValue?: number; // 0 - 1000
 }
@@ -14,11 +16,12 @@ const toDeg = val => (val - 2700) / step;
 const toValue = val => Math.round(2700 + val * step);
 // 按照指定的补偿处理值  == 由于回显转换步长后 会跳动 故最好时候会断取整 目前不做步长的取整操作
 // const toStep=(val) => val - val % 100
-const toStep = (val) => val;
+const toStep = val => val;
+
 export function Position({
   // value,
-  brightness = 80,
-  productType = "spotlight",
+  // brightness = 80,
+  productType = 'spotlight',
   productColorMode = 1,
   deviceData: {
     // brightness = 80,
@@ -27,17 +30,19 @@ export function Position({
     work_mode,
     white_data,
     colour_data,
-    power_switch
+    power_switch,
   },
   log,
   doControlDeviceData,
 }) {
-
+  const colorTempInputRef = useRef<any>(null);
 
   // 颜色模式
   const colorMode = color_mode === void 0 ? productColorMode : color_mode;
 
   const isColorFull = colorMode == 2;
+
+  const getColorTempByDeg = deg => toStep(toValue(deg));
 
   useEffect(() => {
     if (isColorFull) { // 彩色模式
@@ -57,7 +62,7 @@ export function Position({
       // const key = work_mode === 'colour' ? 'colour_data' : 'white_data';
       // doControlDeviceData(key, getColorValue(work_mode, parseInt(deg)));
     } else {
-      doControlDeviceData({ color_temp: toStep(toValue(deg)) })
+      doControlDeviceData({ color_temp: getColorTempByDeg(deg) });
     }
   };
   const powerStatus = isPowerOff ? 'off-switch' : 'on-switch';
@@ -68,29 +73,55 @@ export function Position({
   ];
 
 
-  log.mi("传递的参数:::", productType, colorMode);
+  log.mi('传递的参数:::', productType, colorMode);
 
   return (
     <div className={`position_card center ${powerStatus} color-type-${colorMode}`}>
-      <div className="main-bg center">
-        <div className="circle-ring">
-          <div className="bg">
+      <div className='main-bg center'>
+        <div className='circle-ring' onClick={() => {
+          Modal.alert({
+            content: (
+              <Input
+                ref={colorTempInputRef}
+                placeholder='请输入色温值(2700-6500)'
+                type={'number'}
+              />
+            ),
+            style: {
+              /* @ts-ignore */
+              '--adm-color-primary': '#30414D',
+            },
+            title: '色温',
+            closeOnMaskClick: true,
+            confirmText: '确认',
+            onConfirm: () => {
+              const color_temp = Number(colorTempInputRef.current.nativeElement.value);
+              if (!Number.isNaN(color_temp) && color_temp >= 2700 && color_temp <= 6500) {
+                doControlDeviceData({ color_temp });
+              } else {
+                Toast.show({ content: '色温值不合法', icon: 'fail' });
+              }
+            },
+          });
+        }}>
+          <div className='bg'>
             <div
-              className="circle outer center"
-              style={{ opacity: brightness / 100 }}
+              className='circle outer center'
+              // style={{ opacity: brightness / 100 }}
             >
-              <div className="circle inner"></div>
+              <div className='circle inner'></div>
             </div>
-            <div className="bg-img center">
+            <div className='bg-img center'>
               <Icon name={productType}></Icon>
+              <div className='center-value'>{toStep(toValue(deg))}K</div>
             </div>
           </div>
           <Circular className={isPowerOff ? 'circular-off' : ''} value={deg} onChange={onChange} touch={!isPowerOff} />
         </div>
       </div>
       {!isPowerOff ? <div
-        className="color-value"
-        style={{ opacity: brightness / 100 }}
+        className='color-value'
+        // style={{ opacity: brightness / 100 }}
       >
         {CONFIG[work_mode === 'colour' ? 1 : 0].map((value, index) => (
           <div

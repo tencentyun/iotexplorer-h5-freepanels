@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import { Icon } from '@custom/Icon';
 import { Cell } from '@custom/Cell';
 import { Modal } from '@custom/Modal';
@@ -9,8 +9,7 @@ const Action = (props) => {
   const {
     deviceData: {
       power_switch,
-      count_down,
-      color_mode
+      color_mode,
     },
     history: { PATH, push },
     timer: { isExistTimer },
@@ -18,15 +17,16 @@ const Action = (props) => {
     templateMap,
     getLocal,
     utils,
-    setLocal
-  } = { ...props };
+    setLocal,
+    sdk,
+  } = props;
   const onSwitchChange = () => {
     doControlDeviceData({ power_switch: power_switch ? 0 : 1 });
   };
 
   // 筒灯和射灯只有两种模式的选择 单色和双色 而 REG有三色模式
   // 通过物模型的配置个数进行辨识
-  let COLOR_MODULE = utils.getOptionsArray(templateMap, 'color_mode');
+  const COLOR_MODULE = utils.getOptionsArray(templateMap, 'color_mode');
 
   const countRef = useRef(null);
   const isSwitchOff = power_switch !== 1;
@@ -35,10 +35,9 @@ const Action = (props) => {
   const isSupportColorMode = !!templateMap?.color_mode;
 
   // 第一次进入页面弹出模式选择框
-  let localKey = 'isEnterd';
-  let isFirstEnter = getLocal(localKey) == void 0 ? true : false;
+  const localKey = 'isEnterd';
+  const isFirstEnter = getLocal(localKey) == void 0;
   const [modeVisible, setModeVisible] = useState(isSupportColorMode && isFirstEnter);
-
 
 
   const [selected, setSelected] = useState(0);
@@ -58,10 +57,9 @@ const Action = (props) => {
       !!power_switch,
     ],
     [
-      '倒计时',
-      isSwitchOff ? 'timmer' : 'timmer',
-      !!count_down ? push.bind(null, PATH.TIMER_COUNTDOWNPAGE, { value: count_down }) : () => { countRef.current.onOpen() },
-      isExistTimer,
+      '更多',
+      'timmer',
+      push.bind(null, PATH.MORE_SETTING, { isModule: true }),
     ],
     // [
     //   '定时',
@@ -71,18 +69,14 @@ const Action = (props) => {
     // ],
   ];
 
-
   const onRadioClick = (value) => {
     setSelected(1 * value);
   };
 
-
-
-
   return (
     <>
-      <div className={`action action-off`}>
-        {actions.map(([label, name, onClick, isChecked], index) => (
+      <div className={'action action-off'}>
+        {actions.map(([label, name, onClick], index) => (
           <div
             key={index}
             className={`action-item  action-item-${index + 1}`}
@@ -99,27 +93,27 @@ const Action = (props) => {
         <Modal
           visible={modeVisible}
         >
-          <div className="modal-title">
-            <div className="title">模式</div>
-            <div className="second-title">请根据您的实际使用场景，选择合适的控制场景</div>
+          <div className='modal-title'>
+            <div className='title'>模式</div>
+            <div className='second-title'>请根据您的实际使用场景，选择合适的控制场景</div>
           </div>
-          <div className="custom-radio">
-            {COLOR_MODULE.map(([name, key, value]) => (
+          <div className='custom-radio'>
+            {COLOR_MODULE.map(([name, key]) => (
               <label
-                className="radio-item"
+                className='radio-item'
                 htmlFor={`label-${key}`}
                 key={key}
                 onClick={() => {
                   onRadioClick(key);
                 }}>
                 <input
-                  className="radio-item-radio"
-                  type="radio"
+                  className='radio-item-radio'
+                  type='radio'
                   id={`label-${key}`}
-                  name="mode"
+                  name='mode'
                   checked={selected == key}
                 />
-                <span className="radio-item-label">{name}</span>
+                <span className='radio-item-label'>{name}</span>
               </label>
             ))}
           </div>
@@ -129,7 +123,7 @@ const Action = (props) => {
               layout='flex'
             >
               <Button
-                className="btn-cancel"
+                className='btn-cancel'
                 onClick={() => {
                   setLocal(localKey, true);
                   setModeVisible(false);
@@ -138,7 +132,7 @@ const Action = (props) => {
                 取消
               </Button>
               <Button
-                className="btn-save"
+                className='btn-save'
                 onClick={() => {
                   setModeVisible(false);
                   setLocal(localKey, true);
@@ -161,17 +155,27 @@ const Action = (props) => {
       </div>
       {/* // 不存在物模型的配置时 不显示模式选择 */}
 
-      {
-        isSupportColorMode ?
-          <div className='module-check'>
-            <Cell prefixIcon={<Icon name="mode-checked" />} value={COLOR_MODULE[color_mode]?.[0] || ''}
-              onClick={() => {
-                setSelected(color_mode)
-                setModeVisible(true)
-              }} title="模式选择"></Cell>
-          </div>
-          : null
-      }
+      <div className='module-check'>
+        <Cell
+          prefixIcon={<Icon name='mode-checked' />}
+          value={COLOR_MODULE[color_mode]?.[0] || ''}
+          onClick={() => {
+            sdk.goScenePage({ sceneType: 'default' });
+          }}
+          title='智能场景'
+        />
+      </div>
+      {/* {*/}
+      {/*  isSupportColorMode*/}
+      {/*    ? <div className='module-check'>*/}
+      {/*      <Cell prefixIcon={<Icon name='mode-checked' />} value={COLOR_MODULE[color_mode]?.[0] || ''}*/}
+      {/*            onClick={() => {*/}
+      {/*              setSelected(color_mode);*/}
+      {/*              setModeVisible(true);*/}
+      {/*            }} title='模式选择'></Cell>*/}
+      {/*    </div>*/}
+      {/*    : null*/}
+      {/* }*/}
     </>
   );
 };
