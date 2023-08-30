@@ -217,9 +217,8 @@ export function MoreSetting({ deviceData, doControlDeviceData, sdk }) {
             const res = await Picker.prompt({
               columns: gradientCycleOptions,
             });
-            const val = res?.[0] as number;
-            if (val) {
-              console.log(val);
+            const val = res?.[0];
+            if (typeof val === 'number') {
               doControlDeviceData({ gradient_cycle: val });
             }
           }}
@@ -233,8 +232,8 @@ export function MoreSetting({ deviceData, doControlDeviceData, sdk }) {
             const res = await Picker.prompt({
               columns: defaultSceneTypeOptions,
             });
-            const val = res?.[0] as number;
-            if (val) {
+            const val = res?.[0];
+            if (typeof val === 'number') {
               doControlDeviceData({ default_scene_type: val });
             }
           }}
@@ -272,7 +271,7 @@ export function MoreSetting({ deviceData, doControlDeviceData, sdk }) {
                 });
               }}
             >
-              默认色温
+              <div style={{ marginLeft: '16px' }}>默认色温</div>
             </List.Item>
             <List.Item
               extra={`${default_brightness}%`}
@@ -303,7 +302,7 @@ export function MoreSetting({ deviceData, doControlDeviceData, sdk }) {
                 });
               }}
             >
-              默认亮度
+              <div style={{ marginLeft: '16px' }}>默认亮度</div>
             </List.Item>
           </>
         )}
@@ -314,8 +313,8 @@ export function MoreSetting({ deviceData, doControlDeviceData, sdk }) {
             const res = await Picker.prompt({
               columns: outageStatusOptions,
             });
-            const val = res?.[0] as number;
-            if (val) {
+            const val = res?.[0];
+            if (typeof val === 'number') {
               doControlDeviceData({ outage_status: val });
             }
           }}
