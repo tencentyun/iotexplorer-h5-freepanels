@@ -4,6 +4,8 @@ import { Cell } from '@custom/Cell';
 import { Modal } from '@custom/Modal';
 import { Btn as Button, BtnGroup } from '@custom/Btn';
 import { CountDown } from '../../Common/CountDown';
+import { CellBtn } from '@components/Btn/CellBtn';
+
 
 const Action = (props) => {
   const {
@@ -155,16 +157,12 @@ const Action = (props) => {
       </div>
       {/* // 不存在物模型的配置时 不显示模式选择 */}
 
-      <div className='module-check'>
-        <Cell
-          prefixIcon={<Icon name='mode-checked' />}
-          value={COLOR_MODULE[color_mode]?.[0] || ''}
-          onClick={() => {
-            sdk.goScenePage({ sceneType: 'default' });
-          }}
-          title='智能场景'
-        />
-      </div>
+      <CellBtn
+        onClick={() => {
+          sdk.goScenePage({ sceneType: 'default' });
+        }}>
+        智能场景
+      </CellBtn>
       {/* {*/}
       {/*  isSupportColorMode*/}
       {/*    ? <div className='module-check'>*/}

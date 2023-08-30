@@ -18,6 +18,8 @@ const toValue = val => Math.round(2700 + val * step);
 // const toStep=(val) => val - val % 100
 const toStep = val => val;
 
+const getColorTempByDeg = deg => toStep(toValue(deg));
+
 export function Position({
   // value,
   // brightness = 80,
@@ -42,8 +44,6 @@ export function Position({
 
   const isColorFull = colorMode == 2;
 
-  const getColorTempByDeg = deg => toStep(toValue(deg));
-
   useEffect(() => {
     if (isColorFull) { // 彩色模式
       const degValue = getDegValue(work_mode, work_mode === 'colour' ? colour_data : white_data) || 0;
@@ -57,6 +57,7 @@ export function Position({
   const isPowerOff = power_switch !== 1;
 
   const onChange = (deg) => {
+    console.log('deg=', deg);
     setDeg(deg);
     if (isColorFull) {
       // const key = work_mode === 'colour' ? 'colour_data' : 'white_data';
@@ -72,38 +73,40 @@ export function Position({
     [254, 303, 35],
   ];
 
+  const handleColorTempInput = () => {
+    Modal.alert({
+      content: (
+        <Input
+          ref={colorTempInputRef}
+          placeholder='请输入色温值(2700-6500)'
+          type={'number'}
+        />
+      ),
+      style: {
+        /* @ts-ignore */
+        '--adm-color-primary': '#30414D',
+      },
+      title: '色温',
+      closeOnMaskClick: true,
+      confirmText: '确认',
+      onConfirm: () => {
+        const color_temp = Number(colorTempInputRef.current.nativeElement.value);
+        if (!Number.isNaN(color_temp) && color_temp >= 2700 && color_temp <= 6500) {
+          doControlDeviceData({ color_temp });
+        } else {
+          Toast.show({ content: '色温值不合法', icon: 'fail' });
+        }
+      },
+    });
+  };
+
 
   log.mi('传递的参数:::', productType, colorMode);
 
   return (
     <div className={`position_card center ${powerStatus} color-type-${colorMode}`}>
       <div className='main-bg center'>
-        <div className='circle-ring' onClick={() => {
-          Modal.alert({
-            content: (
-              <Input
-                ref={colorTempInputRef}
-                placeholder='请输入色温值(2700-6500)'
-                type={'number'}
-              />
-            ),
-            style: {
-              /* @ts-ignore */
-              '--adm-color-primary': '#30414D',
-            },
-            title: '色温',
-            closeOnMaskClick: true,
-            confirmText: '确认',
-            onConfirm: () => {
-              const color_temp = Number(colorTempInputRef.current.nativeElement.value);
-              if (!Number.isNaN(color_temp) && color_temp >= 2700 && color_temp <= 6500) {
-                doControlDeviceData({ color_temp });
-              } else {
-                Toast.show({ content: '色温值不合法', icon: 'fail' });
-              }
-            },
-          });
-        }}>
+        <div className='circle-ring'>
           <div className='bg'>
             <div
               className='circle outer center'
@@ -113,10 +116,10 @@ export function Position({
             </div>
             <div className='bg-img center'>
               <Icon name={productType}></Icon>
-              <div className='center-value'>{toStep(toValue(deg))}K</div>
+              <div className='center-value'>{getColorTempByDeg(deg)}K</div>
             </div>
           </div>
-          <Circular className={isPowerOff ? 'circular-off' : ''} value={deg} onChange={onChange} touch={!isPowerOff} />
+          <Circular onClick={handleColorTempInput} className={isPowerOff ? 'circular-off' : ''} value={deg} onChange={onChange} touch={!isPowerOff} />
         </div>
       </div>
       {!isPowerOff ? <div
