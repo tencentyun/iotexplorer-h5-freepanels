@@ -2,6 +2,7 @@ import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { Input, List, Modal, Picker, Switch, Toast } from 'antd-mobile';
 import useSWR from 'swr';
 import './MoreSetting.less';
+import { useTitle } from '@hooks/useTitle';
 
 const gradientCycleOptions = [
   [
@@ -61,6 +62,8 @@ const timeOptions = (() => {
 })();
 
 export function MoreSetting({ deviceData, doControlDeviceData, sdk }) {
+  useTitle('设置');
+
   const {
     gradient_cycle = 0,
     default_scene_type = 0,
