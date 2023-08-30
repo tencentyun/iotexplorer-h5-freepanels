@@ -1,5 +1,5 @@
-import React, { useEffect, useMemo, useState } from 'react';
-import { List, Picker, Switch, Toast } from 'antd-mobile';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
+import { Input, List, Modal, Picker, Switch, Toast } from 'antd-mobile';
 import useSWR from 'swr';
 import './MoreSetting.less';
 
@@ -66,6 +66,8 @@ export function MoreSetting({ deviceData, doControlDeviceData, sdk }) {
     default_scene_type = 0,
     outage_status = 0,
     // night_light_status = 0,
+    default_color_temp = '-',
+    default_brightness = '-',
   } = deviceData;
 
   const [nightLightTime, setNightLightTime] = useState({
@@ -202,6 +204,9 @@ export function MoreSetting({ deviceData, doControlDeviceData, sdk }) {
 
   const isOpenNightLightStatus = useMemo(() => openNightTimer?.Status && closeNightTimer?.Status, [TimerList]);
 
+  const colorTempInputRef = useRef<any>(null);
+  const brightnessInputRef = useRef<any>(null);
+
   return (
     <>
       <List header='基础设置'>
@@ -236,6 +241,72 @@ export function MoreSetting({ deviceData, doControlDeviceData, sdk }) {
         >
           默认开启状态
         </List.Item>
+        {default_scene_type === 9 && (
+          <>
+            <List.Item
+              extra={`${default_color_temp}K`}
+              onClick={() => {
+                Modal.alert({
+                  content: (
+                    <Input
+                      ref={colorTempInputRef}
+                      placeholder='请输入色温值(2700-6500)'
+                      type={'number'}
+                    />
+                  ),
+                  style: {
+                    /* @ts-ignore */
+                    '--adm-color-primary': '#30414D',
+                  },
+                  title: '默认色温',
+                  closeOnMaskClick: true,
+                  confirmText: '确认',
+                  onConfirm: () => {
+                    const color_temp = Number(colorTempInputRef.current.nativeElement.value);
+                    if (!Number.isNaN(color_temp) && color_temp >= 2700 && color_temp <= 6500) {
+                      doControlDeviceData({ default_color_temp: color_temp });
+                    } else {
+                      Toast.show({ content: '色温值不合法', icon: 'fail' });
+                    }
+                  },
+                });
+              }}
+            >
+              默认色温
+            </List.Item>
+            <List.Item
+              extra={`${default_brightness}%`}
+              onClick={() => {
+                Modal.alert({
+                  content: (
+                    <Input
+                      ref={brightnessInputRef}
+                      placeholder='请输入亮度值(0-100)'
+                      type={'number'}
+                    />
+                  ),
+                  style: {
+                    /* @ts-ignore */
+                    '--adm-color-primary': '#30414D',
+                  },
+                  title: '默认亮度',
+                  closeOnMaskClick: true,
+                  confirmText: '确认',
+                  onConfirm: () => {
+                    const brightness = Number(brightnessInputRef.current.nativeElement.value);
+                    if (!Number.isNaN(brightness) && brightness >= 0 && brightness <= 100) {
+                      doControlDeviceData({ default_brightness: brightness });
+                    } else {
+                      Toast.show({ content: '亮度值不合法', icon: 'fail' });
+                    }
+                  },
+                });
+              }}
+            >
+              默认亮度
+            </List.Item>
+          </>
+        )}
         <List.Item
           extra={outageStatusOptions[0][outage_status]?.label || '物模型非法'}
           clickable
