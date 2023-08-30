@@ -144,7 +144,7 @@ export function Home({
           });
         }}
       >
-        智能场景
+        智能场景dev
       </CellBtn>
       <OptionDialog
         title='模式'
