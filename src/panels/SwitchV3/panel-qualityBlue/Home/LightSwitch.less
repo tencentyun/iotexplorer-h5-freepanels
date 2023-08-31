@@ -1,6 +1,6 @@
 .light-switch {
   width: 210px;
-  height: 300px;
+  height: 278px;
   background: #C6E6FA;
   padding: 8px 8px 15px 8px;
   border-radius: 16px;
@@ -15,39 +15,86 @@
     color: #FFF;
   }
 
-  .wrapper {
+  .wrapper { 
     width: 100%;
     height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between;
+    // justify-content: space-between;
     background: linear-gradient(157.14deg, #84E1FF -2.53%, #4D9CF8 96.94%);
     border-radius: 14px;
 
     .light-icon {
-      margin-top: 40px;
+      margin-top: 45px;
     }
 
     .flag {
       width: 6px;
       height: 20px;
-      margin-top: 108px;
+      margin-top: 86px;
       border-radius: 2px;
       background: #FE6D3E;
     }
 
+  
     .name {
       font-weight: 600;
       font-size: 14px;
-      margin-bottom: 25px;
+      margin-top: 20px;
+      padding-left: 4px;
+      width: 100%;
+      display: block;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      text-align: center;
     }
   }
+
+
+  .switch-cus-count {
+    display: none;
+  }
+
 
   &.is-checked {
 
     .flag {
       background: #1FDC5D;
+    }
+
+    .switch-cus-count {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      margin-top: 12px;
+      font-weight: 400;
+      font-size: 12px;
+      margin-bottom: 25px;
+      color: #FFFFFF;
+      opacity: 0.9;
+
+      >div {
+        display: flex;
+        // flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+
+        >div {
+          >span {
+            // font-weight: 700;
+            // font-size: 20px;
+            // line-height: 18px;
+          }
+
+          &:last-child {
+            // margin-top: 4px;
+          }
+        }
+      }
     }
 
     // .content {
@@ -60,6 +107,11 @@
     //   height: 278px;
     //   box-shadow: 0px 16px 34px rgba(0, 0, 0, 0.85);
     // }
+    &.has-count {
+      .wrapper {
+        height: 278px;
+      }
+    }
   }
 }
 

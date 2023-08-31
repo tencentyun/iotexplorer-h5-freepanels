@@ -1,5 +1,1 @@
-import render from '@custom/Render';
-import App from './Common';
-import '@theme/panel-qualityBlue';
-import './app.less';
-render(App, { isModuleTimer: true, isModal: true, isPopUp: false });
+import '@src/panels/SwitchV3/panel-qualityBlue/app.tsx';
