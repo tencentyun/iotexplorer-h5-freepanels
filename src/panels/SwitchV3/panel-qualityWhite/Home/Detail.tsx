@@ -38,6 +38,8 @@ export const Detail = ({
   const saveSwitchName = async () => {
     setSwitchNameEditModalVisible(false);
     const nameVal = inputSwitchNameRef.current?.value || '';
+    // @ts-ignore
+    inputSwitchNameRef.current?.value = '';
     if (nameVal.length >= 10 || nameVal.length === 0) {
       Toast.show({ content: '名字不合法', icon: 'fail' });
       return;
