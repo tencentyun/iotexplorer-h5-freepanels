@@ -52,7 +52,7 @@ export function Home(props) {
         {currentSwitch.map(([key], index) => (
           <LightSwitch
             key={key}
-            hasCount={true}
+            hasCount={false}
             name={switchNameMap[`switch_${index + 1}`]}
             count={<Label name={`count_down${index + 1}`}></Label>}
             value={!!deviceData[key]}

@@ -82,21 +82,6 @@ export function MoreSetting({
     <>
       <List header='基础设置'>
         <List.Item
-          extra={outageStatusOptions[0][outage_status]?.label || '-'}
-          clickable
-          onClick={async () => {
-            const res = await Picker.prompt({
-              columns: outageStatusOptions,
-            });
-            const val = res?.[0];
-            if (typeof val === 'number') {
-              doControlDeviceData({ outage_status: val });
-            }
-          }}
-        >
-          断电后通电状态
-        </List.Item>
-        <List.Item
           extra={ledBrightnessOptions[0][led_brightness - 1]?.label || '-'}
           clickable
           onClick={async () => {
@@ -130,33 +115,48 @@ export function MoreSetting({
         >
           定时任务
         </List.Item>
+        <List.Item
+          extra={outageStatusOptions[0][outage_status]?.label || '-'}
+          clickable
+          onClick={async () => {
+            const res = await Picker.prompt({
+              columns: outageStatusOptions,
+            });
+            const val = res?.[0];
+            if (typeof val === 'number') {
+              doControlDeviceData({ outage_status: val });
+            }
+          }}
+        >
+          断电后通电状态
+        </List.Item>
       </List>
-      <List header='倒计时关闭设置'>
-        {new Array(switchNum).fill('')
-          .map((_, index) => {
-            const modeProperty = `count_down${index + 1}`;
-            return (
-              <List.Item
-                extra={`${getTimeTextBySecond(deviceData[modeProperty] || 0)} 后关闭`}
-                key={index}
-                onClick={async () => {
-                  const res = await Picker.prompt({
-                    columns: timeOptions,
-                  });
-                  if (res) {
-                    let [h, m] = res;
-                    h = Number(h);
-                    m = Number(m);
-                    doControlDeviceData({ [modeProperty]: h * 3600 + m * 60 });
-                  }
-                }}
-              >
-                {switchNameMap[`switch_${index + 1}`]}
-              </List.Item>
-            );
-          })}
-      </List>
-      <List header='开关模式设置'>
+      {/* <List header='倒计时关闭设置'>*/}
+      {/*  {new Array(switchNum).fill('')*/}
+      {/*    .map((_, index) => {*/}
+      {/*      const modeProperty = `count_down${index + 1}`;*/}
+      {/*      return (*/}
+      {/*        <List.Item*/}
+      {/*          extra={`${getTimeTextBySecond(deviceData[modeProperty] || 0)} 后关闭`}*/}
+      {/*          key={index}*/}
+      {/*          onClick={async () => {*/}
+      {/*            const res = await Picker.prompt({*/}
+      {/*              columns: timeOptions,*/}
+      {/*            });*/}
+      {/*            if (res) {*/}
+      {/*              let [h, m] = res;*/}
+      {/*              h = Number(h);*/}
+      {/*              m = Number(m);*/}
+      {/*              doControlDeviceData({ [modeProperty]: h * 3600 + m * 60 });*/}
+      {/*            }*/}
+      {/*          }}*/}
+      {/*        >*/}
+      {/*          {switchNameMap[`switch_${index + 1}`]}*/}
+      {/*        </List.Item>*/}
+      {/*      );*/}
+      {/*    })}*/}
+      {/* </List>*/}
+      <List header='转无线开关设置'>
         {new Array(switchNum).fill('')
           .map((_, index) => {
             const modeProperty = `mode_switch${index + 1}`;
