@@ -17,6 +17,7 @@ const getTypeBeforeDate = (date, type) => {
       break;
     case 'year':
       before = date.subtract(11, 'month');
+      break;
     default:
       break;
   }
@@ -95,7 +96,6 @@ export const ElectricStatisticsPanel = ({
   deviceData = {},
 }: { deviceData: Record<string, any> }) => {
   const { cur_ele, cur_current, cur_voltage, cur_power } = deviceData;
-  console.log('deviceData fuck', deviceData);
 
   return (
     <div className="electric-statistics-panel">
@@ -104,11 +104,11 @@ export const ElectricStatisticsPanel = ({
         <div className="item-label">今日电量</div>
         <div className="item-unit">（度）</div>
       </div>
-      <div className="panel-item">
-        <div className="item-value">{cur_current || '-'}</div>
-        <div className="item-label">当前电流</div>
-        <div className="item-unit">（A）</div>
-      </div>
+      {/* <div className="panel-item">*/}
+      {/*  <div className="item-value">{cur_current || '-'}</div>*/}
+      {/*  <div className="item-label">当前电流</div>*/}
+      {/*  <div className="item-unit">（A）</div>*/}
+      {/* </div>*/}
       <div className="panel-item">
         <div className="item-value">{cur_voltage || '-'}</div>
         <div className="item-label">当前电压</div>

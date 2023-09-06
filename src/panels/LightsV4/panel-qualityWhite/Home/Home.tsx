@@ -6,9 +6,11 @@ import Ticker from '../../Common/Home/Ticker';
 import Action from './Action';
 import { DeviceDetail } from '@custom/DeviceDetail';
 import RGBColor from '../../Common/Home/RGBColor';
+import { Icon } from '@custom/Icon';
+import { Cell } from '@custom/Cell';
 
 export function Home(props) {
-  let {
+  const {
     deviceData: { color_mode, brightness },
     context,
     productColorMode = 1,
@@ -24,11 +26,11 @@ export function Home(props) {
 
   const isColorFull = colorMode == '2';
 
-  let [brightnessValue, setBrightness] = useState(0);
+  const [brightnessValue, setBrightness] = useState(0);
 
   useEffect(() => {
-    setBrightness(brightness)
-  }, [brightness])
+    setBrightness(brightness);
+  }, [brightness]);
 
   return (
     <div className={`home ${work_mode == 10 ? 'scene' : colorMode} ${isPowerOff}`}>
@@ -38,14 +40,14 @@ export function Home(props) {
         {work_mode != '10'
           ? <div className={`change-panel color-mode-${colorMode}`}>
             {
-              isColorFull ?
-                <div className='color_card'>
+              isColorFull
+                ? <div className='color_card'>
                   <RGBColor brightness={brightnessValue} {...props}></RGBColor>
-                </div> :
-                <Position  {...props} brightness={brightnessValue}></Position>}
+                </div>
+                : <Position  {...props} brightness={brightnessValue}></Position>}
 
-            {isColorFull ?
-              <>
+            {isColorFull
+              ? <>
                 <LightBright
                   iconName="temperature"
                   controlName="color_temp"

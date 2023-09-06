@@ -4,15 +4,18 @@
   height: 100%;
   border-radius: 16px;
   display: flex;
+
   .wrapper {
     background: @c-bg;
     margin: 8px 8px 16px 8px;
     border-radius: 16px;
     width: 100%;
     height: 100%;
+
     .light-icon {
       margin-top: 40px;
     }
+
     .flag {
       width: 6px;
       height: 20px;
@@ -20,15 +23,23 @@
       margin-top: 107px;
       border-radius: 2px;
     }
+
     .name {
       margin: 20px 0 25px 0;
       font-weight: 600;
       font-size: 14px;
+      padding-left: 4px;
     }
   }
+
   &.is-checked {
     .flag {
       background: @c3;
     }
+
+    .switch-cus-count {
+      display: none;
+    }
   }
+
 }

@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "npx webpack serve --config webpack/webpack.config.js --mode=development ",
     "pre": "npx webpack serve --config webpack/webpack.config.js --mode=production",
-    "build": "npm run node-mem",
+    "build": "rm -rf ./dist && npm run node-mem",
     "node-mem": "node --max-old-space-size=8192 ./node_modules/webpack/bin/webpack.js --config webpack/webpack.config.js --mode=production",
     "build-file": "npx webpack --config webpack/webpack.config.js --mode=production",
     "lint": "eslint  ./src",
@@ -34,7 +34,7 @@
     "@typescript-eslint/eslint-plugin": "^4.28.1",
     "@typescript-eslint/parser": "^4.28.1",
     "amfe-flexible": "^2.2.1",
-    "antd-mobile": "5.0.0-rc.18",
+    "antd-mobile": "^5.32.0",
     "beautiful-react-hooks": "^1.0.2",
     "classnames": "^2.2.6",
     "crypto-js": "^4.1.1",
@@ -66,6 +66,7 @@
     "styled-components": "^5.3.3",
     "svg-morpheus": "^0.3.0",
     "swiper": "^7.2.0",
+    "swr": "^2.2.2",
     "tinycolor2": "^1.4.2",
     "underscore": "^1.12.0",
     "url-parse": "^1.5.1"

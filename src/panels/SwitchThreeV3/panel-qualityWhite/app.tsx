@@ -1,1 +1,1 @@
-import '@src/panels/SwitchTwoV3/panel-qualityWhite/app.tsx';
+import '@src/panels/SwitchV3/panel-qualityWhite/app.tsx';

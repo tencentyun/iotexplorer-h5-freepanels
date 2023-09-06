@@ -15,7 +15,7 @@ export const SIZE = { NORMAL: 'normal', SMALL: 'small', LARGE: 'large' };
 export const TYPE = { SVG: 'svg', ICON: 'icon' };
 
 export function Icon(props: IconProps) {
-  const { name, className, checked, size = SIZE.NORMAL, type = TYPE.SVG,...prop } = props;
+  const { name, className, checked, size = SIZE.NORMAL, type = TYPE.SVG, ...prop } = props;
   let realIconName = name;
   if (checked !== void 0) {
     realIconName = checked ? 'select' : 'unselect';

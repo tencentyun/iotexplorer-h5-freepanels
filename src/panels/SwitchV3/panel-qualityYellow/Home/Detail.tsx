@@ -16,6 +16,8 @@ const defaultIconName = {
 };
 
 export const Detail = ({
+  currentItem,
+  currentIndex,
   deviceData,
   doControlDeviceData,
   context: { switchNum },
@@ -23,19 +25,10 @@ export const Detail = ({
   history: { PATH, push },
   goMore,
   isModal,
-  isPopUp
+  isPopUp,
 }) => {
-  const SWITCH = { OPEN: 1, CLOSE: 0 };
-  const getStatusData = status => currentSwitch.filter(([key]) => deviceData[key] !== status);
-  const [isChecked, setChecked] = useState(false);
-  const isAll = status => !getStatusData(status).length;
-  const isAllOpen = isAll(SWITCH.OPEN);
-  const isAllClose = isAll(SWITCH.CLOSE);
-  const getSwitchData = (status) => {
-    const res = {};
-    currentSwitch.forEach(([key]) => (res[key] = status));
-    return res;
-  };
+  const [switchName, modeName, btnName] = currentItem;
+  const [isChecked] = useState(false);
   // 倒计时
   const [visible, setVisible] = useState(false);
   const [modalVisible, setModalVisible] = useState(false);
@@ -44,62 +37,35 @@ export const Detail = ({
   const [modeVisible, setModeVisible] = useState(false);
   const [radioData, setRadioData] = useState(0);
 
-  useEffect(() => {
-    setRadioData(!deviceData?.mode_swtch1?.mode ? 0 : 1);
-  }, [deviceData?.mode_swtch1?.mode]);
 
   useEffect(() => {
-    setCurrentName(deviceData?.name_button1);
-  }, [deviceData?.name_button1]);
+    setCurrentName(deviceData[btnName] || currentSwitch[currentIndex][1]);
+    setRadioData(!deviceData[modeName]?.mode ? 0 : 1);
+  }, [currentItem]);
 
-
-  const isOneSwitch = switchNum === 1;
 
   const getCountdownTime = () => {
-    if (isAllClose) return [];
     let res = [] as string[];
-    currentSwitch.forEach(([key]) => {
-      if (deviceData[key] === SWITCH.OPEN) {
-        const countdownKey = key.replace('switch', 'count_down');
-        const time = deviceData[countdownKey];
-        if (time) {
-          const hour = `${Math.floor(time / 3600)}`;
-          const minute = `${Math.floor((time % 3600) / 60)}`;
-          res = [hour, minute];
-        }
-      }
-    });
+    const time = deviceData[`count_down${currentIndex + 1}`];
+    if (time) {
+      const hour = `${Math.floor(time / 3600)}`;
+      const minute = `${Math.floor((time % 3600) / 60)}`;
+      res = [hour, minute];
+    }
     return res;
   };
 
   // 开启状态 并且存在倒计时记录
   const countdownTime = getCountdownTime();
-  const onClick = () => doControlDeviceData(getSwitchData(SWITCH.OPEN));
-  const offClick = () => doControlDeviceData(getSwitchData(SWITCH.CLOSE));
 
-  const submitCountDown = ([hour, minute], isChecked) => {
+  const submitCountDown = ([hour, minute]) => {
     setVisible(false);
-    setChecked(isChecked);
     const times = hour * 3600 + minute * 60;
-    const openSwitch = getStatusData(SWITCH.CLOSE);
-    if (!openSwitch.length) return;
-    const countDownData = {};
-    openSwitch.forEach(([key]) => {
-      countDownData[key.replace('switch', 'count_down')] = times;
-    });
-    doControlDeviceData(countDownData);
+    doControlDeviceData({ [`count_down${currentIndex + 1}`]: times });
   };
 
   const actions = [
-    isOneSwitch
-      ? null
-      : [
-        isAllOpen ? '全开' : '全关',
-        'on',
-        () => ({}),
-        isAllOpen,
-        isChecked => (isChecked ? onClick() : offClick()),
-      ],
+
     [
       '定时',
       'timing',
@@ -107,7 +73,7 @@ export const Detail = ({
     ],
     ['倒计时', 'count-down', setVisible.bind(null, true)],
     ['模式', 'mode', setModeVisible.bind(null, true)],
-    ['设置', 'setting', () => goMore],
+    ['设置', 'setting', () => goMore()],
   ].filter(v => v);
 
   const onRadioClick = (value) => {
@@ -123,20 +89,20 @@ export const Detail = ({
   }];
 
   return (
-    <div className={`detail action action-${switchNum} ${!deviceData?.switch_1 ? '' : 'on'}`}>
+    <div className={`detail action action-${1} ${!deviceData[switchName] ? '' : 'on'}`}>
       <div className="switch-total">
-        <div className="switch-title">{deviceData?.name_button1 || '开关'}</div>
+        <div className="switch-title"></div>
         <Switch
           className="reverse custom-switch"
-          checked={!!deviceData.switch_1}
-          onChange={checked => (checked ? onClick() : offClick())}
+          checked={!!deviceData[switchName] || !!deviceData.power_switch}
+          onChange={() => doControlDeviceData(switchName, !deviceData[switchName])}
         />
         <div className="operator-btn editor" onClick={() => setModalVisible(true)}>
           <Icon className="operator-icon" name="editor" size="normal" />
         </div>
       </div>
       <div className="operator">
-        <div className="operator-content">{`模式：${!deviceData?.mode_swtch1?.mode ? '常规' : '无线'}模式`}</div>
+        <div className="operator-content">{`模式：${!deviceData[modeName]?.mode ? '常规' : '无线'}模式`}</div>
       </div>
       <div className="environment">
         {actions.map((item, index) => {
@@ -186,9 +152,9 @@ export const Detail = ({
           <input
             value={currentName}
             autoFocus
-            className='edit-name-modal-input'
-            placeholder='请输入名称'
+            className="edit-name-modal-input"
             maxLength={16}
+            placeholder='请输入名称'
             onChange={(event) => {
               setCurrentName(event.currentTarget.value);
             }}
@@ -198,16 +164,17 @@ export const Detail = ({
               className="btn cancel"
               type="cancel"
               onClick={() => {
-                setCurrentName(deviceData?.name_button1 || '');
+                setCurrentName(deviceData[btnName]);
                 setModalVisible(false);
               }}
             >
               取消
             </Button>
             <Button
+
               className="btn save"
               onClick={() => {
-                currentName && doControlDeviceData('name_button1', currentName);
+                currentName && doControlDeviceData(btnName, currentName);
                 setModalVisible(false);
               }}
             >
@@ -215,7 +182,7 @@ export const Detail = ({
             </Button>
           </div>
         </Modal>
-      </div>
+      </div >
 
       <div className="custom-modal">
         <Modal
@@ -250,7 +217,7 @@ export const Detail = ({
               <Button
                 className="btn-cancel"
                 onClick={() => {
-                  setRadioData(!deviceData?.mode_swtch1?.mode ? 0 : 1);
+                  setRadioData(!deviceData[modeName]?.mode ? 0 : 1);
                   setModeVisible(false);
                 }}
               >
@@ -259,7 +226,9 @@ export const Detail = ({
               <Button
                 className="btn-save"
                 onClick={() => {
-                  doControlDeviceData({ mode_swtch1: { mode: radioData } });
+                  const obj = {};
+                  obj[modeName] = { mode: radioData };
+                  doControlDeviceData(obj);
                   setModeVisible(false);
                 }}
               >
@@ -270,6 +239,6 @@ export const Detail = ({
           </div>
         </Modal>
       </div>
-    </div>
+    </div >
   );
 };

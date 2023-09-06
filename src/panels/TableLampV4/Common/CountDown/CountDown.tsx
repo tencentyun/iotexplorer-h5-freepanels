@@ -1,30 +1,33 @@
-
-import React, { useState, forwardRef, useImperativeHandle, useRef } from 'react';
+import React, { ForwardedRef, forwardRef, useImperativeHandle, useRef, useState } from 'react';
 import { TimePicker } from '@custom/TimePicker';
 
-export const CountDown = forwardRef((props, ref) => {
+export interface CountDownRef {
+  onOpen: () => void;
+  onClose: () => void;
+}
+
+export const CountDown = forwardRef((props: any, ref: ForwardedRef<CountDownRef>) => {
   const {
     deviceData,
     doControlDeviceData,
-    history: { PATH, push }
   } = props;
-  const onChange = (count_down) => {
-    // 16进制字符串形式下发 
-    doControlDeviceData({ count_down: count_down.toString(16)});
-    props.onChange && props.onChange(count_down)
+  const onChange = (count_down: number) => {
+    // 16进制字符串形式下发
+    doControlDeviceData({ count_down: count_down.toString(16) });
+    props.onChange && props.onChange(count_down);
     // isJumpRoute && push(PATH.TIMER_COUNTDOWNPAGE, { value: count_down })
   };
 
-  const timerRef = useRef(null);
+  const timerRef = useRef<TimerRef>(null);
 
   useImperativeHandle(ref, () => ({
     onOpen: () => {
-      timerRef.current.open();
+      timerRef.current?.open();
     },
     onClose: () => {
-      timerRef.current.close();
-    }
-  }))
+      timerRef.current?.close();
+    },
+  }));
 
   return (
     <div>
@@ -34,15 +37,26 @@ export const CountDown = forwardRef((props, ref) => {
         _value={deviceData.count_down}
         // value={deviceData.count_down}
         onChange={onChange}
-      ></Timer>
+      />
     </div>
   );
 });
 
+interface TimerRef {
+  open: () => void;
+  close: () => void;
+}
 
-const Timer = forwardRef(({ _value, onChange, isModal, isPopUp }, ref) => {
-
-  const [value] = useState(parseInt('a',_value || 0 ,16))
+const Timer = forwardRef((
+  {
+    _value = 'a',
+    onChange,
+    isModal,
+    isPopUp,
+  }: any,
+  ref: ForwardedRef<TimerRef>,
+) => {
+  const [value] = useState(parseInt(_value, 16));
 
   const [visible, setVisible] = useState(false);
   // useTitle('倒计时');
@@ -70,12 +84,12 @@ const Timer = forwardRef(({ _value, onChange, isModal, isPopUp }, ref) => {
     },
     close: () => {
       setVisible(false);
-    }
-  }))
+    },
+  }));
 
   const countdownTime = getCountdownTime(value).map((v: string) => (parseInt(v, 10) < 10 ? `0${parseInt(v, 10)}` : v));
   return (
-    <div className="cus-time-picker">
+    <div className='cus-time-picker'>
       <TimePicker
         showSemicolon={false}
         value={countdownTime}
@@ -91,7 +105,7 @@ const Timer = forwardRef(({ _value, onChange, isModal, isPopUp }, ref) => {
         switchIsOpen={false}
         onCancel={setVisible.bind(null, false)}
         onConfirm={submitCountDown}
-        confirmText="确认"
+        confirmText='确认'
         visible={visible}
         isSecond={true}
       />

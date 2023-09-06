@@ -1,5 +1,5 @@
 import log from '@libs/logger';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import * as  utils from '@utils';
 import { useTimer } from '@src/hooks/useDevice';
 import { StatusTip } from '@custom/StatusTip';
@@ -181,6 +181,15 @@ export const Router = ({ route = [] as HashMap[], detail = true, ...routerProps 
   route.forEach(({ path }) => {
     PATH[getPathName(path || '')] = path;
   });
+
+  useEffect(() => {
+    console.log('state.deviceInfo.Status=', state.deviceInfo.Status);
+    if (state.deviceInfo.Status === 0) {
+      sdk.offlineTip.show();
+    } else {
+      sdk.offlineTip.hide();
+    }
+  }, [state.deviceInfo.Status]);
 
   return statusTip ? (
     <StatusTip {...statusTip} fillContainer />

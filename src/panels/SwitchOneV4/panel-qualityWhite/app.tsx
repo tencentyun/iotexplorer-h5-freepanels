@@ -2,4 +2,5 @@ import render from '@custom/Render';
 import App from './Common';
 import '@theme/panel-qualityWhite';
 import './app.less';
-render(App, { isModuleTimer: true, isModal: true, isPopUp: false,switchNumProp:1,scenceLength:1  });
+
+render(App, { isModuleTimer: true, isModal: true, isPopUp: false, switchNumProp: 1, sceneLength: 1 });

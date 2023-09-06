@@ -7,6 +7,7 @@ import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 import { Cell } from '@custom/Cell';
 import { OptionDialog } from '@custom/OptionDialog';
 import classNames from 'classnames';
+import { CellBtn } from '@components/Btn/CellBtn';
 
 export function Home({
   deviceData,
@@ -63,7 +64,7 @@ export function Home({
   //   </>);
   // }
   return (
-    <main className={classNames("home")}>
+    <main className={classNames('home')}>
       {/* 顶部 */}
       <header>
         {/* 电源模块 */}
@@ -74,19 +75,20 @@ export function Home({
           isShowTip={false}
         />
       </header>
-      <div className="switch-block" style={{ display: 'none' }}>
-        <Icon name="switch" />
+      <div className='switch-block' style={{ display: 'none' }}>
+        <Icon name='switch' />
       </div>
       <Disk deviceData={deviceData} doControlDeviceData={doControlDeviceData}></Disk>
-      <div className="tips" style={{ left: `calc(50% - ${(document.querySelector('.tips')?.clientWidth || 0) / 2}px)` }}>
+      <div className='tips'
+           style={{ left: `calc(50% - ${(document.querySelector('.tips')?.clientWidth || 0) / 2}px)` }}>
         <span>
           {recordStatusText}
         </span>
       </div>
       {/* 设置按钮 */}
-      <div className="setting-block action">
+      <div className='setting-block action'>
         <div
-          key="temper-alarm"
+          key='temper-alarm'
           className={`action-item  ${isAlarmOpen ? 'checked' : ''} action-item-1`}
         >
           {/* <div className={`action-ele action-ele-1 dialog`} style={{ display: 'none' }} onClick={() => {
@@ -94,39 +96,63 @@ export function Home({
           }}>
             {renderAlarmDom()}
           </div> */}
-          <div className={`action-ele action-ele-1`} >
-            <div className="title">防拆警报</div>
-            <Icon name="alarm" />
-            <Cell title={isAlarmOpen ? '开启' : '关闭'} ele="switch" isLink={false} eleValue={isAlarmOpen} onChange={(val) => {
-              doControlDeviceData({ 'temperAlarm': !val ? 0 : 1 });
-            }} />
+          <div className={'action-ele action-ele-1'}>
+            <div className='title'>防拆警报</div>
+            <Icon name='alarm' />
+            <Cell title={isAlarmOpen ? '开启' : '关闭'} ele='switch' isLink={false} eleValue={isAlarmOpen}
+                  onChange={(val) => {
+                    doControlDeviceData({ temperAlarm: !val ? 0 : 1 });
+                  }} />
           </div>
         </div>
 
         <div
-          key="log-record"
-          className={`action-item  action-item-2`}
+          key='log-record'
+          className={'action-item  action-item-2'}
           onClick={() => {
             push(PATH.RECORD);
           }}
         >
-          <div className={`action-ele action-ele-1`}>
-            <div className="title">日志</div>
-            <Icon name="record" />
-            <Cell title="更多记录" ele="" isLink={true} onClick={() => {
+          <div className={'action-ele action-ele-1'}>
+            <div className='title'>日志</div>
+            <Icon name='record' />
+            <Cell title='更多记录' ele='' isLink={true} onClick={() => {
               push(PATH.RECORD);
             }} />
           </div>
         </div>
-
       </div>
+      <CellBtn
+        onClick={() => {
+          sdk.goScenePage({
+            sceneType: 'auto',
+            scenePreset: {
+              Conditions: [
+                {
+                  CondType: 0,
+                  Property: {
+                    ProductId: sdk.productId,
+                    DeviceName: sdk.deviceName,
+                    PropertyId: 'contact_state',
+                    Op: 'eq',
+                    Value: 1,
+                  },
+                },
+              ],
+              freezeCondition: true,
+            },
+          });
+        }}
+      >
+        智能场景dev
+      </CellBtn>
       <OptionDialog
-        title="模式"
+        title='模式'
         visible={visible}
         value={[deviceData?.temperAlarm || 0]}
         onCancel={() => setVisible(false)}
         onConfirm={(val) => {
-          doControlDeviceData({ temperAlarm: val?.[0] * 1 })
+          doControlDeviceData({ temperAlarm: val?.[0] * 1 });
           // onAllSwitchChange(val?.[0] * 1);
         }}
         options={[

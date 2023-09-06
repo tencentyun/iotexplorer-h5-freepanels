@@ -15,19 +15,18 @@ const AddTimer = ({
   setContext,
   context: { Days = [0, 0, 0, 0, 0, 0, 0], TimePoint = '00:00', ...timerData },
   timerHeight,
-  isModuleTimer = false
+  isModuleTimer = false,
 }) => {
-
   useTitle('添加定时');
   const [visible, setVisible] = useState(false);
   const [timerVisible, setTimerVisible] = useState(false);
   // 模态框记录
-  const [timePoint1, setTimePoint] = useState(TimePoint)
+  const [timePoint1, setTimePoint] = useState(TimePoint);
 
-  // 设置显示滚动的个数 
+  // 设置显示滚动的个数
   // 7 个 408
   const { isModule } = query || {}; // 是否为模态框弹出三级配置
-  
+
   const timer = timePoint1.split(':');
 
 
@@ -86,17 +85,15 @@ const AddTimer = ({
   const weeks = getWeeks(Days);
 
   const onTimeDialogConfirm = (TimePoint) => {
-    setTimerVisible(false)
-    setContext({ TimePoint: TimePoint.join(':') })
-  }
-
-
+    setTimerVisible(false);
+    setContext({ TimePoint: TimePoint.join(':') });
+  };
 
 
   return (
-    <div className="cus-add-timer">
-      <div className="time-picker-body">
-        <div className="list-card-timer">
+    <div className='cus-add-timer'>
+      <div className='time-picker-body'>
+        <div className='list-card-timer'>
           <List>
             {children}
             <List.Item
@@ -108,28 +105,29 @@ const AddTimer = ({
               }}
             />
             {
-              isModuleTimer ?
-                <List.Item
+              isModuleTimer
+                ? <List.Item
                   prefix={'时间'}
                   extra={TimePoint}
-                  onClick={() => { setTimerVisible(true); }}
+                  onClick={() => {
+                    setTimerVisible(true);
+                  }}
                 /> : null
             }
           </List>
         </div>
 
 
-
-        {isModuleTimer ?
-          <button
-            className="add-timer-btn-dialog gra-border"
+        {isModuleTimer
+          ? <button
+            className='add-timer-btn-dialog gra-border'
             onClick={() => {
-              handleSubmit(TimePoint.split(':'))
+              handleSubmit(TimePoint.split(':'));
             }}
           >
             确定
-          </button> :
-          <>
+          </button>
+          : <>
             {isPopup ? (
               <TimePicker
                 showSemicolon={true}
@@ -146,27 +144,27 @@ const AddTimer = ({
                 // 单个主题没有问题 多个就有问题
                 // height={isSevenCheck ? 408 : 175}
                 height={timerHeight ? timerHeight : 175}
-                confirmText="确认"
+                confirmText='确认'
               />
-            )
-              : (<div className="pick-time-view">
-                <div className="timer-cloud-picker-header">{timer.join(':')}</div>
+            ) : (
+              <div className='pick-time-view'>
+                <div className='timer-cloud-picker-header'>{timer.join(':')}</div>
                 <TimePicker
                   value={timer}
                   onCancel={onClose}
                   showTwoDigit={true}
                   onConfirm={handleSubmit}
-                  className="timer-cloud-picker"
+                  className='timer-cloud-picker'
                 />
-              </div>)
-            }
+              </div>
+            )}
           </>
         }
       </div>
       <OptionDialog
-        title="重复"
+        title='重复'
         visible={visible}
-        type="multiple"
+        type='multiple'
         value={weeks}
         onCancel={() => setVisible(false)}
         onConfirm={(val) => {
@@ -174,7 +172,7 @@ const AddTimer = ({
         }}
         options={arrWeek.map((label, value) => ({ label, value }))}
       >
-        <p className="week-repeat-desc">不勾选将默认只执行一次</p>
+        <p className='week-repeat-desc'>不勾选将默认只执行一次</p>
       </OptionDialog>
 
 
@@ -183,14 +181,14 @@ const AddTimer = ({
         value={timer}
         mask={false}
         onCancel={() => {
-          setTimerVisible(false)
+          setTimerVisible(false);
         }}
         // onChange={TimePoint => setContext(TimePoint.join(':'))}
         onConfirm={onTimeDialogConfirm}
         // onChange={TimePoint => setContext({ TimePoint: TimePoint.join(':') })}
         // onConfirm={handleSubmit}
         visible={timerVisible}
-        modalTitle="定时"
+        modalTitle='定时'
         showTwoDigit={true}
         isPopUp={false}
         isModal={true}
@@ -199,10 +197,10 @@ const AddTimer = ({
         // 单个主题没有问题 多个就有问题
         // height={isSevenCheck ? 408 : 175}
         height={timerHeight ? timerHeight : 175}
-        confirmText="确认"
+        confirmText='确认'
       />
 
-      {/* 
+      {/*
       <TimePicker
         showSemicolon={true}
         value={TimePoint.split(':')}

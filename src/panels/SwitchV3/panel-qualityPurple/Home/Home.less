@@ -1,5 +1,6 @@
 @import url('./LightSwitch.less');
-.dev-detail{
+
+.cus-dev-detail {
   display: none;
 }
 
@@ -9,30 +10,211 @@
   display: flex;
   flex-direction: column;
 
+  .light-switch {
+    width: 260px;
+  }
+
+  .custom-tabs {
+    padding-top: 12px;
+
+    .adm-tabs-header {
+      border-bottom: 0;
+      position: relative;
+    }
+
+    .adm-tabs-tab-list {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      &:after {
+        content: '';
+        position: absolute;
+        height: 32px;
+        width: 1px;
+        background: #F6F4FC;
+        left: 50%;
+      }
+
+      .adm-tabs-tab-wrapper-stretch {
+        flex: unset;
+
+        .adm-tabs-tab {
+          margin: 0;
+          position: relative;
+          font-style: normal;
+          font-weight: 600;
+          font-size: 16px;
+          line-height: 18px;
+          text-align: center;
+          color: #000000;
+        }
+
+        .adm-tabs-tab-active::after {
+          content: '';
+          position: absolute;
+          width: 100%;
+          height: 4px;
+          background: #594AE1;
+          border-radius: 100px;
+          left: 0;
+          bottom: 0;
+        }
+      }
+    }
+  }
+
   .switch-1 {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 95px 0 84px 0;
+    padding: 33px 0 84px 0;
   }
 
   .switch-2 {
     display: flex;
-    padding: 50px 25px 23px 25px;
-    justify-content: space-between;
+    padding: 50px 18px 59px 18px;
+    flex-direction: column;
+    align-items: center;
 
     .light-switch {
-      width: 160px;
+      width: 260px;
+
+      .switch-cus-count {
+        display: none;
+      }
+
+      .wrapper {
+        width: 100%;
+      }
+
+      &.is-checked {
+        .switch-cus-count {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 100%;
+          margin-top: 106px;
+          font-weight: 400;
+          font-size: 14px;
+          margin-bottom: 25px;
+          color: #565477;
+
+
+          >div {
+            display: flex;
+
+            justify-content: center;
+            align-items: center;
+
+
+            >div {
+              >span {
+                // font-weight: 700;
+                // font-size: 20px;
+                // line-height: 18px;
+              }
+
+              &:last-child {
+                // margin-top: 4px;
+              }
+            }
+          }
+        }
+      }
     }
   }
 
   .switch-3 {
     display: flex;
-    padding: 50px 18px 23px 18px;
-    justify-content: space-between;
+    padding: 50px 18px 59px 18px;
+    flex-direction: column;
+    align-items: center;
 
     .light-switch {
-      width: 110px;
+      width: 260px;
+
+      .switch-cus-count {
+        display: none;
+      }
+
+      .wrapper {
+        width: 100%;
+      }
+
+      &.is-checked {
+        .switch-cus-count {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 100%;
+          margin-top: 106px;
+          font-weight: 400;
+          font-size: 14px;
+          margin-bottom: 25px;
+          color: #565477;
+
+
+          >div {
+            display: flex;
+
+            justify-content: center;
+            align-items: center;
+
+
+            >div {
+              >span {
+                // font-weight: 700;
+                // font-size: 20px;
+                // line-height: 18px;
+              }
+
+              &:last-child {
+                // margin-top: 4px;
+              }
+            }
+          }
+        }
+      }
     }
+
+
+  }
+
+  .switch-3-tab {
+    .adm-tabs-tab-list {
+      padding: 0 24px;
+
+      &::after {
+        content: none !important;
+      }
+
+      .adm-tabs-tab {
+        max-width: 100px;
+        display: block;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+      }
+    }
+
+  }
+  .switch-2-tab {
+    .adm-tabs-tab-list {
+      padding: 0 24px;
+
+      &::after {
+        content: none !important;
+      }
+
+      .adm-tabs-tab {
+        max-width: 150px;
+        display: block;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+      }
+    }
+
   }
 }

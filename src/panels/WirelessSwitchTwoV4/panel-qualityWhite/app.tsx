@@ -2,4 +2,4 @@ import render from '@custom/Render';
 import App from '@src/panels/WirelessSwitchOneV4/Common/Common';
 import '@theme/panel-qualityWhite';
 import '@src/panels/WirelessSwitchOneV4/panel-qualityWhite/app.less';
-render(App, {switchNum: 2,groupNames:["单击时","双击时","长按时"]});
+render(App, { switchNum: 2, sceneBtnModeDesc: ['单击时', '双击时', '长按时'] });

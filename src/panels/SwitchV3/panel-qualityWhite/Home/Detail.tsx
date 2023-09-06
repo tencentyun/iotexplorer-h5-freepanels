@@ -1,115 +1,61 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Icon } from '@custom/Icon';
-import { TimePicker } from '@custom/TimePicker';
 import { Cell } from '@custom/Cell';
 import { Modal } from '@custom/Modal';
 import { Btn as Button, BtnGroup } from '@custom/Btn';
+import { Dropdown } from '@custom/DropDown';
+import { DropdownRef } from 'antd-mobile/es/components/dropdown';
 import { Battery } from '@custom/Battery';
 import { ElectricStatisticsPanel } from '@src/panels/WirelessSwitchOneV4/Common/Source';
+import { Loading } from '@custom/Loading';
+import { Toast } from 'antd-mobile';
+import { useSwitchNameMap } from '@src/panels/SwitchV3/hooks/useSwitchNameMap';
+import { iconSwitchGreen, iconSwitchRed } from '../Icon';
+
+export const SWITCH_NAME_MAP = 'SWITCH_NAME_MAP';
 
 export const Detail = ({
   deviceData,
   doControlDeviceData,
   updateDeviceData,
-  context: { switchNum },
-  currentSwitch,
+  switchNum,
   history: { PATH, push },
-  isModal,
-  isPopUp,
+  sdk,
 }) => {
-  const SWITCH = { OPEN: 1, CLOSE: 0 };
-  const getStatusData = status => currentSwitch.filter(([key]) => deviceData[key] !== status);
-  const [isChecked, setChecked] = useState(false);
-  const isAll = status => !getStatusData(status).length;
-  const isAllOpen = isAll(SWITCH.OPEN);
-  const isAllClose = isAll(SWITCH.CLOSE);
-  const getSwitchData = (status) => {
-    const res = {};
-    currentSwitch.forEach(([key]) => (res[key] = status));
-    return res;
-  };
-  // 倒计时
-  const [visible, setVisible] = useState(false);
-  const [modalVisible, setModalVisible] = useState(false);
-  const [currentName, setCurrentName] = useState('');
+  const [switchNameEditModalVisible, setSwitchNameEditModalVisible] = useState(false);
 
-  const [modeVisible, setModeVisible] = useState(false);
-  const [radioData, setRadioData] = useState(0);
+  const { data: switchNameMap = {}, isLoading, mutate: mutateSwitchNameMap } = useSwitchNameMap({ switchNum, sdk });
+
+  const inputSwitchNameRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
-    setRadioData(!deviceData?.mode_swtch1?.mode ? 0 : 1);
-  }, [deviceData?.mode_swtch1?.mode]);
+    console.log('switchNameMap=', switchNameMap, switchNum);
+  }, [switchNameMap, switchNum]);
 
-  useEffect(() => {
-    setCurrentName(deviceData?.name_button1);
-  }, [deviceData?.name_button1]);
+  const [selectSwitchProperty, setSelectSwitchProperty] = useState('switch_1');
+  const dropdownRefName = useRef<DropdownRef>(null);
 
-  const isOneSwitch = switchNum === 1;
-
-  const getCountdownTime = () => {
-    if (isAllClose) return [];
-    let res = [] as string[];
-    currentSwitch.forEach(([key]) => {
-      if (deviceData[key] === SWITCH.OPEN) {
-        const countdownKey = key.replace('switch', 'count_down');
-        const time = deviceData[countdownKey];
-        if (time) {
-          const hour = `${Math.floor(time / 3600)}`;
-          const minute = `${Math.floor((time % 3600) / 60)}`;
-          res = [hour, minute];
-        }
-      }
+  const saveSwitchName = async () => {
+    setSwitchNameEditModalVisible(false);
+    const nameVal = inputSwitchNameRef.current?.value || '';
+    // @ts-ignore
+    inputSwitchNameRef.current?.value = '';
+    if (nameVal.length >= 10 || nameVal.length === 0) {
+      Toast.show({ content: '名字不合法', icon: 'fail' });
+      return;
+    }
+    Toast.show({ content: '保存中...', icon: 'loading' });
+    await sdk.requestTokenApi('AppSetDeviceConfig', {
+      DeviceId: sdk.deviceId,
+      DeviceKey: SWITCH_NAME_MAP,
+      DeviceValue: JSON.stringify({
+        ...switchNameMap,
+        [selectSwitchProperty]: nameVal,
+      }),
     });
-    return res;
+    await mutateSwitchNameMap();
+    Toast.show({ content: '保存成功', icon: 'success' });
   };
-
-  // 开启状态 并且存在倒计时记录
-  const countdownTime = getCountdownTime();
-  const onClick = () => doControlDeviceData(getSwitchData(SWITCH.OPEN));
-  const offClick = () => doControlDeviceData(getSwitchData(SWITCH.CLOSE));
-
-  const submitCountDown = ([hour, minute], isChecked) => {
-    setVisible(false);
-    setChecked(isChecked);
-    const times = hour * 3600 + minute * 60;
-    const openSwitch = getStatusData(SWITCH.CLOSE);
-    if (!openSwitch.length) return;
-    const countDownData = {};
-    openSwitch.forEach(([key]) => {
-      countDownData[key.replace('switch', 'count_down')] = times;
-    });
-    doControlDeviceData(countDownData);
-  };
-
-  const actions = [
-    isOneSwitch
-      ? null
-      : [
-        isAllOpen ? '全开' : '全关',
-        'on',
-        () => ({}),
-        isAllOpen,
-        isChecked => (isChecked ? onClick() : offClick()),
-      ],
-    [
-      '定时',
-      'timing',
-      push.bind(null, PATH.TIMER_LIST, { switchNum, isModule: true }),
-    ],
-    ['倒计时', 'count-down', setVisible.bind(null, true)],
-  ].filter(v => v);
-
-  const onRadioClick = (value) => {
-    setRadioData(value);
-  };
-
-  const modeList = [{
-    label: '常规模式',
-    value: 0,
-  }, {
-    label: '转无线开关',
-    value: 1,
-  }];
 
   // Todo 电量统计mock数据（后续去掉）
   useEffect(() => {
@@ -121,50 +67,46 @@ export const Detail = ({
     });
   }, []);
 
+  if (isLoading) {
+    return <Loading />;
+  }
+
   return (
     <div className={`detail action action-${switchNum}`}>
-      <div className="operator">
-        <div className="operator-btn editor" onClick={() => setModalVisible(true)}>
-          {/*<Icon className="operator-icon" name="editor" size="large" />*/}
+      {/* 左上角编辑icon */}
+      <div className='operator'>
+        <div className='operator-btn editor' onClick={() => setSwitchNameEditModalVisible(true)}>
+          <Icon className='operator-icon' name='editor' size='large' />
         </div>
-        <div className="operator-btn setting"></div>
+        <div className='operator-btn setting'></div>
       </div>
-      <div className="environment">
-        {actions.map((item, index) => {
-          const [title, name, onClick] = [...item];
-          return (
-            <div className="box" key={index} onClick={onClick}>
-              <div className="content">
-                <div className="box-content">
-                  <Icon name={name} />
-                  <Cell
-                    title={title}
-                    className="border"
-                    onClick={onClick}
-                  ></Cell>
-                </div>
-              </div>
-            </div>
-          );
-        })}
-        <div className="switch-btn" onClick={() => {
-          currentSwitch.forEach((item) => {
-            const [key] = [...item];
-            !deviceData[key] ? onClick() : offClick();
-          });
-        }}>
-          <Icon name="switch" />
+
+      {/* 全开/全关区域 */}
+      {switchNum > 1 && (
+        <div className='switch-cell'>
+          <div className='switch-cell-item' onClick={() => {
+            const deviceData = {};
+            Object.keys(switchNameMap).forEach(key => deviceData[key] = 1);
+            doControlDeviceData(deviceData);
+          }}>
+            <img className='icon' src={iconSwitchGreen} alt='' />
+            <div className='text'>全开</div>
+          </div>
+
+          <div className='switch-cell-item' onClick={() => {
+            const deviceData = {};
+            Object.keys(switchNameMap).forEach(key => deviceData[key] = 0);
+            doControlDeviceData(deviceData);
+          }}>
+            <img className='icon' src={iconSwitchRed} alt='' />
+            <div className='text'>全关</div>
+          </div>
         </div>
-        <Cell
-          prefixIcon={<Icon name="mode"></Icon>}
-          title={'模式选择'}
-          subTitle={!deviceData?.mode_swtch1?.mode ? '常规' : '无线'}
-          onClick={() => setModeVisible(true)}
-          className="modeBtn"
-        ></Cell>
-      </div>
+      )}
+
+      {/* 电量统计 */}
       <div
-        className="electric-statistics-panel-wrap"
+        className='electric-statistics-panel-wrap'
         onClick={() => push('/source')}
       >
         <Cell
@@ -179,127 +121,93 @@ export const Detail = ({
             />
           }
           title={'电量统计'}
-          className="electric-statistics-panel-header"
+          className='electric-statistics-panel-header'
         ></Cell>
         <ElectricStatisticsPanel deviceData={deviceData} />
       </div>
-      <TimePicker
-        className="switch-timer-cloud"
-        showSemicolon={false}
-        value={countdownTime}
-        showUnit={true}
-        mask={false}
-        showTime={false}
-        itemHeight={58}
-        height={175}
-        isModal={isModal}
-        isPopUp={isPopUp}
-        showTwoDigit={true}
-        title={`倒计时${isChecked ? '开启' : '关闭'}`}
-        switchIsOpen={countdownTime.length ? isChecked : false}
-        onCancel={setVisible.bind(null, false)}
-        onConfirm={submitCountDown}
-        confirmText="确认"
-        visible={visible}
-      // visible={true}
-      />
-      <div className='custom-modal'>
-        <Modal
-          visible={modalVisible}
-          title='修改名称'
-        >
-          <input
-            value={currentName}
-            autoFocus
-            maxLength={16}
-            className='edit-name-modal'
-            placeholder='请输入名称'
-            onChange={(event) => {
-              setCurrentName(event.currentTarget.value);
-            }}
-          />
 
-          <div className='modal-footer'>
-            <BtnGroup
-              layout='flex'
-            >
-              <Button
-                className="btn-cancel"
-                onClick={() => {
-                  setCurrentName(deviceData?.name_button1 || '');
-                  setModalVisible(false);
-                }}
-              >
-                取消
-              </Button>
-              <Button
-                className="btn-save"
-                onClick={() => {
-                  currentName && doControlDeviceData('name_button1', currentName);
-                  setModalVisible(false);
-                }}
-              >
-                确定
-              </Button>
-
-            </BtnGroup>
-          </div>
-
-        </Modal>
+      <div className='environment'>
+        <Cell
+          prefixIcon={<Icon name='mode'></Icon>}
+          title={'智能场景'}
+          onClick={() => {
+            sdk.goScenePage({ type: 'default' });
+          }}
+          className='mode-btn'
+        />
+        <Cell
+          prefixIcon={<Icon name='mode'></Icon>}
+          title={'功能设置'}
+          onClick={() => {
+            push(PATH.MORE_SETTING, { switchNum: 8 });
+          }}
+          className='mode-btn'
+        />
       </div>
 
+      {/* 修改开关名称弹窗 */}
       <div className='custom-modal'>
         <Modal
-          visible={modeVisible}
-          title='模式'
+          visible={switchNameEditModalVisible}
+          className='edit-name-modal'
+          title={(
+            <div className='cus-module-title'>
+              <span>修改开关名称</span>
+              <div className='selector'>
+                <Dropdown className='custom-dropdown' ref={dropdownRefName}>
+                  <Dropdown.Item
+                    className='dropdown-items'
+                    key='selector'
+                    title={switchNameMap[selectSwitchProperty]}
+                  >
+                    {Object.values(switchNameMap).map((name, index) => (
+                      <div className='item' key={name} onClick={() => {
+                        setSelectSwitchProperty(`switch_${index + 1}`);
+                        dropdownRefName.current?.close();
+                      }}>
+                        <div className='dw-check-item'>
+                          <span>{name}</span>
+                          {selectSwitchProperty.includes(`${index + 1}`) && (
+                            <span><Icon className='operator-icon' name='drop-checked' size='small' /></span>
+                          )}
+                        </div>
+                      </div>
+                    ))}
+                  </Dropdown.Item>
+                </Dropdown>
+              </div>
+            </div>
+          )}
         >
-          <div className="custom-radio">
-            {modeList.map((item, index) => (
-              <label
-                className="radio-item"
-                htmlFor={`label-${item.value}`}
-                key={index}
-                onClick={() => {
-                  onRadioClick(item.value);
-                }}>
-                <input
-                  className="radio-item-radio"
-                  type="radio"
-                  id={`label-${item.value}`}
-                  name="mode"
-                  checked={radioData === item.value}
-                />
-                <span className="radio-item-label">{item.label}</span>
-              </label>
-            ))}
-          </div>
 
+          <input
+            ref={inputSwitchNameRef}
+            autoFocus
+            className='edit-name-modal-input'
+            placeholder='请输入开关名称'
+            maxLength={10}
+          />
           <div className='modal-footer'>
             <BtnGroup
               layout='flex'
             >
               <Button
-                className="btn-cancel"
+                className='btn-cancel'
                 onClick={() => {
-                  setRadioData(!deviceData?.mode_swtch1?.mode ? 0 : 1);
-                  setModeVisible(false);
+                  setSwitchNameEditModalVisible(false);
                 }}
               >
                 取消
               </Button>
               <Button
-                className="btn-save"
-                onClick={() => {
-                  doControlDeviceData({ mode_swtch1: { mode: radioData } });
-                  setModeVisible(false);
-                }}
+                className='btn-save'
+                onClick={saveSwitchName}
               >
                 确定
               </Button>
 
             </BtnGroup>
           </div>
-
         </Modal>
       </div>
     </div>

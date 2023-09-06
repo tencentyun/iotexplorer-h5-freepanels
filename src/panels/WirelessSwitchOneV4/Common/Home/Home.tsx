@@ -1,13 +1,19 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Detail } from './Detail';
 import { Tabs } from '@custom/Tabs';
-import { SceneBind, SceneSetting, SceneList } from '@custom/Scene';
 
 // const getSwitchNum = (templateMap = {}) => Object.keys(templateMap).filter(v => /^switch/.test(v)).length || 1;
 
 
 export function Home(props) {
-  const { doControlDeviceData, templateMap, setContext, deviceData = {}, switchNum, history: { query: { tabIndex } } } = props;
+  const {
+    doControlDeviceData,
+    templateMap,
+    setContext,
+    deviceData = {},
+    switchNum,
+    history: { query: { tabIndex } },
+  } = props;
   const activeTab = JSON.parse(tabIndex || '0');
   const allSwitch = [
     ['switch_1', deviceData.name_button1 || '开关一'],
@@ -19,17 +25,21 @@ export function Home(props) {
 
   // const switchNum = getSwitchNum(templateMap) / 3;
   const currentSwitch = allSwitch.slice(0, switchNum);
-  console.log(templateMap, switchNum, currentSwitch)
+  console.log(templateMap, switchNum, currentSwitch);
 
   return (
-    <div className="wireless-switch-home">
-      {currentSwitch.length === 1 ? <>
+    <div className='wireless-switch-home'>
+      {currentSwitch.length === 1 ? (
         <Detail index={switchNum} currentSwitch={currentSwitch} {...props} />
-      </> : <Tabs defaultActiveKey={!activeTab ? 'switch_1' : `switch_${activeTab}`}>
-        {currentSwitch.map(([value, title], index) => <Tabs.Tab key={value} title={title}>
-          <Detail index={index + 1} currentSwitch={currentSwitch} {...props} switchNum={switchNum} />
-        </Tabs.Tab>)}
-      </Tabs>}
+      ) : (
+        <Tabs defaultActiveKey={!activeTab ? 'switch_1' : `switch_${activeTab}`}>
+          {currentSwitch.map(([value, title], index) => (
+            <Tabs.Tab key={value} title={title}>
+              <Detail index={index + 1} currentSwitch={currentSwitch} {...props} switchNum={switchNum} />
+            </Tabs.Tab>
+          ))}
+        </Tabs>
+      )}
     </div>
   );
 }

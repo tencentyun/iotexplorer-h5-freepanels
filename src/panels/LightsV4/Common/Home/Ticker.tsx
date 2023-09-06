@@ -19,10 +19,8 @@ const Ticker = ({
   productColorMode = 1,
   setContext,
 }) => {
-
   // 颜色模式
   const colorMode = color_mode === void 0 ? productColorMode : color_mode;
-  debugger;
   const currentModule = COLOR_MODULE[colorMode];
 
   const CONFIG = currentModule ? [currentModule, COLOR_MODULE[3]] : null;

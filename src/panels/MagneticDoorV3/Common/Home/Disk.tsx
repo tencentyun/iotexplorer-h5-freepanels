@@ -17,6 +17,7 @@ export function Disk({
       <div
         className={classNames('content-wrap', { 'is-open': deviceData.contact_state })}
         onClick={() => {
+          return;
           doControlDeviceData('contact_state', Number(!deviceData.contact_state));
         }}>
         <div className="content">

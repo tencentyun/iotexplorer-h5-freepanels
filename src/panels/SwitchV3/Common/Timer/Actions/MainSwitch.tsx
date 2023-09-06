@@ -2,7 +2,7 @@ import React from 'react';
 import { List, Radio } from 'antd-mobile';
 import { Icon } from '@custom/Icon';
 
-export const MainSwitch = ({ context: { power_switch = 0, switchNum = 0 }, setContext }) => {
+export const MainSwitch = ({ context: { power_switch = 0, switchNum = 4 }, setContext }) => {
   const getSwitchNumData = (powerSwitch, num) => {
     const value = 5 * powerSwitch;
     const changeData = { power_switch: powerSwitch };

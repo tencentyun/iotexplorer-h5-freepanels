@@ -10,26 +10,45 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 80px 0 60px 0;
   }
 
   .switch-2 {
     display: flex;
-    padding: 50px 25px 23px 25px;
     justify-content: space-between;
 
     .light-switch {
-      width: 160px;
+      width: 142px;
     }
+  }
+
+  .switch-1, .switch-2, .switch-3 {
+    padding: 56px 16px 16px 16px;
   }
 
   .switch-3 {
     display: flex;
-    padding: 50px 18px 23px 18px;
     justify-content: space-between;
 
     .light-switch {
       width: 110px;
+      height: 278px;
+      border-radius: 0;
+      &:first-child{
+        border-radius: 16px 0  0 16px;
+      }
+      &:last-child{
+        border-radius: 0 16px 16px 0  ;
+      }
+
+      .content {
+        .wrapper {
+          height: 278px;
+          width: 101px;
+          .switch-cus-count {
+            opacity: 0.7;
+          }
+        }
+      }
     }
   }
 }
