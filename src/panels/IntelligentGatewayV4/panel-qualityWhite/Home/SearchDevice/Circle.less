@@ -1,97 +1,97 @@
 .fexid-btn {
-    border-radius: 16px;
-    border: 1px solid #EFF3F5;
-    background: #30414D;
-    color: #FFF;
-    text-align: center;
-    font-size: 16px;
-    font-weight: 500;
-    letter-spacing: 0.032px;
-    width: 335px;
-    height: 54px;
-    flex-shrink: 0;
-    position: fixed;
-    bottom: 53px;
-    left: 20px;
+  border-radius: 16px;
+  border: 1px solid #EFF3F5;
+  background: #30414D;
+  color: #FFF;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: 0.032px;
+  width: 335px;
+  height: 54px;
+  flex-shrink: 0;
+  position: fixed;
+  bottom: 32px;
+  left: 20px;
 }
 
 .circle {
+  display: flex;
+  flex-direction: column;
+
+  > .message {
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+    line-height: 16px;
+    font-weight: 400;
+    color: #565477;
+  }
 
-    >.message {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        margin-top: 30px;
-        line-height: 16px;
-        font-weight: 400;
-        color: #565477;
-    }
+  .round {
+    position: relative;
+    border: 1.4px solid #C9D1D5;
+    // opacity: 0.36862361431121826;
+    background: #FFF;
+    width: 260px;
+    height: 260px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-    .round {
-        position: relative;
-        border: 1.4px solid #C9D1D5;
-        // opacity: 0.36862361431121826;
-        background: #FFF;
-        width: 260px;
-        height: 260px;
+    .label {
+      display: flex;
+      align-items: center;
+      font-size: 14px;
+      font-weight: 600;
+
+      .dot {
+        width: 8px;
+        height: 8px;
         border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
+        margin-right: 6px;
 
-        .label {
-            display: flex;
-            align-items: center;
-            font-size: 14px;
-            font-weight: 600;
-
-            .dot {
-                width: 8px;
-                height: 8px;
-                border-radius: 50%;
-                margin-right: 6px;
-
-                &.enable {
-                    background: #1FDC5D;
-                }
-
-                &.disabled {
-                    background: #30414D;
-                }
-            }
+        &.enable {
+          background: #1FDC5D;
         }
 
-        .flag {
-            width: 1px;
-            height: 1px;
-            position: relative;
-
-            .my-flag {
-                // background: #1FDC5D;
-                position: absolute;
-                left: -144px;
-                top: -120px;
-
-                // background: #1FDC5D;
-                &.start {
-                    animation: rotate 4s linear infinite;
-                }
-            }
-
+        &.disabled {
+          background: #30414D;
         }
+      }
     }
 
-    @keyframes rotate {
-        from {
-            transform: rotate(0deg);
-        }
+    .flag {
+      width: 1px;
+      height: 1px;
+      position: relative;
 
-        to {
-            transform: rotate(360deg);
+      .my-flag {
+        // background: #1FDC5D;
+        position: absolute;
+        left: -170px;
+        top: -120px;
+
+        // background: #1FDC5D;
+        &.start {
+          animation: rotate 4s linear infinite;
         }
+      }
+
     }
+  }
+
+  @keyframes rotate {
+    from {
+      transform: rotate(0deg);
+    }
+
+    to {
+      transform: rotate(360deg);
+    }
+  }
 
 }
