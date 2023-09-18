@@ -28,9 +28,9 @@ export const Detail = ({
 
   const inputSwitchNameRef = useRef<HTMLInputElement>(null);
 
-  useEffect(() => {
-    console.log('switchNameMap=', switchNameMap, switchNum);
-  }, [switchNameMap, switchNum]);
+  // useEffect(() => {
+  //   console.log('switchNameMap=', switchNameMap, switchNum);
+  // }, [switchNameMap, switchNum]);
 
   const [selectSwitchProperty, setSelectSwitchProperty] = useState('switch_1');
   const dropdownRefName = useRef<DropdownRef>(null);
