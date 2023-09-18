@@ -141,7 +141,56 @@ export function MoreSetting({
         }
       }
 
+      // 开启时调节一下亮度
+      const date = new Date();
+      const hour = date.getHours();
+      const minute = date.getMinutes();
+      let brightness = 2;
+      if (hour === 6) {
+        if (minute >= 30) {
+          // 5
+          brightness = 5;
+        } else {
+          // 2
+          brightness = 2;
+        }
+      }
+      if (hour === 18) {
+        if (minute >= 30) {
+          // 3
+          brightness = 3;
+        } else {
+          // 5
+          brightness = 5;
+        }
+      }
+      if (hour === 21) {
+        if (minute >= 30) {
+          // 2
+          brightness = 2;
+        } else {
+          // 3
+          brightness = 3;
+        }
+      }
+      if (hour > 21 && hour <= 24 && hour >= 0 && hour < 6) {
+        // 2
+        brightness = 2;
+      }
+      if (hour > 6 && hour < 18) {
+        // 5
+        brightness = 5;
+      }
+      if (hour > 18 && hour < 21) {
+        // 3
+        brightness = 3;
+      }
+
       await reloadTimerList();
+
+      if (checked) {
+        doControlDeviceData({ led_brightness: brightness });
+      }
 
       loadingToast.close();
     } catch (err) {
