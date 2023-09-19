@@ -36,7 +36,7 @@ interface IScanSubDevice {
 }
 
 const SCAN_TIMEOUT = 60;
-const BIND_TIMEOUT = 30;
+const BIND_TIMEOUT = 60;
 
 const enum BindStatus {
   WaitScan = 'WaitScan',
@@ -69,6 +69,7 @@ export function SearchDevice(props) {
   const [scanSubDeviceList, setScanSubDeviceList] = useState<IScanSubDevice[]>([]);
   const latestScanSubDeviceListRef = useLatest(scanSubDeviceList);
 
+  const totalBindCount = useMemo(() => scanSubDeviceList.filter(item => item.checked).length, [scanSubDeviceList]);
   const scanSubProductIds = useMemo(() => {
     const productIds: string[] = [];
     scanSubDeviceList.forEach((item) => {
@@ -81,8 +82,11 @@ export function SearchDevice(props) {
 
   const prevCloudBindCount = useRef(0);
 
+  // 可能绑定时间超过五分钟，需要缓存一下云端查询子设备绑定结果
+  const cloudRecentBindSubDeviceCache = useRef<any[]>([]);
+
   const getCloudRecentBindSubDeviceList = async () => {
-    const result: any[] = [];
+    let result: any[] = [];
 
     try {
       const data = await Promise.all(scanSubProductIds.map(productId => sdk.requestTokenApi('AppGetBindSubDeviceList', {
@@ -97,6 +101,16 @@ export function SearchDevice(props) {
         // console.log('respItem=', respItem);
         result.push(...(respItem.Devices || []));
       });
+      // 过滤出扫描到的
+      // eslint-disable-next-line max-len
+      result = result.filter(cloudDevice => scanSubDeviceList.find(scanDevice => scanDevice.deviceName === cloudDevice.DeviceName && scanDevice.productId === cloudDevice.ProductId));
+      // 过滤出新增的，合并结果
+      // eslint-disable-next-line max-len
+      const newBindList = result.filter(cloudDevice => !cloudRecentBindSubDeviceCache.current.find(cacheDevice => cacheDevice.ProductId === cloudDevice.ProductId && cacheDevice.DeviceName === cloudDevice.DeviceName));
+
+      cloudRecentBindSubDeviceCache.current.push(...newBindList);
+
+      result = cloudRecentBindSubDeviceCache.current;
       console.log('[云端查询最近子设备绑定]', result);
     } catch (err) {
       console.error('[云端查询最近子设备绑定]', err);
@@ -115,15 +129,14 @@ export function SearchDevice(props) {
 
   // 每成功一个-30s
   useEffect(() => {
-    const prevCount = prevCloudBindCount.current;
-    const curCount = cloudRecentBindSubDeviceList.length;
-    if (curCount - prevCount > 0) {
-      const BIND_TIMEOUT = 30;
-      const nextCountdown = countdown - (BIND_TIMEOUT * (curCount - prevCount));
+    const prevBindCount = prevCloudBindCount.current;
+    const latestBindCount = cloudRecentBindSubDeviceList.length;
+    if (latestBindCount > prevBindCount) {
+      const nextCountdown = (totalBindCount - latestBindCount) * BIND_TIMEOUT;
       setCountdown(nextCountdown >= 0 ? nextCountdown : 0);
     }
-    prevCloudBindCount.current = curCount;
-  }, [cloudRecentBindSubDeviceList]);
+    prevCloudBindCount.current = latestBindCount;
+  }, [cloudRecentBindSubDeviceList.length]);
 
   const clearSubDeviceConf = async () => {
     console.log('clear-停止子设备配网', latestBindStatus.current);
@@ -247,7 +260,7 @@ export function SearchDevice(props) {
         maskClickable: false,
       });
       setCountdownInterval(undefined);
-      await sdk.callDeviceAction({ scan: 0, scan_timeout: SCAN_TIMEOUT }, '_sys_gw_scan_subdev');
+      await sdk.callDeviceAction({ subdev_join: 0 }, '_sys_gw_stop_join_subdev');
       cancelQueryCloudRecentBind();
       toast.close();
     } catch (err) {
@@ -455,7 +468,6 @@ export function SearchDevice(props) {
           </>
         );
       case BindStatus.Binding: {
-        const totalCount = scanSubDeviceList.filter(item => item.checked).length;
         const successCount = cloudRecentBindSubDeviceList.length;
         return (
           <SubDeviceConfView
@@ -469,7 +481,7 @@ export function SearchDevice(props) {
                   <DotLoading />
                 </strong>
                 <div>请确保子设备处于配网状态</div>
-                <div>成功绑定到云端（{successCount}/{totalCount}）个</div>
+                <div>成功绑定到云端（{successCount}/{totalBindCount}）个</div>
               </>
             )}
             subDeviceListViewProps={{
@@ -589,12 +601,21 @@ const SubDeviceListView = ({
     onClick = noop,
   }) => {
     const { data: productInfo = {} } = useSWR(
-      [subDevice.productId, 'AppGetProducts'],
+      [subDevice.productId, 'AppGetProducts', 'AppGetProductsConfig'],
       async () => {
         const data = await window.h5PanelSdk.getProductInfo({
           productId: subDevice.productId,
         });
-        return data[0];
+        const { Data } = await window.h5PanelSdk.requestTokenApi('AppGetProductsConfig', {
+          ProductIds: [subDevice.productId],
+        });
+        let ProductConfig = {};
+        try {
+          ProductConfig = JSON.parse(Data[0].Config);
+        } catch (err) {
+          /* noop */
+        }
+        return { ...data[0], ProductConfig };
       },
       {
         revalidateIfStale: false,
@@ -620,7 +641,7 @@ const SubDeviceListView = ({
           className='sub-device-list-item__productName'
           rows={2}
           direction={'end'}
-          content={productInfo.Name || '-'}
+          content={productInfo.ProductConfig?.Global?.ProductDisplayName || productInfo.Name || '-'}
         />
         <div className='sub-device-list-item__deviceName'>{subDevice.deviceName || '-'}</div>
         {showBindStatus && (
