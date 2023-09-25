@@ -20,9 +20,6 @@ const GateWay = (props) => {
     history,
   } = props;
 
-  useEffect(() => {
-  }, []);
-
   const actions = [
     [
       '门铃场景',

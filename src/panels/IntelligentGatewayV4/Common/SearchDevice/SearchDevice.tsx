@@ -1,10 +1,10 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { getErrorMsg } from './utils';
-import { Circle } from './Circle';
-import { Production } from './Production';
-import { BindProduction } from './BindProduction';
-import { Spin } from '@custom/Spin';
-
+import React, { createContext, CSSProperties, Fragment, useContext, useEffect, useMemo, useRef, useState } from 'react';
+import { Checkbox, DotLoading, Ellipsis, Toast } from 'antd-mobile';
+import { useInterval, useLatest, useRequest } from 'ahooks';
+import { Circle } from '@src/panels/IntelligentGatewayV4/Common/SearchDevice/Circle';
+import { delay, noop } from '@utillib';
+import useSWR from 'swr';
+import classNames from 'classnames';
 
 function base64toHEX(base64) {
   const raw = atob(base64);
@@ -16,486 +16,660 @@ function base64toHEX(base64) {
   return HEX.toUpperCase();
 }
 
-// 转换64截取最后6位
-
-const tansSplit = (uuid) => {
+const getDeviceNameByUUID = (uuid) => {
   const hex = base64toHEX(uuid);
-  return hex.slice(hex.length - 6, hex.length);
+  return hex.slice(-6);
 };
-/**
- *  添加子设备
- */
 
-const IS_TEST = false;
-
-interface SearchResultInfo {
-  productId: string;
-  uuid: string;
-  protocol: number;
-  device_name: string;
-}
-
-interface ProtocolScanReport {
+interface IScanReport {
   protocol: number;
   product_id: string;
   uuids: string;
 }
 
-/**
- *
- * 设备收索
- *
- */
-const defaultScanResult = [];
+interface IScanSubDevice {
+  protocol: number;
+  productId: string;
+  deviceName: string;
+  uuid: string;
+  checked: boolean;
+}
+
+const SCAN_TIMEOUT = 60;
+const BIND_TIMEOUT = 60;
+
+const enum BindStatus {
+  WaitScan = 'WaitScan',
+  Scanning = 'Scanning',
+  ScanTimeout = 'ScanTimeout',
+  Binding = 'Binding',
+  BindEnd = 'BindEnd',
+}
+
+const SubDeviceConfContext = createContext<{
+  scanSubDeviceList: IScanSubDevice[];
+  bindStatus: BindStatus;
+  cloudRecentBindSubDeviceList: any[];
+}>({
+  scanSubDeviceList: [],
+  cloudRecentBindSubDeviceList: [],
+  bindStatus: BindStatus.WaitScan,
+});
 
 export function SearchDevice(props) {
-  const { sdk, deviceData, history: { query, goBack }, log } = props;
+  const {
+    sdk,
+    history: { goBack },
+  } = props;
 
-  const scan_time = 60; // 扫描时间
-  const BIND_TIMEOUT = 20000; // 绑定超时时间
-  // 0 标识未开始 1标识开始 -1标识超时 3 表示已经收到数据 -2 表示其他错误  10 表示绑定设备界面 11 重新添加
-  const STATUS = {
-    UNSCAN: 0,
-    STARTSCAN: 1,
-    SUCCESS: 3,
-    TIMEOUT: -1,
-    ERROR: -2,
-    OVER: 4, // 搜索完毕
-    BINDBEGIN: 10, // 开始绑定
-    BINDBERROR: 11, // 绑定失败
-    BINDSUCCESS: 12, // 绑定成功
-    BINDOVER: 13, // 全部绑定结束
-  };
+  const [bindStatus, setBindStatus] = useState(BindStatus.WaitScan);
+  const latestBindStatus = useLatest(bindStatus);
+  const [countdown, setCountdown] = useState(SCAN_TIMEOUT);
+  const [countdownInterval, setCountdownInterval] = useState<undefined | number>();
+  const [scanSubDeviceList, setScanSubDeviceList] = useState<IScanSubDevice[]>([]);
+  const latestScanSubDeviceListRef = useLatest(scanSubDeviceList);
 
-  // 每个状态对应的标题
-  const TITLE = {
-    0: '搜索设备',
-    1: '搜索设备',
-    3: '搜索设备',
-    '-1': '搜索设备',
-    '-2': '搜索设备',
-    10: '添加设备',
-    11: '添加设备',
-    12: '成功添加',
-  };
-
-  // 不能使用useState 因为有延迟
-  const [status, _setStatus] = useState(STATUS.UNSCAN);
-
-  // status 变为同步
-  const statusRef = useRef(status);
-  const setStatus = (v) => {
-    console.log('状态status', v);
-    statusRef.current = v;
-    _setStatus(v);
-  };
-
-  const [errorMsg, setErrorMsg] = useState(['正在搜索附近设备', '请确保设备处于配网状态']); // 错误信息
-  const [bindErrorMsg, setBindErrorMsg] = useState(''); // 错误信息
-
-  const [isLisenceScan, _setLisenceScan] = useState(false);
-  const setLisenceScan = (stat) => {
-    if (!stat) log.mi('停止监听设备上报数据接受-------------------', stat);
-    _setLisenceScan(stat);
-  };
-  // 扫描的数据
-  const [searchResult, setSearchResult] = useState<SearchResultInfo[]>(defaultScanResult);
-  // 需要绑定的数据
-  const [bindData, _setBindData] = useState(defaultScanResult);
-
-  const clone = v => JSON.parse(JSON.stringify(v));
-  // 兼容直接设置后不能渠道值
-  const setBindData = (data) => {
-    window._bindData = clone(data);
-    _setBindData(clone(data));
-  };
-
-  const MESSAGE = {
-    0: ['未发现设备', '请确保设备处于待配网状态并在附近'],
-    1: ['正在搜索附近设备', '请确保设备处于配网状态'],
-    3: ['正在搜索附近设备', '请确保设备处于配网状态'],
-    4: ['本次搜索结束', '您可以添加当前子设备'],
-    '-1': ['未发现设备', '请确保设备处于待配网状态并在附近'],
-  };
-  const MSG = {
-    0: '请开始搜索',
-    1: '搜索中',
-    '-1': '搜索超时',
-  };
-
-  // 设置绑定成功的状态
-  const setSuccess = (deviceName, isSuccess) => {
-    const newBindData = (window._bindData || []).map((item) => {
-      if (item.device_name === deviceName) {
-        return { ...item, success: isSuccess };
+  const totalBindCount = useMemo(() => scanSubDeviceList.filter(item => item.checked).length, [scanSubDeviceList]);
+  const scanSubProductIds = useMemo(() => {
+    const productIds: string[] = [];
+    scanSubDeviceList.forEach((item) => {
+      if (!productIds.includes(item.productId) && item.checked) {
+        productIds.push(item.productId);
       }
-      return item;
     });
-    log.mi('设置绑定结果:', deviceName, isSuccess, newBindData);
-    setBindData(newBindData);
+    return productIds;
+  }, [scanSubDeviceList]);
+
+  const prevCloudBindCount = useRef(0);
+
+  // 可能绑定时间超过五分钟，需要缓存一下云端查询子设备绑定结果
+  const cloudRecentBindSubDeviceCache = useRef<any[]>([]);
+
+  const getCloudRecentBindSubDeviceList = async () => {
+    let result: any[] = [];
+
+    try {
+      const data = await Promise.all(scanSubProductIds.map(productId => sdk.requestTokenApi('AppGetBindSubDeviceList', {
+        GatewayProductId: sdk.productId,
+        GatewayDeviceName: sdk.deviceName,
+        ProductId: productId, // 子设备产品ID
+        // TODO:一次绑定超过100个会查询有问题
+        Limit: 100, // 取值 10-255
+        Offset: 0,
+      })));
+      data.forEach((respItem) => {
+        // console.log('respItem=', respItem);
+        result.push(...(respItem.Devices || []));
+      });
+      // 过滤出扫描到的
+      // eslint-disable-next-line max-len
+      result = result.filter(cloudDevice => scanSubDeviceList.find(scanDevice => scanDevice.deviceName === cloudDevice.DeviceName && scanDevice.productId === cloudDevice.ProductId));
+      // 过滤出新增的，合并结果
+      // eslint-disable-next-line max-len
+      const newBindList = result.filter(cloudDevice => !cloudRecentBindSubDeviceCache.current.find(cacheDevice => cacheDevice.ProductId === cloudDevice.ProductId && cacheDevice.DeviceName === cloudDevice.DeviceName));
+
+      cloudRecentBindSubDeviceCache.current.push(...newBindList);
+
+      result = cloudRecentBindSubDeviceCache.current;
+      console.log('[云端查询最近子设备绑定]', result);
+    } catch (err) {
+      console.error('[云端查询最近子设备绑定]', err);
+    }
+    return result;
   };
 
+  const {
+    data: cloudRecentBindSubDeviceList = [],
+    run: runQueryCloudRecentBind,
+    cancel: cancelQueryCloudRecentBind,
+  } = useRequest(getCloudRecentBindSubDeviceList, {
+    pollingInterval: 2000,
+    manual: true,
+  });
 
-  // 处理扫描上报的数据
-  const handleScanReport = (scanReport: ProtocolScanReport[]) => {
-    let result: SearchResultInfo[] = [];
-    scanReport.forEach((protocolScanReport) => {
-      protocolScanReport.uuids
-        .split(';')
-        .filter(item => item.length > 0)
-        .forEach((uuid) => {
-          result.push({
-            productId: protocolScanReport.product_id,
-            protocol: protocolScanReport.protocol,
+  // 每成功一个-30s
+  useEffect(() => {
+    const prevBindCount = prevCloudBindCount.current;
+    const latestBindCount = cloudRecentBindSubDeviceList.length;
+    if (latestBindCount > prevBindCount) {
+      const nextCountdown = (totalBindCount - latestBindCount) * BIND_TIMEOUT;
+      setCountdown(nextCountdown >= 0 ? nextCountdown : 0);
+    }
+    prevCloudBindCount.current = latestBindCount;
+  }, [cloudRecentBindSubDeviceList.length]);
+
+  const clearSubDeviceConf = async () => {
+    console.log('clear-停止子设备配网', latestBindStatus.current);
+    setCountdownInterval(undefined);
+    if (latestBindStatus.current === BindStatus.Binding) {
+      await stopBind();
+    }
+    if (latestBindStatus.current === BindStatus.Scanning) {
+      await stopScan();
+    }
+  };
+
+  useEffect(() => {
+    handleStartScanSubDevice();
+    return () => {
+      clearSubDeviceConf();
+    };
+  }, []);
+
+  // 开启/关闭UI倒计时
+  const startCountdownInterval = (s) => {
+    setCountdown(s);
+    setCountdownInterval(1000);
+  };
+
+  // 倒计时结束的回调
+  const onCountdownEnd = async () => {
+    switch (bindStatus) {
+      case BindStatus.Scanning: {
+        setBindStatus(BindStatus.ScanTimeout);
+        await stopScan();
+        break;
+      }
+      case BindStatus.Binding:
+        setBindStatus(BindStatus.BindEnd);
+        await stopBind();
+        break;
+      default:
+        Toast.show({ content: '未处理的倒计时结束回调' });
+    }
+  };
+
+  useInterval(() => {
+    if (countdown > 0) {
+      setCountdown(countdown - 1);
+    } else {
+      onCountdownEnd();
+      setCountdown(0);
+      setCountdownInterval(undefined);
+    }
+  }, countdownInterval);
+
+  // 开启搜索
+  const startScan = async ({ beforeHandler = noop } = {}) => {
+    try {
+      const toast = Toast.show({
+        content: '开启搜索中...',
+        icon: 'loading',
+        duration: 0,
+        maskClickable: false,
+      });
+      await beforeHandler();
+      await sdk.callDeviceAction({ scan: 1, scan_timeout: SCAN_TIMEOUT }, '_sys_gw_scan_subdev');
+      // 开启监听物模型上报
+      sdk.on('wsReport', handleScanSubDeviceReport);
+      toast.close();
+    } catch (err) {
+      console.error('[开启搜索错误]', err);
+      Toast.show({ content: '开启搜索失败', icon: 'fail' });
+      throw err;
+    }
+  };
+
+  // 停止搜索
+  const stopScan = async () => {
+    try {
+      const toast = Toast.show({
+        content: '停止搜索中...',
+        icon: 'loading',
+        duration: 0,
+        maskClickable: false,
+      });
+      sdk.off('wsReport', handleScanSubDeviceReport);
+      setCountdownInterval(undefined);
+      await delay(1000);
+      await sdk.callDeviceAction({ scan: 0, scan_timeout: SCAN_TIMEOUT }, '_sys_gw_scan_subdev');
+      toast.close();
+    } catch (err) {
+      console.error('[停止搜索错误]', err);
+      Toast.show({ content: '停止搜索失败', icon: 'fail' });
+      throw err;
+    }
+  };
+
+  // 开始绑定 join
+  const startBind = async (params) => {
+    try {
+      const toast = Toast.show({
+        content: '开始绑定中...',
+        icon: 'loading',
+        duration: 0,
+        maskClickable: false,
+      });
+      await sdk.callDeviceAction(params, '_sys_gw_join_subdev');
+      runQueryCloudRecentBind();
+      toast.close();
+    } catch (err) {
+      console.error('[开始绑定错误]', err);
+      Toast.show({ content: '开启绑定失败', icon: 'fail' });
+      throw err;
+    }
+  };
+
+  // 停止绑定
+  const stopBind = async () => {
+    try {
+      const toast = Toast.show({
+        content: '停止绑定中...',
+        icon: 'loading',
+        duration: 0,
+        maskClickable: false,
+      });
+      setCountdownInterval(undefined);
+      await sdk.callDeviceAction({ subdev_join: 0 }, '_sys_gw_stop_join_subdev');
+      cancelQueryCloudRecentBind();
+      toast.close();
+    } catch (err) {
+      console.error('[停止绑定错误]', err);
+      Toast.show({ content: '停止绑定失败', icon: 'fail' });
+      throw err;
+    }
+  };
+
+  // TODO:clear函数 switch-case 不同情况处理
+
+  // 处理开始扫描
+  const handleStartScanSubDevice = async () => {
+    // 开启扫描
+    await startScan({
+      beforeHandler: async () => {
+        // 总先停止扫描
+        await sdk.callDeviceAction({ scan: 0, scan_timeout: SCAN_TIMEOUT }, '_sys_gw_scan_subdev');
+        await delay(1000);
+      },
+    });
+    setBindStatus(BindStatus.Scanning);
+    // 开启倒计时
+    startCountdownInterval(SCAN_TIMEOUT);
+  };
+
+  // 处理子设备搜索结果 _sys_gw_scan_report
+  const handleScanSubDeviceReport = (resp) => {
+    if (!resp?.deviceData?._sys_gw_scan_report) return;
+    console.log('[物模型_sys_gw_scan_report变化]', resp.deviceData._sys_gw_scan_report);
+    let scanReport: IScanReport[] = [];
+    try {
+      scanReport = JSON.parse(resp.deviceData._sys_gw_scan_report.Value);
+      if (!Array.isArray(scanReport)) {
+        return;
+      }
+    } catch (err) {
+      return;
+    }
+    console.info('[网关扫描子设备上报]', scanReport);
+    const newSubDeviceList: IScanSubDevice[] = [];
+    const curSubDeviceList = latestScanSubDeviceListRef.current;
+    scanReport.forEach((item) => {
+      const { product_id, uuids, protocol } = item;
+      uuids.split(';').filter(uuid => !!uuid)
+        .forEach(async (uuid) => {
+          // 去重
+          const isExist = curSubDeviceList.find(subDevice => subDevice.uuid === uuid);
+          if (isExist) return;
+          newSubDeviceList.push({
+            protocol,
             uuid,
-            device_name: tansSplit(uuid),
-            // name:"",
+            productId: product_id,
+            deviceName: getDeviceNameByUUID(uuid),
+            checked: true,
           });
         });
     });
-
-    // 按照uuid去重 追加数据
-    const existUUID = {};
-
-    if (!result.length) { // 上报空数据 不处理状态和数据
-      log.mw('上报的数据为空');
-      return;
-    }
-    result = searchResult.concat(result).filter(({ uuid }) => {
-      const res = !existUUID[uuid];
-      existUUID[uuid] = uuid;
-      return res;
-    });
-    setSearchResult(result);
-    setStatus(STATUS.SUCCESS);
+    setScanSubDeviceList([
+      ...curSubDeviceList,
+      ...newSubDeviceList,
+    ]);
   };
 
+  const handleStartBindSubDevice = async () => {
+    try {
+      const needBindSubDeviceList = scanSubDeviceList.filter(item => item.checked);
 
-  // 监听处理上报的设备
-  const dealScanReport = (scanResponse) => {
-    console.log('监听上报扫描数据:', scanResponse);
-    if (typeof scanResponse !== 'string') {
-      setStatus(STATUS.ERROR);
-      setErrorMsg(['_sys_gw_scan_report', '不是字符串']);
-      return;
-    }
-    const scanData = JSON.parse(scanResponse);
-    if (!Array.isArray(scanData)) {
-      setStatus(STATUS.ERROR);
-      setErrorMsg(['_sys_gw_scan_report', '不是数组 JSON']);
-      return;
-    }
-    // 处理监听的设备
-    handleScanReport(scanData);
-  };
-
-  /**
-   * 开始扫描
-   */
-  const startSearch = async () => {
-    log.mi('开始扫描----------------------------------');
-    setStatus(STATUS.STARTSCAN);
-    // 停止扫描
-    await stopSearch();
-    // 开启扫描
-    sdk.callDeviceAction({ scan: 1, scan_timeout: scan_time }, '_sys_gw_scan_subdev')
-      .then(() => {
-        // 外层开始监听数据
-        // 超时处理
-        setLisenceScan(true); // 停止接受数据
-        setTimeout(() => {
-          setLisenceScan(false); // 停止接受数据
-          stopSearch();
-          if (statusRef.current == STATUS.STARTSCAN) { // 还在在搜索 数据未回来
-            setStatus(STATUS.TIMEOUT); // 超时处理
-          } else {
-            if (statusRef.current <= STATUS.SUCCESS) { // 扫描成功时 才有结束的状态
-              setStatus(STATUS.OVER); // 扫描完毕
-            }
-          }
-        }, scan_time * 1000);
-      })
-      .catch((err) => {
-        console.error(err);
-        setErrorMsg([getErrorMsg(err)]);
-        setStatus(STATUS.ERROR);
-      });
-  };
-
-  // 停扫描
-  const stopSearch = () => new Promise((resolve, reject) => {
-    log.mi('停止上一次服务端扫描');
-    sdk.callDeviceAction({
-      scan: 0,
-      scan_timeout: 0,
-    }, '_sys_gw_scan_subdev')
-      .then(() => {
-        log.mi('停止扫描>>>>>成功停止');
-        resolve('');
-      })
-      .catch((err) => {
-        log.me('停止扫描>>>>>:调用停止搜索失败：', getErrorMsg(err));
-        reject(getErrorMsg(err));
-      });
-  });
-
-
-  // 是否开始扫描
-  const start = statusRef.current == STATUS.STARTSCAN;
-
-  // 绑定子设备
-  const onStartBind = (scan, product) => {
-    console.log('开始单个绑定设备', scan);
-    setBindData([scan]);
-    setStatus(STATUS.BINDBEGIN);
-    startBinds([scan]);
-  };
-
-  // 绑定全部设备
-  const onStartBindAll = (scans) => {
-    console.log('绑定全部设备', scans);
-    setBindData(scans);
-    setStatus(STATUS.BINDBEGIN);
-    startBinds(scans);
-  };
-
-  // 重新绑定
-  const recoverBind = () => {
-    setStatus(STATUS.SUCCESS);
-  };
-
-  // 等待绑定结果
-  const waitBind = info => new Promise((__resolve, __reject) => {
-    let removeListener: () => void = () => {
-      // noop
-    };
-    Promise.race([
-      // 监听设备上报事件
-      new Promise((resolve, reject) => {
-        const listener = ({ deviceId, Payload }: { deviceId: string; Payload: any }) => {
-          if (deviceId !== sdk.deviceId) return;
-          log.mi('监听到绑定上报数据:', Payload, info);
-          if (Payload.eventId !== '_sys_gw_bind_result') return;
-          if (Payload.params.product_id === info.productId
-            && Payload.params.protocol === info.protocol
-            && (Payload.params.uuid || '').split(';')[0] === info.uuid) {
-            const resultCode = Payload.params.code;
-            if (resultCode === 0) {
-              // 设置指定设备未成功状态
-              const device_name = Payload?.params?.device_name;
-              setSuccess(device_name, true);
-              resolve(Payload.params.device_name);
-            } else {
-              const device_name = Payload?.params?.device_name;
-              setSuccess(device_name, false);
-              reject({ code: 'GATEWAY_REPLY_BIND_FAIL', msg: `网关回复绑定子设备失败，错误码=${resultCode} ` });
-            }
-          }
-        };
-
-        log.mi('开始监听------绑定设备------->', info);
-        sdk.on('wsEventReport', listener);
-
-        removeListener = () => {
-          sdk.off('wsEventReport', listener);
-        };
-      }),
-
-      // 超时
-      new Promise((_resolve, reject) => {
-        setTimeout(() => {
-          console.log('绑定超时', info.device_name, info);
-          // 如果有反馈 则不进行超时处理
-          // removeListener()
-          const cuurent = window._bindData.filter(({ device_name }) => device_name === info.device_name);
-          if (cuurent[0]?.success) return _resolve(info.device_name);
-          console.log('超时处理', info.device_name, info);
-          setSuccess(info.device_name, false);
-          reject({ code: 'WAIT_GATEWAY_BIND_RESULT_TIMEOUT', msg: '等待网关回复绑定结果超时' });
-        }, BIND_TIMEOUT);
-      }),
-    ]).then((resultSubDeviceId) => {
-      // 绑定成功
-      __resolve({
-        productId: info.productId,
-        resultSubDeviceId,
-      });
-    })
-      .catch(__reject)
-      .finally(() => {
-        removeListener();
-      });
-  });
-
-
-  // 开始绑定
-  const startBind = info => new Promise((__resolve, __reject) => {
-    log.mi('-----------------------------------开始绑定:', info, new Date());
-    // 请求绑定
-    sdk.callDeviceAction({ // 测试数据
-      protocol: info.protocol,
-      product_id: info.productId,
-      uuids: info.uuid,
-    }, '_sys_gw_join_subdev').then(() => {
-      waitBind(info).then(__resolve, __reject)
-        .catch(__reject);
-    })
-      .catch(__reject);
-  });
-
-  const serialPromises = (promises = [], args = []) => new Promise((resolve, reject) => {
-    const allResult = [];
-    const successResult = [];
-    const errorResult = [];
-
-    // 最后结束
-    const finnalyFn = () => {
-      console.log('最后---结束');
-      resolve({ allResult, successResult, errorResult });
-    };
-
-    // 分布执行
-    const process = (index, promiseArg, preResult) => {
-      const current = promises[index];
-
-      const next = result => process(index + 1, args[index + 1], result);
-
-      if (current) {
-        current(promiseArg, preResult).then((success) => {
-          allResult.push(success);
-          successResult.push(success);
-          if (promises.length - 1 === index) {
-            finnalyFn();
-          }
-          next(success);
-        })
-          .catch((err) => {
-            allResult.push(err);
-            errorResult.push(err);
-            if (promises.length - 1 === index) {
-              finnalyFn();
-            }
-            next(err);
-          });
+      if (!needBindSubDeviceList.length) {
+        Toast.show({ content: '未选择子设备' });
+        return;
       }
-    };
-    process(0, args[0], null);
-  });
 
+      const productJoinParamsMap = new Map();
+      needBindSubDeviceList.forEach((item) => {
+        const { protocol, productId, uuid } = item;
+        if (!productJoinParamsMap.has(productId)) {
+          productJoinParamsMap.set(productId, { protocol, product_id: productId, uuids: '' });
+        }
+        const params = productJoinParamsMap.get(productId);
+        productJoinParamsMap.set(productId, { protocol, product_id: productId, uuids: `${params.uuids}${uuid};` });
+      });
 
-  /**
-   *  开始绑定指定或多个设备
-   */
-  const startBinds = (scans) => {
-    setLisenceScan(false); // 取消监听扫描
-    serialPromises(scans.map(() => startBind), scans).then(() => {
-      // if (errorResult?.length) return setStatus(STATUS.BINDBERROR);
-      setStatus(STATUS.BINDOVER);
-    });
+      // 搜索时点击绑定，先关闭搜索。
+      if (countdownInterval) {
+        await stopScan();
+      }
+
+      // 绑定loading
+      const bindLoading = Toast.show({
+        content: '绑定中...',
+        icon: 'loading',
+        duration: 0,
+        maskClickable: false,
+      });
+      for (const [, params] of productJoinParamsMap) {
+        await startBind(params);
+      }
+      setBindStatus(BindStatus.Binding);
+      startCountdownInterval(needBindSubDeviceList.length * BIND_TIMEOUT);
+
+      bindLoading.close();
+    } catch (err) {
+      console.error(err);
+      Toast.show({ content: '开始绑定失败', icon: 'fail' });
+    }
   };
 
-  // 监听上报的设备数据
-  const scanResponse = deviceData?._sys_gw_scan_report;
-  useEffect(() => {
-    if (query.start) {
-      startSearch();
+  const toggleSubDeviceCheck = (_, index: number) => {
+    if (
+      [
+        BindStatus.Scanning,
+        BindStatus.ScanTimeout,
+      ].includes(bindStatus)
+    ) {
+      scanSubDeviceList[index].checked = !scanSubDeviceList[index].checked;
+      setScanSubDeviceList([...scanSubDeviceList]);
     }
-    return () => {
-      log.mi('扫描清空数据-----------');
-      // 清空页面数据
-      setBindData([]);
-      setSearchResult([]);
-      setStatus(STATUS.UNSCAN);
-      stopSearch(); // 停止扫描
-      setErrorMsg([]);
-      window._bindData = [];
-      // 清空历史存储的扫描数据 _sys_gw_scan_report？
-    };
-  }, [query.start]);
+  };
 
-
-  // 监听并且处理上报数据
-  useEffect(() => {
-    if (isLisenceScan) {
-      log.mw('接受到扫描的设备：', statusRef.current, scanResponse);
-      scanResponse && dealScanReport(scanResponse);
+  const renderView = () => {
+    switch (bindStatus) {
+      case BindStatus.WaitScan:
+        return (
+          <SubDeviceConfView
+            showCircleScan={true}
+            circleScanProps={{
+              isActive: false,
+              msg: '未开启搜索',
+            }}
+            showBottomBtn={true}
+            bottomBtnText={'开启搜索'}
+            onClickBottomBtn={handleStartScanSubDevice}
+          />
+        );
+      case BindStatus.Scanning: {
+        return (
+          <>
+            {scanSubDeviceList.length ? (
+              <SubDeviceConfView
+                showStatusDesc={true}
+                showSubDeviceListView={true}
+                subDeviceListViewProps={{
+                  onClickSubDeviceItem: toggleSubDeviceCheck,
+                }}
+                showBottomBtn={true}
+                renderBindStatusDesc={() => (
+                  <>
+                    <strong>
+                      正在搜索附近设备（{countdown}s）
+                      <DotLoading />
+                    </strong>
+                    <div>请确保子设备处于配网状态</div>
+                  </>
+                )}
+                bottomBtnText={'一键绑定'}
+                onClickBottomBtn={handleStartBindSubDevice}
+              />
+            ) : (
+              <SubDeviceConfView
+                showCircleScan={true}
+                circleScanProps={{
+                  isActive: true,
+                  msg: `搜索中（${countdown}s）`,
+                  message: ['正在搜索附近设备', '请确保子设备处于配网状态'],
+                }}
+              />
+            )}
+          </>
+        );
+      }
+      case BindStatus.ScanTimeout:
+        return (
+          <>
+            {scanSubDeviceList.length ? (
+              <SubDeviceConfView
+                showStatusDesc={true}
+                renderBindStatusDesc={() => (
+                  <>
+                    <strong>搜索设备完成</strong>
+                    <div>请选择子设备进行配网绑定</div>
+                  </>
+                )}
+                subDeviceListViewProps={{
+                  onClickSubDeviceItem: toggleSubDeviceCheck,
+                }}
+                showSubDeviceListView={true}
+                showBottomBtn={true}
+                bottomBtnText={'一键绑定'}
+                onClickBottomBtn={handleStartBindSubDevice}
+              />
+            ) : (
+              <SubDeviceConfView
+                showCircleScan={true}
+                showBottomBtn={true}
+                circleScanProps={{
+                  isActive: false,
+                  msg: '未开启搜索',
+                  message: ['搜索设备超时，未发现任何设备', '确保子设备处于配网状态'],
+                }}
+                bottomBtnText={'重新开启搜索'}
+                onClickBottomBtn={handleStartScanSubDevice}
+              />
+            )}
+          </>
+        );
+      case BindStatus.Binding: {
+        const successCount = cloudRecentBindSubDeviceList.length;
+        return (
+          <SubDeviceConfView
+            showStatusDesc={true}
+            showBottomBtn={true}
+            showSubDeviceListView={true}
+            renderBindStatusDesc={() => (
+              <>
+                <strong>
+                  子设备配网绑定中（{countdown}s）
+                  <DotLoading />
+                </strong>
+                <div>请确保子设备处于配网状态</div>
+                <div>成功绑定到云端（{successCount}/{totalBindCount}）个</div>
+              </>
+            )}
+            subDeviceListViewProps={{
+              hiddenDeviceIfNotCheck: true,
+              hiddenCheckBox: true,
+              showBindStatus: true,
+            }}
+            bottomBtnText={'停止绑定'}
+            onClickBottomBtn={async () => {
+              await stopBind();
+              setBindStatus(BindStatus.BindEnd);
+            }}
+          />
+        );
+      }
+      case BindStatus.BindEnd: {
+        const totalCount = scanSubDeviceList.filter(item => item.checked).length;
+        const successCount = cloudRecentBindSubDeviceList.length;
+        return (
+          <SubDeviceConfView
+            showStatusDesc={true}
+            showSubDeviceListView={true}
+            subDeviceListViewProps={{
+              hiddenDeviceIfNotCheck: true,
+              hiddenCheckBox: true,
+              showBindStatus: true,
+            }}
+            showBottomBtn={true}
+            renderBindStatusDesc={() => (
+              <>
+                <strong>绑定子设备结束，成功{successCount}个，失败{totalCount - successCount}个</strong>
+              </>
+            )}
+            bottomBtnText={'完成'}
+            onClickBottomBtn={() => goBack()}
+          />
+        );
+      }
+      default:
+        return '未知状态view，请反馈工程师';
     }
-  }, [scanResponse, isLisenceScan]);
-
-
-  log.mi('RENDER:', { status: statusRef.current, searchResult, scanResponse, bindData, _bindData: window._bindData });
+  };
 
   return (
-    <div className='search-device'>
-      {/*  一直未收到数据显示 */}
-      {(statusRef.current == STATUS.UNSCAN || statusRef.current == STATUS.STARTSCAN || statusRef.current == STATUS.ERROR || statusRef.current == STATUS.TIMEOUT)
-        ? <div className='start-content'>
-          <Circle status={start} message={MESSAGE[status] || errorMsg} msg={MSG[status] || '搜索异常'}></Circle>
-          {/* 异常情况 显示再次尝试 */}
-          {
-            (statusRef.current == STATUS.TIMEOUT || statusRef.current == STATUS.ERROR) ? <>
-              <div className='fexid-btn center' onClick={startSearch}>再次尝试</div>
-            </> : null
-          }
-        </div>
-        : null}
-      {/* 收到扫描数据 */}
-      {/* // 目前需求缺少扫描完毕页面  则采用扫描成功月面*/}
-      {
-        statusRef.current === STATUS.SUCCESS || statusRef.current == STATUS.OVER
-          ? <>
-            <div className='scan-success'>
-              <div className='scan-msg'>{
-                MESSAGE[statusRef.current].map(val => <div>{val}</div>)
-              }</div>
-              <div className='list'>
-                {/* 列表显示数据 */}
-                {searchResult.map(info => <Production
-                  IS_TEST={IS_TEST}
-                  key={info?.uuid}
-                  onStartBind={product => onStartBind(info, product)}
-                  info={info}
-                  sdk={sdk}
-                >
-                </Production>)}
-
-              </div>
-            </div>
-            <div className='fexid-btn center' onClick={() => onStartBindAll(searchResult)}>一键添加</div>
-          </>
-          : null
-
-      }
-
-      {/* 扫描完毕 */}
-      {/* // 目前需求缺少改页面 */}
-
-      {/* 进行绑定 */}
-      {
-        (statusRef.current === STATUS.BINDBEGIN || statusRef.current === STATUS.BINDSUCCESS
-          || statusRef.current == STATUS.BINDBERROR || statusRef.current === STATUS.BINDOVER)
-          ? <>
-            <Spin loading={statusRef.current != STATUS.BINDOVER}>
-              <div className='begin-bind'>
-                {
-                  window._bindData.map(info => <BindProduction IS_TEST={IS_TEST} key={info?.uuid} info={info}
-                                                               sdk={sdk} />)
-                }
-              </div>
-            </Spin>
-            {
-              // 成功或者失败都是直接完成
-              (statusRef.current === STATUS.BINDOVER)
-                ? <>
-                  <div className='fexid-btn center' onClick={
-                    () => goBack()}>完成
-                  </div>
-                </>
-                : null
-            }
-          </>
-          : null
-      }
-    </div>
+    <SubDeviceConfContext.Provider value={{
+      scanSubDeviceList,
+      cloudRecentBindSubDeviceList,
+      bindStatus,
+    }}>
+      {renderView()}
+    </SubDeviceConfContext.Provider>
   );
 }
+
+
+const SubDeviceConfView = ({
+  renderBindStatusDesc,
+  showCircleScan = false,
+  circleScanProps = {},
+  subDeviceListViewProps = {},
+  showStatusDesc = false,
+  showSubDeviceListView = false,
+  showBottomBtn = false,
+  bottomBtnText = '底部按钮',
+  onClickBottomBtn = noop,
+}: Partial<{
+  bindStatus: BindStatus;
+  showCircleScan: boolean;
+  circleScanProps: any;
+  subDeviceListViewProps: Partial<SubDeviceListViewProps>
+  showStatusDesc: boolean;
+  showSubDeviceListView: boolean;
+  showBottomBtn: boolean;
+  renderBindStatusDesc: () => React.ReactNode;
+  bottomBtnText: string;
+  onClickBottomBtn: () => void;
+// eslint-disable-next-line arrow-body-style
+}>) => {
+  return (
+    <div className='search-device'>
+      {showStatusDesc && <div className='scan-msg'>{renderBindStatusDesc?.()}</div>}
+      {showCircleScan && (
+        <div className='start-content'>
+          <Circle {...circleScanProps} />
+        </div>
+      )}
+      {showSubDeviceListView && <SubDeviceListView {...subDeviceListViewProps} />}
+      {showBottomBtn && (
+        <div className='fexid-btn center' onClick={onClickBottomBtn}>
+          {bottomBtnText}
+        </div>
+      )}
+    </div>
+  );
+};
+
+interface SubDeviceListViewProps {
+  deviceList: IScanSubDevice[];
+  hiddenDeviceIfNotCheck: boolean;
+  hiddenCheckBox: boolean;
+  showBindStatus: boolean;
+  style: CSSProperties;
+  onClickSubDeviceItem: (...args: any) => void;
+}
+
+const SubDeviceListView = ({
+  hiddenDeviceIfNotCheck = false,
+  hiddenCheckBox = false,
+  showBindStatus = false,
+  style = {},
+  onClickSubDeviceItem = noop,
+}: Partial<SubDeviceListViewProps>) => {
+  const { scanSubDeviceList, bindStatus, cloudRecentBindSubDeviceList } = useContext(SubDeviceConfContext);
+
+  const SubDeviceItem = ({
+    subDevice,
+    onClick = noop,
+  }) => {
+    const { data: productInfo = {} } = useSWR(
+      [subDevice.productId, 'AppGetProducts', 'AppGetProductsConfig'],
+      async () => {
+        const data = await window.h5PanelSdk.getProductInfo({
+          productId: subDevice.productId,
+        });
+        const { Data } = await window.h5PanelSdk.requestTokenApi('AppGetProductsConfig', {
+          ProductIds: [subDevice.productId],
+        });
+        let ProductConfig = {};
+        try {
+          ProductConfig = JSON.parse(Data[0].Config);
+        } catch (err) {
+          /* noop */
+        }
+        return { ...data[0], ProductConfig };
+      },
+      {
+        revalidateIfStale: false,
+        keepPreviousData: true,
+      },
+    );
+    // eslint-disable-next-line max-len
+    const isBindCloud = cloudRecentBindSubDeviceList.find(item => item.ProductId === subDevice.productId && item.DeviceName === subDevice.deviceName);
+    const isSuccess = isBindCloud;
+    const isLoading = !isBindCloud && bindStatus === BindStatus.Binding;
+    const isFail = !isBindCloud && bindStatus === BindStatus.BindEnd;
+    return (
+      <div className='sub-device-list-item' onClick={onClick}>
+        {!hiddenCheckBox && (
+          <Checkbox
+            style={{ '--icon-size': '16px' }}
+            className='sub-device-list-item__checkbox'
+            checked={subDevice.checked}
+          />
+        )}
+        <img className='sub-device-list-item__icon' src={productInfo.IconUrl} />
+        <Ellipsis
+          className='sub-device-list-item__productName'
+          rows={2}
+          direction={'end'}
+          content={productInfo.ProductConfig?.Global?.ProductDisplayName || productInfo.Name || '-'}
+        />
+        <div className='sub-device-list-item__deviceName'>{subDevice.deviceName || '-'}</div>
+        {showBindStatus && (
+          <div
+            className={classNames('sub-device-list-item__bindStatus', {
+              loading: isLoading,
+              success: isSuccess,
+              fail: isFail,
+            })}
+          >
+            {isLoading && '绑定中...'}
+            {isSuccess && '绑定成功'}
+            {isFail && '绑定失败'}
+          </div>
+        )}
+      </div>
+    );
+  };
+
+  return (
+    <div className='sub-device-list' style={style}>
+      {scanSubDeviceList.map((item, index) => (
+        <Fragment key={item.uuid + item.productId}>
+          {hiddenDeviceIfNotCheck && !item.checked ? null : (
+            <SubDeviceItem subDevice={item} onClick={() => onClickSubDeviceItem(item, index)} />
+          )}
+        </Fragment>
+      ))}
+    </div>
+  );
+};

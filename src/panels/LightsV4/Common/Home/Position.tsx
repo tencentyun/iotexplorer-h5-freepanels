@@ -10,15 +10,24 @@ export interface LightColorProps extends StyledProps {
 }
 
 // 每一度对应的值
-const step = (6500 - 2700) / 360;
+const step = (6500 - 2700) / (338 - 18);
 
-const toDeg = val => (val - 2700) / step;
-const toValue = val => Math.round(2700 + val * step);
-// 按照指定的补偿处理值  == 由于回显转换步长后 会跳动 故最好时候会断取整 目前不做步长的取整操作
-// const toStep=(val) => val - val % 100
-const toStep = val => val;
+const getDegByColorTemp = (val) => {
+  const deg = Math.round((val - 2700) / step + 18);
+  // console.log('colorTemp=>deg', val, deg);
+  return deg;
+};
 
-const getColorTempByDeg = deg => toStep(toValue(deg));
+const getControlColorTempByDeg = (deg) => {
+  deg = Math.round(deg);
+  if (deg >= 18 && deg <= 19) {
+    return 2700;
+  }
+  if (deg >= 337 && deg <= 338) {
+    return 6500;
+  }
+  return Math.round(2700 + (deg - 18) * step);
+};
 
 export function Position({
   // value,
@@ -49,7 +58,7 @@ export function Position({
       const degValue = getDegValue(work_mode, work_mode === 'colour' ? colour_data : white_data) || 0;
       setDeg(degValue);
     } else { // 单色和双色模式
-      setDeg(toDeg(color_temp));
+      setDeg(getDegByColorTemp(color_temp));
     }
   }, [colorMode, color_temp]);
 
@@ -57,13 +66,12 @@ export function Position({
   const isPowerOff = power_switch !== 1;
 
   const onChange = (deg) => {
-    console.log('deg=', deg);
     setDeg(deg);
     if (isColorFull) {
       // const key = work_mode === 'colour' ? 'colour_data' : 'white_data';
       // doControlDeviceData(key, getColorValue(work_mode, parseInt(deg)));
     } else {
-      doControlDeviceData({ color_temp: getColorTempByDeg(deg) });
+      doControlDeviceData({ color_temp: getControlColorTempByDeg(deg) });
     }
   };
   const powerStatus = isPowerOff ? 'off-switch' : 'on-switch';
@@ -116,10 +124,16 @@ export function Position({
             </div>
             <div className='bg-img center'>
               <Icon name={productType}></Icon>
-              <div className='center-value'>{getColorTempByDeg(deg)}K</div>
+              <div className='center-value'>{color_temp}K</div>
             </div>
           </div>
-          <Circular onClick={handleColorTempInput} className={isPowerOff ? 'circular-off' : ''} value={deg} onChange={onChange} touch={!isPowerOff} />
+          <Circular
+            onClick={handleColorTempInput}
+            className={isPowerOff ? 'circular-off' : ''}
+            value={deg}
+            onChange={onChange}
+            touch={!isPowerOff}
+          />
         </div>
       </div>
       {!isPowerOff ? <div

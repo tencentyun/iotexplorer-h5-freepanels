@@ -48,8 +48,12 @@ export const Circular = ({
     if (deg < min) {
       return min;
     }
-    setDeg(deg);
-    onMove && onMove(deg);
+
+    if (deg >= 18 && deg <= 338) {
+      // console.log('deg=', deg);
+      setDeg(deg);
+      onMove && onMove(deg);
+    }
   };
 
   const onTouchEnd = () => {
