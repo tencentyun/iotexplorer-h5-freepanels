@@ -1,7 +1,9 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { LightSwitch } from '../../Common/Home/LightSwitch';
 import { Detail } from './Detail';
 import { useSwitchNameMap } from '@src/panels/SwitchV3/hooks/useSwitchNameMap';
+import { Icon } from '@custom/Icon';
+import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 
 export const getSwitchNum = (templateMap = {}) => Object.keys(templateMap).filter(v => /^switch/.test(v)).length || 1;
 
@@ -45,9 +47,27 @@ export function Home(props) {
     return <></>;
   };
 
+  const detailRef = useRef(null);
+
 
   return (
-    <div className="home">
+    <div className='home'>
+      <div style={{
+        display: 'flex',
+        justifyContent: 'space-between',
+        padding: '16px 24px',
+      }}>
+        {/* @ts-ignore */}
+        <div style={{ display: 'flex', alignItems: 'center' }} onClick={() => detailRef.current.editName()}>
+          <Icon className='operator-icon' name='editor' size='large' />
+        </div>
+        <div
+          className={'cus-dev-detail switchv3'}
+          onClick={() => sdk.goDeviceDetailPage()}
+        >
+          <Icon name='dev-detail' className='dev-more' />
+        </div>
+      </div>
       <div className={`dashboard switch-${switchNum}`}>
         {currentSwitch.map(([key], index) => (
           <LightSwitch
@@ -61,7 +81,7 @@ export function Home(props) {
           />
         ))}
       </div>
-      <Detail {...props} currentSwitch={currentSwitch} switchNum={switchNum} />
+      <Detail ref={detailRef} {...props} currentSwitch={currentSwitch} switchNum={switchNum} />
     </div>
   );
 }
