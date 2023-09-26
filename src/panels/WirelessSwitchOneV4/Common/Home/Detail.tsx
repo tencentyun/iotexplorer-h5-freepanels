@@ -12,13 +12,14 @@ export const Detail = (props) => {
     history: { PATH, push },
     index = 1,
     switchNum = 1,
+    style = {},
   } = { ...props };
   useEffect(() => {
     props.deviceData.switch_names = Object.values(templateMap.switch_type_1?.define?.mapping || {}) || ['单击', '双击', '长按'];
   }, []);
 
   return (
-    <div className={'wireless-switch-detail'}>
+    <div className={'wireless-switch-detail'} style={style}>
       {/* <div className={classNames('wireless-top', switchNum > 1 ? 'margin-30' : '')}>*/}
       {/*  <div className='switch-area'>*/}
       {/*    <div className='switch-bg'*/}
