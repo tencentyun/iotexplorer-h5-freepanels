@@ -1,9 +1,8 @@
 import React, { useEffect } from 'react';
-import classNames from 'classnames';
 import { SceneSetting } from '@custom/Scene';
-import { Icon } from '@custom/Icon';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 import { noop } from '@utillib';
+import { Battery } from '@custom/Battery';
 
 export const Detail = (props) => {
   const {
@@ -43,7 +42,15 @@ export const Detail = (props) => {
       {/*  </div>*/}
       {/* </div>*/}
       <div className='wireless-bottom'>
-        <p className='desc'>您可以将开关绑定具体的场景，一键执行设备控制</p>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }} className='desc'>
+          <div>您可以将开关绑定具体的场景，一键执行设备控制</div>
+          <div>
+            <Battery
+              isShowTip={false}
+              value={deviceData.battery}
+            />
+          </div>
+        </div>
         <SceneSetting
           {...props}
           sdk={sdk}
