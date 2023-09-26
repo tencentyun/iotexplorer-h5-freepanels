@@ -26,7 +26,7 @@ export const SceneSetting = ({
     const matchScene: any[] = [];
     autoSceneList.forEach((scene) => {
       if (scene.Conditions.length === 1) {
-        const { ProductId, DeviceName, Op, Value, PropertyId } = scene.Conditions[0]?.Property;
+        const { ProductId = '', DeviceName = '', Op = '', Value = '', PropertyId = '' } = scene.Conditions[0]?.Property;
         if ([
           ProductId === sdk.productId,
           DeviceName === sdk.deviceName,
