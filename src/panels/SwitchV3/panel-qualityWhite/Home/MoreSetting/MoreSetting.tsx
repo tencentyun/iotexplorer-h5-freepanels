@@ -233,12 +233,12 @@ export function MoreSetting({
         >
           指示灯自动调节模式
         </List.Item>
-        <List.Item
-          clickable
-          onClick={() => sdk.goTimingProjectPage()}
-        >
-          定时任务
-        </List.Item>
+        {/* <List.Item*/}
+        {/*  clickable*/}
+        {/*  onClick={() => sdk.goTimingProjectPage()}*/}
+        {/* >*/}
+        {/*  定时任务*/}
+        {/* </List.Item>*/}
         <List.Item
           extra={outageStatusOptions[0][outage_status]?.label || '-'}
           clickable
