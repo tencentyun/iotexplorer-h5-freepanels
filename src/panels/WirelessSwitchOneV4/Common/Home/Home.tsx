@@ -30,7 +30,7 @@ export function Home(props) {
   return (
     <div className='wireless-switch-home'>
       {currentSwitch.length === 1 ? (
-        <Detail index={switchNum} currentSwitch={currentSwitch} {...props} />
+        <Detail style={{ marginTop: '64px' }} index={switchNum} currentSwitch={currentSwitch} {...props} />
       ) : (
         <Tabs defaultActiveKey={!activeTab ? 'switch_1' : `switch_${activeTab}`}>
           {currentSwitch.map(([value, title], index) => (

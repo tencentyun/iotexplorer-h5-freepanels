@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useImperativeHandle, useRef, useState } from 'react';
 import { Icon } from '@custom/Icon';
 import { Cell } from '@custom/Cell';
 import { Modal } from '@custom/Modal';
@@ -14,19 +14,23 @@ import { iconSwitchGreen, iconSwitchRed } from '../Icon';
 
 export const SWITCH_NAME_MAP = 'SWITCH_NAME_MAP';
 
-export const Detail = ({
+export const Detail = React.forwardRef(({
   deviceData,
   doControlDeviceData,
   updateDeviceData,
   switchNum,
   history: { PATH, push },
   sdk,
-}) => {
+}: any, ref) => {
   const [switchNameEditModalVisible, setSwitchNameEditModalVisible] = useState(false);
 
   const { data: switchNameMap = {}, isLoading, mutate: mutateSwitchNameMap } = useSwitchNameMap({ switchNum, sdk });
 
   const inputSwitchNameRef = useRef<HTMLInputElement>(null);
+
+  useImperativeHandle(ref, () => ({
+    editName: () => setSwitchNameEditModalVisible(true),
+  }));
 
   // useEffect(() => {
   //   console.log('switchNameMap=', switchNameMap, switchNum);
@@ -74,12 +78,12 @@ export const Detail = ({
   return (
     <div className={`detail action action-${switchNum}`}>
       {/* 左上角编辑icon */}
-      <div className='operator'>
-        <div className='operator-btn editor' onClick={() => setSwitchNameEditModalVisible(true)}>
-          <Icon className='operator-icon' name='editor' size='large' />
-        </div>
-        <div className='operator-btn setting'></div>
-      </div>
+      {/* <div className='operator'>*/}
+      {/*  <div className='operator-btn editor' onClick={() => setSwitchNameEditModalVisible(true)}>*/}
+      {/*    <Icon className='operator-icon' name='editor' size='large' />*/}
+      {/*  </div>*/}
+      {/*  <div className='operator-btn setting'></div>*/}
+      {/* </div>*/}
 
       {/* 全开/全关区域 */}
       {switchNum > 1 && (
@@ -212,4 +216,5 @@ export const Detail = ({
       </div>
     </div>
   );
-};
+});
+

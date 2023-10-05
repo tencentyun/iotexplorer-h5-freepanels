@@ -1,9 +1,8 @@
 import React, { useEffect } from 'react';
-import classNames from 'classnames';
 import { SceneSetting } from '@custom/Scene';
-import { Icon } from '@custom/Icon';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 import { noop } from '@utillib';
+import { Battery } from '@custom/Battery';
 
 export const Detail = (props) => {
   const {
@@ -13,13 +12,14 @@ export const Detail = (props) => {
     history: { PATH, push },
     index = 1,
     switchNum = 1,
+    style = {},
   } = { ...props };
   useEffect(() => {
     props.deviceData.switch_names = Object.values(templateMap.switch_type_1?.define?.mapping || {}) || ['单击', '双击', '长按'];
   }, []);
 
   return (
-    <div className={'wireless-switch-detail'}>
+    <div className={'wireless-switch-detail'} style={style}>
       {/* <div className={classNames('wireless-top', switchNum > 1 ? 'margin-30' : '')}>*/}
       {/*  <div className='switch-area'>*/}
       {/*    <div className='switch-bg'*/}
@@ -43,7 +43,15 @@ export const Detail = (props) => {
       {/*  </div>*/}
       {/* </div>*/}
       <div className='wireless-bottom'>
-        <p className='desc'>您可以将开关绑定具体的场景，一键执行设备控制</p>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }} className='desc'>
+          <div>您可以将开关绑定具体的场景，一键执行设备控制</div>
+          <div>
+            <Battery
+              isShowTip={false}
+              value={deviceData.battery}
+            />
+          </div>
+        </div>
         <SceneSetting
           {...props}
           sdk={sdk}

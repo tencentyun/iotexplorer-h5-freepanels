@@ -1,10 +1,7 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Switch } from '@custom/Switch';
-import { Toast } from 'antd-mobile';
+import { SpinLoading, Toast } from 'antd-mobile';
 import useSWR from 'swr';
-import { Loading } from '@custom/Loading';
-
-const DEVICE_PROPERTY_SCENE_ID_MAP = 'DEVICE_PROPERTY_SCENE_ID_MAP';
 
 export const SceneSetting = ({
   sdk,
@@ -12,32 +9,39 @@ export const SceneSetting = ({
   sceneBtnModeDesc = ['单击时', '双击时', '长按时'],
 }) => {
   const {
-    data: autoSceneList,
-    isLoading,
+    data: autoSceneList = [],
+    isValidating,
     mutate: mutateAutoSceneList,
-  } = useSWR(['AppGetAutomationList', sceneBtnModeProperty], async () => {
-    const { List: autoSceneList } = await sdk.requestTokenApi('AppGetAutomationList', { FamilyId: sdk.familyId });
+  } = useSWR(['AllAutoScene'], async () => {
+    const { List: autoSceneList = [] } = await sdk.requestTokenApi('AppGetAutomationList', { FamilyId: sdk.familyId });
+    await Promise.all(autoSceneList.map(async (autoScene) => {
+      const result = await sdk.requestTokenApi('AppDescribeAutomation', { AutomationId: autoScene.AutomationId });
+      Object.assign(autoScene, result.Data);
+    }));
+    console.log('[swr]自动场景列表', autoSceneList);
     return autoSceneList;
   });
 
-  const {
-    data: devicePropertySceneIdMap,
-    mutate: mutateDeviceConfig,
-  } = useSWR(['AppGetDeviceConfig', sceneBtnModeProperty], async () => {
-    const result = await sdk.requestTokenApi('AppGetDeviceConfig', {
-      DeviceId: sdk.deviceId,
-      DeviceKey: DEVICE_PROPERTY_SCENE_ID_MAP,
+  const getSceneByProperty = ({ key, value }) => {
+    const matchScene: any[] = [];
+    autoSceneList.forEach((scene) => {
+      if (scene.Conditions.length === 1) {
+        const { ProductId = '', DeviceName = '', Op = '', Value = '', PropertyId = '' } = scene.Conditions[0]?.Property || {};
+        if ([
+          ProductId === sdk.productId,
+          DeviceName === sdk.deviceName,
+          Op === 'eq',
+          PropertyId === key,
+          Value === value,
+        ].every(flag => flag)) {
+          matchScene.push(scene);
+        }
+      }
     });
-    return JSON.parse(result.Configs[DEVICE_PROPERTY_SCENE_ID_MAP]);
-  });
 
-  useEffect(() => {
-    console.log('swr update', devicePropertySceneIdMap, autoSceneList);
-  }, [devicePropertySceneIdMap, autoSceneList]);
+    // console.log(key, matchScene);
 
-  const getSceneByProperty = (key) => {
-    const sceneId = devicePropertySceneIdMap?.[key];
-    return autoSceneList?.find(({ AutomationId }) => AutomationId === sceneId);
+    return matchScene;
   };
 
   const onSwitchChange = async (sceneInfo) => {
@@ -71,28 +75,8 @@ export const SceneSetting = ({
     }
 
     const handler = async (data) => {
-      const { action = '', payload = {} } = data;
-      if (action === 'createScene' && payload.status === 'success') {
-        const loadingToast = Toast.show({
-          content: '更新中...',
-          icon: 'loading',
-          maskClickable: false,
-          duration: 10,
-        });
-        const DeviceConfigValue = {
-          ...devicePropertySceneIdMap,
-          [`${sceneBtnModeProperty}__${modeValue}`]: payload.sceneId,
-        };
-        console.log('关联模式按键=>场景ID', `${sceneBtnModeProperty}__${modeValue}`, payload.sceneId);
-        await sdk.requestTokenApi('AppSetDeviceConfig', {
-          DeviceId: sdk.deviceId,
-          DeviceKey: DEVICE_PROPERTY_SCENE_ID_MAP,
-          DeviceValue: JSON.stringify(DeviceConfigValue),
-        });
-        await mutateAutoSceneList();
-        await mutateDeviceConfig();
-        loadingToast.close();
-      }
+      console.log('从腾讯连连返回了!', data);
+      mutateAutoSceneList();
     };
     sdk.h5Websocket.on('message', async (data) => {
       await handler(data);
@@ -118,46 +102,47 @@ export const SceneSetting = ({
     });
   };
 
-  if (isLoading) {
-    return <Loading />;
-  }
-
   return (
-    <div className='scene-setting'>
-      {sceneBtnModeDesc.map((modeDesc, modeIndex) => {
-        const sceneInfo = getSceneByProperty(`${sceneBtnModeProperty}__${modeIndex}`);
-        return (
-          <div className='sence-group' key={modeIndex}>
-            <div className='scene-header'>
-              <span>{modeDesc}</span>
-            </div>
-            {sceneInfo ? (
-              <div className='scene-list'>
-                <div className='sence-item' onClick={() => onEditScene(sceneInfo)}>
-                  <div
-                    className='item'
-                    style={{ backgroundImage: `url("${sceneInfo.Icon}")` }}
-                  >
-                    <div className='scene-info-wrap'>
-                      <div className='scene-name'>{sceneInfo.Name}</div>
+    <>
+      {isValidating && <SpinLoading style={{ '--size': '24px' }} />}
+      <div className='scene-setting'>
+        {sceneBtnModeDesc.map((modeDesc, modeIndex) => {
+          const sceneList = getSceneByProperty({ key: sceneBtnModeProperty, value: modeIndex });
+          return (
+            <div className='sence-group' key={modeIndex}>
+              <div className='scene-header'>
+                <span>{modeDesc}</span>
+              </div>
+              {sceneList.length ? (
+                <div className='scene-list'>
+                  {sceneList.map(sceneInfo => (
+                    <div key={sceneInfo.AutomationId} className='sence-item' onClick={() => onEditScene(sceneInfo)}>
+                      <div
+                        className='item'
+                        style={{ backgroundImage: `url("${sceneInfo.Icon}")` }}
+                      >
+                        <div className='scene-info-wrap'>
+                          <div className='scene-name'>{sceneInfo.Name}</div>
+                        </div>
+                        <div className='action-span' onClick={e => e.stopPropagation()}>
+                          <Switch
+                            checked={!!sceneInfo.Status}
+                            onChange={async () => onSwitchChange(sceneInfo)}
+                          />
+                        </div>
+                      </div>
                     </div>
-                    <div className='action-span' onClick={e => e.stopPropagation()}>
-                      <Switch
-                        checked={!!sceneInfo.Status}
-                        onChange={async () => onSwitchChange(sceneInfo)}
-                      />
-                    </div>
-                  </div>
+                  ))}
                 </div>
-              </div>
-            ) : (
-              <div className='bind-scene' onClick={() => addNewScene(modeIndex)}>
-                <span> + 绑定场景</span>
-              </div>
-            )}
-          </div>
-        );
-      })}
-    </div>
+              ) : (
+                <div className='bind-scene' onClick={() => addNewScene(modeIndex)}>
+                  <span> + 绑定场景</span>
+                </div>
+              )}
+            </div>
+          );
+        })}
+      </div>
+    </>
   );
 };
