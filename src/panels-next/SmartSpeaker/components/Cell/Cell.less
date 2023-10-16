@@ -1,0 +1,41 @@
+.ll-cell {
+  box-sizing: border-box;
+  height: 60px;
+  padding: 16px;
+  background-image: linear-gradient(116deg, rgba(255, 255, 255, .9), rgba(255, 255, 255, .7));
+  box-shadow: 0 2px 4px rgba(8, 82, 193, 0.10);
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  &:active {
+    opacity: .7;
+  }
+
+  &-left {
+    display: flex;
+    align-items: center;
+    .icon {
+      width: 20px;
+      height: 20px;
+      margin-right: 8px;
+    }
+
+    .title {
+      color: #132847;
+      font-size: 14px;
+      font-weight: 500;
+    }
+  }
+
+  &-right {
+    display: flex;
+    align-items: center;
+
+    .icon {
+      width: 20px;
+      height: 20px;
+    }
+  }
+}

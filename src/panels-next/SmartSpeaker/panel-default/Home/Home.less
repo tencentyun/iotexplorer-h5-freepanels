@@ -1,0 +1,88 @@
+.page-home {
+  .banner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 32px;
+
+    img {
+      width: 249px;
+      height: 250px;
+    }
+  }
+
+  .battery {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(19, 40, 71, 0.60);
+    font-size: 12px;
+
+    .battery-text {
+      margin-left: 4px;
+    }
+  }
+
+  .volume-set {
+    display: flex;
+    margin-top: 48px;
+    padding: 0 16px;
+    justify-content: space-between;
+    align-items: center;
+
+    .slider-view {
+      flex: 1;
+      padding: 0 16px;
+
+      .rc-slider-track {
+        background-color: rgba(19, 40, 71, 0.6);
+      }
+
+      .rc-slider-rail {
+        background-color: rgba(19, 40, 71, 0.1);
+      }
+
+      .rc-slider-handle {
+        border-color: rgba(19, 40, 71, 0.6);
+
+        &-dragging {
+          box-shadow: 0 0 0 5px rgba(19, 40, 71, 0.1);
+        }
+      }
+
+      .rc-slider-handle:focus-visible {
+        box-shadow: 0 0 0 3px rgba(19, 40, 71, 0.1);
+      }
+    }
+  }
+
+  .setting-view {
+    padding: 16px;
+  }
+
+  .setting-view-horizontal {
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 16px;
+    margin-top: 20px;
+
+    .ll-cell {
+      flex: 1;
+      margin-right: 16px;
+
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+  }
+
+  .setting-view-vertical {
+    box-sizing: border-box;
+    padding: 0 16px;
+
+    .ll-cell {
+      margin-top: 12px;
+    }
+  }
+}
