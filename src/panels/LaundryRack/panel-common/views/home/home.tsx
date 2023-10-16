@@ -5,7 +5,7 @@ import './home.less';
 import {getThemeType} from '@libs/theme';
 import { Detail } from './detail/detail';
 import { apiControlDeviceData } from '@hooks/useDeviceData';
-import { useDidMount } from 'beautiful-react-hooks';
+import { useMount } from 'ahooks';
 
 import iconUp from '../icons/normal/lr-rack-up.svg';
 import iconMiddle from '../icons/normal/lr-rack-middle.svg';
@@ -96,7 +96,7 @@ export function Home() {
     });
   };
 
-  useDidMount(() => {
+  useMount(() => {
     progress.current.style.height = `${position * (PROCESS_MAX - PROCESS_MIN) / 100.0 + PROCESS_MIN}%`;
   });
   const getTimeToHour = (time: number) => {

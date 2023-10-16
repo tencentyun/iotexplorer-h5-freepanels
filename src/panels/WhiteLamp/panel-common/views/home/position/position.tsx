@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import './position.less';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 import { StyledProps } from '@libs/global';
-import { useDidMount } from 'beautiful-react-hooks';
+import { useMount } from 'ahooks';
 import { onControlDevice } from '@hooks/useDeviceData';
 
 export interface LightColorProps extends StyledProps {
@@ -40,7 +40,7 @@ export function Position(props: LightColorProps) {
     point.style.marginTop = `${destY - point?.clientHeight / 2}px`;
   };
 
-  useDidMount(() => {
+  useMount(() => {
     updatePosInfo();
   });
 

@@ -7,7 +7,7 @@ import { SvgIcon } from '@components/common/icon';
 import Options_Work from '../work_model/work_model';
 import Options_Motor from '../motor/motor';
 import { useHistory } from 'react-router-dom';
-import { useDidMount, useWillUnmount } from 'beautiful-react-hooks';
+import { useMount, useUnmount } from 'ahooks';
 import Bus from '@libs/utillib';
 
 let timer = null;
@@ -18,13 +18,13 @@ export function Curtain_options() {
   //   sdk.deviceData.percent_control ? sdk.deviceData.percent_control : 50
   // );
 
-  useDidMount(() => {
+  useMount(() => {
     timer = setInterval(changeRatio, 50);
     Bus.emit('percent_control', info.curRatio);
     moveProgress(info.curRatio);
   });
 
-  useWillUnmount(() => {
+  useUnmount(() => {
     clearInterval(timer);
   });
 

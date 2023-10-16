@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import { Modal } from '@components/base';
 import { apiControlDeviceData } from '@hooks/useDeviceData';
 import './percentage.less';
-import { useDidMount } from 'beautiful-react-hooks';
+import { useMount } from 'ahooks';
 
 const Percentage = ({ cur_percent, isShow, onClose, onCommit }) => {
   // const [percent, setPercent] = useState(sdk.deviceData.percent_control1?sdk.deviceData.percent_control1:0);

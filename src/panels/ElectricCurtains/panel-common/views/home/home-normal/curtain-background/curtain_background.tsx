@@ -3,13 +3,13 @@ import './curtain_background.less';
 import classNames from 'classnames';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 import Bus from '@libs/utillib';
-import { useDidMount } from 'beautiful-react-hooks';
+import { useMount } from 'ahooks';
 
 export function Curtain_background() {
   const [position, setPosition] = useState((sdk.deviceData.percent_control && sdk.deviceData.percent_control >= 0 && sdk.deviceData.percent_control <= 100) ? sdk.deviceData.percent_control : 40);
   const [animInfo, setAnimInfo] = useState({ dire: '' });
 
-  useDidMount(() => {
+  useMount(() => {
     Bus.addListener('percent_control', (ratio) => {
       updateDom(ratio, 0);
     });

@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import classNames from 'classnames';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
-import { useDidMount } from 'beautiful-react-hooks';
+import { useMount } from 'ahooks';
 
 export function Slider({
   deviceData: { control, power_switch },
@@ -93,7 +93,7 @@ export function Slider({
     });
   };
 
-  useDidMount(() => {
+  useMount(() => {
     setCurrent(
       'height',
       `${(position * (PROCESS_MAX - PROCESS_MIN)) / 100.0 + PROCESS_MIN}%`,

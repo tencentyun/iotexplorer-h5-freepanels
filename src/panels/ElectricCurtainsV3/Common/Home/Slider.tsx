@@ -2,7 +2,7 @@ import React, { ReactNode, forwardRef, useImperativeHandle, useEffect } from 're
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 import { onControlDevice } from '@hooks/useDeviceData';
 import Bus from '@libs/utillib';
-import { useDidMount, useWillUnmount } from 'beautiful-react-hooks';
+import { useDidMount, useUnmount } from 'ahooks';
 
 let timer;
 
@@ -22,7 +22,7 @@ const SideHead = forwardRef((props, ref) => {
     moveProgress(position);
   }, [position])
 
-  useWillUnmount(() => {
+  useUnmount(() => {
     clearInterval(timer);
   });
 

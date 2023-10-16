@@ -7,7 +7,7 @@ import { SvgIcon } from '@components/common/icon';
 import { useHistory } from 'react-router-dom';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 import { onControlDevice } from '@hooks/useDeviceData';
-import { useDidMount, useWillUnmount } from 'beautiful-react-hooks';
+import { useMount, useUnmount } from 'ahooks';
 import Bus from '@libs/utillib';
 
 let timer = null;
@@ -21,13 +21,13 @@ export function Morandi_body() {
   //   moveProgress(openRatio);
   // }, []);
 
-  useDidMount(() => {
+  useMount(() => {
     timer = setInterval(changeRatio, 50);
     Bus.emit('percent_control', info.curRatio);
     moveProgress(info.curRatio);
   });
 
-  useWillUnmount(() => {
+  useUnmount(() => {
     clearInterval(timer);
   });
 

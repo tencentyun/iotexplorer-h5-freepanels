@@ -2,7 +2,7 @@ import React, { ReactNode, forwardRef, useImperativeHandle } from 'react';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 import { onControlDevice } from '@hooks/useDeviceData';
 import Bus from '@libs/utillib';
-import { useDidMount, useWillUnmount } from 'beautiful-react-hooks';
+import { useMount, useUnmount } from 'ahooks';
 
 let timer;
 const info = {
@@ -12,13 +12,13 @@ const info = {
 };
 
 const SideHead = forwardRef((props, ref) => {
-  useDidMount(() => {
+  useMount(() => {
     timer = setInterval(changeRatio, 50);
     Bus.emit('percent_control', info.curRatio);
     moveProgress(info.curRatio);
   });
 
-  useWillUnmount(() => {
+  useUnmount(() => {
     clearInterval(timer);
   });
 

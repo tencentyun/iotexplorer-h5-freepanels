@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react';
 import classNames from 'classnames';
 import { StyledProps } from '@libs/global';
-import { useDidMount } from 'beautiful-react-hooks';
+import { useMount } from 'ahooks';
 
 export interface LightColorProps extends StyledProps {
   defaultValue?: number; // 0 - 1000
@@ -33,7 +33,7 @@ export function Position({
     point.style.marginTop = `${destY - point?.clientHeight / 2}px`;
   };
 
-  useDidMount(() => {
+  useMount(() => {
     updatePosInfo();
   });
 

@@ -4,19 +4,19 @@ import classNames from 'classnames';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 import { onControlDevice } from '@hooks/useDeviceData';
 import Bus from '@libs/utillib';
-import { useDidMount, useWillUnmount } from 'beautiful-react-hooks';
+import { useMount, useUnmount } from 'ahooks';
 
 let timer = null;
 const info = { curRatio: sdk.deviceData.percent_control ? sdk.deviceData.percent_control : 30 };
 
 export function Side_Head() {
-  useDidMount(() => {
+  useMount(() => {
     timer = setInterval(changeRatio, 50);
     Bus.emit('percent_control', info.curRatio);
     moveProgress(info.curRatio);
   });
 
-  useWillUnmount(() => {
+  useUnmount(() => {
     clearInterval(timer);
   });
 

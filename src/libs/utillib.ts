@@ -4,7 +4,7 @@ import urlParse from 'url-parse';
 import querystring from 'query-string';
 import { rgb } from 'd3-color';
 import viewportConfig from '../../webpack/pxToViewport.config';
-import { EventEmitter } from 'events';
+// import { EventEmitter } from 'events';
 
 export const delay = timeout => new Promise(resolve => setTimeout(() => resolve(timeout), timeout));
 
@@ -227,7 +227,7 @@ export function flattenArray(input, prefix = '') {
 }
 
 export const noop = (a?: any): void => {
-  console.log('noop');
+  // console.log('noop');
 };
 
 export function defineMap2SelectorList(defineMap: { [propName: string]: string }): SelectorOption[] {
@@ -707,7 +707,7 @@ export const enumToArray = (enumCNObj: any): {
   // return [{ value: 1, label: '智能' }];
   return result;
 };
-export default new EventEmitter();
+// export default new EventEmitter();
 
 export function hsv2rgb(arr) {
   const h = arr[0];

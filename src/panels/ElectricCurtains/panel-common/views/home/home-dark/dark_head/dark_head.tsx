@@ -3,10 +3,10 @@ import './dark_head.less';
 import classNames from 'classnames';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 import Bus from '@libs/utillib';
-import { useDidMount } from 'beautiful-react-hooks';
+import { useMount } from 'ahooks';
 
 export function Dark_head() {
-  useDidMount(() => {
+  useMount(() => {
     Bus.addListener('percent_control', (ratio) => {
       updateDom(ratio, 0);
     });

@@ -1,6 +1,6 @@
 import React, { ReactNode, forwardRef, useImperativeHandle, useEffect } from 'react';
 import { onControlDevice } from '@hooks/useDeviceData';
-import { useWillUnmount } from 'beautiful-react-hooks';
+import { useUnmount } from 'ahooks';
 import { Icon } from '@custom/Icon';
 
 let timer;
@@ -21,7 +21,7 @@ const SideHead = forwardRef((props, ref) => {
     moveProgress(position);
   }, [position])
 
-  useWillUnmount(() => {
+  useUnmount(() => {
     clearInterval(timer);
   });
 

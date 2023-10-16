@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './bluewhite_progress_bar.less';
 import classNames from 'classnames';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
-import { useDidMount } from 'beautiful-react-hooks';
+import { useMount } from 'ahooks';
 export function Bluewhite_progress_bar() {
   const [dataUser] = useState(sdk.deviceData.battery_percentage ? sdk.deviceData.battery_percentage : 90);
   // const onToggleSetVal = (e: React.MouseEvent) => {
@@ -12,7 +12,7 @@ export function Bluewhite_progress_bar() {
   //   slider.style.width=(val*wrap.clientWidth/100.0)+'px';
   // };
 
-  useDidMount(() => {
+  useMount(() => {
     const val = dataUser;
     const wrap = document.getElementById('bluewhite-progress-bar-wrap');
     const slider = document.getElementById('bluewhite-progress-bar-slider');
