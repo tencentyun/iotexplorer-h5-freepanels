@@ -1,48 +1,31 @@
 {
+  "env": {
+    "browser": true,
+    "es2021": true
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  },
   "extends": [
-    "eslint-config-tencent",
     "eslint:recommended",
-    "plugin:react/recommended",
-    "plugin:@typescript-eslint/recommended"
+    "eslint-config-tencent",
+    "eslint-config-tencent/ts",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:react/recommended"
   ],
-  "globals": {
-    "App": true,
-    "getCurrentPages": true,
-    "getApp": true,
-    "APP_KEY": true,
-    "WS_URL": true,
-    "wx": true,
-    "DEFAULT_UIN": true,
-    "CLOUD_FN_ENV": true,
-    "requirePlugin": true
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaVersion": "latest",
+    "sourceType": "module"
   },
+  "plugins": [
+    "@typescript-eslint",
+    "react"
+  ],
   "rules": {
-    "no-mixed-operators": [
-      "error",
-      {
-        "groups": [
-          ["%", "**"],
-          ["%", "+"],
-          ["%", "-"],
-          ["%", "*"],
-          ["%", "/"],
-          ["&", "|", "<<", ">>", ">>>"],
-          ["==", "!=", "===", "!=="],
-          ["&&", "||"],
-          ["*", "/"]
-        ],
-        "allowSamePrecedence": false
-      }
-    ],
-    "no-extra-boolean-cast": 0,
-    "react/prop-types": 0,
-    "@typescript-eslint/ban-ts-ignore": 0,
-    "@typescript-eslint/explicit-module-boundary-types": 0,
-    "camelcase": 0,
-    "new-cap": 0,
-    "react/display-name": 0,
-    "no-plusplus": 0,
-    "@typescript-eslint/ban-ts-comment": 1
-  },
-  "parser": "@typescript-eslint/parser"
+    "react/prop-types": "off",
+    "@typescript-eslint/no-explicit-any": "off"
+  }
 }

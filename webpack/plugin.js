@@ -6,10 +6,21 @@ const underLine = str => str.replace(/([A-Z])/g, '-$1').replace(/^-/, '')
   .toLowerCase();
 const isDev = mode === 'development';
 
-const themePaths = ['panel-card', 'panel-cold', 'panel-fresh', 'panel-house', 'panel-brunet',
-                    'panel-qualityDark','panel-qualityWhite','panel-qualityBlue','panel-qualityPurple','panel-qualityYellow'];
+const themePaths = [
+  'panel-card',
+  'panel-cold',
+  'panel-fresh',
+  'panel-house',
+  'panel-brunet',
+  'panel-qualityDark',
+  'panel-qualityWhite',
+  'panel-qualityBlue',
+  'panel-qualityPurple',
+  'panel-qualityYellow',
+];
 
 const isRemPath = (filePath, remPaths) => {
+  return false;
   for (let i = 0; i < remPaths.length; i++) {
     if (filePath.match(remPaths[i])) return true;
   }
@@ -18,9 +29,9 @@ const isRemPath = (filePath, remPaths) => {
 
 
 module.exports = {
-  autoPreFixer: isDev ? undefined : { overrideBrowserslist: ["last 5 version", ">1%", "ie >=8"] },
+  autoPreFixer: isDev ? undefined : { overrideBrowserslist: ['last 5 version', '>1%', 'ie >=8'] },
   isRem: (build, viewport) => {
-    const path = build._module.resource.replace(/\\/g, "/").replace(/\.less$/, '.tsx');
+    const path = build._module.resource.replace(/\\/g, '/').replace(/\.less$/, '.tsx');
     // console.log('rem---', viewport[path], isRemPath(path, themePaths), build._module.resource);
     return isRemPath(path, themePaths);
   },
