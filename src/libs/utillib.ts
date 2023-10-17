@@ -3,7 +3,7 @@ import { RefAttributes, ForwardRefExoticComponent } from 'react';
 import urlParse from 'url-parse';
 import querystring from 'query-string';
 import { rgb } from 'd3-color';
-import viewportConfig from '../../webpack/pxToViewport.config';
+// import viewportConfig from '../../webpack/pxToViewport.config';
 // import { EventEmitter } from 'events';
 
 export const delay = timeout => new Promise(resolve => setTimeout(() => resolve(timeout), timeout));
@@ -624,15 +624,15 @@ export function numberToArray(number: number, desc?: string): string[] {
   }
   return result;
 }
-export const px2vw = (px: number): string | number => {
-  const { viewportWidth } = viewportConfig;
-  const vw = px * (100 / viewportWidth);
-
-  if (px === 0) {
-    return px;
-  }
-  return `${vw.toFixed(viewportConfig.unitPrecision || 3)}vw`;
-};
+// export const px2vw = (px: number): string | number => {
+//   const { viewportWidth } = viewportConfig;
+//   const vw = px * (100 / viewportWidth);
+//
+//   if (px === 0) {
+//     return px;
+//   }
+//   return `${vw.toFixed(viewportConfig.unitPrecision || 3)}vw`;
+// };
 
 export function toUnderscores(str: string): string {
   return str

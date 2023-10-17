@@ -1,169 +1,53 @@
-/* eslint-disable @typescript-eslint/no-var-requires */
 const path = require('path');
-const webpack = require('webpack');
+const fs = require('fs');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const panelConfig = require('./panel-conf');
-const TerserPlugin = require('terser-webpack-plugin');
-const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
+const { merge } = require('webpack-merge');
 
-const autoPreFixer = require('autoprefixer');
-const postcss = require('postcss-pxtorem');
-const plugin = require('./plugin');
-const viewportConfig = require('./pxToViewport.config');
-const argv = require('minimist')(process.argv.slice(2));
-const category = argv.category || process.env.npm_config_category || process.env.Category || '';
-const panelTheme = argv.panel || process.env.npm_config_panel || '';
+const outputPath = path.resolve(__dirname, '../dist');
 
-// 使用 npm run dev --category=xxx --index 统一生成index.js, index.css
-const outputIndex = ((argv.index || process.env.npm_config_index) === 'true');
-class ModifiedMiniCssExtractPlugin extends MiniCssExtractPlugin {
-  getCssChunkObject(mainChunk) {
-    return {};
-  }
-}
+const getNpmConfigArg = (key) => process.env[`npm_config_${key}`];
 
-module.exports = (env, argv) => {
-  const { mode } = argv;
-  const isDevMode = mode === 'development';
-  const { isPreview } = plugin.env;
-  const rootPath = path.join(__dirname, '../');
-  const srcPath = path.join(rootPath, 'src');
-  const outputPath = path.join(
-    rootPath,
-    'dist',
-    isDevMode ? 'debug' : 'release',
-  );
+const category = getNpmConfigArg('category');
+const panel = getNpmConfigArg('panel');
 
-  const entry = {};
-  const viewport = {};
+module.exports = (env, { mode }) => {
+  const PANEL_VIEWPORT = 375;
 
-  // 这里可能会影响之前的面板布局，布局乱了可注释掉
-  viewportConfig.viewportWidth = 1125;
-  const keys = Object.keys(panelConfig);
-  console.log('build length: ', keys.length, category);
-  const categoryList = category.split(',');
-  keys.forEach((categoryKey) => {
-    const { enable, panels, viewportWidth, as } = panelConfig[categoryKey];
-    // console.log('build is DevEnv: ', isDevMode, ', build length:', panels.length);
-    if (
-      enable
-      && panels
-      && panels.length
-      && ((category && categoryList.includes(categoryKey)) || (!category && !isDevMode)) //
-    ) {
-      panels.forEach((panelInfo) => {
-        let panelName;
-        const options = { enable: true, entry: 'app.tsx' };
-
-        if (typeof panelInfo === 'string') {
-          panelName = panelInfo;
-        } else if (panelInfo.splice) {
-          const [_name, _options] = panelInfo;
-          panelName = _name;
-          Object.assign(options, _options);
+  const getBundleEntry = () => {
+    switch (mode) {
+      case 'development': {
+        const panelEntry = path.resolve(__dirname, `../src/panels-next/${category}/${panel}/app.tsx`);
+        if (!fs.existsSync(panelEntry)) {
+          throw new Error(`面板入口不存在，请检查。 ${panelEntry}`);
         }
-        if (options.enable) {
-          const entryPath = path.join(
-            srcPath,
-            'panels',
-            `${as || categoryKey}/${panelName}`,
-            options.entry,
-          );
-          if (panelTheme) {
-            console.log(panelTheme, panelName);
-            if (panelName === panelTheme) {
-              entry[`${categoryKey}_${panelName}`] = entryPath;
-            }
-          } else {
-            entry[`${categoryKey}_${panelName}`] = entryPath;
-          }
-          viewport[entryPath.replace(/\\/g, '/')] = viewportWidth;
+        return panelEntry;
+      }
+      case 'production': {
+        // 生成多入口打包
+        const panelEntry = path.resolve(__dirname, `../src/panels-next/${category}/${panel}/app.tsx`);
+        if (!fs.existsSync(panelEntry)) {
+          throw new Error(`面板入口不存在，请检查。 ${panelEntry}`);
         }
-      });
+        return panelEntry;
+      }
     }
-  });
-  console.log('build panel length:', Object.keys(panelConfig).length, 'build template length --->', Object.keys(entry).length);
+  };
 
-  const outputFileName = outputIndex ? 'index' : '[name]';
-  return {
-    name: 'iotexplorer-h5-freepanels',
-    mode,
-    entry,
-    cache: {
-      type: 'filesystem',
-    },
-    output: {
-      path: outputPath,
-      filename: (isDevMode || isPreview) ? `${outputFileName}.js` : '[name].[contenthash:10].js',
-      libraryTarget: 'umd',
-      asyncChunks: true,
-      clean: false,
-    },
-    externals: {
-      react: 'React',
-      'react-dom': 'ReactDOM',
-      'qcloud-iotexplorer-h5-panel-sdk': 'h5PanelSdk',
-    },
-    devServer: {
-      // contentBase: outputPath,
-      compress: true,
-      port: 9000,
-      // disableHostCheck: true, //  新增该配置项
-      // hot: true,
-      https: false,
-      headers: { 'Access-Control-Allow-Origin': '*' },
-      static: {
-        directory: path.join(__dirname, outputPath),
-      },
-    },
+  const commonConfig = {
+    mode: 'development',
+    entry: getBundleEntry(),
     module: {
-      // 现在的 babel 配置已经很简单了，我们只需要加入默认的配置即可
       rules: [
         {
-          test: /\.(j|t)sx?$/,
-          exclude: /(node_modules|vendors)/,
-          use: [
-            {
-              loader: 'babel-loader',
-              options: {
-                sourceType: 'unambiguous',
-                presets: [
-                  '@babel/preset-env',
-                  '@babel/preset-react',
-                  '@babel/preset-typescript',
-                ],
-                plugins: [
-                  '@babel/plugin-transform-class-properties',
-                  [
-                    '@babel/plugin-transform-runtime',
-                    {
-                      absoluteRuntime: false,
-                      corejs: false,
-                      helpers: true,
-                      regenerator: false,
-                      useESModules: false,
-                    },
-                  ],
-                  ['babel-plugin-styled-components-px2vw', viewportConfig],
-                  // antd 按需引入
-                  [
-                    'import',
-                    {
-                      libraryName: 'antd-mobile',
-                      libraryDirectory: 'es/components',
-                      style: 'false',
-                    },
-                  ],
-                ],
-              },
-            }],
-        },
-        {
-          loader: 'ts-loader',
-          options: {
-            transpileOnly: true,
+          test: /\.tsx?$/,
+          use: {
+            loader: 'ts-loader',
+            options: {
+              transpileOnly: true,
+            },
           },
+          exclude: /node_modules/,
         },
         {
           test: /\.(le|c)ss$/,
@@ -173,110 +57,109 @@ module.exports = (env, argv) => {
             },
             {
               loader: 'css-loader',
-              options: {
-                url: true,
-              },
             },
             {
               loader: 'postcss-loader',
               options: {
-                ident: 'postcss',
-                plugins: (buildEnv) => {
-                  const isRem = plugin.isRem(buildEnv, viewport);
-
-                  return isRem ? [
-                    autoPreFixer(plugin.autoPreFixer),
-                    postcss(plugin.postcss),
-                  ] : [
-                    require('postcss-px-to-viewport')(viewportConfig),
-                    autoPreFixer(),
-                  ];
+                postcssOptions: (loaderContext) => {
+                  let viewportWidth = PANEL_VIEWPORT;
+                  if (loaderContext.resourcePath.includes('node_modules/antd-mobile')) {
+                    viewportWidth = 375;
+                  }
+                  return {
+                    plugins: [
+                      'postcss-preset-env',
+                      require('autoprefixer'),
+                      [
+                        'postcss-px-to-viewport-8-plugin',
+                        {
+                          unitToConvert: 'px',
+                          viewportWidth,
+                          unitPrecision: 5,
+                          propList: ['*'],
+                          viewportUnit: 'vw',
+                          fontViewportUnit: 'vw',
+                          selectorBlackList: [],
+                          minPixelValue: 1,
+                          mediaQuery: false,
+                          replace: true,
+                          exclude: undefined,
+                          include: undefined,
+                        },
+                      ],
+                    ],
+                  };
                 },
               },
             },
             {
               loader: 'less-loader',
             },
-            { loader: 'thread-loader' },
           ],
         },
         {
-          test: /\.svg$/,
-          exclude: [path.resolve(__dirname, '../src/assets/themes')],
-          use: [
-            'url-loader',
-            'svg-transform-loader',
-            {
-              loader: 'svgo-loader',
-              options: {
-                plugins: [{ removeTitle: true }, { convertStyleToAttrs: true }],
-              },
-            },
-          ],
-        },
-        {
-          test: /\.svg$/,
-          include: [path.resolve(__dirname, '../src/assets/themes')],
-          use: [
-            {
-              loader: 'svg-sprite-loader',
-              options: {
-                symbolId: 'icon-[name]',
-              },
-            },
-          ],
+          test: /\.(png|jpe?g|gif|svg|eot|ttf|woff|woff2)$/i,
+          type: 'asset',
         },
       ],
+    },
+    externals: {
+      react: 'React',
+      'react-dom': 'ReactDOM',
     },
     resolve: {
-      // 添加 jsx 后缀支持
-      extensions: ['.js', '.jsx', '.ts', '.tsx'],
+      extensions: ['.tsx', '.ts', '.js'],
       alias: {
         '@src': path.resolve(__dirname, '../src'),
-        '@components': path.resolve(__dirname, '../src/components'),
-        '@hooks': path.resolve(__dirname, '../src/hooks'),
+        '@panels-next': path.resolve(__dirname, '../src/panels-next'),
+        '@underscore': path.resolve(__dirname, '../src/vendor/underscore/index'),
         '@utillib': path.resolve(__dirname, '../src/libs/utillib.ts'),
-        '@libs': path.resolve(__dirname, '../src/libs'),
-        '@constants': path.resolve(__dirname, '../src/constants/index.ts'),
-        '@icons': path.resolve(__dirname, '../src/assets'),
-        '@underscore': path.resolve(
-          __dirname,
-          '../src/vendor/underscore/index',
-        ),
-        '@wxlib': path.resolve(__dirname, '../src/libs/wxlib/index.js'),
-        '@custom': path.resolve(__dirname, '../src/components/custom'),
-        '@router': path.resolve(__dirname, '../src/components/custom/Router'),
-        '@utils': path.resolve(__dirname, '../src/libs/utils.ts'),
-        '@theme': path.resolve(__dirname, '../src/styles/theme'),
-        '@svg': path.resolve(__dirname, plugin.svg),
       },
     },
-    devtool: isDevMode || isPreview ? 'eval-source-map' : false,
-    optimization: isPreview || !isDevMode ? {
-      chunkIds: 'named',
-      minimize: !isDevMode,
-      minimizer: [
-        new TerserPlugin({
-          parallel: true,
-          extractComments: false,
-        }),
-        new CssMinimizerPlugin(),
-      ],
-    } : {},
-    plugins: [
-      new webpack.ids.HashedModuleIdsPlugin(),
-      new webpack.ProgressPlugin(),
-      (isDevMode || isPreview) && new webpack.HotModuleReplacementPlugin(),
-      new webpack.DefinePlugin({ _env_: JSON.stringify(plugin.env) }),
-      new webpack.DefinePlugin({
-        'process.env.NODE_ENV': JSON.stringify(mode),
-        'process.env.CATEGORY': JSON.stringify(category),
-      }),
-      // new BundleAnalyzerPlugin(),
-      new ModifiedMiniCssExtractPlugin({
-        filename: (isDevMode || isPreview) ? `${outputFileName}.css` : '[name].[contenthash:10].css',
-      }),
-    ].filter(Boolean),
-    // stats: { children: false },
   };
+
+  const developmentConfig = {
+    mode: 'development',
+    output: {
+      filename: 'index.js',
+    },
+    devServer: {
+      port: 9000,
+      allowedHosts: 'all',
+      hot: true,
+      https: false,
+      headers: { 'Access-Control-Allow-Origin': '*' },
+    },
+    plugins: [
+      new MiniCssExtractPlugin({
+        filename: 'index.css',
+      }),
+    ],
+  };
+
+  const productionConfig = {
+    mode: 'production',
+    output: {
+      filename: `${category}_${panel}.[contenthash:10].js`,
+      path: path.resolve(__dirname, '../dist'),
+    },
+    plugins: [
+      new CssMinimizerPlugin(),
+      new MiniCssExtractPlugin({
+        filename: `${category}_${panel}.[contenthash:10].css`,
+      }),
+    ],
+  };
+
+  switch (mode) {
+    case 'development': {
+      return merge(commonConfig, developmentConfig);
+    }
+    case 'production': {
+      return merge(commonConfig, productionConfig);
+    }
+    default: {
+      throw new Error('Not matching configuration was found!');
+    }
+  }
 };

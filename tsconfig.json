@@ -73,7 +73,8 @@
   "exclude": [
     "node_modules",
     "dist",
-    "config"
+    "config",
+    "webpack"
   ],
   "compileOnSave": false
 }
