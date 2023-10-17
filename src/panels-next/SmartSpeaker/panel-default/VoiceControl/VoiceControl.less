@@ -1,3 +1,53 @@
 .page-voice-control {
+  padding: 0 16px;
 
+  .setting-view {
+    padding: 16px 0;
+  }
+
+  .control-list-warp {
+    margin-top: 24px;
+  }
+
+  .ll-cell-voice-list {
+    margin-top: 12px;
+    height: 80px;
+    position: relative;
+    padding: 10px 16px;
+    display: flex;
+    justify-content: flex-start;
+
+    .voice-img {
+      width: 56px;
+      height: 56px;
+      margin-right: 8px;
+      border-radius: 3px;
+    }
+
+    .voice-text-view {
+      height: 40px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .voice-name {
+      font-size: 13px;
+      color: rgba(19, 40, 71, 0.60);
+      font-weight: 400;
+    }
+
+    .voice-content {
+      font-size: 16px;
+      color: rgba(19, 40, 71, 0.90);
+      font-weight: 500;
+    }
+
+    .icon-arrowRight {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      right: 16px;
+    }
+  }
 }

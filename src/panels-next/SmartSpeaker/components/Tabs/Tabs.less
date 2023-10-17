@@ -1,0 +1,33 @@
+.ll-tabs {
+  display: flex;
+
+  .ll-tabs-item {
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 18px;
+
+    color: rgba(19, 40, 71, 0.60);
+    font-size: 14px;
+    font-weight: 400;
+
+    &.active {
+      color: #132847;
+      font-size: 16px;
+      font-weight: 600;
+      position: relative;
+
+      &::before {
+        content: " ";
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        bottom: -4px;
+        width: 16px;
+        height: 2px;
+        background-color: #132847;
+      }
+    }
+  }
+}

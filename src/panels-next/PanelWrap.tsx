@@ -15,10 +15,13 @@ export const useDeviceStore = create<IDeviceStore>(set => ({
   deviceData: {},
   updateDeviceData: (deviceData) => {
     const nextDeviceData = {};
-    Object.entries(deviceData).forEach(([dataKey, dataValue]) => {
-      nextDeviceData[dataKey] = (dataValue as any).Value;
-    });
-    set(state => ({ deviceData: { ...state.deviceData, ...nextDeviceData } }));
+    Object.entries(deviceData)
+      .forEach(([dataKey, dataValue]) => {
+        nextDeviceData[dataKey] = (dataValue as any).Value;
+      });
+    set(state => ({
+      deviceData: { ...state.deviceData, ...nextDeviceData },
+    }));
   },
 }));
 
@@ -34,17 +37,19 @@ function PanelWrap({ children }) {
   });
 
   return (
-    <SWRConfig value={{
-      revalidateOnFocus: false,
-      revalidateOnReconnect: false,
-      shouldRetryOnError: false,
-    }}>
+    <SWRConfig
+      value={{
+        revalidateOnFocus: false,
+        revalidateOnReconnect: false,
+        shouldRetryOnError: false,
+      }}
+    >
       {children}
     </SWRConfig>
   );
 }
 
-export function panelEntry(App) {
+export function panelEntry(App: React.ElementType) {
   ReactDOM.render(
     <PanelWrap>
       <App />

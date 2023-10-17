@@ -1,0 +1,57 @@
+.page-voiceCommandList {
+  padding: 16px;
+
+  .cmd-list-item {
+    margin-top: 16px;
+
+    .cmd-title {
+      color: #132847;
+      font-size: 16px;
+      font-weight: 600;
+    }
+
+    .cmd-panel {
+      box-sizing: border-box;
+      height: 80px;
+      background-color: #fff;
+      margin-top: 8px;
+      padding: 16px;
+
+      .cmd-tip {
+        font-size: 14px;
+        display: flex;
+
+        .cmd-tip-word {
+          margin-right: 6px;
+        }
+
+        &-text {
+          color: rgba(19, 40, 71, 0.90);
+          font-weight: 600;
+          text-align: center;
+
+          &.isTag {
+            background-color: rgba(52, 95, 188, 0.10);
+            padding: 0 8px;
+            color: #345FBC;
+            font-weight: 500;
+          }
+        }
+
+        &-tip-tag {
+
+        }
+
+        .cmd-tip-desc {
+          text-align: center;
+          margin-top: 6px;
+          padding-top: 6px;
+          border-top: 1px solid rgba(19, 40, 71, 0.40);
+          color: rgba(19, 40, 71, 0.60);
+          font-size: 12px;
+          font-weight: 400;
+        }
+      }
+    }
+  }
+}
