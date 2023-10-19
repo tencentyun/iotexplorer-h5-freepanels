@@ -9,5 +9,5 @@ render(App, {
   isPopUp: false,
   sceneLength: 4,
   sceneBtnModeProperty: 'mode_swtch_4',
-  sceneBtnModeDesc: ['场景按键1', '场景按键2', '场景按键3', '场景按键4dev'],
+  sceneBtnModeDesc: ['场景按键1', '场景按键2', '场景按键3', '场景按键4'],
 });
