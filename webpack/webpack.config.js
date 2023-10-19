@@ -116,6 +116,8 @@ module.exports = (env, argv) => {
       static: {
         directory: path.join(__dirname, outputPath),
       },
+      allowedHosts: 'all',
+      hot: true,
     },
     module: {
       // 现在的 babel 配置已经很简单了，我们只需要加入默认的配置即可
