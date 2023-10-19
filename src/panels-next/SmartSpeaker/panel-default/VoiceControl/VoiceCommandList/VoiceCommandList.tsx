@@ -50,16 +50,20 @@ export function VoiceCommandList() {
           <div className='cmd-title'>{commandName}</div>
           <div className='cmd-panel'>
             <div className='cmd-tip'>
-              <div>“</div>
+              <div className='cmd-tip-word'>
+                <div className='cmd-tip-text'>“</div>
+              </div>
               {commandTip.map(({ text, desc, isTag }, index) => (
-                <div className={classnames('cmd-tip-word')} key={index}>
+                <div className='cmd-tip-word' key={index}>
                   <div className={classnames('cmd-tip-text', { isTag })}>{text}</div>
                   {desc && (
                     <div className='cmd-tip-desc'>{desc}</div>
                   )}
                 </div>
               ))}
-              <div>”</div>
+              <div className='cmd-tip-word'>
+                <div className='cmd-tip-text'>”</div>
+              </div>
             </div>
           </div>
         </div>

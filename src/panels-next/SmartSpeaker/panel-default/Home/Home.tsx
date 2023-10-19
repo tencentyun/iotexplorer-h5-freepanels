@@ -62,7 +62,15 @@ export function Home() {
         <Cell icon={iconSleepMode} title='睡眠模式' onClick={() => history.push('/sleep-mode')} />
       </div>
       <div className='setting-view-vertical'>
-        <Cell icon={iconSubDevice} title='子设备管理' onClick={() => console.info('[腾讯连连]网关子设备管理')} />
+        <Cell
+          icon={iconSubDevice}
+          title='子设备管理'
+          onClick={() => {
+            window.h5PanelSdk.callMpApi('navigateTo', {
+              url: `/pages/Device/GatewaySubDeviceList/GatewaySubDeviceList?gatewayDeviceId=${window.h5PanelSdk.deviceId}&isLLSyncGateway=true`,
+            });
+          }}
+        />
         <Cell icon={iconSetting} title='基础设置' onClick={() => history.push('/more-setting')} />
       </div>
     </div>

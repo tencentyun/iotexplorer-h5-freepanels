@@ -114,6 +114,7 @@ module.exports = (env, { mode }) => {
         '@panels-next': path.resolve(__dirname, '../src/panels-next'),
         '@underscore': path.resolve(__dirname, '../src/vendor/underscore/index'),
         '@utillib': path.resolve(__dirname, '../src/libs/utillib.ts'),
+        '@libs': path.resolve(__dirname, '../src/libs'),
       },
     },
   };

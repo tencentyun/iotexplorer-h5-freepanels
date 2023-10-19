@@ -229,3 +229,8 @@ export function retry(fn, options: RetryOptions) {
   });
 }
 
+export const px2vw = (px: number, viewport = 375): string | number => {
+  const vw = px * (100 / viewport);
+
+  return `${vw.toFixed(3)}vw`;
+};
