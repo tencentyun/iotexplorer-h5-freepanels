@@ -64,8 +64,8 @@ const ledBrightnessOptions = [
 // };
 
 export function MoreSetting() {
-  useTitle('功能设置');;
-  const { deviceData } = useDeviceStore();
+  useTitle('功能设置');
+  const { deviceData, controlDeviceData } = useDeviceStore();
   const {
     outage_status = 0,
     led_brightness = 1,
@@ -185,7 +185,7 @@ export function MoreSetting() {
       await reloadTimerList();
 
       if (checked) {
-        h5PanelSdk.controlDeviceData({ led_brightness: brightness });
+        controlDeviceData({ led_brightness: brightness });
       }
 
       loadingToast.close();
@@ -210,7 +210,7 @@ export function MoreSetting() {
             });
             const val = res?.[0];
             if (typeof val === 'number') {
-              h5PanelSdk.controlDeviceData({ led_brightness: val });
+              controlDeviceData({ led_brightness: val });
             }
           }}
         >
@@ -245,7 +245,7 @@ export function MoreSetting() {
             });
             const val = res?.[0];
             if (typeof val === 'number') {
-              h5PanelSdk.controlDeviceData({ outage_status: val });
+              controlDeviceData({ outage_status: val });
             }
           }}
         >
@@ -268,7 +268,7 @@ export function MoreSetting() {
       {/*              let [h, m] = res;*/}
       {/*              h = Number(h);*/}
       {/*              m = Number(m);*/}
-      {/*              h5PanelSdk.controlDeviceData({ [modeProperty]: h * 3600 + m * 60 });*/}
+      {/*              controlDeviceData({ [modeProperty]: h * 3600 + m * 60 });*/}
       {/*            }*/}
       {/*          }}*/}
       {/*        >*/}
@@ -293,7 +293,7 @@ export function MoreSetting() {
                   });
                   const val = res?.[0];
                   if (typeof val === 'number') {
-                    h5PanelSdk.controlDeviceData({ [modeProperty]: val });
+                    controlDeviceData({ [modeProperty]: val });
                   }
                 }}
               >

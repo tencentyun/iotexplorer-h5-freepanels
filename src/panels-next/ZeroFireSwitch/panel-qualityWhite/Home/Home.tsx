@@ -149,7 +149,7 @@ function EditSwitchNameModal({
 
 export function Home() {
   const history = useHistory();
-  const { deviceData } = useDeviceStore();
+  const { deviceData, controlDeviceData } = useDeviceStore();
 
   const switchNum = useSwitchNum();
   const { switchNameMap } = useSwitchNameMap();
@@ -160,14 +160,14 @@ export function Home() {
     const deviceData = {};
     Object.keys(switchNameMap)
       .forEach(key => deviceData[key] = 1);
-    h5PanelSdk.controlDeviceData(deviceData);
+    controlDeviceData(deviceData);
   };
 
   const closeAllSwitch = () => {
     const deviceData = {};
     Object.keys(switchNameMap)
       .forEach(key => deviceData[key] = 0);
-    h5PanelSdk.controlDeviceData(deviceData);
+    controlDeviceData(deviceData);
   };
 
   return (
@@ -195,7 +195,7 @@ export function Home() {
               name={switchName}
               powerSwitch={deviceData[switchKey]}
               onClick={() => {
-                h5PanelSdk.controlDeviceData({
+                controlDeviceData({
                   [switchKey]: !deviceData[switchKey] ? 1 : 0,
                 });
               }}
