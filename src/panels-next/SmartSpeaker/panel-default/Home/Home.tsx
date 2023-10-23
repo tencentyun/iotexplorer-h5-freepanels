@@ -14,9 +14,10 @@ import Slider from 'rc-slider';
 import 'rc-slider/assets/index.css';
 import { Cell } from '@src/panels-next/SmartSpeaker/components/Cell';
 import { useHistory } from 'react-router-dom';
+import { h5PanelSdk } from '@src/panels-next/h5PanelSdk';
 
 export function Home() {
-  const { deviceData } = useDeviceStore();
+  const { deviceData, controlDeviceData } = useDeviceStore();
   const history = useHistory();
 
   const [volume, setVolume] = useState(deviceData.volume || 49);
@@ -50,7 +51,7 @@ export function Home() {
             max={100}
             onChange={setVolume}
             onAfterChange={(val) => {
-              window.h5PanelSdk.controlDeviceData({ volume: val });
+              controlDeviceData({ volume: val });
             }}
           />
         </div>
@@ -66,8 +67,8 @@ export function Home() {
           icon={iconSubDevice}
           title='子设备管理'
           onClick={() => {
-            window.h5PanelSdk.callMpApi('navigateTo', {
-              url: `/pages/Device/GatewaySubDeviceList/GatewaySubDeviceList?gatewayDeviceId=${window.h5PanelSdk.deviceId}&isLLSyncGateway=true`,
+            h5PanelSdk.callMpApi('navigateTo', {
+              url: `/pages/Device/GatewaySubDeviceList/GatewaySubDeviceList?gatewayDeviceId=${h5PanelSdk.deviceId}&isLLSyncGateway=true`,
             });
           }}
         />
