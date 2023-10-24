@@ -72,7 +72,15 @@ export function Home() {
             });
           }}
         />
-        <Cell icon={iconSetting} title='基础设置' onClick={() => history.push('/more-setting')} />
+        <Cell
+          title='基础设置'
+          icon={iconSetting}
+          onClick={() => {
+            h5PanelSdk.callMpApi('navigateTo', {
+              url: `/pages/Device/DeviceDetail/DeviceDetail?deviceId=${h5PanelSdk.deviceId}`,
+            });
+          }}
+        />
       </div>
     </div>
   );
