@@ -1,8 +1,9 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import './SleepMode.less';
-import { Button, CheckList, List, Picker, Popup, SafeArea, Switch, Toast } from 'antd-mobile';
+import { Button, CheckList, List, Picker, Popup, Switch, Toast } from 'antd-mobile';
 import useSWR from 'swr';
 import { h5PanelSdk } from '@src/panels-next/h5PanelSdk';
+import { px2vw } from '@utils';
 
 function genTimeColumns() {
   const columns: [any[], any[]] = [[], []];
@@ -104,7 +105,6 @@ export function SleepMode() {
       startSleepModeTimer,
       endSleepModeTimer,
     } = {},
-    isValidating,
     mutate,
   } = useSWR('AppGetTimerList', async () => {
     const { TimerList = [] } = await h5PanelSdk.requestTokenApi('AppGetTimerList', {
@@ -208,7 +208,6 @@ export function SleepMode() {
           <Switch
             checked={isOpenSleepMode}
             onChange={onSleepModeChange}
-            loading={isValidating}
           />
         )}>
           睡眠模式
@@ -222,6 +221,7 @@ export function SleepMode() {
               const value = await Picker.prompt({
                 columns: timeColumns,
               });
+              if (!value) return;
               await updateSleepModeTimer({
                 ...startSleepModeTimer,
                 TimePoint: value?.join(':'),
@@ -236,6 +236,7 @@ export function SleepMode() {
               const value = await Picker.prompt({
                 columns: timeColumns,
               });
+              if (!value) return;
               await updateSleepModeTimer({
                 ...endSleepModeTimer,
                 TimePoint: value?.join(':'),
@@ -270,7 +271,7 @@ export function SleepMode() {
           padding: '8px 16px 0',
         }}
       >
-        <div>
+        <div style={{ paddingBottom: px2vw(32) }}>
           <CheckList
             multiple
             value={selectDays}
@@ -314,7 +315,6 @@ export function SleepMode() {
           >
             确定
           </Button>
-          <SafeArea position='bottom' />
         </div>
       </Popup>
     </div>

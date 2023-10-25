@@ -115,6 +115,7 @@ module.exports = (env, { mode }) => {
         '@underscore': path.resolve(__dirname, '../src/vendor/underscore/index'),
         '@utillib': path.resolve(__dirname, '../src/libs/utillib.ts'),
         '@libs': path.resolve(__dirname, '../src/libs'),
+        '@utils': path.resolve(__dirname, '../src/libs/utils.ts'),
       },
     },
   };
