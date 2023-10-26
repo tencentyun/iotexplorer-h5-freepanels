@@ -21,10 +21,10 @@ export function VoiceControl() {
 
   const { deviceData, controlDeviceData } = useDeviceStore();
 
-  const { data: commandList = [], isLoading } = useControlCommandList();
-  const { data: manualSceneList = [] } = useManualScene();
+  const { data: commandList = [], isLoading: isLoadingCommand } = useControlCommandList();
+  const { data: manualSceneList = [], isLoading: isLoadingScene } = useManualScene();
 
-  if (isLoading) {
+  if (isLoadingCommand || isLoadingScene) {
     return <StatusTip status='loading' fillContainer />;
   }
 

@@ -8,7 +8,7 @@ interface IManualScene {
 
 export function useManualScene() {
   const swrResponse = useSWR<IManualScene[]>('AppGetSceneList', async () => {
-    const result = h5PanelSdk.requestTokenApi('AppGetSceneList', {
+    const result = await h5PanelSdk.requestTokenApi('AppGetSceneList', {
       FamilyId: h5PanelSdk.familyId,
       Offset: 0,
       Limit: 50,
