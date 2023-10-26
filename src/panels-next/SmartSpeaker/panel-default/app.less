@@ -53,6 +53,28 @@
   .adm-button-primary {
     --color: var(--adm-color-primary);
   }
+
+  .status-info {
+    padding: 0;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+
+    .status-icon {
+      width: 256px;
+      height: 160px;
+      margin: 0;
+    }
+
+    .status-message {
+      font-size: 14px;
+    }
+  }
+
+  .loading-icon.spinner > .bounce {
+    width: 6px;
+    height: 6px;
+  }
 }
 
 .page-smart-speaker__default {

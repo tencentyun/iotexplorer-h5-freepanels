@@ -116,6 +116,10 @@ module.exports = (env, { mode }) => {
         '@utillib': path.resolve(__dirname, '../src/libs/utillib.ts'),
         '@libs': path.resolve(__dirname, '../src/libs'),
         '@utils': path.resolve(__dirname, '../src/libs/utils.ts'),
+        '@components': path.resolve(__dirname, '../src/components'),
+        '@icons': path.resolve(__dirname, '../src/assets'),
+        '@hooks': path.resolve(__dirname, '../src/hooks'),
+        '@constants': path.resolve(__dirname, '../src/constants/index.ts'),
       },
     },
   };
