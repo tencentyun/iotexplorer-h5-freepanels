@@ -99,7 +99,7 @@ module.exports = (env, { mode }) => {
         },
         {
           test: /\.(png|jpe?g|gif|svg|eot|ttf|woff|woff2)$/i,
-          type: 'asset',
+          type: 'asset/inline',
         },
       ],
     },
