@@ -6,8 +6,6 @@ import Ticker from '../../Common/Home/Ticker';
 import Action from './Action';
 import { DeviceDetail } from '@custom/DeviceDetail';
 import RGBColor from '../../Common/Home/RGBColor';
-import { Icon } from '@custom/Icon';
-import { Cell } from '@custom/Cell';
 
 export function Home(props) {
   const {
@@ -49,23 +47,23 @@ export function Home(props) {
             {isColorFull
               ? <>
                 <LightBright
-                  iconName="temperature"
-                  controlName="color_temp"
+                  iconName='temperature'
+                  controlName='color_temp'
                   minValue={2700}
                   maxValue={6500}
                   {...props}
                 ></LightBright>
 
                 <LightBright
-                  iconName="brightness"
+                  iconName='brightness'
                   onChange={setBrightness}
-                  controlName="brightness"
+                  controlName='brightness'
                   {...props}
                 ></LightBright>
               </>
               : <LightBright
-                iconName="brightness"
-                controlName="brightness"
+                iconName='brightness'
+                controlName='brightness'
                 onChange={setBrightness}
                 {...props}
               ></LightBright>
@@ -76,6 +74,6 @@ export function Home(props) {
         }
         <Action {...props}></Action>
       </div>
-    </div >
+    </div>
   );
 }
