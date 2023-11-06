@@ -60,7 +60,8 @@ export function Scene(props) {
                 TemplateValue: doorbell || 0,
               },
             ],
-            freezeAction: true,
+            SceneName: '门铃播报',
+            freezeAction: false,
           },
         })}
       >
