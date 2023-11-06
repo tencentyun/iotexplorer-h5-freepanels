@@ -9,8 +9,6 @@ import {
   iconPowerSwitchOpen,
   iconSettingScene,
   iconThreeDot,
-  iconClock,
-  iconBrightness,
 } from '@src/panels-next/ZeroFireSwitch/panel-qualityWhite/assets';
 import classnames from 'classnames';
 import { useHistory } from 'react-router-dom';
@@ -240,7 +238,7 @@ export function Home() {
         }}
       >
         <img className='icon-setting-scene' src={iconSettingScene} alt='' />
-        <div className='setting-title'>功能设置</div>
+        <div className='setting-title'>开关设置</div>
         <img className='icon-arrowRight' src={iconArrowRight} alt='' />
       </div>
 
@@ -251,7 +249,7 @@ export function Home() {
           h5PanelSdk.goTimingProjectPage();
         }}
       >
-        <img className='icon-setting-scene' src={iconClock} alt='' />
+        <img className='icon-setting-scene' src={iconSettingScene} alt='' />
         <div className='setting-title'>定时任务</div>
         <img className='icon-arrowRight' src={iconArrowRight} alt='' />
       </div>
@@ -262,7 +260,7 @@ export function Home() {
           history.push('/brightness-setting');
         }}
       >
-        <img className='icon-setting-scene' src={iconBrightness} alt='' />
+        <img className='icon-setting-scene' src={iconSettingScene} alt='' />
         <div className='setting-title'>指示灯调节</div>
         <img className='icon-arrowRight' src={iconArrowRight} alt='' />
       </div>
