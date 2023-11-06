@@ -72,7 +72,7 @@ export function Home(props) {
 
           : <ScenePage {...props}></ScenePage>
         }
-        <Action {...props}></Action>
+        <Action {...props} work_mode={work_mode} ></Action>
       </div>
     </div>
   );

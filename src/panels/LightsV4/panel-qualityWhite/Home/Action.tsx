@@ -21,6 +21,7 @@ const Action = (props) => {
     utils,
     setLocal,
     sdk,
+    work_mode,
   } = props;
   const onSwitchChange = () => {
     doControlDeviceData({ power_switch: power_switch ? 0 : 1 });
@@ -49,7 +50,8 @@ const Action = (props) => {
       '定时',
 
       isSwitchOff ? 'timing' : 'timing-checked',
-      push.bind(null, PATH.TIMER_LIST, { isModule: true }),
+      () => sdk.goTimingProjectPage(),
+      // push.bind(null, PATH.TIMER_LIST, { isModule: true }),
       isExistTimer,
     ],
     [
@@ -77,20 +79,22 @@ const Action = (props) => {
 
   return (
     <>
-      <div className={'action action-off'}>
-        {actions.map(([label, name, onClick], index) => (
-          <div
-            key={index}
-            className={`action-item  action-item-${index + 1}`}
-            onClick={onClick}
-          >
-            <div className={`action-ele action-ele-${index}`}>
-              <Icon name={name} />
-              <div>{label}</div>
+      {work_mode != 10 && (
+        <div className={'action action-off'}>
+          {actions.map(([label, name, onClick], index) => (
+            <div
+              key={index}
+              className={`action-item  action-item-${index + 1}`}
+              onClick={onClick}
+            >
+              <div className={`action-ele action-ele-${index}`}>
+                <Icon name={name} />
+                <div>{label}</div>
+              </div>
             </div>
-          </div>
-        ))}
-      </div>
+          ))}
+        </div>
+      )}
       <div className='custom-modal'>
         <Modal
           visible={modeVisible}
