@@ -64,7 +64,7 @@ export const SceneSetting = ({
     sdk.goScenePage({
       sceneType: 'auto',
       sceneId: item?.AutomationId,
-      scenePreset: { freezeCondition: true },
+      scenePreset: { freezeCondition: false },
     });
   };
 
@@ -96,7 +96,7 @@ export const SceneSetting = ({
             },
           },
         ],
-        freezeCondition: true,
+        freezeCondition: false,
         freezeAction: false,
       },
     });
