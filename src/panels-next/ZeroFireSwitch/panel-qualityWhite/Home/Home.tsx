@@ -9,6 +9,8 @@ import {
   iconPowerSwitchOpen,
   iconSettingScene,
   iconThreeDot,
+  iconClock,
+  iconBrightness,
 } from '@src/panels-next/ZeroFireSwitch/panel-qualityWhite/assets';
 import classnames from 'classnames';
 import { useHistory } from 'react-router-dom';
@@ -26,7 +28,9 @@ function SwitchRectangleBtn({
 }) {
   return (
     <div className='comp-switch-btn' onClick={onClick}>
-      <div className='switch-btn-container card'>
+      <div className={classnames('switch-btn-container card', {
+        open: !!powerSwitch,
+      })}>
         <img className='icon-light' src={iconLight} />
         <div
           className={classnames('switch-status-dot', {
@@ -221,7 +225,7 @@ export function Home() {
       <div
         className='view-setting card'
         onClick={() => {
-          window.h5PanelSdk.goScenePage({ type: 'default' });
+          h5PanelSdk.goScenePage({ type: 'default' });
         }}
       >
         <img className='setting-icon' src={iconSettingScene} alt='' />
@@ -237,6 +241,29 @@ export function Home() {
       >
         <img className='icon-setting-scene' src={iconSettingScene} alt='' />
         <div className='setting-title'>功能设置</div>
+        <img className='icon-arrowRight' src={iconArrowRight} alt='' />
+      </div>
+
+      <div
+        className='view-setting card'
+        onClick={() => {
+          console.log('跳转连连定时任务设置');
+          h5PanelSdk.goTimingProjectPage();
+        }}
+      >
+        <img className='icon-setting-scene' src={iconClock} alt='' />
+        <div className='setting-title'>定时任务</div>
+        <img className='icon-arrowRight' src={iconArrowRight} alt='' />
+      </div>
+
+      <div
+        className='view-setting card'
+        onClick={() => {
+          history.push('/brightness-setting');
+        }}
+      >
+        <img className='icon-setting-scene' src={iconBrightness} alt='' />
+        <div className='setting-title'>指示灯调节</div>
         <img className='icon-arrowRight' src={iconArrowRight} alt='' />
       </div>
     </div>
