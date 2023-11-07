@@ -39,7 +39,7 @@ const getProductIconName = () => {
     case 'SelectedDownLight':
       return 'downlight';
     default:
-      return 'lightStrip';
+      return 'spotlight';
   }
 };
 
