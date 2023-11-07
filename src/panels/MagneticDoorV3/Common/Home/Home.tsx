@@ -139,12 +139,12 @@ export function Home({
                   },
                 },
               ],
-              freezeCondition: true,
+              freezeCondition: false,
             },
           });
         }}
       >
-        智能场景dev
+        智能场景
       </CellBtn>
       <OptionDialog
         title='模式'
