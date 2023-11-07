@@ -80,7 +80,9 @@ const GateWay = (props) => {
                 className='border'
                 prefixIcon={<Icon className='custom-icon' name='add'></Icon>}
                 onClick={() => {
-                  history?.push('/search/device', { start: Math.random() });
+                  window.h5PanelSdk.callMpApi('navigateTo', {
+                    url: `/pages/Device/AddDevice/AddSubDeviceLLSync/AddSubDeviceLLSync?gatewayDeviceId=${window.h5PanelSdk.deviceId}&autoStartScan=true`,
+                  });
                 }}
               ></Cell>
             </div>
@@ -90,7 +92,10 @@ const GateWay = (props) => {
                 className='border'
                 prefixIcon={<Icon className='custom-icon' name='book'></Icon>}
                 onClick={() => {
-                  history?.push('/subDevice');
+                  // history?.push('/subDevice');
+                  window.h5PanelSdk.callMpApi('navigateTo', {
+                    url: `/pages/Device/GatewaySubDeviceList/GatewaySubDeviceList?gatewayDeviceId=${window.h5PanelSdk.deviceId}&isLLSyncGateway=true`,
+                  });
                 }}
               ></Cell>
             </div>
