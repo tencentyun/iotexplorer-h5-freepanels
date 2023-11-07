@@ -29,10 +29,24 @@ const getControlColorTempByDeg = (deg) => {
   return Math.round(2700 + (deg - 18) * step);
 };
 
+const getProductIconName = () => {
+  const categoryKey = window.h5PanelSdk.productInfo.CategoryKey;
+  switch (categoryKey) {
+    case 'light_strip_cw':
+      return 'lightStrip';
+    case 'Down Light':
+      return 'downlight';
+    case 'SelectedDownLight':
+      return 'downlight';
+    default:
+      return 'lightStrip';
+  }
+};
+
 export function Position({
   // value,
   // brightness = 80,
-  productType = 'spotlight',
+  // productType = 'spotlight',
   productColorMode = 1,
   deviceData: {
     // brightness = 80,
@@ -43,7 +57,7 @@ export function Position({
     colour_data,
     power_switch,
   },
-  log,
+  // log,
   doControlDeviceData,
 }) {
   const colorTempInputRef = useRef<any>(null);
@@ -109,7 +123,7 @@ export function Position({
   };
 
 
-  log.mi('传递的参数:::', productType, colorMode);
+  // log.mi('传递的参数:::', productType, colorMode);
 
   return (
     <div className={`position_card center ${powerStatus} color-type-${colorMode}`}>
@@ -123,7 +137,7 @@ export function Position({
               <div className='circle inner'></div>
             </div>
             <div className='bg-img center'>
-              <Icon name={productType}></Icon>
+              <Icon name={getProductIconName()}></Icon>
               <div className='center-value'>{color_temp}K</div>
             </div>
           </div>
