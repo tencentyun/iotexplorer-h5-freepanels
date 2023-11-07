@@ -33,11 +33,11 @@ declare interface SelectorOption {
   value: string;
 }
 
-declare global {
-  interface Window {
-    h5PanelSdk: any;
-  }
-}
+// declare global {
+//   interface Window {
+//     h5PanelSdk: any;
+//   }
+// }
 
 declare interface ListResponse<T> {
   list: T[];
@@ -64,5 +64,3 @@ declare interface TemplatePropertyConfig {
   };
   required?: boolean;
 }
-
-export {};

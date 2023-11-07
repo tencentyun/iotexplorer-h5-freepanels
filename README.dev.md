@@ -31,7 +31,7 @@ h5面板服务
 https://iot.cloud.tencent.com/h5panel/developing?productId=${PRODUCT_ID}&deviceName=${DEVICE_NAME}
 
 ### 构建指南
-`npm run build` 根据 `panelBuild.config.js` 的配置，按需构建面板
+`npm run build --category=分类名称 --panel=面板类型`
 
 ## 项目说明
 - 当前项目配置默认基于375px设计稿，尺寸单位转换为vw
