@@ -4,4 +4,3 @@ import '@theme/panel-qualityWhite';
 import './app.less';
 
 render(App, { isModuleTimer: true, isModal: true, isPopUp: false });
-

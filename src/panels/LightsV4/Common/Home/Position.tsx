@@ -4,6 +4,7 @@ import { Circular } from '@custom/Circular';
 import { Icon } from '@custom/Icon';
 import { getDegValue } from '@utils';
 import { Input, Modal, Toast } from 'antd-mobile';
+import { noop } from '@utillib';
 
 export interface LightColorProps extends StyledProps {
   defaultValue?: number; // 0 - 1000
@@ -138,11 +139,13 @@ export function Position({
             </div>
             <div className='bg-img center'>
               <Icon name={getProductIconName()}></Icon>
-              <div className='center-value'>{color_temp}K</div>
+              {colorMode !== 0 && (
+                <div className='center-value'>{color_temp}K</div>
+              )}
             </div>
           </div>
           <Circular
-            onClick={handleColorTempInput}
+            onClick={colorMode === 0 ? noop : handleColorTempInput}
             className={isPowerOff ? 'circular-off' : ''}
             value={deg}
             onChange={onChange}

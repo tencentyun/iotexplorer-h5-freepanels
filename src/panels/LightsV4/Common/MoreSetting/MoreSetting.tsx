@@ -23,6 +23,7 @@ const gradientCycleOptions = [
 
 const delayCloseOptions = [
   [
+    { label: '无', value: 0 },
     { label: '5秒', value: 5 },
     { label: '10秒', value: 10 },
     { label: '15秒', value: 15 },
@@ -81,6 +82,12 @@ const timeOptions = (() => {
   }
   return result;
 })();
+
+const secondToStr = (num: number) => {
+  const minuteStr = Math.floor(num / 60) > 0 ? `${Math.floor(num / 60)}分`: '';
+  const secondsStr = num % 60 > 0 ? `${num % 60}秒`: '';
+  return minuteStr + secondsStr;
+};
 
 export function MoreSetting({ deviceData, doControlDeviceData, sdk }) {
   useTitle('设置');
@@ -350,7 +357,7 @@ export function MoreSetting({ deviceData, doControlDeviceData, sdk }) {
           断电后通电状态
         </List.Item>
         <List.Item
-          extra={delayCloseOptions[0][delay_close]?.label || '-'}
+          extra={secondToStr(Number(delay_close)) || '-'}
           clickable
           onClick={async () => {
             const res = await Picker.prompt({
