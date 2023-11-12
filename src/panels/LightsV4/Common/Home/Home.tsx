@@ -8,7 +8,7 @@ import { DeviceDetail } from '@custom/DeviceDetail';
 
 export function Home(props) {
   // tab模式
-  const colorMode = props.deviceData.work_mode || 'white';
+  const colorMode = props.deviceData.color_mode || 'white';
   return (
     <div className={`home ${colorMode}`}>
       <DeviceDetail></DeviceDetail>

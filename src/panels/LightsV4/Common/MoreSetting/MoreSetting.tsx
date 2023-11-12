@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import { List, Picker, Switch, Toast } from 'antd-mobile';
+import { List, Picker, Toast } from 'antd-mobile';
 // import { Input, List, Modal, Picker, Switch, Toast } from 'antd-mobile';
 import useSWR from 'swr';
 import './MoreSetting.less';
@@ -18,6 +18,27 @@ const gradientCycleOptions = [
     { label: '8秒', value: 8 },
     { label: '9秒', value: 9 },
     { label: '10秒', value: 10 },
+  ],
+];
+
+const delayCloseOptions = [
+  [
+    { label: '无', value: 0 },
+    { label: '5秒', value: 5 },
+    { label: '10秒', value: 10 },
+    { label: '15秒', value: 15 },
+    { label: '20秒', value: 20 },
+    { label: '25秒', value: 25 },
+    { label: '30秒', value: 30 },
+    { label: '1分钟', value: 60 },
+    { label: '30分钟', value: 1800 },
+  ],
+];
+
+const colorModeOptions = [
+  [
+    { label: '单色模式', value: 0 },
+    { label: '双色模式', value: 1 },
   ],
 ];
 
@@ -62,6 +83,12 @@ const timeOptions = (() => {
   return result;
 })();
 
+const secondToStr = (num: number) => {
+  const minuteStr = Math.floor(num / 60) > 0 ? `${Math.floor(num / 60)}分`: '';
+  const secondsStr = num % 60 > 0 ? `${num % 60}秒`: '';
+  return minuteStr + secondsStr;
+};
+
 export function MoreSetting({ deviceData, doControlDeviceData, sdk }) {
   useTitle('设置');
 
@@ -72,6 +99,8 @@ export function MoreSetting({ deviceData, doControlDeviceData, sdk }) {
     // night_light_status = 0,
     // default_color_temp = '-',
     // default_brightness = '-',
+    delay_close = 0,
+    color_mode = 0,
   } = deviceData;
 
   const [nightLightTime, setNightLightTime] = useState({
@@ -211,15 +240,18 @@ export function MoreSetting({ deviceData, doControlDeviceData, sdk }) {
   // const colorTempInputRef = useRef<any>(null);
   // const brightnessInputRef = useRef<any>(null);
 
+  const showToggleColorMode = sdk.dataTemplate.properties.find(item => item.id === 'color_mode');
+
   return (
     <>
       <List header='基础设置'>
         <List.Item
-          extra={gradientCycleOptions[0][gradient_cycle]?.label || '物模型非法'}
+          extra={gradientCycleOptions[0][gradient_cycle]?.label || '-'}
           clickable
           onClick={async () => {
             const res = await Picker.prompt({
               columns: gradientCycleOptions,
+              defaultValue: [gradient_cycle || gradientCycleOptions[0][0].value],
             });
             const val = res?.[0];
             if (typeof val === 'number') {
@@ -309,11 +341,12 @@ export function MoreSetting({ deviceData, doControlDeviceData, sdk }) {
         {/*  </>*/}
         {/* )}*/}
         <List.Item
-          extra={outageStatusOptions[0][outage_status]?.label || '物模型非法'}
+          extra={outageStatusOptions[0][outage_status]?.label || '-'}
           clickable
           onClick={async () => {
             const res = await Picker.prompt({
               columns: outageStatusOptions,
+              defaultValue: [outage_status || outageStatusOptions[0][0].value],
             });
             const val = res?.[0];
             if (typeof val === 'number') {
@@ -323,64 +356,98 @@ export function MoreSetting({ deviceData, doControlDeviceData, sdk }) {
         >
           断电后通电状态
         </List.Item>
-      </List>
-      <List header={'夜灯设置'}>
         <List.Item
-          extra={(
-            <Switch
-              loading={isValidating}
-              checked={isOpenNightLightStatus}
-              onChange={handleChangeNightLight}
-            />
-          )}
-          description='在目标时间段内自动开启夜灯模式'>
-          夜灯开关
+          extra={secondToStr(Number(delay_close)) || '-'}
+          clickable
+          onClick={async () => {
+            const res = await Picker.prompt({
+              columns: delayCloseOptions,
+              defaultValue: [delay_close || delayCloseOptions[0][0].value],
+            });
+            const val = res?.[0];
+            if (typeof val === 'number') {
+              doControlDeviceData({ delay_close: val });
+            }
+          }}
+        >
+          延迟关灯
         </List.Item>
-        {!!isOpenNightLightStatus && (
-          <>
-            <List.Item
-              clickable
-              extra={openNightTimer?.TimePoint || '22:00'}
-              onClick={async () => {
-                const res = await Picker.prompt({
-                  columns: timeOptions,
-                  defaultValue: (openNightTimer?.TimePoint || '22:00')?.split(':'),
-                });
-                if (res) {
-                  let [hour, minute] = res;
-                  hour = `${hour}`.padStart(2, '0');
-                  minute = `${minute}`.padStart(2, '0');
-                  console.log(hour, minute);
-                  await updateNightLightTimerTimePoint({ ...nightLightTime, startTime: `${hour}:${minute}` });
-                  setNightLightTime({ ...nightLightTime, startTime: `${hour}:${minute}` });
-                }
-              }}
-            >
-              夜灯开启时间
-            </List.Item>
-            <List.Item
-              clickable
-              extra={closeNightTimer?.TimePoint || '06:00'}
-              onClick={async () => {
-                const res = await Picker.prompt({
-                  columns: timeOptions,
-                  defaultValue: (closeNightTimer?.TimePoint || '06:00')?.split(':'),
-                });
-                if (res) {
-                  let [hour, minute] = res;
-                  hour = `${hour}`.padStart(2, '0');
-                  minute = `${minute}`.padStart(2, '0');
-                  console.log(hour, minute);
-                  await updateNightLightTimerTimePoint({ ...nightLightTime, endTime: `${hour}:${minute}` });
-                  setNightLightTime({ ...nightLightTime, endTime: `${hour}:${minute}` });
-                }
-              }}
-            >
-              夜灯关闭时间
-            </List.Item>
-          </>
+        {showToggleColorMode && (
+          <List.Item
+            extra={colorModeOptions[0][color_mode]?.label || '-'}
+            clickable
+            onClick={async () => {
+              const res = await Picker.prompt({
+                columns: colorModeOptions,
+                defaultValue: [color_mode || colorModeOptions[0][0].value],
+              });
+              const val = res?.[0];
+              if (typeof val === 'number') {
+                doControlDeviceData({ color_mode: val });
+              }
+            }}
+          >
+            单双色切换
+          </List.Item>
         )}
       </List>
+      {/*<List header={'夜灯设置'}>*/}
+      {/*  <List.Item*/}
+      {/*    extra={(*/}
+      {/*      <Switch*/}
+      {/*        loading={isValidating}*/}
+      {/*        checked={isOpenNightLightStatus}*/}
+      {/*        onChange={handleChangeNightLight}*/}
+      {/*      />*/}
+      {/*    )}*/}
+      {/*    description='在目标时间段内自动开启夜灯模式'>*/}
+      {/*    夜灯开关*/}
+      {/*  </List.Item>*/}
+      {/*  {!!isOpenNightLightStatus && (*/}
+      {/*    <>*/}
+      {/*      <List.Item*/}
+      {/*        clickable*/}
+      {/*        extra={openNightTimer?.TimePoint || '22:00'}*/}
+      {/*        onClick={async () => {*/}
+      {/*          const res = await Picker.prompt({*/}
+      {/*            columns: timeOptions,*/}
+      {/*            defaultValue: (openNightTimer?.TimePoint || '22:00')?.split(':'),*/}
+      {/*          });*/}
+      {/*          if (res) {*/}
+      {/*            let [hour, minute] = res;*/}
+      {/*            hour = `${hour}`.padStart(2, '0');*/}
+      {/*            minute = `${minute}`.padStart(2, '0');*/}
+      {/*            console.log(hour, minute);*/}
+      {/*            await updateNightLightTimerTimePoint({ ...nightLightTime, startTime: `${hour}:${minute}` });*/}
+      {/*            setNightLightTime({ ...nightLightTime, startTime: `${hour}:${minute}` });*/}
+      {/*          }*/}
+      {/*        }}*/}
+      {/*      >*/}
+      {/*        夜灯开启时间*/}
+      {/*      </List.Item>*/}
+      {/*      <List.Item*/}
+      {/*        clickable*/}
+      {/*        extra={closeNightTimer?.TimePoint || '06:00'}*/}
+      {/*        onClick={async () => {*/}
+      {/*          const res = await Picker.prompt({*/}
+      {/*            columns: timeOptions,*/}
+      {/*            defaultValue: (closeNightTimer?.TimePoint || '06:00')?.split(':'),*/}
+      {/*          });*/}
+      {/*          if (res) {*/}
+      {/*            let [hour, minute] = res;*/}
+      {/*            hour = `${hour}`.padStart(2, '0');*/}
+      {/*            minute = `${minute}`.padStart(2, '0');*/}
+      {/*            console.log(hour, minute);*/}
+      {/*            await updateNightLightTimerTimePoint({ ...nightLightTime, endTime: `${hour}:${minute}` });*/}
+      {/*            setNightLightTime({ ...nightLightTime, endTime: `${hour}:${minute}` });*/}
+      {/*          }*/}
+      {/*        }}*/}
+      {/*      >*/}
+      {/*        夜灯关闭时间*/}
+      {/*      </List.Item>*/}
+      {/*    </>*/}
+      {/*  )}*/}
+      {/*</List>*/}
     </>
   );
 }

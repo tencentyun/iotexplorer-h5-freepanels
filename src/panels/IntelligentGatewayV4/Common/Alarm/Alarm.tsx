@@ -62,6 +62,7 @@ export function Alarm(props) {
       <div
         className='fexid-btn center'
         onClick={() => {
+          const dataTempName = sdk.dataTemplate.properties.find(item => item.id === 'alarm_voice').define.mapping[alram_voice_tips];
           sdk.goScenePage({
             sceneType: 'auto',
             scenePreset: {
@@ -71,18 +72,17 @@ export function Alarm(props) {
                   ProductId: sdk.productId,
                   DeviceName: sdk.deviceName,
                   TemplateId: 'alarm_voice',
-                  TemplateValue: alram_voice_tips || 0,
+                  TemplateValue: alram_voice_tips || 1,
                 },
               ],
-              freezeAction: true,
+              SceneName: dataTempName,
+              freezeAction: false,
             },
           });
-        }
-        }
+        }}
       >
         创建安防场景
       </div>
     </div>
   );
 }
-

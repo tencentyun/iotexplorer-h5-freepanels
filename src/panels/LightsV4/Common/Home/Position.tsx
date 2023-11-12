@@ -4,6 +4,7 @@ import { Circular } from '@custom/Circular';
 import { Icon } from '@custom/Icon';
 import { getDegValue } from '@utils';
 import { Input, Modal, Toast } from 'antd-mobile';
+import { noop } from '@utillib';
 
 export interface LightColorProps extends StyledProps {
   defaultValue?: number; // 0 - 1000
@@ -29,10 +30,24 @@ const getControlColorTempByDeg = (deg) => {
   return Math.round(2700 + (deg - 18) * step);
 };
 
+const getProductIconName = () => {
+  const categoryKey = window.h5PanelSdk.productInfo.CategoryKey;
+  switch (categoryKey) {
+    case 'light_strip_cw':
+      return 'lightStrip';
+    case 'Down Light':
+      return 'downlight';
+    case 'SelectedDownLight':
+      return 'downlight';
+    default:
+      return 'spotlight';
+  }
+};
+
 export function Position({
   // value,
   // brightness = 80,
-  productType = 'spotlight',
+  // productType = 'spotlight',
   productColorMode = 1,
   deviceData: {
     // brightness = 80,
@@ -43,7 +58,7 @@ export function Position({
     colour_data,
     power_switch,
   },
-  log,
+  // log,
   doControlDeviceData,
 }) {
   const colorTempInputRef = useRef<any>(null);
@@ -109,7 +124,7 @@ export function Position({
   };
 
 
-  log.mi('传递的参数:::', productType, colorMode);
+  // log.mi('传递的参数:::', productType, colorMode);
 
   return (
     <div className={`position_card center ${powerStatus} color-type-${colorMode}`}>
@@ -123,12 +138,14 @@ export function Position({
               <div className='circle inner'></div>
             </div>
             <div className='bg-img center'>
-              <Icon name={productType}></Icon>
-              <div className='center-value'>{color_temp}K</div>
+              <Icon name={getProductIconName()}></Icon>
+              {colorMode !== 0 && (
+                <div className='center-value'>{color_temp}K</div>
+              )}
             </div>
           </div>
           <Circular
-            onClick={handleColorTempInput}
+            onClick={colorMode === 0 ? noop : handleColorTempInput}
             className={isPowerOff ? 'circular-off' : ''}
             value={deg}
             onChange={onChange}
