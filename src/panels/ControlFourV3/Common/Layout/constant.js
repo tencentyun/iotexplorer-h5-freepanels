@@ -958,27 +958,32 @@ export const layoutList = [
   // LAYOUT_13,
 ];
 
+const clone = v => JSON.parse(JSON.stringify(v))
+
+
 export const setOldToNew = (layout) => {
   const nLayout = layout.map((item) => {
     const { type, position } = { ...item };
     return {
       type,
-      position,
+      position
     };
   });
   let num;
   layoutList.forEach((item, index) => {
-    if (JSON.stringify(item) === JSON.stringify(layout)) {
+    if (JSON.stringify(item) === JSON.stringify(nLayout)) {
+      // if (JSON.stringify(item) === JSON.stringify(layout)) {
       num = index;
     }
   });
   if (num === undefined) {
     return layout;
   }
-  let _newLayoutList = newLayoutList.map((item) => item);
+  let _newLayoutList = clone(newLayoutList).map((item) => item);
   layout.forEach((item, index) => {
-    const { type, _type } = { ...item };
-    let obj = { type: _type };
+    const { type, _type, name} = { ...item };
+    debugger;
+    let obj = { type: _type, name, switch:item.switch};
     if (_type === "device") {
       obj.device = item.device;
     } else {
@@ -1015,23 +1020,31 @@ export const setNewToOld = (layout) => {
       num = index;
     }
   });
-  const _layout = [].concat([...layoutList])[num];
+  const _layout = [].concat([...clone(layoutList)])[num];
   return _layout.map((item, index) => {
     const { type } = { ...item };
+    let obj = { ...item };
+
     if (type === 1) {
-      item.device = config?.black_area?.device || config?.black_area?.id;
+      obj.device = config?.black_area?.device || config?.black_area?.id;
+      obj.name = config?.black_area?.name;
+      
     } else {
       if (!_layout.filter((_item) => _item.type === 1).length) {
-        item.device =
+        obj.device =
           config[`white_area${index + 1}`]?.device ||
           config[`white_area${index + 1}`]?.id;
+        obj.name = config[`white_area${index + 1}`]?.name;
+        obj.switch = config[`white_area${index + 1}`]?.switch;
       } else {
-        item.device =
+        obj.device =
           config[`white_area${index}`]?.device ||
           config[`white_area${index}`]?.id;
+        obj.name = config[`white_area${index}`]?.name;
+        obj.switch = config[`white_area${index}`]?.switch;
       }
     }
-    return item;
+    return obj;
   });
 };
 
