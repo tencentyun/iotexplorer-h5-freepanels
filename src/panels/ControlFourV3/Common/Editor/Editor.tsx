@@ -144,7 +144,7 @@ const Device = (props) => {
       });
       const data = Products.filter(item => category[type].includes(item.CategoryId)).map(item => item.ProductId);
       let _data = DeviceList.filter(item => data.includes(item.ProductId))
-      _data = DeviceList.map(item => ({ ...item, CategoryId: oProducts[item.ProductId]?.CategoryId }))
+      _data = _data.map(item => ({ ...item, CategoryId: oProducts[item.ProductId]?.CategoryId }))
 
 
 
