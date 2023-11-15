@@ -348,7 +348,6 @@ export function SearchDevice(props) {
 
     const serialPromises = (promises = [], args = []) => {
         return new Promise((resolve, reject) => {
-
             const allResult = [];
             const successResult = [];
             const errorResult = [];
