@@ -239,7 +239,6 @@ const Device = (props) => {
   const handleClick = (itemData,item) => {
     let valueItem = dataSource.filter(item => item.device === itemData?.DeviceId)[0] || {};
     console.log("选中的值",valueItem)
-    debugger;
     setData({
       visible: true,
       title: item?.title,
@@ -315,7 +314,7 @@ const ServicePopup = forwardRef((props: any, ref) => {
 
   const setSelectedValue = (id, name, type,switchNum) => {
     const data = [...dataSource].map(item => item);
-    debugger;
+    // debugger;
     if (selectedIndex || selectedIndex === 0) {
       data[selectedIndex].device = id;
       data[selectedIndex].name = name;
@@ -456,9 +455,9 @@ export function Editor({ ...props }) {
   const sceneRef = useRef(null);
   const onChange = (data) => {
     const nData = [...screen_page];
-    debugger;
+    // debugger;
     nData[Number(query?.index)] = setOldToNew(data);
-    debugger;
+    // debugger;
     doControlDeviceData('screen_page', nData);
   }
   useEffect(() => {
