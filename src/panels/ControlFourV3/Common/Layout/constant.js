@@ -958,35 +958,69 @@ export const layoutList = [
   // LAYOUT_13,
 ];
 
+const clone = v => JSON.parse(JSON.stringify(v))
+
+
+
+// type 是色区 1是黑色 0 是白色
+// _type 是类型 【device 设备 sence 是场景 】白色区域 黑色是device 场景是固定01
+// switch 只有白色区域有  黑色区域没有
+
+// 下发保存数据
 export const setOldToNew = (layout) => {
+
+  console.log("APP:setOldToNew-param", layout)
+
   const nLayout = layout.map((item) => {
     const { type, position } = { ...item };
     return {
       type,
-      position,
+      position
     };
   });
   let num;
   layoutList.forEach((item, index) => {
-    if (JSON.stringify(item) === JSON.stringify(layout)) {
+    if (JSON.stringify(item) === JSON.stringify(nLayout)) {
+      // if (JSON.stringify(item) === JSON.stringify(layout)) {
       num = index;
     }
   });
   if (num === undefined) {
     return layout;
   }
-  let _newLayoutList = newLayoutList.map((item) => item);
+  let _newLayoutList = clone(newLayoutList).map((item) => item);
   layout.forEach((item, index) => {
-    const { type, _type } = { ...item };
-    let obj = { type: _type };
+    const { type, _type, name, device } = { ...item };
+
+
+
+
+    // debugger;
+    // let obj = { type: _type, name, switch: item.switch };
+    let obj = { name };
     if (_type === "device") {
       obj.device = item.device;
     } else {
       obj.id = item.device;
     }
-    if (type === 1) {
+    if (type === 1) { // 黑色区域
+      obj.type = _type;
+      if (_type === "device") {
+        obj.device = item.device;
+      } else {
+        obj.id = item.device;
+      }
       _newLayoutList[num].config.black_area = obj;
-    } else {
+    } else { // 白色区域
+      obj.type = _type;
+      if (_type === "device") {
+        obj.device = item.device;
+        // TODO 目前没有选择确定的情情况下是 undefied 后续确认后可以设置默认值为1
+        // obj.switch= item.switch || 1;  
+        obj.switch = item.switch
+      } else {
+        obj.id = item.device;
+      }
       if (!layout.filter((_item) => _item.type === 1).length) {
         _newLayoutList[num].config[`white_area${index + 1}`] = obj;
       } else {
@@ -994,14 +1028,25 @@ export const setOldToNew = (layout) => {
       }
     }
   });
-  _newLayoutList = _newLayoutList.map((item) => ({
-    layout_id: item.layout_id,
-    config: JSON.stringify(item.config || {}),
-  }));
+  _newLayoutList = _newLayoutList.map((item, index) => {
+    if (index === num) {
+      console.log("APP:setOldToNew-config", item.config)
+    }
+
+    return {
+      layout_id: item.layout_id,
+      config: JSON.stringify(item.config || {}),
+    }
+  });
+
+  console.log("APP:setOldToNew-value", _newLayoutList[num])
   return _newLayoutList[num];
 };
 
+// 转换显示数据
 export const setNewToOld = (layout) => {
+  console.log("APP:setNewToOld", layout)
+
   let { layout_id = "", config = "{}" } = layout;
   if (typeof config === "string") {
     config = JSON.parse(config);
@@ -1015,24 +1060,35 @@ export const setNewToOld = (layout) => {
       num = index;
     }
   });
-  const _layout = [].concat([...layoutList])[num];
-  return _layout.map((item, index) => {
+  const _layout = [].concat([...clone(layoutList)])[num];
+  let res = _layout.map((item, index) => {
     const { type } = { ...item };
-    if (type === 1) {
-      item.device = config?.black_area?.device || config?.black_area?.id;
+    let obj = { ...item };
+
+    if (type === 1) { // 黑色区
+      let __item = config?.black_area;
+      obj.device = __item?.device || __item?.id;
+      obj.name =__item.name;
+      obj._type = __item.type;
     } else {
       if (!_layout.filter((_item) => _item.type === 1).length) {
-        item.device =
-          config[`white_area${index + 1}`]?.device ||
-          config[`white_area${index + 1}`]?.id;
+        let __item = config[`white_area${index + 1}`];
+        obj.device = __item?.device || __item?.id;
+        obj.name = __item?.name;
+        obj.switch = __item?.switch;
+        obj._type = __item.type;
       } else {
-        item.device =
-          config[`white_area${index}`]?.device ||
-          config[`white_area${index}`]?.id;
+        let __item = config[`white_area${index}`];
+        obj.device = __item?.device || __item?.id;
+        obj.name = __item?.name;
+        obj.switch = __item?.switch;
+        obj._type = __item?.type;
       }
     }
-    return item;
+    return obj;
   });
+  console.log("APP:setNewToOld-result", res)
+  return res;
 };
 
 export const LAYOUT = {
