@@ -1,0 +1,121 @@
+.speaker-header {
+  background: rgba(255, 255, 255, 0.4);
+  border-radius: 4px;
+  padding: 16px;
+  font-size: 12px;
+  line-height: 1.4;
+  color: rgba(19, 40, 71, 0.6);
+  margin-top: 16px;
+  margin-bottom: 24px;
+
+  &__row-1 {
+    display: flex;
+    justify-content: stretch;
+  }
+
+  &__icon {
+    height: 48px;
+    flex: 0;
+    float: left;
+    margin-right: 8px;
+  }
+
+  &__icon-img {
+    position: relative;
+    top: -32px;
+    width: 67px;
+    height: 79px;
+  }
+
+  &__info {
+    flex-grow: 1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__battery-container {
+    align-self: center;
+  }
+
+  &__btn-container {
+    display: flex;
+  }
+
+  &__btn {
+    width: 32px;
+    height: 32px;
+    border-radius: 16px;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.05) 100%);
+    border: 0.5px solid;
+    border-image-source: linear-gradient(180deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.05) 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 16px;
+  }
+}
+
+.speaker-header__btn-icon {
+  width: 16px;
+  height: 16px;
+  background-size: 16px 16px;
+  background-repeat: no-repeat;
+
+  &--voice-skill {
+    background-image: url('../../../assets/icons/voice-skill.svg');
+  }
+
+  &--more {
+    background-image: url('../../../assets/icons/more.svg');
+  }
+}
+
+.speaker-header-volume {
+  display: flex;
+
+  &__aside {
+    font-size: 14px;
+    color: #999;
+    flex-grow: 0;
+    display: flex;
+    align-items: center;
+  }
+
+  &__control {
+    flex-grow: 1;
+  }
+
+  .adm-slider-thumb {
+    opacity: 0;
+  }
+
+  &__volume-icon, &__mute-icon {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    background-repeat: no-repeat;
+    background-size: 16px 16px;
+  }
+
+  &__volume-icon {
+    background-image: url('../../../assets/icons/volume.svg');
+  }
+
+  &__mute-icon {
+    background-image: url('../../../assets/icons/volume-mute.svg');
+  }
+
+  .adm-slider-track {
+    background-color: rgba(19, 40, 71, 0.1);
+    border-radius: 0;
+  }
+
+  .adm-slider {
+    --fill-color: rgba(19, 40, 71, 0.6);
+  }
+
+  .adm-slider-fill {
+    border-radius: 0;
+  }
+}

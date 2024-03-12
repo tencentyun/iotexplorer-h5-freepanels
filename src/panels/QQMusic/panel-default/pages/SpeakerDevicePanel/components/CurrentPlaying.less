@@ -1,0 +1,135 @@
+.current-playing {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.5);
+  height: 128px;
+  box-shadow: 1px -4px 24px 0px rgba(0, 0, 0, 0.16);
+  backdrop-filter: blur(16px);
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  padding: 16px 24px;
+  box-sizing: border-box;
+
+  .adm-slider {
+    padding-left: 0;
+    padding-right: 0;
+    --fill-color: #fff;
+  }
+
+  .adm-slider-thumb {
+    transform: translate(8px, 8px);
+    width: 12px;
+    height: 12px;
+  }
+
+  .adm-slider-track {
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 0;
+  }
+
+  .adm-slider-fill {
+    border-radius: 0;
+  }
+}
+
+.current-playing-song {
+  display: flex;
+  align-items: center;
+
+  &__cover {
+    width: 32px;
+    height: 32px;
+    background-size: cover;
+    background-image: url('../../../assets/icons/no-song.svg');
+  }
+
+  &__title {
+    margin-left: 8px;
+    color: #fff;
+    font-size: 16px;
+    line-height: 1.4;
+    font-weight: 600;
+  }
+
+  &__artist {
+    margin-left: 8px;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 12px;
+  }
+
+  &__empty-desc {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.6);
+    line-height: 22px;
+    margin-top: 16px;
+  }
+}
+
+.current-playing-control {
+  display: flex;
+  justify-content: space-between;
+
+  &__item {
+    width: 36px;
+    height: 36px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__item > i {
+    display: inline-block;
+    background-size: 100%;
+    background-repeat: no-repeat;
+  }
+
+  &__icon-loop {
+    background-image: url('../../../assets/icons/ctrl-loop.png');
+    width: 24px;
+    height: 24px;
+  }
+
+  &__icon-random {
+    background-image: url('../../../assets/icons/ctrl-random.png');
+    width: 24px;
+    height: 24px;
+  }
+
+  &__icon-sequence {
+    background-image: url('../../../assets/icons/ctrl-sequence.png');
+    width: 24px;
+    height: 24px;
+  }
+
+  &__icon-play {
+    background-image: url('../../../assets/icons/ctrl-play.svg');
+    width: 28px;
+    height: 28px;
+  }
+
+  &__icon-pause {
+    background-image: url('../../../assets/icons/ctrl-pause.svg');
+    width: 28px;
+    height: 28px;
+  }
+
+  &__icon-prev {
+    background-image: url('../../../assets/icons/ctrl-prev.svg');
+    width: 24px;
+    height: 24px;
+  }
+
+  &__icon-next {
+    background-image: url('../../../assets/icons/ctrl-next.svg');
+    width: 24px;
+    height: 24px;
+  }
+
+  &__icon-playlist {
+    background-image: url('../../../assets/icons/ctrl-playlist.svg');
+    width: 24px;
+    height: 24px;
+  }
+}

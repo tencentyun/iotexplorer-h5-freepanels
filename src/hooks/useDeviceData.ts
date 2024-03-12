@@ -3,6 +3,7 @@ import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 
 export interface DeviceDataState {
   deviceData: any;
+  deviceDataLastUpdate: Record<string, number>;
   deviceStatus: 0 | 1;
   templateMap: unknown;
   templateList: TemplatePropertyConfig[];
@@ -22,15 +23,18 @@ function reducer(
 
   switch (type) {
     case 'data': {
-      const { deviceData } = state;
+      const deviceData = state.deviceData;
+      const deviceDataLastUpdate = state.deviceDataLastUpdate;
 
       Object.keys(payload || {}).forEach((key) => {
         deviceData[key] = payload[key].Value;
+        deviceDataLastUpdate[key] = payload[key].LastUpdate;
       });
 
       return {
         ...state,
         deviceData,
+        deviceDataLastUpdate,
       };
     }
     case 'status':
@@ -61,6 +65,7 @@ function initState(sdk: any) {
     templateMap,
     templateList,
     deviceData: sdk.deviceData,
+    deviceDataLastUpdate: {},
     deviceStatus: sdk.deviceStatus,
   };
 }
