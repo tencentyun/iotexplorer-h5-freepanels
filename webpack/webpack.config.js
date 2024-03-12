@@ -168,7 +168,39 @@ module.exports = (env, argv) => {
           },
         },
         {
-          test: /\.(le|c)ss$/,
+          test: /\.css$/,
+          use: [
+            {
+              loader: MiniCssExtractPlugin.loader,
+            },
+            {
+              loader: 'css-loader',
+              options: {
+                url: true,
+              },
+            },
+            {
+              loader: 'postcss-loader',
+              options: {
+                ident: 'postcss',
+                plugins: (buildEnv) => {
+                  const isRem = plugin.isRem(buildEnv, viewport);
+
+                  return isRem ? [
+                    autoPreFixer(plugin.autoPreFixer),
+                    postcss(plugin.postcss),
+                  ] : [
+                    require('postcss-px-to-viewport')(viewportConfig),
+                    autoPreFixer(),
+                  ];
+                },
+              },
+            },
+            { loader: 'thread-loader' },
+          ],
+        },
+        {
+          test: /\.less$/,
           use: [
             {
               loader: MiniCssExtractPlugin.loader,
@@ -200,6 +232,12 @@ module.exports = (env, argv) => {
               loader: 'less-loader',
             },
             { loader: 'thread-loader' },
+          ],
+        },
+        {
+          test: /\.png$/,
+          use: [
+            'url-loader',
           ],
         },
         {

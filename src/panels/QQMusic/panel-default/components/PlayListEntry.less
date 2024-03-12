@@ -1,0 +1,38 @@
+.play-list-entry {
+  display: flex;
+  margin-bottom: 16px;
+
+  &__cover {
+    width: 48px;
+    height: 48px;
+    margin-right: 12px;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-image: url('https://via.placeholder.com/96x96');
+    flex-shrink: 0;
+    border-radius: 2px;
+  }
+
+  &__text {
+    padding: 4px 0;
+  }
+
+  &__title {
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 2px;
+    line-height: 20px;
+    color: #2E3D57;
+  }
+
+  &__desc {
+    font-size: 12px;
+    color: rgba(19, 40, 71, 0.6);
+    line-height: 17px;
+  }
+}
+
+.album-detail {
+  padding-left: 32px;
+  margin-bottom: 16px;
+}

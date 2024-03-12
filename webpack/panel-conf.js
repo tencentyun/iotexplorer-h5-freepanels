@@ -1522,4 +1522,11 @@ module.exports = {
       // ["panel-qualityYellow", { enable: true, entry: "app.tsx" }],
     ],
   },
+  QQMusic: {
+    categoryKey: "QQMusic",
+    viewportWidth: 375,
+    name: "QQ音乐",
+    enable: true,
+    panels: [["panel-default", { enable: true, entry: "app.tsx" }]],
+  },
 };
