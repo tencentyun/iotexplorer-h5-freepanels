@@ -22,6 +22,16 @@ const GateWay = (props) => {
 
   const actions = [
     [
+      '夜灯设置',
+      'lamp',
+      () => {
+        history?.push('/nightlight');
+      },
+      // !!deviceData?.guard_mode,
+      '',
+      '',
+    ],
+    [
       '门铃场景',
       'block',
       () => {

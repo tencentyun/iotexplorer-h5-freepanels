@@ -6,6 +6,7 @@ import { SearchDevice } from './SearchDevice/SearchDevice';
 import { Record } from './Record';
 import { Scene } from './Scene';
 import { Alarm } from './Alarm';
+import { NightLight } from './NightLight';
 import { SceneBind, SceneList, SceneSetting } from '@custom/Scene';
 
 const App = (props) => {
@@ -19,6 +20,7 @@ const App = (props) => {
     { path: '/record', Component: Record },
     { path: '/alarm', Component: Alarm },
     { path: '/scene', Component: Scene },
+    { path: '/nightlight', Component: NightLight },
     { path: '/scene/setting', Component: SceneSetting },
     { path: '/scene/bind', Component: SceneBind },
     { path: '/scene/list', Component: SceneList },
