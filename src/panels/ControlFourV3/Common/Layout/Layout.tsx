@@ -8,6 +8,7 @@ export function Layout(props) {
     height = 110,
     selected = [],
     isPreview = false,
+    isDisabled = false,
     onPreviewClick = () => { },
     style = {},
     isCanDelete = false,
@@ -16,7 +17,7 @@ export function Layout(props) {
     onWhiteClick = () => { },
   } = { ...props };
   return (
-    <div className="wrapper" style={{ ...style, width: `${width * 3}px`, height: `${height * 3}px` }}>
+    <div className={`wrapper ${isDisabled ? "disabled" : ""}`} style={{ ...style, width: `${width * 3}px`, height: `${height * 3}px` }}>
       {isCanDelete && <div className="layout-delete" onClick={onDelete}></div>}
       {isPreview && <div className="mask" onClick={onPreviewClick}></div>}
       {selected.map(({ position: [[x1, x2], [y1, y2]], type, device, name }, index) => {
