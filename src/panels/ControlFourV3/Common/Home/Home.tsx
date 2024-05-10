@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { LightSwitch } from './LightSwitch';
 import { Detail } from './Detail';
+import { Toast } from 'antd-mobile'
 import { Modal } from '@custom/Modal';
 import { Icon } from '@custom/Icon';
 import { Btn as Button, BtnGroup } from '@custom/Btn';
@@ -22,7 +23,7 @@ const allSwitch = [
 ];
 
 export function Home(props) {
-  const { doControlDeviceData, templateMap, setContext, deviceData = {}, deviceInfo, history: { PATH, push },
+  const { doControlDeviceData, templateMap, setContext, deviceData, deviceInfo, history: { PATH, push },
   } = props;
   const switchNum = 3;
   const currentSwitch = allSwitch.slice(0, switchNum);
@@ -31,7 +32,12 @@ export function Home(props) {
   const [visible, setVisible] = useState(false);
   const [selected, setSelected] = useState([]);
   const [themeList, setThemeList] = useState([]);
-
+  const whiteAreaCount = screen_page.reduce((count, page) => {
+    const configObj = JSON.parse(page.config);
+    const configString = JSON.stringify(configObj);
+    return count + (configString.match(/white_area/g) || []).length;
+}, 0);
+console.log('whiteAreaCount', whiteAreaCount);
   const getThemeList = async () => {
     const { Result } = await sdk.requestTokenApi('AppGetResourceThumbnailList', {
       Action: 'AppGetResourceThumbnailList',
@@ -109,7 +115,9 @@ export function Home(props) {
           {/* 我的屏幕 */}
           <div className="modular">
             <div className="modular-title">
-              <span>我的屏幕</span>
+              <div>
+                <span>我的屏幕</span><span className='desc-text'>可配置18个按键区(已配置{whiteAreaCount}个) </span>
+              </div>
               {screen_page.length ? <Button className="editor-btn" onClick={() => push('/sort')}>
                 <Icon name="editor-other" />
               </Button> : <></>}
@@ -157,13 +165,25 @@ export function Home(props) {
                 </div>
                 <div className="content">
                   {layoutList.map((item, index) => <Layout
+                    isDisabled={item.filter(page => page.type === 0).length > Math.floor(18 - whiteAreaCount)?true:false}
                     key={`layout-${index}`}
                     style={{ width: 95, height: 95, marginBottom: 24, border: '2px solid transparent', ...isSelected(item) }}
                     selected={item}
                     width={32}
                     height={32}
                     isPreview={true}
-                    onPreviewClick={() => setSelected(item)}
+                    onPreviewClick={
+                      () => {
+                      if(item.filter(page => page.type === 0).length > Math.floor(18 - whiteAreaCount)){
+                          Toast.show({
+                            icon: 'fail',
+                            content: `当前最多配置${Math.floor(18 - whiteAreaCount)}个按键区`,
+                            maskStyle:{ zIndex: 99999 }
+                          })
+                          return
+                        }
+                        setSelected(item)
+                      }}
                   />)}
 
                 </div>
