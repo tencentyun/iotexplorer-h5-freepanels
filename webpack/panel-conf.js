@@ -1529,4 +1529,13 @@ module.exports = {
     enable: true,
     panels: [["panel-default", { enable: true, entry: "app.tsx" }]],
   },
+  SpeakerGateway: {
+    name: "A2S音箱网关",
+    categoryKey: "SpeakerGateway",
+    enable: true,
+    viewportWidth: 375,
+    panels: [
+      ["panel-qualityWhite", { enable: true, entry: "app.tsx" }],
+    ],
+  },
 };

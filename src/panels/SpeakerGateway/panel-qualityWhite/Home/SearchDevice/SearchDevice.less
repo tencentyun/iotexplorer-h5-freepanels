@@ -1,0 +1,97 @@
+@import url("./Circle.less");
+
+.search-device {
+  .start-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 74px;
+  }
+
+  .list {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 16px;
+    align-items: baseline;
+  }
+
+  .scan-msg {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    //margin-top: 30px;
+    line-height: 16px;
+    font-weight: 400;
+    color: #565477;
+    padding: 32px 0;
+  }
+
+  .bind-error-panel {
+    width: 100vw;
+    height: 100vh;
+  }
+
+  .sub-device-list {
+    display: flex;
+    flex-wrap: wrap;
+    height: 520px;
+    overflow: scroll;
+    align-content: flex-start;
+
+    &-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 25vw;
+      position: relative;
+      height: 120px;
+
+      &:active {
+        background-color: #ebebeb;
+      }
+
+      &__icon {
+        width: 56px;
+        height: 56px;
+      }
+
+      &__productName {
+        width: 78px;
+        font-weight: 600;
+        font-size: 12px;
+        text-align: center;
+        //height: 36px;
+      }
+
+      &__deviceName {
+        font-size: 12px;
+      }
+
+      &__checkbox {
+        position: absolute;
+        width: 16px;
+        height: 16px;
+        right: 8px;
+        top: 8px;
+      }
+
+      &__bindStatus {
+        font-size: 12px;
+
+        &.success {
+          color: #0ABF5B;
+        }
+
+        &.fail {
+          color: red;
+        }
+
+        &.loading {
+          color: deepskyblue;
+        }
+      }
+    }
+  }
+}
