@@ -8,7 +8,7 @@ import { LightBright } from '@custom/LightBright';
 import { Notice } from './Notice/Notice';
 import { Voice } from './Notice/Voice';
 import { noop } from '@utillib';
-
+import { Switch,Dialog } from 'antd-mobile'
 
 const GateWay = (props) => {
   // 其他页面返回也刷新
@@ -51,6 +51,13 @@ const GateWay = (props) => {
       '',
     ],
     [
+      'PLC本地组网',
+      'broadcast',
+      () => {},
+      '',
+      ''
+    ],
+    [
       '微信通知',
       'weixin',
       () => {
@@ -69,6 +76,7 @@ const GateWay = (props) => {
         history?.push('/record');
       },
       '',
+      ''
     ],
   ].filter(v => v);
 
@@ -110,23 +118,62 @@ const GateWay = (props) => {
               ></Cell>
             </div>
           </div>
-          {actions.map(([title, prefixIcon, cb, value, type], index) => (
-            <div className='cell-item' key={index}>
-              <Icon className='custom-icon' name={prefixIcon}></Icon>
-              <Cell
-                title={title}
-                subTitle={value}
-                prefixIcon=''
-                onClick={cb}
-                ele={type}
-                eleValue={value}
-                onChange={cb}
-                isLink={!type}
-                className='border'
-              ></Cell>
-            </div>
-
-          ))}
+          {actions.map(([title, prefixIcon, cb, value, type], index) => {
+            // 根据 item 的 type 属性决定渲染哪种类型的 div
+            if (prefixIcon === 'broadcast') {
+              return <div className='cell-item' key={index}>
+                <Icon className='custom-icon' name={prefixIcon}></Icon>
+                <Cell
+                  title={title}
+                  subTitle={value}
+                  prefixIcon=''
+                  onClick={cb}
+                  ele={type}
+                  eleValue={value}
+                  onChange={cb}
+                  isLink={false}
+                  className='border'
+                  showArrow={false}
+                  value={
+                    <Switch
+                      checked={deviceData.plc_broadcast === 1}
+                      onChange={(value: boolean) => {
+                        if (value) {
+                          Dialog.confirm({
+                            title: '提示',
+                            content: "开启后整体场景执行速度稍微变慢",
+                            cancelText: '取消',
+                            confirmText: '确认',
+                            onConfirm: () => {
+                              doControlDeviceData('plc_broadcast', Number(value));
+                            },
+                          });
+                        } else {
+                          doControlDeviceData('plc_broadcast', Number(value));
+                        }
+                      }}
+                    />
+                  }
+                ></Cell>
+              </div>;
+            } else {
+              // 如果有其他类型，可以在这里处理
+              return <div className='cell-item' key={index}>
+                <Icon className='custom-icon' name={prefixIcon}></Icon>
+                <Cell
+                  title={title}
+                  subTitle={value}
+                  prefixIcon=''
+                  onClick={cb}
+                  ele={type}
+                  eleValue={value}
+                  onChange={cb}
+                  isLink={!type}
+                  className='border'
+                ></Cell>
+              </div>
+            }
+          })}
         </div>
       </div>
       <Modal className='voice-modal' title='告警声音' visible={visible} onClose={() => setVisible(false)}>
