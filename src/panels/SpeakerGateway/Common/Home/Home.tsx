@@ -10,7 +10,7 @@ import { Voice } from './Notice/Voice';
 import { noop } from '@utillib';
 import { MusicPlayer } from '../MusicPlayer/MusicPlayer';
 import { Btn as Button, BtnGroup } from '@custom/Btn';
-
+import { Switch,Dialog } from 'antd-mobile'
 
 const GateWay = (props) => {
   // 其他页面返回也刷新
@@ -65,6 +65,15 @@ const GateWay = (props) => {
       !!deviceData?.alarm_sound_switch,
       '',
     ],
+    [
+      'PLC本地组网',
+      'broadcast',
+      () => {
+        
+      },
+      !!deviceData?.alarm_sound_switch,
+      '',
+    ],
     // [
     //   '红外遥控设备',
     //   '',
@@ -76,7 +85,7 @@ const GateWay = (props) => {
     // ],
     // [
     //   '⾳乐播放',
-    //   '',
+    //   'musicplayer',
     //   () => {
     //     history?.push('/alarm');
     //   },
@@ -144,8 +153,44 @@ const GateWay = (props) => {
           </div>
           {actions.map(([title, prefixIcon, cb, value, type], index) => {
             // 根据 item 的 type 属性决定渲染哪种类型的 div
-            if (type === 'musicplayer') {
+            if (prefixIcon === 'musicplayer') {
               return <MusicPlayer {...props} />;
+            }if (prefixIcon === 'broadcast'){
+              return <div className='cell-item' key={index}>
+                <Icon className='custom-icon' name={prefixIcon}></Icon>
+                  <Cell
+                    title={title}
+                    subTitle={value}
+                    prefixIcon=''
+                    onClick={cb}
+                    ele={type}
+                    eleValue={value}
+                    onChange={cb}
+                    isLink={false}
+                  className='border'
+                  showArrow={false}
+                  value={
+                    <Switch
+                      checked={deviceData.plc_broadcast === 1}
+                      onChange={(value: boolean) => {
+                        if (value) {
+                          Dialog.confirm({
+                            title: '提示',
+                            content: "开启后整体场景执行速度稍微变慢",
+                            cancelText: '取消',
+                            confirmText: '确认',
+                            onConfirm: () => {
+                              doControlDeviceData('plc_broadcast', Number(value));
+                            },
+                          });
+                        } else {
+                          doControlDeviceData('plc_broadcast', Number(value));
+                        }
+                      }}
+                    />
+                  }
+                ></Cell>
+              </div>;
             } else {
               // 如果有其他类型，可以在这里处理
               return <div className='cell-item' key={index}>
