@@ -1,8 +1,8 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import { List, Picker, Toast } from 'antd-mobile';
+import { List, Picker, Toast, Switch } from 'antd-mobile';
 // import { Input, List, Modal, Picker, Switch, Toast } from 'antd-mobile';
 import useSWR from 'swr';
-import './MoreSetting.less';
+import '../../panel-qualityWhite/MoreSetting/MoreSetting.less';
 import { useTitle } from '@hooks/useTitle';
 
 const gradientCycleOptions = [
@@ -26,12 +26,27 @@ const delayCloseOptions = [
     { label: '无', value: 0 },
     { label: '5秒', value: 5 },
     { label: '10秒', value: 10 },
-    { label: '15秒', value: 15 },
     { label: '20秒', value: 20 },
-    { label: '25秒', value: 25 },
     { label: '30秒', value: 30 },
     { label: '1分钟', value: 60 },
-    { label: '30分钟', value: 1800 },
+    { label: '2分钟', value: 120 },
+    { label: '3分钟', value: 180 },
+    { label: '4分钟', value: 240 },
+    { label: '5分钟', value: 300 },
+  ],
+];
+const NightLightOptions = [
+  [
+    { label: '无', value: 0 },
+    { label: '5秒', value: 5 },
+    { label: '10秒', value: 10 },
+    { label: '20秒', value: 20 },
+    { label: '30秒', value: 30 },
+    { label: '2分钟', value: 60 },
+    { label: '2分钟', value: 120 },
+    { label: '2分钟', value: 180 },
+    { label: '2分钟', value: 240 },
+    { label: '2分钟', value: 300 },
   ],
 ];
 
@@ -39,6 +54,14 @@ const colorModeOptions = [
   [
     { label: '单色模式', value: 0 },
     { label: '双色模式', value: 1 },
+  ],
+];
+
+const colorDefaultOptions = [
+  [
+    { label: '暖白光', value: 4000 },
+    { label: '明亮光', value: 5000 },
+    { label: '温暖光', value: 3000 },
   ],
 ];
 
@@ -84,8 +107,8 @@ const timeOptions = (() => {
 })();
 
 const secondToStr = (num: number) => {
-  const minuteStr = Math.floor(num / 60) > 0 ? `${Math.floor(num / 60)}分`: '';
-  const secondsStr = num % 60 > 0 ? `${num % 60}秒`: '';
+  const minuteStr = Math.floor(num / 60) > 0 ? `${Math.floor(num / 60)}分` : '';
+  const secondsStr = num % 60 > 0 ? `${num % 60}秒` : '';
   return minuteStr + secondsStr;
 };
 
@@ -100,7 +123,9 @@ export function MoreSetting({ deviceData, doControlDeviceData, sdk }) {
     // default_color_temp = '-',
     // default_brightness = '-',
     delay_close = 0,
+    // nightlight=0,
     color_mode = 0,
+    default_color_temp = 4000
   } = deviceData;
 
   const [nightLightTime, setNightLightTime] = useState({
@@ -244,135 +269,163 @@ export function MoreSetting({ deviceData, doControlDeviceData, sdk }) {
 
   return (
     <>
-      <List header='基础设置'>
-        <List.Item
-          extra={gradientCycleOptions[0][gradient_cycle]?.label || '-'}
+      <div className='more-setting-container'>
+
+
+        <List header='基础设置'>
+          <List.Item
+            extra={gradientCycleOptions[0][gradient_cycle]?.label || '-'}
+            clickable
+            onClick={async () => {
+              const res = await Picker.prompt({
+                columns: gradientCycleOptions,
+                defaultValue: [gradient_cycle || gradientCycleOptions[0][0].value],
+              });
+              const val = res?.[0];
+              if (typeof val === 'number') {
+                doControlDeviceData({ gradient_cycle: val });
+              }
+            }}
+          >
+            灯光渐变时间
+          </List.Item>
+          {/* <List.Item*/}
+          {/*  extra={defaultSceneTypeOptions[0][default_scene_type]?.label || '物模型非法'}*/}
+          {/*  clickable*/}
+          {/*  onClick={async () => {*/}
+          {/*    const res = await Picker.prompt({*/}
+          {/*      columns: defaultSceneTypeOptions,*/}
+          {/*    });*/}
+          {/*    const val = res?.[0];*/}
+          {/*    if (typeof val === 'number') {*/}
+          {/*      doControlDeviceData({ default_scene_type: val });*/}
+          {/*    }*/}
+          {/*  }}*/}
+          {/* >*/}
+          {/*  默认开启状态*/}
+          {/* </List.Item>*/}
+          {/* {default_scene_type === 9 && (*/}
+          {/*  <>*/}
+          {/*    <List.Item*/}
+          {/*      extra={`${default_color_temp}K`}*/}
+          {/*      onClick={() => {*/}
+          {/*        Modal.alert({*/}
+          {/*          content: (*/}
+          {/*            <Input*/}
+          {/*              ref={colorTempInputRef}*/}
+          {/*              placeholder='请输入色温值(2700-6500)'*/}
+          {/*              type={'number'}*/}
+          {/*            />*/}
+          {/*          ),*/}
+          {/*          style: {*/}
+          {/*            '--adm-color-primary': '#30414D',*/}
+          {/*          },*/}
+          {/*          title: '默认色温',*/}
+          {/*          closeOnMaskClick: true,*/}
+          {/*          confirmText: '确认',*/}
+          {/*          onConfirm: () => {*/}
+          {/*            const color_temp = Number(colorTempInputRef.current.nativeElement.value);*/}
+          {/*            if (!Number.isNaN(color_temp) && color_temp >= 2700 && color_temp <= 6500) {*/}
+          {/*              doControlDeviceData({ default_color_temp: color_temp });*/}
+          {/*            } else {*/}
+          {/*              Toast.show({ content: '色温值不合法', icon: 'fail' });*/}
+          {/*            }*/}
+          {/*          },*/}
+          {/*        });*/}
+          {/*      }}*/}
+          {/*    >*/}
+          {/*      <div style={{ marginLeft: '16px' }}>默认色温</div>*/}
+          {/*    </List.Item>*/}
+          {/*    <List.Item*/}
+          {/*      extra={`${default_brightness}%`}*/}
+          {/*      onClick={() => {*/}
+          {/*        Modal.alert({*/}
+          {/*          content: (*/}
+          {/*            <Input*/}
+          {/*              ref={brightnessInputRef}*/}
+          {/*              placeholder='请输入亮度值(0-100)'*/}
+          {/*              type={'number'}*/}
+          {/*            />*/}
+          {/*          ),*/}
+          {/*          style: {*/}
+          {/*            '--adm-color-primary': '#30414D',*/}
+          {/*          },*/}
+          {/*          title: '默认亮度',*/}
+          {/*          closeOnMaskClick: true,*/}
+          {/*          confirmText: '确认',*/}
+          {/*          onConfirm: () => {*/}
+          {/*            const brightness = Number(brightnessInputRef.current.nativeElement.value);*/}
+          {/*            if (!Number.isNaN(brightness) && brightness >= 0 && brightness <= 100) {*/}
+          {/*              doControlDeviceData({ default_brightness: brightness });*/}
+          {/*            } else {*/}
+          {/*              Toast.show({ content: '亮度值不合法', icon: 'fail' });*/}
+          {/*            }*/}
+          {/*          },*/}
+          {/*        });*/}
+          {/*      }}*/}
+          {/*    >*/}
+          {/*      <div style={{ marginLeft: '16px' }}>默认亮度</div>*/}
+          {/*    </List.Item>*/}
+          {/*  </>*/}
+          {/* )}*/}
+          <List.Item
+            // extra={outageStatusOptions[0][outage_status]?.label || '-'}
+            // clickable
+            extra={
+              <Switch
+                uncheckedText='关闭'
+                checkedText='记忆'
+                checked={outage_status === 1}
+                onChange={(value: boolean) => {
+                  doControlDeviceData({ outage_status: Number(value) });
+                }}
+              />
+            }
+          // const res = await Picker.prompt({
+          //   columns: outageStatusOptions,
+          //   defaultValue: [outage_status || outageStatusOptions[0][0].value],
+          // });
+          // const val = res?.[0];
+          // if (typeof val === 'number') {
+          //   doControlDeviceData({ outage_status: val });
+          // }
+          // }}
+          >
+            断电后通电状态
+          </List.Item>
+          <List.Item
+            extra={secondToStr(Number(delay_close)) || '-'}
+            clickable
+            onClick={async () => {
+              const res = await Picker.prompt({
+                columns: delayCloseOptions,
+                defaultValue: [delay_close || delayCloseOptions[0][0].value],
+              });
+              const val = res?.[0];
+              if (typeof val === 'number') {
+                doControlDeviceData({ delay_close: val });
+              }
+            }}
+          >
+            延时关灯
+          </List.Item>
+          {/* <List.Item
+          extra={secondToStr(Number(nightlight)) || '-'}
           clickable
           onClick={async () => {
             const res = await Picker.prompt({
-              columns: gradientCycleOptions,
-              defaultValue: [gradient_cycle || gradientCycleOptions[0][0].value],
+              columns: NightLightOptions,
+              defaultValue: [nightlight || NightLightOptions[0][0].value],
             });
             const val = res?.[0];
             if (typeof val === 'number') {
-              doControlDeviceData({ gradient_cycle: val });
+              doControlDeviceData({ nightlight: val });
             }
           }}
         >
-          灯光渐变时间
-        </List.Item>
-        {/* <List.Item*/}
-        {/*  extra={defaultSceneTypeOptions[0][default_scene_type]?.label || '物模型非法'}*/}
-        {/*  clickable*/}
-        {/*  onClick={async () => {*/}
-        {/*    const res = await Picker.prompt({*/}
-        {/*      columns: defaultSceneTypeOptions,*/}
-        {/*    });*/}
-        {/*    const val = res?.[0];*/}
-        {/*    if (typeof val === 'number') {*/}
-        {/*      doControlDeviceData({ default_scene_type: val });*/}
-        {/*    }*/}
-        {/*  }}*/}
-        {/* >*/}
-        {/*  默认开启状态*/}
-        {/* </List.Item>*/}
-        {/* {default_scene_type === 9 && (*/}
-        {/*  <>*/}
-        {/*    <List.Item*/}
-        {/*      extra={`${default_color_temp}K`}*/}
-        {/*      onClick={() => {*/}
-        {/*        Modal.alert({*/}
-        {/*          content: (*/}
-        {/*            <Input*/}
-        {/*              ref={colorTempInputRef}*/}
-        {/*              placeholder='请输入色温值(2700-6500)'*/}
-        {/*              type={'number'}*/}
-        {/*            />*/}
-        {/*          ),*/}
-        {/*          style: {*/}
-        {/*            '--adm-color-primary': '#30414D',*/}
-        {/*          },*/}
-        {/*          title: '默认色温',*/}
-        {/*          closeOnMaskClick: true,*/}
-        {/*          confirmText: '确认',*/}
-        {/*          onConfirm: () => {*/}
-        {/*            const color_temp = Number(colorTempInputRef.current.nativeElement.value);*/}
-        {/*            if (!Number.isNaN(color_temp) && color_temp >= 2700 && color_temp <= 6500) {*/}
-        {/*              doControlDeviceData({ default_color_temp: color_temp });*/}
-        {/*            } else {*/}
-        {/*              Toast.show({ content: '色温值不合法', icon: 'fail' });*/}
-        {/*            }*/}
-        {/*          },*/}
-        {/*        });*/}
-        {/*      }}*/}
-        {/*    >*/}
-        {/*      <div style={{ marginLeft: '16px' }}>默认色温</div>*/}
-        {/*    </List.Item>*/}
-        {/*    <List.Item*/}
-        {/*      extra={`${default_brightness}%`}*/}
-        {/*      onClick={() => {*/}
-        {/*        Modal.alert({*/}
-        {/*          content: (*/}
-        {/*            <Input*/}
-        {/*              ref={brightnessInputRef}*/}
-        {/*              placeholder='请输入亮度值(0-100)'*/}
-        {/*              type={'number'}*/}
-        {/*            />*/}
-        {/*          ),*/}
-        {/*          style: {*/}
-        {/*            '--adm-color-primary': '#30414D',*/}
-        {/*          },*/}
-        {/*          title: '默认亮度',*/}
-        {/*          closeOnMaskClick: true,*/}
-        {/*          confirmText: '确认',*/}
-        {/*          onConfirm: () => {*/}
-        {/*            const brightness = Number(brightnessInputRef.current.nativeElement.value);*/}
-        {/*            if (!Number.isNaN(brightness) && brightness >= 0 && brightness <= 100) {*/}
-        {/*              doControlDeviceData({ default_brightness: brightness });*/}
-        {/*            } else {*/}
-        {/*              Toast.show({ content: '亮度值不合法', icon: 'fail' });*/}
-        {/*            }*/}
-        {/*          },*/}
-        {/*        });*/}
-        {/*      }}*/}
-        {/*    >*/}
-        {/*      <div style={{ marginLeft: '16px' }}>默认亮度</div>*/}
-        {/*    </List.Item>*/}
-        {/*  </>*/}
-        {/* )}*/}
-        <List.Item
-          extra={outageStatusOptions[0][outage_status]?.label || '-'}
-          clickable
-          onClick={async () => {
-            const res = await Picker.prompt({
-              columns: outageStatusOptions,
-              defaultValue: [outage_status || outageStatusOptions[0][0].value],
-            });
-            const val = res?.[0];
-            if (typeof val === 'number') {
-              doControlDeviceData({ outage_status: val });
-            }
-          }}
-        >
-          断电后通电状态
-        </List.Item>
-        <List.Item
-          extra={secondToStr(Number(delay_close)) || '-'}
-          clickable
-          onClick={async () => {
-            const res = await Picker.prompt({
-              columns: delayCloseOptions,
-              defaultValue: [delay_close || delayCloseOptions[0][0].value],
-            });
-            const val = res?.[0];
-            if (typeof val === 'number') {
-              doControlDeviceData({ delay_close: val });
-            }
-          }}
-        >
-          延迟关灯
-        </List.Item>
-        {showToggleColorMode && (
+          夜灯模式
+        </List.Item> */}
+          {/* {showToggleColorMode && (
           <List.Item
             extra={colorModeOptions[0][color_mode]?.label || '-'}
             clickable
@@ -389,65 +442,95 @@ export function MoreSetting({ deviceData, doControlDeviceData, sdk }) {
           >
             单双色切换
           </List.Item>
-        )}
-      </List>
-      {/*<List header={'夜灯设置'}>*/}
-      {/*  <List.Item*/}
-      {/*    extra={(*/}
-      {/*      <Switch*/}
-      {/*        loading={isValidating}*/}
-      {/*        checked={isOpenNightLightStatus}*/}
-      {/*        onChange={handleChangeNightLight}*/}
-      {/*      />*/}
-      {/*    )}*/}
-      {/*    description='在目标时间段内自动开启夜灯模式'>*/}
-      {/*    夜灯开关*/}
-      {/*  </List.Item>*/}
-      {/*  {!!isOpenNightLightStatus && (*/}
-      {/*    <>*/}
-      {/*      <List.Item*/}
-      {/*        clickable*/}
-      {/*        extra={openNightTimer?.TimePoint || '22:00'}*/}
-      {/*        onClick={async () => {*/}
-      {/*          const res = await Picker.prompt({*/}
-      {/*            columns: timeOptions,*/}
-      {/*            defaultValue: (openNightTimer?.TimePoint || '22:00')?.split(':'),*/}
-      {/*          });*/}
-      {/*          if (res) {*/}
-      {/*            let [hour, minute] = res;*/}
-      {/*            hour = `${hour}`.padStart(2, '0');*/}
-      {/*            minute = `${minute}`.padStart(2, '0');*/}
-      {/*            console.log(hour, minute);*/}
-      {/*            await updateNightLightTimerTimePoint({ ...nightLightTime, startTime: `${hour}:${minute}` });*/}
-      {/*            setNightLightTime({ ...nightLightTime, startTime: `${hour}:${minute}` });*/}
-      {/*          }*/}
-      {/*        }}*/}
-      {/*      >*/}
-      {/*        夜灯开启时间*/}
-      {/*      </List.Item>*/}
-      {/*      <List.Item*/}
-      {/*        clickable*/}
-      {/*        extra={closeNightTimer?.TimePoint || '06:00'}*/}
-      {/*        onClick={async () => {*/}
-      {/*          const res = await Picker.prompt({*/}
-      {/*            columns: timeOptions,*/}
-      {/*            defaultValue: (closeNightTimer?.TimePoint || '06:00')?.split(':'),*/}
-      {/*          });*/}
-      {/*          if (res) {*/}
-      {/*            let [hour, minute] = res;*/}
-      {/*            hour = `${hour}`.padStart(2, '0');*/}
-      {/*            minute = `${minute}`.padStart(2, '0');*/}
-      {/*            console.log(hour, minute);*/}
-      {/*            await updateNightLightTimerTimePoint({ ...nightLightTime, endTime: `${hour}:${minute}` });*/}
-      {/*            setNightLightTime({ ...nightLightTime, endTime: `${hour}:${minute}` });*/}
-      {/*          }*/}
-      {/*        }}*/}
-      {/*      >*/}
-      {/*        夜灯关闭时间*/}
-      {/*      </List.Item>*/}
-      {/*    </>*/}
-      {/*  )}*/}
-      {/*</List>*/}
+        )} */}
+          <List.Item
+            extra={colorDefaultOptions[0].find((item) => item.value === default_color_temp)?.label || '-'}
+            clickable
+            onClick={async () => {
+              const res = await Picker.prompt({
+                columns: colorDefaultOptions,
+                defaultValue: [default_color_temp || delayCloseOptions[0][0].value],
+              });
+              const val = res?.[0];
+              if (typeof val === 'number') {
+                switch (val) {
+                  case 4000:
+                    doControlDeviceData({ default_color_temp: 4000, default_brightness: 80 });
+                    break;
+                  case 5000:
+                    doControlDeviceData({ default_color_temp: 5000, default_brightness: 100 });
+                    break;
+                  case 3000:
+                    doControlDeviceData({ default_color_temp: 3000, default_brightness: 60 });
+                    break;
+                  default:
+                    break;
+                }
+              }
+            }}
+          >
+            默认开启灯光
+          </List.Item>
+        </List>
+        <List header={'夜灯设置'}>
+          <List.Item
+            extra={(
+              <Switch
+                loading={isValidating}
+                checked={isOpenNightLightStatus}
+                onChange={handleChangeNightLight}
+              />
+            )}
+            description='在目标时间段内自动开启夜灯模式'>
+            夜灯模式开关
+          </List.Item>
+          {!!isOpenNightLightStatus && (
+            <>
+              <List.Item
+                clickable
+                extra={openNightTimer?.TimePoint || '22:00'}
+                onClick={async () => {
+                  const res = await Picker.prompt({
+                    columns: timeOptions,
+                    defaultValue: (openNightTimer?.TimePoint || '22:00')?.split(':'),
+                  });
+                  if (res) {
+                    let [hour, minute] = res;
+                    hour = `${hour}`.padStart(2, '0');
+                    minute = `${minute}`.padStart(2, '0');
+                    console.log(hour, minute);
+                    await updateNightLightTimerTimePoint({ ...nightLightTime, startTime: `${hour}:${minute}` });
+                    setNightLightTime({ ...nightLightTime, startTime: `${hour}:${minute}` });
+                  }
+                }}
+              >
+                夜灯模式开启时间
+              </List.Item>
+              <List.Item
+                clickable
+                extra={closeNightTimer?.TimePoint || '06:00'}
+                onClick={async () => {
+                  const res = await Picker.prompt({
+                    columns: timeOptions,
+                    defaultValue: (closeNightTimer?.TimePoint || '06:00')?.split(':'),
+                  });
+                  if (res) {
+                    let [hour, minute] = res;
+                    hour = `${hour}`.padStart(2, '0');
+                    minute = `${minute}`.padStart(2, '0');
+                    console.log(hour, minute);
+                    await updateNightLightTimerTimePoint({ ...nightLightTime, endTime: `${hour}:${minute}` });
+                    setNightLightTime({ ...nightLightTime, endTime: `${hour}:${minute}` });
+                  }
+                }}
+              >
+                夜灯模式关闭时间
+              </List.Item>
+            </>
+          )}
+        </List>
+
+      </div>
     </>
   );
 }

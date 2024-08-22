@@ -51,8 +51,8 @@ const serviceList = [
 // }
 
 const category = {
-  black: [635, 622, 620, 621, 622, 618, 616],
-  white: [637, 630, 629, 627]
+  black: [635, 622, 620, 621, 622, 618, 616, 124],
+  white: [637, 630, 629, 627, 640]
 }
 
 // 按键能添加的设备：(能影射到设备的每路开关)
@@ -78,7 +78,7 @@ const swtichNum = {
 const getOptions = num => {
   let opt = [];
   for (let i = 0; i < num; i++) {
-    opt.push({ label: `开关${i+1}`, value: i+1 })
+    opt.push({ label: `开关${i + 1}`, value: i + 1 })
   }
   return opt;
 }
@@ -99,9 +99,9 @@ const Device = (props) => {
     title: '',
     visible: false,
     value: [],
-    _data:{
-      DeviceId:"",
-      AliasName:"",
+    _data: {
+      DeviceId: "",
+      AliasName: "",
     },
     type: 'radio',
     options: [{ label: "开关1", value: 1 }],
@@ -236,34 +236,34 @@ const Device = (props) => {
   /**
    * 点击每个栏目
    */
-  const handleClick = (itemData,item) => {
+  const handleClick = (itemData, item) => {
     let valueItem = dataSource.filter(item => item.device === itemData?.DeviceId)[0] || {};
-    console.log("选中的值",valueItem)
+    console.log("选中的值", valueItem)
     setData({
       visible: true,
       title: item?.title,
-      value:[valueItem?.switch], // TODO 回显值
+      value: [valueItem?.switch], // TODO 回显值
       options: getOptions(swtichNum[itemData?.CategoryId]),
-      _data:itemData,
+      _data: itemData,
     })
-    console.log("点击每个栏目:", item,itemData)
+    console.log("点击每个栏目:", item, itemData)
   }
 
   // 模态框矿确认
   const onDialogConfirm = (value) => {
-    let  {DeviceId, AliasName} = opts._data || {};
-    setValue(DeviceId, AliasName, 'device',value[0])
-    console.log("模态框确认:", DeviceId, AliasName, 'device',value[0]);
+    let { DeviceId, AliasName } = opts._data || {};
+    setValue(DeviceId, AliasName, 'device', value[0])
+    console.log("模态框确认:", DeviceId, AliasName, 'device', value[0]);
   }
 
-  console.log("dataSource值:",dataSource)
+  console.log("dataSource值:", dataSource)
 
   return (<div className="service-list">
-    
+
     <OptionDialog {...opts} onCancel={() => setData({ visible: false })} onConfirm={onDialogConfirm}></OptionDialog>
 
     {list.map((item, index) => {
-     let { AliasName, DeviceId, IconUrl } = item;
+      let { AliasName, DeviceId, IconUrl } = item;
       return isWhite ?
         <Cell
           key={`device_white_${index}`}
@@ -272,7 +272,7 @@ const Device = (props) => {
           title={AliasName}
           // ele="checkbox"
           isLink={true}
-          onClick={handleClick.bind(null,item)}
+          onClick={handleClick.bind(null, item)}
         // eleValue={!!dataSource.filter(item => item.device === DeviceId).length}
         // onChange={() => {
         //   if (!!dataSource.filter(item => item.device === DeviceId).length) {
@@ -312,14 +312,14 @@ const ServicePopup = forwardRef((props: any, ref) => {
     close: () => setVisible(false)
   }))
 
-  const setSelectedValue = (id, name, type,switchNum) => {
+  const setSelectedValue = (id, name, type, switchNum) => {
     const data = [...dataSource].map(item => item);
     // debugger;
     if (selectedIndex || selectedIndex === 0) {
       data[selectedIndex].device = id;
       data[selectedIndex].name = name;
       data[selectedIndex]._type = type;
-      if(switchNum){
+      if (switchNum) {
         data[selectedIndex].switch = switchNum;
       }
     }
@@ -396,13 +396,13 @@ const ScenePopup = forwardRef((props: any, ref) => {
     close: () => setVisible(false)
   }));
 
-  const setSelectedValue = (id, name, type,switchNum) => {
+  const setSelectedValue = (id, name, type, switchNum) => {
     const data = [...dataSource];
     if (selectedIndex || selectedIndex === 0) {
       data[selectedIndex].device = id;
       data[selectedIndex].name = name;
       data[selectedIndex]._type = type;
-      if(switchNum){
+      if (switchNum) {
         data[selectedIndex].switch = switchNum;
       }
     }
