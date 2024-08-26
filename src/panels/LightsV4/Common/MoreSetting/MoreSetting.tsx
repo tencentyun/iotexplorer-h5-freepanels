@@ -2,7 +2,7 @@ import React, { useEffect, useMemo, useState } from 'react';
 import { List, Picker, Toast, Switch } from 'antd-mobile';
 // import { Input, List, Modal, Picker, Switch, Toast } from 'antd-mobile';
 import useSWR from 'swr';
-import '../../panel-qualityWhite/MoreSetting/MoreSetting.less';
+// import '../../panel-qualityWhite/MoreSetting/MoreSetting.less';
 import { useTitle } from '@hooks/useTitle';
 
 const gradientCycleOptions = [
@@ -35,27 +35,27 @@ const delayCloseOptions = [
     { label: '5分钟', value: 300 },
   ],
 ];
-const NightLightOptions = [
-  [
-    { label: '无', value: 0 },
-    { label: '5秒', value: 5 },
-    { label: '10秒', value: 10 },
-    { label: '20秒', value: 20 },
-    { label: '30秒', value: 30 },
-    { label: '2分钟', value: 60 },
-    { label: '2分钟', value: 120 },
-    { label: '2分钟', value: 180 },
-    { label: '2分钟', value: 240 },
-    { label: '2分钟', value: 300 },
-  ],
-];
+// const NightLightOptions = [
+//   [
+//     { label: '无', value: 0 },
+//     { label: '5秒', value: 5 },
+//     { label: '10秒', value: 10 },
+//     { label: '20秒', value: 20 },
+//     { label: '30秒', value: 30 },
+//     { label: '2分钟', value: 60 },
+//     { label: '2分钟', value: 120 },
+//     { label: '2分钟', value: 180 },
+//     { label: '2分钟', value: 240 },
+//     { label: '2分钟', value: 300 },
+//   ],
+// ];
 
-const colorModeOptions = [
-  [
-    { label: '单色模式', value: 0 },
-    { label: '双色模式', value: 1 },
-  ],
-];
+// const colorModeOptions = [
+//   [
+//     { label: '单色模式', value: 0 },
+//     { label: '双色模式', value: 1 },
+//   ],
+// ];
 
 const colorDefaultOptions = [
   [
@@ -80,12 +80,12 @@ const colorDefaultOptions = [
 //   ],
 // ];
 
-const outageStatusOptions = [
-  [
-    { label: '关闭', value: 0 },
-    { label: '记忆', value: 1 },
-  ],
-];
+// const outageStatusOptions = [
+//   [
+//     { label: '关闭', value: 0 },
+//     { label: '记忆', value: 1 },
+//   ],
+// ];
 
 const timeOptions = (() => {
   const result = [[], []] as any;
@@ -124,7 +124,7 @@ export function MoreSetting({ deviceData, doControlDeviceData, sdk }) {
     // default_brightness = '-',
     delay_close = 0,
     // nightlight=0,
-    color_mode = 0,
+    // color_mode = 0,
     default_color_temp = 4000
   } = deviceData;
 
@@ -265,7 +265,7 @@ export function MoreSetting({ deviceData, doControlDeviceData, sdk }) {
   // const colorTempInputRef = useRef<any>(null);
   // const brightnessInputRef = useRef<any>(null);
 
-  const showToggleColorMode = sdk.dataTemplate.properties.find(item => item.id === 'color_mode');
+  // const showToggleColorMode = sdk.dataTemplate.properties.find(item => item.id === 'color_mode');
 
   return (
     <>

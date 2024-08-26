@@ -60,7 +60,7 @@ export const App = QuicknessMode(() => {
       const deviceInfo = await sdk.getDeviceInfo();
 
       // 设备展示名称
-      const deviceDisplayName = deviceInfo.AliasName || sdk.productInfo.Name;
+      const deviceDisplayName = sdk.groupName||deviceInfo.AliasName || sdk.productInfo.Name;
       // 更新页面标题
       window.document.title = deviceDisplayName;
     });
