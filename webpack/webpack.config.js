@@ -5,7 +5,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const panelConfig = require('./panel-conf');
 const TerserPlugin = require('terser-webpack-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 
 const autoPreFixer = require('autoprefixer');
 const postcss = require('postcss-pxtorem');
@@ -136,6 +136,7 @@ module.exports = (env, argv) => {
                   '@babel/preset-typescript',
                 ],
                 plugins: [
+                  '@babel/plugin-transform-nullish-coalescing-operator',
                   '@babel/plugin-proposal-class-properties',
                   [
                     '@babel/plugin-transform-runtime',
