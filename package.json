@@ -10,7 +10,8 @@
     "node-mem": "node --max-old-space-size=8192 ./node_modules/webpack/bin/webpack.js --config webpack/webpack.config.js --mode=production",
     "build-file": "npx webpack --config webpack/webpack.config.js --mode=production",
     "lint": "eslint  ./src",
-    "lint:fix": "eslint ./src --ext .ts,.tsx,.js --fix"
+    "lint:fix": "eslint ./src --ext .ts,.tsx,.js --fix",
+    "scan": "i18next-scanner --config i18next-scanner.config.cjs"
   },
   "repository": {
     "type": "git",
@@ -116,8 +117,10 @@
     "eslint-plugin-react": "^7.21.5",
     "eslint-plugin-react-hooks": "^4.2.0",
     "file-loader": "^6.2.0",
+    "i18next-scanner": "^4.5.0",
     "less": "^3.11.1",
     "less-loader": "^5.0.0",
+    "md5": "^2.3.0",
     "mini-css-extract-plugin": "^2.6.0",
     "optimize-css-assets-webpack-plugin": "^5.0.4",
     "postcss-loader": "^3.0.0",
@@ -129,7 +132,7 @@
     "terser-webpack-plugin": "^5.1.1",
     "thread-loader": "^3.0.4",
     "ts-loader": "^6.2.1",
-    "typescript": "^3.8.3",
+    "typescript": "^5.5.4",
     "url-loader": "^4.1.1",
     "webpack": "^5.67.0",
     "webpack-bundle-analyzer": "^3.9.0",

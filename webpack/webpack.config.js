@@ -110,14 +110,12 @@ module.exports = (env, argv) => {
       compress: true,
       port: 9000,
       // disableHostCheck: true, //  新增该配置项
-      // hot: true,
       https: false,
       headers: { 'Access-Control-Allow-Origin': '*' },
       static: {
         directory: path.join(__dirname, outputPath),
       },
       allowedHosts: 'all',
-      hot: true,
     },
     module: {
       // 现在的 babel 配置已经很简单了，我们只需要加入默认的配置即可
@@ -136,7 +134,6 @@ module.exports = (env, argv) => {
                   '@babel/preset-typescript',
                 ],
                 plugins: [
-                  '@babel/plugin-transform-nullish-coalescing-operator',
                   '@babel/plugin-proposal-class-properties',
                   [
                     '@babel/plugin-transform-runtime',
@@ -290,6 +287,7 @@ module.exports = (env, argv) => {
         '@utils': path.resolve(__dirname, '../src/libs/utils.ts'),
         '@theme': path.resolve(__dirname, '../src/styles/theme'),
         '@svg': path.resolve(__dirname, plugin.svg),
+        '@locales': path.resolve(__dirname, '../locales'),
       },
     },
     devtool: isDevMode || isPreview ? 'eval-source-map' : false,
