@@ -30,10 +30,6 @@ let cachedLang: string | null = null;
 const initializeLanguage = () => {
   const { query } = parseUrl(window.location);
   const { lang } = query;
-  setDefaultConfig({
-    locale: enUS,
-  });
-  i18n.changeLanguage('en');
   if (lang && lang !== cachedLang) {
     setDefaultConfig({
       locale: enUS,

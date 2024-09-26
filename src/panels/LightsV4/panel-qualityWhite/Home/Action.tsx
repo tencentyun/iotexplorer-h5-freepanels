@@ -120,7 +120,7 @@ const Action = (props) => {
                   name='mode'
                   checked={selected == key}
                 />
-                <span className='radio-item-label'>{name}</span>
+                <span className='radio-item-label'>{t(name)}</span>
               </label>
             ))}
           </div>
