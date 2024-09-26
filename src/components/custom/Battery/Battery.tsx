@@ -4,6 +4,7 @@
 import React from 'react';
 import classNames from 'classnames';
 import './Battery.less';
+import { t } from '@locales';
 
 export interface BatteryProps {
   // 电量 0 - 100
@@ -32,7 +33,7 @@ export function Battery({
         </div>
       </div>
 
-      {isShowTip ? <p className="battery-tip">设备电量</p> : null}
+      {isShowTip ? <p className="battery-tip">{t('设备电量')}</p> : null}
 
       {/* 百分比 */}
       {isShowPercent ? (

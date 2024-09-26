@@ -5,29 +5,30 @@ import { useTitle } from '@hooks/useTitle';
 import { getSwitchNum } from '@src/panels/SwitchV3/panel-qualityWhite/Home/Home';
 import { useSwitchNameMap } from '@src/panels/SwitchV3/hooks/useSwitchNameMap';
 import useSWR from 'swr';
+import { t } from '@locales';
 
 const outageStatusOptions = [
   [
-    { label: '关闭', value: 0 },
-    { label: '记忆', value: 1 },
+    { label: t('关闭'), value: 0 },
+    { label: t('记忆'), value: 1 },
   ],
 ];
 
 const modeSwitchOptions = [
   [
-    { label: '开关模式', value: 0 },
-    { label: '场景模式', value: 1 },
+    { label: t('开关模式'), value: 0 },
+    { label: t('场景模式'), value: 1 },
   ],
 ];
 
 const ledBrightnessOptions = [
   [
-    { label: '1级-亮度0%', value: 1 },
-    { label: '2级-亮度10%', value: 2 },
-    { label: '3级-亮度40%', value: 3 },
-    { label: '4级-亮度60%', value: 4 },
-    { label: '5级-亮度80%', value: 5 },
-    { label: '6级-亮度100%', value: 6 },
+    { label: t('1级-亮度0%'), value: 1 },
+    { label: t('2级-亮度10%'), value: 2 },
+    { label: t('3级-亮度40%'), value: 3 },
+    { label: t('4级-亮度60%'), value: 4 },
+    { label: t('5级-亮度80%'), value: 5 },
+    { label: t('6级-亮度100%'), value: 6 },
   ],
 ];
 
@@ -67,7 +68,7 @@ export function MoreSetting({
   sdk,
   templateMap,
 }) {
-  useTitle('设置');
+  useTitle(t('设置'));
   const switchNum = getSwitchNum(templateMap);
 
   const { data: switchNameMap = {} } = useSwitchNameMap({ switchNum, sdk });
@@ -106,7 +107,7 @@ export function MoreSetting({
   const toggleAutoLedBrightness = async (checked: boolean) => {
     try {
       const loadingToast = Toast.show({
-        content: '请等待...',
+        content: t('请等待...'),
         icon: 'loading',
         maskClickable: false,
         duration: 60,
@@ -135,7 +136,7 @@ export function MoreSetting({
             Days: '1111111',
             Repeat: 1,
             TimePoint: timerConfigList[index].TimerPoint,
-            TimerName: '指示灯亮度调节',
+            TimerName: '指示灯亮度调节'
           });
         }
       }
@@ -194,7 +195,7 @@ export function MoreSetting({
       loadingToast.close();
     } catch (err) {
       Toast.show({
-        content: '切换状态失败',
+        content: t('切换状态失败'),
         icon: 'fail',
       });
       console.error('状态AutoLedBrightness切换失败', err);
@@ -203,7 +204,7 @@ export function MoreSetting({
 
   return (
     <>
-      <List header='基础设置'>
+      <List header={t('基础设置')}>
         <List.Item
           extra={ledBrightnessOptions[0][led_brightness - 1]?.label || '-'}
           clickable
@@ -229,9 +230,9 @@ export function MoreSetting({
               }}
             />
           )}
-          description='根据当前时间自动调节指示灯亮度'
+          description={t('根据当前时间自动调节指示灯亮度')}
         >
-          指示灯自动调节模式
+          {t('指示灯自动调节模式')}
         </List.Item>
         {/* <List.Item*/}
         {/*  clickable*/}
@@ -252,7 +253,7 @@ export function MoreSetting({
             }
           }}
         >
-          断电后通电状态
+          {t("断电后通电状态")}
         </List.Item>
       </List>
       {/* <List header='倒计时关闭设置'>*/}
@@ -280,7 +281,7 @@ export function MoreSetting({
       {/*      );*/}
       {/*    })}*/}
       {/* </List>*/}
-      <List header='转无线开关设置'>
+      <List header={t('转无线开关设置')}>
         {new Array(switchNum).fill('')
           .map((_, index) => {
             const modeProperty = `mode_switch${index + 1}`;
@@ -289,7 +290,7 @@ export function MoreSetting({
               <List.Item
                 extra={modeSwitchOptions[0][deviceData[modeProperty]]?.label || '-'}
                 key={index}
-                description={isSceneMode && '实体按键不再控制回路通断，仅触发场景'}
+                description={isSceneMode && t('实体按键不再控制回路通断，仅触发场景')}
                 onClick={async () => {
                   const res = await Picker.prompt({
                     columns: modeSwitchOptions,

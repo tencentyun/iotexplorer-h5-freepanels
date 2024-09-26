@@ -5,6 +5,7 @@ import { DatePicker } from '@custom/DatePicker';
 import { Cell } from '@custom/Cell';
 import { EcChart } from '../EcChart';
 import dayjs from 'dayjs';
+import { t } from '@locales';
 
 const getTypeBeforeDate = (date, type) => {
   let before = null;
@@ -101,8 +102,8 @@ export const ElectricStatisticsPanel = ({
     <div className="electric-statistics-panel">
       <div className="panel-item">
         <div className="item-value">{cur_ele || '-'}</div>
-        <div className="item-label">今日电量</div>
-        <div className="item-unit">（度）</div>
+        <div className="item-label">{t('今日电量')}</div>
+        <div className="item-unit">（{t("度")}）</div>
       </div>
       {/* <div className="panel-item">*/}
       {/*  <div className="item-value">{cur_current || '-'}</div>*/}
@@ -111,12 +112,12 @@ export const ElectricStatisticsPanel = ({
       {/* </div>*/}
       <div className="panel-item">
         <div className="item-value">{cur_voltage || '-'}</div>
-        <div className="item-label">当前电压</div>
+        <div className="item-label">{t('当前电压')}</div>
         <div className="item-unit">（V）</div>
       </div>
       <div className="panel-item">
         <div className="item-value">{cur_power || '-'}</div>
-        <div className="item-label">当前功率</div>
+        <div className="item-label">{t('当前功率')}</div>
         <div className="item-unit">（W）</div>
       </div>
     </div>
@@ -124,14 +125,14 @@ export const ElectricStatisticsPanel = ({
 };
 
 export const Source = (props) => {
-  useTitle('电量统计');
+  useTitle(t('电量统计'));
   const {
     deviceData = {},
   } = { ...props };
   const statistics = [
-    ['周', 'day'],
-    ['月', 'month'],
-    ['年', 'year'],
+    [t('周'), 'day'],
+    [t('月'), 'month'],
+    [t('年'), 'year'],
   ];
   const [pickerVisible, setPickerVisible] = useState(false);
   const [times, setTimes] = useState(defaultTimes);
@@ -156,7 +157,7 @@ export const Source = (props) => {
               <Cell
                 isLink={false}
                 className="cell-settings"
-                title="统计时间"
+                title={t('统计时间')}
                 value={getStatisticDate(type, times[type])}
                 valueStyle="set"
                 // onClick={() => setPickerVisible(true)}

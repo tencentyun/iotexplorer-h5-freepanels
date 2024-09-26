@@ -1,8 +1,9 @@
 import React from 'react';
 import { List, Checkbox } from 'antd-mobile';
 import { Icon } from '@custom/Icon';
+import { t } from '@locales';
 
-export const arrWeek = ['周日', '周一', '周二', '周三', '周四', '周五', '周六'];
+export const arrWeek = [t('周日'), t('周一'), t('周二'), t('周三'), t('周四'), t('周五'), t('周六')]
 
 const getWeeks = (weeks: number[]) => {
   if (!weeks) return [];
@@ -48,7 +49,7 @@ export const Repeat = ({ context: { Days = [] }, setContext }) => {
           ))}
         </Checkbox.Group>
       </List>
-      <div className="description">不勾选将默认只执行一次</div>
+      <div className="description">{t('不勾选将默认只执行一次')}</div>
     </div>
   );
 };

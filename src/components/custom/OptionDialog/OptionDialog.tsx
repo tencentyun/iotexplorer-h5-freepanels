@@ -1,6 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import classNames from 'classnames';
 import { Mask } from 'antd-mobile';
+import { t } from '@locales';
 
 export type SelectType = {
   Radio: 'radio';
@@ -104,10 +105,10 @@ export function OptionDialog(props: OptionDialogProps) {
         <div className="dialog-children">{props.children}</div>
         <footer>
           <div className="dialog-btn cancel" onClick={handleCancel}>
-            取消
+            {t('取消')}
           </div>
           <div className="dialog-btn confirm" onClick={handleConfirm}>
-            确认
+            {t('确认')}
           </div>
         </footer>
       </div>

@@ -4,6 +4,7 @@ import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 import { arrWeek } from '../AddTimer/Repeat';
 import { SwipeAction } from '@custom/SwipeAction';
 import { useTitle } from '@hooks/useTitle';
+import { t } from '@locales';
 const ListTimer = ({
   labelEnum,
   renderLabel,
@@ -14,7 +15,7 @@ const ListTimer = ({
   timer: { timers, TIMER_API, doTimer },
   history: { PATH, push, query },
 }) => {
-  useTitle('添加定时');
+  useTitle(t('添加定时'));
   const changeStatus = async (TimerId: string, Status: number) => {
     await doTimer(TIMER_API.UPDATE, { Status, TimerId });
   };
@@ -66,10 +67,10 @@ const ListTimer = ({
               rightActions={[
                 {
                   key: 'delete',
-                  text: <span>删除</span>,
+                  text: <span>{t('删除')}</span>,
                   color: 'danger',
                   onClick: async () => {
-                    const isDelete = await sdk.tips.confirm('要删除当前定时吗？');
+                    const isDelete = await sdk.tips.confirm(t('要删除当前定时吗？'));
                     if (isDelete) handleDeleteTimer(TimerId);
                     ref.current?.close();
                   },
@@ -103,7 +104,7 @@ const ListTimer = ({
           push(PATH.TIMER_ADD, query);
         }}
       >
-        +添加定时
+        +{t('添加定时')}
       </button>
     </div>
   );
