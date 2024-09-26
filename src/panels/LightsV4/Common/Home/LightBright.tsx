@@ -8,9 +8,8 @@ const LightBrightPage = ({
   controlName,
   onChange,
   minValue,
-  maxValue
-}) => {
-  return <div className={`light-bright ${deviceData.power_switch ? 'on-switch' : 'off-switch'}`}>
+  maxValue,
+}) => <div className={`light-bright ${deviceData.power_switch ? 'on-switch' : 'off-switch'}`}>
     <LightBright
       defaultValue={deviceData[controlName] || 80}
       value={deviceData[controlName]}
@@ -20,12 +19,10 @@ const LightBrightPage = ({
       maxValue={maxValue || 100}
       onChange={(value, endTouch) => {
         onChange && onChange(value);
-        endTouch && doControlDeviceData(controlName, value)
+        endTouch && doControlDeviceData(controlName, value);
       }}
     />
-  </div>
-
-}
+  </div>;
 
 
 export default LightBrightPage;

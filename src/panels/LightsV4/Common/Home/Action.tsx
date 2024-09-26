@@ -1,5 +1,6 @@
 import React from 'react';
 import { Icon } from '@custom/Icon';
+import { t } from '@locales';
 
 const Action = ({
   deviceData: { power_switch },
@@ -16,7 +17,7 @@ const Action = ({
 
   const actions = [
     [
-      '开关',
+      t('开关'),
       power_switch ? 'switch-checked' : 'switch',
       onSwitchChange,
       !!power_switch,
@@ -28,7 +29,7 @@ const Action = ({
     //   isExistTimer,
     // ],
     [
-      '更多',
+      t('更多'),
       'timing-checked',
       push.bind(null, PATH.TIMER_COUNTDOWN, { isModule: true }),
       isExistTimer,

@@ -2,6 +2,7 @@ import React, { useRef } from 'react';
 import { Icon } from '@custom/Icon';
 import { Cell } from '@custom/Cell';
 import { CountDown } from '../../Common/CountDown';
+import { t } from '@locales';
 
 const Action = (props) => {
   const {
@@ -21,15 +22,15 @@ const Action = (props) => {
 
   const actions = [
     [
-      '总控开关',
-      isSwitchOff ? '关闭' : '开启',
+      t('总控开关'),
+      isSwitchOff ? t('关闭') : t('开启'),
       onSwitchChange,
       !!power_switch,
       'switch'
     ],
     [
-      '时间',
-      '定时器',
+      t('时间'),
+      t('定时器'),
       !!count_down ? push.bind(null, PATH.TIMER_COUNTDOWNPAGE, { value: count_down }) : () => { countRef.current.onOpen() },
       isExistTimer,
       ''
@@ -37,12 +38,11 @@ const Action = (props) => {
   ];
   return (
     <>
-      <div className={`action action-off`}>
+      <div className={`action ${actionCls}`}>
         {actions.map(([label, name, onClick, isChecked, ele], index) => (
           <div
             key={name}
-            className={`action-item  ${isChecked ? 'checked' : ''} action-item-${index + 1
-              }`}
+            className={`action-item ${isChecked ? 'checked' : ''} action-item-${index + 1}`}
             onClick={onClick}
           >
             <div className={`action-ele action-ele-${index}`}>

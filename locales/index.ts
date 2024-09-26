@@ -5,6 +5,9 @@ import enResources from './en/resources.json';
 import md5 from 'md5';
 import { parseUrl } from '@src/libs/utillib';
 
+import enUS from 'antd-mobile/es/locales/en-US';
+import { setDefaultConfig } from 'antd-mobile';
+
 const resources = {
   zh: {
     translation: zhResources,
@@ -27,7 +30,14 @@ let cachedLang: string | null = null;
 const initializeLanguage = () => {
   const { query } = parseUrl(window.location);
   const { lang } = query;
+  setDefaultConfig({
+    locale: enUS,
+  });
+  i18n.changeLanguage('en');
   if (lang && lang !== cachedLang) {
+    setDefaultConfig({
+      locale: enUS,
+    });
     i18n.changeLanguage(lang);
     cachedLang = lang;
   }

@@ -4,6 +4,7 @@ import { Cell } from '@custom/Cell';
 import { Modal } from '@custom/Modal';
 import { Btn as Button, BtnGroup } from '@custom/Btn';
 import { CountDown } from '../../Common/CountDown';
+import { t } from '@locales';
 
 
 const Action = (props) => {
@@ -26,19 +27,19 @@ const Action = (props) => {
 
   const actions = [
     [
-      '定时',
+      t('定时'),
       isSwitchOff ? 'timing' : 'timing-checked',
       !!count_down ? push.bind(null, PATH.TIMER_COUNTDOWNPAGE, { value: count_down }) : () => { countRef.current.onOpen() },
       isExistTimer,
     ],
     [
-      '开关',
+      t('开关'),
       power_switch ? 'switch-checked' : 'switch',
       onSwitchChange,
       !!power_switch,
     ],
     [
-      '模式选择',
+      t('模式选择'),
       power_switch ? 'mode-checked' : 'mode',
       () => { setModeVisible(true) },
       !!power_switch
@@ -51,9 +52,9 @@ const Action = (props) => {
     // ],
   ];
   const modeList = [
-    ['白光', 0, 'white'],
-    ['彩光', 1, 'colour'],
-    ['场景', 2, 'scene'],
+    [t('白光'), 0, 'white'],
+    [t('彩光'), 1, 'colour'],
+    [t('场景'), 2, 'scene'],
   ];
 
   const onRadioClick = (value) => {
@@ -84,7 +85,7 @@ const Action = (props) => {
           visible={modeVisible}
         >
           <div className="modal-title">
-            <div className="title">模式</div>
+            <div className="title">{t('模式')}</div>
           </div>
           <div className="custom-radio">
             {modeList.map(([name, index, value]) => (
@@ -123,7 +124,7 @@ const Action = (props) => {
                   doControlDeviceData({ work_mode: work_mode });
                 }}
               >
-                取消
+                {t('取消')}
               </Button>
               <Button
                 className="btn-save"
@@ -136,7 +137,7 @@ const Action = (props) => {
                   doControlDeviceData({ work_mode: modeList[selected][2] });
                 }}
               >
-                确定
+                {t('确定')}
               </Button>
 
             </BtnGroup>

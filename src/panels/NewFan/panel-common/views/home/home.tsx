@@ -10,10 +10,8 @@ import SettingImage from '../icons/normal/dev-open.svg';
 import SettingImageBlueWhite from '../icons/blue-white/dev-open.svg';
 import SettingImageColorful from '../icons/colorful/dev-open.svg';
 import SettingImageMorandi from '../icons/morandi/dev-open.svg';
-import { useTranslation } from 'react-i18next';
 
 export function Home() {
-  const { t, i18n } = useTranslation();
   // console.log(t);
   const themeType = getThemeType();
   const settingImageSrc = () => {
@@ -52,7 +50,7 @@ export function Home() {
         <section className={classNames('dashboard')}>
           <Ticker
             title={'PM2.5'}
-            text={t('h1')}
+            text="室内空气 优"
             text1="室外空气 优(32)"
             value={sdk.deviceData.pm2_5 ? sdk.deviceData.pm2_5 : '300'}
             unit={''}

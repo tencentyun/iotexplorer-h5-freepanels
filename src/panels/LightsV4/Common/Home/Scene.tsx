@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import classNames from 'classnames';
 import { Icon } from '@src/components/custom/Icon';
+import { t } from '@locales';
 
 const CONFIG = [
-  ['我喜欢的', 0, true],
-  ['主题心情', 1, false],
-  ['假日陪伴', 2, false],
-  ['多彩生活', 3, false],
+  [t('我喜欢的'), 0, true],
+  [t('主题心情'), 1, false],
+  [t('假日陪伴'), 2, false],
+  [t('多彩生活'), 3, false],
 ];
 
 const THEME = [
@@ -14,32 +15,35 @@ const THEME = [
     
   ],
   [
-    { id: 0, name: '明亮', value: 's-light', isLike: false },
-    { id: 1, name: '柔和', value: 's-soft', isLike: false },
-    { id: 2, name: '冷光', value: 's-cold', isLike: false },
-    { id: 3, name: '暖光', value: 's-warm', isLike: false },
-    { id: 4, name: '夜灯', value: 's-night', isLike: false },
-    { id: 5, name: '阅读', value: 's-read', isLike: false },
-    { id: 6, name: '电视', value: 's-tv', isLike: false },
-    { id: 7, name: '月光', value: 's-moon', isLike: false },
+    { id: 0, name: t('明亮'), value: 's-light', isLike: false },
+    { id: 1, name: t('柔和'), value: 's-soft', isLike: false },
+    { id: 2, name: t('冷光'), value: 's-cold', isLike: false },
+    { id: 3, name: t('暖光'), value: 's-warm', isLike: false },
+    { id: 4, name: t('夜灯'), value: 's-night', isLike: false },
+    { id: 5, name: t('阅读'), value: 's-read', isLike: false },
+    { id: 6, name: t('电视'), value: 's-tv', isLike: false },
+    { id: 7, name: t('月光'), value: 's-moon', isLike: false },
   ],
-  [{ id: 1, name: '缤纷', value: 'riotous', isLike: false },
-    { id: 2, name: '炫彩', value: 'colorful', isLike: false },
-    { id: 3, name: '斑斓', value: 'multicolored', isLike: false },
-    { id: 4, name: '蓝天', value: 'sky', isLike: false },
-    { id: 5, name: '海洋', value: 'ocean', isLike: false },
+  [
+    { id: 1, name: t('缤纷'), value: 'riotous', isLike: false },
+    { id: 2, name: t('炫彩'), value: 'colorful', isLike: false },
+    { id: 3, name: t('斑斓'), value: 'multicolored', isLike: false },
+    { id: 4, name: t('蓝天'), value: 'sky', isLike: false },
+    { id: 5, name: t('海洋'), value: 'ocean', isLike: false },
   ],
-  [{ id: 6, name: '七夕节', value: 'qixi_festival', isLike: false },
-    { id: 7, name: '端午节', value: 'dragon_boat_festival', isLike: false },
-    { id: 8, name: '中秋节', value: 'mid_autumn_festival', isLike: false },
-    { id: 9, name: '国庆节', value: 'national_day', isLike: false },
-    { id: 10, name: '生日', value: 'birthday', isLike: false },
+  [
+    { id: 6, name: t('七夕节'), value: 'qixi_festival', isLike: false },
+    { id: 7, name: t('端午节'), value: 'dragon_boat_festival', isLike: false },
+    { id: 8, name: t('中秋节'), value: 'mid_autumn_festival', isLike: false },
+    { id: 9, name: t('国庆节'), value: 'national_day', isLike: false },
+    { id: 10, name: t('生日'), value: 'birthday', isLike: false },
   ],
-  [{ id: 11, name: '阅读', value: 'reading', isLike: false },
-    { id: 12, name: '工作', value: 'working', isLike: false },
-    { id: 13, name: '休闲', value: 'relaxation', isLike: false },
-    { id: 14, name: '晚安', value: 'night', isLike: false },
-    { id: 15, name: '柔和', value: 'cozy', isLike: false },
+  [
+    { id: 11, name: t('阅读'), value: 'reading', isLike: false },
+    { id: 12, name: t('工作'), value: 'working', isLike: false },
+    { id: 13, name: t('休闲'), value: 'relaxation', isLike: false },
+    { id: 14, name: t('晚安'), value: 'night', isLike: false },
+    { id: 15, name: t('柔和'), value: 'cozy', isLike: false },
   ],
 ];
 
@@ -134,7 +138,7 @@ export function ScenePage({
             }
           </div>
         ))}
-        {themeList[tabValue].length === 0 ? <div className="empty">暂无数据</div> : null}
+        {themeList[tabValue].length === 0 ? <div className="empty">{t('暂无数据')}</div> : null}
       </div>
     </div>
   );

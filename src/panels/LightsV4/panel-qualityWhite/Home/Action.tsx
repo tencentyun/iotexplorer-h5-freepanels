@@ -5,6 +5,7 @@ import { Modal } from '@custom/Modal';
 import { Btn as Button, BtnGroup } from '@custom/Btn';
 import { CountDown } from '../../Common/CountDown';
 import { CellBtn } from '@components/Btn/CellBtn';
+import { t } from '@locales';
 
 
 const Action = (props) => {
@@ -47,7 +48,7 @@ const Action = (props) => {
 
   const actions = [
     [
-      '定时',
+      t('定时'),
 
       isSwitchOff ? 'timing' : 'timing-checked',
       () => sdk.goTimingProjectPage(),
@@ -55,13 +56,13 @@ const Action = (props) => {
       isExistTimer,
     ],
     [
-      '开关',
+      t('开关'),
       power_switch ? 'switch-checked' : 'switch',
       onSwitchChange,
       !!power_switch,
     ],
     [
-      '更多',
+      t('更多'),
       'timmer',
       push.bind(null, PATH.MORE_SETTING, { isModule: true }),
     ],
@@ -100,8 +101,8 @@ const Action = (props) => {
           visible={modeVisible}
         >
           <div className='modal-title'>
-            <div className='title'>模式</div>
-            <div className='second-title'>请根据您的实际使用场景，选择合适的控制场景</div>
+            <div className='title'>{t('模式')}</div>
+            <div className='second-title'>{t('请根据您的实际使用场景，选择合适的控制场景')}</div>
           </div>
           <div className='custom-radio'>
             {COLOR_MODULE.map(([name, key]) => (
@@ -135,7 +136,7 @@ const Action = (props) => {
                   setModeVisible(false);
                 }}
               >
-                取消
+                {t('取消')}
               </Button>
               <Button
                 className='btn-save'
@@ -145,7 +146,7 @@ const Action = (props) => {
                   doControlDeviceData({ color_mode: selected });
                 }}
               >
-                确定
+                {t('确定')}
               </Button>
 
             </BtnGroup>
@@ -165,7 +166,7 @@ const Action = (props) => {
         onClick={() => {
           sdk.goScenePage({ sceneType: 'default' });
         }}>
-        智能场景
+         {t('智能场景')}
       </CellBtn>
       {/* {*/}
       {/*  isSupportColorMode*/}

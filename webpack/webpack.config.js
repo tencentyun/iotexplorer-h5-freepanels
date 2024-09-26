@@ -147,14 +147,14 @@ module.exports = (env, argv) => {
                   ],
                   ['babel-plugin-styled-components-px2vw', viewportConfig],
                   // antd 按需引入
-                  [
-                    'import',
-                    {
-                      libraryName: 'antd-mobile',
-                      libraryDirectory: 'es/components',
-                      style: 'false',
-                    },
-                  ],
+                  // [
+                  //   'import',
+                  //   {
+                  //     libraryName: 'antd-mobile',
+                  //     // libraryDirectory: 'es/components',
+                  //     style: 'false',
+                  //   },
+                  // ],
                 ],
               },
             }],

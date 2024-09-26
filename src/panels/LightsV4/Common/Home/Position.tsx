@@ -5,6 +5,7 @@ import { Icon } from '@custom/Icon';
 import { getDegValue } from '@utils';
 import { Input, Modal, Toast } from 'antd-mobile';
 import { noop } from '@utillib';
+import { t } from '@locales';
 
 export interface LightColorProps extends StyledProps {
   defaultValue?: number; // 0 - 1000
@@ -101,7 +102,7 @@ export function Position({
       content: (
         <Input
           ref={colorTempInputRef}
-          placeholder='请输入色温值(2700-6500)'
+          placeholder={`${t('请输入色温值')}(2700-6500)`}
           type={'number'}
         />
       ),
@@ -109,15 +110,15 @@ export function Position({
         /* @ts-ignore */
         '--adm-color-primary': '#30414D',
       },
-      title: '色温',
+      title: t('色温'),
       closeOnMaskClick: true,
-      confirmText: '确认',
+      confirmText: t('确认'),
       onConfirm: () => {
         const color_temp = Number(colorTempInputRef.current.nativeElement.value);
         if (!Number.isNaN(color_temp) && color_temp >= 2700 && color_temp <= 6500) {
           doControlDeviceData({ color_temp });
         } else {
-          Toast.show({ content: '色温值不合法', icon: 'fail' });
+          Toast.show({ content: t('色温值不合法'), icon: 'fail' });
         }
       },
     });
