@@ -36,7 +36,7 @@ export function Record() {
   // 清除消息记录
   const clearRecordList = () => {
     if (recordList.length === 0) {
-      sdk.tips.show('没有记录可清除');
+      sdk.tips.show(t('没有记录可清除'));
       return;
     }
     try {

@@ -218,7 +218,7 @@ export function MoreSetting({
             }
           }}
         >
-          指示灯亮度
+          {t("指示灯亮度")}
         </List.Item>
         <List.Item
           extra={(
