@@ -35,35 +35,35 @@ const delayCloseOptions = [
     { label: '5分钟', value: 300 },
   ],
 ];
-const NightLightOptions = [
-  [
-    { label: '无', value: 0 },
-    { label: '5秒', value: 5 },
-    { label: '10秒', value: 10 },
-    { label: '20秒', value: 20 },
-    { label: '30秒', value: 30 },
-    { label: '2分钟', value: 60 },
-    { label: '2分钟', value: 120 },
-    { label: '2分钟', value: 180 },
-    { label: '2分钟', value: 240 },
-    { label: '2分钟', value: 300 },
-  ],
-];
+// const NightLightOptions = [
+//   [
+//     { label: '无', value: 0 },
+//     { label: '5秒', value: 5 },
+//     { label: '10秒', value: 10 },
+//     { label: '20秒', value: 20 },
+//     { label: '30秒', value: 30 },
+//     { label: '2分钟', value: 60 },
+//     { label: '2分钟', value: 120 },
+//     { label: '2分钟', value: 180 },
+//     { label: '2分钟', value: 240 },
+//     { label: '2分钟', value: 300 },
+//   ],
+// ];
 
-const colorModeOptions = [
-  [
-    { label: '单色模式', value: 0 },
-    { label: '双色模式', value: 1 },
-  ],
-];
+// const colorModeOptions = [
+//   [
+//     { label: '单色模式', value: 0 },
+//     { label: '双色模式', value: 1 },
+//   ],
+// ];
 
-const colorDefaultOptions = [
-  [
-    { label: '暖白光', value: 4000 },
-    { label: '明亮光', value: 5000 },
-    { label: '温暖光', value: 3000 },
-  ],
-];
+// const colorDefaultOptions = [
+//   [
+//     { label: '暖白光', value: 4000 },
+//     { label: '明亮光', value: 5000 },
+//     { label: '温暖光', value: 3000 },
+//   ],
+// ];
 
 // const defaultSceneTypeOptions = [
 //   [
@@ -443,7 +443,7 @@ export function MoreSetting({ deviceData, doControlDeviceData, sdk }) {
             单双色切换
           </List.Item>
         )} */}
-          <List.Item
+          {/* <List.Item
             extra={colorDefaultOptions[0].find((item) => item.value === default_color_temp)?.label || '-'}
             clickable
             onClick={async () => {
@@ -470,7 +470,7 @@ export function MoreSetting({ deviceData, doControlDeviceData, sdk }) {
             }}
           >
             默认开启灯光
-          </List.Item>
+          </List.Item> */}
         </List>
         <List header={'夜灯设置'}>
           <List.Item
