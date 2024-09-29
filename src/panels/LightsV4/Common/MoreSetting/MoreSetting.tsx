@@ -2,7 +2,7 @@ import React, { useEffect, useMemo, useState } from 'react';
 import { List, Picker, Toast, Switch } from 'antd-mobile';
 // import { Input, List, Modal, Picker, Switch, Toast } from 'antd-mobile';
 import useSWR from 'swr';
-// import '../../panel-qualityWhite/MoreSetting/MoreSetting.less';
+import '../../panel-qualityWhite/MoreSetting/MoreSetting.less';
 import { useTitle } from '@hooks/useTitle';
 import { t } from '@locales';
 
