@@ -80,12 +80,12 @@ const delayCloseOptions = [
 //   ],
 // ];
 
-const outageStatusOptions = [
-  [
-    { label: '关闭', value: 0 },
-    { label: '记忆', value: 1 },
-  ],
-];
+// const outageStatusOptions = [
+//   [
+//     { label: '关闭', value: 0 },
+//     { label: '记忆', value: 1 },
+//   ],
+// ];
 
 const timeOptions = (() => {
   const result = [[], []] as any;
@@ -124,8 +124,8 @@ export function MoreSetting({ deviceData, doControlDeviceData, sdk }) {
     // default_brightness = '-',
     delay_close = 0,
     // nightlight=0,
-    color_mode = 0,
-    default_color_temp = 4000
+    // color_mode = 0,
+    // default_color_temp = 4000
   } = deviceData;
 
   const [nightLightTime, setNightLightTime] = useState({
@@ -265,7 +265,7 @@ export function MoreSetting({ deviceData, doControlDeviceData, sdk }) {
   // const colorTempInputRef = useRef<any>(null);
   // const brightnessInputRef = useRef<any>(null);
 
-  const showToggleColorMode = sdk.dataTemplate.properties.find(item => item.id === 'color_mode');
+  // const showToggleColorMode = sdk.dataTemplate.properties.find(item => item.id === 'color_mode');
 
   return (
     <>
