@@ -6,10 +6,13 @@ import { Icon } from '@custom/Icon';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 import { t } from '@locales';
 
-export const getSwitchNum = (templateMap = {}) => Object.keys(templateMap).filter(v => /^switch/.test(v)).length || 1;
+export const getSwitchNum = (templateMap = {}) => Object.keys(templateMap).filter(v => /^button/.test(v)).length || 1;
+
 
 export function Home(props) {
   const { doControlDeviceData, templateMap, setContext, deviceData = {} } = props;
+  console.log('templateMap',templateMap)
+  const isEightSwitch = Object.keys(templateMap).includes('switch_type_8')
   const allSwitch = [
     ['switch_1', deviceData.name_button1 || t('开关一')],
     ['switch_2', deviceData.name_button2 || t('开关二')],
@@ -19,6 +22,7 @@ export function Home(props) {
   ];
 
   const switchNum = getSwitchNum(templateMap);
+  console.log('switchNum',switchNum)
   const currentSwitch = allSwitch.slice(0, switchNum);
   const onChange = (key, value) => doControlDeviceData(key, value ? 1 : 0);
 
@@ -82,7 +86,7 @@ export function Home(props) {
           />
         ))}
       </div>
-      <Detail ref={detailRef} {...props} currentSwitch={currentSwitch} switchNum={switchNum} />
+      <Detail ref={detailRef} {...props} currentSwitch={currentSwitch} switchNum={switchNum} isEightSwitch={isEightSwitch}/>
     </div>
   );
 }
