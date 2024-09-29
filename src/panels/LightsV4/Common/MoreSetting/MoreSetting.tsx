@@ -109,7 +109,7 @@ const timeOptions = (() => {
 
 const secondToStr = (num: number) => {
   const minuteStr = Math.floor(num / 60) > 0 ? `${Math.floor(num / 60)}${t('分')}` : '';
-  const secondsStr = num % 60 > 0 ? `${num % 60}${t('分')}` : '';
+  const secondsStr = num % 60 > 0 ? `${num % 60}${t('秒')}` : '';
   return minuteStr + secondsStr;
 };
 
