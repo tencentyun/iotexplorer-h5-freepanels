@@ -80,12 +80,12 @@ const delayCloseOptions = [
 //   ],
 // ];
 
-// const outageStatusOptions = [
-//   [
-//     { label: '关闭', value: 0 },
-//     { label: '记忆', value: 1 },
-//   ],
-// ];
+const outageStatusOptions = [
+  [
+    { label: '关闭', value: 0 },
+    { label: '记忆', value: 1 },
+  ],
+];
 
 const timeOptions = (() => {
   const result = [[], []] as any;
