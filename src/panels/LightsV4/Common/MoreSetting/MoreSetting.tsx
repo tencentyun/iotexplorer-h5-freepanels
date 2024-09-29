@@ -2,37 +2,38 @@ import React, { useEffect, useMemo, useState } from 'react';
 import { List, Picker, Toast, Switch } from 'antd-mobile';
 // import { Input, List, Modal, Picker, Switch, Toast } from 'antd-mobile';
 import useSWR from 'swr';
-import '../../panel-qualityWhite/MoreSetting/MoreSetting.less';
+// import '../../panel-qualityWhite/MoreSetting/MoreSetting.less';
 import { useTitle } from '@hooks/useTitle';
+import { t } from '@locales';
 
 const gradientCycleOptions = [
   [
-    { label: '0秒', value: 0 },
-    { label: '1秒', value: 1 },
-    { label: '2秒', value: 2 },
-    { label: '3秒', value: 3 },
-    { label: '4秒', value: 4 },
-    { label: '5秒', value: 5 },
-    { label: '6秒', value: 6 },
-    { label: '7秒', value: 7 },
-    { label: '8秒', value: 8 },
-    { label: '9秒', value: 9 },
-    { label: '10秒', value: 10 },
+    { label: `0${t('秒')}`, value: 0 },
+    { label: `1${t('秒')}`, value: 1 },
+    { label: `2${t('秒')}`, value: 2 },
+    { label: `3${t('秒')}`, value: 3 },
+    { label: `4${t('秒')}`, value: 4 },
+    { label: `5${t('秒')}`, value: 5 },
+    { label: `6${t('秒')}`, value: 6 },
+    { label: `7${t('秒')}`, value: 7 },
+    { label: `8${t('秒')}`, value: 8 },
+    { label: `9${t('秒')}`, value: 9 },
+    { label: `10${t('秒')}`, value: 10 },
   ],
 ];
 
 const delayCloseOptions = [
   [
-    { label: '无', value: 0 },
-    { label: '5秒', value: 5 },
-    { label: '10秒', value: 10 },
-    { label: '20秒', value: 20 },
-    { label: '30秒', value: 30 },
-    { label: '1分钟', value: 60 },
-    { label: '2分钟', value: 120 },
-    { label: '3分钟', value: 180 },
-    { label: '4分钟', value: 240 },
-    { label: '5分钟', value: 300 },
+    { label: t('无'), value: 0 },
+    { label: `5${t('秒')}`, value: 5 },
+    { label: `10${t('秒')}`, value: 10 },
+    { label: `20${t('秒')}`, value: 20 },
+    { label: `30${t('秒')}`, value: 30 },
+    { label: `1${t('分钟')}`, value: 60 },
+    { label: `2${t('分钟')}`, value: 120 },
+    { label: `3${t('分钟')}`, value: 180 },
+    { label: `4${t('分钟')}`, value: 240 },
+    { label: `5${t('分钟')}`, value: 300 },
   ],
 ];
 // const NightLightOptions = [
@@ -82,8 +83,8 @@ const delayCloseOptions = [
 
 const outageStatusOptions = [
   [
-    { label: '关闭', value: 0 },
-    { label: '记忆', value: 1 },
+    { label: t('关闭'), value: 0 },
+    { label: t('记忆'), value: 1 },
   ],
 ];
 
@@ -91,29 +92,29 @@ const timeOptions = (() => {
   const result = [[], []] as any;
   for (let i = 0; i < 24; i++) {
     if (i < 10) {
-      result[0].push({ label: `0${i}时`, value: `0${i}` });
+      result[0].push({ label: `0${i}${t('时')}`, value: `0${i}` });
     } else {
-      result[0].push({ label: `${i}时`, value: `${i}` });
+      result[0].push({ label: `${i}${t('时')}`, value: `${i}` });
     }
   }
   for (let i = 0; i < 60; i++) {
     if (i < 10) {
-      result[1].push({ label: `0${i}分`, value: `0${i}` });
+      result[1].push({ label: `0${i}${t('分')}`, value: `0${i}` });
     } else {
-      result[1].push({ label: `${i}分`, value: `${i}` });
+      result[1].push({ label: `${i}${t('分')}`, value: `${i}` });
     }
   }
   return result;
 })();
 
 const secondToStr = (num: number) => {
-  const minuteStr = Math.floor(num / 60) > 0 ? `${Math.floor(num / 60)}分` : '';
-  const secondsStr = num % 60 > 0 ? `${num % 60}秒` : '';
+  const minuteStr = Math.floor(num / 60) > 0 ? `${Math.floor(num / 60)}${t('分')}` : '';
+  const secondsStr = num % 60 > 0 ? `${num % 60}${t('分')}` : '';
   return minuteStr + secondsStr;
 };
 
 export function MoreSetting({ deviceData, doControlDeviceData, sdk }) {
-  useTitle('设置');
+  useTitle(t('设置'));
 
   const {
     gradient_cycle = 0,
@@ -158,7 +159,7 @@ export function MoreSetting({ deviceData, doControlDeviceData, sdk }) {
   const updateNightLightTimerTimePoint = async ({ startTime, endTime }) => {
     console.log('[updateNightLightTimerTimePoint]', openNightTimer, closeNightTimer, startTime, endTime);
     const loadingToast = Toast.show({
-      content: '请等待...',
+      content: t('请等待...'),
       icon: 'loading',
       maskClickable: false,
       duration: 60,
@@ -191,7 +192,7 @@ export function MoreSetting({ deviceData, doControlDeviceData, sdk }) {
       loadingToast.close();
     } catch (err) {
       Toast.show({
-        content: err?.msg || '更新时间错误',
+        content: err?.msg || t('更新时间错误'),
         icon: 'fail',
       });
       console.error(err);
@@ -202,7 +203,7 @@ export function MoreSetting({ deviceData, doControlDeviceData, sdk }) {
     if (!TimerList) return;
     try {
       const loadingToast = Toast.show({
-        content: '请等待...',
+        content: t('更新时间错误'),
         icon: 'loading',
         maskClickable: false,
         duration: 60,
@@ -235,7 +236,7 @@ export function MoreSetting({ deviceData, doControlDeviceData, sdk }) {
           Days: '1111111',
           Repeat: 1,
           TimePoint: nightLightTime.startTime,
-          TimerName: '夜灯开关状态-开',
+          TimerName: t('夜灯开关状态-开'),
         });
       }
       if (!closeNightTimer) {
@@ -246,17 +247,17 @@ export function MoreSetting({ deviceData, doControlDeviceData, sdk }) {
           Days: '1111111',
           Repeat: 1,
           TimePoint: nightLightTime.endTime,
-          TimerName: '夜灯开关状态-关',
+          TimerName: t('夜灯开关状态-关'),
         });
       }
       await mutate();
       loadingToast.close();
     } catch (err) {
       Toast.show({
-        content: '切换状态失败',
+        content: t('切换状态失败'),
         icon: 'fail',
       });
-      console.error('夜灯状态切换失败', err);
+      console.error(t('夜灯状态切换失败'), err);
     }
   };
 
@@ -272,7 +273,7 @@ export function MoreSetting({ deviceData, doControlDeviceData, sdk }) {
       <div className='more-setting-container'>
 
 
-        <List header='基础设置'>
+        <List header={t('基础设置')}>
           <List.Item
             extra={gradientCycleOptions[0][gradient_cycle]?.label || '-'}
             clickable
@@ -287,7 +288,7 @@ export function MoreSetting({ deviceData, doControlDeviceData, sdk }) {
               }
             }}
           >
-            灯光渐变时间
+            {t('灯光渐变时间')}
           </List.Item>
           {/* <List.Item*/}
           {/*  extra={defaultSceneTypeOptions[0][default_scene_type]?.label || '物模型非法'}*/}
@@ -373,8 +374,8 @@ export function MoreSetting({ deviceData, doControlDeviceData, sdk }) {
             // clickable
             extra={
               <Switch
-                uncheckedText='关闭'
-                checkedText='记忆'
+                uncheckedText={t('关闭')}
+                checkedText={t('记忆')}
                 checked={outage_status === 1}
                 onChange={(value: boolean) => {
                   doControlDeviceData({ outage_status: Number(value) });
@@ -391,7 +392,7 @@ export function MoreSetting({ deviceData, doControlDeviceData, sdk }) {
           // }
           // }}
           >
-            断电后通电状态
+            {t('断电后通电状态')}
           </List.Item>
           <List.Item
             extra={secondToStr(Number(delay_close)) || '-'}
@@ -407,7 +408,7 @@ export function MoreSetting({ deviceData, doControlDeviceData, sdk }) {
               }
             }}
           >
-            延时关灯
+            {t('延时关灯')}
           </List.Item>
           {/* <List.Item
           extra={secondToStr(Number(nightlight)) || '-'}
@@ -472,7 +473,7 @@ export function MoreSetting({ deviceData, doControlDeviceData, sdk }) {
             默认开启灯光
           </List.Item> */}
         </List>
-        <List header={'夜灯设置'}>
+        <List header={t('夜灯设置')}>
           <List.Item
             extra={(
               <Switch
@@ -481,8 +482,8 @@ export function MoreSetting({ deviceData, doControlDeviceData, sdk }) {
                 onChange={handleChangeNightLight}
               />
             )}
-            description='在目标时间段内自动开启夜灯模式'>
-            夜灯模式开关
+            description={t('在目标时间段内自动开启夜灯模式')}>
+            {t('夜灯模式开关')}
           </List.Item>
           {!!isOpenNightLightStatus && (
             <>
@@ -504,7 +505,7 @@ export function MoreSetting({ deviceData, doControlDeviceData, sdk }) {
                   }
                 }}
               >
-                夜灯模式开启时间
+                {t('夜灯模式开启时间')}
               </List.Item>
               <List.Item
                 clickable
@@ -524,7 +525,7 @@ export function MoreSetting({ deviceData, doControlDeviceData, sdk }) {
                   }
                 }}
               >
-                夜灯模式关闭时间
+                {t('夜灯模式关闭时间')}
               </List.Item>
             </>
           )}

@@ -1,11 +1,12 @@
 import React from 'react';
 import { Btn } from '@custom/Btn';
+import { t } from '@locales';
 
 const COLOR_MODULE = [
-  ['单色模式', 0, 'white'],
-  ['双色模式', 1, 'colour'],
-  ['彩色模式', 2, 'colorfull'],
-  ['情景模式', 10, 'sence'],
+  [t('单色模式'), 0, 'white'],
+  [t('双色模式'), 1, 'colour'],
+  [t('彩色模式'), 2, 'colorfull'],
+  [t('情景模式'), 10, 'sence'],
 ];
 
 

@@ -67,6 +67,9 @@
       ],
       "@router": [
         "./src/components/custom/Router"
+      ],
+      "@locales": [
+        "./locales"
       ]
     }
   },

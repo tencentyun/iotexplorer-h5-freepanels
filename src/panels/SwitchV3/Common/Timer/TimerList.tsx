@@ -1,5 +1,6 @@
 import React from 'react';
 import { ListTimer as CloudTimerList } from '@custom/TimerCloud';
+import { t } from '@locales';
 
 
 // const getSwitchNumData = (powerSwitch, num) => {
@@ -22,28 +23,28 @@ export const TimerList = (props) => {
 
   const labelEnum = {
     power_switch: {
-      label: '总开关',
-      value: ['关闭', '开启'],
+      label: t('总开关'),
+      value: [t('关闭'), t('开启')],
     },
     switch_1: {
-      label: deviceData.name_button1 || '开关一',
-      value: ['关闭', '开启'],
+      label: deviceData.name_button1 || t('开关一'),
+      value: [t('关闭'), t('开启')],
     },
     switch_2: {
-      label: deviceData.name_button2 || '开关二',
-      value: ['关闭', '开启'],
+      label: deviceData.name_button2 || t('开关二'),
+      value: [t('关闭'), t('开启')],
     },
     switch_3: {
-      label: deviceData.name_button3 || '开关三',
-      value: ['关闭', '开启'],
+      label: deviceData.name_button3 || t('开关三'),
+      value: [t('关闭'), t('开启')],
     },
     switch_4: {
-      label: deviceData.name_button4 || '开关四',
-      value: ['关闭', '开启'],
+      label: deviceData.name_button4 || t('开关四'),
+      value: [t('关闭'), t('开启')],
     },
     switch_5: {
-      label: deviceData.name_button5 || '开关五',
-      value: ['关闭', '开启'],
+      label: deviceData.name_button5 || t('开关五'),
+      value: [t('关闭'), t('开启')],
     },
   };
   // const defaultValue = getSwitchNumData(0, props.context.switchNum);

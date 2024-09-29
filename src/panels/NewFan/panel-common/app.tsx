@@ -1,7 +1,7 @@
 /**
  * 新风机
  */
-import React, { useEffect } from 'react';
+import React, { Suspense, useEffect } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 import { DeviceSateContext } from './deviceStateContext';
@@ -143,6 +143,7 @@ export const App = QuicknessMode(() => {
   return (
     <article>
       <DeviceSateContext.Provider value={state}>
+      <Suspense fallback={'loading...'} >
         <Router basename={basename}>
           <Switch>
             {/* 首页*/}
@@ -151,6 +152,7 @@ export const App = QuicknessMode(() => {
             </Route>
           </Switch>
         </Router>
+        </Suspense>
       </DeviceSateContext.Provider>
     </article>
   );

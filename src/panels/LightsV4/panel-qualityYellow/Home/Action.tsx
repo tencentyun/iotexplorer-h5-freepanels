@@ -2,6 +2,7 @@ import React, { useRef } from 'react';
 import { Icon } from '@custom/Icon';
 import { Cell } from '@custom/Cell';
 import { CountDown } from '../../Common/CountDown';
+import { t } from '@locales';
 
 const Action = (props) => {
   const {
@@ -27,7 +28,7 @@ const Action = (props) => {
     //   'switch'
     // ],
     [
-      '定时器',
+      t('定时器'),
       isSwitchOff ? 'timing' : 'timing-checked',
       !isSwitchOff && (!!count_down ? push.bind(null, PATH.TIMER_COUNTDOWNPAGE, { value: count_down }) : () => { countRef.current.onOpen() }),
       isExistTimer,
@@ -50,7 +51,7 @@ const Action = (props) => {
     <>
       <div className={`action ${actionCls} ${count_down ? 'count-down': ''}`}>
         {count_down ? <div className="count-down-module">
-          <div className="title">重置</div>
+          <div className="title">{t('重置')}</div>
           <div className="time">
             <span className="num">{countdownTime[0]}</span>
             <span>时 </span>

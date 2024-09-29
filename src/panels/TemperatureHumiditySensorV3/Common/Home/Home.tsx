@@ -2,6 +2,7 @@ import React from 'react';
 import { Battery } from '@custom/Battery';
 import { Disk } from './Disk';
 import { CellBtn } from '@components/Btn/CellBtn';
+import { t } from '@locales';
 
 interface stringKey {
   [key: string]: string;
@@ -67,7 +68,7 @@ export function Home({
             });
           }}
         >
-          智能场景
+          {t('智能场景')}
         </CellBtn>
       </div>
 

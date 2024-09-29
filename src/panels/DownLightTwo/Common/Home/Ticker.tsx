@@ -1,10 +1,11 @@
 import React from 'react';
 import { Btn } from '@custom/Btn';
+import { t } from '@locales';
 
 const CONFIG = [
-  ['白光', 0, 'white'],
-  ['彩光', 1, 'colour'],
-  ['场景', 2, 'scene'],
+  [t('白光'), 0, 'white'],
+  [t('彩光'), 1, 'colour'],
+  [t('场景'), 2, 'scene'],
 ];
 
 const Ticker = ({

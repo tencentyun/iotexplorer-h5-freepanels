@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import { Modal } from '@custom/Modal';
 import { Checkbox, List } from 'antd-mobile';
 import { Icon } from '@custom/Icon';
+import { t } from '@locales';
 
-export const arrWeek = ['周日', '周一', '周二', '周三', '周四', '周五', '周六'];
+export const arrWeek = [t('周日'), t('周一'), t('周二'), t('周三'), t('周四'), t('周五'), t('周六')];
 
 const getWeeks = (weeks: number[]) => {
   if (!weeks) return [];

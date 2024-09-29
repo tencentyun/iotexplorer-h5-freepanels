@@ -4,6 +4,7 @@ import { Detail } from './Detail';
 import { useSwitchNameMap } from '@src/panels/SwitchV3/hooks/useSwitchNameMap';
 import { Icon } from '@custom/Icon';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
+import { t } from '@locales';
 
 export const getSwitchNum = (templateMap = {}) => Object.keys(templateMap).filter(v => /^button/.test(v)).length || 1;
 
@@ -13,11 +14,11 @@ export function Home(props) {
   console.log('templateMap',templateMap)
   const isEightSwitch = Object.keys(templateMap).includes('switch_type_8')
   const allSwitch = [
-    ['switch_1', deviceData.name_button1 || '开关一'],
-    ['switch_2', deviceData.name_button2 || '开关二'],
-    ['switch_3', deviceData.name_button3 || '开关三'],
-    ['switch_4', deviceData.name_button4 || '开关四'],
-    ['switch_5', deviceData.name_button5 || '开关五'],
+    ['switch_1', deviceData.name_button1 || t('开关一')],
+    ['switch_2', deviceData.name_button2 || t('开关二')],
+    ['switch_3', deviceData.name_button3 || t('开关三')],
+    ['switch_4', deviceData.name_button4 || t('开关四')],
+    ['switch_5', deviceData.name_button5 || t('开关五')],
   ];
 
   const switchNum = getSwitchNum(templateMap);
@@ -44,7 +45,7 @@ export function Home(props) {
           min
         </div>
         <div>
-          后关闭
+          {t('后关闭')}
         </div>
       </div>;
     }

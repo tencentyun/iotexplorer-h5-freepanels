@@ -1,3 +1,4 @@
+import { t } from '@locales';
 import useSWR from 'swr';
 
 export const SWITCH_NAME_MAP = 'SWITCH_NAME_MAP';
@@ -5,17 +6,17 @@ export const SWITCH_NAME_MAP = 'SWITCH_NAME_MAP';
 const getChineseTextByNum = (num: number) => {
   switch (num) {
     case 0:
-      return '零';
+      return t('零');
     case 1:
-      return '一';
+      return t('一');
     case 2:
-      return '二';
+      return t('二');
     case 3:
-      return '三';
+      return t('三');
     case 4:
-      return '四';
+      return t('四');
     default:
-      return '数字错误';
+      return t('数字错误');
   }
 };
 
@@ -33,7 +34,7 @@ export const useSwitchNameMap = ({ switchNum, sdk }) => {
 
       for (let i = 1; i <= switchNum; i++) {
         const propertyKey = `switch_${i}`;
-        result[propertyKey] = switchNameMap[propertyKey] || `开关${getChineseTextByNum(i)}`;
+        result[propertyKey] = switchNameMap[propertyKey] || `${t('开关')}${getChineseTextByNum(i)}`;
       }
 
       return result;

@@ -1,6 +1,7 @@
 import React from 'react';
 import { List, Radio } from 'antd-mobile';
 import { Icon } from '@custom/Icon';
+import { t } from '@locales';
 
 export const MainSwitch = ({ context: { power_switch = 0 }, setContext }) => {
   const getSwitchNumData = (powerSwitch) => {
@@ -18,11 +19,11 @@ export const MainSwitch = ({ context: { power_switch = 0 }, setContext }) => {
       <Radio.Group onChange={onAllSwitchChange} value={power_switch}>
         <List>
           <List.Item
-            prefix={'打开'}
+            prefix={t('打开')}
             extra={<Radio value={1} icon={checked => <Icon size="small" checked={checked} />} />}
           />
           <List.Item
-            prefix={'关闭'}
+            prefix={t('关闭')}
             extra={<Radio value={0} icon={checked => <Icon size="small" checked={checked} />} />}
           />
         </List>

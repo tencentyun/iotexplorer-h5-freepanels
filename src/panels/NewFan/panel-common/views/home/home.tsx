@@ -4,7 +4,7 @@ import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 import './home.less';
 import { Detail } from './detail/detail';
 import Ticker from './tiker/ticker';
-import {getThemeType} from '@libs/theme';
+import { getThemeType } from '@libs/theme';
 
 import SettingImage from '../icons/normal/dev-open.svg';
 import SettingImageBlueWhite from '../icons/blue-white/dev-open.svg';
@@ -12,6 +12,7 @@ import SettingImageColorful from '../icons/colorful/dev-open.svg';
 import SettingImageMorandi from '../icons/morandi/dev-open.svg';
 
 export function Home() {
+  // console.log(t);
   const themeType = getThemeType();
   const settingImageSrc = () => {
     switch (themeType) {

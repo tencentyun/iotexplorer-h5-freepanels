@@ -8,6 +8,7 @@ import { Cell } from '@custom/Cell';
 import { OptionDialog } from '@custom/OptionDialog';
 import classNames from 'classnames';
 import { CellBtn } from '@components/Btn/CellBtn';
+import { t } from '@locales';
 
 export function Home({
   deviceData,
@@ -46,13 +47,13 @@ export function Home({
   const date = dayjs(Number(recordTime));
 
   const statusLabel: any = {
-    0: '关闭',
-    1: '打开',
+    0: t('关闭'),
+    1: t('打开'),
   };
 
   const [visible, setVisible] = useState(false);
 
-  const recordStatusText = recordStatus ? `${date.format('YYYY-MM-DD HH:mm')} ${statusLabel[Number(recordStatus)] ? statusLabel[Number(recordStatus)] : '未知'}` : '暂无记录';
+  const recordStatusText = recordStatus ? `${date.format('YYYY-MM-DD HH:mm')} ${statusLabel[Number(recordStatus)] ? statusLabel[Number(recordStatus)] : t("未知")}` : t("暂无记录");
 
   // const renderAlarmDom = () => {
   //   return (<>
@@ -97,9 +98,9 @@ export function Home({
             {renderAlarmDom()}
           </div> */}
           <div className={'action-ele action-ele-1'}>
-            <div className='title'>防拆警报</div>
+            <div className='title'>{t('防拆警报')}</div>
             <Icon name='alarm' />
-            <Cell title={isAlarmOpen ? '开启' : '关闭'} ele='switch' isLink={false} eleValue={isAlarmOpen}
+            <Cell title={isAlarmOpen ? t('开启') : t('关闭')} ele='switch' isLink={false} eleValue={isAlarmOpen}
                   onChange={(val) => {
                     doControlDeviceData({ temperAlarm: !val ? 0 : 1 });
                   }} />
@@ -114,9 +115,9 @@ export function Home({
           }}
         >
           <div className={'action-ele action-ele-1'}>
-            <div className='title'>日志</div>
+            <div className='title'>{t('日志')}</div>
             <Icon name='record' />
-            <Cell title='更多记录' ele='' isLink={true} onClick={() => {
+            <Cell title={t('更多记录')} ele='' isLink={true} onClick={() => {
               push(PATH.RECORD);
             }} />
           </div>
@@ -144,10 +145,10 @@ export function Home({
           });
         }}
       >
-        智能场景
+        {t('智能场景')}
       </CellBtn>
       <OptionDialog
-        title='模式'
+        title={t('模式')}
         visible={visible}
         value={[deviceData?.temperAlarm || 0]}
         onCancel={() => setVisible(false)}
@@ -156,8 +157,8 @@ export function Home({
           // onAllSwitchChange(val?.[0] * 1);
         }}
         options={[
-          { label: '打开', value: 1 },
-          { label: '关闭', value: 0 },
+          { label: t('打开'), value: 1 },
+          { label: t('关闭'), value: 0 },
         ]}
       />
     </main>

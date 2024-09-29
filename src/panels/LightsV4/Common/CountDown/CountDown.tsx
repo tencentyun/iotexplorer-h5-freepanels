@@ -2,17 +2,18 @@
 import React, { useState, forwardRef, useImperativeHandle, useRef, useEffect } from 'react';
 import { useTitle } from '@hooks/useTitle';
 import { TimePicker } from '@custom/TimePicker';
+import { t } from '@locales';
 
 export const CountDown = forwardRef((props, ref) => {
   const {
     deviceData,
     doControlDeviceData,
     isJumpRoute = true,
-    history: { PATH, push } 
+    history: { PATH, push },
   } = props;
   const onChange = (count_down) => {
     doControlDeviceData({ count_down });
-    isJumpRoute && push(PATH.TIMER_COUNTDOWNPAGE, { value: count_down })
+    isJumpRoute && push(PATH.TIMER_COUNTDOWNPAGE, { value: count_down });
   };
 
   const timerRef = useRef(null);
@@ -23,8 +24,8 @@ export const CountDown = forwardRef((props, ref) => {
     },
     onClose: () => {
       timerRef.current.close();
-    }
-  }))
+    },
+  }));
 
   return (
     <div>
@@ -39,11 +40,10 @@ export const CountDown = forwardRef((props, ref) => {
 });
 
 
-const Timer = forwardRef(({ value, onChange, isModal, isPopUp}, ref) => {
-
+const Timer = forwardRef(({ value, onChange, isModal, isPopUp }, ref) => {
   const [visible, setVisible] = useState(false);
 
-  useTitle('倒计时');
+  useTitle(t('倒计时'));
 
 
   const submitCountDown = ([hour, minute, second]) => {
@@ -69,8 +69,8 @@ const Timer = forwardRef(({ value, onChange, isModal, isPopUp}, ref) => {
     },
     close: () => {
       setVisible(false);
-    }
-  }))
+    },
+  }));
 
   const countdownTime = getCountdownTime(value).map((v: string) => (parseInt(v, 10) < 10 ? `0${parseInt(v, 10)}` : v));
   return (
@@ -86,11 +86,11 @@ const Timer = forwardRef(({ value, onChange, isModal, isPopUp}, ref) => {
         isModal={isModal}
         isPopUp={isPopUp}
         showTwoDigit={true}
-        title={'倒计时关闭'}
+        title={t('倒计时关闭')}
         switchIsOpen={false}
         onCancel={setVisible.bind(null, false)}
         onConfirm={submitCountDown}
-        confirmText="确认"
+        confirmText={t('确认')}
         visible={visible}
         isSecond={true}
       />

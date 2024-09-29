@@ -34,7 +34,10 @@ export const toLineObj = (obj) => {
 };
 
 // 获取环境变量
-export const getEnv = () => _env_;
+// eslint-disable-next-line arrow-body-style
+export const getEnv = () => {
+  return _env_;
+};
 
 
 export const numberToArray = (number: number, desc?: string): string[] => {

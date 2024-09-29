@@ -11,6 +11,7 @@ import { Loading } from '@custom/Loading';
 import { Toast } from 'antd-mobile';
 import { useSwitchNameMap } from '@src/panels/SwitchV3/hooks/useSwitchNameMap';
 import { iconSwitchGreen, iconSwitchRed } from '../Icon';
+import { t } from '@locales';
 
 export const SWITCH_NAME_MAP = 'SWITCH_NAME_MAP';
 
@@ -45,10 +46,10 @@ export const Detail = React.forwardRef(({
     // @ts-ignore
     inputSwitchNameRef.current?.value = '';
     if (nameVal.length >= 10 || nameVal.length === 0) {
-      Toast.show({ content: '名字不合法', icon: 'fail' });
+      Toast.show({ content: t('名字不合法'), icon: 'fail' });
       return;
     }
-    Toast.show({ content: '保存中...', icon: 'loading' });
+    Toast.show({ content: t('保存中...'), icon: 'loading' });
     await sdk.requestTokenApi('AppSetDeviceConfig', {
       DeviceId: sdk.deviceId,
       DeviceKey: SWITCH_NAME_MAP,
@@ -58,7 +59,7 @@ export const Detail = React.forwardRef(({
       }),
     });
     await mutateSwitchNameMap();
-    Toast.show({ content: '保存成功', icon: 'success' });
+    Toast.show({ content: t('保存成功'), icon: 'success' });
   };
 
   // Todo 电量统计mock数据（后续去掉）
@@ -94,7 +95,7 @@ export const Detail = React.forwardRef(({
             doControlDeviceData(deviceData);
           }}>
             <img className='icon' src={iconSwitchGreen} alt='' />
-            <div className='text'>全开</div>
+            <div className='text'>{t('全开')}</div>
           </div>
 
           <div className='switch-cell-item' onClick={() => {
@@ -103,7 +104,7 @@ export const Detail = React.forwardRef(({
             doControlDeviceData(deviceData);
           }}>
             <img className='icon' src={iconSwitchRed} alt='' />
-            <div className='text'>全关</div>
+            <div className='text'>{t("全关")}</div>
           </div>
         </div>
       )}
@@ -124,7 +125,7 @@ export const Detail = React.forwardRef(({
               color='brown'
             />
           }
-          title={'电量统计'}
+          title={t('电量统计')}
           className='electric-statistics-panel-header'
         ></Cell>
         <ElectricStatisticsPanel deviceData={deviceData} />
@@ -133,7 +134,7 @@ export const Detail = React.forwardRef(({
       <div className='environment'>
         <Cell
           prefixIcon={<Icon name='mode'></Icon>}
-          title={'智能场景'}
+          title={t('智能场景')}
           onClick={() => {
             sdk.goScenePage({ type: 'default' });
           }}
@@ -141,7 +142,7 @@ export const Detail = React.forwardRef(({
         />
         <Cell
           prefixIcon={<Icon name='mode'></Icon>}
-          title={'功能设置'}
+          title={t('功能设置')}
           onClick={() => {
             push(PATH.MORE_SETTING, { switchNum: 8 });
           }}
@@ -156,7 +157,7 @@ export const Detail = React.forwardRef(({
           className='edit-name-modal'
           title={(
             <div className='cus-module-title'>
-              <span>修改开关名称</span>
+              <span>{t('修改开关名称')}</span>
               <div className='selector'>
                 <Dropdown className='custom-dropdown' ref={dropdownRefName}>
                   <Dropdown.Item
@@ -188,7 +189,7 @@ export const Detail = React.forwardRef(({
             ref={inputSwitchNameRef}
             autoFocus
             className='edit-name-modal-input'
-            placeholder='请输入开关名称'
+            placeholder={t('请输入开关名称')}
             maxLength={10}
           />
           <div className='modal-footer'>
@@ -201,13 +202,13 @@ export const Detail = React.forwardRef(({
                   setSwitchNameEditModalVisible(false);
                 }}
               >
-                取消
+                {t('取消')}
               </Button>
               <Button
                 className='btn-save'
                 onClick={saveSwitchName}
               >
-                确定
+                {t('确定')}
               </Button>
 
             </BtnGroup>

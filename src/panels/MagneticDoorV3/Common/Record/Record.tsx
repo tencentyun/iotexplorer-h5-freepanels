@@ -5,6 +5,7 @@ import React, { useEffect, useState } from 'react';
 import classNames from 'classnames';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 import { Steps } from '@src/components/custom/Steps';
+import { t } from '@locales';
 
 export function Record() {
   const [recordList, setRecordList] = useState([]);
@@ -35,7 +36,7 @@ export function Record() {
   // 清除消息记录
   const clearRecordList = () => {
     if (recordList.length === 0) {
-      sdk.tips.show('没有记录可清除');
+      sdk.tips.show(t('没有记录可清除'));
       return;
     }
     try {
@@ -45,7 +46,7 @@ export function Record() {
         ProductId: sdk.productId,
       });
       setRecordList([]);
-      sdk.tips.show('记录已清除');
+      sdk.tips.show(t('记录已清除'));
     } catch (err) {
       sdk.tips.show(err);
     }
@@ -56,18 +57,18 @@ export function Record() {
       {recordList.length > 0 ? (
         <Steps stepData={recordList} statusLabels={
           {
-            0: '关闭',
-            1: '开启',
-            2: '未知',
+            0: t('关闭'),
+            1: t('开启'),
+            2: t('未知'),
           }
         } />
       ) : (
-        <div className="no-record-tips">没有报警记录</div>
+        <div className="no-record-tips">{t('没有报警记录')}</div>
       )}
 
       {recordList.length > 0 ? <footer className="footer">
         <div className="footer-button" onClick={clearRecordList}>
-          删除
+          {t('删除')}
         </div>
       </footer> : null}
     </main>

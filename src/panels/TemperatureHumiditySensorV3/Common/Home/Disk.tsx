@@ -7,6 +7,7 @@ import {
   iconWaterDropGreen,
   iconWaterDropYellow,
 } from '@src/panels/TemperatureHumiditySensorV3/Common/Icon';
+import { t } from '@locales'
 
 export interface DiskProps {
   deviceData: any;
@@ -19,10 +20,10 @@ export function Disk({
   const ststusInfo = useMemo(() => {
     const { current_humidity = 0, current_temp = 0 } = deviceData || {};
     let icon = iconWaterDropGreen;
-    let text = '舒适';
+    let text = t('舒适');
     if (current_humidity >= 0 && current_humidity <= 32) {
       icon = iconWaterDropYellow;
-      text = '干燥';
+      text = t('干燥');
     }
 
     if (
@@ -32,12 +33,12 @@ export function Disk({
       && current_temp <= 28
     ) {
       icon = iconWaterDropGreen;
-      text = '舒适';
+      text = t('舒适');
     }
 
     if (current_humidity >= 66 && current_humidity <= 99) {
       icon = iconWaterDropBlue;
-      text = '潮湿';
+      text = t('潮湿');
     }
 
     console.log(text, 'icon=', icon);
@@ -55,14 +56,14 @@ export function Disk({
               <div className='number'>{deviceData?.current_temp || 0}</div>
               <div className='unit-1'>c</div>
             </div>
-            <div className='title'>温度</div>
+            <div className='title'>{t('温度')}</div>
           </div>
           <div className='item'>
             <div className='item-content'>
               <div className='number'>{deviceData?.current_humidity || 0}</div>
               <div className='unit-2'>%</div>
             </div>
-            <div className='title'>湿度</div>
+            <div className='title'>{t('湿度')}</div>
           </div>
         </div>
         <div className='status-view'>

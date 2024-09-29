@@ -5,7 +5,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const panelConfig = require('./panel-conf');
 const TerserPlugin = require('terser-webpack-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 
 const autoPreFixer = require('autoprefixer');
 const postcss = require('postcss-pxtorem');
@@ -110,14 +110,12 @@ module.exports = (env, argv) => {
       compress: true,
       port: 9000,
       // disableHostCheck: true, //  新增该配置项
-      // hot: true,
       https: false,
       headers: { 'Access-Control-Allow-Origin': '*' },
       static: {
         directory: path.join(__dirname, outputPath),
       },
       allowedHosts: 'all',
-      hot: true,
     },
     module: {
       // 现在的 babel 配置已经很简单了，我们只需要加入默认的配置即可
@@ -149,14 +147,14 @@ module.exports = (env, argv) => {
                   ],
                   ['babel-plugin-styled-components-px2vw', viewportConfig],
                   // antd 按需引入
-                  [
-                    'import',
-                    {
-                      libraryName: 'antd-mobile',
-                      libraryDirectory: 'es/components',
-                      style: 'false',
-                    },
-                  ],
+                  // [
+                  //   'import',
+                  //   {
+                  //     libraryName: 'antd-mobile',
+                  //     // libraryDirectory: 'es/components',
+                  //     style: 'false',
+                  //   },
+                  // ],
                 ],
               },
             }],
@@ -289,6 +287,7 @@ module.exports = (env, argv) => {
         '@utils': path.resolve(__dirname, '../src/libs/utils.ts'),
         '@theme': path.resolve(__dirname, '../src/styles/theme'),
         '@svg': path.resolve(__dirname, plugin.svg),
+        '@locales': path.resolve(__dirname, '../locales'),
       },
     },
     devtool: isDevMode || isPreview ? 'eval-source-map' : false,

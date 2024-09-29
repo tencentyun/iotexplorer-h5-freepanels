@@ -3,6 +3,7 @@ import { TimerAdd as CloudTimerAdd } from '@custom/TimerCloud';
 import { List } from 'antd-mobile';
 import { OptionDialog } from '@custom/OptionDialog';
 import { Switch } from '@custom/Switch';
+import { t } from '@locales';
 
 
 export const TimerAdd = (props) => {
@@ -14,12 +15,12 @@ export const TimerAdd = (props) => {
   } = props;
 
   const OPTIONS = [
-    { label: deviceData.power_switch || '总开关', value: 'power_switch' },
-    { label: deviceData.name_button1 || '开关一', value: 'switch_1' },
-    { label: deviceData.name_button2 || '开关二', value: 'switch_2' },
-    { label: deviceData.name_button3 || '开关三', value: 'switch_3' },
-    { label: deviceData.name_button4 || '开关四', value: 'switch_4' },
-    { label: deviceData.name_button5 || '开关五', value: 'switch_5' },
+    { label: deviceData.power_switch || t('总开关'), value: 'power_switch' },
+    { label: deviceData.name_button1 || t('开关一'), value: 'switch_1' },
+    { label: deviceData.name_button2 || t('开关二'), value: 'switch_2' },
+    { label: deviceData.name_button3 || t('开关三'), value: 'switch_3' },
+    { label: deviceData.name_button4 || t('开关四'), value: 'switch_4' },
+    { label: deviceData.name_button5 || t('开关五'), value: 'switch_5' },
   ];
 
   // 开关选择
@@ -32,7 +33,7 @@ export const TimerAdd = (props) => {
   const labelEnum = {
     power_switch: {
       label: labelName,
-      value: ['关闭', '开启'],
+      value: [t('关闭'), t('开启')],
     },
   };
 
@@ -71,7 +72,7 @@ export const TimerAdd = (props) => {
 
         <List.Item
           // className="no-arrow"
-          prefix={'按键'}
+          prefix={t('按键')}
           extra={labelName}
           onClick={() => {
             // push(PATH.TIMER_ACTION_SWITCH)
@@ -80,7 +81,7 @@ export const TimerAdd = (props) => {
         />
         <List.Item
           className="no-arrow"
-          prefix={'开关'}
+          prefix={t('开关')}
           extra={<Switch
             className="reverse"
             checked={!!enable}
@@ -97,7 +98,7 @@ export const TimerAdd = (props) => {
       </CloudTimerAdd>
       {/* // 开关选择 */}
       <OptionDialog
-        title={'开关'}
+        title={t('开关')}
         visible={visible}
         value={powerSwitch}
         onCancel={() => setVisible(false)}
