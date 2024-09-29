@@ -62,7 +62,7 @@ export function Home(props) {
         justifyContent: 'space-between',
         padding: '16px 24px',
       }}>
-        {/* @ts-ignore */}
+        {/* @ts-ignore */} 
         <div style={{ display: 'flex', alignItems: 'center' }} onClick={() => detailRef.current.editName()}>
           <Icon className='operator-icon' name='editor' size='large' />
         </div>
