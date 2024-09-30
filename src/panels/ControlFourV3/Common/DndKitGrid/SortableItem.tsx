@@ -1,6 +1,6 @@
-import React from "react";
-import { useSortable } from "@dnd-kit/sortable";
-import { CSS } from "@dnd-kit/utilities";
+import React from 'react';
+import { useSortable } from '@dnd-kit/sortable';
+import { CSS } from '@dnd-kit/utilities';
 const SortableItem = (props) => {
   const {
     attributes,
@@ -8,14 +8,14 @@ const SortableItem = (props) => {
     setNodeRef,
     transform,
     transition,
-    isDragging
+    isDragging,
   } = useSortable({ id: props.id });
 
   const style: any = {
     transform: CSS.Transform.toString(transform),
     transition,
-    zIndex: isDragging ? "100" : "auto",
-    opacity: isDragging ? 0.3 : 1
+    zIndex: isDragging ? '100' : 'auto',
+    opacity: isDragging ? 0.3 : 1,
   };
 
   return (

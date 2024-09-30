@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import DndKitGrid from '../DndKitGrid';
 import { Btn } from '@custom/Btn';
 import { setNewToOld, setOldToNew } from '../Layout/constant';
+import { t } from '@locales';
 
 export default function LayoutSort(props) {
   const dndkitRef = useRef<any>(null);
@@ -17,12 +18,12 @@ export default function LayoutSort(props) {
         <DndKitGrid ref={dndkitRef} dataSource={dataSource} />
       </div>
       <div className="footer">
-        <Btn type="default" className="custom-btn cancel" onClick={goBack}>取消</Btn>
+        <Btn type="default" className="custom-btn cancel" onClick={goBack}>{t('取消')}</Btn>
         <Btn className="custom-btn save" onClick={() => {
           const value = dndkitRef.current.getValue();
           doControlDeviceData('screen_page', getNewData(value));
           goBack();
-        }}>保存</Btn>
+        }}>{t('保存')}</Btn>
       </div>
     </> : <></>}
   </div>);
