@@ -3,7 +3,6 @@ import { SceneSetting } from '@custom/Scene';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
 import { noop } from '@utillib';
 import { Battery } from '@custom/Battery';
-import { t } from '@locales';
 
 export const Detail = (props) => {
   const {
@@ -45,7 +44,7 @@ export const Detail = (props) => {
       {/* </div>*/}
       <div className='wireless-bottom'>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }} className='desc'>
-          <div>{t('您可以将开关绑定具体的场景，一键执行设备控制')}</div>
+          <div>您可以将开关绑定具体的场景，一键执行设备控制</div>
           <div>
             <Battery
               isShowTip={false}

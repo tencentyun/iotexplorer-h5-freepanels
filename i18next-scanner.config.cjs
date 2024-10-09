@@ -6,7 +6,7 @@ const md5 = require('md5');
 
 module.exports = {
   input: [
-    'src/**/*.{ts,tsx,js,jsx}',
+    'src/**/*.{ts,tsx}',
     '!src/locales/**',
     '!src/styles/**',
     '!**/node_modules/**',

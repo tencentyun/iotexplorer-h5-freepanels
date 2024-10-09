@@ -1,4 +1,4 @@
-import React, { useEffect, useState, forwardRef, useImperativeHandle } from 'react';
+import React, { useEffect, useState, forwardRef, useImperativeHandle } from "react";
 import {
   DndContext,
   closestCenter,
@@ -6,16 +6,16 @@ import {
   useSensors,
   MouseSensor,
   TouchSensor,
-  DragOverlay,
-} from '@dnd-kit/core';
+  DragOverlay
+} from "@dnd-kit/core";
 import {
   arrayMove,
   SortableContext,
-  rectSortingStrategy,
-} from '@dnd-kit/sortable';
+  rectSortingStrategy
+} from "@dnd-kit/sortable";
 
-import SortableItem from './SortableItem';
-import { Layout } from '../Layout';
+import SortableItem from "./SortableItem";
+import { Layout } from "../Layout";
 
 const DndKitGrid = forwardRef((props: any, ref) => {
   const [activeId, setActiveId] = useState(null);
@@ -24,23 +24,23 @@ const DndKitGrid = forwardRef((props: any, ref) => {
 
   useEffect(() => {
     if (props.dataSource && props.dataSource.length) {
-      setItems(props.dataSource.map((item, index: number) => ({ id: `${index}`, item })));
+      setItems(props.dataSource.map((item, index: number) => ({ id: index + '', item })))
     }
-  }, [props.dataSource]);
+  }, [props.dataSource])
 
   const sensors = useSensors(
     useSensor(MouseSensor, {
       activationConstraint: {
         delay: 200,
-        tolerance: 5,
-      },
+        tolerance: 5
+      }
     }),
     useSensor(TouchSensor, {
       activationConstraint: {
         delay: 200,
-        tolerance: 5,
-      },
-    }),
+        tolerance: 5
+      }
+    })
   );
 
   const handleDragStart = (event) => {
@@ -52,7 +52,7 @@ const DndKitGrid = forwardRef((props: any, ref) => {
     const { active, over } = event;
     if (active.id !== over.id) {
       setItems((items) => {
-        const newItems = (items).map((item: any) => item.id);
+        const newItems = (items).map((item: any) => item.id)
         const oldIndex = newItems.indexOf(active.id);
         const newIndex = newItems.indexOf(over.id);
         return arrayMove(items, oldIndex, newIndex);
@@ -60,9 +60,11 @@ const DndKitGrid = forwardRef((props: any, ref) => {
     }
   };
 
-  const getValue = () => items.map((v: any) => v.item);
+  const getValue = () => {
+    return items.map((v: any) => v.item);
+  }
 
-  useImperativeHandle(ref, () => ({ getValue }));
+  useImperativeHandle(ref, () => ({ getValue }))
 
   return (
     <DndContext
@@ -84,9 +86,9 @@ const DndKitGrid = forwardRef((props: any, ref) => {
                   isPreview={true}
                   isCanDelete={true}
                   onDelete={() => {
-                    const _items: any = [...items];
+                    let _items: any = [...items];
                     _items.splice(index, 1);
-                    setItems(_items);
+                    setItems(_items)
                   }}
                 />
               </div>
@@ -99,7 +101,7 @@ const DndKitGrid = forwardRef((props: any, ref) => {
                   width: 100,
                   height: 100,
                   background: '#ccc',
-                  opacity: 0.3,
+                  opacity: 0.3
                 }}
               ></div>
             ) : null}
