@@ -46,7 +46,10 @@ export const t = (text: string, variable?: { [key: string]: unknown }) => {
 
   const { t: translation } = i18n;
   const words = md5(text);
-  return translation(words, variable);
+  return translation(words, {
+    ...variable,
+    defaultValue: text,
+  });
 };
 
 export const i18n = i18next;

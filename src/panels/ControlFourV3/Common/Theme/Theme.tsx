@@ -4,11 +4,12 @@ import { Icon } from '@custom/Icon';
 import classNames from 'classnames';
 import { useTitle } from '@hooks/useTitle';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
-import { Space, SpinLoading ,Toast} from 'antd-mobile'
+import { Space, SpinLoading, Toast } from 'antd-mobile';
+import { t } from '@locales';
 
 
 export function Theme({ ...props }) {
-  useTitle('主题风格');
+  useTitle(t('主题风格'));
   console.log('---01进入主题页面---', wx, props);
 
 
@@ -16,10 +17,10 @@ export function Theme({ ...props }) {
   const { theme_style } = deviceData;
   const [loading, setLoading] = useState(false);
   const [themeList, setThemeList] = useState([]);
-  const [title, setTitle] = useState("下载中");
+  const [title, setTitle] = useState(t('下载中'));
 
   const getThemeList = async () => {
-    console.log("开始加载数据:")
+    console.log('开始加载数据:');
 
     const result = await sdk.requestTokenApi('AppGetResourceThumbnailList', {
       Action: 'AppGetResourceThumbnailList',
@@ -28,7 +29,7 @@ export function Theme({ ...props }) {
       // FamilyId: sdk.familyId,
       // RoomId: sdk.roomId,
       Offset: 0,
-      Limit: 50
+      Limit: 50,
     });
 
 
@@ -236,15 +237,15 @@ export function Theme({ ...props }) {
     // }
 
 
-    const Result = result.Result;
+    const { Result } = result;
 
     console.log('获取到的主题数据', result, Result);
 
     setThemeList(Result);
-  }
+  };
   const loadData = () => {
     getThemeList();
-  }
+  };
 
 
   // 下载主题
@@ -256,27 +257,25 @@ export function Theme({ ...props }) {
       AccessToken: 'AccessToken',
       ProductId: deviceInfo.ProductId,
     });
-    setTitle("下载中");
+    setTitle(t('下载中'));
     setLoading(true);
     setTimeout(() => {
-      setLoading(false)
+      setLoading(false);
       Toast.show({
         icon: 'success',
-        content: '更新成功',
-      }) 
-    }, 30000)
-  }
+        content: t('更新成功'),
+      });
+    }, 30000);
+  };
 
   useEffect(() => {
     setLoading(false);
-  }, [theme_style])
-
-
+  }, [theme_style]);
 
 
   useEffect(() => {
-    loadData()
-  }, [])
+    loadData();
+  }, []);
 
 
   return (
@@ -286,10 +285,10 @@ export function Theme({ ...props }) {
         <div className="content" key={index}>
           <div className="header">
             <div className="title">{Name}</div>
-            <div className={classNames("theme-btn", theme_style === Name ? 'text' : '')} onClick={() => {
+            <div className={classNames('theme-btn', theme_style === Name ? 'text' : '')} onClick={() => {
               downTheme(Name);
             }}>
-              {theme_style === Name ? '使用中' : <Icon name="download" />}
+              {theme_style === Name ? t('使用中') : <Icon name="download" />}
             </div>
           </div>
           <div className="theme-items">
@@ -302,9 +301,9 @@ export function Theme({ ...props }) {
       {loading ? <Space direction='horizontal' wrap block style={
         {
           '--gap': '16px', justifyContent: 'center', alignItems: 'center',
-          position: "absolute",
-          width: "calc(100vw - 32px)",
-          height: "calc(100vh - 24px)"
+          position: 'absolute',
+          width: 'calc(100vw - 32px)',
+          height: 'calc(100vh - 24px)',
         }}>
         <div className='v-center bg-c'>
           <SpinLoading style={{ '--size': '48px' }} />
