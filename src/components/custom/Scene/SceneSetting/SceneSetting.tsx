@@ -2,12 +2,11 @@ import React from 'react';
 import { Switch } from '@custom/Switch';
 import { SpinLoading, Toast } from 'antd-mobile';
 import useSWR from 'swr';
-import { t } from '@locales';
 
 export const SceneSetting = ({
   sdk,
   sceneBtnModeProperty = 'mode_switch_4',
-  sceneBtnModeDesc = [t('单击时'), t('双击时'), t('长按时')],
+  sceneBtnModeDesc = ['单击时', '双击时', '长按时'],
 }) => {
   const {
     data: autoSceneList = [],
@@ -48,7 +47,7 @@ export const SceneSetting = ({
   const onSwitchChange = async (sceneInfo) => {
     console.log('onSwitchChange--->', sceneInfo.Status);
     const loadingToast = Toast.show({
-      content: t('更新中...'),
+      content: '更新中...',
       icon: 'loading',
       maskClickable: false,
       duration: 10,
@@ -137,7 +136,7 @@ export const SceneSetting = ({
                 </div>
               ) : (
                 <div className='bind-scene' onClick={() => addNewScene(modeIndex)}>
-                  <span> + {t('绑定场景')}</span>
+                  <span> + 绑定场景</span>
                 </div>
               )}
             </div>

@@ -5,39 +5,41 @@ import 'echarts/lib/chart/line';
 
 export const BarChart = (props) => {
   const { xData = [], yData = [] } = { ...props };
-  const getOption = () => ({
-    tooltip: {
-      trigger: 'axis',
-    },
-    grid: {
-      top: 20,
-      bottom: 100,
-      left: 60,
-      right: 40,
-    },
-    xAxis: {
-      type: 'category',
-      data: xData,
-      axisTick: {
-        show: true,
+  const getOption = () => {
+    return {
+      tooltip: {
+        trigger: 'axis'
       },
-      splitLine: { show: false },
-    },
-    yAxis: {
-      type: 'value',
-      axisTick: {
-        show: true,
+      grid: {
+        top: 20,
+        bottom: 100,
+        left: 60,
+        right: 40
       },
-      axisLine: {
-        show: true,
+      xAxis: {
+        type: 'category',
+        data: xData,
+        axisTick: {
+          show: true
+        },
+        splitLine: { show: false }
       },
-      splitLine: { show: false },
-    },
-    series: [{
-      data: yData,
-      type: 'bar',
-    }],
-  });
+      yAxis: {
+        type: 'value',
+        axisTick: {
+          show: true
+        },
+        axisLine: {
+          show: true
+        },
+        splitLine: { show: false }
+      },
+      series: [{
+        data: yData,
+        type: 'bar'
+      }]
+    }
+  }
 
   const [viewportWidth, setViewportWidth] = useState(window.innerWidth);
   const [viewportHeight, setViewportHeight] = useState(window.innerHeight);
