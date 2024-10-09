@@ -4,6 +4,7 @@ import { Home } from './Home';
 import { TimerList, TimerAdd, MainSwitch, Repeat } from '../Common/Timer';
 import { CountDownPage } from '../Common/CountDown';
 import { MoreSetting } from '../Common/MoreSetting/MoreSetting';
+import { Settings } from '../Common/Settings/settings'
 
 /**
   *   所有的灯的入口
@@ -51,6 +52,7 @@ const App = (props) => {
     { path: '/timer/action/repeat', Component: Repeat },
     { path: '/timer/countdownpage', Component: CountDownPage },
     { path: '/more/setting', Component: MoreSetting },
+    { path: '/settings', Component: Settings },
   ];
   return <Router route={route} {...props} detail={false} />;
 };
