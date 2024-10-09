@@ -23,7 +23,7 @@
 
   .cus-light-bright {
     .mark {
-      margin-bottom: 16px;
+      margin-bottom: 26px;
       .mark-op-btn {
         background: transparent;
       }
@@ -31,23 +31,25 @@
 
     .border {
       .slider {
-        height: 8px;
+        height: 36px;
         border-radius: 16px;
         border: 1px solid #EFF3F5;
-        background: #fff;
+        background: #EFF3F5;
         .progress {
-          height: 8px;
-          border-radius: 16px;
-          background-image: #121723;
-
+          height: 36px;
+          border-radius: 36px;
+          background: linear-gradient(to right, #f5860d, #ffffff);
+          &.progress-min{
+            background: none!important;
+          }
           .progress-dot {
             margin: 0;
-            margin-top: -4px;
-            width: 16px;
-            height: 16px;
-            background: #30414D;
+            width: 36px;
+            height: 36px;
+            background: #fff;
           }
         }
+        
 
       }
     }

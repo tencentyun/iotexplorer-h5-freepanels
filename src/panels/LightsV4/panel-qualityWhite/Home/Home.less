@@ -56,4 +56,24 @@
       display: none;
     }
   }
+  .cus-circle-panel .round-container:not(.circular-off) .round .point{
+    // border: 0.08rem solid #eee;
+    background: #eee;
+    // box-shadow: 0rem 0rem 0.2rem 0.05rem #ffd4a5;
+  }
 }
+.cus-dev-detail .icon .dev-detail{
+  background-image: url('../Icon/setting.svg');
+  width: 22px;
+  height: 22px;
+}
+// ios机上禁止长按复制
+*{
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Non-prefixed version, currently supported by Chrome and Opera */
+}
+input {-webkit-user-select:auto; /*webkit浏览器*/}
+textarea {-webkit-user-select:auto; /*webkit浏览器*/}

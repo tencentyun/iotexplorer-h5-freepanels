@@ -394,7 +394,7 @@ export function MoreSetting({ deviceData, doControlDeviceData, sdk }) {
           >
             {t('断电后通电状态')}
           </List.Item>
-          <List.Item
+          {/* <List.Item
             extra={secondToStr(Number(delay_close)) || '-'}
             clickable
             onClick={async () => {
@@ -409,7 +409,7 @@ export function MoreSetting({ deviceData, doControlDeviceData, sdk }) {
             }}
           >
             {t('延时关灯')}
-          </List.Item>
+          </List.Item> */}
           {/* <List.Item
           extra={secondToStr(Number(nightlight)) || '-'}
           clickable
