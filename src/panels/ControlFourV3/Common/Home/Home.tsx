@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { LightSwitch } from './LightSwitch';
 import { Detail } from './Detail';
-import { Toast } from 'antd-mobile'
+import { Toast } from 'antd-mobile';
 import { Modal } from '@custom/Modal';
 import { Icon } from '@custom/Icon';
 import { Btn as Button, BtnGroup } from '@custom/Btn';
@@ -13,13 +13,14 @@ import { layoutList, setNewToOld, setOldToNew } from '../Layout/constant';
 import { Layout } from '../Layout';
 import { THEME_LIST } from '../contants';
 import sdk from 'qcloud-iotexplorer-h5-panel-sdk';
+import { t } from '@locales';
 
 const allSwitch = [
-  ['switch_1', '开关一'],
-  ['switch_2', '开关二'],
-  ['switch_3', '开关三'],
-  ['switch_4', '开关四'],
-  ['switch_5', '开关五'],
+  ['switch_1', t('开关一')],
+  ['switch_2', t('开关二')],
+  ['switch_3', t('开关三')],
+  ['switch_4', t('开关四')],
+  ['switch_5', t('开关五')],
 ];
 
 export function Home(props) {
@@ -27,7 +28,7 @@ export function Home(props) {
   } = props;
   const switchNum = 3;
   const currentSwitch = allSwitch.slice(0, switchNum);
-  let { screen_page = [], theme_style } = { ...deviceData };
+  const { screen_page = [], theme_style } = { ...deviceData };
   const onChange = (key, value) => doControlDeviceData(key, value ? 1 : 0);
   const [visible, setVisible] = useState(false);
   const [selected, setSelected] = useState([]);
@@ -36,8 +37,8 @@ export function Home(props) {
     const configObj = JSON.parse(page.config);
     const configString = JSON.stringify(configObj);
     return count + (configString.match(/white_area/g) || []).length;
-}, 0);
-console.log('whiteAreaCount', whiteAreaCount);
+  }, 0);
+  console.log('whiteAreaCount', whiteAreaCount);
   const getThemeList = async () => {
     const { Result } = await sdk.requestTokenApi('AppGetResourceThumbnailList', {
       Action: 'AppGetResourceThumbnailList',
@@ -46,7 +47,7 @@ console.log('whiteAreaCount', whiteAreaCount);
       // FamilyId: sdk.familyId,
       // RoomId: sdk.roomId,
       Offset: 0,
-      Limit: 50
+      Limit: 50,
     });
     console.log('theme', Result);
     // const result1 = [
@@ -90,33 +91,31 @@ console.log('whiteAreaCount', whiteAreaCount);
     //   }
     // ];
     setThemeList(Result);
-  }
+  };
 
   useEffect(() => {
     setContext({ switchNum });
     getThemeList();
   }, []);
 
-  const isSelected = (s) => {
-    return JSON.stringify(s) === JSON.stringify(selected) ? { border: '2px solid #4D9CF8' } : {}
-  }
+  const isSelected = s => (JSON.stringify(s) === JSON.stringify(selected) ? { border: '2px solid #4D9CF8' } : {});
 
   return (
     <div className="home">
       <Tabs defaultActiveKey='1' className="custom-tabs">
-        <Tabs.Tab title='屏幕配置' key='1'>
+        <Tabs.Tab title={t('屏幕配置')} key='1'>
           {/* 主题风格 */}
           <div className="modular">
-            <div className="modular-title">主题风格</div>
+            <div className="modular-title">{t('主题风格')}</div>
             <div className="modular-container">
-              <Cell title={theme_style || "默认主题"} prefixIcon={<div className="theme-img" style={{ backgroundImage: `${themeList.filter(({ Name }) => Name === theme_style)?.['ResourceThumbnailInfo']?.[0]?.['CosUrl']}`, backgroundSize: '100%', width: '100%', height: '100%' }} />} onClick={() => push('/theme')} />
+              <Cell title={theme_style || t('默认主题')} prefixIcon={<div className="theme-img" style={{ backgroundImage: `${themeList.filter(({ Name }) => Name === theme_style)?.ResourceThumbnailInfo?.[0]?.CosUrl}`, backgroundSize: '100%', width: '100%', height: '100%' }} />} onClick={() => push('/theme')} />
             </div>
           </div>
           {/* 我的屏幕 */}
           <div className="modular">
             <div className="modular-title">
               <div>
-                <span>我的屏幕</span><span className='desc-text'>可配置18个按键区(已配置{whiteAreaCount}个) </span>
+                <span>{t('我的屏幕')}</span><span className='desc-text'>{t('可配置18个按键区')}({t('已配置')}{whiteAreaCount}{t('个')}) </span>
               </div>
               {screen_page.length ? <Button className="editor-btn" onClick={() => push('/sort')}>
                 <Icon name="editor-other" />
@@ -124,8 +123,7 @@ console.log('whiteAreaCount', whiteAreaCount);
             </div>
             <div className="modular-container my-screen">
               <div className="screen-list">
-                {screen_page.map((item, index) => {
-                  return (<div className="my-screen-selected" key={`my-screen-${index}`} >
+                {screen_page.map((item, index) => (<div className="my-screen-selected" key={`my-screen-${index}`} >
                     <Layout
                       style={{ width: 95, height: 95 }}
                       selected={setNewToOld(item)}
@@ -133,19 +131,18 @@ console.log('whiteAreaCount', whiteAreaCount);
                       height={32}
                       isPreview={true}
                       onPreviewClick={() => {
-                        setSelected(setNewToOld(item))
-                        push('/editor', { selected: JSON.stringify(setNewToOld(item)), isEdit: true, index })
+                        setSelected(setNewToOld(item));
+                        push('/editor', { selected: JSON.stringify(setNewToOld(item)), isEdit: true, index });
                       }}
                     />
-                    <span className="add-text">{`屏${index + 1}`}</span>
-                  </div>)
-                })}
+                    <span className="add-text">{`${t('屏')}${index + 1}`}</span>
+                  </div>))}
                 {
                   screen_page?.length !== 6 ? (<div className="screen-add">
                     <Button className="screen-btn" onClick={() => setVisible(true)}>
                       <Icon name="add" />
                     </Button>
-                    <span className="add-text">添加</span>
+                    <span className="add-text">{t('添加')}</span>
                   </div>) : <></>
                 }
               </div>
@@ -154,18 +151,18 @@ console.log('whiteAreaCount', whiteAreaCount);
               className="layout-popup"
               visible={visible}
               onMaskClick={() => {
-                setVisible(false)
+                setVisible(false);
               }}
             >
               <div
                 className="popup-content"
               >
                 <div className="header">
-                  屏幕布局
+                  {t('屏幕布局')}
                 </div>
                 <div className="content">
                   {layoutList.map((item, index) => <Layout
-                    isDisabled={item.filter(page => page.type === 0).length > Math.floor(18 - whiteAreaCount)?true:false}
+                    isDisabled={item.filter(page => page.type === 0).length > Math.floor(18 - whiteAreaCount)}
                     key={`layout-${index}`}
                     style={{ width: 95, height: 95, marginBottom: 24, border: '2px solid transparent', ...isSelected(item) }}
                     selected={item}
@@ -174,50 +171,50 @@ console.log('whiteAreaCount', whiteAreaCount);
                     isPreview={true}
                     onPreviewClick={
                       () => {
-                      if(item.filter(page => page.type === 0).length > Math.floor(18 - whiteAreaCount)){
+                        if (item.filter(page => page.type === 0).length > Math.floor(18 - whiteAreaCount)) {
                           Toast.show({
                             icon: 'fail',
-                            content: `当前最多配置${Math.floor(18 - whiteAreaCount)}个按键区`,
-                            maskStyle:{ zIndex: 99999 }
-                          })
-                          return
+                            content: `${t('当前最多配置')}${Math.floor(18 - whiteAreaCount)}${t('个按键区')}`,
+                            maskStyle: { zIndex: 99999 },
+                          });
+                          return;
                         }
-                        setSelected(item)
+                        setSelected(item);
                       }}
                   />)}
 
                 </div>
                 <div className="footer">
-                  <Button className="custom-btn" onClick={() => setVisible(false)}>取消</Button>
-                  <Button className={classNames("custom-btn primary", !selected || !selected.length ? 'disabled' : '')} onClick={async () => {
+                  <Button className="custom-btn" onClick={() => setVisible(false)}>{t('取消')}</Button>
+                  <Button className={classNames('custom-btn primary', !selected || !selected.length ? 'disabled' : '')} onClick={async () => {
                     setVisible(false);
                     await new Promise((resolve) => {
                       setTimeout(() => {
                         resolve();
-                      }, 200)
-                    })
+                      }, 200);
+                    });
                     const _selected = [...selected].map(item => ({ type: item.type, position: item.position, device: undefined }));
                     const layout = setOldToNew(selected);
                     const _layout = {
                       layout_id: layout.layout_id,
-                      config: ''
+                      config: '',
                     };
                     const config = JSON.parse(layout?.config || '{}');
-                    let _config = {};
-                    for (let key of Object.keys(config)) {
-                      _config[key] = {}
+                    const _config = {};
+                    for (const key of Object.keys(config)) {
+                      _config[key] = {};
                     }
                     _layout.config = JSON.stringify(_config);
                     screen_page.push(_layout);
                     doControlDeviceData('screen_page', screen_page);
                     push('/editor', { selected: JSON.stringify(_selected), index: screen_page.length - 1 });
-                  }}>保存</Button>
+                  }}>{t('保存')}</Button>
                 </div>
               </div>
             </Popup>
           </div>
         </Tabs.Tab>
-        <Tabs.Tab title='开关' key='2'>
+        <Tabs.Tab title={t('开关')} key='2'>
           <div className={`dashboard switch-${switchNum}`}>
             {currentSwitch.map(([key, name], index) => (
               <LightSwitch

@@ -10,11 +10,11 @@ import { OptionDialog } from '@custom/OptionDialog';
 import { setNewToOld, setOldToNew } from '../Layout/constant';
 import { useTitle } from '@hooks/useTitle';
 import Item from 'antd-mobile/es/components/dropdown/item';
-
+import { t } from '@locales';
 
 
 const serviceList = [
-  ['天气', '01', 'weather']
+  ['天气', '01', 'weather'],
 ];
 
 // 4、屏幕配置品类核对：
@@ -52,8 +52,8 @@ const serviceList = [
 
 const category = {
   black: [635, 622, 620, 621, 622, 618, 616, 124],
-  white: [637, 630, 629, 627, 640]
-}
+  white: [637, 630, 629, 627, 640],
+};
 
 // 按键能添加的设备：(能影射到设备的每路开关)
 // 智控屏 637					有3路开关
@@ -71,51 +71,50 @@ const swtichNum = {
   637: 3,
   630: 3,
   629: 2,
-  627: 1
-}
+  627: 1,
+};
 
 // 获取下拉内容
-const getOptions = num => {
-  let opt = [];
+const getOptions = (num) => {
+  const opt = [];
   for (let i = 0; i < num; i++) {
-    opt.push({ label: `开关${i + 1}`, value: i + 1 })
+    opt.push({ label: `${t('开关')}${i + 1}`, value: i + 1 });
   }
   return opt;
-}
+};
 
 const Device = (props) => {
   const {
     setValue = () => { },
     selectedIndex,
     type = 'black',
-    dataSource = []
+    dataSource = [],
   } = { ...props };
   const [list, setList] = useState([]);
 
   const onConfirm = (values) => {
-    console.log("确定的值:", values)
-  }
+    console.log('确定的值:', values);
+  };
   const [opts, setOpts] = useState({
     title: '',
     visible: false,
     value: [],
     _data: {
-      DeviceId: "",
-      AliasName: "",
+      DeviceId: '',
+      AliasName: '',
     },
     type: 'radio',
-    options: [{ label: "开关1", value: 1 }],
+    options: [{ label: `${t('开关')}1`, value: 1 }],
     defaultValue: [],
     // confirmText?: string;
     // cancelText?: string;
     // onCancel?: () => void;
-    onConfirm: onConfirm
-  }
-  )
+    onConfirm,
+  });
 
   const setData = (data) => {
-    setOpts({ ...opts, ...data })
-  }
+    setOpts({ ...opts, ...data });
+  };
 
   const getDeviceList = async () => {
     try {
@@ -126,27 +125,22 @@ const Device = (props) => {
         FamilyId: sdk.familyId,
         RoomId: sdk.roomId,
         Offset: 0,
-        Limit: 50
+        Limit: 50,
       });
-
-
-
 
 
       const ProductIds = DeviceList.map(item => item.ProductId);
       const { Products } = await sdk.requestTokenApi('AppGetProducts', {
         Action: 'AppGetProducts',
-        ProductIds: ProductIds,
+        ProductIds,
       });
       const oProducts = {};
-      Products.forEach(element => {
+      Products.forEach((element) => {
         oProducts[element?.ProductId] = element;
       });
       const data = Products.filter(item => category[type].includes(item.CategoryId)).map(item => item.ProductId);
-      let _data = DeviceList.filter(item => data.includes(item.ProductId))
-      _data = _data.map(item => ({ ...item, CategoryId: oProducts[item.ProductId]?.CategoryId }))
-
-
+      let _data = DeviceList.filter(item => data.includes(item.ProductId));
+      _data = _data.map(item => ({ ...item, CategoryId: oProducts[item.ProductId]?.CategoryId }));
 
 
       // _data = [{
@@ -221,8 +215,7 @@ const Device = (props) => {
 
       setList(_data);
       // setList(DeviceList);
-      console.log("aaaaaaaaaa------------>", { data, _data, type })
-
+      console.log('aaaaaaaaaa------------>', { data, _data, type });
     } catch (err) {
       console.error('get info fail', err);
     }
@@ -231,41 +224,41 @@ const Device = (props) => {
     getDeviceList();
   }, [type]);
 
-  let isWhite = type === "white";
+  const isWhite = type === 'white';
 
   /**
    * 点击每个栏目
    */
   const handleClick = (itemData, item) => {
-    let valueItem = dataSource.filter(item => item.device === itemData?.DeviceId)[0] || {};
-    console.log("选中的值", valueItem)
+    const valueItem = dataSource.filter(item => item.device === itemData?.DeviceId)[0] || {};
+    console.log('选中的值', valueItem);
     setData({
       visible: true,
       title: item?.title,
       value: [valueItem?.switch], // TODO 回显值
       options: getOptions(swtichNum[itemData?.CategoryId]),
       _data: itemData,
-    })
-    console.log("点击每个栏目:", item, itemData)
-  }
+    });
+    console.log('点击每个栏目:', item, itemData);
+  };
 
   // 模态框矿确认
   const onDialogConfirm = (value) => {
-    let { DeviceId, AliasName } = opts._data || {};
-    setValue(DeviceId, AliasName, 'device', value[0])
-    console.log("模态框确认:", DeviceId, AliasName, 'device', value[0]);
-  }
+    const { DeviceId, AliasName } = opts._data || {};
+    setValue(DeviceId, AliasName, 'device', value[0]);
+    console.log('模态框确认:', DeviceId, AliasName, 'device', value[0]);
+  };
 
-  console.log("dataSource值:", dataSource)
+  console.log('dataSource值:', dataSource);
 
   return (<div className="service-list">
 
     <OptionDialog {...opts} onCancel={() => setData({ visible: false })} onConfirm={onDialogConfirm}></OptionDialog>
 
     {list.map((item, index) => {
-      let { AliasName, DeviceId, IconUrl } = item;
-      return isWhite ?
-        <Cell
+      const { AliasName, DeviceId, IconUrl } = item;
+      return isWhite
+        ? <Cell
           key={`device_white_${index}`}
           className="custom-cell"
           prefixIcon={IconUrl ? <img className="device-img" style={{ height: 24, width: 24 }} src={IconUrl} /> : <></>}
@@ -293,12 +286,12 @@ const Device = (props) => {
             if (!!dataSource.filter(item => item.device === DeviceId).length) {
               return;
             }
-            setValue(DeviceId, AliasName, 'device')
+            setValue(DeviceId, AliasName, 'device');
           }}
-        />
+        />;
     })}
-  </div>)
-}
+  </div>);
+};
 
 const ServicePopup = forwardRef((props: any, ref) => {
   const { dataSource = [], history: { query } } = { ...props };
@@ -307,10 +300,10 @@ const ServicePopup = forwardRef((props: any, ref) => {
   useImperativeHandle(ref, () => ({
     open: (index) => {
       setSelectedIndex(index);
-      setVisible(true)
+      setVisible(true);
     },
-    close: () => setVisible(false)
-  }))
+    close: () => setVisible(false),
+  }));
 
   const setSelectedValue = (id, name, type, switchNum) => {
     const data = [...dataSource].map(item => item);
@@ -324,8 +317,8 @@ const ServicePopup = forwardRef((props: any, ref) => {
       }
     }
     props.onChange(data);
-    setVisible(false)
-  }
+    setVisible(false);
+  };
   return (
     <Popup
       className="switch-scene-popup"
@@ -333,10 +326,10 @@ const ServicePopup = forwardRef((props: any, ref) => {
       onMaskClick={() => setVisible(false)}
     >
       <Tabs defaultActiveKey='tab_1' className="custom-tabs">
-        <Tabs.Tab title='设备' key='tab_1'>
+        <Tabs.Tab title={t('设备')} key='tab_1'>
           <Device {...props} dataSource={dataSource} selectedIndex={selectedIndex} setValue={setSelectedValue} type={'black'} />
         </Tabs.Tab>
-        <Tabs.Tab title='服务' key='tab_2'>
+        <Tabs.Tab title={t('服务')} key='tab_2'>
           <div className="service-list">
             {serviceList.map(([name, id, icon], index) => (
               <Cell
@@ -351,7 +344,7 @@ const ServicePopup = forwardRef((props: any, ref) => {
                   if (!!dataSource.filter(item => item.device === id).length) {
                     return;
                   }
-                  setSelectedValue(id, name, 'service')
+                  setSelectedValue(id, name, 'service');
                 }}
               />
             ))}
@@ -360,7 +353,7 @@ const ServicePopup = forwardRef((props: any, ref) => {
       </Tabs>
     </Popup >
 
-  )
+  );
 });
 
 const ScenePopup = forwardRef((props: any, ref) => {
@@ -376,7 +369,7 @@ const ScenePopup = forwardRef((props: any, ref) => {
         RequestId: sdk.requestId,
         FamilyId: sdk.familyId,
         Offset: 0,
-        Limit: 50
+        Limit: 50,
       });
       setSceneList(SceneList);
     } catch (err) {
@@ -386,14 +379,14 @@ const ScenePopup = forwardRef((props: any, ref) => {
 
   useEffect(() => {
     getSceneList();
-  }, [])
+  }, []);
 
   useImperativeHandle(ref, () => ({
     open: (index) => {
       setSelectedIndex(index);
-      setVisible(true)
+      setVisible(true);
     },
-    close: () => setVisible(false)
+    close: () => setVisible(false),
   }));
 
   const setSelectedValue = (id, name, type, switchNum) => {
@@ -406,9 +399,9 @@ const ScenePopup = forwardRef((props: any, ref) => {
         data[selectedIndex].switch = switchNum;
       }
     }
-    props.onChange(data)
-    setVisible(false)
-  }
+    props.onChange(data);
+    setVisible(false);
+  };
   return (
     <Popup
       className="switch-scene-popup"
@@ -416,10 +409,10 @@ const ScenePopup = forwardRef((props: any, ref) => {
       onMaskClick={() => setVisible(false)}
     >
       <Tabs defaultActiveKey='tab_1' className="custom-tabs">
-        <Tabs.Tab title='设备开关' key='tab_1'>
+        <Tabs.Tab title={t('设备开关')} key='tab_1'>
           <Device {...props} dataSource={dataSource} selectedIndex={selectedIndex} setValue={setSelectedValue} type={'white'} />
         </Tabs.Tab>
-        <Tabs.Tab title='场景' key='tab_2'>
+        <Tabs.Tab title={t('场景')} key='tab_2'>
           {sceneList.map(({ SceneId, SceneName, SceneIcon, Actions = [] }, index) => (
             <Cell
               key={`service_${SceneId}_${new Date().getTime()}`}
@@ -433,20 +426,20 @@ const ScenePopup = forwardRef((props: any, ref) => {
                 if (!!dataSource.filter(item => item.device === SceneId).length) {
                   return;
                 }
-                setSelectedValue(SceneId, SceneName, 'scene')
+                setSelectedValue(SceneId, SceneName, 'scene');
               }}
             />
           ))}
         </Tabs.Tab>
       </Tabs>
     </Popup>
-  )
+  );
 });
 
 export function Editor({ ...props }) {
-  useTitle('屏幕布局');
+  useTitle(t('屏幕布局'));
   const { history: { query, push }, deviceData = {},
-    doControlDeviceData
+    doControlDeviceData,
   } = { ...props };
   const [infoVisible, setInfoVisible] = useState(false);
   const { screen_page = [] } = { ...deviceData };
@@ -459,21 +452,21 @@ export function Editor({ ...props }) {
     nData[Number(query?.index)] = setOldToNew(data);
     // debugger;
     doControlDeviceData('screen_page', nData);
-  }
+  };
   useEffect(() => {
     if (!query.isEdit || !JSON.parse(query.isEdit)) {
       setInfoVisible(true);
     }
-  }, [query.isEdit])
+  }, [query.isEdit]);
 
-  console.log("显示的数据:", dataSource)
+  console.log('显示的数据:', dataSource);
 
   return (
     <div className="editor-layout">
       <div className="header">
-        <span>点击卡片可进行编辑</span>
+        <span>{t('点击卡片可进行编辑')}</span>
         <div style={{ display: 'flex', alignItems: 'center' }}>
-          <span style={{ marginRight: 4 }}>布局说明</span>
+          <span style={{ marginRight: 4 }}>{t('布局说明')}</span>
           <div onClick={() => setInfoVisible(true)}><Icon name="info"></Icon></div>
         </div>
       </div>
@@ -481,19 +474,19 @@ export function Editor({ ...props }) {
         <Layout
           {...props}
           selected={dataSource}
-          onBlackClick={(index) => serviceRef.current.open(index)}
-          onWhiteClick={(index) => sceneRef.current.open(index)}
+          onBlackClick={index => serviceRef.current.open(index)}
+          onWhiteClick={index => sceneRef.current.open(index)}
         >
         </Layout>
       </div>
       {JSON.parse(query.isEdit || 'false') ? <div className="footer">
         <Btn className="delete-btn" onClick={() => {
           // doControlDeviceData('screen_page', )
-          let nData = [...screen_page];
+          const nData = [...screen_page];
           query?.index && nData.splice(Number(query?.index), 1);
           doControlDeviceData('screen_page', nData);
           push('/home');
-        }}>删除屏幕</Btn></div> : <></>}
+        }}>{t('删除屏幕')}</Btn></div> : <></>}
 
       <Popup
         className="layout-info-popup"
@@ -504,19 +497,17 @@ export function Editor({ ...props }) {
           className="popup-content"
         >
           <div className="header">
-            屏幕布局
+            {t('屏幕布局')}
           </div>
           <div className="content">
             <div className="info">
-              黑色区可配置：
-              设备（更详细的设备控制）、服务（时钟、天气）
+              {t('黑色区可配置：设备（更详细的设备控制）、服务（时钟、天气）')}
             </div>
             <div className="info-photo">
               <Icon name="info-layout" />
             </div>
             <div className="info">
-              按键区可配置：
-              设备开关、场景，点击即控
+              {t('按键区可配置：设备开关、场景，点击即控')}
             </div>
             <div className="arrow-1">
               <Icon name="arrow-left" />
@@ -526,7 +517,7 @@ export function Editor({ ...props }) {
             </div>
           </div>
           <div className="footer">
-            <Btn className="custom-btn" onClick={() => setInfoVisible(false)}>我知道了</Btn>
+            <Btn className="custom-btn" onClick={() => setInfoVisible(false)}>{t('我知道了')}</Btn>
           </div>
         </div>
       </Popup>
