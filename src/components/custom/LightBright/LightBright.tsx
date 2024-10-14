@@ -20,7 +20,7 @@ export function LightBright({
     dataUser: defaultValue > maxValue ? maxValue : defaultValue,
     endTouch: false,
   });
-  const currentWidth = `${5 + ((dataInfo.dataUser - minValue) * 95) / (maxValue - minValue)}%`;
+  const currentWidth = `${11 + ((dataInfo.dataUser - minValue) * 95) / (maxValue - minValue)}%`;
 
   const currentHeight = `${0 + ((dataInfo.dataUser - minValue) * 90) / (maxValue - minValue)}%`;
 

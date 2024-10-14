@@ -36,57 +36,20 @@ const delayCloseOptions = [
     { label: `5${t('分钟')}`, value: 300 },
   ],
 ];
-// const NightLightOptions = [
-//   [
-//     { label: '无', value: 0 },
-//     { label: '5秒', value: 5 },
-//     { label: '10秒', value: 10 },
-//     { label: '20秒', value: 20 },
-//     { label: '30秒', value: 30 },
-//     { label: '2分钟', value: 60 },
-//     { label: '2分钟', value: 120 },
-//     { label: '2分钟', value: 180 },
-//     { label: '2分钟', value: 240 },
-//     { label: '2分钟', value: 300 },
-//   ],
-// ];
+const timeStringToTimestamp = (timeString) => {
 
-// const colorModeOptions = [
-//   [
-//     { label: '单色模式', value: 0 },
-//     { label: '双色模式', value: 1 },
-//   ],
-// ];
+  const [hours, minutes] = timeString.split(':').map(Number);
+  const now = new Date();
 
-// const colorDefaultOptions = [
-//   [
-//     { label: '暖白光', value: 4000 },
-//     { label: '明亮光', value: 5000 },
-//     { label: '温暖光', value: 3000 },
-//   ],
-// ];
+  // 创建一个新的日期对象，并设置为中国标准时间（UTC+8)  
+  const date = new Date(now.getFullYear(), now.getMonth(), now.getDate(), hours, minutes, 0);
 
-// const defaultSceneTypeOptions = [
-//   [
-//     { label: '记忆', value: 0 },
-//     { label: '明亮', value: 1 },
-//     { label: '柔和', value: 2 },
-//     { label: '冷光', value: 3 },
-//     { label: '暖光', value: 4 },
-//     { label: '夜灯', value: 5 },
-//     { label: '阅读', value: 6 },
-//     { label: '电视', value: 7 },
-//     { label: '月光', value: 8 },
-//     { label: '自定义', value: 9 },
-//   ],
-// ];
+  // 将时间转换为 UTC 时间戳（秒数）  
+  return Math.floor(date.getTime() / 1000); // 返回的是从1970-01-01 00:00:00 UTC开始的相应时间的秒数。  
 
-const outageStatusOptions = [
-  [
-    { label: t('关闭'), value: 0 },
-    { label: t('记忆'), value: 1 },
-  ],
-];
+
+};
+
 
 const timeOptions = (() => {
   const result = [[], []] as any;
@@ -109,7 +72,7 @@ const timeOptions = (() => {
 
 const secondToStr = (num: number) => {
   const minuteStr = Math.floor(num / 60) > 0 ? `${Math.floor(num / 60)}${t('分')}` : '';
-  const secondsStr = num % 60 > 0 ? `${num % 60}${t('秒')}` : '';
+  const secondsStr = num % 60 > 0 ? `${num % 60}${t('分')}` : '';
   return minuteStr + secondsStr;
 };
 
@@ -143,8 +106,8 @@ export function MoreSetting({ deviceData, doControlDeviceData, sdk }) {
   });
 
   const { openNightTimer, closeNightTimer } = useMemo(() => ({
-    openNightTimer: TimerList.find(item => item.Data === '{"night_light_status":1}'),
-    closeNightTimer: TimerList.find(item => item.Data === '{"night_light_status":0}'),
+    openNightTimer: TimerList.find(item => item.Data === '{"night_light_status":2}'),
+    closeNightTimer: TimerList.find(item => item.Data === '{"night_light_status":3}'),
   }), [TimerList]);
 
   useEffect(() => {
@@ -200,6 +163,7 @@ export function MoreSetting({ deviceData, doControlDeviceData, sdk }) {
   };
 
   const handleChangeNightLight = async (val: boolean) => {
+    console.log(TimerList)
     if (!TimerList) return;
     try {
       const loadingToast = Toast.show({
@@ -232,7 +196,7 @@ export function MoreSetting({ deviceData, doControlDeviceData, sdk }) {
         await sdk.requestTokenApi('AppCreateTimer', {
           ProductId: sdk.productId,
           DeviceName: sdk.deviceName,
-          Data: '{"night_light_status":1}',
+          Data: '{"night_light_status":2}',
           Days: '1111111',
           Repeat: 1,
           TimePoint: nightLightTime.startTime,
@@ -243,7 +207,7 @@ export function MoreSetting({ deviceData, doControlDeviceData, sdk }) {
         await sdk.requestTokenApi('AppCreateTimer', {
           ProductId: sdk.productId,
           DeviceName: sdk.deviceName,
-          Data: '{"night_light_status":0}',
+          Data: '{"night_light_status":3}',
           Days: '1111111',
           Repeat: 1,
           TimePoint: nightLightTime.endTime,
@@ -262,11 +226,6 @@ export function MoreSetting({ deviceData, doControlDeviceData, sdk }) {
   };
 
   const isOpenNightLightStatus = useMemo(() => openNightTimer?.Status && closeNightTimer?.Status, [TimerList]);
-
-  // const colorTempInputRef = useRef<any>(null);
-  // const brightnessInputRef = useRef<any>(null);
-
-  // const showToggleColorMode = sdk.dataTemplate.properties.find(item => item.id === 'color_mode');
 
   return (
     <>
@@ -290,88 +249,9 @@ export function MoreSetting({ deviceData, doControlDeviceData, sdk }) {
           >
             {t('灯光渐变时间')}
           </List.Item>
-          {/* <List.Item*/}
-          {/*  extra={defaultSceneTypeOptions[0][default_scene_type]?.label || '物模型非法'}*/}
-          {/*  clickable*/}
-          {/*  onClick={async () => {*/}
-          {/*    const res = await Picker.prompt({*/}
-          {/*      columns: defaultSceneTypeOptions,*/}
-          {/*    });*/}
-          {/*    const val = res?.[0];*/}
-          {/*    if (typeof val === 'number') {*/}
-          {/*      doControlDeviceData({ default_scene_type: val });*/}
-          {/*    }*/}
-          {/*  }}*/}
-          {/* >*/}
-          {/*  默认开启状态*/}
-          {/* </List.Item>*/}
-          {/* {default_scene_type === 9 && (*/}
-          {/*  <>*/}
-          {/*    <List.Item*/}
-          {/*      extra={`${default_color_temp}K`}*/}
-          {/*      onClick={() => {*/}
-          {/*        Modal.alert({*/}
-          {/*          content: (*/}
-          {/*            <Input*/}
-          {/*              ref={colorTempInputRef}*/}
-          {/*              placeholder='请输入色温值(2700-6500)'*/}
-          {/*              type={'number'}*/}
-          {/*            />*/}
-          {/*          ),*/}
-          {/*          style: {*/}
-          {/*            '--adm-color-primary': '#30414D',*/}
-          {/*          },*/}
-          {/*          title: '默认色温',*/}
-          {/*          closeOnMaskClick: true,*/}
-          {/*          confirmText: '确认',*/}
-          {/*          onConfirm: () => {*/}
-          {/*            const color_temp = Number(colorTempInputRef.current.nativeElement.value);*/}
-          {/*            if (!Number.isNaN(color_temp) && color_temp >= 2700 && color_temp <= 6500) {*/}
-          {/*              doControlDeviceData({ default_color_temp: color_temp });*/}
-          {/*            } else {*/}
-          {/*              Toast.show({ content: '色温值不合法', icon: 'fail' });*/}
-          {/*            }*/}
-          {/*          },*/}
-          {/*        });*/}
-          {/*      }}*/}
-          {/*    >*/}
-          {/*      <div style={{ marginLeft: '16px' }}>默认色温</div>*/}
-          {/*    </List.Item>*/}
-          {/*    <List.Item*/}
-          {/*      extra={`${default_brightness}%`}*/}
-          {/*      onClick={() => {*/}
-          {/*        Modal.alert({*/}
-          {/*          content: (*/}
-          {/*            <Input*/}
-          {/*              ref={brightnessInputRef}*/}
-          {/*              placeholder='请输入亮度值(0-100)'*/}
-          {/*              type={'number'}*/}
-          {/*            />*/}
-          {/*          ),*/}
-          {/*          style: {*/}
-          {/*            '--adm-color-primary': '#30414D',*/}
-          {/*          },*/}
-          {/*          title: '默认亮度',*/}
-          {/*          closeOnMaskClick: true,*/}
-          {/*          confirmText: '确认',*/}
-          {/*          onConfirm: () => {*/}
-          {/*            const brightness = Number(brightnessInputRef.current.nativeElement.value);*/}
-          {/*            if (!Number.isNaN(brightness) && brightness >= 0 && brightness <= 100) {*/}
-          {/*              doControlDeviceData({ default_brightness: brightness });*/}
-          {/*            } else {*/}
-          {/*              Toast.show({ content: '亮度值不合法', icon: 'fail' });*/}
-          {/*            }*/}
-          {/*          },*/}
-          {/*        });*/}
-          {/*      }}*/}
-          {/*    >*/}
-          {/*      <div style={{ marginLeft: '16px' }}>默认亮度</div>*/}
-          {/*    </List.Item>*/}
-          {/*  </>*/}
-          {/* )}*/}
+
           <List.Item
-            // extra={outageStatusOptions[0][outage_status]?.label || '-'}
-            // clickable
+
             extra={
               <Switch
                 uncheckedText={t('关闭')}
@@ -382,19 +262,11 @@ export function MoreSetting({ deviceData, doControlDeviceData, sdk }) {
                 }}
               />
             }
-          // const res = await Picker.prompt({
-          //   columns: outageStatusOptions,
-          //   defaultValue: [outage_status || outageStatusOptions[0][0].value],
-          // });
-          // const val = res?.[0];
-          // if (typeof val === 'number') {
-          //   doControlDeviceData({ outage_status: val });
-          // }
-          // }}
+
           >
             {t('断电后通电状态')}
           </List.Item>
-          {/* <List.Item
+          <List.Item
             extra={secondToStr(Number(delay_close)) || '-'}
             clickable
             onClick={async () => {
@@ -409,69 +281,8 @@ export function MoreSetting({ deviceData, doControlDeviceData, sdk }) {
             }}
           >
             {t('延时关灯')}
-          </List.Item> */}
-          {/* <List.Item
-          extra={secondToStr(Number(nightlight)) || '-'}
-          clickable
-          onClick={async () => {
-            const res = await Picker.prompt({
-              columns: NightLightOptions,
-              defaultValue: [nightlight || NightLightOptions[0][0].value],
-            });
-            const val = res?.[0];
-            if (typeof val === 'number') {
-              doControlDeviceData({ nightlight: val });
-            }
-          }}
-        >
-          夜灯模式
-        </List.Item> */}
-          {/* {showToggleColorMode && (
-          <List.Item
-            extra={colorModeOptions[0][color_mode]?.label || '-'}
-            clickable
-            onClick={async () => {
-              const res = await Picker.prompt({
-                columns: colorModeOptions,
-                defaultValue: [color_mode || colorModeOptions[0][0].value],
-              });
-              const val = res?.[0];
-              if (typeof val === 'number') {
-                doControlDeviceData({ color_mode: val });
-              }
-            }}
-          >
-            单双色切换
           </List.Item>
-        )} */}
-          {/* <List.Item
-            extra={colorDefaultOptions[0].find((item) => item.value === default_color_temp)?.label || '-'}
-            clickable
-            onClick={async () => {
-              const res = await Picker.prompt({
-                columns: colorDefaultOptions,
-                defaultValue: [default_color_temp || delayCloseOptions[0][0].value],
-              });
-              const val = res?.[0];
-              if (typeof val === 'number') {
-                switch (val) {
-                  case 4000:
-                    doControlDeviceData({ default_color_temp: 4000, default_brightness: 80 });
-                    break;
-                  case 5000:
-                    doControlDeviceData({ default_color_temp: 5000, default_brightness: 100 });
-                    break;
-                  case 3000:
-                    doControlDeviceData({ default_color_temp: 3000, default_brightness: 60 });
-                    break;
-                  default:
-                    break;
-                }
-              }
-            }}
-          >
-            默认开启灯光
-          </List.Item> */}
+
         </List>
         <List header={t('夜灯设置')}>
           <List.Item
@@ -479,10 +290,22 @@ export function MoreSetting({ deviceData, doControlDeviceData, sdk }) {
               <Switch
                 loading={isValidating}
                 checked={isOpenNightLightStatus}
-                onChange={handleChangeNightLight}
+                onChange={async (checked) => {
+                  // 更新夜灯模式状态  
+                  await handleChangeNightLight(checked);
+
+                  // 当夜灯模式开启时，使用动态时间  
+                  if (checked) {
+                    doControlDeviceData({ night_light_status: 1 });
+                  } else {
+                    // 处理夜灯模式关闭时的逻辑（如果需要）  
+                    doControlDeviceData({ night_light_status: 0 }); // 或者其他逻辑  
+                  }
+                }}
               />
             )}
-            description={t('在目标时间段内自动开启夜灯模式')}>
+            description={t('在目标时间段内自动开启夜灯模式')}
+          >
             {t('夜灯模式开关')}
           </List.Item>
           {!!isOpenNightLightStatus && (
@@ -499,7 +322,12 @@ export function MoreSetting({ deviceData, doControlDeviceData, sdk }) {
                     let [hour, minute] = res;
                     hour = `${hour}`.padStart(2, '0');
                     minute = `${minute}`.padStart(2, '0');
-                    console.log(hour, minute);
+                    const newTime = `${hour}:${minute}`;
+                    const timeStamp = timeStringToTimestamp(newTime);
+                    // 存储夜灯开启时间到localStorage
+                    // localStorage.setItem('nightLightStartTime', newTime);
+                    doControlDeviceData({ night_light_start_time: timeStamp });
+                    setNightLightTime({ ...nightLightTime, startTime: newTime });
                     await updateNightLightTimerTimePoint({ ...nightLightTime, startTime: `${hour}:${minute}` });
                     setNightLightTime({ ...nightLightTime, startTime: `${hour}:${minute}` });
                   }
@@ -509,17 +337,22 @@ export function MoreSetting({ deviceData, doControlDeviceData, sdk }) {
               </List.Item>
               <List.Item
                 clickable
-                extra={closeNightTimer?.TimePoint || '06:00'}
+                extra={closeNightTimer?.TimePoint || '6:00'}
                 onClick={async () => {
                   const res = await Picker.prompt({
                     columns: timeOptions,
-                    defaultValue: (closeNightTimer?.TimePoint || '06:00')?.split(':'),
+                    defaultValue: (closeNightTimer?.TimePoint || '6:00')?.split(':'),
                   });
                   if (res) {
                     let [hour, minute] = res;
                     hour = `${hour}`.padStart(2, '0');
                     minute = `${minute}`.padStart(2, '0');
-                    console.log(hour, minute);
+                    const newTime = `${hour}:${minute}`;
+                    const timeStamp = timeStringToTimestamp(newTime);
+                    // 存储夜灯关闭时间到localStorage
+                    // localStorage.setItem('nightLightEndTime', newTime);
+                    doControlDeviceData({ night_light_end_time: timeStamp });
+                    setNightLightTime({ ...nightLightTime, endTime: newTime });
                     await updateNightLightTimerTimePoint({ ...nightLightTime, endTime: `${hour}:${minute}` });
                     setNightLightTime({ ...nightLightTime, endTime: `${hour}:${minute}` });
                   }
