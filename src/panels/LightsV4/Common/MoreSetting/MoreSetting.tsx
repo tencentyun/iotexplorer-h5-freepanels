@@ -36,6 +36,12 @@ const delayCloseOptions = [
     { label: `5${t('分钟')}`, value: 300 },
   ],
 ];
+const colorModeOptions = [
+  [
+    { label: '单色模式', value: 0 },
+    { label: '双色模式', value: 1 },
+  ],
+];
 const timeStringToTimestamp = (timeString) => {
 
   const [hours, minutes] = timeString.split(':').map(Number);
@@ -88,7 +94,7 @@ export function MoreSetting({ deviceData, doControlDeviceData, sdk }) {
     // default_brightness = '-',
     delay_close = 0,
     // nightlight=0,
-    // color_mode = 0,
+    color_mode = 0,
     // default_color_temp = 4000
   } = deviceData;
 
@@ -226,7 +232,7 @@ export function MoreSetting({ deviceData, doControlDeviceData, sdk }) {
   };
 
   const isOpenNightLightStatus = useMemo(() => openNightTimer?.Status && closeNightTimer?.Status, [TimerList]);
-
+  const showToggleColorMode = sdk.dataTemplate.properties.find(item => item.id === 'color_mode');
   return (
     <>
       <div className='more-setting-container'>
@@ -282,7 +288,24 @@ export function MoreSetting({ deviceData, doControlDeviceData, sdk }) {
           >
             {t('延时关灯')}
           </List.Item>
-
+          {showToggleColorMode && (
+            <List.Item
+              extra={colorModeOptions[0][color_mode]?.label || '-'}
+              clickable
+              onClick={async () => {
+                const res = await Picker.prompt({
+                  columns: colorModeOptions,
+                  defaultValue: [color_mode || colorModeOptions[0][0].value],
+                });
+                const val = res?.[0];
+                if (typeof val === 'number') {
+                  doControlDeviceData({ color_mode: val });
+                }
+              }}
+            >
+              单双色切换
+            </List.Item>
+          )}
         </List>
         <List header={t('夜灯设置')}>
           <List.Item
@@ -326,7 +349,7 @@ export function MoreSetting({ deviceData, doControlDeviceData, sdk }) {
                     const timeStamp = timeStringToTimestamp(newTime);
                     // 存储夜灯开启时间到localStorage
                     // localStorage.setItem('nightLightStartTime', newTime);
-                    doControlDeviceData({ night_light_start_time: timeStamp });
+                    doControlDeviceData({ night_start_time: timeStamp });
                     setNightLightTime({ ...nightLightTime, startTime: newTime });
                     await updateNightLightTimerTimePoint({ ...nightLightTime, startTime: `${hour}:${minute}` });
                     setNightLightTime({ ...nightLightTime, startTime: `${hour}:${minute}` });
@@ -351,7 +374,7 @@ export function MoreSetting({ deviceData, doControlDeviceData, sdk }) {
                     const timeStamp = timeStringToTimestamp(newTime);
                     // 存储夜灯关闭时间到localStorage
                     // localStorage.setItem('nightLightEndTime', newTime);
-                    doControlDeviceData({ night_light_end_time: timeStamp });
+                    doControlDeviceData({ night_end_time: timeStamp });
                     setNightLightTime({ ...nightLightTime, endTime: newTime });
                     await updateNightLightTimerTimePoint({ ...nightLightTime, endTime: `${hour}:${minute}` });
                     setNightLightTime({ ...nightLightTime, endTime: `${hour}:${minute}` });

@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState,useCallback } from 'react';
 import { Icon } from '@custom/Icon';
 import { noop } from '@utillib';
 
@@ -47,15 +47,23 @@ export function LightBright({
     }
   }, [value]);
 
-  const toggleReduce = () => {
+  const toggleReduce = useCallback(() => {
     if (!status) return;
-    updateBrightVal(dataInfo.dataUser - 1, true);
-  };
+    let timeoutId;
+    clearTimeout(timeoutId);
+    timeoutId = setTimeout(() => {
+      updateBrightVal(dataInfo.dataUser - 1, true);
+    }, 300); // 300 毫秒的防抖时间，可以根据实际需求调整
+  }, [dataInfo.dataUser, status, updateBrightVal]);
 
-  const toggleAdd = () => {
+  const toggleAdd = useCallback(() => {
     if (!status) return;
-    updateBrightVal(dataInfo.dataUser + 1, true);
-  };
+    let timeoutId;
+    clearTimeout(timeoutId);
+    timeoutId = setTimeout(() => {
+      updateBrightVal(dataInfo.dataUser + 1, true);
+    }, 300); // 300 毫秒的防抖时间，可以根据实际需求调整
+  }, [dataInfo.dataUser, status, updateBrightVal]);
 
   const handleMove = (e: TouchEvent) => {
     const val = layout === 'hoz' ? (e.changedTouches[0].clientX - slider.current.offsetLeft)
