@@ -56,7 +56,42 @@ const timeStringToTimestamp = (timeString) => {
 
 };
 
-
+const nightLightStartTimeOptions = (() => {
+  const result = [[], []] as any;
+  for (let i = 0; i < 24; i++) {
+    if (i < 10) {
+      result[0].push({ label: `0${i}${t('时')}`, value: `0${i}` });
+    } else {
+      result[0].push({ label: `${i}${t('时')}`, value: `${i}` });
+    }
+  }
+  for (let i = 0; i < 60; i++) {
+    if (i < 10) {
+      result[1].push({ label: `0${i}${t('分')}`, value: `0${i}` });
+    } else {
+      result[1].push({ label: `${i}${t('分')}`, value: `${i}` });
+    }
+  }
+  return result;
+})();
+const nightLightEndTimeOptions = (() => {
+  const result = [[], []] as any;
+  for (let i = 0; i < 24; i++) {
+    if (i < 10) {
+      result[0].push({ label: `0${i}${t('时')}`, value: `0${i}` });
+    } else {
+      result[0].push({ label: `${i}${t('时')}`, value: `${i}` });
+    }
+  }
+  for (let i = 0; i < 60; i++) {
+    if (i < 10) {
+      result[1].push({ label: `0${i}${t('分')}`, value: `0${i}` });
+    } else {
+      result[1].push({ label: `${i}${t('分')}`, value: `${i}` });
+    }
+  }
+  return result;
+})();
 const timeOptions = (() => {
   const result = [[], []] as any;
   for (let i = 0; i < 24; i++) {
@@ -335,11 +370,11 @@ export function MoreSetting({ deviceData, doControlDeviceData, sdk }) {
             <>
               <List.Item
                 clickable
-                extra={openNightTimer?.TimePoint || '22:00'}
+                extra={nightLightTime.startTime || '默认开启时间'}
                 onClick={async () => {
                   const res = await Picker.prompt({
-                    columns: timeOptions,
-                    defaultValue: (openNightTimer?.TimePoint || '22:00')?.split(':'),
+                    columns: nightLightStartTimeOptions,
+                    defaultValue: (nightLightTime.startTime || '默认开启时间')?.split(':'),
                   });
                   if (res) {
                     let [hour, minute] = res;
@@ -347,12 +382,10 @@ export function MoreSetting({ deviceData, doControlDeviceData, sdk }) {
                     minute = `${minute}`.padStart(2, '0');
                     const newTime = `${hour}:${minute}`;
                     const timeStamp = timeStringToTimestamp(newTime);
-                    // 存储夜灯开启时间到localStorage
-                    // localStorage.setItem('nightLightStartTime', newTime);
                     doControlDeviceData({ night_start_time: timeStamp });
                     setNightLightTime({ ...nightLightTime, startTime: newTime });
-                    await updateNightLightTimerTimePoint({ ...nightLightTime, startTime: `${hour}:${minute}` });
-                    setNightLightTime({ ...nightLightTime, startTime: `${hour}:${minute}` });
+                    // await updateNightLightTimerTimePoint({ ...nightLightTime, startTime: `${hour}:${minute}` });
+                    // setNightLightTime({ ...nightLightTime, startTime: `${hour}:${minute}` });
                   }
                 }}
               >
@@ -360,11 +393,11 @@ export function MoreSetting({ deviceData, doControlDeviceData, sdk }) {
               </List.Item>
               <List.Item
                 clickable
-                extra={closeNightTimer?.TimePoint || '6:00'}
+                extra={nightLightTime.endTime || '默认关闭时间'}
                 onClick={async () => {
                   const res = await Picker.prompt({
-                    columns: timeOptions,
-                    defaultValue: (closeNightTimer?.TimePoint || '6:00')?.split(':'),
+                    columns: nightLightEndTimeOptions,
+                    defaultValue: (nightLightTime.endTime || '默认关闭时间')?.split(':'),
                   });
                   if (res) {
                     let [hour, minute] = res;
@@ -372,12 +405,10 @@ export function MoreSetting({ deviceData, doControlDeviceData, sdk }) {
                     minute = `${minute}`.padStart(2, '0');
                     const newTime = `${hour}:${minute}`;
                     const timeStamp = timeStringToTimestamp(newTime);
-                    // 存储夜灯关闭时间到localStorage
-                    // localStorage.setItem('nightLightEndTime', newTime);
                     doControlDeviceData({ night_end_time: timeStamp });
                     setNightLightTime({ ...nightLightTime, endTime: newTime });
-                    await updateNightLightTimerTimePoint({ ...nightLightTime, endTime: `${hour}:${minute}` });
-                    setNightLightTime({ ...nightLightTime, endTime: `${hour}:${minute}` });
+                    // await updateNightLightTimerTimePoint({ ...nightLightTime, endTime: `${hour}:${minute}` });
+                    // setNightLightTime({ ...nightLightTime, endTime: `${hour}:${minute}` });
                   }
                 }}
               >
