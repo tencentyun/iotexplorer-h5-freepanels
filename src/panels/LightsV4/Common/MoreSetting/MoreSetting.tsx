@@ -135,7 +135,7 @@ export function MoreSetting({ deviceData, doControlDeviceData, sdk }) {
 
   const [nightLightTime, setNightLightTime] = useState({
     startTime: '22:00',
-    endTime: '06:00',
+    endTime: '07:00',
   });
 
   const { data: TimerList = [], isValidating, mutate } = useSWR('AppGetTimerList', async () => {
@@ -342,7 +342,7 @@ export function MoreSetting({ deviceData, doControlDeviceData, sdk }) {
             </List.Item>
           )}
         </List>
-        <List header={t('夜灯设置')}>
+        {/* <List header={t('夜灯设置')}>
           <List.Item
             extra={(
               <Switch
@@ -416,7 +416,7 @@ export function MoreSetting({ deviceData, doControlDeviceData, sdk }) {
               </List.Item>
             </>
           )}
-        </List>
+        </List> */}
 
       </div>
     </>
