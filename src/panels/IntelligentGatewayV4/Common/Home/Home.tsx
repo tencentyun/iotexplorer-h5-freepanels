@@ -51,7 +51,7 @@ const GateWay = (props) => {
       '',
     ],
     [
-      'PLC本地组网',
+      '网关重启',
       'broadcast',
       () => {},
       '',
@@ -141,7 +141,7 @@ const GateWay = (props) => {
                         if (value) {
                           Dialog.confirm({
                             title: '提示',
-                            content: "开启后整体场景执行速度稍微变慢",
+                            content: "确认重启网关吗?",
                             cancelText: '取消',
                             confirmText: '确认',
                             onConfirm: () => {
